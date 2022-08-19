@@ -1,0 +1,1159 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Lec 12-Improving NN</title>
+    
+  <link href="../_static/css/theme.css" rel="stylesheet">
+  <link href="../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.be7d3bbb2ef33a8344ce.js">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Lec 13-Debugging ML Models-Error Analysis" href="lec13-DebuggingMLModels-ErrorAnalysis.html" />
+    <link rel="prev" title="Lec 10-Decision Trees - Ensemble Methods" href="lec10-DecisionTrees-EnsembleMethods.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../_static/mylogo.png" class="logo" alt="logo">
+      
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../intro.html">
+   My learning notebook
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Machine Learning
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../ml_examples/intro.html">
+   Welcome to your ML Book
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../ml_examples/ml_glossary.html">
+     Conceptual brief
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../ml_examples/Store_Sales_Forecasting_With_Tensorflow.html">
+     Store Sales Forecasting with TensorFlow
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Reference
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../markdown.html">
+   Markdown Files
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../notebooks.html">
+   Content with notebooks
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../markdown-notebooks.html">
+   Notebooks with MyST Markdown
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Lecture Notes
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="intro.html">
+   CS229 ML - by Andrew Ng
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2">
+    <a class="reference internal" href="lec02-LinearReg-GradientDescent.html">
+     Lec 02-Linear Regression - Gradient Descent
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="lec03-LocallyWeighted-LogisticRegression.html">
+     Lec 03-Locally Weighted Regression - Logistic Regression
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="lec04-Perceptron-GLM.html">
+     Lec 04-Perceptron - GLM
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="lec05-GDA-NaiveBayes.html">
+     Lec 05-GDA - Naive Bayes
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="lec06-NaiveBayes-SVM.html">
+     Lec 06-Naive Bayes - SVM
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="lec07-Kernels-SVM.html">
+     Lec 07-Kernels - SVM
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="lec08-DataSplits-Models-CrossValidation.html">
+     Lec 08-Data Splits - Models - Cross Validation
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="lec09-Approx-EstimationError-ERM.html">
+     Lec 09-Estimation Error - ERM
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="lec10-DecisionTrees-EnsembleMethods.html">
+     Lec 10-Decision Trees - Ensemble Methods
+    </a>
+   </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     Lec 12-Improving NN
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="lec13-DebuggingMLModels-ErrorAnalysis.html">
+     Lec 13-Debugging ML Models-Error Analysis
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="lec15-EMAlgo-FactorAnalysis.html">
+     Lec 15-EM Algo-Factor Analysis
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="lec16-IndependentComponentAnalysis-RL.html">
+     Lec 16-Independent Component Analysis-RL
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/cs229_ml/lec12-Backpropagation-ImprovingNN.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/chandrabsingh/learning"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/chandrabsingh/learning/issues/new?title=Issue%20on%20page%20%2Fcs229_ml/lec12-Backpropagation-ImprovingNN.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        
+    </div>
+</div>
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/chandrabsingh/learning/master?urlpath=tree/learning/cs229_ml/lec12-Backpropagation-ImprovingNN.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#outline">
+   Outline
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#backpropagation">
+   Backpropagation
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#derivative-of-loss-function-wrt-w-3">
+     Derivative of loss function wrt
+     <span class="math notranslate nohighlight">
+      \(W^{[3]}\)
+     </span>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#breaking-down-derivative">
+     Breaking down derivative
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#derivative-of-cost-function-wrt-w-3">
+     Derivative of cost function wrt
+     <span class="math notranslate nohighlight">
+      \(W^{[3]}\)
+     </span>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#derivative-of-loss-function-wrt-w-2">
+     Derivative of loss function wrt
+     <span class="math notranslate nohighlight">
+      \(W^{[2]}\)
+     </span>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#backpropagation-using-chain-rule">
+     Backpropagation using chain rule
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#how-to-use-the-derivative-of-loss-function-wrt-w-3-in-derivative-of-loss-function-wrt-w-2">
+     How to use the derivative of loss function wrt
+     <span class="math notranslate nohighlight">
+      \(W^{[3]}\)
+     </span>
+     in derivative of loss function wrt
+     <span class="math notranslate nohighlight">
+      \(W^{[2]}\)
+     </span>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#derivative-of-loss-function-wrt-w-2-contd">
+     Derivative of loss function wrt
+     <span class="math notranslate nohighlight">
+      \(W^{[2]}\)
+     </span>
+     (contd)
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#improving-neural-networks">
+   Improving Neural Networks
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#why-do-we-need-activation-functions">
+     Why do we need activation functions
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#initialization-methods">
+     Initialization Methods
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#vanishing-exploding-gradients">
+     Vanishing/Exploding gradients
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#initialization-problem">
+     Initialization problem
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#optimization">
+     Optimization
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#notation">
+       Notation
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#momentum-gradient-descent">
+       Momentum Gradient Descent
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Lec 12-Improving NN</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#outline">
+   Outline
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#backpropagation">
+   Backpropagation
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#derivative-of-loss-function-wrt-w-3">
+     Derivative of loss function wrt
+     <span class="math notranslate nohighlight">
+      \(W^{[3]}\)
+     </span>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#breaking-down-derivative">
+     Breaking down derivative
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#derivative-of-cost-function-wrt-w-3">
+     Derivative of cost function wrt
+     <span class="math notranslate nohighlight">
+      \(W^{[3]}\)
+     </span>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#derivative-of-loss-function-wrt-w-2">
+     Derivative of loss function wrt
+     <span class="math notranslate nohighlight">
+      \(W^{[2]}\)
+     </span>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#backpropagation-using-chain-rule">
+     Backpropagation using chain rule
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#how-to-use-the-derivative-of-loss-function-wrt-w-3-in-derivative-of-loss-function-wrt-w-2">
+     How to use the derivative of loss function wrt
+     <span class="math notranslate nohighlight">
+      \(W^{[3]}\)
+     </span>
+     in derivative of loss function wrt
+     <span class="math notranslate nohighlight">
+      \(W^{[2]}\)
+     </span>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#derivative-of-loss-function-wrt-w-2-contd">
+     Derivative of loss function wrt
+     <span class="math notranslate nohighlight">
+      \(W^{[2]}\)
+     </span>
+     (contd)
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#improving-neural-networks">
+   Improving Neural Networks
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#why-do-we-need-activation-functions">
+     Why do we need activation functions
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#initialization-methods">
+     Initialization Methods
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#vanishing-exploding-gradients">
+     Vanishing/Exploding gradients
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#initialization-problem">
+     Initialization problem
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#optimization">
+     Optimization
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#notation">
+       Notation
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#momentum-gradient-descent">
+       Momentum Gradient Descent
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            
+              <div>
+                
+  <section class="tex2jax_ignore mathjax_ignore" id="lec-12-improving-nn">
+<h1>Lec 12-Improving NN<a class="headerlink" href="#lec-12-improving-nn" title="Permalink to this headline">¶</a></h1>
+<section id="outline">
+<h2>Outline<a class="headerlink" href="#outline" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Logistic Regression as NN (last lecture)</p></li>
+<li><p>Neural Network (last lecture)</p>
+<ul>
+<li><p>Backpropagation (this lecture)</p></li>
+</ul>
+</li>
+<li><p>Improving your NN (this lecture)</p></li>
+</ul>
+</section>
+<section id="backpropagation">
+<h2>Backpropagation<a class="headerlink" href="#backpropagation" title="Permalink to this headline">¶</a></h2>
+<ul>
+<li><p>in order to define optimization problem and find right parameters, define a cost function</p></li>
+<li><p>forward propagating m examples at a time</p>
+<ul class="simple">
+<li><p>cost function is the average of loss function</p></li>
+</ul>
+<blockquote>
+<div><p><span class="math notranslate nohighlight">\(J(\hat{y}, y) = \frac{1}{m}\sum\limits_{i=1}^{m}L^{(i)}\)</span></p>
+</div></blockquote>
+<ul class="simple">
+<li><p>where</p></li>
+</ul>
+<blockquote>
+<div><p><span class="math notranslate nohighlight">\(L^{(i)} = -[y^{(i)}\log\hat{y}^{(i)} + (1-y^{(i)})\log(1-\hat{y}^{(i)}) ]\)</span></p>
+</div></blockquote>
+<ul class="simple">
+<li><p>the parameters <span class="math notranslate nohighlight">\(W^{[1]}, b^{[1]}, W^{[2]}, b^{[2]}, W^{[3]}, b^{[3]}\)</span></p>
+<ul>
+<li><p>the square bracket denotes the layer</p></li>
+<li><p>we need to train all these parameters</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>backward propagation</p>
+<ul class="simple">
+<li><p>here we start from back and move forward</p></li>
+<li><p>we compute derivative of <span class="math notranslate nohighlight">\(W^{[3]}\)</span> and <span class="math notranslate nohighlight">\(b^{[3]}\)</span>, then <span class="math notranslate nohighlight">\(W^{[2]}\)</span> and <span class="math notranslate nohighlight">\(b^{[2]}\)</span> and finally <span class="math notranslate nohighlight">\(W^{[1]}\)</span> and <span class="math notranslate nohighlight">\(b^{[1]}\)</span></p></li>
+</ul>
+<blockquote>
+<div><p><span class="math notranslate nohighlight">\(w^{[l]} = w^{[l]} - \alpha\frac{\partial L}{\partial w^{[l]}}\)</span></p>
+</div></blockquote>
+</li>
+</ul>
+<section id="derivative-of-loss-function-wrt-w-3">
+<h3>Derivative of loss function wrt <span class="math notranslate nohighlight">\(W^{[3]}\)</span><a class="headerlink" href="#derivative-of-loss-function-wrt-w-3" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>Lets compute derivation of loss function wrt to <span class="math notranslate nohighlight">\(W^{[3]}\)</span>, then we can compute cost function as it will be summation over all training example</p></li>
+</ul>
+<blockquote>
+<div><p><span class="math notranslate nohighlight">\(\frac{\partial L}{\partial W^{[3]}} = - [y^{(i)} \frac{\partial}{\partial W^{[3]}} (\log\sigma(W^{[3]} a^{[2]} + b^{[3]}))  +  (1-y^{(i)}) \frac{\partial}{\partial W^{[3]}} (\log(1-\sigma(W^{[3]} a^{[2]} + b^{[3]})))]\)</span></p>
+</div></blockquote>
+<ul class="simple">
+<li><p>The reason we have <span class="math notranslate nohighlight">\(a^{[2]}\)</span> in this equation is because  <span class="math notranslate nohighlight">\(a^{[2]}\)</span> is one of the parameter and input for <span class="math notranslate nohighlight">\(Z^{[3]}\)</span>  activation node</p></li>
+</ul>
+<img src="images/11_nn_propagationEq.png" width=400 height=400>  
+$\tiny{\text{YouTube-Stanford-CS229-Andrew Ng/Kian Katanforoosh}}$   </section>
+<section id="breaking-down-derivative">
+<h3>Breaking down derivative<a class="headerlink" href="#breaking-down-derivative" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>There is a composition of three functions here:</p>
+<ul>
+<li><p>logarithm</p></li>
+<li><p>sigmoid</p></li>
+<li><p>linear function</p></li>
+</ul>
+</li>
+<li><p>Derivative of log function</p></li>
+</ul>
+<blockquote>
+<div><p><span class="math notranslate nohighlight">\((\log x)' = \frac{1}{x}\)</span></p>
+</div></blockquote>
+<ul class="simple">
+<li><p>Derivative of sigmoid function <span class="math notranslate nohighlight">\(\sigma(x) = \frac{1}{1+e^{-x}}\)</span></p></li>
+</ul>
+<blockquote>
+<div><p><span class="math notranslate nohighlight">\(\sigma'(x) = \sigma(x)(1-\sigma(x))\)</span></p>
+</div></blockquote>
+<ul class="simple">
+<li><p>Derivative of log of sigmoid function <span class="math notranslate nohighlight">\(\log\sigma(..)\)</span> wrt <span class="math notranslate nohighlight">\(W^{[3]}\)</span></p></li>
+</ul>
+<blockquote>
+<div><p><span class="math notranslate nohighlight">\(\frac{\partial \log\sigma(..)}{\partial w} = \frac{1}{\log\sigma(..)} \frac{\partial\sigma(..)}{W^{[3]}}\)</span></p>
+</div></blockquote>
+<ul class="simple">
+<li><p>Derivative of log of sigmoid function <span class="math notranslate nohighlight">\(\log\sigma(Z^{[3]})\)</span> wrt <span class="math notranslate nohighlight">\(W^{[3]}\)</span></p></li>
+</ul>
+<blockquote>
+<div><p><span class="math notranslate nohighlight">\(\begin{equation}\\
+\begin{aligned}\\
+\frac{\partial \log\sigma(Z^{[3]})}{\partial W^{[3]}} &amp;= \frac{1}{\sigma(Z^{[3]})} \frac{\partial\sigma(Z^{[3]})}{\partial W^{[3]}}\\
+&amp;= \frac{1}{a^{[3]}} \frac{\partial\sigma(W^{[3]}a^{[2]} + b^{[3]} )}{\partial W^{[3]}}\\
+\end{aligned}\\
+\end{equation}\)</span></p>
+</div></blockquote>
+<ul class="simple">
+<li><p>Applying derivative of sigmoid function from above</p></li>
+</ul>
+<blockquote>
+<div><p><span class="math notranslate nohighlight">\(\begin{equation}\\
+\begin{aligned}\\
+&amp;= \frac{1}{a^{[3]}}.{a^{[3]}(1-a^{[3]})}. \frac{\partial(W^{[3]}a^{[2]} + b^{[3]} )}{\partial W^{[3]}}\\
+\end{aligned}\\
+\end{equation}\)</span></p>
+</div></blockquote>
+<ul class="simple">
+<li><p>Derivative of linear function <span class="math notranslate nohighlight">\(Z^{[3]}\)</span> wrt <span class="math notranslate nohighlight">\(W^{[3]}\)</span></p></li>
+</ul>
+<blockquote>
+<div><p><span class="math notranslate nohighlight">\(\frac{\partial}{\partial W^{[3]}}(W^{[3]}a^{[2]} + b^{[3]}) = a^{[2]T}\)</span></p>
+</div></blockquote>
+<ul class="simple">
+<li><p>Matrix shape of linear function <span class="math notranslate nohighlight">\((W^{[3]}a^{[2]} + b^{[3]})\)</span> is (1,1)</p></li>
+<li><p>Matrix shape of <span class="math notranslate nohighlight">\(W^{[3]}\)</span> is (1,2) because it is connected to 2 neurons</p>
+<ul>
+<li><p>So the matrix shape of whole derivative will be the shape of <span class="math notranslate nohighlight">\(W^{[3]}\)</span> i.e., (1,2)</p></li>
+<li><p>because we are taking the derivative of scalar (numerator) wrt higher dimension matrix, i.e., row vector(denominator) here.</p></li>
+</ul>
+</li>
+<li><p>if not in matrix form, derivative of linear function would be <span class="math notranslate nohighlight">\(a^{[2]}\)</span>. But the shape of <span class="math notranslate nohighlight">\(a^{[2]}\)</span> is (2,1) which will not match with the overall derivative shape which is (1,2). So the result should be in <span class="math notranslate nohighlight">\(a^{[2]T}\)</span> which will have the same shape as <span class="math notranslate nohighlight">\(W^{[3]}\)</span></p>
+<ul>
+<li><p>(1,2)</p></li>
+</ul>
+</li>
+<li><p>Derivative of log of sigmoid function <span class="math notranslate nohighlight">\(\log\sigma(Z^{[3]})\)</span> wrt <span class="math notranslate nohighlight">\(W^{[3]}\)</span> (contd from above)</p></li>
+</ul>
+<blockquote>
+<div><p><span class="math notranslate nohighlight">\(\begin{equation}\\
+\begin{aligned}\\
+\frac{\partial \log\sigma(Z^{[3]})}{\partial W^{[3]}} &amp;= \frac{1}{a^{[3]}}.{a^{[3]}(1-a^{[3]})}.  \frac{\partial(W^{[3]}a^{[2]} + b^{[3]} )}{\partial W^{[3]}}\\ 
+&amp;= \frac{1}{a^{[3]}}.{a^{[3]}(1-a^{[3]})}.  a^{[2]T}\\ 
+\end{aligned}\\
+\end{equation}\)</span></p>
+</div></blockquote>
+<ul class="simple">
+<li><p>Similarly derivative of 2nd log piece of sigmoid function <span class="math notranslate nohighlight">\((1-\log\sigma(Z^{[3]}))\)</span> wrt <span class="math notranslate nohighlight">\(W^{[3]}\)</span></p></li>
+</ul>
+<blockquote>
+<div><p><span class="math notranslate nohighlight">\(\begin{equation}\\
+\begin{aligned}\\
+\frac{\partial (1-\log\sigma(Z^{[3]}))}{\partial W^{[3]}} &amp;= \frac{1}{1-a^{[3]}}.(-1){a^{[3]}(1-a^{[3]})}.  a^{[2]T}\\ 
+\end{aligned}\\
+\end{equation}\)</span></p>
+</div></blockquote>
+<img src="images/11_calculus1.png" width=400 height=400>  
+$\tiny{\text{YouTube-Stanford-CS229-Andrew Ng/Kian Katanforoosh}}$   
+<img src="images/11_calculus2.png" width=400 height=400>  
+$\tiny{\text{YouTube-Stanford-CS229-Andrew Ng/Kian Katanforoosh}}$   
+<ul class="simple">
+<li><p>(Continuing from above) derivative of loss function wrt to <span class="math notranslate nohighlight">\(W^{[3]}\)</span></p></li>
+</ul>
+<blockquote>
+<div><p><span class="math notranslate nohighlight">\(\begin{equation}\\
+\begin{aligned}\\
+\frac{\partial L}{\partial W^{[3]}} &amp;= - [y^{(i)} \frac{\partial}{\partial W^{[3]}} (\log\sigma(W^{[3]} a^{[2]} + b^{[3]})) + (1-y^{(i)}) \frac{\partial}{\partial W^{[3]}} (\log(1-\sigma(W^{[3]} a^{[2]} + b^{[3]})))]\\
+&amp;= - [y^{(i)} \frac{1}{a^{[3]}}.{a^{[3]}(1-a^{[3]})}. a^{[2]T} + (1-y^{(i)}) \frac{1}{1-a^{[3]}}.(-1){a^{[3]}(1-a^{[3]})}. a^{[2]T}]\\
+&amp;= -[y^{(i)}(1-a^{[3]})a^{[2]T} -  (1-y^{(i)})a^{[3]}a^{[2]T}]\\
+&amp;= -[y^{(i)}a^{[2]T} - a^{[3]}a^{[2]T}]\\
+&amp;= -(y^{(i)} - a^{[3]})a^{[2]T}\\
+\end{aligned}\\
+\end{equation}\)</span></p>
+</div></blockquote>
+<img src="images/11_backpropagationEq.png" width=400 height=400>  
+$\tiny{\text{YouTube-Stanford-CS229-Andrew Ng/Kian Katanforoosh}}$   
+</section>
+<section id="derivative-of-cost-function-wrt-w-3">
+<h3>Derivative of cost function wrt <span class="math notranslate nohighlight">\(W^{[3]}\)</span><a class="headerlink" href="#derivative-of-cost-function-wrt-w-3" title="Permalink to this headline">¶</a></h3>
+<blockquote>
+<div><p><span class="math notranslate nohighlight">\(\frac{\partial J}{\partial W^{[3]}} = -\frac{1}{m}\sum\limits_{i=1}^{m}(y^{(i)} - a^{[3]})a^{[2]T}\)</span></p>
+</div></blockquote>
+</section>
+<section id="derivative-of-loss-function-wrt-w-2">
+<h3>Derivative of loss function wrt <span class="math notranslate nohighlight">\(W^{[2]}\)</span><a class="headerlink" href="#derivative-of-loss-function-wrt-w-2" title="Permalink to this headline">¶</a></h3>
+<blockquote>
+<div><p><span class="math notranslate nohighlight">\(\frac{\partial L}{\partial W^{[2]}} = \frac{\partial L}{\partial a^{[3]}} \frac{\partial a^{[3]}}{\partial Z^{[3]}} \frac{\partial Z^{[3]}}{\partial a^{[2]}} \frac{\partial a^{[2]}}{\partial Z^{[2]}} \frac{\partial Z^{[2]}}{\partial W^{[2]}} \)</span></p>
+</div></blockquote>
+<img src="images/11_nn1.png" width=400 height=400>  
+$\tiny{\text{YouTube-Stanford-CS229-Andrew Ng/Kian Katanforoosh}}$   
+</section>
+<section id="backpropagation-using-chain-rule">
+<h3>Backpropagation using chain rule<a class="headerlink" href="#backpropagation-using-chain-rule" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>What is the thought process of writing chain rule?</p>
+<ul>
+<li><p>We need to take derivative wrt variables thorough which errors will backpropagate. We dont want errors to get stuck. We need to go through variables that are connected to each other.</p></li>
+<li><p><span class="math notranslate nohighlight">\(\hat{y}\)</span> also called <span class="math notranslate nohighlight">\(a^{[3]}\)</span> is the first thing that is connected to loss function</p></li>
+<li><p><span class="math notranslate nohighlight">\(\frac{\partial L}{\partial a^{[3]}}\)</span> - the output neuron is directly connected to loss function</p></li>
+<li><p><span class="math notranslate nohighlight">\(\frac{\partial a^{[3]}}{\partial Z^{[3]}}\)</span> - <span class="math notranslate nohighlight">\(a^{[3]}\)</span> which is the output activation of the last neuron is connected to the linear part of the last neuron which is <span class="math notranslate nohighlight">\(Z^{[3]}\)</span></p>
+<ul>
+<li><p>which will be derivative of sigmoid (<span class="math notranslate nohighlight">\(\sigma'(x)\)</span>) because <span class="math notranslate nohighlight">\(a^{[3]} = \sigma({Z^{[3]}})\)</span> and <span class="math notranslate nohighlight">\(\sigma'(x) = \sigma(x)(1-\sigma(x))\)</span></p></li>
+</ul>
+</li>
+<li><p><span class="math notranslate nohighlight">\(\frac{\partial Z^{[3]}}{\partial a^{[2]}}\)</span> - We know <span class="math notranslate nohighlight">\(Z^{[3]} = W^{[3]}a^{[2]} + b^{[3]}\)</span></p>
+<ul>
+<li><p>which path should we take in order to back propagate?</p>
+<ul>
+<li><p>Not <span class="math notranslate nohighlight">\(W^{[3]}\)</span>, as we will be stuck</p></li>
+<li><p>Not <span class="math notranslate nohighlight">\(b^{[3]}\)</span>, as we will be stuck</p></li>
+<li><p>we should derivate wrt <span class="math notranslate nohighlight">\(a^{[2]}\)</span>, as it is connected to <span class="math notranslate nohighlight">\(Z^{[2]}\)</span> and <span class="math notranslate nohighlight">\(Z^{[2]}\)</span> is connected to <span class="math notranslate nohighlight">\(a^{[1]}\)</span>, and then we can backpropagate using this path</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><span class="math notranslate nohighlight">\(\frac{\partial a^{[2]}}{\partial Z^{[2]}}\)</span> - from above</p></li>
+<li><p><span class="math notranslate nohighlight">\(\frac{\partial Z^{[2]}}{\partial W^{[2]}}\)</span> - from above</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="how-to-use-the-derivative-of-loss-function-wrt-w-3-in-derivative-of-loss-function-wrt-w-2">
+<h3>How to use the derivative of loss function wrt <span class="math notranslate nohighlight">\(W^{[3]}\)</span> in derivative of loss function wrt <span class="math notranslate nohighlight">\(W^{[2]}\)</span><a class="headerlink" href="#how-to-use-the-derivative-of-loss-function-wrt-w-3-in-derivative-of-loss-function-wrt-w-2" title="Permalink to this headline">¶</a></h3>
+<ul>
+<li><p>Term 1 and 2</p>
+<ul class="simple">
+<li><p>We calculated earlier</p></li>
+</ul>
+<blockquote>
+<div><p><span class="math notranslate nohighlight">\(\frac{\partial L}{\partial W^{3}} = -(y^{(i)} - a^{[3]}) = (a^{[3]} - y^{(i)})\)</span></p>
+</div></blockquote>
+<ul class="simple">
+<li><p>But</p></li>
+</ul>
+<blockquote>
+<div><p><span class="math notranslate nohighlight">\(\frac{\partial L}{\partial W^{3}} = \frac{\partial L}{\partial a^{3}} \frac{\partial a^{3}}{\partial W^{3}} \)</span></p>
+</div></blockquote>
+<ul class="simple">
+<li><p>So</p></li>
+</ul>
+<blockquote>
+<div><p><span class="math notranslate nohighlight">\(\frac{\partial L}{\partial a^{3}} \frac{\partial a^{3}}{\partial W^{3}} = (a^{[3]} - y^{(i)})\)</span></p>
+</div></blockquote>
+</li>
+<li><p>Term 3</p>
+<ul class="simple">
+<li><p>We calculated earlier</p></li>
+</ul>
+<blockquote>
+<div><p><span class="math notranslate nohighlight">\(Z^{[3]} = W^{[3]}a^{[2]}+b^{[3]}\)</span></p>
+</div></blockquote>
+<ul class="simple">
+<li><p>So</p></li>
+</ul>
+<blockquote>
+<div><p><span class="math notranslate nohighlight">\(\frac{\partial Z^{[3]}}{\partial a^{[2]}} = W^{[3]T}\)</span></p>
+</div></blockquote>
+<ul class="simple">
+<li><p>Why transpose?</p>
+<ul>
+<li><p>Size of <span class="math notranslate nohighlight">\(Z^{[3]}\)</span> - (1,1)</p></li>
+<li><p>Size of <span class="math notranslate nohighlight">\(a^{[2]}\)</span> - (2,1)</p></li>
+<li><p>Size of <span class="math notranslate nohighlight">\(W^{[3]}\)</span> - (1,2) - so we need to transpose this - <span class="math notranslate nohighlight">\(W^{[3]T}\)</span></p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Term 4</p>
+<ul class="simple">
+<li><p>This is the derivative of sigmoid (<span class="math notranslate nohighlight">\(\sigma'(x)\)</span>) because <span class="math notranslate nohighlight">\(a^{[2]} = \sigma({Z^{[2]}})\)</span> and <span class="math notranslate nohighlight">\(\sigma'(x) = \sigma(x)(1-\sigma(x))\)</span></p></li>
+</ul>
+<blockquote>
+<div><p><span class="math notranslate nohighlight">\(\frac{\partial a^{[2]}}{\partial Z^{[2]}} = a^{[2]}(1 - a^{[2]})\)</span></p>
+</div></blockquote>
+<ul class="simple">
+<li><p>sigmoid times 1 minus sigmoid</p></li>
+</ul>
+</li>
+<li><p>Term 5</p>
+<ul class="simple">
+<li><p>As calculated earlier, derivative of linear function <span class="math notranslate nohighlight">\(Z^{[3]}\)</span> wrt <span class="math notranslate nohighlight">\(W^{[3]}\)</span></p></li>
+</ul>
+<blockquote>
+<div><p><span class="math notranslate nohighlight">\(\frac{\partial Z^{[3]}}{\partial W^{[3]}} = \frac{\partial}{\partial W^{[3]}}(W^{[3]}a^{[2]} + b^{[3]}) = a^{[2]T}\)</span></p>
+</div></blockquote>
+<ul class="simple">
+<li><p>So derivative of linear function <span class="math notranslate nohighlight">\(Z^{[2]}\)</span> wrt <span class="math notranslate nohighlight">\(W^{[2]}\)</span></p></li>
+</ul>
+<blockquote>
+<div><p><span class="math notranslate nohighlight">\(\frac{\partial Z^{[2]}}{\partial W^{[2]}} = \frac{\partial}{\partial W^{[2]}}(W^{[2]}a^{[1]} + b^{[2]}) = a^{[1]T}\)</span></p>
+</div></blockquote>
+</li>
+</ul>
+</section>
+<section id="derivative-of-loss-function-wrt-w-2-contd">
+<h3>Derivative of loss function wrt <span class="math notranslate nohighlight">\(W^{[2]}\)</span> (contd)<a class="headerlink" href="#derivative-of-loss-function-wrt-w-2-contd" title="Permalink to this headline">¶</a></h3>
+<blockquote>
+<div><p><span class="math notranslate nohighlight">\(\begin{equation}\\
+\begin{aligned}\\
+\frac{\partial L}{\partial W^{[2]}} &amp;= \frac{\partial L}{\partial a^{[3]}} \frac{\partial a^{[3]}}{\partial Z^{[3]}} \frac{\partial Z^{[3]}}{\partial a^{[2]}} \frac{\partial a^{[2]}}{\partial Z^{[2]}} \frac{\partial Z^{[2]}}{\partial W^{[2]}}\\ 
+&amp;= (a^{[3]} - y^{(i)}).W^{[3]T}.a^{[2]}(1 - a^{[2]}).a^{[1]T}\\
+\end{aligned}\\
+\end{equation}\)</span></p>
+</div></blockquote>
+<ul class="simple">
+<li><p>Size of matrix:</p></li>
+</ul>
+<blockquote>
+<div><p><span class="math notranslate nohighlight">\((2,3) = (1,1).(2,1).(2,1).(1,3)\)</span></p>
+</div></blockquote>
+<ul>
+<li><p>This is not correct</p></li>
+<li><p>For derivative of sigmoid we use element wise product (Details in the note)</p>
+<blockquote>
+<div><p><span class="math notranslate nohighlight">\(W^{[3]T}*a^{[2]}(1 - a^{[2]})\)</span></p>
+</div></blockquote>
+</li>
+<li><p>Rearranging elements we get</p>
+<blockquote>
+<div><p><span class="math notranslate nohighlight">\(\{\{\{W^{[3]T}*a^{[2]}(1 - a^{[2]})\}.(a^{[3]} - y^{(i)})\}.a^{[1]T}\}\)</span></p>
+</div></blockquote>
+</li>
+<li><p>Matrix size</p>
+<blockquote>
+<div><p><span class="math notranslate nohighlight">\(\{\{\{(2,1)*(2,1)\}.(1,1)\}.(1,3)\}\)</span></p>
+</div></blockquote>
+</li>
+</ul>
+<img src="images/12_derivativeOfLossFunw2.png" width=400 height=400>  
+$\tiny{\text{YouTube-Stanford-CS229-Andrew Ng/Kian Katanforoosh}}$   
+<ul class="simple">
+<li><p>The results must be cached during forward propagation so that it gets reused during backward propagation step</p></li>
+<li><p>It results in computational efficiency</p></li>
+</ul>
+</section>
+</section>
+<section id="improving-neural-networks">
+<h2>Improving Neural Networks<a class="headerlink" href="#improving-neural-networks" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Use different activation functions</p>
+<ul>
+<li><p>One of the activation function we used was sigmoid function</p>
+<ul>
+<li><p>Sigmoid <span class="math notranslate nohighlight">\(\sigma(z) = \frac{1}{1+e^{-z}}\)</span></p>
+<ul>
+<li><p>this ranges from 0 to 1</p></li>
+<li><p>adv: it is used for classification as probability</p></li>
+<li><p>disadv: if you have high or low z’s (activation), the gradient is very close to 0</p>
+<ul>
+<li><p><strong>it works very well in the linear regime but has trouble working in saturating regimes because the network doesn’t update parameters properly</strong></p></li>
+<li><p><strong>What is the problem with low gradients/saturating regimes?</strong></p>
+<ul>
+<li><p>when we backpropagate, if z we cached was big, the gradient will be very small and it will be super hard to update parameters that are early in the network because the gradient will be negligible</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><span class="math notranslate nohighlight">\(\sigma'(x) = \sigma(x)(1-\sigma(x))\)</span></p></li>
+</ul>
+</li>
+<li><p>Other activation function we used was ReLU</p>
+<ul>
+<li><p>ReLU(z) = <span class="math notranslate nohighlight">\(\begin{equation}
+\begin{cases}
+0 &amp; \text{if } z \le 0\\
+z &amp; \text{if } z \gt 0\\
+\end{cases} \end{equation}\)</span></p>
+<ul>
+<li><p>adv: if z is very big in positives, there is no saturation, the gradient will be 1</p>
+<ul>
+<li><p>In house prediction problem, it makes sense to use ReLU compared to sigmoid or tanh, because the value is within 0 to <span class="math notranslate nohighlight">\(+\infty\)</span></p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>ReLU’(z) = <span class="math notranslate nohighlight">\(\mathbb 1\{z \gt 0\}\)</span></p></li>
+</ul>
+</li>
+<li><p>one other commonly used activation function is tanh</p>
+<ul>
+<li><p>tanh(z) = <span class="math notranslate nohighlight">\(\frac{e^{z} - e^{-z}}{e^{z} + e^{-z}}\)</span></p>
+<ul>
+<li><p>this ranges from -1 to 1</p></li>
+<li><p>adv: this is used in problems where there is positive reward or negative reward like in reinforcement learning</p></li>
+<li><p>disadv: same as sigmoid</p></li>
+</ul>
+</li>
+<li><p>tanh’(z) = 1 - tanh(z)<span class="math notranslate nohighlight">\(^{2}\)</span></p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<section id="why-do-we-need-activation-functions">
+<h3>Why do we need activation functions<a class="headerlink" href="#why-do-we-need-activation-functions" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>Lets say we use identity function as activation function <span class="math notranslate nohighlight">\(z \rightarrowtail z\)</span></p></li>
+<li><p>Lets derive forward propagation</p></li>
+</ul>
+<img src="images/12_identityFun1.png" width=400 height=400>  
+$\tiny{\text{YouTube-Stanford-CS229-Andrew Ng/Kian Katanforoosh}}$   
+<img src="images/12_identityFun2.png" width=400 height=400>  
+$\tiny{\text{YouTube-Stanford-CS229-Andrew Ng/Kian Katanforoosh}}$   
+<ul class="simple">
+<li><p>from this we see that we need activation functions</p></li>
+<li><p>otherwise no matter how deep your network is, it will be equivalent to linear regression</p></li>
+<li><p>generally we use the same activation function in the whole network</p></li>
+<li><p>there are experiments using different activation function in different layers of network, but the consensus is using a single activation function</p></li>
+</ul>
+</section>
+<section id="initialization-methods">
+<h3>Initialization Methods<a class="headerlink" href="#initialization-methods" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>If z is too small or too big, it will lead to saturation of network</p></li>
+<li><p>Inorder to avoid that we can use normalization of input</p></li>
+<li><p>One method is to take average of x’s and take difference of x’s with the average. This method brings examples on the axes, but they are still dissipated</p></li>
+<li><p>to fully solve the problem, divide the x’s by standard dev. This method centers examples on the</p></li>
+<li><p>what is good about this method?</p>
+<ul>
+<li><p>Earlier the loss function contours were ellipsoidal in nature, so gradient descent algorithm took multiple iteration to reach over the global minima</p></li>
+<li><p>with examples normalized, the gradient descent points towards the middle</p></li>
+<li><p>that is the reason why the second loss function is easier to train</p></li>
+</ul>
+</li>
+<li><p><strong>Important point</strong>: <strong>the <span class="math notranslate nohighlight">\(\sigma\)</span> and <span class="math notranslate nohighlight">\(\mu\)</span> computed over the training set must be used over the test set as well.</strong> We should not compute the mean and standard deviation of the test set and normalize your test inputs through the network because your network is not used to seeing this type of transformation as an input. We want the distribution of inputs at the first neuron to be always the same, no matter if it is train or test set.</p></li>
+</ul>
+<img src="images/12_normalizationMethod1.png" width=400 height=400>  
+$\tiny{\text{YouTube-Stanford-CS229-Andrew Ng/Kian Katanforoosh}}$   
+<img src="images/12_normalizationMethod2.png" width=400 height=400>  
+$\tiny{\text{YouTube-Stanford-CS229-Andrew Ng/Kian Katanforoosh}}$   
+</section>
+<section id="vanishing-exploding-gradients">
+<h3>Vanishing/Exploding gradients<a class="headerlink" href="#vanishing-exploding-gradients" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>Lets consider very deep network, with identity activation function and zero bias, the <span class="math notranslate nohighlight">\(\hat{y}\)</span> and gradient will explode if the number is higher than 1 or the gradient will vanish if it is lower than 1.</p></li>
+<li><p>The solution is initialize the weights properly, with right range of values</p></li>
+<li><p>The weight range should be as close as 1, which will avoid the vanishing/exploding gradients problem</p></li>
+</ul>
+<img src="images/12_vanishExplodeNN.png" width=400 height=400>  
+$\tiny{\text{YouTube-Stanford-CS229-Andrew Ng/Kian Katanforoosh}}$   
+</section>
+<section id="initialization-problem">
+<h3>Initialization problem<a class="headerlink" href="#initialization-problem" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>Example with 1 neuron</p>
+<ul>
+<li><p>if the number of features are large, we should have small weight, otherwise z will explode</p></li>
+</ul>
+</li>
+</ul>
+<img src="images/12_weightRange.png" width=400 height=400>  
+$\tiny{\text{YouTube-Stanford-CS229-Andrew Ng/Kian Katanforoosh}}$   
+<ul class="simple">
+<li><p>Few other intializations</p></li>
+</ul>
+<img src="images/12_otherInitialization.png" width=400 height=400>  
+$\tiny{\text{YouTube-Stanford-CS229-Andrew Ng/Kian Katanforoosh}}$   
+</section>
+<section id="optimization">
+<h3>Optimization<a class="headerlink" href="#optimization" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>Gradient Descent</p></li>
+<li><p>Stochastic Gradient Descent</p></li>
+<li><p>Batch Gradient Descent</p></li>
+<li><p>Mini-Batch Gradient Descent</p>
+<ul>
+<li><p>trade-off between stochasticity and vectorization</p></li>
+</ul>
+</li>
+</ul>
+<section id="notation">
+<h4>Notation<a class="headerlink" href="#notation" title="Permalink to this headline">¶</a></h4>
+<ul class="simple">
+<li><p>m training example</p></li>
+</ul>
+<blockquote>
+<div><p><span class="math notranslate nohighlight">\(X = \left(x^{(1)} x^{(2)} ... x^{(m)}\right)\)</span>
+<span class="math notranslate nohighlight">\(Y = \left(y^{(1)} y^{(2)} ... y^{(m)}\right)\)</span></p>
+</div></blockquote>
+<ul class="simple">
+<li><p>T batches each containing 1000 training example</p></li>
+</ul>
+<blockquote>
+<div><p><span class="math notranslate nohighlight">\(X = \left(X^{\{1\}} X^{\{2\}} ... X^{\{T\}}\right)\)</span>
+<span class="math notranslate nohighlight">\(Y = \left(Y^{\{1\}} Y^{\{2\}} ... Y^{\{T\}}\right)\)</span></p>
+</div></blockquote>
+<img src="images/12_miniBatchGD.png" width=400 height=400>  
+$\tiny{\text{YouTube-Stanford-CS229-Andrew Ng/Kian Katanforoosh}}$   
+</section>
+<section id="momentum-gradient-descent">
+<h4>Momentum Gradient Descent<a class="headerlink" href="#momentum-gradient-descent" title="Permalink to this headline">¶</a></h4>
+<ul class="simple">
+<li><p>loss is extended a lot in one direction compared to the other</p></li>
+<li><p>the gd will be orthogonal to the contour</p></li>
+<li><p>we would be interested in moving faster/larger update in horizontal line and slower/smaller update in vertical side</p></li>
+<li><p>momentum tells us look at the past update and take an average of the past update</p></li>
+</ul>
+<blockquote>
+<div><p><span class="math notranslate nohighlight">\(v := \beta v + (1-\beta)\frac{\partial L}{\partial w}\)</span><br />
+<span class="math notranslate nohighlight">\(w := w - \alpha v\)</span></p>
+</div></blockquote>
+<ul class="simple">
+<li><p>velocity variable tracks the direction that we should take for the current iteration with a factor/weight beta</p></li>
+<li><p>in terms of implementation/memory it is just one more line of code, but gives lot of efficiency</p></li>
+</ul>
+<img src="images/12_momentumGD.png" width=400 height=400>  
+$\tiny{\text{YouTube-Stanford-CS229-Andrew Ng/Kian Katanforoosh}}$   
+</section>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./cs229_ml"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            
+                <!-- Previous / next buttons -->
+<div class='prev-next-area'> 
+    <a class='left-prev' id="prev-link" href="lec10-DecisionTrees-EnsembleMethods.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Lec 10-Decision Trees - Ensemble Methods</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="lec13-DebuggingMLModels-ErrorAnalysis.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Lec 13-Debugging ML Models-Error Analysis</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            
+        </div>
+    </div>
+    <footer class="footer">
+  <p>
+    
+      By Chandra<br/>
+    
+        &copy; Copyright 2021.<br/>
+  </p>
+</footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+
+  </body>
+</html>

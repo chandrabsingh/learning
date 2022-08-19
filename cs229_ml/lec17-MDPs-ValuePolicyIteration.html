@@ -1,0 +1,807 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Lec 17-MDPs-Value Policy Iteration</title>
+    
+  <link href="../_static/css/theme.css" rel="stylesheet">
+  <link href="../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.be7d3bbb2ef33a8344ce.js">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Lec 18-Continuous MDPs-Model Simulation" href="lec18-continuousMDPs-ModelSimulation.html" />
+    <link rel="prev" title="Lec 16-Independent Component Analysis-RL" href="lec16-IndependentComponentAnalysis-RL.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../_static/mylogo.png" class="logo" alt="logo">
+      
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../intro.html">
+   My learning notebook
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Machine Learning
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../ml_examples/intro.html">
+   Welcome to your ML Book
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../ml_examples/ml_glossary.html">
+     Conceptual brief
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../ml_examples/Store_Sales_Forecasting_With_Tensorflow.html">
+     Store Sales Forecasting with TensorFlow
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Reference
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../markdown.html">
+   Markdown Files
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../notebooks.html">
+   Content with notebooks
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../markdown-notebooks.html">
+   Notebooks with MyST Markdown
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Lecture Notes
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="intro.html">
+   CS229 ML - by Andrew Ng
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2">
+    <a class="reference internal" href="lec02-LinearReg-GradientDescent.html">
+     Lec 02-Linear Regression - Gradient Descent
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="lec03-LocallyWeighted-LogisticRegression.html">
+     Lec 03-Locally Weighted Regression - Logistic Regression
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="lec04-Perceptron-GLM.html">
+     Lec 04-Perceptron - GLM
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="lec05-GDA-NaiveBayes.html">
+     Lec 05-GDA - Naive Bayes
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="lec06-NaiveBayes-SVM.html">
+     Lec 06-Naive Bayes - SVM
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="lec07-Kernels-SVM.html">
+     Lec 07-Kernels - SVM
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="lec08-DataSplits-Models-CrossValidation.html">
+     Lec 08-Data Splits - Models - Cross Validation
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="lec09-Approx-EstimationError-ERM.html">
+     Lec 09-Estimation Error - ERM
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="lec10-DecisionTrees-EnsembleMethods.html">
+     Lec 10-Decision Trees - Ensemble Methods
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="lec12-Backpropagation-ImprovingNN.html">
+     Lec 12-Improving NN
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="lec13-DebuggingMLModels-ErrorAnalysis.html">
+     Lec 13-Debugging ML Models-Error Analysis
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="lec15-EMAlgo-FactorAnalysis.html">
+     Lec 15-EM Algo-Factor Analysis
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="lec16-IndependentComponentAnalysis-RL.html">
+     Lec 16-Independent Component Analysis-RL
+    </a>
+   </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     Lec 17-MDPs-Value Policy Iteration
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="lec18-continuousMDPs-ModelSimulation.html">
+     Lec 18-Continuous MDPs-Model Simulation
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/cs229_ml/lec17-MDPs-ValuePolicyIteration.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/chandrabsingh/learning"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/chandrabsingh/learning/issues/new?title=Issue%20on%20page%20%2Fcs229_ml/lec17-MDPs-ValuePolicyIteration.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        
+    </div>
+</div>
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/chandrabsingh/learning/master?urlpath=tree/learning/cs229_ml/lec17-MDPs-ValuePolicyIteration.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#outline">
+   Outline
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#value-function-for-policy-pi">
+   Value function for policy
+   <span class="math notranslate nohighlight">
+    \(\pi\)
+   </span>
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#bellman-s-equation">
+     Bellman’s equation
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#optimal-value-function-v">
+   Optimal Value Function V*
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id1">
+     Bellman’s equation
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#optimal-policy">
+   Optimal policy
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#strategy-for-finding-optimal-policy">
+   Strategy for finding optimal policy
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#value-iteration">
+     Value Iteration
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#policy-iteration">
+     Policy Iteration
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#pros-and-cons">
+     Pros and cons
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#state-transition-probability">
+   State transition probability
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#exploration-vs-exploitation">
+     Exploration vs Exploitation
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#epsilon-greeedy">
+       epsilon-greeedy
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Lec 17-MDPs-Value Policy Iteration</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#outline">
+   Outline
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#value-function-for-policy-pi">
+   Value function for policy
+   <span class="math notranslate nohighlight">
+    \(\pi\)
+   </span>
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#bellman-s-equation">
+     Bellman’s equation
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#optimal-value-function-v">
+   Optimal Value Function V*
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id1">
+     Bellman’s equation
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#optimal-policy">
+   Optimal policy
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#strategy-for-finding-optimal-policy">
+   Strategy for finding optimal policy
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#value-iteration">
+     Value Iteration
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#policy-iteration">
+     Policy Iteration
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#pros-and-cons">
+     Pros and cons
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#state-transition-probability">
+   State transition probability
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#exploration-vs-exploitation">
+     Exploration vs Exploitation
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#epsilon-greeedy">
+       epsilon-greeedy
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            
+              <div>
+                
+  <section class="tex2jax_ignore mathjax_ignore" id="lec-17-mdps-value-policy-iteration">
+<h1>Lec 17-MDPs-Value Policy Iteration<a class="headerlink" href="#lec-17-mdps-value-policy-iteration" title="Permalink to this headline">¶</a></h1>
+<section id="outline">
+<h2>Outline<a class="headerlink" href="#outline" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Reinforcement Learning</p>
+<ul>
+<li><p>MDP (recap)</p></li>
+<li><p>Value function</p></li>
+<li><p>Value iteration/Policy iteration</p></li>
+<li><p>Learning state transition probability/putting it all together</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="value-function-for-policy-pi">
+<h2>Value function for policy <span class="math notranslate nohighlight">\(\pi\)</span><a class="headerlink" href="#value-function-for-policy-pi" title="Permalink to this headline">¶</a></h2>
+<ul>
+<li><p>One of the challenges of finding optimal policy is if we have 11 states and 4 actions, there is a exponentially large number of possible policies <span class="math notranslate nohighlight">\(4^{11}\)</span></p></li>
+<li><p>how to find the best policy</p></li>
+<li><p>we need to define 3 things</p>
+<ul>
+<li><p><span class="math notranslate nohighlight">\(V^{\pi}\)</span> - For policy <span class="math notranslate nohighlight">\(\pi\)</span>, <span class="math notranslate nohighlight">\(V^{\pi}: S \mapsto R \)</span> is s.t. <span class="math notranslate nohighlight">\(V^{\pi}(s)\)</span> is the expected total payoff for starting in state s and executing <span class="math notranslate nohighlight">\(\pi\)</span> (take actions according to policy <span class="math notranslate nohighlight">\(\pi\)</span>) is</p>
+<blockquote>
+<div><p><span class="math notranslate nohighlight">\(V^{\pi}(s) = E[R(s_{0}, a_{0}) + \gamma R(s_{1}, a_{1}) + \gamma^{2} R(s_{2}, a_{2}) + ... | \pi, s_{0}=s]\)</span></p>
+</div></blockquote>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(V^{\pi}\)</span> is called “Value function for policy <span class="math notranslate nohighlight">\(\pi\)</span>”</p></li>
+</ul>
+</li>
+<li><p><span class="math notranslate nohighlight">\(V^{*}\)</span> - is the optimal value function</p></li>
+<li><p><span class="math notranslate nohighlight">\(\pi^{*}\)</span> - is the optimal policy</p></li>
+<li><p>+1/-1 - is called absorbing state. there is no more policy once it reaches to this state</p></li>
+</ul>
+</li>
+</ul>
+<img src="images/17_v_pi1.png" width=400 height=400>  
+$\tiny{\text{YouTube-Stanford-CS229-Andrew Ng}}$   
+<section id="bellman-s-equation">
+<h3>Bellman’s equation<a class="headerlink" href="#bellman-s-equation" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>governs the value function</p></li>
+<li><p>The intution is - robot woke up at <span class="math notranslate nohighlight">\(s_{0}\)</span> state, the reward you get is <span class="math notranslate nohighlight">\(R(s_{0})\)</span>, which is the <em>immediate reward</em>. Then it takes some action and ends up at state <span class="math notranslate nohighlight">\(s_{1}\)</span>, the <em>future reward</em> you get is <span class="math notranslate nohighlight">\(\gamma R(s_{1})\)</span>. And then <span class="math notranslate nohighlight">\(\gamma R(s_{2})\)</span> and so on. given that we execute the policy <span class="math notranslate nohighlight">\(\pi\)</span> and we start off in this state <span class="math notranslate nohighlight">\(s_{0}\)</span>. This can be written as:</p></li>
+</ul>
+<blockquote>
+<div><p><span class="math notranslate nohighlight">\(\begin{equation}\\
+\begin{aligned}\\
+V^{\pi}(s) &amp;= E[R(s_{0}) + \gamma R(s_{1})+ \gamma^{2} R(s_{2}) + .. |\pi, s_{0}]\\
+&amp;= E[R(s_{0}) + \gamma \{ R(s_{1})+ \gamma^{1} R(s_{2}) + ..\} |\pi, s_{0}]\\
+&amp;= E[R(s_{0}) + \gamma V^{\pi}(s_{1}) |\pi, s_{0}]\\
+\end{aligned}\\
+\end{equation}\\
+\)</span></p>
+</div></blockquote>
+<ul class="simple">
+<li><p>the bellman’s equation says that the expected total payoff you get if the robot wakes up at state s is the immediate reward plus gamma times the expected future rewards</p></li>
+<li><p>the mapping between these two equation will be:</p></li>
+</ul>
+<blockquote>
+<div><p><span class="math notranslate nohighlight">\(s \rightarrow s_{0}\)</span>(current state), <span class="math notranslate nohighlight">\(s' \rightarrow s_{1}\)</span>(future state).</p>
+</div></blockquote>
+<ul class="simple">
+<li><p>So the equation with relevant mapping will be:</p></li>
+</ul>
+<blockquote>
+<div><p><span class="math notranslate nohighlight">\(V^{\pi}(s) = E[R(s) + \gamma V^{\pi}(s')]\)</span></p>
+</div></blockquote>
+<ul class="simple">
+<li><p>What is s’ drawn from which distribution?</p></li>
+</ul>
+<blockquote>
+<div><p><span class="math notranslate nohighlight">\(s' \sim P_{s \pi (s)}\)</span></p>
+</div></blockquote>
+<ul class="simple">
+<li><p>in state s, take action <span class="math notranslate nohighlight">\(a=\pi(s)\)</span>. so the distribution from which s’ is drawn from</p></li>
+</ul>
+<blockquote>
+<div><p><span class="math notranslate nohighlight">\(s' \sim P_{s a}\)</span></p>
+</div></blockquote>
+<ul class="simple">
+<li><p>so the bellman equation becomes:</p></li>
+</ul>
+<blockquote>
+<div><p><span class="math notranslate nohighlight">\(V^{\pi}(s) = R(s) + \gamma\sum\limits_{s'\in S}P_{s\pi(s)}(s')V^{\pi}(s')\)</span></p>
+</div></blockquote>
+<ul class="simple">
+<li><p>given <span class="math notranslate nohighlight">\(\pi\)</span>, this gives us a linear system of equation in terms of <span class="math notranslate nohighlight">\(V^{\pi}(s)\)</span></p></li>
+<li><p>the unknown variables gives us a system of 11 linear equations with 11 unknowns</p></li>
+<li><p>can use linear algebra solver to solve this</p></li>
+</ul>
+<img src="images/17_v_be2.png" width=600 height=600>  
+$\tiny{\text{YouTube-Stanford-CS229-Andrew Ng}}$   
+</section>
+</section>
+<section id="optimal-value-function-v">
+<h2>Optimal Value Function V*<a class="headerlink" href="#optimal-value-function-v" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Look at all the possible combinatorial exponential policies for this MDP, and the max of all policies is the optimal value function</p></li>
+</ul>
+<blockquote>
+<div><p><span class="math notranslate nohighlight">\(V^{*}(s) = \max\limits_{\pi}V^{\pi}(s)\)</span></p>
+</div></blockquote>
+<section id="id1">
+<h3>Bellman’s equation<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>there is a different version of Bellman’s equation</p></li>
+</ul>
+<blockquote>
+<div><p><span class="math notranslate nohighlight">\(V^{\pi}(s) = R(s) + \max\limits_{a}\gamma\sum\limits_{s'\in S}P_{sa}(s')V^{*}(s')\)</span></p>
+</div></blockquote>
+</section>
+</section>
+<section id="optimal-policy">
+<h2>Optimal policy<a class="headerlink" href="#optimal-policy" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Lets say we have a way of how to calculate <span class="math notranslate nohighlight">\(V^{*}\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(\pi^{*}\)</span> is the optimal policy</p></li>
+</ul>
+<blockquote>
+<div><p><span class="math notranslate nohighlight">\(\pi^{*} = \text{arg}\max\limits_{a}\sum\limits_{s'\in S}P_{sa}(s')V^{*}(s')\)</span></p>
+</div></blockquote>
+<img src="images/17_vstar_be1.png" width=600 height=600>  
+$\tiny{\text{YouTube-Stanford-CS229-Andrew Ng}}$   
+<ul class="simple">
+<li><p>For every <span class="math notranslate nohighlight">\(\pi\)</span>, s; the optimal value for state S is equal to</p></li>
+</ul>
+<blockquote>
+<div><p><span class="math notranslate nohighlight">\(V^{*}(s) = V^{\pi *}(s) \ge V^{\pi}(s)\)</span></p>
+</div></blockquote>
+</section>
+<section id="strategy-for-finding-optimal-policy">
+<h2>Strategy for finding optimal policy<a class="headerlink" href="#strategy-for-finding-optimal-policy" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>a) find <span class="math notranslate nohighlight">\(V^{*}\)</span></p></li>
+<li><p>b) use arg max equation to find <span class="math notranslate nohighlight">\(\pi^{*}\)</span></p></li>
+</ul>
+<section id="value-iteration">
+<h3>Value Iteration<a class="headerlink" href="#value-iteration" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>Value iteration gives us the <span class="math notranslate nohighlight">\(V^{*}\)</span>. The algorithm is as follows. It uses synchronous or asynchronous update. synchronous update is the more common one, where you update all 11 values at the same time.</p></li>
+</ul>
+<img src="images/17_valueIteration1.png" width=600 height=600>  
+$\tiny{\text{YouTube-Stanford-CS229-Andrew Ng}}$   
+</section>
+<section id="policy-iteration">
+<h3>Policy Iteration<a class="headerlink" href="#policy-iteration" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>the focus is policy rather than value</p></li>
+<li><p>solve for the value function for the policy <span class="math notranslate nohighlight">\(\pi\)</span>, which was linear system of equations <span class="math notranslate nohighlight">\(V^{\pi}\)</span></p></li>
+<li><p>assume V is the optimal value function and update <span class="math notranslate nohighlight">\(\pi(s)\)</span>, using Bellman’s equation</p></li>
+<li><p>iterate until it converges</p></li>
+</ul>
+<img src="images/17_policyIteration1.png" width=600 height=600>  
+$\tiny{\text{YouTube-Stanford-CS229-Andrew Ng}}$   
+</section>
+<section id="pros-and-cons">
+<h3>Pros and cons<a class="headerlink" href="#pros-and-cons" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>policy iteration</p>
+<ul>
+<li><p>is relatively easy for small state space</p></li>
+</ul>
+</li>
+<li><p>value iteration</p>
+<ul>
+<li><p>is relatively better for large state space</p></li>
+</ul>
+</li>
+</ul>
+</section>
+</section>
+<section id="state-transition-probability">
+<h2>State transition probability<a class="headerlink" href="#state-transition-probability" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>is not known in advance</p></li>
+<li><p>estimate <span class="math notranslate nohighlight">\(P_{sa}(s')\)</span> from data</p></li>
+</ul>
+<blockquote>
+<div><p><span class="math notranslate nohighlight">\(P_{sa}(s') = \frac{\text{# times took action a in state s and got to state s'}}{\text{# times took action a in state s}}\)</span></p>
+</div></blockquote>
+<img src="images/17_stateTransitionProb.png" width=600 height=600>  
+$\tiny{\text{YouTube-Stanford-CS229-Andrew Ng}}$   
+<section id="exploration-vs-exploitation">
+<h3>Exploration vs Exploitation<a class="headerlink" href="#exploration-vs-exploitation" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>may converge to a local optima</p></li>
+<li><p>exploitation</p>
+<ul>
+<li><p>how aggressive or how greedy you should be at taking actions to maximize your rewards</p></li>
+</ul>
+</li>
+<li><p>exploration</p>
+<ul>
+<li><p>the process of taking actions that may appear less optimal at the outset, maybe if it tries some new things it’s never tried before, maybe it will find a new thing</p></li>
+</ul>
+</li>
+<li><p>this is the exploitation/exploration trade-off</p></li>
+</ul>
+<section id="epsilon-greeedy">
+<h4>epsilon-greeedy<a class="headerlink" href="#epsilon-greeedy" title="Permalink to this headline">¶</a></h4>
+<ul class="simple">
+<li><p>0.9 chance wrt <span class="math notranslate nohighlight">\(\pi\)</span></p></li>
+<li><p>0.1 chance act randomly</p></li>
+</ul>
+<ul class="simple">
+<li><p>Search for “intrinsic motivation”</p></li>
+</ul>
+</section>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./cs229_ml"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            
+                <!-- Previous / next buttons -->
+<div class='prev-next-area'> 
+    <a class='left-prev' id="prev-link" href="lec16-IndependentComponentAnalysis-RL.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Lec 16-Independent Component Analysis-RL</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="lec18-continuousMDPs-ModelSimulation.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Lec 18-Continuous MDPs-Model Simulation</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            
+        </div>
+    </div>
+    <footer class="footer">
+  <p>
+    
+      By Chandra<br/>
+    
+        &copy; Copyright 2021.<br/>
+  </p>
+</footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+
+  </body>
+</html>

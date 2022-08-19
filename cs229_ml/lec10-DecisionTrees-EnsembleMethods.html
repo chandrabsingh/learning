@@ -1,0 +1,1100 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Lec 10-Decision Trees - Ensemble Methods</title>
+    
+  <link href="../_static/css/theme.css" rel="stylesheet">
+  <link href="../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.be7d3bbb2ef33a8344ce.js">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Lec 12-Improving NN" href="lec12-Backpropagation-ImprovingNN.html" />
+    <link rel="prev" title="Lec 09-Estimation Error - ERM" href="lec09-Approx-EstimationError-ERM.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../_static/mylogo.png" class="logo" alt="logo">
+      
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../intro.html">
+   My learning notebook
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Machine Learning
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../ml_examples/intro.html">
+   Welcome to your ML Book
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../ml_examples/ml_glossary.html">
+     Conceptual brief
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../ml_examples/Store_Sales_Forecasting_With_Tensorflow.html">
+     Store Sales Forecasting with TensorFlow
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Reference
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../markdown.html">
+   Markdown Files
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../notebooks.html">
+   Content with notebooks
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../markdown-notebooks.html">
+   Notebooks with MyST Markdown
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Lecture Notes
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="intro.html">
+   CS229 ML - by Andrew Ng
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2">
+    <a class="reference internal" href="lec02-LinearReg-GradientDescent.html">
+     Lec 02-Linear Regression - Gradient Descent
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="lec03-LocallyWeighted-LogisticRegression.html">
+     Lec 03-Locally Weighted Regression - Logistic Regression
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="lec04-Perceptron-GLM.html">
+     Lec 04-Perceptron - GLM
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="lec05-GDA-NaiveBayes.html">
+     Lec 05-GDA - Naive Bayes
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="lec06-NaiveBayes-SVM.html">
+     Lec 06-Naive Bayes - SVM
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="lec07-Kernels-SVM.html">
+     Lec 07-Kernels - SVM
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="lec08-DataSplits-Models-CrossValidation.html">
+     Lec 08-Data Splits - Models - Cross Validation
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="lec09-Approx-EstimationError-ERM.html">
+     Lec 09-Estimation Error - ERM
+    </a>
+   </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     Lec 10-Decision Trees - Ensemble Methods
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="lec12-Backpropagation-ImprovingNN.html">
+     Lec 12-Improving NN
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="lec13-DebuggingMLModels-ErrorAnalysis.html">
+     Lec 13-Debugging ML Models-Error Analysis
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="lec15-EMAlgo-FactorAnalysis.html">
+     Lec 15-EM Algo-Factor Analysis
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="lec16-IndependentComponentAnalysis-RL.html">
+     Lec 16-Independent Component Analysis-RL
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/cs229_ml/lec10-DecisionTrees-EnsembleMethods.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/chandrabsingh/learning"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/chandrabsingh/learning/issues/new?title=Issue%20on%20page%20%2Fcs229_ml/lec10-DecisionTrees-EnsembleMethods.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        
+    </div>
+</div>
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/chandrabsingh/learning/master?urlpath=tree/learning/cs229_ml/lec10-DecisionTrees-EnsembleMethods.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#outline">
+   Outline
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#decision-trees">
+   Decision Trees
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#selecting-regions-greedy-top-down-recursive-partitioning">
+     Selecting Regions - Greedy, Top-Down, Recursive Partitioning
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#how-to-choose-splits">
+     How to choose splits
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#why-is-misclassification-loss-the-right-loss">
+     Why is misclassification loss the right loss
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#misclassification-loss-vs-cross-entropy-loss">
+     Misclassification loss vs Cross-entropy loss
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#regression-tree-extension-for-decision-tree">
+     Regression Tree - Extension for decision tree
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#categorical-variables">
+     Categorical Variables
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#regularization-of-dts">
+     Regularization of DTs
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#runtime">
+     Runtime
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#test-time-o-d">
+       Test time O(d)
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#train-time">
+       Train time
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#downside-of-dt">
+       Downside of DT
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#dt-recap">
+     DT - Recap
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#ensembling">
+   Ensembling
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#ways-to-ensemble">
+     Ways to ensemble
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#bagging">
+   Bagging
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#bootstrap-aggregation">
+     Bootstrap aggregation
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#bias-variance-analysis">
+     Bias-Variance Analysis
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#decision-trees-bagging">
+     Decision Trees + Bagging
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#random-forest">
+   Random Forest
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#boosting">
+   Boosting
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#adaboost">
+     Adaboost
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Lec 10-Decision Trees - Ensemble Methods</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#outline">
+   Outline
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#decision-trees">
+   Decision Trees
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#selecting-regions-greedy-top-down-recursive-partitioning">
+     Selecting Regions - Greedy, Top-Down, Recursive Partitioning
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#how-to-choose-splits">
+     How to choose splits
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#why-is-misclassification-loss-the-right-loss">
+     Why is misclassification loss the right loss
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#misclassification-loss-vs-cross-entropy-loss">
+     Misclassification loss vs Cross-entropy loss
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#regression-tree-extension-for-decision-tree">
+     Regression Tree - Extension for decision tree
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#categorical-variables">
+     Categorical Variables
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#regularization-of-dts">
+     Regularization of DTs
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#runtime">
+     Runtime
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#test-time-o-d">
+       Test time O(d)
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#train-time">
+       Train time
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#downside-of-dt">
+       Downside of DT
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#dt-recap">
+     DT - Recap
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#ensembling">
+   Ensembling
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#ways-to-ensemble">
+     Ways to ensemble
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#bagging">
+   Bagging
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#bootstrap-aggregation">
+     Bootstrap aggregation
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#bias-variance-analysis">
+     Bias-Variance Analysis
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#decision-trees-bagging">
+     Decision Trees + Bagging
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#random-forest">
+   Random Forest
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#boosting">
+   Boosting
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#adaboost">
+     Adaboost
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            
+              <div>
+                
+  <section class="tex2jax_ignore mathjax_ignore" id="lec-10-decision-trees-ensemble-methods">
+<h1>Lec 10-Decision Trees - Ensemble Methods<a class="headerlink" href="#lec-10-decision-trees-ensemble-methods" title="Permalink to this headline">¶</a></h1>
+<section id="outline">
+<h2>Outline<a class="headerlink" href="#outline" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Decision Trees</p></li>
+<li><p>Ensemble Methods</p></li>
+<li><p>Bagging</p></li>
+<li><p>Random Forests</p></li>
+<li><p>Boosting</p></li>
+</ul>
+</section>
+<section id="decision-trees">
+<h2>Decision Trees<a class="headerlink" href="#decision-trees" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Non-linear model</p></li>
+<li><p>A model is called linear if the hypothesis function is of the form <span class="math notranslate nohighlight">\(h(x) = \theta^{T}x\)</span></p></li>
+<li><p>Ski example - months vs latitude - when you can ski</p>
+<ul>
+<li><p>we cannot get a linear classifier or use SVM for this</p></li>
+<li><p>with decision trees you will have a very natural way of classifying this</p>
+<ul>
+<li><p>partition this into individual regions, isolating positive and negative examples</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<section id="selecting-regions-greedy-top-down-recursive-partitioning">
+<h3>Selecting Regions - Greedy, Top-Down, Recursive Partitioning<a class="headerlink" href="#selecting-regions-greedy-top-down-recursive-partitioning" title="Permalink to this headline">¶</a></h3>
+<ul>
+<li><p>You ask question and partition the space and then iteratively keep asking new question, partitioning the space</p></li>
+<li><p>Is latitude &gt; 30</p>
+<ul class="simple">
+<li><p>Yes</p>
+<ul>
+<li><p>Is Month &lt; 3</p>
+<ul>
+<li><p>Yes</p></li>
+<li><p>No</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>No</p></li>
+</ul>
+</li>
+<li><p>We are looking for a split function</p></li>
+<li><p>Region <span class="math notranslate nohighlight">\(R_{p}\)</span></p>
+<ul>
+<li><p>Looking for a split <span class="math notranslate nohighlight">\(S_{p}\)</span></p>
+<blockquote>
+<div><p><span class="math notranslate nohighlight">\(S_{p}(j,t) = (\{ X|X_{j} \lt t, X \in R_{p}\}, \{ X|X_{j} \ge t, X \in R_{p}\} ) = (R_{1}, R_{2})\)</span></p>
+</div></blockquote>
+<ul class="simple">
+<li><p>where j is the feature number and t is the threshold</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="how-to-choose-splits">
+<h3>How to choose splits<a class="headerlink" href="#how-to-choose-splits" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>isolate space of positives and negatives in this case</p></li>
+<li><p>Define L(R): loss on R</p></li>
+<li><p>Given C class, define <span class="math notranslate nohighlight">\(\hat{p_{i}}\)</span> to be the <strong>porportion of examples</strong> in R that are of class C</p></li>
+<li><p>Define misclassification loss of any region as</p></li>
+</ul>
+<blockquote>
+<div><p><span class="math notranslate nohighlight">\(L_{misclass}(R) = 1 - \max\limits_{C} \hat{p}_{C}\)</span></p>
+</div></blockquote>
+<ul class="simple">
+<li><p>what we are saying here is for any region that we have subdivided, we want to predict the most common class there, which is the maximum of <span class="math notranslate nohighlight">\(\hat{p}_{C}\)</span>. The remaining is the probability of misclassification errors.</p></li>
+<li><p>We want to pick a split that maximizes the decrease of loss as much as possible over parent <span class="math notranslate nohighlight">\(R_{parent}\)</span> and children regions <span class="math notranslate nohighlight">\(R_{1}, R_{2}\)</span></p></li>
+</ul>
+<blockquote>
+<div><p><span class="math notranslate nohighlight">\(\max\limits_{j,t} L(R_{p}) - (L(R_{1}) + L(R_{2}))\)</span></p>
+</div></blockquote>
+</section>
+<section id="why-is-misclassification-loss-the-right-loss">
+<h3>Why is misclassification loss the right loss<a class="headerlink" href="#why-is-misclassification-loss-the-right-loss" title="Permalink to this headline">¶</a></h3>
+<img src="images/10_misclassificationLoss.png" width=400 height=400>  
+$\tiny{\text{YouTube-Stanford-CS229-Andrew Ng/Raphael Townshend}}$ 
+<ul class="simple">
+<li><p>We might argue that the decision boundary on right scenario is better than left, because in the right we are isolating out more positives</p></li>
+<li><p>Loss of R1 and R2 region = 100 on right scenario</p></li>
+<li><p>Loss of R1’ and R2’ region = 100 on left scenario</p></li>
+<li><p>The loss of both parent Rp is also 100</p></li>
+<li><p>We can see that the misclassification loss is not sensitive enough</p>
+<ul>
+<li><p>its not sensitive enough or the loss is not informative enough because the parent level loss is same as child level loss</p></li>
+</ul>
+</li>
+<li><p>Instead we can define <strong>cross entropy loss</strong></p></li>
+</ul>
+<blockquote>
+<div><p><span class="math notranslate nohighlight">\(L_{cross}(R) = - \sum\limits_{c}\hat{p}_{c} log_{2}\hat{p}_{c}\)</span></p>
+</div></blockquote>
+<ul class="simple">
+<li><p>we are summing over the classes the proportion of elements in that class times the log of proportion in that class</p></li>
+<li><p>if we know everything about one class, we dont need to communicate, as we know everything that it’s a 100% chance that it is of one class</p></li>
+<li><p>if we have a even split, then we need to communicate lot more information about the class</p></li>
+<li><p>Cross entropy came from information theory where it is used for transmitting bits, where you can transmit bits of information, which is why it came up as log base 2</p></li>
+</ul>
+</section>
+<section id="misclassification-loss-vs-cross-entropy-loss">
+<h3>Misclassification loss vs Cross-entropy loss<a class="headerlink" href="#misclassification-loss-vs-cross-entropy-loss" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>Let the plot be between <span class="math notranslate nohighlight">\(\hat{p}\)</span> - the proportion of positives in the set vs the loss</p></li>
+<li><p>the cross-entropy loss is a strictly concave curve</p></li>
+<li><p>Let <span class="math notranslate nohighlight">\(L(R_{1})\)</span> and <span class="math notranslate nohighlight">\(L(R_{2})\)</span> be the child loss plotted on the curve</p></li>
+<li><p>Let there be equal number of examples in both <span class="math notranslate nohighlight">\(R_{1}\)</span> and <span class="math notranslate nohighlight">\(R_{2}\)</span>, are equally weighted</p></li>
+<li><p>the overall loss between the two is the average loss between the two, which is <span class="math notranslate nohighlight">\(\frac{L(R_{1}) + L(R_{2})}{2}\)</span></p></li>
+<li><p>the parent node loss is the projected loss on the curve <span class="math notranslate nohighlight">\(L(R_{p})\)</span></p></li>
+<li><p>the projection height is the change in loss</p></li>
+<li><p>as we see below, \hat{p} parent is the average of child proportions</p></li>
+</ul>
+<img src="images/10_crossEntropyLoss.png" width=400 height=400>  
+$\tiny{\text{YouTube-Stanford-CS229-Andrew Ng/Raphael Townshend}}$ 
+<ul class="simple">
+<li><p>the cross-entropy diagram</p></li>
+</ul>
+<img src="images/10_crossEntropyDiagram.png" width=400 height=400>  
+$\tiny{\text{YouTube-Stanford-CS229-Andrew Ng/Raphael Townshend}}$ 
+<ul class="simple">
+<li><p>the misrepresenstation loss</p>
+<ul>
+<li><p>if we end up with child node loss on the same side of the curve, there is no change in loss and hence no information gain based on this kind of representation</p></li>
+<li><p>this is not strictly concave curve</p></li>
+</ul>
+</li>
+</ul>
+<img src="images/10_misrepresentationDiagram.png" width=400 height=400>  
+$\tiny{\text{YouTube-Stanford-CS229-Andrew Ng/Raphael Townshend}}$ 
+<ul>
+<li><p>the decision splits curves that are successfully used are strictly concave curve</p></li>
+<li><p>Gini curve</p>
+<blockquote>
+<div><p><span class="math notranslate nohighlight">\(\sum\limits_{c}\hat{p}_{c}(1-\hat{p}_{c})\)</span></p>
+</div></blockquote>
+</li>
+</ul>
+</section>
+<section id="regression-tree-extension-for-decision-tree">
+<h3>Regression Tree - Extension for decision tree<a class="headerlink" href="#regression-tree-extension-for-decision-tree" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>So far we used decision tree for classification</p></li>
+<li><p>Decision trees can also be used for regression trees</p></li>
+<li><p>Example: Amount of snowfall</p>
+<ul>
+<li><p>Instead of predicting class, you predict mean of the</p></li>
+</ul>
+</li>
+<li><p>For Region <span class="math notranslate nohighlight">\(R_{m}\)</span>, the prediction will be</p></li>
+</ul>
+<blockquote>
+<div><p>Predict <span class="math notranslate nohighlight">\(\hat{y}_{m} = \frac{\sum\limits_{i \in R_{m}}Y_{i}}{|R_{m}|}\)</span></p>
+</div></blockquote>
+<ul class="simple">
+<li><p>sum all the values within the region and average them</p></li>
+</ul>
+<img src="images/10_regressionTrees.png" width=400 height=400>  
+$\tiny{\text{YouTube-Stanford-CS229-Andrew Ng/Raphael Townshend}}$ 
+<p>The loss will be</p>
+<blockquote>
+<div><p><span class="math notranslate nohighlight">\(L_{squared} = \frac{\sum\limits_{i \in R_{m}} (y_{i} - \hat{y}_{m})^{2} }{|R_{m}|}\)</span></p>
+</div></blockquote>
+</section>
+<section id="categorical-variables">
+<h3>Categorical Variables<a class="headerlink" href="#categorical-variables" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>can ask questions on any form of subset, is location in northern hemisphere?</p></li>
+<li><p><span class="math notranslate nohighlight">\(location \in \{N\}\)</span></p></li>
+<li><p>if there are q categories, the possible number of splits would be <span class="math notranslate nohighlight">\(2^{q}\)</span>, which very quickly becomes intractable</p></li>
+</ul>
+</section>
+<section id="regularization-of-dts">
+<h3>Regularization of DTs<a class="headerlink" href="#regularization-of-dts" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>if you carry on the process of splits, you can split region for each datapoint and that will be case of overfitting</p></li>
+<li><p>Decision trees are high variance models</p></li>
+<li><p>So we need to regularize the decision tree models</p></li>
+<li><p>Heuristics for regularization</p>
+<ul>
+<li><p>If you have a minimum leaf size, stop</p></li>
+<li><p>max depth</p></li>
+<li><p>max number of nodes</p></li>
+<li><p>min decrease in loss</p>
+<ul>
+<li><p>Before split, the loss is: <span class="math notranslate nohighlight">\(L(R_{p})\)</span></p></li>
+<li><p>After split, the loss is: <span class="math notranslate nohighlight">\(L(R_{1}) + L(R_{2})\)</span></p></li>
+<li><p>if after split, the loss is not great enough, we might conclude that it didn’t gain  us anything</p>
+<ul>
+<li><p>but there might be some correlation between variables</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>pruning</p>
+<ul>
+<li><p>you grow up your full tree and check which nodes to prune out</p></li>
+<li><p>you have a validation set that you use and you evaluate what your misclassification error is on the validation set, for each example for each leaf</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="runtime">
+<h3>Runtime<a class="headerlink" href="#runtime" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>n train examples</p></li>
+<li><p>f features</p></li>
+<li><p>d depth of tree</p></li>
+</ul>
+<section id="test-time-o-d">
+<h4>Test time O(d)<a class="headerlink" href="#test-time-o-d" title="Permalink to this headline">¶</a></h4>
+<p>d &lt; log n</p>
+</section>
+<section id="train-time">
+<h4>Train time<a class="headerlink" href="#train-time" title="Permalink to this headline">¶</a></h4>
+<ul class="simple">
+<li><p>Each point is part of O(d) nodes</p></li>
+<li><p>Cost of point at each node is O(f)</p>
+<ul>
+<li><p>for binary features, the cost will be f</p></li>
+<li><p>for quantitative features, sort and scan linearly, the cost will be f, as well</p></li>
+</ul>
+</li>
+<li><p>Total cost is O(nfd)</p>
+<ul>
+<li><p>where data matrix size is nf</p></li>
+<li><p>and depth is log n</p></li>
+<li><p>so cost is fairly fast training time</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="downside-of-dt">
+<h4>Downside of DT<a class="headerlink" href="#downside-of-dt" title="Permalink to this headline">¶</a></h4>
+<ul class="simple">
+<li><p>it does not have additive structure</p></li>
+<li><p>in the example below we get a very rough estimation of decision boundary</p></li>
+<li><p>decision trees have problems where the features are interacting additively with one another</p></li>
+</ul>
+<img src="images/10_noAdditiveStructure.png" width=400 height=400>  
+$\tiny{\text{YouTube-Stanford-CS229-Andrew Ng/Raphael Townshend}}$ 
+</section>
+</section>
+<section id="dt-recap">
+<h3>DT - Recap<a class="headerlink" href="#dt-recap" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>Pos</p>
+<ul>
+<li><p>Easy to explain</p></li>
+<li><p>Interpretable</p></li>
+<li><p>can deal with categorical variable</p></li>
+<li><p>generally fast</p></li>
+</ul>
+</li>
+<li><p>Neg</p>
+<ul>
+<li><p>high variance problems - generally leads to overfitting</p></li>
+<li><p>Not additive</p></li>
+<li><p>Low predictive accuracy</p></li>
+</ul>
+</li>
+<li><p>We can make it lot better with ensembling</p></li>
+</ul>
+</section>
+</section>
+<section id="ensembling">
+<h2>Ensembling<a class="headerlink" href="#ensembling" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>take <span class="math notranslate nohighlight">\(X_{i}'s\)</span> which are random variables that are independent identically distributed (i.i.d.)</p></li>
+</ul>
+<blockquote>
+<div><p><span class="math notranslate nohighlight">\(Var(X_{i}) = \sigma^{2}\)</span>
+<span class="math notranslate nohighlight">\(Var(\bar{X}) = Var\left(\frac{1}{n}\sum\limits_{i}X_{i}\right) = \frac{\sigma^{2}}{n}\)</span></p>
+</div></blockquote>
+<ul class="simple">
+<li><p>which means each independent rv is decreasing the variance of your model</p></li>
+<li><p>If we drop the independence assumption, so now <span class="math notranslate nohighlight">\(X_{i}'s\)</span> are only i.d. X’s are correlated by <span class="math notranslate nohighlight">\(\rho\)</span></p></li>
+<li><p>So the variance of mean will be:</p></li>
+</ul>
+<blockquote>
+<div><p><span class="math notranslate nohighlight">\(Var(\bar{X}) = \rho \sigma^{2} + \frac{1-\rho}{n} \sigma^{2}\)</span></p>
+</div></blockquote>
+<ul class="simple">
+<li><p>if they are fully correlated (<span class="math notranslate nohighlight">\(\rho = 1\)</span>), it becomes <span class="math notranslate nohighlight">\(Var(\bar{X}) = \sigma^{2}\)</span></p></li>
+<li><p>if there is no correlation(<span class="math notranslate nohighlight">\(\rho = 0\)</span>), it becomes <span class="math notranslate nohighlight">\(Var(\bar{X}) = \frac{\sigma^{2}}{n} \)</span></p></li>
+<li><p>there would be interest in models with large n so the second term goes down. Also have models that are decorrelated so the first term goes down</p></li>
+</ul>
+<section id="ways-to-ensemble">
+<h3>Ways to ensemble<a class="headerlink" href="#ways-to-ensemble" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>different algorithms, not really helpful</p></li>
+<li><p>use different training sets, not really helpful</p></li>
+<li><p>Bagging - Random Forest</p></li>
+<li><p>Boosting - Adaboost, xgboost</p></li>
+</ul>
+</section>
+</section>
+<section id="bagging">
+<h2>Bagging<a class="headerlink" href="#bagging" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Bootstrap aggregation</p>
+<ul>
+<li><p>bootstrapping is a method used in statistics to measure uncertainty</p></li>
+</ul>
+</li>
+<li><p>Say that a true population is P</p></li>
+<li><p>Training set <span class="math notranslate nohighlight">\(S \sim P\)</span></p></li>
+<li><p>Assume population is the training sample P = S</p></li>
+<li><p>Bootstrap samples Z \sim S</p>
+<ul>
+<li><p>Z is sampled from S. We take a training sample S with cardinality N. We sample N times from S with replacement, because we are assuming that S is a population and we are sampling from a population</p></li>
+<li><p>Take model and then train on all these separate bootstrap samples</p></li>
+</ul>
+</li>
+</ul>
+<br>  
+<section id="bootstrap-aggregation">
+<h3>Bootstrap aggregation<a class="headerlink" href="#bootstrap-aggregation" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>we will train separate models separately and then average their outputs</p></li>
+<li><p>Say we have bootstrap samples <span class="math notranslate nohighlight">\(Z_{1},...,Z_{M}\)</span></p></li>
+<li><p>We train model <span class="math notranslate nohighlight">\(G_{m}\)</span> on <span class="math notranslate nohighlight">\(Z_{m}\)</span> and define</p></li>
+</ul>
+<blockquote>
+<div><p>Aggregate Predictor <span class="math notranslate nohighlight">\(G(m) = \frac{\sum\limits_{m=1}{M}G_{m}(x)}{M}\)</span></p>
+</div></blockquote>
+<ul class="simple">
+<li><p>This process is called bagging</p></li>
+</ul>
+</section>
+<section id="bias-variance-analysis">
+<h3>Bias-Variance Analysis<a class="headerlink" href="#bias-variance-analysis" title="Permalink to this headline">¶</a></h3>
+<blockquote>
+<div><p><span class="math notranslate nohighlight">\(Var(\bar{X}) = \rho \sigma^{2} + \frac{1-\rho}{n} \sigma^{2}\)</span></p>
+</div></blockquote>
+<ul class="simple">
+<li><p>Bootstrapping is driving down <span class="math notranslate nohighlight">\(\rho\)</span></p></li>
+<li><p>But what about the second term</p>
+<ul>
+<li><p>With the increase in bootstrap samples, the M term increases, driving down the second term</p></li>
+</ul>
+</li>
+<li><p>A nice property about bootstrapping is that increasing the number of bootstrap models does not cause overfit than before.</p></li>
+<li><p>More M causes less variance</p></li>
+<li><p>But the bias of the model increases</p>
+<ul>
+<li><p>because of the random subsampling from S, it causes model to be less complex as we are drawing less data, and increases the bias</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="decision-trees-bagging">
+<h3>Decision Trees + Bagging<a class="headerlink" href="#decision-trees-bagging" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>DT have high variance, low bias</p></li>
+<li><p>this makes DT ideal fit for bagging</p></li>
+</ul>
+</section>
+</section>
+<section id="random-forest">
+<h2>Random Forest<a class="headerlink" href="#random-forest" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>RF is a version of decision trees and bagging</p></li>
+<li><p>the random forest introduces even more randomization into each individual decision tree</p></li>
+<li><p>1st - Earlier we learnt, bootstrapping drives down <span class="math notranslate nohighlight">\(\rho\)</span></p></li>
+<li><p>2nd - But if we can further decorrelate the random variables, we can drive down the variance even further</p></li>
+<li><p>At each split for RF, we consider only a fraction of your total features</p></li>
+<li><p>1st - Decreasing <span class="math notranslate nohighlight">\(\rho\)</span> in <span class="math notranslate nohighlight">\(Var(\bar{X})\)</span></p></li>
+<li><p>2nd - Say in a classification problem, we have found a very strong predictor that gives very good performance on its own (in ski example - the latitude split), and we use that predictor first at the first split. That causes all your models to be very highly correlated. So we should try to decorrelate the models</p></li>
+</ul>
+</section>
+<section id="boosting">
+<h2>Boosting<a class="headerlink" href="#boosting" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>In bagging we tried to reduce variance</p></li>
+<li><p>Boosting is opposite. In boosting we try to reduce bias</p></li>
+<li><p>Is additive</p></li>
+<li><p>In bagging, we took average of number of variables</p></li>
+<li><p>In boosting, we train one model and then add it into the ensemble and then keep adding in as prediction</p></li>
+<li><p>Decision stump - ask one question at a time</p>
+<ul>
+<li><p>the reason behind this is: we are decreasing bias by restricting the tree depth to be only 1</p></li>
+<li><p>this causes the bias to increase and decrease the variance</p></li>
+</ul>
+</li>
+<li><p>Say we make a split and make some misclassifications.</p></li>
+<li><p>we identify those mistakes and increase the weights</p></li>
+<li><p>in the next iteration, it works on the modified sets - because of more weights on misclassfied samples, split might pick this weighted decision boundary</p></li>
+</ul>
+<img src="images/10_boosting.png" width=400 height=400>  
+$\tiny{\text{YouTube-Stanford-CS229-Andrew Ng/Raphael Townshend}}$ 
+<section id="adaboost">
+<h3>Adaboost<a class="headerlink" href="#adaboost" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>Determine for classifier <span class="math notranslate nohighlight">\(G_{m}\)</span> a weight <span class="math notranslate nohighlight">\(\alpha_{m}\)</span> proportional, which is log odds</p></li>
+</ul>
+<blockquote>
+<div><p><span class="math notranslate nohighlight">\(log\left( \frac{1-err_{m}}{err_{m}}\right)\)</span></p>
+</div></blockquote>
+<ul class="simple">
+<li><p>Total classifier</p></li>
+</ul>
+<blockquote>
+<div><p><span class="math notranslate nohighlight">\(G(x) = \sum\limits_{m}\alpha_{m}G_{m}\)</span></p>
+</div></blockquote>
+<ul class="simple">
+<li><p>each <span class="math notranslate nohighlight">\(G_{m}\)</span> is trained on re-weighted training set</p></li>
+<li><p>Similar mechanism is used to derive algorithm like XGBoost or gradient boosting machines that allow us to reweight the examples we are getting right or wrong in dynamic fashion and then adding them in additive fashion to your model</p></li>
+</ul>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./cs229_ml"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            
+                <!-- Previous / next buttons -->
+<div class='prev-next-area'> 
+    <a class='left-prev' id="prev-link" href="lec09-Approx-EstimationError-ERM.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Lec 09-Estimation Error - ERM</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="lec12-Backpropagation-ImprovingNN.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Lec 12-Improving NN</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            
+        </div>
+    </div>
+    <footer class="footer">
+  <p>
+    
+      By Chandra<br/>
+    
+        &copy; Copyright 2021.<br/>
+  </p>
+</footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+
+  </body>
+</html>

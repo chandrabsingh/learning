@@ -1,0 +1,799 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Lec 16-Independent Component Analysis-RL</title>
+    
+  <link href="../_static/css/theme.css" rel="stylesheet">
+  <link href="../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.be7d3bbb2ef33a8344ce.js">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="prev" title="Lec 15-EM Algo-Factor Analysis" href="lec15-EMAlgo-FactorAnalysis.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../_static/mylogo.png" class="logo" alt="logo">
+      
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../intro.html">
+   My learning notebook
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Machine Learning
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../ml_examples/intro.html">
+   Welcome to your ML Book
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../ml_examples/ml_glossary.html">
+     Conceptual brief
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../ml_examples/Store_Sales_Forecasting_With_Tensorflow.html">
+     Store Sales Forecasting with TensorFlow
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Reference
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../markdown.html">
+   Markdown Files
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../notebooks.html">
+   Content with notebooks
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../markdown-notebooks.html">
+   Notebooks with MyST Markdown
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Lecture Notes
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="intro.html">
+   CS229 ML - by Andrew Ng
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2">
+    <a class="reference internal" href="lec02-LinearReg-GradientDescent.html">
+     Lec 02-Linear Regression - Gradient Descent
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="lec03-LocallyWeighted-LogisticRegression.html">
+     Lec 03-Locally Weighted Regression - Logistic Regression
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="lec04-Perceptron-GLM.html">
+     Lec 04-Perceptron - GLM
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="lec05-GDA-NaiveBayes.html">
+     Lec 05-GDA - Naive Bayes
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="lec06-NaiveBayes-SVM.html">
+     Lec 06-Naive Bayes - SVM
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="lec07-Kernels-SVM.html">
+     Lec 07-Kernels - SVM
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="lec08-DataSplits-Models-CrossValidation.html">
+     Lec 08-Data Splits - Models - Cross Validation
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="lec09-Approx-EstimationError-ERM.html">
+     Lec 09-Estimation Error - ERM
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="lec10-DecisionTrees-EnsembleMethods.html">
+     Lec 10-Decision Trees - Ensemble Methods
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="lec12-Backpropagation-ImprovingNN.html">
+     Lec 12-Improving NN
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="lec13-DebuggingMLModels-ErrorAnalysis.html">
+     Lec 13-Debugging ML Models-Error Analysis
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="lec15-EMAlgo-FactorAnalysis.html">
+     Lec 15-EM Algo-Factor Analysis
+    </a>
+   </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     Lec 16-Independent Component Analysis-RL
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/cs229_ml/lec16-IndependentComponentAnalysis-RL.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/chandrabsingh/learning"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/chandrabsingh/learning/issues/new?title=Issue%20on%20page%20%2Fcs229_ml/lec16-IndependentComponentAnalysis-RL.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        
+    </div>
+</div>
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/chandrabsingh/learning/master?urlpath=tree/learning/cs229_ml/lec16-IndependentComponentAnalysis-RL.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#outline">
+   Outline
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#ica-problem-statement">
+   ICA problem statement
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#cdf">
+   CDF
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#ica-derivation">
+   ICA derivation
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#mle">
+     MLE
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#reinforcement-learning">
+   Reinforcement Learning
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#markov-decision-process-mdp">
+     Markov Decision Process (MDP)
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#design-the-reward-function">
+     Design the reward function
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Lec 16-Independent Component Analysis-RL</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#outline">
+   Outline
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#ica-problem-statement">
+   ICA problem statement
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#cdf">
+   CDF
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#ica-derivation">
+   ICA derivation
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#mle">
+     MLE
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#reinforcement-learning">
+   Reinforcement Learning
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#markov-decision-process-mdp">
+     Markov Decision Process (MDP)
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#design-the-reward-function">
+     Design the reward function
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            
+              <div>
+                
+  <section class="tex2jax_ignore mathjax_ignore" id="lec-16-independent-component-analysis-rl">
+<h1>Lec 16-Independent Component Analysis-RL<a class="headerlink" href="#lec-16-independent-component-analysis-rl" title="Permalink to this headline">¶</a></h1>
+<section id="outline">
+<h2>Outline<a class="headerlink" href="#outline" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Independent Component Analysis (ICA)</p>
+<ul>
+<li><p>CDFs (cumulative distribution function)</p></li>
+<li><p>ICA model</p></li>
+</ul>
+</li>
+<li><p>Reinforcement Learning</p>
+<ul>
+<li><p>MDP</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="ica-problem-statement">
+<h2>ICA problem statement<a class="headerlink" href="#ica-problem-statement" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>sound emitted by speaker j at time i = <span class="math notranslate nohighlight">\(s_{j}^{(i)}\)</span></p></li>
+<li><p>microphone record <span class="math notranslate nohighlight">\(x^{(i)} = As^{(i)}, x \in \mathbb R^{n}\)</span></p>
+<ul>
+<li><p>say if you have n=2 speakers, A will be 2x2 matrix</p></li>
+<li><p>A is called mixing matrix</p></li>
+<li><p>assumption is number of speaker and microphone is same</p></li>
+</ul>
+</li>
+<li><p><strong>Goal</strong>: Find <span class="math notranslate nohighlight">\(W = A^{-1}\)</span>, so <span class="math notranslate nohighlight">\(s^{(i)} = Wx^{(i)}\)</span></p>
+<ul>
+<li><p>W is the unmixing matrix</p></li>
+<li><p>the speakers record different combination of speaker voices.</p></li>
+<li><p>Can we separate out the original n speaker speech signals?</p></li>
+</ul>
+</li>
+</ul>
+<ul class="simple">
+<li><p>How is it possible to separate out?</p>
+<ul>
+<li><p><span class="math notranslate nohighlight">\(s_{1}\)</span> and <span class="math notranslate nohighlight">\(s_{2}\)</span> are uniform between -1 and +1 (- Snapshot1 below)</p></li>
+<li><p>when this passes through mixing matrix A, the axis changes to <span class="math notranslate nohighlight">\(x_{1}\)</span> and <span class="math notranslate nohighlight">\(x_{2}\)</span> (- Snapshot2 below)</p></li>
+<li><p>on applying unmixing matrix W, the axis changes back to <span class="math notranslate nohighlight">\(s_{1}\)</span> and <span class="math notranslate nohighlight">\(s_{2}\)</span></p></li>
+<li><p>this transformation was possible because the source <span class="math notranslate nohighlight">\(s_{1}\)</span> and <span class="math notranslate nohighlight">\(s_{2}\)</span> were distributed uniformly between -1 and +1</p></li>
+<li><p>in realty in real time, human voices are not distributed uniformly between -1 and +1</p></li>
+<li><p>if the data is Gaussian, then ICA is not possible. Why?</p>
+<ul>
+<li><p>uniform distribution is highly non-Gaussian distribution, which makes ICA possible</p></li>
+<li><p>what if <span class="math notranslate nohighlight">\(s_{1}\)</span> and <span class="math notranslate nohighlight">\(s_{2}\)</span> came from Gaussian densities?</p>
+<ul>
+<li><p>if so, the distribution <span class="math notranslate nohighlight">\(s_{1}\)</span> and <span class="math notranslate nohighlight">\(s_{2}\)</span> would be rotationally symmetric (- Snapshot3 below)</p></li>
+<li><p>there will be rotational ambiguity, any axis could be <span class="math notranslate nohighlight">\(s_{1}\)</span> and <span class="math notranslate nohighlight">\(s_{2}\)</span></p></li>
+<li><p>you cannot map parallelogram back to square</p></li>
+<li><p>Gaussian distribution is rotationally symmetric</p></li>
+</ul>
+</li>
+<li><p>so there is some ambiguity in the output of ICA</p></li>
+</ul>
+</li>
+<li><p>there are two types of ambiguity here</p>
+<ul>
+<li><p>we dont know which is speaker 1 and which is speaker 2</p></li>
+<li><p>we can flip this data horizontally or vertically or reflect this and we wont be able to differentiate which one is +<span class="math notranslate nohighlight">\(s_{1}\)</span> and which is -<span class="math notranslate nohighlight">\(s_{1}\)</span></p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Snapshot 1</p></li>
+</ul>
+<img src="images/16_ica1.png" width=400 height=400>  
+$\tiny{\text{YouTube-Stanford-CS229-Andrew Ng}}$   
+<ul class="simple">
+<li><p>Snapshot 2</p></li>
+</ul>
+<img src="images/16_ica2.png" width=400 height=400>  
+$\tiny{\text{YouTube-Stanford-CS229-Andrew Ng}}$   
+<ul class="simple">
+<li><p>Snapshot 3</p></li>
+</ul>
+<img src="images/16_ica3.png" width=400 height=400>  
+$\tiny{\text{YouTube-Stanford-CS229-Andrew Ng}}$   
+<ul class="simple">
+<li><p>Gaussian density is the only distribution that is rotationally symmetric</p></li>
+<li><p>if <span class="math notranslate nohighlight">\(s_{1}\)</span> and <span class="math notranslate nohighlight">\(s_{2}\)</span> are independent and rotationally symmetric, then the distribution has circular contours and it must be Gaussian density</p></li>
+<li><p><strong>ICA is possible only if data is non-Gaussian, and only then it is possible to recover the independent sources</strong></p></li>
+</ul>
+</section>
+<section id="cdf">
+<h2>CDF<a class="headerlink" href="#cdf" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Relation between pdf and cdf</p></li>
+</ul>
+<blockquote>
+<div><p><span class="math notranslate nohighlight">\(p_{s}(s) = F'(s)\)</span></p>
+</div></blockquote>
+<img src="images/16_cdf.png" width=400 height=400>  
+$\tiny{\text{YouTube-Stanford-CS229-Andrew Ng}}$   
+</section>
+<section id="ica-derivation">
+<h2>ICA derivation<a class="headerlink" href="#ica-derivation" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Let the cdf be <span class="math notranslate nohighlight">\(F(s)\)</span> and its corresponding pdf be <span class="math notranslate nohighlight">\(p_{s}(s)\)</span></p></li>
+<li><p>Our model is <span class="math notranslate nohighlight">\(x = As = W^{-1}s\)</span> and <span class="math notranslate nohighlight">\(s=Wx\)</span></p></li>
+<li><p>If we know <span class="math notranslate nohighlight">\(p_{s}(s)\)</span>, what is the density of <span class="math notranslate nohighlight">\(p_{x}(x)\)</span></p>
+<ul>
+<li><p>We might consider <span class="math notranslate nohighlight">\(p_{x}(x) = p_{s}(Wx) = p_{s}(s)\)</span>, assuming w is an invertible matrix, this is a bijection. There is a one-to-one mapping between x and s.</p>
+<ul>
+<li><p>This is incorrect</p></li>
+<li><p>This works for probability mass function for discrete probability distribution but not for continuous probability distribution</p></li>
+<li><p>The correct answer is <span class="math notranslate nohighlight">\(p_{x}(x) = p_{s}(Wx)|W| = p_{s}(s)|W|\)</span>, where <span class="math notranslate nohighlight">\(|W|\)</span> is the determinant of matrix W</p></li>
+<li><p>We need the determinant to make sure the distribution still normalizes to 1</p></li>
+<li><p>determinant tells us how much the matrix/veector stretches out</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>We want to compute density of x because in the training set, we get to observe x only. To find the MLE parameters, we need to know the density of x, so that we can map and choose parameters W to maximize the likelihood.</p></li>
+</ul>
+<ul class="simple">
+<li><p>Density of s is indicator function between 0 and 1</p></li>
+</ul>
+<blockquote>
+<div><p><span class="math notranslate nohighlight">\(p_{s}(s) = \mathbb 1\{0 \le s \le 1\}\)</span> and <span class="math notranslate nohighlight">\(s \sim\)</span> Uniform(0,1)</p>
+</div></blockquote>
+<ul class="simple">
+<li><p>Let x = 2s in <span class="math notranslate nohighlight">\(\mathbb R^{1}\)</span> (A=2, W=1/2)</p></li>
+</ul>
+<blockquote>
+<div><p><span class="math notranslate nohighlight">\(x \sim\)</span> Uniform(0,2)</p>
+</div></blockquote>
+<ul class="simple">
+<li><p>Area under curve for both <span class="math notranslate nohighlight">\(p_{s}(s)\)</span> and <span class="math notranslate nohighlight">\(p_{x}(x)\)</span> is 1</p></li>
+</ul>
+<blockquote>
+<div><p><span class="math notranslate nohighlight">\(p_{x}(x) = \frac{1}{2}\mathbb 1\{0 \le x \le 2\}\)</span></p>
+</div></blockquote>
+<ul class="simple">
+<li><p>where <span class="math notranslate nohighlight">\(p_{x}(x) = p_{s}(Wx)|W|\)</span></p></li>
+<li><p>and |W| = 1/2 = determinant of matrix W</p></li>
+</ul>
+<img src="images/16_ica4.png" width=400 height=400>  
+$\tiny{\text{YouTube-Stanford-CS229-Andrew Ng}}$   
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(F(s) = P(S \le s) = \frac{1}{1+e^{-s}}\)</span> - sigmoid function as the cdf</p></li>
+<li><p>pdf for sigmoid function will be F’(s)</p>
+<ul>
+<li><p>the pdf that this induces will have fatter tails</p></li>
+<li><p>which implies that it goes to 0 more slowly and this captures human voice and many other natural phenomenon lot better than the Gaussian density because there are larger number of extreme outliers</p></li>
+</ul>
+</li>
+<li><p>there are other distributions that work well - double exponential distribution or two sided exponential density or Laplacian distributio</p></li>
+<li><p>this works well for many symmetric distributions</p></li>
+</ul>
+<img src="images/16_ica5.png" width=400 height=400>  
+$\tiny{\text{YouTube-Stanford-CS229-Andrew Ng}}$   
+<ul class="simple">
+<li><p>Density of s is equal to</p></li>
+</ul>
+<blockquote>
+<div><p><span class="math notranslate nohighlight">\(p_{s}(s) = \prod\limits_{i=1}^{n}p_{s}(s_{i})\)</span></p>
+</div></blockquote>
+<ul class="simple">
+<li><p>here n speakers are independent and they independently choose what sound to emit</p></li>
+<li><p>So the density of x is equal to</p></li>
+</ul>
+<blockquote>
+<div><p><span class="math notranslate nohighlight">\(p_{x}(x) = p_{s}(Wx)|W| = \left(\prod\limits_{j=1}^{n}p_{s}(W_{j}^{T}x)\right)|W|\)</span></p>
+</div></blockquote>
+<section id="mle">
+<h3>MLE<a class="headerlink" href="#mle" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>the log likelihood of W is</p></li>
+</ul>
+<blockquote>
+<div><p><span class="math notranslate nohighlight">\(l(W) = \sum\limits_{i=1}^{m}\log\left[\left(\prod\limits_{j}p_{s}\left(W_{j}^{T}x^{(i)}\right) \right)|W|\right]\)</span></p>
+</div></blockquote>
+<ul class="simple">
+<li><p>apply stochastic gradient descent <span class="math notranslate nohighlight">\(\nabla_{W}l(W)\)</span> to maximize the log likelihood, run it</p></li>
+<li><p>this finds a pretty good matrix W for unmixing the sources</p></li>
+</ul>
+</section>
+</section>
+<section id="reinforcement-learning">
+<h2>Reinforcement Learning<a class="headerlink" href="#reinforcement-learning" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>make a computer learn how to move helicopter</p></li>
+<li><p>give state at any point in time, you are asked to take action on how to move the control stick, to make helicopter fly in certain trajectory</p></li>
+<li><p>there is no one right answer for how to move the control sticks of a helicopter</p></li>
+<li><p>there is no one X to Y mapping as what is the true way to fly a helicopter</p></li>
+<li><p>its an algorithm that doesn’t ask you to tell it exactly the right answer/one true way at every step</p></li>
+<li><p>instead as a AI engineer, our job is to specify the reward function that tells when it’s flying well and when it’s flying poorly</p></li>
+<li><p>write a cost function or a reward function that gives a high reward when its doing well and a large negative reward whenever it crashes or does something bad</p></li>
+<li><p>something like training dog when its behaving well by saying good dog or bad dog</p></li>
+<li><p>AlphaGo/chess</p>
+<ul>
+<li><p>say it lost at step 50, but made a very bad move/blunder at step 20 and then continued for another 30 steps. The reward function must be able to tell that at step 30 it made a very bad move and have a large negative reward</p></li>
+</ul>
+</li>
+<li><p>the function is R(s) where R is the reward and s is the state</p></li>
+</ul>
+<section id="markov-decision-process-mdp">
+<h3>Markov Decision Process (MDP)<a class="headerlink" href="#markov-decision-process-mdp" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>RL solves problem using this MDP</p></li>
+<li><p>MDP is a 5 set tuple <span class="math notranslate nohighlight">\((S, A, \{P_{sa}\}, \gamma, R)\)</span></p>
+<ul>
+<li><p>S - set of states</p></li>
+<li><p>A - set of actions</p></li>
+<li><p><span class="math notranslate nohighlight">\(P_{sa}\)</span> - state transition probabilities <span class="math notranslate nohighlight">\((\sum_{s'}P_{sa}(s') = 1)\)</span></p>
+<ul>
+<li><p>this tells if you take action a from state s, what is the probability of ending at a particular different state s’</p></li>
+</ul>
+</li>
+<li><p><span class="math notranslate nohighlight">\(\gamma\)</span> - discount factor <span class="math notranslate nohighlight">\(\gamma \in\)</span> (0,1]</p></li>
+<li><p>R - reward function</p></li>
+</ul>
+</li>
+</ul>
+<ul class="simple">
+<li><p>11 possible states</p></li>
+<li><p>actions A:{N,S,E,W}</p></li>
+<li><p>there might be a wheel slip and probability may be {0.8 to N, 0.1 to W, 0.1 to E}</p></li>
+</ul>
+<img src="images/16_rl1.png" width=400 height=400>  
+$\tiny{\text{YouTube-Stanford-CS229-Andrew Ng}}$   
+</section>
+<section id="design-the-reward-function">
+<h3>Design the reward function<a class="headerlink" href="#design-the-reward-function" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>Incentivize reward to the end state as +1 and negative reward to state where you don’t want it to go as -1</p>
+<ul>
+<li><p>Choose action <span class="math notranslate nohighlight">\(a_{0}\)</span></p></li>
+<li><p>Based on the action you took, you will end up in state <span class="math notranslate nohighlight">\(s_{1} \sim P_{s_{0} a_{0}}\)</span></p>
+<ul>
+<li><p>which is distributed according to state transition probabilities governed by the previous state and the action it chose. Based on the action it chooses it has different chances of moving N,E,W,S</p></li>
+</ul>
+</li>
+<li><p>From state <span class="math notranslate nohighlight">\(s_{1}\)</span>, it will take new action <span class="math notranslate nohighlight">\(a_{1}\)</span></p></li>
+<li><p>Based on the action you took, it will end up in state <span class="math notranslate nohighlight">\(s_{2} \sim P_{s_{1} a_{1}}\)</span></p></li>
+</ul>
+</li>
+</ul>
+<ul class="simple">
+<li><p>The process is as follows:</p></li>
+</ul>
+<blockquote>
+<div><p><span class="math notranslate nohighlight">\(s_{0} \buildrel \rm a_{0} \over \rightarrow
+s_{1} \buildrel \rm a_{1} \over \rightarrow
+s_{2} \buildrel \rm a_{2} \over \rightarrow
+s_{3} \buildrel \rm a_{3} \over \rightarrow ... \)</span></p>
+</div></blockquote>
+<ul class="simple">
+<li><p>The reward function is as follows:</p></li>
+</ul>
+<blockquote>
+<div><p><span class="math notranslate nohighlight">\(R(s_{0}, a_{0}) + \gamma R(s_{1}, a_{1}) + \gamma^{2} R(s_{2}, a_{2}) + ...\)</span></p>
+</div></blockquote>
+<ul class="simple">
+<li><p>The total rewards is the sum of rewards or sum of discounted rewards. The further reward is in future, the value of reward reduces because of lesser weight.</p></li>
+<li><p>Generally the reward is <span class="math notranslate nohighlight">\(\gamma = 0.99 (0,1]\)</span></p></li>
+<li><p>This also encourages robot to get positive reward faster and postpone the negative rewards</p></li>
+<li><p>Another interpretation of <span class="math notranslate nohighlight">\(\gamma\)</span> can be drawn from time value of money</p></li>
+<li><p>Another interpretation of discount factor <span class="math notranslate nohighlight">\(\gamma\)</span> is they converge much faster with it. Its much harder for the algorithm to converge, if it is set to 1</p></li>
+</ul>
+<ul class="simple">
+<li><p>Goal: Choose actions over time to maximize total payoff</p></li>
+</ul>
+<blockquote>
+<div><p><span class="math notranslate nohighlight">\(E[R(s_{0}, a_{0}) + \gamma R(s_{1}, a_{1}) + \gamma^{2} R(s_{2}, a_{2}) + ...]\)</span></p>
+</div></blockquote>
+<ul class="simple">
+<li><p>Most reinforcement algorithms define a policy(controller), which maps from states to actions</p></li>
+</ul>
+<blockquote>
+<div><p>Policy(controller) <span class="math notranslate nohighlight">\(\pi: S \rightarrow A\)</span></p>
+</div></blockquote>
+<ul class="simple">
+<li><p>In the figure below, the optimal policy diagram it says the policy applied to cell (3,1) is West</p></li>
+</ul>
+<img src="images/16_optimalPolicy1.png" width=400 height=400>  
+$\tiny{\text{YouTube-Stanford-CS229-Andrew Ng}}$   
+<ul class="simple">
+<li><p>Instead at step (3,1), if policy North is applied, at step (3,2) there is 0.1 probability to end up with a negative reward of -1. A policy of West at cell (3,1) although leads to a longer route, but leads to a better optimal policy.</p></li>
+</ul>
+<img src="images/16_optimalPolicy2.png" width=400 height=400>  
+$\tiny{\text{YouTube-Stanford-CS229-Andrew Ng}}$   
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./cs229_ml"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            
+                <!-- Previous / next buttons -->
+<div class='prev-next-area'> 
+    <a class='left-prev' id="prev-link" href="lec15-EMAlgo-FactorAnalysis.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Lec 15-EM Algo-Factor Analysis</p>
+        </div>
+    </a>
+</div>
+            
+        </div>
+    </div>
+    <footer class="footer">
+  <p>
+    
+      By Chandra<br/>
+    
+        &copy; Copyright 2021.<br/>
+  </p>
+</footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+
+  </body>
+</html>

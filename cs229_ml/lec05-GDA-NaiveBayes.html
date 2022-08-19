@@ -1,0 +1,1092 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Lec 05-GDA - Naive Bayes</title>
+    
+  <link href="../_static/css/theme.css" rel="stylesheet">
+  <link href="../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.be7d3bbb2ef33a8344ce.js">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Lec 06-Naive Bayes - SVM" href="lec06-NaiveBayes-SVM.html" />
+    <link rel="prev" title="Lec 04-Perceptron - GLM" href="lec04-Perceptron-GLM.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../_static/mylogo.png" class="logo" alt="logo">
+      
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../intro.html">
+   My learning notebook
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Machine Learning
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../ml_examples/intro.html">
+   Welcome to your ML Book
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../ml_examples/ml_glossary.html">
+     Conceptual brief
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../ml_examples/Store_Sales_Forecasting_With_Tensorflow.html">
+     Store Sales Forecasting with TensorFlow
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Reference
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../markdown.html">
+   Markdown Files
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../notebooks.html">
+   Content with notebooks
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../markdown-notebooks.html">
+   Notebooks with MyST Markdown
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Lecture Notes
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="intro.html">
+   CS229 ML - by Andrew Ng
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2">
+    <a class="reference internal" href="lec02-LinearReg-GradientDescent.html">
+     Lec 02-Linear Regression - Gradient Descent
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="lec03-LocallyWeighted-LogisticRegression.html">
+     Lec 03-Locally Weighted Regression - Logistic Regression
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="lec04-Perceptron-GLM.html">
+     Lec 04-Perceptron - GLM
+    </a>
+   </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     Lec 05-GDA - Naive Bayes
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="lec06-NaiveBayes-SVM.html">
+     Lec 06-Naive Bayes - SVM
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="lec07-Kernels-SVM.html">
+     Lec 07-Kernels - SVM
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="lec08-DataSplits-Models-CrossValidation.html">
+     Lec 08-Data Splits - Models - Cross Validation
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="lec09-Approx-EstimationError-ERM.html">
+     Lec 09-Estimation Error - ERM
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="lec10-DecisionTrees-EnsembleMethods.html">
+     Lec 10-Decision Trees - Ensemble Methods
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="lec12-Backpropagation-ImprovingNN.html">
+     Lec 12-Improving NN
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="lec13-DebuggingMLModels-ErrorAnalysis.html">
+     Lec 13-Debugging ML Models-Error Analysis
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="lec15-EMAlgo-FactorAnalysis.html">
+     Lec 15-EM Algo-Factor Analysis
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="lec16-IndependentComponentAnalysis-RL.html">
+     Lec 16-Independent Component Analysis-RL
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/cs229_ml/lec05-GDA-NaiveBayes.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/chandrabsingh/learning"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/chandrabsingh/learning/issues/new?title=Issue%20on%20page%20%2Fcs229_ml/lec05-GDA-NaiveBayes.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        
+    </div>
+</div>
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/chandrabsingh/learning/master?urlpath=tree/learning/cs229_ml/lec05-GDA-NaiveBayes.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#outline">
+   Outline
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#discriminative-and-generative-algorithm">
+   Discriminative and Generative algorithm
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#generative-learning-algorithm">
+   Generative Learning Algorithm
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#gaussian-discriminant-analysis-gda">
+   Gaussian Discriminant Analysis (GDA)
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#covariance-mean-matrix">
+     Covariance/mean matrix
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#gda-model">
+     GDA Model
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#model-class-prior">
+       Model - class prior
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#how-to-fit-the-parameter">
+       How to fit the parameter:
+      </a>
+      <ul class="nav section-nav flex-column">
+       <li class="toc-h5 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#id1">
+         Generative Learning Algorithm
+        </a>
+       </li>
+       <li class="toc-h5 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#discriminant-learning-algorithm">
+         Discriminant Learning Algorithm
+        </a>
+       </li>
+       <li class="toc-h5 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#maximum-likelihood-estimate">
+         Maximum likelihood estimate
+        </a>
+       </li>
+      </ul>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#how-to-make-prediction">
+       How to make prediction
+      </a>
+      <ul class="nav section-nav flex-column">
+       <li class="toc-h5 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#questions">
+         Questions
+        </a>
+       </li>
+      </ul>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#gda-vs-logistic-regression">
+       GDA vs Logistic Regression:
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#naive-bayes-generative-learning">
+   Naive Bayes - Generative Learning
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#how-do-you-categorize-the-feature-vector-x">
+     How do you categorize the feature vector “x”?
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#parameters">
+       Parameters
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#joint-likelihood-estimate">
+       Joint likelihood estimate
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#mle">
+       MLE
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Lec 05-GDA - Naive Bayes</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#outline">
+   Outline
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#discriminative-and-generative-algorithm">
+   Discriminative and Generative algorithm
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#generative-learning-algorithm">
+   Generative Learning Algorithm
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#gaussian-discriminant-analysis-gda">
+   Gaussian Discriminant Analysis (GDA)
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#covariance-mean-matrix">
+     Covariance/mean matrix
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#gda-model">
+     GDA Model
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#model-class-prior">
+       Model - class prior
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#how-to-fit-the-parameter">
+       How to fit the parameter:
+      </a>
+      <ul class="nav section-nav flex-column">
+       <li class="toc-h5 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#id1">
+         Generative Learning Algorithm
+        </a>
+       </li>
+       <li class="toc-h5 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#discriminant-learning-algorithm">
+         Discriminant Learning Algorithm
+        </a>
+       </li>
+       <li class="toc-h5 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#maximum-likelihood-estimate">
+         Maximum likelihood estimate
+        </a>
+       </li>
+      </ul>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#how-to-make-prediction">
+       How to make prediction
+      </a>
+      <ul class="nav section-nav flex-column">
+       <li class="toc-h5 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#questions">
+         Questions
+        </a>
+       </li>
+      </ul>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#gda-vs-logistic-regression">
+       GDA vs Logistic Regression:
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#naive-bayes-generative-learning">
+   Naive Bayes - Generative Learning
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#how-do-you-categorize-the-feature-vector-x">
+     How do you categorize the feature vector “x”?
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#parameters">
+       Parameters
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#joint-likelihood-estimate">
+       Joint likelihood estimate
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#mle">
+       MLE
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            
+              <div>
+                
+  <section class="tex2jax_ignore mathjax_ignore" id="lec-05-gda-naive-bayes">
+<h1>Lec 05-GDA - Naive Bayes<a class="headerlink" href="#lec-05-gda-naive-bayes" title="Permalink to this headline">¶</a></h1>
+<section id="outline">
+<h2>Outline<a class="headerlink" href="#outline" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Discriminative Learning Algorithms (earlier)</p>
+<ul>
+<li><p>GLM</p></li>
+<li><p>Logistic Regression</p></li>
+<li><p>Linear Regression</p></li>
+</ul>
+</li>
+<li><p>Generative Learning Algorithms (this lecture)</p>
+<ul>
+<li><p>Gaussian Discriminant Analysis (GDA)</p></li>
+<li><p>Generative and Discriminative learning algorithm - comparision</p></li>
+<li><p>Naive Bayes - build spam filter</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="discriminative-and-generative-algorithm">
+<h2>Discriminative and Generative algorithm<a class="headerlink" href="#discriminative-and-generative-algorithm" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Difference between Discriminative and Generative algorithm</p></li>
+</ul>
+<ul class="simple">
+<li><p>Say there are malignant and benign tumors, with 2 classes</p>
+<ul>
+<li><p>A discriminant learning algorithm like logistical regression will use gradient descent to find the line that separates the positive and negative class, tumor in this case.</p>
+<ul>
+<li><p>GD - Randomly initialize the parameter, which eventually evolves to be the separating line/plane to differentiate positive and negative examples</p></li>
+<li><p>It searches for the separation, trying to maximize the likelihood</p></li>
+</ul>
+</li>
+<li><p>A generative learning algorithm instead looks into each of the classes one at a time, and try to make a model of how all the malignant tumors looks like in isolation</p>
+<ul>
+<li><p>If a new classification example</p></li>
+<li><p>It builds a model of how to classify the classes in isolation and test</p></li>
+<li><p>so when new patient example comes, it compares it to malignant tumor model compared to benign tumor model and then say which class example does it looks like</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="generative-learning-algorithm">
+<h2>Generative Learning Algorithm<a class="headerlink" href="#generative-learning-algorithm" title="Permalink to this headline">¶</a></h2>
+<ul>
+<li><p>Discrimative Learning Algorithm</p>
+<ul class="simple">
+<li><p>Learn <strong>p(y|x)</strong> or</p>
+<ul>
+<li><p>Learn (<span class="math notranslate nohighlight">\(h_{\theta}(x)\)</span>) = {0 or 1 directly}</p></li>
+<li><p>or learn about some function mapping from x to y directly</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Generative Learning Algorithm:</p>
+<ul>
+<li><ol class="simple">
+<li><p>Learns <strong>p(x|y)</strong> where</p></li>
+</ol>
+<ul class="simple">
+<li><p>x denotes features</p></li>
+<li><p>y denotes class</p></li>
+<li><p>given that the tumor is malignant, what will the features gone be like?</p></li>
+</ul>
+</li>
+<li><ol class="simple">
+<li><p>Learns <strong>p(y)</strong> - class prior</p></li>
+</ol>
+<ul class="simple">
+<li><p>even before you see a patient what are the chances of having malignant tumors?</p></li>
+</ul>
+</li>
+<li><p>Can solve p(y=1|x) using Bayes rule:</p>
+<blockquote>
+<div><p><span class="math notranslate nohighlight">\(p(y=1|x) = \frac{p(x|y=1)p(y=1)}{p(x)} \\ \)</span>
+where <span class="math notranslate nohighlight">\(p(x)=p(x|y=1)p(y=1)+p(x|y=0)p(y=0)\)</span></p>
+</div></blockquote>
+</li>
+</ul>
+</li>
+</ul>
+<p>Examples of Generative Learning Algorithm:</p>
+<ul class="simple">
+<li><p>Discrete value feature - Email spam filter, twitter positive/negative feature</p></li>
+<li><p>Continuous value feature - Tumor classification</p></li>
+</ul>
+</section>
+<section id="gaussian-discriminant-analysis-gda">
+<h2>Gaussian Discriminant Analysis (GDA)<a class="headerlink" href="#gaussian-discriminant-analysis-gda" title="Permalink to this headline">¶</a></h2>
+<ul>
+<li><p>Suppose <span class="math notranslate nohighlight">\(x \in \mathbb R^{n}\)</span>  (drop out the convention <span class="math notranslate nohighlight">\(x_{0}=1\)</span>, instead of n+1)</p></li>
+<li><p>Assume P(x|y) is distributed Gaussian, features are Gaussian (i.e., conditioned on the tumors being malignant, distribution of the features is Gaussian)</p>
+<blockquote>
+<div><p><span class="math notranslate nohighlight">\(Z \in N(\mu, \sum) \)</span></p>
+</div></blockquote>
+<ul class="simple">
+<li><p>where <span class="math notranslate nohighlight">\(Z \in \mathbb R^{n}, \mu \in \mathbb R^{n}, \sum \in \mathbb R^{nxn} \)</span></p></li>
+</ul>
+<blockquote>
+<div><p><span class="math notranslate nohighlight">\( E[Z] = \mu \)</span><br />
+<span class="math notranslate nohighlight">\(Cov(Z) = E[(Z-\mu)(Z-\mu)^{T}]\)</span><br />
+<span class="math notranslate nohighlight">\(= Ezz^{T} - (Ez)(Ez)^{T}\)</span></p>
+</div></blockquote>
+</li>
+<li><p>Probability distribution for multivariate normal distribution</p>
+<blockquote>
+<div><p><span class="math notranslate nohighlight">\(P\left(x;\mu,\sum\right) = \frac{1}{(2\pi)^{d/2}|\sum|^{1/2}}exp\left(-\frac{1}{2}(x-\mu)^{T}\sum^{-1}(x-\mu)\right)\)</span></p>
+</div></blockquote>
+</li>
+</ul>
+<section id="covariance-mean-matrix">
+<h3>Covariance/mean matrix<a class="headerlink" href="#covariance-mean-matrix" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>Impact of shrinking the variance, ie, multiply covariance matrix by integer less than 1</p>
+<ul>
+<li><p>probability density becomes taller</p></li>
+<li><p>the area under the curve is always 1, it simply reduces the spread of Gaussian density</p></li>
+</ul>
+</li>
+<li><p>Impact of expanding the variance, ie, multiply covariance matrix by integer more than 1</p>
+<ul>
+<li><p>probability density spreads out</p></li>
+<li><p>the area under the curve is always 1, it simply widens the spread of Gaussian density</p></li>
+</ul>
+</li>
+<li><p>Standard multivariate distribution</p>
+<ul>
+<li><p>covariance matrix is identity matrix</p></li>
+<li><p>uncorrelated z1 and z2</p></li>
+</ul>
+</li>
+<li><p>For standard covariance matrix, the off diagonal matrix is 0. By increasing this to 0.8,</p>
+<ul>
+<li><p>changes from round shaped distribution to flatter</p></li>
+<li><p>positively correlated z1 and z2</p></li>
+</ul>
+</li>
+<li><p>For standard covariance matrix, the off diagonal matrix is 0. By increasing this to -0.8,</p>
+<ul>
+<li><p>changes from round shaped distribution to flatter</p></li>
+<li><p>negatively correlated z1 and z2</p></li>
+</ul>
+</li>
+<li><p>For standard Gaussian, the mean is centered at 0. By varying the mean</p>
+<ul>
+<li><p>shift the center of Gaussian density</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="gda-model">
+<h3>GDA Model<a class="headerlink" href="#gda-model" title="Permalink to this headline">¶</a></h3>
+<p>Density of each feature is Gaussian - with parameters of GDA model are <span class="math notranslate nohighlight">\(\mu_{0}, \mu_{1}, \sum\)</span>. Note the convention of covariance matrix is to use the same <span class="math notranslate nohighlight">\(\sum\)</span>.</p>
+<ul>
+<li><p>benign tumor</p>
+<blockquote>
+<div><p><span class="math notranslate nohighlight">\(P(x|y=0) = \frac{1}{(2\pi)^{d/2}|\sum|^{1/2}}exp\left(-\frac{1}{2}(x-\mu_{0})^{T}\sum^{-1}(x-\mu_{0})\right)\)</span></p>
+</div></blockquote>
+</li>
+<li><p>malignant tumor</p></li>
+</ul>
+<blockquote>
+<div><p><span class="math notranslate nohighlight">\(P(x|y=1) = \frac{1}{(2\pi)^{d/2}|\sum|^{1/2}}exp\left(-\frac{1}{2}(x-\mu_{1})^{T}\sum^{-1}(x-\mu_{1})\right)\)</span></p>
+</div></blockquote>
+<ul class="simple">
+<li><p>Assumption: the two Gaussian for positive and negative case have same covariance but different mean</p></li>
+</ul>
+<section id="model-class-prior">
+<h4>Model - class prior<a class="headerlink" href="#model-class-prior" title="Permalink to this headline">¶</a></h4>
+<ul class="simple">
+<li><p>Model P(y), where y is a Bernoulli random variable, which takes 0 or 1
+\begin{align} P(y) = \phi^{y}(1-\phi)^{(1-y)} \end{align}</p></li>
+<li><p>which means <span class="math notranslate nohighlight">\(P(y=1) = \phi\)</span>. This is the way of writing if..else statement in mathematical terms<br />
+\begin{align} \mu_{0} \in \mathbb R^{n}, \mu_{1}\in \mathbb R^{n}, \sum\in \mathbb R^{nxn},\phi \in \mathbb R \end{align}</p></li>
+</ul>
+</section>
+<section id="how-to-fit-the-parameter">
+<h4>How to fit the parameter:<a class="headerlink" href="#how-to-fit-the-parameter" title="Permalink to this headline">¶</a></h4>
+<section id="id1">
+<h5>Generative Learning Algorithm<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h5>
+<ul>
+<li><p>Training set <span class="math notranslate nohighlight">\(\{x^{(i)}, y^{(i)}\}_{i=1}^{m}\)</span></p></li>
+<li><p>To fit the parameter, we will <strong>maximize the joint likelihood</strong>  and P(y)</p>
+<ul>
+<li><p>For generative models, we try to choose parameters such that P(x and y) is maximized.</p></li>
+<li><p>Likelihood of parameters</p>
+<blockquote>
+<div><p><span class="math notranslate nohighlight">\(L\left(\phi, \mu_{0}, \mu_{1}, \sum\right) \)</span><br />
+<span class="math notranslate nohighlight">\(= \prod \limits_{i=1}^{m} P\left(x^{(i)}, y^{(i)}; \phi,\mu_{0},\mu_{1},\sum\right) \)</span><br />
+<span class="math notranslate nohighlight">\(=\prod \limits_{i=1}^{m} P\left(x^{(i)}| y^{(i)};\mu_{0},\mu_{1},\sum\right) P(y^{(i)};\phi)\)</span></p>
+</div></blockquote>
+</li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="discriminant-learning-algorithm">
+<h5>Discriminant Learning Algorithm<a class="headerlink" href="#discriminant-learning-algorithm" title="Permalink to this headline">¶</a></h5>
+<ul>
+<li><p>Cost function that you <strong>maximize the conditional likelihood</strong>, such that</p>
+<ul>
+<li><p>Likelihood of parameters</p>
+<blockquote>
+<div><p><span class="math notranslate nohighlight">\(L\left(\theta\right) = \prod \limits_{i=1}^{m} P\left(y^{(i)}|x^{(i)}; \theta\right) \)</span></p>
+</div></blockquote>
+</li>
+<li><p>Difference</p>
+<ul class="simple">
+<li><p>For logistic models or generalized linear models, we try to choose parameter <span class="math notranslate nohighlight">\(\theta\)</span>, such that it maximizes P(y|x).</p></li>
+<li><p>For generative learning algorithms, we try to choose parameter that maximize p(x|y)</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="maximum-likelihood-estimate">
+<h5>Maximum likelihood estimate<a class="headerlink" href="#maximum-likelihood-estimate" title="Permalink to this headline">¶</a></h5>
+<ul>
+<li><p>you choose the parameter <span class="math notranslate nohighlight">\(\phi, \mu_{0}, \mu_{1}, \sum\)</span> that maximize the log likelihood <span class="math notranslate nohighlight">\(L\left(\phi, \mu_{0}, \mu_{1}, \sum\right) \)</span></p></li>
+<li><p>you take the derivative of log likelihood and set it to zero, to get the parameter values</p></li>
+<li><p>The value of <span class="math notranslate nohighlight">\(\phi\)</span> that maximizes the estimate is:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\phi\)</span> is the estimate of probability of y being equal to 1</p></li>
+<li><p>what is the chance when the next patient walks into your clinic, that they have a malignant tumor?</p></li>
+</ul>
+<blockquote>
+<div><p><span class="math notranslate nohighlight">\(\phi = \frac{\sum\limits_{i=1}^{m} y^{(i)}}{m} = \frac{\sum\limits_{i=1}^{m} \mathbb 1 \{ y^{(i)} = 1 \} }{m} \)</span>,</p>
+</div></blockquote>
+<ul class="simple">
+<li><p>where <span class="math notranslate nohighlight">\(\mathbb 1 \{true\} = 1 \space\)</span> and <span class="math notranslate nohighlight">\(\mathbb 1 \{false\} = 0 \)</span>.</p></li>
+</ul>
+</li>
+</ul>
+<ul class="simple">
+<li><p>The value of <span class="math notranslate nohighlight">\(\mu_{0}\)</span> that maximizes the estimate is (benign tumors in training set):</p></li>
+</ul>
+<blockquote>
+<div><p><span class="math notranslate nohighlight">\(\mu_{0} = \frac{\sum\limits_{i=1}^{m} \mathbb 1 \{ y^{(i)} = 0 \}.x^{(i)} }{\sum\limits_{i=1}^{m} \mathbb 1 \{ y^{(i)} = 0 \} } = \frac{\text{Sum of feature vectors for all the examples with y=0}}{\text{Sum of all examples with y=0}}\)</span>.</p>
+</div></blockquote>
+<br>
+<ul class="simple">
+<li><p>The value of <span class="math notranslate nohighlight">\(\mu_{1}\)</span> that maximizes the estimate is (malignant tumors in training set):</p></li>
+</ul>
+<blockquote>
+<div><p><span class="math notranslate nohighlight">\(\mu_{1} = \frac{\sum\limits_{i=1}^{m} \mathbb 1 \{ y^{(i)} = 1 \}.x^{(i)} }{\sum\limits_{i=1}^{m} \mathbb 1 \{ y^{(i)} = 1 \} } = \frac{\text{Sum of feature vectors for all the examples with y=1}}{\text{Sum of all examples with y=1}}\)</span>.</p>
+</div></blockquote>
+<br>
+<ul class="simple">
+<li><p>The value of <span class="math notranslate nohighlight">\(\Sigma\)</span> that maximizes the estimate is:</p></li>
+</ul>
+<blockquote>
+<div><p><span class="math notranslate nohighlight">\(\Sigma = \frac{1}{m}\sum\limits_{i=1}^{m}(x^{(i)} - \mu_{y^{(i)}})(x^{(i)} - \mu_{y^{(i)}})^{T}\)</span></p>
+</div></blockquote>
+</section>
+</section>
+<section id="how-to-make-prediction">
+<h4>How to make prediction<a class="headerlink" href="#how-to-make-prediction" title="Permalink to this headline">¶</a></h4>
+<p>Having fit these parameters, how to make a prediction</p>
+<ul class="simple">
+<li><p>to make predict most likely class label, you choose <span class="math notranslate nohighlight">\(\max\limits_{y} p(y|x)\)</span></p></li>
+<li><p>by Bayes’ rule</p></li>
+</ul>
+<blockquote>
+<div><p>arg <span class="math notranslate nohighlight">\( \max\limits_{y} p(y|x) = arg \max\limits_{y} \frac{p(x|y)p(y)}{p(x)} \)</span></p>
+</div></blockquote>
+<ul class="simple">
+<li><p>since p(x) is a constant</p></li>
+</ul>
+<blockquote>
+<div><p>= arg <span class="math notranslate nohighlight">\( \max\limits_{y} p(x|y)p(y) \)</span></p>
+</div></blockquote>
+<ul class="simple">
+<li><p>If we care about prediction, computation can be saved by not calculating denominator</p></li>
+<li><p>If we care about probability, then we must normalize the probability</p></li>
+</ul>
+<section id="questions">
+<h5>Questions<a class="headerlink" href="#questions" title="Permalink to this headline">¶</a></h5>
+<ul class="simple">
+<li><p>What is arg min?</p>
+<ul>
+<li><p><span class="math notranslate nohighlight">\(min(z-5)^{2} = 0\)</span></p></li>
+<li><p>arg <span class="math notranslate nohighlight">\(min(z-5)^{2} = 5\)</span> - the value that is required to achieve the smallest possible value</p></li>
+</ul>
+</li>
+</ul>
+<br>
+<ul class="simple">
+<li><p>Why do we choose to have a single covariance matrix but different mean for each class variable?</p>
+<ul>
+<li><p>the decision boundary ends up being linear, if we go with this setting</p></li>
+<li><p>by choosing covariance matrix for each class variable</p>
+<ul>
+<li><p>you will end up with decision boundary that is non-linear</p></li>
+<li><p>and the number of parameters will get doubled up</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</section>
+</section>
+<section id="gda-vs-logistic-regression">
+<h4>GDA vs Logistic Regression:<a class="headerlink" href="#gda-vs-logistic-regression" title="Permalink to this headline">¶</a></h4>
+<ul class="simple">
+<li><p>How to plot</p></li>
+</ul>
+<img src="images/05_gda_log_plot.png" width=400 height=400>  
+$\tiny{\text{YouTube-Stanford-CS229-Andrew Ng}}$  
+<ul class="simple">
+<li><p>Assumptions</p>
+<ul>
+<li><p>GDA assumes that x|y=0 and x|y=1 are Gaussian and y is Bernoulli</p></li>
+<li><p>Logistic assumes that y=1|x is a sigmoid function</p></li>
+<li><p>GDA’s assumption implies that p(y=1|x) is governed by logistic function</p></li>
+<li><p>But the implication in opposite direction is not true</p>
+<ul>
+<li><p>i.e., if you assume that p(y=1|x) is governed by logistic function, then this does not in any way assume that x|y is Gaussian</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>What this means is</p>
+<ul>
+<li><p>GDA makes stronger set of assumptions</p></li>
+<li><p>Logistic makes weaker set of assumptions</p></li>
+</ul>
+</li>
+<li><p>If you make strong modeling assumptions, and if your modeling assumptions are roughly correct, then your model will do better because you are telling more information to the algorithm.</p>
+<ul>
+<li><p>So if x|y is Gaussian, then GDA will do better because you are telling the algorithm that x|y is Gaussian and so it can be more efficient</p></li>
+</ul>
+</li>
+<li><p>If the GDA assumptions are wrong, and if x|y is not at all Gaussian, then GDA assumptions will be bad set of assumptions to make and will make GDA perform badly.</p></li>
+<li><p>When is each of the algorithm superior</p>
+<ul>
+<li><p>If you make weaker assumptions as in logistic regression, then your algorithm will be more robust to modeling assumptions such as accidently assuming the data is Gaussian and it is not</p></li>
+<li><p>But if there is fewer data, making stronger assumptions is better</p></li>
+</ul>
+</li>
+</ul>
+<img src="images/05_gda_log1.png" width=400 height=400>  
+$\tiny{\text{YouTube-Stanford-CS229-Andrew Ng}}$  
+<ul class="simple">
+<li><p>Given a choice between GDA and logistic regression, its better to use GDA because its very efficient algorithm, you compute mean, and covariance matrix and its done. There is no iterative process involved.</p></li>
+<li><p>When performance of all algorithm is better when the data is more.</p></li>
+<li><p>But the performance of very good algorithm will perform better with less data</p></li>
+<li><p>Skill comes in assumptions more when the data is less, as what is the underlying distribution</p></li>
+</ul>
+</section>
+</section>
+</section>
+<section id="naive-bayes-generative-learning">
+<h2>Naive Bayes - Generative Learning<a class="headerlink" href="#naive-bayes-generative-learning" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>spam or not - text classification</p></li>
+<li><p>based on the subject line, categorize the email</p></li>
+</ul>
+<section id="how-do-you-categorize-the-feature-vector-x">
+<h3>How do you categorize the feature vector “x”?<a class="headerlink" href="#how-do-you-categorize-the-feature-vector-x" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>make list of all words</p></li>
+<li><p>make a binary feature vector of all the words, if it exists in email or not. <span class="math notranslate nohighlight">\(x \in \{0,1\}^{n}\)</span></p></li>
+</ul>
+<p><span class="math notranslate nohighlight">\(x_{i} = \mathbb 1\)</span> {word i appear in email or not}</p>
+<p>In Naive Bayes, we will build a generative learning algorithm, so we need to model p(x|y) and p(y)</p>
+<ul class="simple">
+<li><p>say there are n = 10000 words - possible combinations of X are <span class="math notranslate nohighlight">\(2^{10000}\)</span></p>
+<ul>
+<li><p>excessive number of parameters, will not work</p></li>
+</ul>
+</li>
+<li><p>Assume <span class="math notranslate nohighlight">\(x_{i}^{'}s\)</span> are conditionally independent given y</p></li>
+</ul>
+<blockquote>
+<div><p><span class="math notranslate nohighlight">\(P(x_{1},x_{2},..,x_{10000}|y) = P(x_{1}|y)P(x_{2}|x_{1},y)P(x_{3}|x_{1},x_{2},y)..P(x_{10000}|...)\)</span></p>
+</div></blockquote>
+<ul class="simple">
+<li><p>the above statement is true by chain rule of probability</p></li>
+<li><p>using conditional independence assumption or Naive Bayes assumption, we get</p></li>
+</ul>
+<blockquote>
+<div><p><span class="math notranslate nohighlight">\( \stackrel{assume}{=} P(x_{1}|y)P(x_{2}|y)P(x_{3}|y)..P(x_{10000}|y)\)</span><br />
+<span class="math notranslate nohighlight">\(= \prod\limits_{i=1}^{n}p(x_{i}|y)\)</span></p>
+</div></blockquote>
+<ul class="simple">
+<li><p>This is a strong assumption</p></li>
+</ul>
+<br>
+<ul class="simple">
+<li><p>The reasoning behind conditional independence assumption is: given the information y is spam, it does not matter which words appear in email as <span class="math notranslate nohighlight">\(x_{1}\)</span> is accountNumber, <span class="math notranslate nohighlight">\(x_{2}\)</span> is mortgage, <span class="math notranslate nohighlight">\(x_{n}\)</span> is yield,</p></li>
+</ul>
+<img src="images/05_conditionalIndependence.png" width=200 height=200>  
+$\tiny{\text{YouTube-Stanford-CS229-Andrew Ng}}$  
+<section id="parameters">
+<h4>Parameters<a class="headerlink" href="#parameters" title="Permalink to this headline">¶</a></h4>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\phi_{j|y=1} = p(x_{j}=1|y=1)\)</span></p>
+<ul>
+<li><p>if a spam email(y=1 is spam, y=0 is non-spam), what is the chance of word j appearing in the email?</p></li>
+</ul>
+</li>
+<li><p><span class="math notranslate nohighlight">\(\phi_{j|y=0} = p(x_{j}=1|y=0)\)</span></p>
+<ul>
+<li><p>if a non-spam email, what is the chance of word j appearing in the email?</p></li>
+</ul>
+</li>
+<li><p><span class="math notranslate nohighlight">\(\phi_{y} = p(y=1)\)</span></p>
+<ul>
+<li><p>what is the cost prior, i.e., what is the prior probability that the next email you receive in your inbox is spam email?</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="joint-likelihood-estimate">
+<h4>Joint likelihood estimate<a class="headerlink" href="#joint-likelihood-estimate" title="Permalink to this headline">¶</a></h4>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(L(\phi_{y}, \phi_{j|y}) = \prod\limits_{i=1}^{m} p(x^{(i)}, y^{(i)}; \phi_{y}, \phi_{j|y})\)</span></p></li>
+</ul>
+</section>
+<section id="mle">
+<h4>MLE<a class="headerlink" href="#mle" title="Permalink to this headline">¶</a></h4>
+<ul class="simple">
+<li><p>fraction of spam email</p></li>
+</ul>
+<blockquote>
+<div><p><span class="math notranslate nohighlight">\(\phi_{y} = \frac{\sum\limits_{i=1}^{m} \mathbb 1 \{y^{(i)} = 1\} }{m}\)</span></p>
+</div></blockquote>
+<ul class="simple">
+<li><p>estimate that the chance of word j appearing</p>
+<ul>
+<li><p>denominator - find all the spam emails</p></li>
+<li><p>numerator - of all the spam emails, count what fraction of them had word j in it</p></li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<div><p><span class="math notranslate nohighlight">\(\phi_{j|y=1} = \frac{\sum\limits_{i=1}^{m} \mathbb 1 \{ x_{j}^{(i)} = 1, y^{(i)} = 1 \}} {\sum\limits_{i=1}^{m} \mathbb 1 \{y^{(i)} = 1\} }\)</span></p>
+</div></blockquote>
+</section>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./cs229_ml"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            
+                <!-- Previous / next buttons -->
+<div class='prev-next-area'> 
+    <a class='left-prev' id="prev-link" href="lec04-Perceptron-GLM.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Lec 04-Perceptron - GLM</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="lec06-NaiveBayes-SVM.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Lec 06-Naive Bayes - SVM</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            
+        </div>
+    </div>
+    <footer class="footer">
+  <p>
+    
+      By Chandra<br/>
+    
+        &copy; Copyright 2021.<br/>
+  </p>
+</footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+
+  </body>
+</html>

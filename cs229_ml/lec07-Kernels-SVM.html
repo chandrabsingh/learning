@@ -1,0 +1,938 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Lec 07-Kernels - SVM</title>
+    
+  <link href="../_static/css/theme.css" rel="stylesheet">
+  <link href="../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.be7d3bbb2ef33a8344ce.js">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Lec 08-Data Splits - Models - Cross Validation" href="lec08-DataSplits-Models-CrossValidation.html" />
+    <link rel="prev" title="Lec 06-Naive Bayes - SVM" href="lec06-NaiveBayes-SVM.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../_static/mylogo.png" class="logo" alt="logo">
+      
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../intro.html">
+   My learning notebook
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Machine Learning
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../ml_examples/intro.html">
+   Welcome to your ML Book
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../ml_examples/ml_glossary.html">
+     Conceptual brief
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../ml_examples/Store_Sales_Forecasting_With_Tensorflow.html">
+     Store Sales Forecasting with TensorFlow
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Reference
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../markdown.html">
+   Markdown Files
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../notebooks.html">
+   Content with notebooks
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../markdown-notebooks.html">
+   Notebooks with MyST Markdown
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Lecture Notes
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="intro.html">
+   CS229 ML - by Andrew Ng
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2">
+    <a class="reference internal" href="lec02-LinearReg-GradientDescent.html">
+     Lec 02-Linear Regression - Gradient Descent
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="lec03-LocallyWeighted-LogisticRegression.html">
+     Lec 03-Locally Weighted Regression - Logistic Regression
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="lec04-Perceptron-GLM.html">
+     Lec 04-Perceptron - GLM
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="lec05-GDA-NaiveBayes.html">
+     Lec 05-GDA - Naive Bayes
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="lec06-NaiveBayes-SVM.html">
+     Lec 06-Naive Bayes - SVM
+    </a>
+   </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     Lec 07-Kernels - SVM
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="lec08-DataSplits-Models-CrossValidation.html">
+     Lec 08-Data Splits - Models - Cross Validation
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="lec09-Approx-EstimationError-ERM.html">
+     Lec 09-Estimation Error - ERM
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="lec10-DecisionTrees-EnsembleMethods.html">
+     Lec 10-Decision Trees - Ensemble Methods
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="lec12-Backpropagation-ImprovingNN.html">
+     Lec 12-Improving NN
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="lec13-DebuggingMLModels-ErrorAnalysis.html">
+     Lec 13-Debugging ML Models-Error Analysis
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="lec15-EMAlgo-FactorAnalysis.html">
+     Lec 15-EM Algo-Factor Analysis
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="lec16-IndependentComponentAnalysis-RL.html">
+     Lec 16-Independent Component Analysis-RL
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/cs229_ml/lec07-Kernels-SVM.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/chandrabsingh/learning"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/chandrabsingh/learning/issues/new?title=Issue%20on%20page%20%2Fcs229_ml/lec07-Kernels-SVM.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        
+    </div>
+</div>
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/chandrabsingh/learning/master?urlpath=tree/learning/cs229_ml/lec07-Kernels-SVM.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#outline">
+   Outline
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#derivation-of-optimal-margin-classifier">
+   Derivation of optimal margin classifier
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#derivation-of-svm">
+   Derivation of SVM
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#kernel-trick">
+   Kernel trick
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#how-to-make-kernels">
+   How to make kernels
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#mercer-s-theorem">
+     Mercer’s Theorem
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#gaussian-kernel">
+     Gaussian Kernel
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#linear-kernel">
+     Linear Kernel
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#non-linear-separation">
+   Non-linear separation
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#l1-norm-soft-margin-svm">
+     L1 norm soft margin SVM
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#dual-form-optimization-problem">
+     Dual form optimization problem
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Lec 07-Kernels - SVM</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#outline">
+   Outline
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#derivation-of-optimal-margin-classifier">
+   Derivation of optimal margin classifier
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#derivation-of-svm">
+   Derivation of SVM
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#kernel-trick">
+   Kernel trick
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#how-to-make-kernels">
+   How to make kernels
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#mercer-s-theorem">
+     Mercer’s Theorem
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#gaussian-kernel">
+     Gaussian Kernel
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#linear-kernel">
+     Linear Kernel
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#non-linear-separation">
+   Non-linear separation
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#l1-norm-soft-margin-svm">
+     L1 norm soft margin SVM
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#dual-form-optimization-problem">
+     Dual form optimization problem
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            
+              <div>
+                
+  <section class="tex2jax_ignore mathjax_ignore" id="lec-07-kernels-svm">
+<h1>Lec 07-Kernels - SVM<a class="headerlink" href="#lec-07-kernels-svm" title="Permalink to this headline">¶</a></h1>
+<section id="outline">
+<h2>Outline<a class="headerlink" href="#outline" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>SVM</p>
+<ul>
+<li><p>Optimization problem</p></li>
+<li><p>Representer theorem</p></li>
+<li><p>Kernels</p></li>
+<li><p>Examples of kernels</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="derivation-of-optimal-margin-classifier">
+<h2>Derivation of optimal margin classifier<a class="headerlink" href="#derivation-of-optimal-margin-classifier" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>In the last lecture, we learned what the optimal margin classifier does is to choose w,b to maximize <span class="math notranslate nohighlight">\(\gamma\)</span></p></li>
+</ul>
+<blockquote>
+<div><p><span class="math notranslate nohighlight">\(\max_{\gamma, w, b} \text{s.t.} \frac{(y^{(i)})(w^{T}x^{(i)} + b)}{\Vert w \Vert} \ge \gamma\)</span> for i=1,…,m</p>
+</div></blockquote>
+<ul>
+<li><p>subject to for every single training example  must have the geometric margin greater than or equal to gamma</p></li>
+<li><p>this causes to maximize the worst-case geometric margin</p>
+<ul class="simple">
+<li><p>what this optimization problem is trying to find w and b to drive up and choose gamma as big as possible so that every training example has geometric margin even bigger than gamma</p></li>
+</ul>
+</li>
+<li><p>functional margin is the numerator in the equation above</p>
+<ul>
+<li><p>we can scale w, b up/down by any number and the decision boundary remains to be the same</p></li>
+<li><p>Trick:</p>
+<ul>
+<li><p>if we choose <span class="math notranslate nohighlight">\(\Vert w \Vert = \frac{1}{\gamma}\)</span></p>
+<ul class="simple">
+<li><p>the optimization objective becomes:</p></li>
+</ul>
+<blockquote>
+<div><p><span class="math notranslate nohighlight">\(max \frac{1}{\Vert w \Vert}\)</span><br />
+s.t. <span class="math notranslate nohighlight">\((y^{(i)})(w^{T}x^{(i)} + b)\gamma \ge \gamma\)</span></p>
+</div></blockquote>
+<ul class="simple">
+<li><p>which becomes</p></li>
+</ul>
+<blockquote>
+<div><p><span class="math notranslate nohighlight">\(\min\limits_{w,b} \frac{1}{2}\Vert w \Vert^{2}\)</span><br />
+s.t. <span class="math notranslate nohighlight">\((y^{(i)})(w^{T}x^{(i)} + b) \ge 1\)</span> for i=1,..m</p>
+</div></blockquote>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>This will give you the optimal margin classifier</p></li>
+</ul>
+</section>
+<section id="derivation-of-svm">
+<h2>Derivation of SVM<a class="headerlink" href="#derivation-of-svm" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>We are assuming that the dimension of training example is 100 or so. Later we will learn how to solve this classifier when the dimension is infinite. <span class="math notranslate nohighlight">\(x \in \mathfrak R^{100}\)</span></p></li>
+<li><p>We are assuming that the weights w can be represented as a linear combination of the training examples <span class="math notranslate nohighlight">\(w = \sum\limits_{i=1}^{m} \alpha_{i}x^{(i)}\)</span></p></li>
+<li><p><strong>Representer theorem</strong> shows that you can make this assumption without losing any performance using <strong>primal dual optimization</strong></p>
+<ul>
+<li><p>Why - Intuition 1:</p>
+<ul>
+<li><p>Using induction and taking the use case of gradient descent, we can see that <span class="math notranslate nohighlight">\(\theta\)</span> is a linear combination of the training examples <span class="math notranslate nohighlight">\(x^{(i)}\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(\theta := \theta - \alpha(h_{\theta}x^{(i)} - y^{(i)})x^{(i)}\)</span></p></li>
+</ul>
+</li>
+<li><p>Why - Intuition 2:</p>
+<ul>
+<li><p>The vector w is always orthogonal to the decision boundary. Or the vector w lies in the span of the training examples</p></li>
+<li><p>The way to picture this is that w sets the direction of the decision boundary and b sets the relative position.</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<img src="images/07_representerTheorem1.png" width=200 height=200>  
+$\tiny{\text{YouTube-Stanford-CS229-Andrew Ng}}$  
+<img src="images/07_representerTheorem2.png" width=300 height=300>  
+$\tiny{\text{YouTube-Stanford-CS229-Andrew Ng}}$  
+<ul class="simple">
+<li><p>Lets say the training examples are in 3 dimension of which the training examples have no coordinates <span class="math notranslate nohighlight">\(x_{3} = 0\)</span></p></li>
+<li><p>Vector w is represented in the span of features <span class="math notranslate nohighlight">\(x_{1} and x_{2}\)</span></p></li>
+</ul>
+<img src="images/07_representerTheorem3.png" width=300 height=300>  
+$\tiny{\text{YouTube-Stanford-CS229-Andrew Ng}}$  
+<ul class="simple">
+<li><p><em>Full derivation is in lecture notes</em></p></li>
+</ul>
+<ul class="simple">
+<li><p>Lets assume <span class="math notranslate nohighlight">\(w = \sum\limits_{i=1}^{m}\alpha_{i}y^{(i)}x^{(i)}\)</span></p></li>
+<li><p>The optimization problem is</p></li>
+</ul>
+<blockquote>
+<div><p><span class="math notranslate nohighlight">\(\min\limits_{w,b} \frac{1}{2}\Vert w \Vert^{2}\)</span><br />
+s.t. <span class="math notranslate nohighlight">\( y^{(i)}(w^{T}x^{(i)} + b) \ge 1\)</span> for i=1,..m</p>
+</div></blockquote>
+<ul class="simple">
+<li><p>As <span class="math notranslate nohighlight">\(\Vert w \Vert^{2} = w^{T}w\)</span></p></li>
+<li><p>Substituting w in equation above, the optimization objective becomes</p></li>
+</ul>
+<blockquote>
+<div><p><span class="math notranslate nohighlight">\(\min\limits_{w,b} \frac{1}{2}\Vert w \Vert^{2}\)</span><br />
+= <span class="math notranslate nohighlight">\(\min\limits_{w,b} \frac{1}{2} (\sum\limits_{i=1}^{m}\alpha_{i}y^{(i)}x^{(i)})^{T} (\sum\limits_{j=1}^{m}\alpha_{j}y^{(j)}x^{(j)})\)</span><br />
+= <span class="math notranslate nohighlight">\(\min\limits_{w,b} \frac{1}{2} \sum\limits_{i=1}^{m} \sum\limits_{j=1}^{m} \alpha_{i} \alpha_{j} y^{(i)} y^{(j)} {x^{(i)}}^{T} x^{(j)}\)</span><br />
+= <span class="math notranslate nohighlight">\(\min\limits_{w,b} \frac{1}{2} \sum\limits_{i=1}^{m} \sum\limits_{j=1}^{m} \alpha_{i} \alpha_{j} y^{(i)} y^{(j)} \langle{x^{(i)}}, x^{(j)} \rangle\)</span></p>
+</div></blockquote>
+<ul class="simple">
+<li><p>The inner product of <span class="math notranslate nohighlight">\(\langle x^{(i)}, x^{(j)} \rangle  = {x^{(i)}}^{T} x^{(j)}\)</span></p>
+<ul>
+<li><p>this is the key step towards deriving kernels</p></li>
+</ul>
+</li>
+<li><p>Substituting w in equation above, the constraint becomes</p></li>
+</ul>
+<blockquote>
+<div><p><span class="math notranslate nohighlight">\( y^{(i)}(w^{T}x^{(i)} + b) \ge 1\)</span><br />
+= <span class="math notranslate nohighlight">\( y^{(i)}((\sum\limits_{j=1}^{m}\alpha_{j}y^{(j)}x^{(j)})^{T} x^{(i)} + b) \ge 1\)</span><br />
+= <span class="math notranslate nohighlight">\( y^{(i)}(\sum\limits_{j=1}^{m}\alpha_{j}y^{(j)} \langle x^{(j)}, x^{(i)} \rangle + b) \ge 1\)</span></p>
+</div></blockquote>
+<ul class="simple">
+<li><p>From the equations above, we see that the feature vectors appear in this inner product only. So the key is if we can compute this inner product very efficiently, we will get good results with infinite dimensional feature vector manipulation.</p></li>
+<li><p>By using this inner product, we wont need to loop over infinite dimensional elements in an array</p></li>
+<li><p>These optimization algorithm is now written in terms of <span class="math notranslate nohighlight">\(\alpha\)</span>. So now we need to optimize <span class="math notranslate nohighlight">\(\alpha\)</span></p></li>
+<li><p>SVM optimization problem (as above) can be further simplified to “dual optimization problem” using convex optimization theory:</p></li>
+</ul>
+<blockquote>
+<div><p><span class="math notranslate nohighlight">\(max_{\alpha} w(\alpha) = \sum\limits_{i=1}^{n}\alpha_{i} - \frac{1}{2} \sum\limits_{i,j=1}^{n} y^{(i)}y^{(j)} \alpha_{i} \alpha_{j} \langle x^{(i)}, x^{(j)} \rangle\)</span><br />
+<span class="math notranslate nohighlight">\(\space\)</span> s.t. <span class="math notranslate nohighlight">\(\alpha_{i} \ge 0, i=1,..n\)</span><br />
+<span class="math notranslate nohighlight">\(\space\)</span> and <span class="math notranslate nohighlight">\(\sum\limits_{i=1}^{n} \alpha_{i}y^{(i)} = 0\)</span></p>
+</div></blockquote>
+<ul>
+<li><p>The way we make prediction is</p>
+<ul class="simple">
+<li><p>Solve for <span class="math notranslate nohighlight">\(\alpha_{i}'s\)</span> and</p></li>
+<li><p>to make prediction, we need to compute</p></li>
+</ul>
+<blockquote>
+<div><p><span class="math notranslate nohighlight">\(h_{w,b}(x) = g(w^{T}x + b)\)</span><br />
+= <span class="math notranslate nohighlight">\(g((\sum\limits_{i=1}^{m}\alpha_{i}y^{(i)}x^{(i)})^{T}x + b)\)</span><br />
+= <span class="math notranslate nohighlight">\(g(\sum\limits_{i=1}^{m}\alpha_{i}y^{(i)} \langle x^{(i)}, x \rangle + b)\)</span></p>
+</div></blockquote>
+</li>
+<li><p>We see that the entire algorithm both the optimization objective that we need to deal with during training and how we make predictions, is expressed only in terms of inner products.</p></li>
+</ul>
+</section>
+<section id="kernel-trick">
+<h2>Kernel trick<a class="headerlink" href="#kernel-trick" title="Permalink to this headline">¶</a></h2>
+<ol class="simple">
+<li><p>Write your algorithm in terms instead of <span class="math notranslate nohighlight">\(\langle x^{(i)}, x^{(j)}\rangle\)</span> as <span class="math notranslate nohighlight">\(\langle x, z\rangle\)</span></p></li>
+<li><p>Let there be some mapping from <span class="math notranslate nohighlight">\(x \rightarrow \phi(x)\)</span> from <span class="math notranslate nohighlight">\(\mathbb R ^{1}\text{ or }\mathbb R ^{2} \)</span> to <span class="math notranslate nohighlight">\(\mathbb R ^{\infty} \)</span></p></li>
+<li><p>Find way to compute <span class="math notranslate nohighlight">\(K(x,z) = \phi(x)^{T}\phi(z)\)</span>, where K is kernel function, which we can use to compute the inner product</p></li>
+<li><p>Replace <span class="math notranslate nohighlight">\(\langle x, z\rangle\)</span> with <span class="math notranslate nohighlight">\(K(x,z)\)</span>, because by doing this we are swapping out x for <span class="math notranslate nohighlight">\(\phi(x)\)</span>, which is computationally expensive. <strong>Because we have written the whole algorithm just in terms of inner products, we dont need to explicitly compute <span class="math notranslate nohighlight">\(\phi(x)\)</span>, we can simply compute these kernels K</strong></p></li>
+</ol>
+<img src="images/07_kernelTrick.png" width=600 height=400>  
+$\tiny{\text{YouTube-Stanford-CS229-Andrew Ng}}$  
+<ul class="simple">
+<li><p>Say X is 3 dimensional feature vector <span class="math notranslate nohighlight">\(\mathbb R^{n}\)</span> and we write <span class="math notranslate nohighlight">\(\phi(x)\)</span> with combination of all the features with duplicates, which will make it of <span class="math notranslate nohighlight">\(\mathbb R^{n^{2}}\)</span> dimensions. Similar will be <span class="math notranslate nohighlight">\(\phi(z)\)</span>. So we have gone from 1000 features to 1 million features.</p></li>
+<li><p>The computation time for this is <span class="math notranslate nohighlight">\(O(n^{2})\)</span></p></li>
+</ul>
+<img src="images/07_kernelFeatureVector.png" width=600 height=400>  
+$\tiny{\text{YouTube-Stanford-CS229-Andrew Ng}}$  
+<ul class="simple">
+<li><p>A better way would be if we can prove: <span class="math notranslate nohighlight">\(K(x,z) = \phi(x)^{T}\phi(z)\)</span> is equal to <span class="math notranslate nohighlight">\((x^{T}z)^{2}\)</span></p></li>
+<li><p>both x and z are <span class="math notranslate nohighlight">\(\mathbb R^{n}\)</span></p></li>
+<li><p>so the computation time for this will be <span class="math notranslate nohighlight">\(\mathbb O(n)\)</span></p></li>
+</ul>
+<blockquote>
+<div><p><span class="math notranslate nohighlight">\((x^{T}z)^{2}\)</span><br />
+= <span class="math notranslate nohighlight">\((\sum\limits_{i=1}^{n}x_{i}z_{i})(\sum\limits_{j=1}^{n}x_{j}z_{j})\)</span><br />
+= <span class="math notranslate nohighlight">\(\sum\limits_{i=1}^{n}\sum\limits_{j=1}^{n} x_{i}z_{i}x_{j}z_{j}\)</span><br />
+= <span class="math notranslate nohighlight">\(\sum\limits_{i=1}^{n}\sum\limits_{j=1}^{n} (x_{i}x_{j}) (z_{i}z_{j})\)</span><br />
+= <span class="math notranslate nohighlight">\(\phi(x)^{T}\phi(z)\)</span>
+<img src="images/07_kernelFeatureVector2.png" width=400 height=400><br />
+<span class="math notranslate nohighlight">\(\tiny{\text{YouTube-Stanford-CS229-Andrew Ng}}\)</span></p>
+</div></blockquote>
+<ul class="simple">
+<li><p>So instead of needing to manipulate <span class="math notranslate nohighlight">\(n^{2}\)</span> dimensional vectors, we now need to compute only <span class="math notranslate nohighlight">\(n\)</span> element dimension vector</p></li>
+</ul>
+<br>
+<ul class="simple">
+<li><p>To fit in the constant part into the kernel, we get</p></li>
+</ul>
+<blockquote>
+<div><p><span class="math notranslate nohighlight">\(K(x,z) = (x^{T}z + c)^{2}\)</span></p>
+</div></blockquote>
+<ul class="simple">
+<li><p>so in the feature vector <span class="math notranslate nohighlight">\(\phi(x)\)</span> we add constant element which becomes</p></li>
+</ul>
+<img src="images/07_kernelFeatureVector3.png" width=200 height=200>  
+$\tiny{\text{YouTube-Stanford-CS229-Andrew Ng}}$  
+<br>
+<ul class="simple">
+<li><p>The computation time for a kernel function will still be <span class="math notranslate nohighlight">\(O(n)\)</span></p></li>
+</ul>
+<blockquote>
+<div><p><span class="math notranslate nohighlight">\(K(x,z) = (x^{T}z + c)^{d}\)</span></p>
+</div></blockquote>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\phi(x)\)</span> has all <span class="math notranslate nohighlight">\(\binom{n+d}{d}\)</span> feature of monomial up to order d</p></li>
+</ul>
+<ul class="simple">
+<li><p>So SVM uses the optimal margin classifier we derived earlier and applies kernel trick to it</p></li>
+<li><p>So even with this infinite dimensional feature space, the computation time scales only linearly with the order of n, as the number of input feature dimension x rather than as a function of infinite dimensional feature space.</p></li>
+<li><p>Why is this a good idea?</p>
+<ul>
+<li><p>We took the training set,</p></li>
+<li><p>mapped it to much higher dimensional feature space,</p></li>
+<li><p>then found a linear decision boundary (hyperplane) in that higher dimensional space,</p></li>
+<li><p>and then when we look in original feature space,</p></li>
+<li><p>where we found it to have a very non-linear decision boundary.</p></li>
+<li><p><strong>The non-linear decision boundary we see in lower dimensional space is a linear decision boundary in higher dimensional space.</strong></p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="how-to-make-kernels">
+<h2>How to make kernels<a class="headerlink" href="#how-to-make-kernels" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>If x, z are “similar”, then <span class="math notranslate nohighlight">\(K(x,z) = \phi(x)\phi(z)\)</span> is “large”</p></li>
+<li><p>If x, z are “dissimilar”, then <span class="math notranslate nohighlight">\(K(x,z) = \phi(x)\phi(z)\)</span> is “small”</p>
+<ul>
+<li><p>this is because the inner product of two similar vectors should be large and the inner product of two dissimilar vectors should be small</p></li>
+</ul>
+</li>
+<li><p>If we consider another function with the same property as above,</p></li>
+</ul>
+<blockquote>
+<div><p><span class="math notranslate nohighlight">\(K(x,z) = exp\left(-\frac{\Vert x-z \Vert}{2\sigma^{2}}\right)\)</span></p>
+</div></blockquote>
+<ul class="simple">
+<li><p>So in this function, if x and z are close to each other, the difference is close to 0 and so exp(0) is close to 1</p>
+<ul>
+<li><p><strong>Can we use this function as a kernel function?</strong></p></li>
+</ul>
+</li>
+</ul>
+<section id="mercer-s-theorem">
+<h3>Mercer’s Theorem<a class="headerlink" href="#mercer-s-theorem" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>Does there exist <span class="math notranslate nohighlight">\(\phi\)</span> s.t. <span class="math notranslate nohighlight">\( K(x,z) = \phi(x)^{T}\phi(z) \)</span></p></li>
+<li><p>Applying constraints on this kernel function</p>
+<ul>
+<li><p>it must satisfy <span class="math notranslate nohighlight">\( K(x,x) = \phi(x)^{T}\phi(x) \ge 0 \)</span>, as the inner product must be non-negative, otherwise its not a valid kernel function</p></li>
+<li><p>More generally, a proof that outlines when is something a valid kernel</p></li>
+</ul>
+</li>
+</ul>
+<br>
+<ul class="simple">
+<li><p>Let <span class="math notranslate nohighlight">\(\{x^{(1)}, ..., x^{(d)}\}\)</span> be d points</p></li>
+<li><p>Let <span class="math notranslate nohighlight">\(K \in \mathbb R ^{dxd}\)</span> - kernel matrix. K is used to represent both Kernel matrix and Kernel function</p></li>
+</ul>
+<blockquote>
+<div><p><span class="math notranslate nohighlight">\(K_{ij} = K(x^{(i)}, x^{(j)})\)</span></p>
+</div></blockquote>
+<img src="images/07_kernelFeatureVector4.png" width=600 height=600>  
+$\tiny{\text{YouTube-Stanford-CS229-Andrew Ng}}$  
+<img src="images/07_kernelFeatureVector5.png" width=400 height=400>  
+$\tiny{\text{YouTube-Stanford-CS229-Andrew Ng}}$  
+<img src="images/07_kernelFeatureVector6.png" width=400 height=400>  
+$\tiny{\text{YouTube-Stanford-CS229-Andrew Ng}}$  
+<ul class="simple">
+<li><p>We proved if it is a valid kernel function then this is positive semi-definite. This is not valid other way around.</p></li>
+</ul>
+</section>
+<section id="gaussian-kernel">
+<h3>Gaussian Kernel<a class="headerlink" href="#gaussian-kernel" title="Permalink to this headline">¶</a></h3>
+<blockquote>
+<div><p><span class="math notranslate nohighlight">\(K(x,z) = exp\left(-\frac{\Vert x-z \Vert}{2\sigma^{2}}\right)\)</span></p>
+</div></blockquote>
+<ul class="simple">
+<li><p>This is called Gaussian kernel</p></li>
+</ul>
+</section>
+<section id="linear-kernel">
+<h3>Linear Kernel<a class="headerlink" href="#linear-kernel" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>The most widely used is linear kernel.</p></li>
+</ul>
+<blockquote>
+<div><p><span class="math notranslate nohighlight">\(K(x,z) = x^{T}z\)</span> and <span class="math notranslate nohighlight">\(\phi(x) = x\)</span></p>
+</div></blockquote>
+<ul class="simple">
+<li><p>This has no high dimensional features, so we call it linear kernel. We dont use a high dimensional feature mapping here. Or the feature mapping is just equal to the original features. This is the most commonly used kernel, but this does not use the features of kernel.</p>
+<ul>
+<li><p>The other most widely used kernel is Gaussian kernel (we learnt earlier). This kernel function corresponds to using all monomial features.</p></li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<div><p><span class="math notranslate nohighlight">\(\phi(x) \in \mathbb R^{\infty}\)</span></p>
+</div></blockquote>
+<ul class="simple">
+<li><p>The kernel trick is more general to SVM.</p></li>
+<li><p>All the discriminative learning algorithm we learned can be written using kernel trick using inner product <span class="math notranslate nohighlight">\(\langle x^{(i)}, x^{(j)} \rangle\)</span> and then replace it with <span class="math notranslate nohighlight">\(K(x,z)\)</span>. So we can apply kernel trick to linear regression, logistic regression, generalized linear family, the perceptron algorithm, PCA. So we can apply linear regression in an infinite dimensional feature space if we wish to.</p></li>
+</ul>
+</section>
+</section>
+<section id="non-linear-separation">
+<h2>Non-linear separation<a class="headerlink" href="#non-linear-separation" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>We earlier made assumption that data is linearly separable. Sometimes we dont want zero error on the training set or fit a really complicated decision boundary.</p></li>
+</ul>
+<section id="l1-norm-soft-margin-svm">
+<h3>L1 norm soft margin SVM<a class="headerlink" href="#l1-norm-soft-margin-svm" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>The basic algorithm was</p></li>
+</ul>
+<blockquote>
+<div><p><span class="math notranslate nohighlight">\(\min\limits_{w,b} \frac{1}{2}\Vert w \Vert^{2}\)</span><br />
+s.t. <span class="math notranslate nohighlight">\( y^{(i)}(w^{T}x^{(i)} + b) \ge 1\)</span> for i=1,..m</p>
+</div></blockquote>
+<ul>
+<li><p>The L1 norm soft margin does is:</p>
+<ul class="simple">
+<li><p>The functional margin is <span class="math notranslate nohighlight">\( y^{(i)}(w^{T}x^{(i)} + b) \)</span></p></li>
+<li><p>This optimization problem said lets make sure that each example has functional margin greater or equal to 1.</p></li>
+<li><p>In L1 soft margin SVM, we will relax this as:</p></li>
+</ul>
+<blockquote>
+<div><p><span class="math notranslate nohighlight">\(\min\limits_{w,b,\xi} \frac{1}{2}\Vert w \Vert^{2} + C\sum\limits_{i=1}^{m}\xi_{i} \)</span><br />
+s.t. <span class="math notranslate nohighlight">\( y^{(i)}(w^{T}x^{(i)} + b) \ge 1 - \xi_{i}\)</span> for i=1,..m<br />
+where <span class="math notranslate nohighlight">\(\xi_{i} \ge 0\)</span></p>
+</div></blockquote>
+<ul class="simple">
+<li><p>If functional margin is greater than 0, it meansthe algorithm is classifying that example correctly</p>
+<ul>
+<li><p>this implies that the sign of <span class="math notranslate nohighlight">\( y^{(i)}\)</span> and <span class="math notranslate nohighlight">\((w^{T}x^{(i)} + b)\)</span> are both positive or both negative, which means the product is greater than zero and it implies that it’s classifying correctly.</p></li>
+</ul>
+</li>
+<li><p>SVM earlier said that functional margin should not only be greater than 0 but atleast 1. If <span class="math notranslate nohighlight">\(\xi_{i} \ge 0\)</span>, it means we are relaxing that constraint.</p></li>
+<li><p>But we don’t want <span class="math notranslate nohighlight">\(\xi\)</span> to be too big, so its added up in the optimization cost function</p></li>
+<li><p>How to choose parameter C will be discussed in bias and variance lecture next.</p></li>
+</ul>
+</li>
+</ul>
+<br>
+<ul class="simple">
+<li><p>In the diagram below, the functional margin for the closest one is set to 1. But using L1 norm margin, we say that its okay to have functional margin to be less than 1(marked in red).</p></li>
+</ul>
+<img src="images/07_l1normFunctionalMargin.png" width=400 height=400>  
+$\tiny{\text{YouTube-Stanford-CS229-Andrew Ng}}$  
+<ul class="simple">
+<li><p>One other reason of using L1 norm margin is say we have one outlier,</p>
+<ul>
+<li><p>the decision boundary margin will try to fit a linear boundary, with outlier being classified correctly. The basic optimal margin classifier will allow the presence of one training example to cause a dramatic swing in the position of decision boundaries. (green line below) The original optimal margin classifier optimizes for the worst-case margin</p></li>
+<li><p>what L1 norm classifier does is, it relaxes to not fit outliers (blue line below). This causes robust outliers.</p></li>
+</ul>
+</li>
+</ul>
+<img src="images/07_l1normFunctionalMargin2.png" width=400 height=400>  
+$\tiny{\text{YouTube-Stanford-CS229-Andrew Ng}}$  
+</section>
+<section id="dual-form-optimization-problem">
+<h3>Dual form optimization problem<a class="headerlink" href="#dual-form-optimization-problem" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>The only change is that this additional constraint gets added up</p></li>
+</ul>
+<img src="images/07_dualFormOptimization.png" width=400 height=400>  
+$\tiny{\text{YouTube-Stanford-CS229-Andrew Ng}}$  
+<ul class="simple">
+<li><p>Examples of Kernels</p></li>
+</ul>
+<blockquote>
+<div><p><span class="math notranslate nohighlight">\(K(x,z) = (x^{T}z)^{d}\)</span> - Polynomial kernel<br />
+<span class="math notranslate nohighlight">\(K(x,z) = exp\left(-\frac{\Vert x-z \Vert}{2\sigma^{2}}\right)\)</span> - Gaussian Kernel</p>
+</div></blockquote>
+<ul class="simple">
+<li><p>Handwritten digit classification - MNIST - SVM does very well with these kernels.</p></li>
+<li><p>Protein sequence classifier</p>
+<ul>
+<li><p>made up of sequence of amino acids</p></li>
+<li><p>how do you represent feature x, to measure similarity of two amino acids sequences</p>
+<ul>
+<li><p>list out all combinations of amino acid</p></li>
+<li><p>construct <span class="math notranslate nohighlight">\(\phi(x)\)</span> with occurrence of patterns</p></li>
+<li><p>this can be solved using dynamic programming - using Knuth-Morris-Pratt algorithm</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./cs229_ml"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            
+                <!-- Previous / next buttons -->
+<div class='prev-next-area'> 
+    <a class='left-prev' id="prev-link" href="lec06-NaiveBayes-SVM.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Lec 06-Naive Bayes - SVM</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="lec08-DataSplits-Models-CrossValidation.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Lec 08-Data Splits - Models - Cross Validation</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            
+        </div>
+    </div>
+    <footer class="footer">
+  <p>
+    
+      By Chandra<br/>
+    
+        &copy; Copyright 2021.<br/>
+  </p>
+</footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+
+  </body>
+</html>
