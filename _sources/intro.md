@@ -18,7 +18,6 @@ It does not go in-depth into any particular topic - check out [the Jupyter Book 
 :gutter: 3
 
 :::{grid-item-card}
-:link: basics/organize
 :link-type: doc
 :class-header: bg-light
 
@@ -29,7 +28,6 @@ Structure books with text files and Jupyter Notebooks with minimal configuration
 :::
 
 :::{grid-item-card}
-:link: content/myst
 :link-type: doc
 :class-header: bg-light
 
@@ -41,7 +39,6 @@ Write MyST Markdown to create enriched documents with publication-quality featur
 :::
 
 :::{grid-item-card}
-:link: content/executable/index
 :link-type: doc
 :class-header: bg-light
 
@@ -53,7 +50,6 @@ Execute notebook cells, store results, and insert outputs across pages.
 :::
 
 :::{grid-item-card}
-:link: interactive/launchbuttons
 :link-type: doc
 :class-header: bg-light
 
@@ -64,7 +60,6 @@ Connect your book with Binder, JupyterHub, and other live environments
 :::
 
 :::{grid-item-card}
-:link: publish/web
 :link-type: doc
 :class-header: bg-light
 
@@ -75,14 +70,14 @@ Share your built books via web services and hosted websites.
 :::
 
 :::{grid-item-card}
-:link: content/components
+:link: ml_examples/ml_glossary
 :link-type: doc
 :class-header: bg-light
 
-UI components ⚡
+ML glossary ⚡
 ^^^
 
-Create interactive and web-native components and services.
+Conceptual briefs about Machine Learning.
 :::
 
 ::::

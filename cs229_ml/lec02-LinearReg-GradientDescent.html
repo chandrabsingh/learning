@@ -1,0 +1,1157 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Lec 02-Linear Regression - Gradient Descent</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="prev" title="Stanford CS229 notes - by Andrew Ng" href="intro.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../_static/mylogo.png" class="logo" alt="logo">
+      
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    My learning notebook
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Machine Learning
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../ml_examples/intro.html">
+   Welcome to your ML Book
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../ml_examples/ml_glossary.html">
+     Conceptual brief
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../ml_examples/Store_Sales_Forecasting_With_Tensorflow.html">
+     Store Sales Forecasting with TensorFlow
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Reference
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../markdown.html">
+   Markdown Files
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../notebooks.html">
+   Content with notebooks
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../markdown-notebooks.html">
+   Notebooks with MyST Markdown
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Lecture Notes
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="intro.html">
+   Stanford CS229 notes - by Andrew Ng
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     Lec 02-Linear Regression - Gradient Descent
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+    </div>
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<div class="menu-dropdown menu-dropdown-launch-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Launch interactive content">
+      <i class="fas fa-rocket"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://mybinder.org/v2/gh/chandrabsingh/learning/master?urlpath=tree/learning/cs229_ml/lec02-LinearReg-GradientDescent.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Binder"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="../_static/images/logo_binder.svg">
+  </span>
+<span class="headerbtn__text-container">Binder</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-repository-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Source repositories">
+      <i class="fab fa-github"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://github.com/chandrabsingh/learning"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Source repository"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="headerbtn__text-container">repository</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/chandrabsingh/learning/issues/new?title=Issue%20on%20page%20%2Fcs229_ml/lec02-LinearReg-GradientDescent.html&body=Your%20issue%20content%20here."
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Open an issue"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="headerbtn__text-container">open issue</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="../_sources/cs229_ml/lec02-LinearReg-GradientDescent.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.ipynb</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#">
+   Lec 02-Linear Regression - Gradient Descent
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#notations">
+     Notations
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#gradient-descent">
+     Gradient Descent
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#least-mean-squares-lms-algorithm">
+       Least Mean Squares (LMS) algorithm
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#cost-function">
+       Cost function
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#convergence">
+       Convergence
+      </a>
+      <ul class="nav section-nav flex-column">
+       <li class="toc-h4 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#question-1">
+         Question 1
+        </a>
+       </li>
+       <li class="toc-h4 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#question-2">
+         Question 2
+        </a>
+       </li>
+      </ul>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#batch-gradient-descent">
+     Batch Gradient Descent
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#stochastic-gradient-descent">
+     Stochastic Gradient Descent
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#normal-equation">
+     Normal Equation
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#how-to-find-the-global-minima">
+       How to find the global minima
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#matrix-trace-properties">
+       Matrix trace properties:
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#how-to-solve-for-theta">
+       How to solve for
+       <span class="math notranslate nohighlight">
+        \(\theta\)
+       </span>
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#todo">
+   TODO
+  </a>
+ </li>
+</ul>
+
+    </nav>
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Lec 02-Linear Regression - Gradient Descent</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#">
+   Lec 02-Linear Regression - Gradient Descent
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#notations">
+     Notations
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#gradient-descent">
+     Gradient Descent
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#least-mean-squares-lms-algorithm">
+       Least Mean Squares (LMS) algorithm
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#cost-function">
+       Cost function
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#convergence">
+       Convergence
+      </a>
+      <ul class="nav section-nav flex-column">
+       <li class="toc-h4 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#question-1">
+         Question 1
+        </a>
+       </li>
+       <li class="toc-h4 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#question-2">
+         Question 2
+        </a>
+       </li>
+      </ul>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#batch-gradient-descent">
+     Batch Gradient Descent
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#stochastic-gradient-descent">
+     Stochastic Gradient Descent
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#normal-equation">
+     Normal Equation
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#how-to-find-the-global-minima">
+       How to find the global minima
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#matrix-trace-properties">
+       Matrix trace properties:
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#how-to-solve-for-theta">
+       How to solve for
+       <span class="math notranslate nohighlight">
+        \(\theta\)
+       </span>
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#todo">
+   TODO
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <blockquote>
+<div><blockquote>
+<div><blockquote>
+<div><p>Work in Progress (Following are the lecture notes of Prof Andrew Ng - CS229 - Stanford. This is my interpretation of his excellent teaching and I take full responsibility of any misinterpretation/misinformation provided herein.)</p>
+</div></blockquote>
+</div></blockquote>
+</div></blockquote>
+<section class="tex2jax_ignore mathjax_ignore" id="lec-02-linear-regression-gradient-descent">
+<h1>Lec 02-Linear Regression - Gradient Descent<a class="headerlink" href="#lec-02-linear-regression-gradient-descent" title="Permalink to this headline">#</a></h1>
+<ul class="simple">
+<li><p>Assume there is house property dataset, with size and price, and goal is to have a function which can predict the price given size</p>
+<ul>
+<li><p>in supervised learning, we have a training set, which we fed to learning algorithm, whose job is to output a function h or hypothesis, which can make predictions about housing prices</p></li>
+<li><p>the job of hypothesis for a given house size, it gives price estimation</p></li>
+</ul>
+</li>
+<li><p>Question</p>
+<ul>
+<li><p>how to represent learning algorithm h?</p></li>
+</ul>
+</li>
+</ul>
+<section id="notations">
+<h2>Notations<a class="headerlink" href="#notations" title="Permalink to this headline">#</a></h2>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\theta\)</span> - parameters or the weights of learning algorithm parameterizing the space of linear functions mapping from <span class="math notranslate nohighlight">\(x\)</span> to <span class="math notranslate nohighlight">\(y\)</span></p>
+<ul>
+<li><p>choose <span class="math notranslate nohighlight">\(\theta\)</span> such that <span class="math notranslate nohighlight">\(h(x) \approx y\)</span> for training examples</p></li>
+</ul>
+</li>
+<li><p><span class="math notranslate nohighlight">\(x_{j}^{(i)}\)</span> - inputs/features - <span class="math notranslate nohighlight">\(j^{th}\)</span> training example of ith feature in the training set ( a bit confusing with i/j and subscript/superscript)</p>
+<ul>
+<li><p>input features</p>
+<ul>
+<li><p><span class="math notranslate nohighlight">\(x_{1}\)</span> - size of house</p></li>
+<li><p><span class="math notranslate nohighlight">\(x_{2}\)</span> - # of bedroom</p></li>
+</ul>
+</li>
+<li><p>Weight vector <span class="math notranslate nohighlight">\(\begin{equation*}
+\theta   = 
+\begin{bmatrix}
+\theta_{0}  \\
+\theta_{1}  \\
+\theta_{2}
+\end{bmatrix}
+\end{equation*}\)</span></p></li>
+<li><p>Feature vector <span class="math notranslate nohighlight">\(\begin{equation*}
+x   = 
+\begin{bmatrix}
+x_{0}  \\
+x_{1}  \\
+x_{2}
+\end{bmatrix}
+\end{equation*}\)</span>, where <span class="math notranslate nohighlight">\(x_{0}\)</span> = 1</p></li>
+</ul>
+</li>
+<li><p><span class="math notranslate nohighlight">\(y\)</span> - output</p></li>
+<li><p><span class="math notranslate nohighlight">\((x, y)\)</span> - one  training example</p></li>
+<li><p><span class="math notranslate nohighlight">\((x^{(i)}, y^{(i)})\)</span> - <span class="math notranslate nohighlight">\(i^{th}\)</span>  training example</p></li>
+<li><p><span class="math notranslate nohighlight">\(h_{\theta}(x)\)</span> - hypothesis</p>
+<ul>
+<li><p>hypothesis depends on both the parameters <span class="math notranslate nohighlight">\(\theta\)</span> and the input features <span class="math notranslate nohighlight">\(x\)</span></p></li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<div><div class="math notranslate nohighlight">
+\[h_{\theta}(x) = \sum\limits_{i=0}^{n}\theta_{i}x_{i} = \theta^{T}x\]</div>
+</div></blockquote>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(J(\theta)\)</span> - cost function</p>
+<ul>
+<li><p>choose values of <span class="math notranslate nohighlight">\(\theta\)</span> so that the equation below is minimized</p></li>
+<li><p>adding 1/2 makes math a little bit simpler</p></li>
+<li><p>why squared error?</p>
+<ul>
+<li><p>will talk about it during generalized linear models (GLM)</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<div><div class="math notranslate nohighlight">
+\[ J(\theta) = \frac{1}{2}\sum\limits_{i=1}^{m}(h_{\theta}(x^{(i)}) - y^{(i)})^{2} \]</div>
+</div></blockquote>
+<ul class="simple">
+<li><p>m - number of training examples (# of rows)</p></li>
+<li><p>n - number of features</p></li>
+<li><p>number of dimensions is n+1 because of constant</p></li>
+</ul>
+<img src="./images/02_housingPrices_sqft.png" width=400 height=400 />  
+$\tiny{\text{YouTube-Stanford-CS229-Andrew Ng}}$</section>
+<section id="gradient-descent">
+<h2>Gradient Descent<a class="headerlink" href="#gradient-descent" title="Permalink to this headline">#</a></h2>
+<ul class="simple">
+<li><p>find an algorithm that minimizes the cost function</p></li>
+<li><p><em>generally speaking if you run gradient descents on linear regression, we don’t end up with local optimum</em></p></li>
+</ul>
+<section id="least-mean-squares-lms-algorithm">
+<h3>Least Mean Squares (LMS) algorithm<a class="headerlink" href="#least-mean-squares-lms-algorithm" title="Permalink to this headline">#</a></h3>
+<ul class="simple">
+<li><p>horizontal axis - <span class="math notranslate nohighlight">\( \theta _{0} \space and \space \theta _{1} \)</span></p></li>
+<li><p>vertical axis - look all around you - keep changing <span class="math notranslate nohighlight">\( \theta \)</span> to reduce the <span class="math notranslate nohighlight">\( J(\theta) \)</span></p>
+<ul>
+<li><p><span class="math notranslate nohighlight">\( J(\theta) \)</span> - cost function</p></li>
+</ul>
+</li>
+<li><p>start with some <span class="math notranslate nohighlight">\( \theta \)</span> (say <span class="math notranslate nohighlight">\( \theta = \overrightarrow{\rm 0} \)</span> )</p></li>
+<li><p>keep changing/moving till you reach at the global minima and not local minima</p>
+<ul>
+<li><p><i> Use <span class="math notranslate nohighlight">\( := \)</span> sign for assignments </i></p></li>
+</ul>
+</li>
+<li><p><span class="math notranslate nohighlight">\( \theta _{j} := \theta _{j} - \alpha \frac{\partial}{\partial \theta _{j}}J(\theta) \)</span> - <strong>Eq 1</strong></p>
+<ul>
+<li><p><span class="math notranslate nohighlight">\( \alpha \)</span> is the learning rate</p></li>
+<li><p>for each value of <span class="math notranslate nohighlight">\( j = 0,1,2,..n \)</span>, for n features</p>
+<ul>
+<li><p><i> <span class="math notranslate nohighlight">\( a := a + 1 \)</span> - means increment the value of a and assign it to a </i></p></li>
+<li><p><i> <span class="math notranslate nohighlight">\( a = b \)</span> - means that is an assertment that it is a fact that a is equal to b </i></p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>derivative of function defines the direction of the gradient</p></li>
+<li><p>assuming for 1 training example..</p></li>
+</ul>
+<blockquote>
+<div><p><span class="math notranslate nohighlight">\( \frac{\partial}{\partial \theta _{j}} J(\theta) \)</span><br />
+<span class="math notranslate nohighlight">\( = \frac{\partial}{\partial \theta _{j}} \frac{1}{2} (h _{\theta}(x) - y)^{2} \)</span><br />
+<span class="math notranslate nohighlight">\( = (h _{\theta}(x) - y) \frac{\partial}{\partial \theta _{j}} (\theta _{0} x _{0} + \theta _{1} x _{1} + .. \theta _{n} x _{n} - y) \)</span></p>
+</div></blockquote>
+<ul class="simple">
+<li><p>partial derivative of every term will be 0 other than <span class="math notranslate nohighlight">\( \theta _{j} \)</span> term, which resolves into following<br />
+<span class="math notranslate nohighlight">\( = (h_{\theta}(x) - y).x_{j} \)</span></p></li>
+<li><p>substituting in Eq1</p></li>
+</ul>
+<blockquote>
+<div><p><span class="math notranslate nohighlight">\( \theta _{j} := \theta _{j} - \alpha (h_{\theta}(x) - y).x_{j} \)</span></p>
+</div></blockquote>
+<ul class="simple">
+<li><p>for <strong>“m training example”</strong>, the above results in:<br />
+<span class="math notranslate nohighlight">\( \theta _{j} := \theta _{j} - \alpha \sum_{i=1}^m (h_{\theta}(x^{(i)}) - y^{(i)}).x_{j}^{(i)} \)</span>  - <strong>Eq 2</strong></p></li>
+<li><p>all that is done, that sum over all m training examples, where <span class="math notranslate nohighlight">\((i)\)</span> is the <span class="math notranslate nohighlight">\( i^{th} \)</span> training example.</p></li>
+<li><p>Gradient descent algorithm is to be repeated till it convergences</p>
+<ul>
+<li><p>for each value of <span class="math notranslate nohighlight">\( j = 0,1,2,..n \)</span>, for <strong>“n features”</strong> ( in this example it’s 2)</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="cost-function">
+<h3>Cost function<a class="headerlink" href="#cost-function" title="Permalink to this headline">#</a></h3>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(J(\theta)\)</span> has no local optima, it has only global optimum</p></li>
+<li><p>other way to look into the cost function is to look at the contours of this curve - ellipses</p>
+<ul>
+<li><p>if GD is run on this</p></li>
+<li><p>if \alpha is too large - it will overshoot</p></li>
+<li><p>if you look into the contours, the direction of steepest descent is always orthogonal to contour direction</p></li>
+<li><p>try a few values, to</p></li>
+<li><p>If cost function is increasing, it indicates that the learning rate is too large</p></li>
+<li><p>try few values at exponential rate, 0.02, 0.04, 0.08, 0.16, .. - which tells you the direction</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="convergence">
+<h3>Convergence<a class="headerlink" href="#convergence" title="Permalink to this headline">#</a></h3>
+<ul class="simple">
+<li><p>training egs here are 49</p></li>
+<li><p>initially hypothesis - <span class="math notranslate nohighlight">\( \theta _{0} \space and \space \theta _{1} \)</span> are assigned the value 0 - the cost function result will be too high</p></li>
+<li><p>after each iteration hypothesis, the cost function is minimized by the gradiend descent algorithm</p></li>
+<li><p>eventually it converges
+<br></p></li>
+</ul>
+<ul class="simple">
+<li><p>Iteration - Base
+<img src="./images/02_housingPrices_sqft.png" width=400 height=400 /><br />
+<span class="math notranslate nohighlight">\(\tiny{\text{YouTube-Stanford-CS229-Andrew Ng}}\)</span></p></li>
+<li><p>Iteration 0
+<img src="./images/02_housingPrices_sqft0.png" width=400 height=400 /><br />
+<span class="math notranslate nohighlight">\(\tiny{\text{YouTube-Stanford-CS229-Andrew Ng}}\)</span></p></li>
+<li><p>Iteration 1
+<img src="./images/02_housingPrices_sqft1.png" width=400 height=400 /><br />
+<span class="math notranslate nohighlight">\(\tiny{\text{YouTube-Stanford-CS229-Andrew Ng}}\)</span></p></li>
+<li><p>Iteration 2
+<img src="./images/02_housingPrices_sqft2.png" width=400 height=400 /><br />
+<span class="math notranslate nohighlight">\(\tiny{\text{YouTube-Stanford-CS229-Andrew Ng}}\)</span></p></li>
+<li><p>Iteration n
+<img src="./images/02_housingPrices_sqftn.png" width=400 height=400 /><br />
+<span class="math notranslate nohighlight">\(\tiny{\text{YouTube-Stanford-CS229-Andrew Ng}}\)</span></p></li>
+</ul>
+<section id="question-1">
+<h4>Question 1<a class="headerlink" href="#question-1" title="Permalink to this headline">#</a></h4>
+<p>Why is negative <span class="math notranslate nohighlight">\(\alpha\)</span> multiplied to the gradient descent, instead of positive <span class="math notranslate nohighlight">\(\alpha\)</span> ?</p>
+<ul class="simple">
+<li><p>because you will go uphill the gradient descent instead of going downhill</p></li>
+</ul>
+</section>
+<section id="question-2">
+<h4>Question 2<a class="headerlink" href="#question-2" title="Permalink to this headline">#</a></h4>
+<p>When do you stop</p>
+<ul class="simple">
+<li><p>Plot <span class="math notranslate nohighlight">\(J(\theta)\)</span> over time</p></li>
+<li><p>linear regression does not have local minima, so you will not have the problem of convergence</p></li>
+<li><p>but training nonlinear like neural network will have such acute problem of convergence</p></li>
+</ul>
+</section>
+</section>
+</section>
+<section id="batch-gradient-descent">
+<h2>Batch Gradient Descent<a class="headerlink" href="#batch-gradient-descent" title="Permalink to this headline">#</a></h2>
+<ul class="simple">
+<li><p>we look into data in batches - for example in this case, there is a batch of 49 training example</p></li>
+<li><p>disadv</p>
+<ul>
+<li><p>if we have a large dataset, inorder to make one single step of gd, we will have to calculate the sum of <strong>Eq 2</strong> above</p></li>
+<li><p>if m is 1M, to make one step we will have to iterate over 1M times</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="stochastic-gradient-descent">
+<h2>Stochastic Gradient Descent<a class="headerlink" href="#stochastic-gradient-descent" title="Permalink to this headline">#</a></h2>
+<ul class="simple">
+<li><p>Alternative to Batch GD</p></li>
+<li><p>instead of scaning through 1M training examples, we loop over i (features) to update for all j from 1 to n, using 1 training example</p></li>
+<li><p>this never truely converge</p></li>
+<li><p>but makes very faster progress</p></li>
+<li><p>Mini-Batch Gradient Descent</p></li>
+</ul>
+<img src="./images/02_sgd.png" width=400 height=400 />  
+$\tiny{\text{YouTube-Stanford-CS229-Andrew Ng}}$
+</section>
+<section id="normal-equation">
+<h2>Normal Equation<a class="headerlink" href="#normal-equation" title="Permalink to this headline">#</a></h2>
+<ul class="simple">
+<li><p>If our goal is to solve linear regression, we dont need to run the process iteratively</p></li>
+<li><p>we can solve for the optimal value of parameter <span class="math notranslate nohighlight">\(\theta\)</span> straight-away</p></li>
+<li><p>this works only for linear regression and not anything else
+<br></p></li>
+<li><p>Partial derivative of cost function</p>
+<ul>
+<li><p><span class="math notranslate nohighlight">\( \nabla_{\theta} J(\theta) \)</span> - derivative of <span class="math notranslate nohighlight">\(J(\theta)\)</span> wrt to <span class="math notranslate nohighlight">\(\theta\)</span>, where <span class="math notranslate nohighlight">\(\theta \in \mathbb R ^{n+1}\)</span>. In our case with <span class="math notranslate nohighlight">\( \theta _{0} \space, \theta _{1} and \space \theta _{2} \)</span>, we have 3 dimensions of <span class="math notranslate nohighlight">\(\mathbb R\)</span>, i.e., <span class="math notranslate nohighlight">\(\theta \in \mathbb R^{n+1}\)</span></p></li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<div><p><span class="math notranslate nohighlight">\(\begin{equation*}
+\nabla_{\theta} J(\theta)  = 
+\begin{bmatrix}
+\frac{\partial J}{\partial \theta_{0}}  \\
+\frac{\partial J}{\partial \theta_{1}}  \\
+\frac{\partial J}{\partial \theta_{2}}
+\end{bmatrix}
+\end{equation*}\)</span></p>
+</div></blockquote>
+<section id="how-to-find-the-global-minima">
+<h3>How to find the global minima<a class="headerlink" href="#how-to-find-the-global-minima" title="Permalink to this headline">#</a></h3>
+<blockquote>
+<div><div class="math notranslate nohighlight">
+\[ \nabla_{\theta} J(\theta) \stackrel{set}{=} \overrightarrow{\rm 0} \]</div>
+</div></blockquote>
+<ul class="simple">
+<li><p>solving this gives you a global minima</p></li>
+</ul>
+</section>
+<section id="matrix-trace-properties">
+<h3>Matrix trace properties:<a class="headerlink" href="#matrix-trace-properties" title="Permalink to this headline">#</a></h3>
+<ul class="simple">
+<li><p>tr(A) = tr A = sum of diagonal entries = <span class="math notranslate nohighlight">\(\sum_{i}A_{ii}\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(tr A = tr A^{T}\)</span></p></li>
+<li><p>If <span class="math notranslate nohighlight">\( f(A) = tr AB \)</span>, then <span class="math notranslate nohighlight">\( \nabla _{A} f(A) = B^{T}\)</span></p></li>
+<li><p>tr AB = tr BA</p></li>
+<li><p>tr ABC = tr CAB - by cyclic permutation property</p></li>
+<li><p><span class="math notranslate nohighlight">\( \nabla _{A} tr AA^{T}C = CA + C^{T}A \)</span></p>
+<ul>
+<li><p>The above is analogous to <span class="math notranslate nohighlight">\(\frac{d}{da}a^{2}c = 2ac \)</span></p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="how-to-solve-for-theta">
+<h3>How to solve for <span class="math notranslate nohighlight">\(\theta\)</span><a class="headerlink" href="#how-to-solve-for-theta" title="Permalink to this headline">#</a></h3>
+<ul class="simple">
+<li><p>Let the cost function</p></li>
+</ul>
+<blockquote>
+<div><div class="math notranslate nohighlight">
+\[ J(\theta) = \frac{1}{2} \sum_{i=1}^m (h_{\theta}(x^{(i)}) - y^{(i)})^{2} \]</div>
+</div></blockquote>
+<ul class="simple">
+<li><p>and design matrix</p></li>
+</ul>
+<blockquote>
+<div><div class="math notranslate nohighlight">
+\[\begin{split}\begin{equation*}
+X = 
+\begin{bmatrix}
+--(X^{(1)})^{T}--  \\
+--(X^{(2)})^{T}--  \\
+.\\
+.\\
+.\\
+--(X^{(m)})^{T}--  
+\end{bmatrix}
+\end{equation*}\end{split}\]</div>
+</div></blockquote>
+<ul class="simple">
+<li><p>and
+$<span class="math notranslate nohighlight">\(\overrightarrow{\rm y} = 
+\begin{equation*}
+\begin{bmatrix}
+y^{(1)}  \\
+y^{(2)}  \\
+.\\
+.\\
+.\\
+y^{(m)}  \\
+\end{bmatrix}
+\end{equation*}\)</span>$</p></li>
+<li><p>then</p></li>
+</ul>
+<blockquote>
+<div><div class="math notranslate nohighlight">
+\[\begin{split}\begin{equation*}
+X \theta = 
+\begin{bmatrix}
+(X^{(1)})^{T}\theta  \\
+(X^{(2)})^{T}\theta  \\
+.\\
+.\\
+.\\
+(X^{(m)})^{T}\theta 
+\end{bmatrix}
+= 
+\begin{bmatrix}
+h_{\theta}(X^{(1)})  \\
+h_{\theta}(X^{(2)})  \\
+.\\
+.\\
+.\\
+h_{\theta}(X^{(m)})  
+\end{bmatrix}
+\end{equation*}
+\end{split}\]</div>
+</div></blockquote>
+<ul class="simple">
+<li><p>Sum of all the errors the algorithm is making between prediction and actual for m training examples<br />
+= Sum of the residuals =</p></li>
+</ul>
+<blockquote>
+<div><div class="math notranslate nohighlight">
+\[\begin{split}\begin{equation*}
+X \theta - y = 
+\begin{bmatrix}
+h_{\theta}(X^{(1)}) - y^{(1)}  \\
+h_{\theta}(X^{(2)}) - y^{(2)}  \\
+.\\
+.\\
+.\\
+h_{\theta}(X^{(m)}) - y^{(m)} 
+\end{bmatrix}
+\end{equation*}
+\end{split}\]</div>
+</div></blockquote>
+<ul class="simple">
+<li><p>So, we can write:</p></li>
+</ul>
+<blockquote>
+<div><div class="math notranslate nohighlight">
+\[ J(\theta) = \frac{1}{2} \sum_{i=1}^m (h_{\theta}(x^{(i)}) - y^{(i)})^{2} \]</div>
+<div class="math notranslate nohighlight">
+\[ = \frac{1}{2}(X\theta - y)^{T}(X\theta - y) \]</div>
+</div></blockquote>
+<ul class="simple">
+<li><p>Substituting
+<span class="math notranslate nohighlight">\( \nabla_{\theta} J(\theta)  \\
+= \nabla_{\theta} \frac{1}{2}(X\theta - y)^{T}(X\theta - y)  \\
+= \frac{1}{2} \nabla_{\theta} (\theta^{T}X^{T} - y^{T})(X\theta - y)  \\
+= \frac{1}{2} \nabla_{\theta} (\theta^{T}X^{T}X\theta - \theta^{T}X^{T}y - y^{T}X\theta + y^{T}y)  \\
+\)</span> using matrix derivative <span class="math notranslate nohighlight">\( \\
+= \frac{1}{2} (X^{T}X\theta + X^{T}X\theta - X^{T}y - X^{T}y) \\
+= (X^{T}X\theta - X^{T}y) \stackrel{set}{=} \overrightarrow{\rm 0} \)</span><br />
+which results in<br />
+<span class="math notranslate nohighlight">\( X^{T}X\theta = X^{T}y \)</span> - which is called <strong>“Normal equation”</strong></p></li>
+</ul>
+<blockquote>
+<div><p><span class="math notranslate nohighlight">\( \theta = (X^{T}X)^{-1}X^{T}y \)</span></p>
+</div></blockquote>
+</section>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="todo">
+<h1>TODO<a class="headerlink" href="#todo" title="Permalink to this headline">#</a></h1>
+<ul class="simple">
+<li><p>Implement GD/SGD/MBGD with Keras/Tensorflow/PyTorch</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Code source: Jaques Grobler</span>
+<span class="c1"># License: BSD 3 clause</span>
+
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">sklearn</span> <span class="kn">import</span> <span class="n">datasets</span><span class="p">,</span> <span class="n">linear_model</span>
+<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">mean_squared_error</span><span class="p">,</span> <span class="n">r2_score</span>
+
+<span class="c1"># Load the diabetes dataset</span>
+<span class="n">diabetes_X</span><span class="p">,</span> <span class="n">diabetes_y</span> <span class="o">=</span> <span class="n">datasets</span><span class="o">.</span><span class="n">load_diabetes</span><span class="p">(</span><span class="n">return_X_y</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="c1"># Use only one feature</span>
+<span class="n">diabetes_X</span> <span class="o">=</span> <span class="n">diabetes_X</span><span class="p">[:,</span> <span class="n">np</span><span class="o">.</span><span class="n">newaxis</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span>
+
+<span class="c1"># Split the data into training/testing sets</span>
+<span class="n">diabetes_X_train</span> <span class="o">=</span> <span class="n">diabetes_X</span><span class="p">[:</span><span class="o">-</span><span class="mi">20</span><span class="p">]</span>
+<span class="n">diabetes_X_test</span> <span class="o">=</span> <span class="n">diabetes_X</span><span class="p">[</span><span class="o">-</span><span class="mi">20</span><span class="p">:]</span>
+
+<span class="c1"># Split the targets into training/testing sets</span>
+<span class="n">diabetes_y_train</span> <span class="o">=</span> <span class="n">diabetes_y</span><span class="p">[:</span><span class="o">-</span><span class="mi">20</span><span class="p">]</span>
+<span class="n">diabetes_y_test</span> <span class="o">=</span> <span class="n">diabetes_y</span><span class="p">[</span><span class="o">-</span><span class="mi">20</span><span class="p">:]</span>
+
+<span class="c1"># Create linear regression object</span>
+<span class="n">regr</span> <span class="o">=</span> <span class="n">linear_model</span><span class="o">.</span><span class="n">LinearRegression</span><span class="p">()</span>
+
+<span class="c1"># Train the model using the training sets</span>
+<span class="n">regr</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">diabetes_X_train</span><span class="p">,</span> <span class="n">diabetes_y_train</span><span class="p">)</span>
+
+<span class="c1"># Make predictions using the testing set</span>
+<span class="n">diabetes_y_pred</span> <span class="o">=</span> <span class="n">regr</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">diabetes_X_test</span><span class="p">)</span>
+
+<span class="c1"># The intercept</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Intercept: </span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">regr</span><span class="o">.</span><span class="n">intercept_</span><span class="p">)</span>
+<span class="c1"># The coefficients</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Coefficients: </span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">regr</span><span class="o">.</span><span class="n">coef_</span><span class="p">)</span>
+<span class="c1"># The mean squared error</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Mean squared error: </span><span class="si">%.2f</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">mean_squared_error</span><span class="p">(</span><span class="n">diabetes_y_test</span><span class="p">,</span> <span class="n">diabetes_y_pred</span><span class="p">))</span>
+<span class="c1"># The coefficient of determination: 1 is perfect prediction</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Coefficient of determination: </span><span class="si">%.2f</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">r2_score</span><span class="p">(</span><span class="n">diabetes_y_test</span><span class="p">,</span> <span class="n">diabetes_y_pred</span><span class="p">))</span>
+
+<span class="c1"># Plot outputs</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">diabetes_X_test</span><span class="p">,</span> <span class="n">diabetes_y_test</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;black&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">diabetes_X_test</span><span class="p">,</span> <span class="n">diabetes_y_pred</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;blue&quot;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+
+<span class="c1"># plt.xticks(())</span>
+<span class="c1"># plt.yticks(())</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Intercept: 
+ 152.91886182616113
+Coefficients: 
+ [938.23786125]
+Mean squared error: 2548.07
+Coefficient of determination: 0.47
+</pre></div>
+</div>
+<img alt="../_images/lec02-LinearReg-GradientDescent_16_1.png" src="../_images/lec02-LinearReg-GradientDescent_16_1.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">sklearn.metrics</span> <span class="k">as</span> <span class="nn">metrics</span>
+<span class="k">def</span> <span class="nf">regression_results</span><span class="p">(</span><span class="n">y_true</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">):</span>
+
+    <span class="c1"># Regression metrics</span>
+    <span class="n">explained_variance</span><span class="o">=</span><span class="n">metrics</span><span class="o">.</span><span class="n">explained_variance_score</span><span class="p">(</span><span class="n">y_true</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">)</span>
+    <span class="n">mean_absolute_error</span><span class="o">=</span><span class="n">metrics</span><span class="o">.</span><span class="n">mean_absolute_error</span><span class="p">(</span><span class="n">y_true</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">)</span> 
+    <span class="n">mse</span><span class="o">=</span><span class="n">metrics</span><span class="o">.</span><span class="n">mean_squared_error</span><span class="p">(</span><span class="n">y_true</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">)</span> 
+    <span class="n">mean_squared_log_error</span><span class="o">=</span><span class="n">metrics</span><span class="o">.</span><span class="n">mean_squared_log_error</span><span class="p">(</span><span class="n">y_true</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">)</span>
+    <span class="n">median_absolute_error</span><span class="o">=</span><span class="n">metrics</span><span class="o">.</span><span class="n">median_absolute_error</span><span class="p">(</span><span class="n">y_true</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">)</span>
+    <span class="n">r2</span><span class="o">=</span><span class="n">metrics</span><span class="o">.</span><span class="n">r2_score</span><span class="p">(</span><span class="n">y_true</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">)</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;explained_variance: &#39;</span><span class="p">,</span> <span class="nb">round</span><span class="p">(</span><span class="n">explained_variance</span><span class="p">,</span><span class="mi">4</span><span class="p">))</span>    
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;mean_squared_log_error: &#39;</span><span class="p">,</span> <span class="nb">round</span><span class="p">(</span><span class="n">mean_squared_log_error</span><span class="p">,</span><span class="mi">4</span><span class="p">))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;r2: &#39;</span><span class="p">,</span> <span class="nb">round</span><span class="p">(</span><span class="n">r2</span><span class="p">,</span><span class="mi">4</span><span class="p">))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;MAE: &#39;</span><span class="p">,</span> <span class="nb">round</span><span class="p">(</span><span class="n">mean_absolute_error</span><span class="p">,</span><span class="mi">4</span><span class="p">))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;MSE: &#39;</span><span class="p">,</span> <span class="nb">round</span><span class="p">(</span><span class="n">mse</span><span class="p">,</span><span class="mi">4</span><span class="p">))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;RMSE: &#39;</span><span class="p">,</span> <span class="nb">round</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">mse</span><span class="p">),</span><span class="mi">4</span><span class="p">))</span>
+    
+<span class="n">regression_results</span><span class="p">(</span><span class="n">diabetes_y_test</span><span class="p">,</span> <span class="n">diabetes_y_pred</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>explained_variance:  0.5349
+mean_squared_log_error:  0.2171
+r2:  0.4726
+MAE:  41.2271
+MSE:  2548.0724
+RMSE:  50.4784
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./cs229_ml"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="intro.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Stanford CS229 notes - by Andrew Ng</p>
+        </div>
+    </a>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By Chandra<br/>
+  
+      &copy; Copyright 2022.<br/>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>
