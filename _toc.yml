@@ -3,7 +3,14 @@
 
 format: jb-book
 root: intro
-chapters:
-- file: markdown
-- file: notebooks
-- file: markdown-notebooks
+parts:
+- caption: Machine Learning
+  - file: ml_examples/intro
+    sections:
+    - file: ml_examples/ml_glossary
+
+- caption: Reference
+  chapters:
+  - file: markdown
+  - file: notebooks
+  - file: markdown-notebooks
