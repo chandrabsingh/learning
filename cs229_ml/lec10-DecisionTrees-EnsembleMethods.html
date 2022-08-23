@@ -8,8 +8,9 @@
 
     <title>Lec 10-Decision Trees - Ensemble Methods &#8212; chandra notes</title>
     
-  <link href="../_static/css/theme.css" rel="stylesheet">
-  <link href="../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
 
     
   <link rel="stylesheet"
@@ -19,20 +20,16 @@
   <link rel="preload" as="font" type="font/woff2" crossorigin
     href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
 
-    
-      
-
-    
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
     
-  <link rel="preload" as="script" href="../_static/js/index.be7d3bbb2ef33a8344ce.js">
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
 
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
@@ -40,12 +37,13 @@
     <script src="../_static/doctools.js"></script>
     <script src="../_static/clipboard.min.js"></script>
     <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
     <script src="../_static/togglebutton.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="../_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
+    <script src="../_static/design-tabs.js"></script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
 const thebe_selector = ".thebe,.cell"
 const thebe_selector_input = "pre"
@@ -65,7 +63,21 @@ const thebe_selector_output = ".output, .cell_output"
     <!-- Google Analytics -->
     
   </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
     
     <div class="container-fluid" id="banner"></div>
 
@@ -74,9 +86,10 @@ const thebe_selector_output = ".output, .cell_output"
     <div class="container-xl">
       <div class="row">
           
-<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
-    
-        <div class="navbar-brand-box">
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
     <a class="navbar-brand text-wrap" href="../index.html">
       
         <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
@@ -94,14 +107,15 @@ const thebe_selector_output = ".output, .cell_output"
   <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
 </form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item active">
-        <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../intro.html">
-   My learning notebook
-  </a>
- </li>
-</ul>
-<p aria-level="2" class="caption" role="heading">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    My learning notebook
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
   Machine Learning
  </span>
@@ -258,107 +272,209 @@ const thebe_selector_output = ".output, .cell_output"
 </ul>
 
     </div>
-</nav> <!-- To handle the deprecated key -->
-
-<div class="navbar_extra_footer">
-  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
-</div>
-
-</div>
-
-
-          
-
-
-          
-<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
-    
-    <div class="topbar container-xl fixed-top">
-    <div class="topbar-contents row">
-        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
-        <div class="col pl-md-4 topbar-main">
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
             
-            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
-                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
-                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
-                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
-                <i class="fas fa-bars"></i>
-                <i class="fas fa-arrow-left"></i>
-                <i class="fas fa-arrow-up"></i>
-            </button>
-            
-            
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
-            class="fas fa-download"></i></button>
-
-    <div class="dropdown-buttons">
-        <!-- ipynb file if we had a myst markdown file -->
-        
-        <!-- Download raw file -->
-        <a class="dropdown-buttons" href="../_sources/cs229_ml/lec10-DecisionTrees-EnsembleMethods.ipynb"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
-                data-placement="left">.ipynb</button></a>
-        <!-- Download PDF via print -->
-        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
-                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
-    </div>
-</div>
-
-            <!-- Source interaction buttons -->
-
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
-        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
-    <div class="dropdown-buttons sourcebuttons">
-        <a class="repository-button"
-            href="https://github.com/chandrabsingh/learning"><button type="button" class="btn btn-secondary topbarbtn"
-                data-toggle="tooltip" data-placement="left" title="Source repository"><i
-                    class="fab fa-github"></i>repository</button></a>
-        <a class="issues-button"
-            href="https://github.com/chandrabsingh/learning/issues/new?title=Issue%20on%20page%20%2Fcs229_ml/lec10-DecisionTrees-EnsembleMethods.html&body=Your%20issue%20content%20here."><button
-                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
-                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
-        
-    </div>
-</div>
-
-            <!-- Full screen (wrap in <a> to have style consistency -->
-
-<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
-        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
-        title="Fullscreen mode"><i
-            class="fas fa-expand"></i></button></a>
-
-            <!-- Launch buttons -->
-
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
-        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
-    <div class="dropdown-buttons">
-        
-        <a class="binder-button" href="https://mybinder.org/v2/gh/chandrabsingh/learning/master?urlpath=tree/learning/cs229_ml/lec10-DecisionTrees-EnsembleMethods.ipynb"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
-                data-placement="left"><img class="binder-button-logo"
-                    src="../_static/images/logo_binder.svg"
-                    alt="Interact on binder">Binder</button></a>
-        
-        
-        
-        
-    </div>
-</div>
-
-        </div>
-
-        <!-- Table of contents -->
-        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
-            
-            <div class="tocsection onthispage pt-5 pb-3">
-                <i class="fas fa-list"></i> Contents
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
             </div>
-            <nav id="bd-toc-nav" aria-label="Page">
-                <ul class="visible nav section-nav flex-column">
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<div class="menu-dropdown menu-dropdown-launch-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Launch interactive content">
+      <i class="fas fa-rocket"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://mybinder.org/v2/gh/chandrabsingh/learning/master?urlpath=tree/learning/cs229_ml/lec10-DecisionTrees-EnsembleMethods.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Binder"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="../_static/images/logo_binder.svg">
+  </span>
+<span class="headerbtn__text-container">Binder</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-repository-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Source repositories">
+      <i class="fab fa-github"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://github.com/chandrabsingh/learning"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Source repository"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="headerbtn__text-container">repository</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/chandrabsingh/learning/issues/new?title=Issue%20on%20page%20%2Fcs229_ml/lec10-DecisionTrees-EnsembleMethods.html&body=Your%20issue%20content%20here."
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Open an issue"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="headerbtn__text-container">open issue</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="../_sources/cs229_ml/lec10-DecisionTrees-EnsembleMethods.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.ipynb</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#outline">
    Outline
@@ -486,12 +602,11 @@ const thebe_selector_output = ".output, .cell_output"
  </li>
 </ul>
 
-            </nav>
-        </div>
-    </div>
+    </nav>
 </div>
-    <div id="main-content" class="row">
-        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
                 <h1>Lec 10-Decision Trees - Ensemble Methods</h1>
@@ -635,13 +750,14 @@ const thebe_selector_output = ".output, .cell_output"
                     </div>
                 </div>
             </div>
-            
+            <main id="main-content" role="main">
+                
               <div>
                 
   <section class="tex2jax_ignore mathjax_ignore" id="lec-10-decision-trees-ensemble-methods">
-<h1>Lec 10-Decision Trees - Ensemble Methods<a class="headerlink" href="#lec-10-decision-trees-ensemble-methods" title="Permalink to this headline">¶</a></h1>
+<h1>Lec 10-Decision Trees - Ensemble Methods<a class="headerlink" href="#lec-10-decision-trees-ensemble-methods" title="Permalink to this headline">#</a></h1>
 <section id="outline">
-<h2>Outline<a class="headerlink" href="#outline" title="Permalink to this headline">¶</a></h2>
+<h2>Outline<a class="headerlink" href="#outline" title="Permalink to this headline">#</a></h2>
 <ul class="simple">
 <li><p>Decision Trees</p></li>
 <li><p>Ensemble Methods</p></li>
@@ -651,7 +767,7 @@ const thebe_selector_output = ".output, .cell_output"
 </ul>
 </section>
 <section id="decision-trees">
-<h2>Decision Trees<a class="headerlink" href="#decision-trees" title="Permalink to this headline">¶</a></h2>
+<h2>Decision Trees<a class="headerlink" href="#decision-trees" title="Permalink to this headline">#</a></h2>
 <ul class="simple">
 <li><p>Non-linear model</p></li>
 <li><p>A model is called linear if the hypothesis function is of the form <span class="math notranslate nohighlight">\(h(x) = \theta^{T}x\)</span></p></li>
@@ -667,7 +783,7 @@ const thebe_selector_output = ".output, .cell_output"
 </li>
 </ul>
 <section id="selecting-regions-greedy-top-down-recursive-partitioning">
-<h3>Selecting Regions - Greedy, Top-Down, Recursive Partitioning<a class="headerlink" href="#selecting-regions-greedy-top-down-recursive-partitioning" title="Permalink to this headline">¶</a></h3>
+<h3>Selecting Regions - Greedy, Top-Down, Recursive Partitioning<a class="headerlink" href="#selecting-regions-greedy-top-down-recursive-partitioning" title="Permalink to this headline">#</a></h3>
 <ul>
 <li><p>You ask question and partition the space and then iteratively keep asking new question, partitioning the space</p></li>
 <li><p>Is latitude &gt; 30</p>
@@ -701,7 +817,7 @@ const thebe_selector_output = ".output, .cell_output"
 </ul>
 </section>
 <section id="how-to-choose-splits">
-<h3>How to choose splits<a class="headerlink" href="#how-to-choose-splits" title="Permalink to this headline">¶</a></h3>
+<h3>How to choose splits<a class="headerlink" href="#how-to-choose-splits" title="Permalink to this headline">#</a></h3>
 <ul class="simple">
 <li><p>isolate space of positives and negatives in this case</p></li>
 <li><p>Define L(R): loss on R</p></li>
@@ -720,7 +836,7 @@ const thebe_selector_output = ".output, .cell_output"
 </div></blockquote>
 </section>
 <section id="why-is-misclassification-loss-the-right-loss">
-<h3>Why is misclassification loss the right loss<a class="headerlink" href="#why-is-misclassification-loss-the-right-loss" title="Permalink to this headline">¶</a></h3>
+<h3>Why is misclassification loss the right loss<a class="headerlink" href="#why-is-misclassification-loss-the-right-loss" title="Permalink to this headline">#</a></h3>
 <img src="images/10_misclassificationLoss.png" width=400 height=400>  
 $\tiny{\text{YouTube-Stanford-CS229-Andrew Ng/Raphael Townshend}}$ 
 <ul class="simple">
@@ -746,7 +862,7 @@ $\tiny{\text{YouTube-Stanford-CS229-Andrew Ng/Raphael Townshend}}$
 </ul>
 </section>
 <section id="misclassification-loss-vs-cross-entropy-loss">
-<h3>Misclassification loss vs Cross-entropy loss<a class="headerlink" href="#misclassification-loss-vs-cross-entropy-loss" title="Permalink to this headline">¶</a></h3>
+<h3>Misclassification loss vs Cross-entropy loss<a class="headerlink" href="#misclassification-loss-vs-cross-entropy-loss" title="Permalink to this headline">#</a></h3>
 <ul class="simple">
 <li><p>Let the plot be between <span class="math notranslate nohighlight">\(\hat{p}\)</span> - the proportion of positives in the set vs the loss</p></li>
 <li><p>the cross-entropy loss is a strictly concave curve</p></li>
@@ -784,7 +900,7 @@ $\tiny{\text{YouTube-Stanford-CS229-Andrew Ng/Raphael Townshend}}$
 </ul>
 </section>
 <section id="regression-tree-extension-for-decision-tree">
-<h3>Regression Tree - Extension for decision tree<a class="headerlink" href="#regression-tree-extension-for-decision-tree" title="Permalink to this headline">¶</a></h3>
+<h3>Regression Tree - Extension for decision tree<a class="headerlink" href="#regression-tree-extension-for-decision-tree" title="Permalink to this headline">#</a></h3>
 <ul class="simple">
 <li><p>So far we used decision tree for classification</p></li>
 <li><p>Decision trees can also be used for regression trees</p></li>
@@ -809,7 +925,7 @@ $\tiny{\text{YouTube-Stanford-CS229-Andrew Ng/Raphael Townshend}}$
 </div></blockquote>
 </section>
 <section id="categorical-variables">
-<h3>Categorical Variables<a class="headerlink" href="#categorical-variables" title="Permalink to this headline">¶</a></h3>
+<h3>Categorical Variables<a class="headerlink" href="#categorical-variables" title="Permalink to this headline">#</a></h3>
 <ul class="simple">
 <li><p>can ask questions on any form of subset, is location in northern hemisphere?</p></li>
 <li><p><span class="math notranslate nohighlight">\(location \in \{N\}\)</span></p></li>
@@ -817,7 +933,7 @@ $\tiny{\text{YouTube-Stanford-CS229-Andrew Ng/Raphael Townshend}}$
 </ul>
 </section>
 <section id="regularization-of-dts">
-<h3>Regularization of DTs<a class="headerlink" href="#regularization-of-dts" title="Permalink to this headline">¶</a></h3>
+<h3>Regularization of DTs<a class="headerlink" href="#regularization-of-dts" title="Permalink to this headline">#</a></h3>
 <ul class="simple">
 <li><p>if you carry on the process of splits, you can split region for each datapoint and that will be case of overfitting</p></li>
 <li><p>Decision trees are high variance models</p></li>
@@ -849,18 +965,18 @@ $\tiny{\text{YouTube-Stanford-CS229-Andrew Ng/Raphael Townshend}}$
 </ul>
 </section>
 <section id="runtime">
-<h3>Runtime<a class="headerlink" href="#runtime" title="Permalink to this headline">¶</a></h3>
+<h3>Runtime<a class="headerlink" href="#runtime" title="Permalink to this headline">#</a></h3>
 <ul class="simple">
 <li><p>n train examples</p></li>
 <li><p>f features</p></li>
 <li><p>d depth of tree</p></li>
 </ul>
 <section id="test-time-o-d">
-<h4>Test time O(d)<a class="headerlink" href="#test-time-o-d" title="Permalink to this headline">¶</a></h4>
+<h4>Test time O(d)<a class="headerlink" href="#test-time-o-d" title="Permalink to this headline">#</a></h4>
 <p>d &lt; log n</p>
 </section>
 <section id="train-time">
-<h4>Train time<a class="headerlink" href="#train-time" title="Permalink to this headline">¶</a></h4>
+<h4>Train time<a class="headerlink" href="#train-time" title="Permalink to this headline">#</a></h4>
 <ul class="simple">
 <li><p>Each point is part of O(d) nodes</p></li>
 <li><p>Cost of point at each node is O(f)</p>
@@ -879,7 +995,7 @@ $\tiny{\text{YouTube-Stanford-CS229-Andrew Ng/Raphael Townshend}}$
 </ul>
 </section>
 <section id="downside-of-dt">
-<h4>Downside of DT<a class="headerlink" href="#downside-of-dt" title="Permalink to this headline">¶</a></h4>
+<h4>Downside of DT<a class="headerlink" href="#downside-of-dt" title="Permalink to this headline">#</a></h4>
 <ul class="simple">
 <li><p>it does not have additive structure</p></li>
 <li><p>in the example below we get a very rough estimation of decision boundary</p></li>
@@ -890,7 +1006,7 @@ $\tiny{\text{YouTube-Stanford-CS229-Andrew Ng/Raphael Townshend}}$
 </section>
 </section>
 <section id="dt-recap">
-<h3>DT - Recap<a class="headerlink" href="#dt-recap" title="Permalink to this headline">¶</a></h3>
+<h3>DT - Recap<a class="headerlink" href="#dt-recap" title="Permalink to this headline">#</a></h3>
 <ul class="simple">
 <li><p>Pos</p>
 <ul>
@@ -912,7 +1028,7 @@ $\tiny{\text{YouTube-Stanford-CS229-Andrew Ng/Raphael Townshend}}$
 </section>
 </section>
 <section id="ensembling">
-<h2>Ensembling<a class="headerlink" href="#ensembling" title="Permalink to this headline">¶</a></h2>
+<h2>Ensembling<a class="headerlink" href="#ensembling" title="Permalink to this headline">#</a></h2>
 <ul class="simple">
 <li><p>take <span class="math notranslate nohighlight">\(X_{i}'s\)</span> which are random variables that are independent identically distributed (i.i.d.)</p></li>
 </ul>
@@ -934,7 +1050,7 @@ $\tiny{\text{YouTube-Stanford-CS229-Andrew Ng/Raphael Townshend}}$
 <li><p>there would be interest in models with large n so the second term goes down. Also have models that are decorrelated so the first term goes down</p></li>
 </ul>
 <section id="ways-to-ensemble">
-<h3>Ways to ensemble<a class="headerlink" href="#ways-to-ensemble" title="Permalink to this headline">¶</a></h3>
+<h3>Ways to ensemble<a class="headerlink" href="#ways-to-ensemble" title="Permalink to this headline">#</a></h3>
 <ul class="simple">
 <li><p>different algorithms, not really helpful</p></li>
 <li><p>use different training sets, not really helpful</p></li>
@@ -944,7 +1060,7 @@ $\tiny{\text{YouTube-Stanford-CS229-Andrew Ng/Raphael Townshend}}$
 </section>
 </section>
 <section id="bagging">
-<h2>Bagging<a class="headerlink" href="#bagging" title="Permalink to this headline">¶</a></h2>
+<h2>Bagging<a class="headerlink" href="#bagging" title="Permalink to this headline">#</a></h2>
 <ul class="simple">
 <li><p>Bootstrap aggregation</p>
 <ul>
@@ -963,7 +1079,7 @@ $\tiny{\text{YouTube-Stanford-CS229-Andrew Ng/Raphael Townshend}}$
 </ul>
 <br>  
 <section id="bootstrap-aggregation">
-<h3>Bootstrap aggregation<a class="headerlink" href="#bootstrap-aggregation" title="Permalink to this headline">¶</a></h3>
+<h3>Bootstrap aggregation<a class="headerlink" href="#bootstrap-aggregation" title="Permalink to this headline">#</a></h3>
 <ul class="simple">
 <li><p>we will train separate models separately and then average their outputs</p></li>
 <li><p>Say we have bootstrap samples <span class="math notranslate nohighlight">\(Z_{1},...,Z_{M}\)</span></p></li>
@@ -977,7 +1093,7 @@ $\tiny{\text{YouTube-Stanford-CS229-Andrew Ng/Raphael Townshend}}$
 </ul>
 </section>
 <section id="bias-variance-analysis">
-<h3>Bias-Variance Analysis<a class="headerlink" href="#bias-variance-analysis" title="Permalink to this headline">¶</a></h3>
+<h3>Bias-Variance Analysis<a class="headerlink" href="#bias-variance-analysis" title="Permalink to this headline">#</a></h3>
 <blockquote>
 <div><p><span class="math notranslate nohighlight">\(Var(\bar{X}) = \rho \sigma^{2} + \frac{1-\rho}{n} \sigma^{2}\)</span></p>
 </div></blockquote>
@@ -998,7 +1114,7 @@ $\tiny{\text{YouTube-Stanford-CS229-Andrew Ng/Raphael Townshend}}$
 </ul>
 </section>
 <section id="decision-trees-bagging">
-<h3>Decision Trees + Bagging<a class="headerlink" href="#decision-trees-bagging" title="Permalink to this headline">¶</a></h3>
+<h3>Decision Trees + Bagging<a class="headerlink" href="#decision-trees-bagging" title="Permalink to this headline">#</a></h3>
 <ul class="simple">
 <li><p>DT have high variance, low bias</p></li>
 <li><p>this makes DT ideal fit for bagging</p></li>
@@ -1006,7 +1122,7 @@ $\tiny{\text{YouTube-Stanford-CS229-Andrew Ng/Raphael Townshend}}$
 </section>
 </section>
 <section id="random-forest">
-<h2>Random Forest<a class="headerlink" href="#random-forest" title="Permalink to this headline">¶</a></h2>
+<h2>Random Forest<a class="headerlink" href="#random-forest" title="Permalink to this headline">#</a></h2>
 <ul class="simple">
 <li><p>RF is a version of decision trees and bagging</p></li>
 <li><p>the random forest introduces even more randomization into each individual decision tree</p></li>
@@ -1018,7 +1134,7 @@ $\tiny{\text{YouTube-Stanford-CS229-Andrew Ng/Raphael Townshend}}$
 </ul>
 </section>
 <section id="boosting">
-<h2>Boosting<a class="headerlink" href="#boosting" title="Permalink to this headline">¶</a></h2>
+<h2>Boosting<a class="headerlink" href="#boosting" title="Permalink to this headline">#</a></h2>
 <ul class="simple">
 <li><p>In bagging we tried to reduce variance</p></li>
 <li><p>Boosting is opposite. In boosting we try to reduce bias</p></li>
@@ -1038,7 +1154,7 @@ $\tiny{\text{YouTube-Stanford-CS229-Andrew Ng/Raphael Townshend}}$
 <img src="images/10_boosting.png" width=400 height=400>  
 $\tiny{\text{YouTube-Stanford-CS229-Andrew Ng/Raphael Townshend}}$ 
 <section id="adaboost">
-<h3>Adaboost<a class="headerlink" href="#adaboost" title="Permalink to this headline">¶</a></h3>
+<h3>Adaboost<a class="headerlink" href="#adaboost" title="Permalink to this headline">#</a></h3>
 <ul class="simple">
 <li><p>Determine for classifier <span class="math notranslate nohighlight">\(G_{m}\)</span> a weight <span class="math notranslate nohighlight">\(\alpha_{m}\)</span> proportional, which is log odds</p></li>
 </ul>
@@ -1081,9 +1197,11 @@ $\tiny{\text{YouTube-Stanford-CS229-Andrew Ng/Raphael Townshend}}$
 
               </div>
               
-            
-                <!-- Previous / next buttons -->
-<div class='prev-next-area'> 
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
     <a class='left-prev' id="prev-link" href="lec09-Approx-EstimationError-ERM.html" title="previous page">
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
@@ -1099,24 +1217,28 @@ $\tiny{\text{YouTube-Stanford-CS229-Andrew Ng/Raphael Townshend}}$
     <i class="fas fa-angle-right"></i>
     </a>
 </div>
-            
+            </footer>
         </div>
     </div>
-    <footer class="footer">
-  <p>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By Chandra<br/>
+  
+      &copy; Copyright 2022.<br/>
+</p>
+        </footer>
+    </div>
     
-      By Chandra<br/>
-    
-        &copy; Copyright 2021.<br/>
-  </p>
-</footer>
-</main>
+</div>
 
 
       </div>
     </div>
   
-  <script src="../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
 
   </body>
 </html>
