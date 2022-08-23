@@ -5,12 +5,36 @@ format: jb-book
 root: intro
 parts:
 - caption: Machine Learning
+  chapters:
   - file: ml_examples/intro
     sections:
     - file: ml_examples/ml_glossary
+    - file: ml_examples/Store_Sales_Forecasting_With_Tensorflow
 
 - caption: Reference
   chapters:
   - file: markdown
   - file: notebooks
   - file: markdown-notebooks
+
+- caption: Lecture Notes
+  chapters: 
+  - file: cs229_ml/intro
+    sections:
+    - file: cs229_ml/lec02-LinearReg-GradientDescent
+    - file: cs229_ml/lec03-LocallyWeighted-LogisticRegression
+    - file: cs229_ml/lec04-Perceptron-GLM
+    - file: cs229_ml/lec05-GDA-NaiveBayes
+    - file: cs229_ml/lec06-NaiveBayes-SVM
+    - file: cs229_ml/lec07-Kernels-SVM
+    - file: cs229_ml/lec08-DataSplits-Models-CrossValidation
+    - file: cs229_ml/lec09-Approx-EstimationError-ERM
+    - file: cs229_ml/lec10-DecisionTrees-EnsembleMethods
+    - file: cs229_ml/lec11-Intro-NN
+    - file: cs229_ml/lec12-Backpropagation-ImprovingNN
+    - file: cs229_ml/lec13-DebuggingMLModels-ErrorAnalysis
+    - file: cs229_ml/lec14-Expectation-MaximizationAlgo
+    - file: cs229_ml/lec15-EMAlgo-FactorAnalysis
+    - file: cs229_ml/lec16-IndependentComponentAnalysis-RL
+    - file: cs229_ml/lec17-MDPs-ValuePolicyIteration
+    - file: cs229_ml/lec18-continuousMDPs-ModelSimulation

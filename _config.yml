@@ -1,14 +1,15 @@
 # Book settings
 # Learn more at https://jupyterbook.org/customize/config.html
 
-title: Chandra's Learning Notebook
-author: Chandra Bhan Singh
-logo: logo.png
+title:   
+author: Chandra
+logo: mylogo.png
 
 # Force re-execution of notebooks on each build.
 # See https://jupyterbook.org/content/execute.html
 execute:
-  execute_notebooks: force
+#  execute_notebooks: force
+  execute_notebooks: auto
 
 # Define the name of the latex output file for PDF builds
 latex:
@@ -18,6 +19,10 @@ latex:
 # Add a bibtex file so that we can create citations
 bibtex_bibfiles:
   - references.bib
+
+# timeout for all notebook executions
+execute:
+  timeout: 200
 
 # Information about where the book exists on the web
 repository:

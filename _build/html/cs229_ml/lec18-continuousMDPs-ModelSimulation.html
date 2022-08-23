@@ -1,0 +1,866 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Lec 18-Continuous MDPs-Model Simulation</title>
+    
+  <link href="../_static/css/theme.css" rel="stylesheet">
+  <link href="../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.be7d3bbb2ef33a8344ce.js">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="prev" title="test2" href="test2.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../_static/mylogo.png" class="logo" alt="logo">
+      
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../intro.html">
+   My learning notebook
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Machine Learning
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../ml_examples/intro.html">
+   Welcome to your ML Book
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../ml_examples/ml_glossary.html">
+     Conceptual brief
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../ml_examples/Store_Sales_Forecasting_With_Tensorflow.html">
+     Store Sales Forecasting with TensorFlow
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Reference
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../markdown.html">
+   Markdown Files
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../notebooks.html">
+   Content with notebooks
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../markdown-notebooks.html">
+   Notebooks with MyST Markdown
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Lecture Notes
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="intro.html">
+   CS229 ML - by Andrew Ng
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2">
+    <a class="reference internal" href="lec02-LinearReg-GradientDescent.html">
+     Lec 02-Linear Regression - Gradient Descent
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="lec03-LocallyWeighted-LogisticRegression.html">
+     Lec 03-Locally Weighted Regression - Logistic Regression
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="lec04-Perceptron-GLM.html">
+     Lec 04-Perceptron - GLM
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="lec05-GDA-NaiveBayes.html">
+     Lec 05-GDA - Naive Bayes
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="lec06-NaiveBayes-SVM.html">
+     Lec 06-Naive Bayes - SVM
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="lec07-Kernels-SVM.html">
+     Lec 07-Kernels - SVM
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="lec08-DataSplits-Models-CrossValidation.html">
+     Lec 08-Data Splits - Models - Cross Validation
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="lec09-Approx-EstimationError-ERM.html">
+     Lec 09-Estimation Error - ERM
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="lec10-DecisionTrees-EnsembleMethods.html">
+     Lec 10-Decision Trees - Ensemble Methods
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="lec11-Intro-NN.html">
+     Lecture 11
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="lec12-Backpropagation-ImprovingNN.html">
+     Lec 12-Improving NN
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="lec13-DebuggingMLModels-ErrorAnalysis.html">
+     Lec 13-Debugging ML Models-Error Analysis
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="lec15-EMAlgo-FactorAnalysis.html">
+     Lec 15-EM Algo-Factor Analysis
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="lec16-IndependentComponentAnalysis-RL.html">
+     Lec 16-Independent Component Analysis-RL
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="lec17-MDPs-ValuePolicyIteration.html">
+     Lec 17-MDPs-Value Policy Iteration
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="test2.html">
+     test2
+    </a>
+   </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     Lec 18-Continuous MDPs-Model Simulation
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/cs229_ml/lec18-continuousMDPs-ModelSimulation.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/chandrabsingh/learning"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/chandrabsingh/learning/issues/new?title=Issue%20on%20page%20%2Fcs229_ml/lec18-continuousMDPs-ModelSimulation.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        
+    </div>
+</div>
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/chandrabsingh/learning/master?urlpath=tree/learning/cs229_ml/lec18-continuousMDPs-ModelSimulation.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#outline">
+   Outline
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#continuous-state-space">
+   Continuous state space
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#alternative-approach">
+   Alternative approach
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#how-do-we-make-a-model">
+   How do we make a model
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#how-do-you-approximate-the-value-function">
+   How do you approximate the value function
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#fitted-value-algorithm">
+   Fitted value algorithm
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#some-practical-aspects">
+   Some practical aspects
+  </a>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Lec 18-Continuous MDPs-Model Simulation</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#outline">
+   Outline
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#continuous-state-space">
+   Continuous state space
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#alternative-approach">
+   Alternative approach
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#how-do-we-make-a-model">
+   How do we make a model
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#how-do-you-approximate-the-value-function">
+   How do you approximate the value function
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#fitted-value-algorithm">
+   Fitted value algorithm
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#some-practical-aspects">
+   Some practical aspects
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            
+              <div>
+                
+  <section class="tex2jax_ignore mathjax_ignore" id="lec-18-continuous-mdps-model-simulation">
+<h1>Lec 18-Continuous MDPs-Model Simulation<a class="headerlink" href="#lec-18-continuous-mdps-model-simulation" title="Permalink to this headline">¶</a></h1>
+<section id="outline">
+<h2>Outline<a class="headerlink" href="#outline" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Continuous State MDPs</p>
+<ul>
+<li><p>Discretization</p></li>
+<li><p>Models/Simulation</p></li>
+<li><p>Fitted value iteration</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="continuous-state-space">
+<h2>Continuous state space<a class="headerlink" href="#continuous-state-space" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>In the last lecture we learnt about finite state models.</p></li>
+<li><p>The state space representation of car</p>
+<ul>
+<li><p>kinematic model of car</p>
+<ul>
+<li><p>x - units in x direction</p></li>
+<li><p>y - units in y direction</p></li>
+<li><p><span class="math notranslate nohighlight">\(\theta\)</span> - orientation wrt some direction say North</p></li>
+</ul>
+</li>
+<li><p>dynamic model of car</p>
+<ul>
+<li><p><span class="math notranslate nohighlight">\(\dot{x}\)</span> - linear velocity in x direction</p></li>
+<li><p><span class="math notranslate nohighlight">\(\dot{y}\)</span> - linear velocity in y direction</p></li>
+<li><p><span class="math notranslate nohighlight">\(\dot{\theta}\)</span> - angular velocity</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>it depends on how we want to model the car, if we are interested in modeling race car, we need to include the temperature as well, we will need to model the 4 car tires separately</p></li>
+<li><p>the state space representation of helicopter will have 3-dimensions instead of 2</p></li>
+<li><p>inverted pendulum</p></li>
+<li><p>the dimensions for the above problem statement will be <span class="math notranslate nohighlight">\(\mathbb R^{6}(\text{car}), \mathbb R^{12}(\text{helicopter}), \mathbb R^{4}(\text{pendulum})\)</span></p></li>
+</ul>
+<ul>
+<li><p>one easy way would be discretize continuous state space and solve it as discrete state space problem</p></li>
+<li><p>its fine to solve low dimensional state space problem using discretization, but for higher dimensional problem we need to use fitted value iteration</p></li>
+<li><p>disadvantages of discretization:</p>
+<ul>
+<li><ol class="simple">
+<li><p>Naive representation for <span class="math notranslate nohighlight">\(V^{*}\)</span> and <span class="math notranslate nohighlight">\(\pi^{*}\)</span></p></li>
+</ol>
+<ul class="simple">
+<li><p>in the house price prediction problem, fit a constant function</p></li>
+<li><p>the buckets will represent the price of a house as a function of the size</p></li>
+<li><p>same applies to state-space problem, where we approximate the value function as a staircase function, as a function of set of stairs</p></li>
+<li><p>this can be applied if there is lot of data and very few input features, but it does not allow to fit a smoother function</p></li>
+<li><p>its not a very good representation</p></li>
+</ul>
+</li>
+<li><ol class="simple">
+<li><p>Curse of dimensionality</p></li>
+</ol>
+<ul class="simple">
+<li><p>if state space <span class="math notranslate nohighlight">\(s \in \mathbb R^{n}\)</span>, and if we discretize each dimension into k values, then we get <span class="math notranslate nohighlight">\(k^{n}\)</span> discrete states which grows exponentially</p></li>
+<li><p>this is not a good representation in large dimensions say more than 8-10</p></li>
+<li><p>way of reducing/taking control of exponential blow up would be to use <em>unequal grid</em> for state space</p>
+<ul>
+<li><p>define finer or more number of state for more sensitive state-space and lesser number of state for less sensitive state-space</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<img src="images/18_discretizationHousePricePrediction.png" width=400 height=400>  
+$\tiny{\text{YouTube-Stanford-CS229-Andrew Ng}}$   
+</section>
+<section id="alternative-approach">
+<h2>Alternative approach<a class="headerlink" href="#alternative-approach" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>approximate <span class="math notranslate nohighlight">\(V^{*}\)</span> directly without using discretization directly</p>
+<ul>
+<li><p>in linear regression problem</p>
+<ul>
+<li><p>approximate the value function where we learn V as a function of s</p></li>
+<li><p>approximate <span class="math notranslate nohighlight">\(y \approx \theta^{T}x\)</span> or <span class="math notranslate nohighlight">\(\theta^{T} \phi(x)\)</span></p>
+<ul>
+<li><p>where <span class="math notranslate nohighlight">\(\phi(x)\)</span> is the representation of features of x</p></li>
+<li><p>in the housing price problem, <span class="math notranslate nohighlight">\(\phi(x)\)</span> is vector of x’s the housing price <span class="math notranslate nohighlight">\(\{x_{1}, x_{2}, x_{1}^{2}, x_{1}x_{2}\}\)</span>, either as a function of real feature or complex set of features of house</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>in fitted value iteration problem</p>
+<ul>
+<li><p>is a model where we will approximate <span class="math notranslate nohighlight">\(V^{*}(s)\)</span>, as a linear function of features of the state, with lot of modifications to approximate the value function</p></li>
+<li><p>approximate <span class="math notranslate nohighlight">\(V^{*}(s) \approx \theta^{T} \phi(s)\)</span></p></li>
+<li><p>once we have a good approximation of value function, we can compute the optimal action for every state</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<ul class="simple">
+<li><p>fitted value iteration problem works best with a model with simulator of the MDP</p></li>
+<li><p>what does that mean?</p></li>
+<li><p>Model (simulator) of a robot is a function that takes an input state s, an action a and outputs state s’, drawn from the state space probability <span class="math notranslate nohighlight">\(P_{sa}\)</span></p></li>
+<li><p>for most of the MDP problems, the state space will be very high dimensional and the action space is much lower dimensional than the state space</p>
+<ul>
+<li><p>for car state s will be 6 dimensional, and action a will be 2 dimensional - steering and wheel</p></li>
+<li><p>for helicopter state s will be 12 dimensional, and action a will be 4 dimensional - left and right sticks with 2 controls each</p></li>
+<li><p>for pendulum state space s will be 4 dimensional and action a will be 1 - left or right</p></li>
+</ul>
+</li>
+<li><p>later we will see we will not need to discretize action space</p></li>
+</ul>
+<img src="images/18_simulationModel.png" width=400 height=400>  
+$\tiny{\text{YouTube-Stanford-CS229-Andrew Ng}}$   
+</section>
+<section id="how-do-we-make-a-model">
+<h2>How do we make a model<a class="headerlink" href="#how-do-we-make-a-model" title="Permalink to this headline">¶</a></h2>
+<ul>
+<li><p>One way - use physics simulator package</p>
+<ul class="simple">
+<li><p>in pendulum case,</p>
+<ul>
+<li><p>state space is 4 dim, use physics simulator package, plug in the dimension details, mass and other details, and the simulator will spit out how the state evolves from one time step to another time step</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Second way - learn model from data</p>
+<ul>
+<li><p>more generally used</p></li>
+<li><p>lets say we have a helicopter and we want to build an autonomous controller for it</p>
+<ul>
+<li><p>start helicopter in some state <span class="math notranslate nohighlight">\(s_{0}\)</span></p></li>
+<li><p>a human pilot will command the helicopter with some action <span class="math notranslate nohighlight">\(a_{0}\)</span></p></li>
+<li><p>say in few seconds, the helicopter reaches a new position and orientation as <span class="math notranslate nohighlight">\(s_{1}\)</span></p></li>
+<li><p>human pilot will keep on taking actions say every 10 times a second and we record its action and state. repeat for t seconds</p></li>
+<li><p>record multiple trajectories say m times</p></li>
+<li><p>apply supervised learning to predict <span class="math notranslate nohighlight">\(s_{t+1}\)</span>(<span class="math notranslate nohighlight">\(s^{'}\)</span>) as function of state <span class="math notranslate nohighlight">\(s_{t}\)</span>(<span class="math notranslate nohighlight">\(s\)</span>) and action <span class="math notranslate nohighlight">\(a_{t}\)</span>(<span class="math notranslate nohighlight">\(a\)</span>)</p></li>
+<li><p>in linear regression version</p>
+<ul class="simple">
+<li><p>this model is fine for helicopter moving at slow speed</p></li>
+</ul>
+<blockquote>
+<div><p><span class="math notranslate nohighlight">\(s_{t+1} = As_{t} + Ba_{t}\)</span></p>
+</div></blockquote>
+<ul class="simple">
+<li><p>we can also plug in non-linear form of model depending on your choice of features of A as <span class="math notranslate nohighlight">\(\phi(s)\)</span> and B as <span class="math notranslate nohighlight">\(\phi(a)\)</span></p></li>
+<li><p>to fit the parameters A and B, that minimizes the squared difference of left and right hand side</p></li>
+</ul>
+<blockquote>
+<div><p><span class="math notranslate nohighlight">\(\min\limits_{A,B}\sum\limits_{i=1}^{m}\sum\limits_{t=0}^{T}\|s_{t+1}^{(i)}-(As_{t}^{(i)} + Ba_{t}^{(i)}) \|^{2}\)</span></p>
+</div></blockquote>
+<ul>
+<li><p>we can either model it as</p>
+<ul>
+<li><p>deterministic</p>
+<blockquote>
+<div><p><span class="math notranslate nohighlight">\(s_{t+1} = As_{t} + Ba_{t}\)</span></p>
+</div></blockquote>
+</li>
+<li><p>stochastic</p>
+<blockquote>
+<div><p><span class="math notranslate nohighlight">\(s_{t+1} = As_{t} + Ba_{t} + \epsilon_{t}\)</span></p>
+</div></blockquote>
+<ul class="simple">
+<li><p>where <span class="math notranslate nohighlight">\(\epsilon_{t} \sim N(0, \sigma^{2}I)\)</span></p></li>
+<li><p>in this case, we will be sampling <span class="math notranslate nohighlight">\(\epsilon\)</span> from a Gaussian vector and add it to the prediction of linear model</p></li>
+<li><p>if we simulate the helicopter flying around, the simulator will generate random noise that adds or subtracts to the state space of helicopter as if there were little wind gusts blowing the helicopter around</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>for high speed helicopters, this model will not work</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>this approach is called <strong>model based reinforcement learning</strong></p>
+<ul class="simple">
+<li><p>to build a model of robot, we train the reinforcement learning algorithm in the simulator</p></li>
+<li><p>then take the policy we learn in simulation</p></li>
+<li><p>apply back on the real robot</p></li>
+<li><p>this field is evolving quickly in robotics</p></li>
+</ul>
+</li>
+<li><p>alternative is <strong>model-free reinforcement learning</strong>,</p>
+<ul class="simple">
+<li><p>this is generally not much used as we cannot afford to run actual helicopter and learn from it</p></li>
+<li><p>instead model-free rl is generally used in video games</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<ul class="simple">
+<li><p>if we design a deterministic simulators for robots and use it in a real robot, the odds of its success is very low</p></li>
+<li><p>instead if we design a stochastic simulators and add noise term into it, the chances of its success increases for robotic control problems</p></li>
+</ul>
+</section>
+<section id="how-do-you-approximate-the-value-function">
+<h2>How do you approximate the value function<a class="headerlink" href="#how-do-you-approximate-the-value-function" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>in order to apply, fitted value iteration</p></li>
+<li><p>first step is to choose features <span class="math notranslate nohighlight">\(\phi(s)\)</span> of the state s</p></li>
+<li><p>approximate V(s)</p></li>
+</ul>
+<blockquote>
+<div><p><span class="math notranslate nohighlight">\(V(s) = \theta^{T}\phi(s)\)</span></p>
+</div></blockquote>
+<ul class="simple">
+<li><p>determine the features of <span class="math notranslate nohighlight">\(\phi(s)\)</span> as nonlinear features that we suppose might be representative of value/how well the robot is doing</p></li>
+<li><p>value of state is the expected payoff/discounted rewards from that state</p></li>
+<li><p>the value function captures if the robot starts off in that state, how well would it do</p></li>
+</ul>
+</section>
+<section id="fitted-value-algorithm">
+<h2>Fitted value algorithm<a class="headerlink" href="#fitted-value-algorithm" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Value iteration</p></li>
+</ul>
+<blockquote>
+<div><p><span class="math notranslate nohighlight">\(\begin{equation}\\
+\begin{aligned}\\
+V(s) &amp;= R(s) + \gamma\max\limits_{a}\sum\limits_{s'\in S}P_{sa}(s')V(s')\\
+&amp;= R(s) + \gamma\max\limits_{a}E_{s'\sim P_{sa}}[V(s')]\\
+\end{aligned}\\
+\end{equation}\\
+\)</span></p>
+</div></blockquote>
+<ul class="simple">
+<li><p>Fitted value iteration</p>
+<ul>
+<li><p>Choose set of states randomly <span class="math notranslate nohighlight">\(\{ s^{(1)}, s^{(2)}, ..., s^{(m)}\} \in S\)</span></p></li>
+<li><p>Initialize <span class="math notranslate nohighlight">\(\theta := 0\)</span></p>
+<ul>
+<li><p>in general</p>
+<ul>
+<li><p>we map <span class="math notranslate nohighlight">\(x \rightarrow y\)</span>,</p></li>
+<li><p>as we have a finite set of examples that we see as values of x in the training set for predicting housing prices</p></li>
+</ul>
+</li>
+<li><p>similarly</p>
+<ul>
+<li><p>here we map <span class="math notranslate nohighlight">\(s \rightarrow V(s)\)</span></p></li>
+<li><p>we will use a certain set of states, and use that finite set of examples s in a linear regression to fit V(s)</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>that is the use of sample above</p></li>
+<li><p>Repeat { - <em>Loop1</em></p>
+<ul>
+<li><p>for i = 1,2,..,m {  - <em>Loop2</em></p>
+<ul>
+<li><p>for each action <span class="math notranslate nohighlight">\(a \in A\)</span> { - <em>Loop3</em></p>
+<ul>
+<li><p>sample <span class="math notranslate nohighlight">\(\{ s'^{(1)}, s'^{(2)}, ..., s^{(k)}\} \sim P_{s^{(i)},a}\)</span> - <em>Step4</em></p></li>
+<li><p>set <span class="math notranslate nohighlight">\(q(a) = \frac{1}{k}\sum\limits_{j=1}^{k}[R(s^{(i)}) + \gamma V(s'_{j})]\)</span> - which is the estimate of expectation - <em>Step5</em></p></li>
+</ul>
+</li>
+<li><p>}</p></li>
+<li><p>set <span class="math notranslate nohighlight">\(y^{(i)} = \max\limits_{a}q(a)\)</span> - <em>Step6</em></p></li>
+</ul>
+</li>
+<li><p>}</p></li>
+<li><p><span class="math notranslate nohighlight">\(\theta := \arg\min\limits_{\theta}\frac{1}{2}\sum\limits_{i=1}^{m}(\theta^{T}\phi(s^{(i)}) - y^{(i)})^{2}\)</span> - <em>Step7</em></p></li>
+</ul>
+</li>
+<li><p>}</p></li>
+<li><p>In <em>Loop2</em>, m represents how many times we fly the helicopter in order to build a model</p></li>
+<li><p>in <em>Step4</em>, we took k samples from <span class="math notranslate nohighlight">\(V(s'_{j})\)</span> distribution, average V(s’) in <em>Step5</em></p>
+<ul>
+<li><p>we sampled k times because we use stochastic simulator here</p></li>
+<li><p>if we use a deterministic simulator instead, for a given state and action, it will always result in same state <span class="math notranslate nohighlight">\(s^{(i)},a \rightarrow s'\)</span></p></li>
+<li><p>for deterministic simulator, we set k=1</p></li>
+</ul>
+</li>
+<li><p>in <em>Step5</em>, we get <span class="math notranslate nohighlight">\(V(s'_{j})\)</span> from using the parameters of <span class="math notranslate nohighlight">\(\theta^{T}\phi(s_{j}')\)</span> from the last iteration of fitted value iteration</p></li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<div><p><span class="math notranslate nohighlight">\(\begin{equation}\\
+\begin{aligned}\\
+V(s) &amp;= R(s) + \gamma\max\limits_{a}\sum\limits_{s'\in S}P_{sa}(s')V(s')\\
+&amp;= R(s) + \gamma\max\limits_{a}E_{s'\sim P_{sa}}[V(s')]\\
+&amp;= \max\limits_{a}E_{s'\sim P_{sa}}[R(s) + \gamma V(s')]\\
+&amp;= \max\limits_{a}E_{s'\sim P_{sa}}[q(a)]\\
+\end{aligned}\\
+\end{equation}\\
+\)</span></p>
+</div></blockquote>
+<ul class="simple">
+<li><p>In <em>Step6</em>, we set <span class="math notranslate nohighlight">\(y^{(i)} = \max\limits_{a}q(a)\)</span> - is the estimate at right-hand side of value iteration</p>
+<ul>
+<li><p>in the original value iteration</p>
+<ul>
+<li><p><span class="math notranslate nohighlight">\(V(s^{(i)}) := y^{(i)}\)</span></p></li>
+</ul>
+</li>
+<li><p>in fitted value iteration</p>
+<ul>
+<li><p>we want <span class="math notranslate nohighlight">\(V(s^{(i)}) \approx y^{(i)}\)</span></p></li>
+<li><p>i.e., <span class="math notranslate nohighlight">\(\theta^{T}\phi(s^{(i)}) \approx y^{(i)}\)</span></p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<ul class="simple">
+<li><p>In <em>Step7</em>: run linear regression to choose the parameters <span class="math notranslate nohighlight">\(\theta\)</span> that minimizes the squared error</p></li>
+</ul>
+<blockquote>
+<div><p><span class="math notranslate nohighlight">\(\theta := \arg\min\limits_{\theta}\frac{1}{2}\sum\limits_{i=1}^{m}(\theta^{T}\phi(s^{(i)}) - y^{(i)})^{2}\)</span></p>
+</div></blockquote>
+</section>
+<section id="some-practical-aspects">
+<h2>Some practical aspects<a class="headerlink" href="#some-practical-aspects" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>After we learn all the parameters, fitted VI gives approximation to <span class="math notranslate nohighlight">\(V^{*}\)</span>, which implicitly defines <span class="math notranslate nohighlight">\(\pi^{*}\)</span></p></li>
+</ul>
+<blockquote>
+<div><p><span class="math notranslate nohighlight">\(\pi^{*}(s) = \arg\max\limits_{a}E_{s'\in P_{s,a}}[V^{*}(s')]\)</span></p>
+</div></blockquote>
+<ul class="simple">
+<li><p>in real world helicopter fly, we will have to choose control actions at 10Hertz, i.e., 10 times a second we are given the state, and we have to choose an action</p></li>
+<li><p>same would be with a self driving car, where we choose a new action 10 times a second</p></li>
+<li><p>but how do we compute this expectation and maximize this 10 times per second?</p>
+<ul>
+<li><p>we used samples <span class="math notranslate nohighlight">\(\{ s'^{(1)}, s'^{(2)}, ..., s^{(k)}\} \sim P_{s^{(i)},a}\)</span> to approximate expectation</p></li>
+</ul>
+</li>
+<li><p>Tricks</p>
+<ul>
+<li><p>simulator is of the form</p>
+<ul>
+<li><p><span class="math notranslate nohighlight">\(s_{t+1} = f(s_{t}, a_{t}) + \epsilon_{t}\)</span>, i.e., <span class="math notranslate nohighlight">\((As_{t} + Ba_{t} + \epsilon_{t})\)</span> - previous state and action plus some noise</p></li>
+</ul>
+</li>
+<li><p>for deployment/runtime</p>
+<ul>
+<li><p>set <span class="math notranslate nohighlight">\(\epsilon_{t}=0\)</span> and <span class="math notranslate nohighlight">\(k=1\)</span></p></li>
+<li><p>in simulator we need to have noise and randomness</p></li>
+<li><p>but for real practical purposes, we can use discretized state and action V</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./cs229_ml"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            
+                <!-- Previous / next buttons -->
+<div class='prev-next-area'> 
+    <a class='left-prev' id="prev-link" href="test2.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">test2</p>
+        </div>
+    </a>
+</div>
+            
+        </div>
+    </div>
+    <footer class="footer">
+  <p>
+    
+      By Chandra<br/>
+    
+        &copy; Copyright 2021.<br/>
+  </p>
+</footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+
+  </body>
+</html>

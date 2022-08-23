@@ -1,0 +1,805 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>test2</title>
+    
+  <link href="../_static/css/theme.css" rel="stylesheet">
+  <link href="../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.be7d3bbb2ef33a8344ce.js">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Lec 18-Continuous MDPs-Model Simulation" href="lec18-continuousMDPs-ModelSimulation.html" />
+    <link rel="prev" title="Lec 17-MDPs-Value Policy Iteration" href="lec17-MDPs-ValuePolicyIteration.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../_static/mylogo.png" class="logo" alt="logo">
+      
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../intro.html">
+   My learning notebook
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Machine Learning
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../ml_examples/intro.html">
+   Welcome to your ML Book
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../ml_examples/ml_glossary.html">
+     Conceptual brief
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../ml_examples/Store_Sales_Forecasting_With_Tensorflow.html">
+     Store Sales Forecasting with TensorFlow
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Reference
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../markdown.html">
+   Markdown Files
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../notebooks.html">
+   Content with notebooks
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../markdown-notebooks.html">
+   Notebooks with MyST Markdown
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Lecture Notes
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="intro.html">
+   CS229 ML - by Andrew Ng
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2">
+    <a class="reference internal" href="lec02-LinearReg-GradientDescent.html">
+     Lec 02-Linear Regression - Gradient Descent
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="lec03-LocallyWeighted-LogisticRegression.html">
+     Lec 03-Locally Weighted Regression - Logistic Regression
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="lec04-Perceptron-GLM.html">
+     Lec 04-Perceptron - GLM
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="lec05-GDA-NaiveBayes.html">
+     Lec 05-GDA - Naive Bayes
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="lec06-NaiveBayes-SVM.html">
+     Lec 06-Naive Bayes - SVM
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="lec07-Kernels-SVM.html">
+     Lec 07-Kernels - SVM
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="lec08-DataSplits-Models-CrossValidation.html">
+     Lec 08-Data Splits - Models - Cross Validation
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="lec09-Approx-EstimationError-ERM.html">
+     Lec 09-Estimation Error - ERM
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="lec10-DecisionTrees-EnsembleMethods.html">
+     Lec 10-Decision Trees - Ensemble Methods
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="lec11-Intro-NN.html">
+     Lecture 11
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="lec12-Backpropagation-ImprovingNN.html">
+     Lec 12-Improving NN
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="lec13-DebuggingMLModels-ErrorAnalysis.html">
+     Lec 13-Debugging ML Models-Error Analysis
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="lec15-EMAlgo-FactorAnalysis.html">
+     Lec 15-EM Algo-Factor Analysis
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="lec16-IndependentComponentAnalysis-RL.html">
+     Lec 16-Independent Component Analysis-RL
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="lec17-MDPs-ValuePolicyIteration.html">
+     Lec 17-MDPs-Value Policy Iteration
+    </a>
+   </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     test2
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="lec18-continuousMDPs-ModelSimulation.html">
+     Lec 18-Continuous MDPs-Model Simulation
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/cs229_ml/test2.md"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.md</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/chandrabsingh/learning"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/chandrabsingh/learning/issues/new?title=Issue%20on%20page%20%2Fcs229_ml/test2.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        
+    </div>
+</div>
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#outline">
+   Outline
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#unsupervised-learning">
+   Unsupervised learning
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#clustering">
+   Clustering
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#k-means-clustering">
+   k-means clustering
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#algorithm">
+     Algorithm
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#density-estimation">
+   Density estimation
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#gaussian-mixture-model">
+   Gaussian mixture model
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#mixture-of-gaussian-model">
+     Mixture of Gaussian model
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#em-algorithm">
+   EM algorithm
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#e-step">
+     E step
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#m-step">
+     M step
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#intuition-1">
+       Intuition 1
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#todo-pending">
+       TODO Pending
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>test2</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#outline">
+   Outline
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#unsupervised-learning">
+   Unsupervised learning
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#clustering">
+   Clustering
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#k-means-clustering">
+   k-means clustering
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#algorithm">
+     Algorithm
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#density-estimation">
+   Density estimation
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#gaussian-mixture-model">
+   Gaussian mixture model
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#mixture-of-gaussian-model">
+     Mixture of Gaussian model
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#em-algorithm">
+   EM algorithm
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#e-step">
+     E step
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#m-step">
+     M step
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#intuition-1">
+       Intuition 1
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#todo-pending">
+       TODO Pending
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            
+              <div>
+                
+  <section class="tex2jax_ignore mathjax_ignore" id="test2">
+<h1>test2<a class="headerlink" href="#test2" title="Permalink to this headline">¶</a></h1>
+<section id="outline">
+<h2>Outline<a class="headerlink" href="#outline" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Unsupervised learning</p>
+<ul>
+<li><p>k-means clustering</p></li>
+<li><p>Mixture of Gaussians</p></li>
+<li><p>EM (Expectation Maximization)</p></li>
+<li><p>Derivation of EM</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="unsupervised-learning">
+<h2>Unsupervised learning<a class="headerlink" href="#unsupervised-learning" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>In supervised learning, we are given labeled data and we classify them and find decision boundary. We are given (x,y)</p></li>
+<li><p>Instead in unsupervised learning, we are given unlabeled data. We are given only x - <span class="math notranslate nohighlight">\((x^{(1)}, x^{(2)}, ..., x^{(m)})\)</span></p></li>
+</ul>
+</section>
+<section id="clustering">
+<h2>Clustering<a class="headerlink" href="#clustering" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>group data into clusters</p></li>
+<li><p>example - market segmentation</p>
+<ul>
+<li><p>what are the different market segments</p></li>
+<li><p>age range</p></li>
+<li><p>education</p></li>
+<li><p>different parts of country</p></li>
+</ul>
+</li>
+<li><p>k-means clustering</p></li>
+</ul>
+</section>
+<section id="k-means-clustering">
+<h2>k-means clustering<a class="headerlink" href="#k-means-clustering" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>pick 2 points called cluster centroids</p></li>
+<li><p>cluster centroids which is your best guess, where the centers of two clusters are</p></li>
+<li><p>k-means is an iterative algorithm and repeated do 2 things</p>
+<ul>
+<li><p>1st thing</p>
+<ul>
+<li><p>for each training example, color each training example as which cluster centroid is it closer to</p></li>
+</ul>
+</li>
+<li><p>2nd thing</p>
+<ul>
+<li><p>for each colored examples, compute the average</p></li>
+<li><p>move the centroid to the new average</p></li>
+</ul>
+</li>
+<li><p>keep looking if the algorithm is converging or not</p></li>
+</ul>
+</li>
+</ul>
+<section id="algorithm">
+<h3>Algorithm<a class="headerlink" href="#algorithm" title="Permalink to this headline">¶</a></h3>
+<ul>
+<li><p>Data has no labels : <span class="math notranslate nohighlight">\((x^{(1)}, x^{(2)}, ..., x^{(m)})\)</span></p></li>
+<li><ol class="simple">
+<li><p>Initialize cluster centroid <span class="math notranslate nohighlight">\(\mu_{1}, \mu_{2}, ..., \mu_{k} \in \mathbb R^{n}\)</span> - by randomly pick k example out of your training set and set cluster centroids to k-randomly chosen examples</p></li>
+</ol>
+</li>
+<li><ol class="simple">
+<li><p>Repeat until convergence</p></li>
+</ol>
+<ul class="simple">
+<li><p>a. Set <span class="math notranslate nohighlight">\(c^{(i)} := \text{arg }\min\limits_{j} \Vert (x^{(i)} - \mu_{j})\Vert_{2}\)</span>  (“color the points”)</p>
+<ul>
+<li><p>Set <span class="math notranslate nohighlight">\(c^{(i)}\)</span> equal to either j = 1 or 2 depending on whether that example <span class="math notranslate nohighlight">\(x^{(i)}\)</span> is closer to cluster centroid 1 or 2</p></li>
+<li><p>Notation:</p>
+<ul>
+<li><p>L1 norm: <span class="math notranslate nohighlight">\(\Vert x \Vert_{1}\)</span></p></li>
+<li><p>L2 norm: <span class="math notranslate nohighlight">\(\Vert x \Vert\)</span> or <span class="math notranslate nohighlight">\(\|x\|^{2}\)</span></p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>b. For j =1,2,..,k  (“move the cluster centroids”)
+$<span class="math notranslate nohighlight">\(\mu_{j} := \frac{\sum\limits_{i=1}^{m} \mathbb 1 \{c^{(i)} = j\}x^{(i)}} {\sum\limits_{i=1}^{m} \mathbb 1 \{c^{(i)} = j\}}\)</span>$</p></li>
+</ul>
+</li>
+<li><p>This algorithm is not guaranteed to converge, as it is a non-convex function</p></li>
+<li><p>Cost/Distortion function
+$<span class="math notranslate nohighlight">\(J(c,\mu) = \min\sum\limits_{i=1}^{m}\|x^{(i)} - \mu_{c^{(i)}}\|^{2}\)</span>$</p></li>
+<li><p>how do you choose k?</p>
+<ul class="simple">
+<li><p>choose manually, depending on what is the purpose of this algorithm</p></li>
+<li><p>if it is meant for market segmentation for 4 categories, it makes sense to have 4 cluster rather than more</p></li>
+<li><p>some formula available</p></li>
+</ul>
+</li>
+</ul>
+</section>
+</section>
+<section id="density-estimation">
+<h2>Density estimation<a class="headerlink" href="#density-estimation" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Applications</p>
+<ul>
+<li><p>unusual/anomaly detection - aircraft</p></li>
+<li><p>very strange network traffic - anomaly detection</p></li>
+<li><p>very strange cellular traffic patterns - anomaly detection</p></li>
+</ul>
+</li>
+<li><p>Given all the training examples, <strong>can you model what is the density from which x was drawn</strong>?</p>
+<ul>
+<li><p>if <span class="math notranslate nohighlight">\(p(x) &lt; \epsilon\)</span> is very small, you detect it as anomaly</p></li>
+<li><p>Mixture of Gaussians</p>
+<ul>
+<li><p>how do you p(x) with the data coming from an L-shaped</p></li>
+<li><p>there is no single distribution for modeling such complex distributions</p></li>
+<li><p>instead we can look into mixture of Gaussians models</p></li>
+<li><p>may be this data comes from two Gaussians</p></li>
+<li><p>may be there is more probability mass density in the lower Gaussian and low probability mass density in the upper one</p></li>
+<li><p><strong>contours of Gaussian mixture</strong></p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<img src="images/14_densityEstimation.png" width=400 height=400>  
+$\tiny{\text{YouTube-Stanford-CS229-Andrew Ng}}$   
+</section>
+<section id="gaussian-mixture-model">
+<h2>Gaussian mixture model<a class="headerlink" href="#gaussian-mixture-model" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Lets consider 1 dimensional <span class="math notranslate nohighlight">\((x \in \mathbb R)\)</span></p></li>
+<li><p>say there are two Gaussian distributions, and x’s represent data points coming from 1st distribution and o’s represent data points coming from 2nd distribution</p></li>
+<li><p>following is the overall density of mixture distribution</p></li>
+<li><p>if we knew that x’s came from Gaussian 1 and o’s from Gaussian 2, then we could have used GDA - Gaussian discriminant analysis to fit this model</p></li>
+<li><p>the problem is we see only x’s and maybe the data came from 2 different Gaussian, but we dont know which example it came from</p></li>
+<li><p>the Expectation-Maximization EM algorithm helps us model despite not knowing which Gaussian this example came from</p></li>
+</ul>
+<section id="mixture-of-gaussian-model">
+<h3>Mixture of Gaussian model<a class="headerlink" href="#mixture-of-gaussian-model" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>Suppose there is a latent(hidden/unobserved) random variable z; and <span class="math notranslate nohighlight">\(x^{(i)}, z^{(i)}\)</span> are modeled as a joint distribution</p></li>
+</ul>
+<blockquote>
+<div><p><span class="math notranslate nohighlight">\(p(x^{(i)}, z^{(i)}) = p(x^{(i)}|z^{(i)})p(z^{(i)})\)</span>, where <span class="math notranslate nohighlight">\(z \in \{1,2,..,k\}\)</span></p>
+</div></blockquote>
+<ul class="simple">
+<li><p>where <span class="math notranslate nohighlight">\(z^{(i)} \sim \)</span> Multinomial(<span class="math notranslate nohighlight">\(\phi\)</span>) <span class="math notranslate nohighlight">\(\Rightarrow p(z^{(i)}=j) = \phi_{j}\)</span> and <span class="math notranslate nohighlight">\(x^{(i)}|z^{(i)} = j \sim N(\mu_{j}, \Sigma_{j})\)</span></p></li>
+<li><p>If there are only two distributions, this model will be Bernoulli. If there are k Gaussians, z can take values from <span class="math notranslate nohighlight">\(\{1,2,..,k\}\)</span></p></li>
+<li><p>Once we know that the example came from Gaussian number j, then x conditioned that z=j is drawn from a Gaussian distribution with some mean <span class="math notranslate nohighlight">\(\mu_{j}\)</span> and some covariance <span class="math notranslate nohighlight">\(\Sigma_{j}\)</span></p></li>
+</ul>
+<br>
+<ul class="simple">
+<li><p>Difference between this model and Gaussian Discriminant Analysis(GDA) is:</p>
+<ul>
+<li><p>In GDA we had labeled examples <span class="math notranslate nohighlight">\(x^{(i)}, y^{(i)}\)</span>, where <span class="math notranslate nohighlight">\(y^{(i)}\)</span> was observed. In this model, <span class="math notranslate nohighlight">\(z^{(i)}\)</span> is hidden/unobserved.</p></li>
+<li><p>In GDA, y took one of two values. Here it is one of k values</p></li>
+<li><p>In GDA, we used one <span class="math notranslate nohighlight">\(\Sigma\)</span>. Here we use <span class="math notranslate nohighlight">\(\Sigma_{j}\)</span>.</p></li>
+</ul>
+</li>
+</ul>
+<br>
+<ul class="simple">
+<li><p>If and only if we knew <span class="math notranslate nohighlight">\(z^{(i)}\)</span>, we can use MLE
+$<span class="math notranslate nohighlight">\(l(\phi, \mu, \Sigma) = \sum\limits^{n}_{i=1}\log p(x^{(i)}; \phi, \mu, \Sigma)\)</span>$</p></li>
+<li><p>Maximizing this, we get
+$<span class="math notranslate nohighlight">\(\phi_{j} = \frac{1}{n}\sum\limits^{n}_{i=1}\mathbb 1\{z^{(i)} = j\}\)</span><span class="math notranslate nohighlight">\(
+\)</span><span class="math notranslate nohighlight">\(\mu_{j} = \frac{\sum^{n}_{i=1}\mathbb 1\{z^{(i)} = j\}x^{(i)}}{\sum^{n}_{i=1}\mathbb 1\{z^{(i)} = j\}}\)</span><span class="math notranslate nohighlight">\(
+\)</span><span class="math notranslate nohighlight">\(\Sigma_{j} = \frac{\sum^{n}_{i=1}\mathbb 1\{z^{(i)} = j\}(x^{(i)} - \mu_{j})(x^{(i)} - \mu_{j})^{T}}{\sum^{n}_{i=1}\mathbb 1\{z^{(i)} = j\}}\)</span>$<br />
+<br></p></li>
+<li><p>But we cannot use these parameters, as we don’t know z</p></li>
+</ul>
+</section>
+</section>
+<section id="em-algorithm">
+<h2>EM algorithm<a class="headerlink" href="#em-algorithm" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>1st step - E step - we will guess the values of z</p></li>
+<li><p>2nd step - M step - we will use the guessed value of z</p></li>
+<li><p>A bootstrap procedure - Iterate, update the guesses and rerun</p></li>
+</ul>
+<section id="e-step">
+<h3>E step<a class="headerlink" href="#e-step" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>calculate posterior probability</p></li>
+<li><p><span class="math notranslate nohighlight">\(w_{j}^{(i)}\)</span> is the strength of how much <span class="math notranslate nohighlight">\(x^{(i)}\)</span> is assigned to that particular <span class="math notranslate nohighlight">\(\mu_{j}\)</span> Gaussian</p></li>
+<li><p>this is a number between 0 and 1, and the strength of all the assignments and every point is assigned a sign with a total strength equal to 1</p></li>
+<li><p>will assign 0.8 to more close Gaussian and 0.2 to a more distinct Gaussian
+$<span class="math notranslate nohighlight">\(w_{j}^{(i)} = p(z^{(i)} = j|x^{(i)}; \phi,\mu,\Sigma) = \frac{p(x^{(i)}|z^{(i)} = j; \mu,\Sigma) p(z^{(i)}=j; \phi)}{\sum_{l=1}^{k} p(x^{(i)}|z^{(i)} = l; \mu,\Sigma) p(z^{(i)}=l; \phi)}\)</span>$</p></li>
+<li><p><span class="math notranslate nohighlight">\(p(x^{(i)}|z^{(i)} = j; \mu,\Sigma)\)</span> is given by evaluating the density of Gaussian <span class="math notranslate nohighlight">\(N(\mu_{j}, \Sigma_{j})\)</span>
+$<span class="math notranslate nohighlight">\(\frac{1}{(2\pi)^{n/2}|\Sigma_{j}|^{1/2}} exp\left( -\frac{1}{2} (x^{(i)} - \mu_{j})^{T}\Sigma_{j}^{-1}(x^{(i)} - \mu_{j}) \right)\)</span>$</p></li>
+<li><p><span class="math notranslate nohighlight">\(p(z^{(i)}=j; \phi)\)</span> is the multinomial given by <span class="math notranslate nohighlight">\(\phi_{j}\)</span></p></li>
+</ul>
+</section>
+<section id="m-step">
+<h3>M step<a class="headerlink" href="#m-step" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>instead of using indicator function as which gaussian did data point come from, <span class="math notranslate nohighlight">\(w_{j}\)</span> is being used which is the expected value of indicator function <span class="math notranslate nohighlight">\(E[\mathbb 1\{z^{(i)} = j\}]\)</span> which again is equal to probability of indicator function being true</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[\phi_{j} = \frac{1}{m}\sum\limits^{m}_{i=1}w_{j}^{(i)}\]</div>
+<div class="math notranslate nohighlight">
+\[\mu_{j} = \frac{\sum^{m}_{i=1}w_{j}^{(i)}x^{(i)}}{\sum^{n}_{i=1}w_{j}^{(i)}}\]</div>
+<div class="math notranslate nohighlight">
+\[\Sigma_{j} = \frac{\sum^{n}_{i=1}w_{j}^{(i)}(x^{(i)} - \mu_{j})(x^{(i)} - \mu_{j})^{T}}{\sum^{n}_{i=1}w_{j}^{(i)}}\]</div>
+<br>
+<section id="intuition-1">
+<h4>Intuition 1<a class="headerlink" href="#intuition-1" title="Permalink to this headline">¶</a></h4>
+<ul class="simple">
+<li><p>In k-means clustering algorithm, hard way of assigning points are being used. We take each point and assign it to one of k cluster centroids. This was hard way of assignment</p></li>
+<li><p>In EM algorithm, soft way of assigning points are being used. It uses probability in the form of weights, as how much is assigned to Gaussian 1 vs Gaussian 2</p></li>
+<li><p>It can fit algorithm of different type of Gaussian mixtures, which is a rich distribution</p></li>
+</ul>
+<blockquote>
+<div><p><span class="math notranslate nohighlight">\(p(x) \ge \epsilon\)</span> - this is okay<br />
+<span class="math notranslate nohighlight">\(p(x) \lt \epsilon\)</span> - this is anomaly</p>
+</div></blockquote>
+<img src="images/14_gaussianMixtures.png" width=200 height=200>  
+$\tiny{\text{YouTube-Stanford-CS229-Andrew Ng}}$   
+</section>
+<section id="todo-pending">
+<h4>TODO Pending<a class="headerlink" href="#todo-pending" title="Permalink to this headline">¶</a></h4>
+</section>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./cs229_ml"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            
+                <!-- Previous / next buttons -->
+<div class='prev-next-area'> 
+    <a class='left-prev' id="prev-link" href="lec17-MDPs-ValuePolicyIteration.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Lec 17-MDPs-Value Policy Iteration</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="lec18-continuousMDPs-ModelSimulation.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Lec 18-Continuous MDPs-Model Simulation</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            
+        </div>
+    </div>
+    <footer class="footer">
+  <p>
+    
+      By Chandra<br/>
+    
+        &copy; Copyright 2021.<br/>
+  </p>
+</footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+
+  </body>
+</html>

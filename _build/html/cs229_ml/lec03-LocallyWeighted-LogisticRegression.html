@@ -1,0 +1,982 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Lec 03-Locally Weighted Regression - Logistic Regression</title>
+    
+  <link href="../_static/css/theme.css" rel="stylesheet">
+  <link href="../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.be7d3bbb2ef33a8344ce.js">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Lec 04-Perceptron - GLM" href="lec04-Perceptron-GLM.html" />
+    <link rel="prev" title="Lec 02-Linear Regression - Gradient Descent" href="lec02-LinearReg-GradientDescent.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../_static/mylogo.png" class="logo" alt="logo">
+      
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../intro.html">
+   My learning notebook
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Machine Learning
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../ml_examples/intro.html">
+   Welcome to your ML Book
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../ml_examples/ml_glossary.html">
+     Conceptual brief
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../ml_examples/Store_Sales_Forecasting_With_Tensorflow.html">
+     Store Sales Forecasting with TensorFlow
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Reference
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../markdown.html">
+   Markdown Files
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../notebooks.html">
+   Content with notebooks
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../markdown-notebooks.html">
+   Notebooks with MyST Markdown
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Lecture Notes
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="intro.html">
+   CS229 ML - by Andrew Ng
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2">
+    <a class="reference internal" href="lec02-LinearReg-GradientDescent.html">
+     Lec 02-Linear Regression - Gradient Descent
+    </a>
+   </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     Lec 03-Locally Weighted Regression - Logistic Regression
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="lec04-Perceptron-GLM.html">
+     Lec 04-Perceptron - GLM
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="lec05-GDA-NaiveBayes.html">
+     Lec 05-GDA - Naive Bayes
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="lec06-NaiveBayes-SVM.html">
+     Lec 06-Naive Bayes - SVM
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="lec07-Kernels-SVM.html">
+     Lec 07-Kernels - SVM
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="lec08-DataSplits-Models-CrossValidation.html">
+     Lec 08-Data Splits - Models - Cross Validation
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="lec09-Approx-EstimationError-ERM.html">
+     Lec 09-Estimation Error - ERM
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="lec10-DecisionTrees-EnsembleMethods.html">
+     Lec 10-Decision Trees - Ensemble Methods
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="lec11-Intro-NN.html">
+     Lecture 11
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="lec12-Backpropagation-ImprovingNN.html">
+     Lec 12-Improving NN
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="lec13-DebuggingMLModels-ErrorAnalysis.html">
+     Lec 13-Debugging ML Models-Error Analysis
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="lec15-EMAlgo-FactorAnalysis.html">
+     Lec 15-EM Algo-Factor Analysis
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="lec16-IndependentComponentAnalysis-RL.html">
+     Lec 16-Independent Component Analysis-RL
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="lec17-MDPs-ValuePolicyIteration.html">
+     Lec 17-MDPs-Value Policy Iteration
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="test2.html">
+     test2
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="lec18-continuousMDPs-ModelSimulation.html">
+     Lec 18-Continuous MDPs-Model Simulation
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/cs229_ml/lec03-LocallyWeighted-LogisticRegression.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/chandrabsingh/learning"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/chandrabsingh/learning/issues/new?title=Issue%20on%20page%20%2Fcs229_ml/lec03-LocallyWeighted-LogisticRegression.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        
+    </div>
+</div>
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/chandrabsingh/learning/master?urlpath=tree/learning/cs229_ml/lec03-LocallyWeighted-LogisticRegression.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#outline">
+   Outline
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#notation">
+   Notation
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#feature-selection-algorithm">
+   Feature selection algorithm
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#locally-weighted-regression">
+   Locally weighted regression
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#logistic-regression">
+   Logistic Regression
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#probabilistic-interpretation-of-linear-regression">
+     Probabilistic interpretation of Linear Regression
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#likelihood-of-parameter-theta">
+       Likelihood of parameter
+       <span class="math notranslate nohighlight">
+        \(\theta\)
+       </span>
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#difference-between-likelihood-and-probability">
+       Difference between likelihood and probability?
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#log-likelihood">
+       Log likelihood
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#classification">
+     Classification
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#binary-classification">
+       Binary classification
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id1">
+       Logistic Regression
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#how-do-we-fit-theta">
+       How do we fit
+       <span class="math notranslate nohighlight">
+        \(\theta\)
+       </span>
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id2">
+       Log likelihood
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#newton-s-method">
+     Newton’s method
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#quadratic-convergence">
+       Quadratic convergence
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#todo">
+   TODO
+  </a>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Lec 03-Locally Weighted Regression - Logistic Regression</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#outline">
+   Outline
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#notation">
+   Notation
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#feature-selection-algorithm">
+   Feature selection algorithm
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#locally-weighted-regression">
+   Locally weighted regression
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#logistic-regression">
+   Logistic Regression
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#probabilistic-interpretation-of-linear-regression">
+     Probabilistic interpretation of Linear Regression
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#likelihood-of-parameter-theta">
+       Likelihood of parameter
+       <span class="math notranslate nohighlight">
+        \(\theta\)
+       </span>
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#difference-between-likelihood-and-probability">
+       Difference between likelihood and probability?
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#log-likelihood">
+       Log likelihood
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#classification">
+     Classification
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#binary-classification">
+       Binary classification
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id1">
+       Logistic Regression
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#how-do-we-fit-theta">
+       How do we fit
+       <span class="math notranslate nohighlight">
+        \(\theta\)
+       </span>
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id2">
+       Log likelihood
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#newton-s-method">
+     Newton’s method
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#quadratic-convergence">
+       Quadratic convergence
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#todo">
+   TODO
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            
+              <div>
+                
+  <section class="tex2jax_ignore mathjax_ignore" id="lec-03-locally-weighted-regression-logistic-regression">
+<h1>Lec 03-Locally Weighted Regression - Logistic Regression<a class="headerlink" href="#lec-03-locally-weighted-regression-logistic-regression" title="Permalink to this headline">¶</a></h1>
+<section id="outline">
+<h2>Outline<a class="headerlink" href="#outline" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Linear Regression (recap)</p></li>
+<li><p>Locally Weighted regression</p></li>
+<li><p>Probabilistic interpretation</p></li>
+<li><p>Logistic Regression</p></li>
+<li><p>Newton’s method</p></li>
+</ul>
+</section>
+<section id="notation">
+<h2>Notation<a class="headerlink" href="#notation" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\( (x^{(i)}, y^{(i)}) - i^{th} \)</span> example</p></li>
+<li><p><span class="math notranslate nohighlight">\( x^{(i)} \in \mathbb R^{n+1}, y^{(i)} \in \mathbb R, x_{0} = 1 \)</span></p></li>
+<li><p>m - # examples, n = #features</p></li>
+<li><p><span class="math notranslate nohighlight">\( h_{\theta}(x) = \sum\limits_{j=0}^{n} \theta_{j}x_{j} = \theta^{T}x \)</span></p></li>
+<li><p>Cost function <span class="math notranslate nohighlight">\( J(\theta) = \frac{1}{2} \sum\limits_{i=1}^m (h_{\theta}(x^{(i)}) - y^{(i)})^{2} \)</span></p></li>
+</ul>
+</section>
+<section id="feature-selection-algorithm">
+<h2>Feature selection algorithm<a class="headerlink" href="#feature-selection-algorithm" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>what sort of feature do you want to fit</p>
+<ul>
+<li><p><span class="math notranslate nohighlight">\(\theta_{0} + \theta_{1}x_{1}\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(\theta_{0} + \theta_{1}x_{1} + \theta_{2}x^{2}\)</span></p>
+<ul>
+<li><p>quadratic equation, it comes back to the axis</p></li>
+</ul>
+</li>
+<li><p><span class="math notranslate nohighlight">\(\theta_{0} + \theta_{1}x + \theta_{2}\sqrt x \)</span></p>
+<ul>
+<li><p>if we dont want quadratic function to curve back</p></li>
+</ul>
+</li>
+<li><p><span class="math notranslate nohighlight">\(\theta_{0} + \theta_{1}x + \theta_{2}\sqrt x + \theta_{3} log(x)\)</span></p></li>
+</ul>
+</li>
+<li><p>Once we have defined how we want to fit, we can apply the machinery of linear regression here</p>
+<ul>
+<li><p>Later, we will learn, what sort of feature (<span class="math notranslate nohighlight">\(x, \sqrt x, x^{2}\)</span>) is best to fit</p></li>
+</ul>
+</li>
+</ul>
+<p>Different ways of adjusting this problem when regression does not fit in a single line, we try to solve it using locally weighted linear regression</p>
+</section>
+<section id="locally-weighted-regression">
+<h2>Locally weighted regression<a class="headerlink" href="#locally-weighted-regression" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>“Parameteric” learning algorithm -</p>
+<ul>
+<li><p>fit fixed set of parameters (<span class="math notranslate nohighlight">\(\theta_{i}\)</span>) to data</p></li>
+<li><p>For example: Linear Regression</p></li>
+</ul>
+</li>
+<li><p>“Non-Parameteric” learning algorithm</p>
+<ul>
+<li><p>Amount of data/parameter, you need to keep grows (linearly) with size of training set data</p></li>
+<li><p>to make predictions, we need to save lots of data</p></li>
+<li><p>For example: Locally weighted regression</p></li>
+</ul>
+</li>
+</ul>
+<p>To evaluate h at certain value of input X:</p>
+<ul class="simple">
+<li><p>For linear regression,</p></li>
+<li><p>fit <span class="math notranslate nohighlight">\(\theta\)</span> to minimize the cost function,</p></li>
+</ul>
+<blockquote>
+<div><p><span class="math notranslate nohighlight">\(\frac{1}{2}\sum\limits_{i}(y^{(i)}-\theta^{T}x^{(i)})^{2}\)</span></p>
+</div></blockquote>
+<ul class="simple">
+<li><p>and return <span class="math notranslate nohighlight">\(\theta^{T}X\)</span></p></li>
+<li><p>For locally weighted regression, <strong>more weights are put on some local areas</strong>, rather than focusing globally</p></li>
+</ul>
+<blockquote>
+<div><p><span class="math notranslate nohighlight">\(\sum\limits_{i=1}^{m}w^{(i)}(y^{(i)}-\theta^{T}x^{(i)})^{2}\)</span> - <strong>Eq 1</strong></p>
+</div></blockquote>
+<ul class="simple">
+<li><p>where <span class="math notranslate nohighlight">\(w^{(i)}\)</span> is a weighting function</p></li>
+</ul>
+<blockquote>
+<div><p><span class="math notranslate nohighlight">\(w^{(i)} = exp(\frac{-(x^{(i)} - x)^{2}}{2\tau^{2}})\)</span></p>
+</div></blockquote>
+<ul class="simple">
+<li><p>x is the location where we want to make prediction</p></li>
+<li><p><span class="math notranslate nohighlight">\(x^{i}\)</span> is the ith training example</p></li>
+<li><p>If <span class="math notranslate nohighlight">\(|x^{(i)} - x|\)</span> is small, <span class="math notranslate nohighlight">\( x^{(i)} \approx 1\)</span></p></li>
+<li><p>If <span class="math notranslate nohighlight">\(|x^{(i)} - x|\)</span> is large, <span class="math notranslate nohighlight">\( x^{(i)} \approx 0\)</span></p></li>
+<li><p>The equation 1 is similar to what we saw in linear regression LMS. The difference is <span class="math notranslate nohighlight">\(w^{(i)}\)</span>.</p>
+<ul>
+<li><p>If the example <span class="math notranslate nohighlight">\(x^{(i)}\)</span> is far from the prediction is to be made, the prediction is multiplied with error term 0</p></li>
+<li><p>If the example <span class="math notranslate nohighlight">\(x^{(i)}\)</span> is close from the prediction is to be made, the prediction is multiplied with error term 1</p></li>
+</ul>
+</li>
+<li><p>If bandwidth <span class="math notranslate nohighlight">\(\tau\)</span> is too large, the fitting will be over-smoothing. If bandwidth is too small, the fitting will be too jagged. This hyperparameter allows you to say, how many parameters would you choose to make a prediction</p></li>
+<li><p><em>depending on which point, you want to make a prediction, we focus on that locality</em></p></li>
+</ul>
+<p><img src="images/03_locallyWt.png" width=400 height=400 />   <span class="math notranslate nohighlight">\(\tiny{\text{YouTube-Stanford-CS229-Andrew Ng}}\)</span></p>
+<p><img src="images/03_locallyWt2.png" width=400 height=200 />   <span class="math notranslate nohighlight">\(\tiny{\text{YouTube-Stanford-CS229-Andrew Ng}}\)</span></p>
+</section>
+<section id="logistic-regression">
+<h2>Logistic Regression<a class="headerlink" href="#logistic-regression" title="Permalink to this headline">¶</a></h2>
+<section id="probabilistic-interpretation-of-linear-regression">
+<h3>Probabilistic interpretation of Linear Regression<a class="headerlink" href="#probabilistic-interpretation-of-linear-regression" title="Permalink to this headline">¶</a></h3>
+<ul>
+<li><p>Why least squares has squared errors?</p>
+<ul>
+<li><p>Assume that true price of every house <span class="math notranslate nohighlight">\(y^{(i)} = \theta^{T}x^{(i)} + \epsilon^{(i)}\)</span>, where first term is the true price and the second error term <span class="math notranslate nohighlight">\(\epsilon^{(i)}\)</span> is due to unmodelled effects and random noise</p></li>
+<li><p>where <span class="math notranslate nohighlight">\(\epsilon^{(i)} \sim N(0, \sigma^{2})\)</span> - is distributed Gaussian with mean 0 and variance <span class="math notranslate nohighlight">\(\sigma^{2}\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\( P(\epsilon^{(i)}) = \frac{1}{\sqrt (2\pi)\sigma}exp(- \frac{(\epsilon^{(i)})^{2}}{2\sigma^{2}} )\)</span>, which integrates to 1</p></li>
+<li><p>Assumption is <span class="math notranslate nohighlight">\(\epsilon^{(i)}\)</span> is IID, error term of one house is not affected by price of other house in the next lane. It is not absolutely true, but is good enough</p></li>
+<li><p>this implies that <span class="math notranslate nohighlight">\(P(y^{(i)}| x^{(i)}; \theta) = \frac{1}{\sqrt (2\pi)\sigma} exp(- \frac{(y^{(i)} - \theta^{T}x^{(i)})^{2}}{2\sigma^{2}})\)</span></p>
+<ul class="simple">
+<li><p>“;” means “parameterized by”. Instead if “, <span class="math notranslate nohighlight">\(\theta\)</span>” would mean - “conditioned by <span class="math notranslate nohighlight">\(\theta\)</span>, which will be a random variable”, which is not the case here</p></li>
+</ul>
+<blockquote>
+<div><p>i.e., <span class="math notranslate nohighlight">\( (y^{(i)}| x^{(i)}; \theta) \sim N(\theta^{T}x^{(i)}, \sigma^{2})\)</span></p>
+</div></blockquote>
+</li>
+</ul>
+</li>
+</ul>
+<section id="likelihood-of-parameter-theta">
+<h4>Likelihood of parameter <span class="math notranslate nohighlight">\(\theta\)</span><a class="headerlink" href="#likelihood-of-parameter-theta" title="Permalink to this headline">¶</a></h4>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(L(\theta) = P(y^{(i)}| x^{(i)}; \theta) \)</span></p></li>
+</ul>
+</section>
+<section id="difference-between-likelihood-and-probability">
+<h4>Difference between likelihood and probability?<a class="headerlink" href="#difference-between-likelihood-and-probability" title="Permalink to this headline">¶</a></h4>
+<ul class="simple">
+<li><p>likelihood of parameters - make the data as a fixed thing and vary parameters</p></li>
+<li><p>probability of data - make the parameter as a fixed thing and vary the data</p></li>
+</ul>
+</section>
+<section id="log-likelihood">
+<h4>Log likelihood<a class="headerlink" href="#log-likelihood" title="Permalink to this headline">¶</a></h4>
+<blockquote>
+<div><p><span class="math notranslate nohighlight">\(l(\theta) = \text{log } L(\theta)\\
+= \text{log} \prod\limits_{i=1}^{m} \frac{1}{\sqrt (2\pi)\sigma} \exp(- \frac{(y^{(i)} - \theta^{T}x^{(i)})^{2}}{2\sigma^{2}})\\
+= \sum()
+\)</span></p>
+</div></blockquote>
+<img src="images/03_logLikelihoodDerivation.png" width=600 height=400 />   
+$\tiny{\text{YouTube-Stanford-CS229-Andrew Ng}}$</section>
+</section>
+<section id="classification">
+<h3>Classification<a class="headerlink" href="#classification" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>Here we used a setup of probabilistic assumptions, with the key assumption that Gaussian errors are iid, which turns out to be exactly like least squares algorithm</p></li>
+<li><p>Use this framework and apply it to a different type of problem - classification problem</p>
+<ul>
+<li><p>make assumption about <span class="math notranslate nohighlight">\(P(y|x; \theta)\)</span></p></li>
+<li><p>find max likelihood estimation</p></li>
+</ul>
+</li>
+<li><p>in classification, the value of <strong>y is either 0 or 1</strong></p></li>
+</ul>
+<section id="binary-classification">
+<h4>Binary classification<a class="headerlink" href="#binary-classification" title="Permalink to this headline">¶</a></h4>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(y \in \{0,1\}\)</span></p></li>
+<li><p>Why linear regression should not be used for binary classification?</p>
+<ul>
+<li><p>dont use linear regression to binary classification</p></li>
+<li><p>it will be a very bad fit especially when there are outliers</p></li>
+<li><p>the decision boundary will be very different</p></li>
+</ul>
+</li>
+</ul>
+<p><img src="images/03_binaryClassificationRegression.png" width=400 height=200 />   <span class="math notranslate nohighlight">\(\tiny{\text{YouTube-Stanford-CS229-Andrew Ng}}\)</span></p>
+</section>
+<section id="id1">
+<h4>Logistic Regression<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h4>
+<ul class="simple">
+<li><p>Goal: <strong>hypothesis function to output values between 0 and 1</strong></p></li>
+</ul>
+<blockquote>
+<div><div class="math notranslate nohighlight">
+\[h_{\theta}(x) \in [0,1]\]</div>
+</div></blockquote>
+<ul class="simple">
+<li><p>choose following form of hypothesis</p></li>
+</ul>
+<blockquote>
+<div><div class="math notranslate nohighlight">
+\[h_{\theta}(x) = g(\theta^{T}x) = \frac{1}{1+e^{-\theta^{T}x}} \]</div>
+</div></blockquote>
+<ul class="simple">
+<li><p>where g(z) is logistic function or sigmoid function</p></li>
+</ul>
+<blockquote>
+<div><div class="math notranslate nohighlight">
+\[g(z) = \frac{1}{1+e^{-z}}\]</div>
+</div></blockquote>
+<ul class="simple">
+<li><p>In Linear Regression, the hypothesis was</p></li>
+</ul>
+<blockquote>
+<div><div class="math notranslate nohighlight">
+\[h_{\theta}(x) = \theta^{T}x \]</div>
+</div></blockquote>
+<ul class="simple">
+<li><p>so in logistic regression, the hypothesis function uses this sigmoid function that force generate output between 0 and 1
+<br></p></li>
+<li><p>Why did we specifically choose sigmoid function?</p>
+<ul>
+<li><p>there is a broader class of algorithms called generalized linear models(GLM) of which this is a special case</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="how-do-we-fit-theta">
+<h4>How do we fit <span class="math notranslate nohighlight">\(\theta\)</span><a class="headerlink" href="#how-do-we-fit-theta" title="Permalink to this headline">¶</a></h4>
+<ul class="simple">
+<li><p>we fit the parameters using maximum likelihood</p></li>
+<li><p>Let us assume</p></li>
+</ul>
+<blockquote>
+<div><p><span class="math notranslate nohighlight">\(P(y=1|x;\theta) = h_{\theta}(x)\)</span>
+<span class="math notranslate nohighlight">\(P(y=0|x;\theta) = 1 - h_{\theta}(x)\)</span></p>
+</div></blockquote>
+<ul class="simple">
+<li><p>generalizing above, this can be written using</p></li>
+</ul>
+<blockquote>
+<div><p><span class="math notranslate nohighlight">\(y \in \{0,1\}\)</span></p>
+</div></blockquote>
+<ul class="simple">
+<li><p>as</p></li>
+</ul>
+<blockquote>
+<div><div class="math notranslate nohighlight">
+\[P(y|x;\theta) = h(x)^{y}(1-h(x))^{(1-y)}\]</div>
+</div></blockquote>
+<ul class="simple">
+<li><p>above equation is a form of if..else</p></li>
+</ul>
+</section>
+<section id="id2">
+<h4>Log likelihood<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h4>
+<img src="images/03_logisticLikelihoodEst.png" width=600 height=400 />   
+$\tiny{\text{YouTube-Stanford-CS229-Andrew Ng}}$  
+<img src="images/03_logisticLogLikelihoodEst.png" width=600 height=400 />   
+$\tiny{\text{YouTube-Stanford-CS229-Andrew Ng}}$  
+<ul class="simple">
+<li><p>Choose <span class="math notranslate nohighlight">\(\theta\)</span> so as to maximizes the log-likelihood <span class="math notranslate nohighlight">\(l(\theta)\)</span></p></li>
+<li><p>And then having chosen the value of <span class="math notranslate nohighlight">\(\theta\)</span>, when a new patient comes in, then use <span class="math notranslate nohighlight">\(h(\theta)\)</span> to estimate the chance of this tumor in the new patient</p></li>
+<li><p>Update the parameter <span class="math notranslate nohighlight">\(\theta_{j}\)</span> using “batch gradient ascent”</p></li>
+</ul>
+<blockquote>
+<div><p><span class="math notranslate nohighlight">\(\theta_{j} := \theta_{j} + \alpha\frac{\partial}{\partial \theta_{j}}l(\theta)\)</span></p>
+</div></blockquote>
+<ul class="simple">
+<li><p>the difference between the equation above and one for linear regression is</p>
+<ul>
+<li><p>instead of squared cost function, we are trying to optimize the log-likelihood function</p></li>
+<li><p>in least square, we tried to minimize the squared error. in logistic, we maximize the log likelihood</p></li>
+</ul>
+</li>
+</ul>
+<p>Note: learning rate <span class="math notranslate nohighlight">\(\alpha\)</span> is missing from these equation below
+<img src="images/03_logisticVslinear.png" width=600 height=400 /><br />
+<span class="math notranslate nohighlight">\(\tiny{\text{YouTube-Stanford-CS229-Andrew Ng}}\)</span></p>
+<img src="images/03_logisticVslinear_gd.png" width=200 height=200 />   
+$\tiny{\text{YouTube-Stanford-CS229-Andrew Ng}}$  
+<ul class="simple">
+<li><p>Plug in the value of <span class="math notranslate nohighlight">\(h(\theta)\)</span> in log likelihood equation, and applying calculus/derivative, the gradient ascent equation becomes</p></li>
+</ul>
+<blockquote>
+<div><p><span class="math notranslate nohighlight">\(\theta_{j} := \theta_{j} + \alpha\sum\limits_{i=1}^{m}(y^{(i)} - h_{\theta}(x^{(i)}))x_{j}^{(i)}\)</span></p>
+</div></blockquote>
+<ul class="simple">
+<li><p>and for stochastic gradient ascent equation becomes</p></li>
+</ul>
+<blockquote>
+<div><p><span class="math notranslate nohighlight">\(\theta_{j} := \theta_{j} + \alpha(y^{(i)} - h_{\theta}(x^{(i)}))x_{j}^{(i)}\)</span>
+<br></p>
+</div></blockquote>
+<ul class="simple">
+<li><p>This eqution looks similar to the one derived for linear regression. The difference is <span class="math notranslate nohighlight">\(h_{\theta}(x^{(i)})\)</span> is now defined as a non-linear function of <span class="math notranslate nohighlight">\(\theta^{T}x^{(i)}\)</span>.</p></li>
+<li><p>Both linear regression and logistic regression are special case of GLM models</p></li>
+</ul>
+</section>
+</section>
+<section id="newton-s-method">
+<h3>Newton’s method<a class="headerlink" href="#newton-s-method" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>Gradient descent takes lot of steps to converge</p></li>
+<li><p>Newton’s method allows lot bigger step</p></li>
+<li><p>but each iteration is much more expensive</p></li>
+<li><p>1-dimensional problem</p></li>
+<li><p>Suppose we have function f and we want to find <span class="math notranslate nohighlight">\(\theta\)</span>, s.t. <span class="math notranslate nohighlight">\(f(\theta) = 0\)</span></p></li>
+<li><p>maximize <span class="math notranslate nohighlight">\(l(\theta)\)</span> by finding <span class="math notranslate nohighlight">\(l'(\theta) = 0\)</span></p></li>
+<li><p>Goal: find <span class="math notranslate nohighlight">\(f(\theta) = 0\)</span></p>
+<ul>
+<li><p>take a random point <span class="math notranslate nohighlight">\(\theta^{(0)}\)</span></p></li>
+<li><p>find tangent that touches the horizontal axis and this point becomes <span class="math notranslate nohighlight">\(\theta^{(1)}\)</span></p></li>
+<li><p>repeat</p></li>
+</ul>
+</li>
+</ul>
+<img src="images/03_newtonMethodDia.png" width=600 height=400 />   
+$\tiny{\text{YouTube-Stanford-CS229-Andrew Ng}}$  
+<ul class="simple">
+<li><p>Solve for the value of <span class="math notranslate nohighlight">\(\Delta\)</span>, and replace it to find value of <span class="math notranslate nohighlight">\(\theta\)</span></p></li>
+</ul>
+<img src="images/03_newtonMethodDerv.png" width=600 height=400 />   
+$\tiny{\text{YouTube-Stanford-CS229-Andrew Ng}}$  
+<section id="quadratic-convergence">
+<h4>Quadratic convergence<a class="headerlink" href="#quadratic-convergence" title="Permalink to this headline">¶</a></h4>
+<ul class="simple">
+<li><p>In Newton’s method, the convergence is quadratic</p></li>
+<li><p>When <span class="math notranslate nohighlight">\(\theta\)</span> is a vector, i.e., <span class="math notranslate nohighlight">\((\theta \in \mathbb R^{n+1})\)</span></p></li>
+<li><p>when n increases to say 1000 dimension, taking <span class="math notranslate nohighlight">\(H^{-1}\)</span> gets difficult</p></li>
+<li><p>If the number of parameters is say 10,000 parameters, rather than dealing with 10Kx10k matrix inversion, stochastic gradient descent is a better choice</p></li>
+<li><p>If the number of parameters is relatively smaller, Newton’s method is a better choice</p></li>
+</ul>
+<img src="images/03_newtonMethodHigherDim.png" width=600 height=400 />   
+$\tiny{\text{YouTube-Stanford-CS229-Andrew Ng}}$  
+</section>
+</section>
+</section>
+<section id="todo">
+<h2>TODO<a class="headerlink" href="#todo" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>READ: Bayesian vs Frequentist statistics</p></li>
+</ul>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./cs229_ml"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            
+                <!-- Previous / next buttons -->
+<div class='prev-next-area'> 
+    <a class='left-prev' id="prev-link" href="lec02-LinearReg-GradientDescent.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Lec 02-Linear Regression - Gradient Descent</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="lec04-Perceptron-GLM.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Lec 04-Perceptron - GLM</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            
+        </div>
+    </div>
+    <footer class="footer">
+  <p>
+    
+      By Chandra<br/>
+    
+        &copy; Copyright 2021.<br/>
+  </p>
+</footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+
+  </body>
+</html>
