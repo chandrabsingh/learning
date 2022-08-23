@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>CS229 ML - by Andrew Ng</title>
+    <title>test1</title>
     
   <link href="../_static/css/theme.css" rel="stylesheet">
   <link href="../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
@@ -52,10 +52,10 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Lec 02-Linear Regression - Gradient Descent" href="lec02-LinearReg-GradientDescent.html" />
-    <link rel="prev" title="Notebooks with MyST Markdown" href="../markdown-notebooks.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -153,12 +153,12 @@ const thebe_selector_output = ".output, .cell_output"
   Lecture Notes
  </span>
 </p>
-<ul class="current nav bd-sidenav">
- <li class="toctree-l1 current active has-children">
-  <a class="current reference internal" href="#">
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="intro.html">
    CS229 ML - by Andrew Ng
   </a>
-  <input checked="" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
   <label for="toctree-checkbox-2">
    <i class="fas fa-chevron-down">
    </i>
@@ -225,11 +225,6 @@ const thebe_selector_output = ".output, .cell_output"
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="lec14-Expectation-MaximizationAlgo.html">
-     Lec 14-Expectation-Maximization Algo
-    </a>
-   </li>
-   <li class="toctree-l2">
     <a class="reference internal" href="lec15-EMAlgo-FactorAnalysis.html">
      Lec 15-EM Algo-Factor Analysis
     </a>
@@ -242,6 +237,11 @@ const thebe_selector_output = ".output, .cell_output"
    <li class="toctree-l2">
     <a class="reference internal" href="lec17-MDPs-ValuePolicyIteration.html">
      Lec 17-MDPs-Value Policy Iteration
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="test2.html">
+     test2
     </a>
    </li>
    <li class="toctree-l2">
@@ -292,7 +292,7 @@ const thebe_selector_output = ".output, .cell_output"
         <!-- ipynb file if we had a myst markdown file -->
         
         <!-- Download raw file -->
-        <a class="dropdown-buttons" href="../_sources/cs229_ml/intro.md"><button type="button"
+        <a class="dropdown-buttons" href="../_sources/cs229_ml/test1.md"><button type="button"
                 class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
                 data-placement="left">.md</button></a>
         <!-- Download PDF via print -->
@@ -312,7 +312,7 @@ const thebe_selector_output = ".output, .cell_output"
                 data-toggle="tooltip" data-placement="left" title="Source repository"><i
                     class="fab fa-github"></i>repository</button></a>
         <a class="issues-button"
-            href="https://github.com/chandrabsingh/learning/issues/new?title=Issue%20on%20page%20%2Fcs229_ml/intro.html&body=Your%20issue%20content%20here."><button
+            href="https://github.com/chandrabsingh/learning/issues/new?title=Issue%20on%20page%20%2Fcs229_ml/test1.html&body=Your%20issue%20content%20here."><button
                 type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
                 title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
         
@@ -333,6 +333,43 @@ const thebe_selector_output = ".output, .cell_output"
         <!-- Table of contents -->
         <div class="d-none d-md-block col-md-2 bd-toc show noprint">
             
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#outline">
+   Outline
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#deep-learning">
+   Deep Learning
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#logistic-regression-as-nn">
+   Logistic Regression as NN
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#goal-1-find-cats-in-images-binary-classification">
+     Goal 1: find cats in images - binary classification
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#goal-2-find-cat-lion-iguana-in-images">
+       Goal 2: Find cat/lion/iguana in images
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+            </nav>
         </div>
     </div>
 </div>
@@ -340,43 +377,188 @@ const thebe_selector_output = ".output, .cell_output"
         <div class="col-12 col-md-9 pl-md-3 pr-md-0">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
-                <h1>CS229 ML - by Andrew Ng</h1>
+                <h1>test1</h1>
                 <!-- Table of contents -->
                 <div id="print-main-content">
                     <div id="jb-print-toc">
                         
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#outline">
+   Outline
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#deep-learning">
+   Deep Learning
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#logistic-regression-as-nn">
+   Logistic Regression as NN
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#goal-1-find-cats-in-images-binary-classification">
+     Goal 1: find cats in images - binary classification
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#goal-2-find-cat-lion-iguana-in-images">
+       Goal 2: Find cat/lion/iguana in images
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+                        </nav>
                     </div>
                 </div>
             </div>
             
               <div>
                 
-  <section class="tex2jax_ignore mathjax_ignore" id="cs229-ml-by-andrew-ng">
-<h1>CS229 ML - by Andrew Ng<a class="headerlink" href="#cs229-ml-by-andrew-ng" title="Permalink to this headline">¶</a></h1>
-<p>Following are the notes from CS229 by Prof Andrew Ng and his team. The lecture videos are available on YouTube - Stanford Online.</p>
-<p>This is my interpretation of his excellent teaching and I take full responsibility of any misinterpretation/misinformation provided herein.</p>
-<div class="toctree-wrapper compound">
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="lec02-LinearReg-GradientDescent.html">Lec 02-Linear Regression - Gradient Descent</a></li>
-<li class="toctree-l1"><a class="reference internal" href="lec02-LinearReg-GradientDescent.html#todo">TODO</a></li>
-<li class="toctree-l1"><a class="reference internal" href="lec03-LocallyWeighted-LogisticRegression.html">Lec 03-Locally Weighted Regression - Logistic Regression</a></li>
-<li class="toctree-l1"><a class="reference internal" href="lec04-Perceptron-GLM.html">Lec 04-Perceptron - GLM</a></li>
-<li class="toctree-l1"><a class="reference internal" href="lec05-GDA-NaiveBayes.html">Lec 05-GDA - Naive Bayes</a></li>
-<li class="toctree-l1"><a class="reference internal" href="lec06-NaiveBayes-SVM.html">Lec 06-Naive Bayes - SVM</a></li>
-<li class="toctree-l1"><a class="reference internal" href="lec07-Kernels-SVM.html">Lec 07-Kernels - SVM</a></li>
-<li class="toctree-l1"><a class="reference internal" href="lec08-DataSplits-Models-CrossValidation.html">Lec 08-Data Splits - Models - Cross Validation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="lec09-Approx-EstimationError-ERM.html">Lec 09-Estimation Error - ERM</a></li>
-<li class="toctree-l1"><a class="reference internal" href="lec10-DecisionTrees-EnsembleMethods.html">Lec 10-Decision Trees - Ensemble Methods</a></li>
-<li class="toctree-l1"><a class="reference internal" href="lec11-Intro-NN.html">Lecture 11</a></li>
-<li class="toctree-l1"><a class="reference internal" href="lec12-Backpropagation-ImprovingNN.html">Lec 12-Improving NN</a></li>
-<li class="toctree-l1"><a class="reference internal" href="lec13-DebuggingMLModels-ErrorAnalysis.html">Lec 13-Debugging ML Models-Error Analysis</a></li>
-<li class="toctree-l1"><a class="reference internal" href="lec14-Expectation-MaximizationAlgo.html">Lec 14-Expectation-Maximization Algo</a></li>
-<li class="toctree-l1"><a class="reference internal" href="lec15-EMAlgo-FactorAnalysis.html">Lec 15-EM Algo-Factor Analysis</a></li>
-<li class="toctree-l1"><a class="reference internal" href="lec16-IndependentComponentAnalysis-RL.html">Lec 16-Independent Component Analysis-RL</a></li>
-<li class="toctree-l1"><a class="reference internal" href="lec17-MDPs-ValuePolicyIteration.html">Lec 17-MDPs-Value Policy Iteration</a></li>
-<li class="toctree-l1"><a class="reference internal" href="lec18-continuousMDPs-ModelSimulation.html">Lec 18-Continuous MDPs-Model Simulation</a></li>
+  <section class="tex2jax_ignore mathjax_ignore" id="test1">
+<h1>test1<a class="headerlink" href="#test1" title="Permalink to this headline">¶</a></h1>
+<section id="outline">
+<h2>Outline<a class="headerlink" href="#outline" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Logistic Regression as NN</p></li>
+<li><p>Neural Network</p></li>
 </ul>
-</div>
+</section>
+<section id="deep-learning">
+<h2>Deep Learning<a class="headerlink" href="#deep-learning" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>used widely in computer vision, NLP, speech recognition</p></li>
+<li><p>computationally expensive, parallelize</p></li>
+<li><p>data is growing and is available</p></li>
+<li><p>algorithms are growing</p></li>
+</ul>
+</section>
+<section id="logistic-regression-as-nn">
+<h2>Logistic Regression as NN<a class="headerlink" href="#logistic-regression-as-nn" title="Permalink to this headline">¶</a></h2>
+<section id="goal-1-find-cats-in-images-binary-classification">
+<h3>Goal 1: find cats in images - binary classification<a class="headerlink" href="#goal-1-find-cats-in-images-binary-classification" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>1 - presence of cat</p></li>
+<li><p>0 - absence of cat</p></li>
+<li><p>images can be represented in matrices - 64x64x3 (RBG filter for 3)</p></li>
+<li><p>flatten pixels into vector</p></li>
+<li><p>push vector into an logistic operation, which has two parts</p>
+<ul>
+<li><p>linear function: wx + b</p></li>
+<li><p>sigmoid function: a function that takes numbers in the range of <span class="math notranslate nohighlight">\(-\infty\)</span> and <span class="math notranslate nohighlight">\(\infty\)</span> and maps it to 0 to 1</p></li>
+</ul>
+</li>
+<li><p>the equation is <span class="math notranslate nohighlight">\(\hat{y} = \sigma(\theta^{T}x) = \sigma(wx+b)\)</span></p></li>
+<li><p>vector x size is (64x64x3,1) = (12288,1)</p></li>
+<li><p>vector w size is (1,64x64x3) = (1,12288)</p></li>
+<li><p>once we have the model, we will train it</p>
+<ul>
+<li><p>initialize w(weights),b(bias)</p></li>
+<li><p>find the optimal w,b - means define loss function</p>
+<ul>
+<li><p>use a proxy which will be your loss function</p></li>
+<li><p>try to minimize this loss function, to find the right parameters</p></li>
+<li><p>logistic loss function <span class="math notranslate nohighlight">\(L = -[y\log\hat{y} + (1-y)\log(1-\hat{y}) ]\)</span></p>
+<ul>
+<li><p>this comes from maximum likelihood function</p></li>
+<li><p>how can we minimize this function - using gradient descent</p>
+<ul>
+<li><p><span class="math notranslate nohighlight">\(w = w - \alpha\frac{\partial L}{\partial w}\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(b = b - \alpha\frac{\partial L}{\partial b}\)</span></p></li>
+<li><p>Update it iteratively</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>use it to predict</p></li>
+</ul>
+</li>
+</ul>
+<img src="images/11_logisticFun.png" width=400 height=400>  
+$\tiny{\text{YouTube-Stanford-CS229-Andrew,Ng/Kian Katanforoosh}}$  
+<ul class="simple">
+<li><p>Eq1: neuron = linear + activation (linear=wx+b; activation=sigmoid function)</p></li>
+<li><p>Eq2: model = architecture + parameter</p></li>
+</ul>
+<section id="goal-2-find-cat-lion-iguana-in-images">
+<h4>Goal 2: Find cat/lion/iguana in images<a class="headerlink" href="#goal-2-find-cat-lion-iguana-in-images" title="Permalink to this headline">¶</a></h4>
+<ul>
+<li><p>how will you modify network to this into effect</p>
+<ul class="simple">
+<li><p>add 2 more neurons</p></li>
+</ul>
+</li>
+<li><p>Notations</p>
+<blockquote>
+<div><p><span class="math notranslate nohighlight">\(\hat{y}_{1} = a_{1}^{[1]} = \sigma(w_{1}^{[1]}x + b_{1}^{[1]})\)</span><br />
+<span class="math notranslate nohighlight">\(\hat{y}_{2} = a_{2}^{[1]} = \sigma(w_{2}^{[1]}x + b_{2}^{[1]})\)</span><br />
+<span class="math notranslate nohighlight">\(\hat{y}_{3}= a_{3}^{[1]} = \sigma(w_{3}^{[1]}x + b_{3}^{[1]})\)</span></p>
+</div></blockquote>
+<ul class="simple">
+<li><p>square bracket [1] - represent index of a layer</p></li>
+<li><p>in one layer, neurons dont communicate with each other</p></li>
+<li><p>the subscript number represents the neuron inside the layer</p></li>
+<li><p><span class="math notranslate nohighlight">\(a_{2}^{[1]}\)</span> represents the activation part of 2nd neuron of 1st layer</p></li>
+</ul>
+</li>
+<li><p>How many parameters do you need to train</p>
+<ul class="simple">
+<li><p>3 x 12288</p></li>
+<li><p>images and labels( with cats or without)</p></li>
+<li><p>we can represent labels in the format</p></li>
+</ul>
+</li>
+</ul>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{equation}\
+\text{cat is represented as =}\
+\begin{bmatrix}\
+1 \\
+0 \\
+0 \\
+\end{bmatrix}\
+\end{equation}\
+\end{split}\]</div>
+<ul class="simple">
+<li><p>we can have images where there are both cats and lion in it</p>
+<ul>
+<li><p>how will nn detect which is what</p></li>
+</ul>
+</li>
+<li><p>neuron will understand by itself, if cats are alone, or cats with lion are in image, or cats with iguana, or only lions - neuron will detect that by itself</p></li>
+<li><p>neurons are not communicating to each other in a layer</p></li>
+<li><p>neurons are trained independently from each other</p></li>
+<li><p>in the present form, it is simply 3 logistic regression, its not neural network yet</p></li>
+</ul>
+<img src="images/11_logisticFun2.png" width=400 height=400>  
+$\tiny{\text{YouTube-Stanford-CS229-Andrew Ng/Kian Katanforoosh}}$   
+<ul class="simple">
+<li><p><strong>How to train these function</strong>
+$<span class="math notranslate nohighlight">\( L_{3N} = -\sum\limits_{k=1}^{3}\left[ y_{k} \log\hat{y}_{k} + (1-y_{k})\log(1-\hat{y}_{k}) \right]  \)</span>$</p></li>
+<li><p>sum loss for each neuron</p></li>
+<li><p>Derivative of loss function</p>
+<ul>
+<li><p>if we take derivative of loss function wrt <span class="math notranslate nohighlight">\(w_{1}\)</span>, i.e., <span class="math notranslate nohighlight">\(\frac{\partial L_{3N}}{\partial w_{2}^{[1]}}\)</span> the result will be the same as before, because derivative of other 2 terms will be zero
+$<span class="math notranslate nohighlight">\( w = w - \alpha\frac{\partial L}{\partial w} \)</span>$</p></li>
+</ul>
+</li>
+</ul>
+</section>
+</section>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -403,21 +585,7 @@ const thebe_selector_output = ".output, .cell_output"
               
             
                 <!-- Previous / next buttons -->
-<div class='prev-next-area'> 
-    <a class='left-prev' id="prev-link" href="../markdown-notebooks.html" title="previous page">
-        <i class="fas fa-angle-left"></i>
-        <div class="prev-next-info">
-            <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">Notebooks with MyST Markdown</p>
-        </div>
-    </a>
-    <a class='right-next' id="next-link" href="lec02-LinearReg-GradientDescent.html" title="next page">
-    <div class="prev-next-info">
-        <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Lec 02-Linear Regression - Gradient Descent</p>
-    </div>
-    <i class="fas fa-angle-right"></i>
-    </a>
+<div class='prev-next-area'>
 </div>
             
         </div>
