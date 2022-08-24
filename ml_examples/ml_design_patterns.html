@@ -1,0 +1,2091 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>The Need for ML Design Patterns</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="ML Conceptual brief" href="ml_glossary.html" />
+    <link rel="prev" title="Decision Tree - classification" href="decision_tree_classification.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../_static/mylogo.png" class="logo" alt="logo">
+      
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    My learning notebook
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Machine Learning
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="intro.html">
+   Welcome to my ML Book
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2">
+    <a class="reference internal" href="Store_Sales_Forecasting_With_Tensorflow.html">
+     Store Sales Forecasting with TensorFlow
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="decision_tree_classification.html">
+     Decision Tree - classification
+    </a>
+   </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     The Need for ML Design Patterns
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Reference
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="ml_glossary.html">
+   ML Conceptual brief
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../codes/python_faqs.html">
+   Python FAQs
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../markdown.html">
+   Markdown Files
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../notebooks.html">
+   Content with notebooks
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../markdown-notebooks.html">
+   Notebooks with MyST Markdown
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Lecture Notes
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../cs229_ml/intro.html">
+   CS229 ML - by Andrew Ng
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../cs229_ml/lec02-LinearReg-GradientDescent.html">
+     Lec 02-Linear Regression - Gradient Descent
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../cs229_ml/lec03-LocallyWeighted-LogisticRegression.html">
+     Lec 03-Locally Weighted Regression - Logistic Regression
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../cs229_ml/lec04-Perceptron-GLM.html">
+     Lec 04-Perceptron - GLM
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../cs229_ml/lec05-GDA-NaiveBayes.html">
+     Lec 05-GDA - Naive Bayes
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../cs229_ml/lec06-NaiveBayes-SVM.html">
+     Lec 06-Naive Bayes - SVM
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../cs229_ml/lec07-Kernels-SVM.html">
+     Lec 07-Kernels - SVM
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../cs229_ml/lec08-DataSplits-Models-CrossValidation.html">
+     Lec 08-Data Splits - Models - Cross Validation
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../cs229_ml/lec09-Approx-EstimationError-ERM.html">
+     Lec 09-Estimation Error - ERM
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../cs229_ml/lec10-DecisionTrees-EnsembleMethods.html">
+     Lec 10-Decision Trees - Ensemble Methods
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../cs229_ml/lec11-Intro-NN.html">
+     Lec 11-Neural Networks
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../cs229_ml/lec12-Backpropagation-ImprovingNN.html">
+     Lec 12-Improving NN
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../cs229_ml/lec13-DebuggingMLModels-ErrorAnalysis.html">
+     Lec 13-Debugging ML Models-Error Analysis
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../cs229_ml/lec14-Expectation-MaximizationAlgo.html">
+     Lec 14-Expectation-Maximization Algo
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../cs229_ml/lec15-EMAlgo-FactorAnalysis.html">
+     Lec 15-EM Algo-Factor Analysis
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../cs229_ml/lec16-IndependentComponentAnalysis-RL.html">
+     Lec 16-Independent Component Analysis-RL
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../cs229_ml/lec17-MDPs-ValuePolicyIteration.html">
+     Lec 17-MDPs-Value Policy Iteration
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../cs229_ml/lec18-continuousMDPs-ModelSimulation.html">
+     Lec 18-Continuous MDPs-Model Simulation
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+    </div>
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<div class="menu-dropdown menu-dropdown-launch-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Launch interactive content">
+      <i class="fas fa-rocket"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://mybinder.org/v2/gh/chandrabsingh/learning/master?urlpath=tree/learning/ml_examples/ml_design_patterns.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Binder"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="../_static/images/logo_binder.svg">
+  </span>
+<span class="headerbtn__text-container">Binder</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-repository-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Source repositories">
+      <i class="fab fa-github"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://github.com/chandrabsingh/learning"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Source repository"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="headerbtn__text-container">repository</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/chandrabsingh/learning/issues/new?title=Issue%20on%20page%20%2Fml_examples/ml_design_patterns.html&body=Your%20issue%20content%20here."
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Open an issue"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="headerbtn__text-container">open issue</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="../_sources/ml_examples/ml_design_patterns.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.ipynb</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#data-representation-design-patterns">
+   Data representation design patterns
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#hashed-feature">
+     #1 Hashed Feature
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#embedding">
+     #2 Embedding
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#feature-cross">
+     #3 Feature Cross
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#multimodal-input">
+     #4 Multimodal Input
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#problem-representation-design-patterns">
+   Problem representation design patterns
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#reframing">
+     #5 Reframing
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#multilabel">
+     #6 Multilabel
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#ensembles">
+     #7 Ensembles
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#cascade">
+     #8 Cascade
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#neutral-class">
+     #9 Neutral Class
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#rebalancing">
+     #10 Rebalancing
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#model-training-patterns">
+   Model training patterns
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#typical-training-loop">
+     Typical Training Loop
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#useful-overfitting">
+     #11 Useful Overfitting
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#checkpoints">
+     #12 Checkpoints
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#transfer-learning">
+     #13 Transfer Learning
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#distribution-strategy">
+     #14 Distribution Strategy
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#hyperparameter-tuning">
+     #15 Hyperparameter Tuning
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#resilience-patterns">
+   Resilience patterns
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#stateless-serving-function">
+     #16 Stateless Serving Function
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#batch-serving">
+     #17 Batch Serving
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#continuous-model-evaluation">
+     #18 Continuous Model Evaluation
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#two-phase-predictions">
+     #19 Two Phase Predictions
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#keyed-predictions">
+     #20 Keyed Predictions
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#reproducibility-patterns">
+   Reproducibility patterns
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#transform">
+     #21 Transform
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#repeatable-sampling">
+     #22 Repeatable Sampling
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#bridged-schema">
+     #23 Bridged Schema
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#windowed-inference">
+     #24 Windowed Inference
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#workflow-pipeline">
+     #25 Workflow Pipeline
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#feature-store">
+     #26 Feature Store
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#model-versioning">
+     #27 Model Versioning
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#responsible-ai">
+   Responsible AI
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#heuristic-benchmark">
+     #28 Heuristic benchmark
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#explainable-predictions">
+     #29 Explainable Predictions
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#fairness-lens">
+     #30 Fairness Lens
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#summary">
+   Summary
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#reference">
+   Reference
+  </a>
+ </li>
+</ul>
+
+    </nav>
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>The Need for ML Design Patterns</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#data-representation-design-patterns">
+   Data representation design patterns
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#hashed-feature">
+     #1 Hashed Feature
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#embedding">
+     #2 Embedding
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#feature-cross">
+     #3 Feature Cross
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#multimodal-input">
+     #4 Multimodal Input
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#problem-representation-design-patterns">
+   Problem representation design patterns
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#reframing">
+     #5 Reframing
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#multilabel">
+     #6 Multilabel
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#ensembles">
+     #7 Ensembles
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#cascade">
+     #8 Cascade
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#neutral-class">
+     #9 Neutral Class
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#rebalancing">
+     #10 Rebalancing
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#model-training-patterns">
+   Model training patterns
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#typical-training-loop">
+     Typical Training Loop
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#useful-overfitting">
+     #11 Useful Overfitting
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#checkpoints">
+     #12 Checkpoints
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#transfer-learning">
+     #13 Transfer Learning
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#distribution-strategy">
+     #14 Distribution Strategy
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#hyperparameter-tuning">
+     #15 Hyperparameter Tuning
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#resilience-patterns">
+   Resilience patterns
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#stateless-serving-function">
+     #16 Stateless Serving Function
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#batch-serving">
+     #17 Batch Serving
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#continuous-model-evaluation">
+     #18 Continuous Model Evaluation
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#two-phase-predictions">
+     #19 Two Phase Predictions
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#keyed-predictions">
+     #20 Keyed Predictions
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#reproducibility-patterns">
+   Reproducibility patterns
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#transform">
+     #21 Transform
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#repeatable-sampling">
+     #22 Repeatable Sampling
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#bridged-schema">
+     #23 Bridged Schema
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#windowed-inference">
+     #24 Windowed Inference
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#workflow-pipeline">
+     #25 Workflow Pipeline
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#feature-store">
+     #26 Feature Store
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#model-versioning">
+     #27 Model Versioning
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#responsible-ai">
+   Responsible AI
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#heuristic-benchmark">
+     #28 Heuristic benchmark
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#explainable-predictions">
+     #29 Explainable Predictions
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#fairness-lens">
+     #30 Fairness Lens
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#summary">
+   Summary
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#reference">
+   Reference
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <section class="tex2jax_ignore mathjax_ignore" id="the-need-for-ml-design-patterns">
+<h1>The Need for ML Design Patterns<a class="headerlink" href="#the-need-for-ml-design-patterns" title="Permalink to this headline">#</a></h1>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="head"><p>.</p></th>
+<th class="head"><p>.</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><img src="./images/mldp_data_representation.png"></p></td>
+<td><p><img src="./images/mldp_Reproducability.png"></p></td>
+</tr>
+<tr class="row-odd"><td><p><img src="./images/mldp_ProbRepresentation.png"></p></td>
+<td><p><img src="./images/mldp_Resilience.png"></p></td>
+</tr>
+<tr class="row-even"><td><p><img src="./images/mldp_ModifyingTrainingLoop.png"></p></td>
+<td><p><img src="./images/mldp_ResponsibleAI.png"></p></td>
+</tr>
+</tbody>
+</table>
+<p><span class="math notranslate nohighlight">\(\tiny{\text{20200917 - Sara Robinson - Responsible-AI-patterns}}\)</span></p>
+<section id="data-representation-design-patterns">
+<h2>Data representation design patterns<a class="headerlink" href="#data-representation-design-patterns" title="Permalink to this headline">#</a></h2>
+<ul class="simple">
+<li><p>data representation</p>
+<ul>
+<li><p>baby weight represented as boolean in the model</p></li>
+</ul>
+</li>
+<li><p>feature engineering</p>
+<ul>
+<li><p>process of creating features</p></li>
+</ul>
+</li>
+<li><p>learnable data representation</p></li>
+<li><p>feature extraction</p>
+<ul>
+<li><p>feature cross design pattern</p>
+<ul>
+<li><p>a decision tree where each node can represent only one input variable reduces to a stepwise linear function,</p></li>
+<li><p>an oblique decision tree where each node can represent a linear combination of input variables reduces to a piecewise linear function</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Simple data representations</p>
+<ul>
+<li><p>Numerical inputs</p>
+<ul>
+<li><p>scaling say [-1,1]</p>
+<ul>
+<li><p>optimizer works better</p></li>
+</ul>
+</li>
+<li><p>gradient descent</p>
+<ul>
+<li><p>requires more steps to converge as curvature of loss function increases</p>
+<ul>
+<li><p>derivative of features with large magnitude will be larger and will have abnormal weight</p></li>
+</ul>
+</li>
+<li><p>centering data within a range makes error function more spherical, will converge faster</p></li>
+</ul>
+</li>
+<li><p>lack of scaling</p>
+<ul>
+<li><p>affects efficacy of L1/L2 regularization</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Linear scaling</p>
+<ul>
+<li><p>Min-max scaling</p></li>
+<li><p>Clipping</p>
+<ul>
+<li><p>helps in solving outliers</p></li>
+</ul>
+</li>
+<li><p>Z-score normalization</p></li>
+<li><p>Winsorizing</p>
+<ul>
+<li><p>use empirical distribution to clip dataset</p></li>
+<li><p>10 and 90 percentile</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Min-max and clipping</p>
+<ul>
+<li><p>best for uniformly distributed data</p></li>
+</ul>
+</li>
+<li><p>Z-score</p>
+<ul>
+<li><p>best for normally distributed data</p></li>
+</ul>
+</li>
+<li><p>dont throw away outliers</p></li>
+<li><p>Non-linear transformations</p>
+<ul>
+<li><p>distribution of number of views of Wikipedia pages is highly skewed</p></li>
+<li><p>transform using the logarithm, power function and linear scaling in succession</p></li>
+<li><p>histogram equalization</p>
+<ul>
+<li><p>bins of histogram are chosen based on quantiles of raw distribution</p></li>
+</ul>
+</li>
+<li><p>Box-Cox transformation</p></li>
+</ul>
+</li>
+<li><p>Categorical inputs</p>
+<ul>
+<li><p>One-hot encoding</p></li>
+</ul>
+</li>
+</ul>
+<section id="hashed-feature">
+<h3>#1 Hashed Feature<a class="headerlink" href="#hashed-feature" title="Permalink to this headline">#</a></h3>
+<ul class="simple">
+<li><p>Problem Statement:</p>
+<ul>
+<li><p>incomplete vocabulary</p></li>
+<li><p>cardinality of model</p></li>
+<li><p>cold start</p></li>
+</ul>
+</li>
+<li><p>Solution</p>
+<ul>
+<li><p>one-hot encoding categorical variable</p>
+<ul>
+<li><p>Problem: pose problems for doctor_id of person delivering baby</p></li>
+<li><p>Potential Sol:</p>
+<ul>
+<li><p>training data might not contain complete information of all hospitals/physicians</p>
+<ul>
+<li><p>vocabulary is incomplete</p></li>
+</ul>
+</li>
+<li><p>categorical variables can have high cardinality</p>
+<ul>
+<li><p>sparse dataset</p></li>
+</ul>
+</li>
+<li><p>cold start problem</p>
+<ul>
+<li><p>new hired doctor</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Problem: Predict arrival delay of flight - 347 airport in US</p></li>
+<li><p>Process:</p>
+<ul>
+<li><p>feature will be quite sparse</p></li>
+</ul>
+</li>
+<li><p>Potential Sol: <code class="docutils literal notranslate"><span class="pre">Hashed</span> <span class="pre">Feature</span> <span class="pre">design</span> <span class="pre">pattern</span></code></p>
+<ul>
+<li><p>convert categorial input to unique string</p></li>
+<li><p>deterministic hashing algorithm (for training and testing)</p></li>
+<li><p>remainder of hash result as buckets</p>
+<ul>
+<li><p>returns absolute value of modulo of hashed number, which can be negative</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">farm_fingerprint</span></code> in BigQuery</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">feature_column</span></code> in TensorFlow</p></li>
+</ul>
+</li>
+<li><p>choice of bucket size</p>
+<ul>
+<li><p>10 buckets will have average of 35 airports</p>
+<ul>
+<li><p>implying characteristics of airports will be shared</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>high cardinality</p>
+<ul>
+<li><p>using small number of buckets makes the model practical</p></li>
+<li><p>this is lossy encoding - acceptable compromise</p></li>
+</ul>
+</li>
+<li><p>cold start</p>
+<ul>
+<li><p>solves the problem</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Trade Offs/Alternatives</p>
+<ul>
+<li><p>bucket collision</p>
+<ul>
+<li><p>compromising on the ability of accurately representing data</p></li>
+<li><p>dont use if vocabulary is small and cold start is not a problem</p></li>
+</ul>
+</li>
+<li><p>Skew</p>
+<ul>
+<li><p>Chicago airport is busiest, so all airports in the same bucket will be highly skewed</p></li>
+</ul>
+</li>
+<li><p>Aggregate feature</p>
+<ul>
+<li><p>for every airport,</p>
+<ul>
+<li><p>find probability of on-time flights</p></li>
+<li><p>add it as a feature of model</p></li>
+<li><p>this avoids losing information of airports while hashing</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Hyperparameter tuning</p>
+<ul>
+<li><p>choose number of buckets as hyperparameter</p></li>
+</ul>
+</li>
+<li><p>Crypotographic hash</p>
+<ul>
+<li><p>by not using modulo in hashed feature</p>
+<ul>
+<li><p>this becomes a binary encoding problem</p></li>
+</ul>
+</li>
+<li><p>binary encoding does not solve out-of-vocabulary or cold start problem</p>
+<ul>
+<li><p>airports starting with letter O have nothing in common</p></li>
+<li><p>by not using modulo, encoding will have a spurious correlation between airports that start with same letter</p></li>
+<li><p>so binary encoding of farm fingerprint is not recommended</p></li>
+</ul>
+</li>
+<li><p>binary encoding of MD5 hash will not have spurious correlation</p>
+<ul>
+<li><p>as the output of MD5 hash is uniformly distributed</p></li>
+<li><p>but this is not deterministic and not unique</p></li>
+</ul>
+</li>
+<li><p>fingerprint hashing algorithm is needed and not a cryptographic hashing algorithm</p>
+<ul>
+<li><p>so as to produce deterministic and unique value</p></li>
+<li><p>cryptographic hash is not usable in a feature engineering context</p></li>
+</ul>
+</li>
+<li><p>MD5 is non-deterministic because of “salt”</p>
+<ul>
+<li><p>salt is the string that is added to each password</p></li>
+<li><p>this ensures that two users using the same password, will have different hashed value</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Order of operation is also important</p>
+<ul>
+<li><p>abs, mod, farm_fingerprint</p></li>
+</ul>
+</li>
+<li><p>empty hash buckets</p>
+<ul>
+<li><p>possible</p></li>
+<li><p>use L2 regularization</p>
+<ul>
+<li><p>weights associated with empty bucket will be driven to near-zero</p></li>
+<li><p>this ensures, out-of-vocabulary fall into empty bucket</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="embedding">
+<h3>#2 Embedding<a class="headerlink" href="#embedding" title="Permalink to this headline">#</a></h3>
+<ul class="simple">
+<li><p>Problem Statement:</p>
+<ul>
+<li><p>convert high cardinality data into low dimensional</p></li>
+<li><p>preserve the relevant information</p></li>
+</ul>
+</li>
+<li><p>Counterfactuals:</p>
+<ul>
+<li><p>categorical data represented as one-hot encoding</p>
+<ul>
+<li><p>does not represent plurality in dataset</p></li>
+</ul>
+</li>
+<li><p>one-hot encoding represents features are independent</p>
+<ul>
+<li><p>closeness relationship is often required</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Solution:</p>
+<ul>
+<li><p>embeddings capture closeness relationships in the input data</p></li>
+<li><p>use embedding layer/weights as replacement for</p>
+<ul>
+<li><p>clustering technique (customer segmentation)</p></li>
+<li><p>dimensionality reduction method (PCA)</p></li>
+</ul>
+</li>
+<li><p>weights can be learned using gradient descent procedure</p></li>
+</ul>
+</li>
+<li><p>Text Embeddings</p>
+<ul>
+<li><p>cardinality of vocabulary</p>
+<ul>
+<li><p>large sparse matrix</p></li>
+</ul>
+</li>
+<li><p>Tokenization</p>
+<ul>
+<li><p>lookup table that maps each word to an index</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Image Embeddings</p>
+<ul>
+<li><p>text deals with sparse input</p></li>
+<li><p>image/audio deals with dense, high dimensional vectors</p>
+<ul>
+<li><p>in CNNs, if the last softmax layer is removed</p>
+<ul>
+<li><p>can be used to extract feature vector for an input</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Learned Embeddings</p>
+<ul>
+<li><p>extracts inherent similarities between categories</p></li>
+<li><p>pretrained embeddings are referred as transfer learning</p></li>
+</ul>
+</li>
+<li><p>Trade-Offs/Alternatives:</p>
+<ul>
+<li><p>Choosing the embedding dimension</p></li>
+<li><p>Autoencoders</p>
+<ul>
+<li><p>Encoder</p>
+<ul>
+<li><p>maps high-dimensional input into low-dimensional embedding layer</p></li>
+<li><p>auxillary learning task</p></li>
+</ul>
+</li>
+<li><p>Decoder</p>
+<ul>
+<li><p>maps representation back into high-dimensional embedding layer</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Context language models</p>
+<ul>
+<li><p>examples</p>
+<ul>
+<li><p>Context language models</p>
+<ul>
+<li><p>Word2Vec</p>
+<ul>
+<li><p>Continuous Bag of Words (CBOW)</p></li>
+<li><p>skip-gram model</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Bidirectional Encoding Representations from Transformers</p>
+<ul>
+<li><p>BERT</p>
+<ul>
+<li><p>masked language model</p>
+<ul>
+<li><p>words are randomly masked from text</p></li>
+<li><p>model guesses what the missing words are</p></li>
+</ul>
+</li>
+<li><p>next sentence prediction</p>
+<ul>
+<li><p>classification task</p></li>
+<li><p>whether or not two sentences follow each other</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>pre-trained text embedding</p>
+<ul>
+<li><p>like Word2Vec, NNLM, GLoVE, BERT</p></li>
+<li><p>can be added to ML model</p></li>
+<li><p>along with structured inputs</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Embeddings in a data warehouse</p>
+<ul>
+<li><p>TensorFlow Hub: has pretrained models like Swivel</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>Potential Project Work/Notes</strong>:</p>
+<ul>
+<li><p>build a deep neural network (DNN) model in Keras that implements a simple embedding layer to transform the word integers into dense vectors</p></li>
+<li><p>CNN/NLP - image-to-text captioning</p>
+<ul>
+<li><p>encoder produces low-dimensional embedding representation of image</p></li>
+<li><p>encoder is Image2Vec embedding machine</p></li>
+</ul>
+</li>
+<li><p>Read: TabNet</p></li>
+<li><p>TensorFlow Hub: has pretrained models like Swivel</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="feature-cross">
+<h3>#3 Feature Cross<a class="headerlink" href="#feature-cross" title="Permalink to this headline">#</a></h3>
+<ul class="simple">
+<li><p>helps model learn relationships between input faster by explicitly making each combination of input values a separate feature</p></li>
+<li><p>suppose we need to create a binary classifier that separates the label into + and - classes</p></li>
+</ul>
+<img src="./images/mldp_featureCross.png" width=400 height=400>
+<ul class="simple">
+<li><p>its a commonly used feature engineering technique</p></li>
+<li><p>a featuree cross is a synthetic feature formed by concatenating two or more categorical features in order to capture interaction between them</p></li>
+<li><p>by joining two features, nonlinearity can be encoded into the model</p>
+<ul>
+<li><p>the predictive abilities of features is extended</p></li>
+</ul>
+</li>
+<li><p>complex models like neural network and trees can learn feature crosses on their own</p></li>
+<li><p>explicit features are better than linear models</p></li>
+<li><p>speeds up model training and reduces model complexity</p></li>
+<li><p>Trade-Offs and Alternatives</p>
+<ul>
+<li><p>Handling numerical features</p>
+<ul>
+<li><p>feature cross cannot be used with continuous input</p>
+<ul>
+<li><p>for m and n possible values, feature cross will be m*n elements</p></li>
+</ul>
+</li>
+<li><p>if data is continous, bucketize the data to make it categorical before applying feature cross</p>
+<ul>
+<li><p>for example - latitude and longitude</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Handling high cardinality</p>
+<ul>
+<li><p>feature cross leads to sparsity</p></li>
+<li><p>can be useful to pass a feature cross through an Embedding layer</p>
+<ul>
+<li><p>this will create a lower-dimensional representation</p></li>
+<li><p>it will also allow to capture the closeness relationship</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Need for regularization</p>
+<ul>
+<li><p>as feature cross introduce multiplicative cardinality, the number of category increases</p></li>
+<li><p>if individual features have too few items, model will not be able to generalize</p></li>
+<li><p>so feature cross can either</p>
+<ul>
+<li><p>be paired with L1 regularization, which encourages sparsity of features</p></li>
+<li><p>or with L2 regularization, which limits overfitting</p></li>
+</ul>
+</li>
+<li><p>thus model will be able to ignore extraneous noise by synthetic features and combat overfitting</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="multimodal-input">
+<h3>#4 Multimodal Input<a class="headerlink" href="#multimodal-input" title="Permalink to this headline">#</a></h3>
+<ul class="simple">
+<li><p>Basic Idea</p>
+<ul>
+<li><p>represent different data types or data that can be expressed in complex ways by concatenating all the available data representations</p></li>
+<li><p>for example be able to combine image and text inputs in a model</p></li>
+</ul>
+</li>
+<li><p>Trade-Offs and Alternatives</p>
+<ul>
+<li><p>Tabular data multiple ways</p>
+<ul>
+<li><p>group them in buckets</p></li>
+</ul>
+</li>
+<li><p>Multimodal representation of text</p>
+<ul>
+<li><p>Text data multiple ways</p>
+<ul>
+<li><p>represent text as embeddings</p></li>
+<li><p>in BOW approach</p>
+<ul>
+<li><p>the order of text is not preserved</p></li>
+<li><p>but it detects presence/absence of certain words</p></li>
+</ul>
+</li>
+<li><p>which approach to choose of BOW and embedding</p>
+<ul>
+<li><p>Embeddings</p>
+<ul>
+<li><p>provide extra information about word meaning</p>
+<ul>
+<li><p>not available in BOW</p></li>
+</ul>
+</li>
+<li><p>but embeddings require training</p></li>
+<li><p>identifies relationships between words</p></li>
+<li><p>encodes the frequency of words in text</p></li>
+</ul>
+</li>
+<li><p>BOW</p>
+<ul>
+<li><p>use BOW with linear regression or decision tree</p></li>
+<li><p>providees strong signals for most significant words in the vocabulary</p></li>
+<li><p>treats presence of each word as boolean value</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Extracting tabular features from text</p>
+<ul>
+<li><p>punctuation (question mark) influences the likelihood of answer</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Multimodal representation of images</p>
+<ul>
+<li><p>Images as pixel values</p></li>
+<li><p>Images as tiled structures</p></li>
+<li><p>Combining different image representations</p></li>
+<li><p>Using images with metadata</p></li>
+</ul>
+</li>
+<li><p>Multimodal feature representations and model interpretability</p></li>
+</ul>
+</li>
+</ul>
+</section>
+</section>
+<section id="problem-representation-design-patterns">
+<h2>Problem representation design patterns<a class="headerlink" href="#problem-representation-design-patterns" title="Permalink to this headline">#</a></h2>
+<section id="reframing">
+<h3>#5 Reframing<a class="headerlink" href="#reframing" title="Permalink to this headline">#</a></h3>
+<ul class="simple">
+<li><p>Basic Idea</p>
+<ul>
+<li><p>refers to changing the representation of the output of a machine learning problem</p></li>
+</ul>
+</li>
+<li><p>Problem</p></li>
+<li><p>Solution</p>
+<ul>
+<li><p>Capturing uncertainty</p></li>
+<li><p>Changing the objective</p></li>
+</ul>
+</li>
+<li><p>Trade-Offs and Alternatives</p>
+<ul>
+<li><p>Bucketized outputs</p></li>
+<li><p>Other ways of capturing uncertainty</p></li>
+<li><p>Precision of predictions</p></li>
+<li><p>Restricting the prediction range</p></li>
+<li><p>Label bias</p></li>
+<li><p>Multitask learning</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="multilabel">
+<h3>#6 Multilabel<a class="headerlink" href="#multilabel" title="Permalink to this headline">#</a></h3>
+<ul class="simple">
+<li><p>Basic Idea</p>
+<ul>
+<li><p>refers to problems where we can assign more than one label to a given training example</p></li>
+</ul>
+</li>
+<li><p>Problem</p></li>
+<li><p>Solution</p>
+<ul>
+<li><p>SIGMOID VERSUS SOFTMAX ACTIVATION</p></li>
+</ul>
+</li>
+<li><p>Trade-Offs and Alternatives</p>
+<ul>
+<li><p>Sigmoid output for models with two classes</p></li>
+<li><p>Which loss function should we use?</p></li>
+<li><p>Parsing sigmoid results</p></li>
+<li><p>Dataset considerations</p></li>
+<li><p>Inputs with overlapping labels</p></li>
+<li><p>One versus rest</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="ensembles">
+<h3>#7 Ensembles<a class="headerlink" href="#ensembles" title="Permalink to this headline">#</a></h3>
+<ul class="simple">
+<li><p>Basic Idea</p>
+<ul>
+<li><p>refers to techniques in machine learning that combine multiple machine learning models and aggregate their results to make prediction</p></li>
+</ul>
+</li>
+<li><p>Problem</p>
+<ul>
+<li><p>irreducible error</p>
+<ul>
+<li><p>error inherent in the model, resulting from the noise in the dataset</p></li>
+</ul>
+</li>
+<li><p>reducible error</p>
+<ul>
+<li><p>error due to bias</p>
+<ul>
+<li><p>bias leads to inability to learn relationship about model’s features and labels</p></li>
+<li><p>high bias will lead to underfit</p></li>
+</ul>
+</li>
+<li><p>error due to variance</p>
+<ul>
+<li><p>variance leads to inability to generalize on new unseen examples</p></li>
+<li><p>high variance will lead to overfit</p></li>
+</ul>
+</li>
+<li><p>goal is to have low bias and low variance model</p>
+<ul>
+<li><p>increasing model complexity</p>
+<ul>
+<li><p>decreases bias but increases variance</p></li>
+</ul>
+</li>
+<li><p>decreasing model complexity</p>
+<ul>
+<li><p>decreases variance but increases bias</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Solution</p>
+<ul>
+<li><p>Bagging</p>
+<ul>
+<li><p>bootstrap aggregating</p></li>
+</ul>
+</li>
+<li><p>Boosting</p>
+<ul>
+<li><p>works by iteratively improving model to reduce prediction error</p></li>
+<li><p>model is punished more and more as per the residuals at each iteration step</p></li>
+<li><p>each new weak learner corrects for the mistakes of the previous prediction by modeling the residuals delta_i of each step</p></li>
+<li><p>AdaBoost, Gradient Boosting Machines, and XGBoost</p></li>
+<li><p>good for high bias sets</p></li>
+</ul>
+</li>
+<li><p>Stacking</p></li>
+</ul>
+</li>
+<li><p>Trade-Offs and Alternatives</p>
+<ul>
+<li><p>Increased training and design time</p></li>
+<li><p>Dropout as bagging</p></li>
+<li><p>Decreased model interpretability</p>
+<ul>
+<li><p>explanation predictions can get difficult</p></li>
+<li><p>for example random forest</p></li>
+</ul>
+</li>
+<li><p>Choosing the right tool for the problem</p></li>
+<li><p>Other ensemble methods</p>
+<ul>
+<li><p>incorporate Bayesian approach with neural architecture search and reinforcement learning, like Google’s AdaNet/AutoML</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="cascade">
+<h3>#8 Cascade<a class="headerlink" href="#cascade" title="Permalink to this headline">#</a></h3>
+<ul class="simple">
+<li><p>Basic Idea</p>
+<ul>
+<li><p>addresses situation where a ML problem can be broken down into series of ML problem</p></li>
+<li><p>the output of one model is an input to the following model</p></li>
+</ul>
+</li>
+<li><p>Problem</p></li>
+<li><p>Solution</p>
+<ul>
+<li><p>typically a ML problem can be solved by breaking it into 4 cascade problems</p>
+<ul>
+<li><p>a classification model to identify the circumstance</p></li>
+<li><p>one model trained on unusual circumstances</p></li>
+<li><p>separate model trained on typical circumstances</p></li>
+<li><p>model to combine the output of the two separate models, because the output is a probabilistic combination of the two outputs</p></li>
+</ul>
+</li>
+<li><p>this pattern adds quite a bit of complexity in the workflow</p></li>
+</ul>
+</li>
+<li><p>Trade-Offs and Alternatives</p>
+<ul>
+<li><p>Deterministic inputs</p></li>
+<li><p>Single model</p>
+<ul>
+<li><p>should not be used where a single model is eenough</p></li>
+</ul>
+</li>
+<li><p>Internal consistency</p></li>
+<li><p>Pre-trained models</p></li>
+<li><p>Reframing instead of Cascade</p></li>
+<li><p>Regression in rare situations</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="neutral-class">
+<h3>#9 Neutral Class<a class="headerlink" href="#neutral-class" title="Permalink to this headline">#</a></h3>
+<ul class="simple">
+<li><p>Basic Idea</p>
+<ul>
+<li><p>train a binary classifier that outputs probability of an event, train a three-class classifier that outputs disjoint probabilities for Yes, No, and Maybe</p></li>
+<li><p>Maybe is a disjoint class and they don’t overlap</p></li>
+</ul>
+</li>
+<li><p>Problem</p></li>
+<li><p>Solution</p>
+<ul>
+<li><p>Synthetic data</p></li>
+<li><p>In real world</p></li>
+</ul>
+</li>
+<li><p>Trade-Offs and Alternatives</p>
+<ul>
+<li><p>When human experts disagree</p></li>
+<li><p>Customer satisfaction</p></li>
+<li><p>As a way to improve embeddings</p></li>
+<li><p>Reframing with neutral class</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="rebalancing">
+<h3>#10 Rebalancing<a class="headerlink" href="#rebalancing" title="Permalink to this headline">#</a></h3>
+<ul class="simple">
+<li><p>Basic Idea</p>
+<ul>
+<li><p>approaches for handling datasets that are inherently imbalanced</p></li>
+</ul>
+</li>
+<li><p>Problem</p>
+<ul>
+<li><p>accuracy can be misleading on imbalanced datasest</p></li>
+</ul>
+</li>
+<li><p>Solution</p>
+<ul>
+<li><p>Choosing an evaluation metric</p>
+<ul>
+<li><p>use metrics like precision, recall, or F-measure</p></li>
+<li><p>F-measure ranges from 0 to 1, uses both precision and recall</p></li>
+<li><p>test class should have the same class balance as original dataset</p></li>
+<li><p>ROC curve (AUC)</p></li>
+</ul>
+</li>
+<li><p>Downsampling</p>
+<ul>
+<li><p>changes the balance of our underlying dataset</p></li>
+</ul>
+</li>
+<li><p>Weighted classes</p>
+<ul>
+<li><p>changes how model handles certain classes</p></li>
+</ul>
+</li>
+<li><p>Upsampling</p>
+<ul>
+<li><p>duplicates examples from minority class, and</p></li>
+<li><p>apply augmentations to generate additional samples</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Trade-Offs and Alternatives</p>
+<ul>
+<li><p>Reframing and Cascade</p></li>
+<li><p>Anomaly detection</p></li>
+<li><p>Number of minority class examples available</p></li>
+<li><p>Combining different techniques</p></li>
+<li><p>Choosing a model architecture</p></li>
+<li><p>Importance of explainability</p></li>
+</ul>
+</li>
+</ul>
+</section>
+</section>
+<section id="model-training-patterns">
+<h2>Model training patterns<a class="headerlink" href="#model-training-patterns" title="Permalink to this headline">#</a></h2>
+<ul class="simple">
+<li><p>iterative process</p></li>
+</ul>
+<section id="typical-training-loop">
+<h3>Typical Training Loop<a class="headerlink" href="#typical-training-loop" title="Permalink to this headline">#</a></h3>
+<ul class="simple">
+<li><p>Stochastic Gradient Descent(SGD)</p>
+<ul>
+<li><p>error/loss needs to be monitored</p>
+<ul>
+<li><p>not a closed form solution</p></li>
+</ul>
+</li>
+<li><p>extensions(de facto optimizer in modern day frameworks)</p>
+<ul>
+<li><p>Adam</p></li>
+<li><p>Adagrad</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Keras Training Loop</p></li>
+</ul>
+</section>
+<section id="useful-overfitting">
+<h3>#11 Useful Overfitting<a class="headerlink" href="#useful-overfitting" title="Permalink to this headline">#</a></h3>
+<ul class="simple">
+<li><p>Basic Idea</p>
+<ul>
+<li><p>omit use of validation or testing dataset so as to intentionally overfit on the training dataset</p></li>
+</ul>
+</li>
+<li><p>Problem</p></li>
+<li><p>Solution</p></li>
+<li><p>Trade-Offs and Alternatives</p>
+<ul>
+<li><p>Interpolation and chaos theory</p></li>
+<li><p>Monte Carlo methods</p></li>
+<li><p>Data-driven discretizations</p></li>
+<li><p>Unbounded domains</p></li>
+<li><p>Distilling knowledge of neural network</p></li>
+<li><p>Overfitting a batch</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="checkpoints">
+<h3>#12 Checkpoints<a class="headerlink" href="#checkpoints" title="Permalink to this headline">#</a></h3>
+<ul class="simple">
+<li><p>Basic Idea</p>
+<ul>
+<li><p>store the full state of the model periodically, which can be accessed in partially trained models</p></li>
+<li><p>along with also use virtual epochs, wherein the inner loop of the fit() function is used, not on the full training dataset but on a fixed number of training examples</p></li>
+</ul>
+</li>
+<li><p>Problem</p></li>
+<li><p>Solution</p></li>
+<li><p>Trade-Offs and Alternatives</p></li>
+</ul>
+</section>
+<section id="transfer-learning">
+<h3>#13 Transfer Learning<a class="headerlink" href="#transfer-learning" title="Permalink to this headline">#</a></h3>
+<ul class="simple">
+<li><p>Basic Idea</p>
+<ul>
+<li><p>use previously trained model,</p></li>
+<li><p>freeze the weights, and</p></li>
+<li><p>incorporate nontrainable layers into a new model that solves the same problem, but on a smaller dataset</p></li>
+</ul>
+</li>
+<li><p>Problem</p></li>
+<li><p>Solution</p></li>
+<li><p>Trade-Offs and Alternatives</p></li>
+</ul>
+</section>
+<section id="distribution-strategy">
+<h3>#14 Distribution Strategy<a class="headerlink" href="#distribution-strategy" title="Permalink to this headline">#</a></h3>
+<ul class="simple">
+<li><p>Basic Idea</p>
+<ul>
+<li><p>training loop is carried out at scale over multiple workers,</p>
+<ul>
+<li><p>often with caching, hardware acceleration, and parallelization</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Problem</p></li>
+<li><p>Solution</p></li>
+<li><p>Trade-Offs and Alternatives</p></li>
+</ul>
+</section>
+<section id="hyperparameter-tuning">
+<h3>#15 Hyperparameter Tuning<a class="headerlink" href="#hyperparameter-tuning" title="Permalink to this headline">#</a></h3>
+<ul class="simple">
+<li><p>Basic Idea</p>
+<ul>
+<li><p>training loop is inserted into an optimization method to find the optimal set of model hyperparameters</p></li>
+</ul>
+</li>
+<li><p>Problem</p></li>
+<li><p>Solution</p></li>
+<li><p>Trade-Offs and Alternatives</p></li>
+</ul>
+</section>
+</section>
+<section id="resilience-patterns">
+<h2>Resilience patterns<a class="headerlink" href="#resilience-patterns" title="Permalink to this headline">#</a></h2>
+<section id="stateless-serving-function">
+<h3>#16 Stateless Serving Function<a class="headerlink" href="#stateless-serving-function" title="Permalink to this headline">#</a></h3>
+<ul class="simple">
+<li><p>Basic Idea</p></li>
+<li><p>Problem</p></li>
+<li><p>Solution</p></li>
+<li><p>Trade-Offs and Alternatives</p></li>
+</ul>
+</section>
+<section id="batch-serving">
+<h3>#17 Batch Serving<a class="headerlink" href="#batch-serving" title="Permalink to this headline">#</a></h3>
+<ul class="simple">
+<li><p>Basic Idea</p></li>
+<li><p>Problem</p></li>
+<li><p>Solution</p></li>
+<li><p>Trade-Offs and Alternatives</p></li>
+</ul>
+</section>
+<section id="continuous-model-evaluation">
+<h3>#18 Continuous Model Evaluation<a class="headerlink" href="#continuous-model-evaluation" title="Permalink to this headline">#</a></h3>
+<ul class="simple">
+<li><p>Basic Idea</p></li>
+<li><p>Problem</p></li>
+<li><p>Solution</p></li>
+<li><p>Trade-Offs and Alternatives</p></li>
+</ul>
+</section>
+<section id="two-phase-predictions">
+<h3>#19 Two Phase Predictions<a class="headerlink" href="#two-phase-predictions" title="Permalink to this headline">#</a></h3>
+<ul class="simple">
+<li><p>Basic Idea</p></li>
+<li><p>Problem</p></li>
+<li><p>Solution</p></li>
+<li><p>Trade-Offs and Alternatives</p></li>
+</ul>
+</section>
+<section id="keyed-predictions">
+<h3>#20 Keyed Predictions<a class="headerlink" href="#keyed-predictions" title="Permalink to this headline">#</a></h3>
+<ul class="simple">
+<li><p>Basic Idea</p></li>
+<li><p>Problem</p></li>
+<li><p>Solution</p></li>
+<li><p>Trade-Offs and Alternatives</p></li>
+</ul>
+</section>
+</section>
+<section id="reproducibility-patterns">
+<h2>Reproducibility patterns<a class="headerlink" href="#reproducibility-patterns" title="Permalink to this headline">#</a></h2>
+<section id="transform">
+<h3>#21 Transform<a class="headerlink" href="#transform" title="Permalink to this headline">#</a></h3>
+<ul class="simple">
+<li><p>Basic Idea</p></li>
+<li><p>Problem</p></li>
+<li><p>Solution</p></li>
+<li><p>Trade-Offs and Alternatives</p></li>
+</ul>
+</section>
+<section id="repeatable-sampling">
+<h3>#22 Repeatable Sampling<a class="headerlink" href="#repeatable-sampling" title="Permalink to this headline">#</a></h3>
+<ul class="simple">
+<li><p>Basic Idea</p></li>
+<li><p>Problem</p></li>
+<li><p>Solution</p></li>
+<li><p>Trade-Offs and Alternatives</p></li>
+</ul>
+</section>
+<section id="bridged-schema">
+<h3>#23 Bridged Schema<a class="headerlink" href="#bridged-schema" title="Permalink to this headline">#</a></h3>
+<ul class="simple">
+<li><p>Basic Idea</p></li>
+<li><p>Problem</p></li>
+<li><p>Solution</p></li>
+<li><p>Trade-Offs and Alternatives</p></li>
+</ul>
+</section>
+<section id="windowed-inference">
+<h3>#24 Windowed Inference<a class="headerlink" href="#windowed-inference" title="Permalink to this headline">#</a></h3>
+<ul class="simple">
+<li><p>Basic Idea</p></li>
+<li><p>Problem</p></li>
+<li><p>Solution</p></li>
+<li><p>Trade-Offs and Alternatives</p></li>
+</ul>
+</section>
+<section id="workflow-pipeline">
+<h3>#25 Workflow Pipeline<a class="headerlink" href="#workflow-pipeline" title="Permalink to this headline">#</a></h3>
+<ul class="simple">
+<li><p>Basic Idea</p></li>
+<li><p>Problem</p></li>
+<li><p>Solution</p></li>
+<li><p>Trade-Offs and Alternatives</p></li>
+</ul>
+</section>
+<section id="feature-store">
+<h3>#26 Feature Store<a class="headerlink" href="#feature-store" title="Permalink to this headline">#</a></h3>
+<ul class="simple">
+<li><p>Basic Idea</p></li>
+<li><p>Problem</p></li>
+<li><p>Solution</p></li>
+<li><p>Trade-Offs and Alternatives</p></li>
+</ul>
+</section>
+<section id="model-versioning">
+<h3>#27 Model Versioning<a class="headerlink" href="#model-versioning" title="Permalink to this headline">#</a></h3>
+<ul class="simple">
+<li><p>Basic Idea</p></li>
+<li><p>Problem</p></li>
+<li><p>Solution</p></li>
+<li><p>Trade-Offs and Alternatives</p></li>
+</ul>
+</section>
+</section>
+<section id="responsible-ai">
+<h2>Responsible AI<a class="headerlink" href="#responsible-ai" title="Permalink to this headline">#</a></h2>
+<section id="heuristic-benchmark">
+<h3>#28 Heuristic benchmark<a class="headerlink" href="#heuristic-benchmark" title="Permalink to this headline">#</a></h3>
+<ul class="simple">
+<li><p>Basic Idea</p></li>
+<li><p>Problem</p></li>
+<li><p>Solution</p></li>
+<li><p>Trade-Offs and Alternatives</p></li>
+</ul>
+</section>
+<section id="explainable-predictions">
+<h3>#29 Explainable Predictions<a class="headerlink" href="#explainable-predictions" title="Permalink to this headline">#</a></h3>
+<ul class="simple">
+<li><p>Basic Idea</p></li>
+<li><p>Problem</p></li>
+<li><p>Solution</p></li>
+<li><p>Trade-Offs and Alternatives</p></li>
+</ul>
+</section>
+<section id="fairness-lens">
+<h3>#30 Fairness Lens<a class="headerlink" href="#fairness-lens" title="Permalink to this headline">#</a></h3>
+<ul class="simple">
+<li><p>Basic Idea</p></li>
+<li><p>Problem</p></li>
+<li><p>Solution</p></li>
+<li><p>Trade-Offs and Alternatives</p></li>
+</ul>
+</section>
+</section>
+<section id="summary">
+<h2>Summary<a class="headerlink" href="#summary" title="Permalink to this headline">#</a></h2>
+</section>
+<section id="reference">
+<h2>Reference<a class="headerlink" href="#reference" title="Permalink to this headline">#</a></h2>
+<ul class="simple">
+<li><p>Machine Learning Design Patterns - by Valliappa Lakshmanan, Sara Robinson, and Michael Munn</p></li>
+</ul>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./ml_examples"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="decision_tree_classification.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Decision Tree - classification</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="ml_glossary.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">ML Conceptual brief</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By Chandra<br/>
+  
+      &copy; Copyright 2022.<br/>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>

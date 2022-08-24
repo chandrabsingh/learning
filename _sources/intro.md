@@ -79,7 +79,7 @@ Share your built books via web services and hosted websites.
 ML glossary ⚡
 ^^^
 
-Conceptual briefs about Machine Learning.
+Conceptual briefs on Machine Learning.
 :::
 
 ::::
