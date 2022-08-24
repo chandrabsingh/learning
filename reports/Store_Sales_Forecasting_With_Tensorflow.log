@@ -17,25 +17,46 @@ Traceback (most recent call last):
     raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
 nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
 ------------------
-# Add the integer features of a DataFrame’s row to a feature dictionary
-
-import tensorflow as tf
-
-def add_int_features(dataset_row, feature_dict):
-    int_vals = ['Store', 'Dept', 'IsHoliday', 'Size']
-    for feature_name in int_vals:
-        list_val = tf.train.Int64List(value=[dataset_row[feature_name]])
-        feature_dict[feature_name] = tf.train.Feature(int64_list = list_val)
+import pandas as pd
+train_df = pd.read_csv('./storeSalesForecasting/train.csv')
+print(train_df)
 ------------------
 
 [0;31m---------------------------------------------------------------------------[0m
-[0;31mModuleNotFoundError[0m                       Traceback (most recent call last)
-Input [0;32mIn [26][0m, in [0;36m<cell line: 3>[0;34m()[0m
-[1;32m      1[0m [38;5;66;03m# Add the integer features of a DataFrame’s row to a feature dictionary[39;00m
-[0;32m----> 3[0m [38;5;28;01mimport[39;00m [38;5;21;01mtensorflow[39;00m [38;5;28;01mas[39;00m [38;5;21;01mtf[39;00m
-[1;32m      5[0m [38;5;28;01mdef[39;00m [38;5;21madd_int_features[39m(dataset_row, feature_dict):
-[1;32m      6[0m     int_vals [38;5;241m=[39m [[38;5;124m'[39m[38;5;124mStore[39m[38;5;124m'[39m, [38;5;124m'[39m[38;5;124mDept[39m[38;5;124m'[39m, [38;5;124m'[39m[38;5;124mIsHoliday[39m[38;5;124m'[39m, [38;5;124m'[39m[38;5;124mSize[39m[38;5;124m'[39m]
+[0;31mKeyboardInterrupt[0m                         Traceback (most recent call last)
+Input [0;32mIn [1][0m, in [0;36m<cell line: 1>[0;34m()[0m
+[0;32m----> 1[0m [38;5;28;01mimport[39;00m [38;5;21;01mpandas[39;00m [38;5;28;01mas[39;00m [38;5;21;01mpd[39;00m
+[1;32m      2[0m train_df [38;5;241m=[39m pd[38;5;241m.[39mread_csv([38;5;124m'[39m[38;5;124m./storeSalesForecasting/train.csv[39m[38;5;124m'[39m)
+[1;32m      3[0m [38;5;28mprint[39m(train_df)
 
-[0;31mModuleNotFoundError[0m: No module named 'tensorflow'
-ModuleNotFoundError: No module named 'tensorflow'
+File [0;32m~/opt/anaconda3/lib/python3.8/site-packages/pandas/__init__.py:11[0m, in [0;36m<module>[0;34m[0m
+[1;32m      9[0m [38;5;28;01mfor[39;00m dependency [38;5;129;01min[39;00m hard_dependencies:
+[1;32m     10[0m     [38;5;28;01mtry[39;00m:
+[0;32m---> 11[0m         [38;5;28;43m__import__[39;49m[43m([49m[43mdependency[49m[43m)[49m
+[1;32m     12[0m     [38;5;28;01mexcept[39;00m [38;5;167;01mImportError[39;00m [38;5;28;01mas[39;00m e:
+[1;32m     13[0m         missing_dependencies[38;5;241m.[39mappend([38;5;124mf[39m[38;5;124m"[39m[38;5;132;01m{[39;00mdependency[38;5;132;01m}[39;00m[38;5;124m: [39m[38;5;132;01m{[39;00me[38;5;132;01m}[39;00m[38;5;124m"[39m)
+
+File [0;32m~/opt/anaconda3/lib/python3.8/site-packages/numpy/__init__.py:145[0m, in [0;36m<module>[0;34m[0m
+[1;32m    142[0m [38;5;66;03m# Allow distributors to run custom init code[39;00m
+[1;32m    143[0m [38;5;28;01mfrom[39;00m [38;5;21;01m.[39;00m [38;5;28;01mimport[39;00m _distributor_init
+[0;32m--> 145[0m [38;5;28;01mfrom[39;00m [38;5;21;01m.[39;00m [38;5;28;01mimport[39;00m core
+[1;32m    146[0m [38;5;28;01mfrom[39;00m [38;5;21;01m.[39;00m[38;5;21;01mcore[39;00m [38;5;28;01mimport[39;00m [38;5;241m*[39m
+[1;32m    147[0m [38;5;28;01mfrom[39;00m [38;5;21;01m.[39;00m [38;5;28;01mimport[39;00m compat
+
+File [0;32m~/opt/anaconda3/lib/python3.8/site-packages/numpy/core/__init__.py:72[0m, in [0;36m<module>[0;34m[0m
+[1;32m     70[0m [38;5;28;01mfrom[39;00m [38;5;21;01m.[39;00m [38;5;28;01mimport[39;00m numerictypes [38;5;28;01mas[39;00m nt
+[1;32m     71[0m multiarray[38;5;241m.[39mset_typeDict(nt[38;5;241m.[39msctypeDict)
+[0;32m---> 72[0m [38;5;28;01mfrom[39;00m [38;5;21;01m.[39;00m [38;5;28;01mimport[39;00m numeric
+[1;32m     73[0m [38;5;28;01mfrom[39;00m [38;5;21;01m.[39;00m[38;5;21;01mnumeric[39;00m [38;5;28;01mimport[39;00m [38;5;241m*[39m
+[1;32m     74[0m [38;5;28;01mfrom[39;00m [38;5;21;01m.[39;00m [38;5;28;01mimport[39;00m fromnumeric
+
+File [0;32m~/opt/anaconda3/lib/python3.8/site-packages/numpy/core/numeric.py:2529[0m, in [0;36m<module>[0;34m[0m
+[1;32m   2525[0m         [38;5;28;01mif[39;00m a [38;5;129;01mnot[39;00m [38;5;129;01min[39;00m existing:
+[1;32m   2526[0m             __all__[38;5;241m.[39mappend(a)
+[0;32m-> 2529[0m [38;5;28;01mfrom[39;00m [38;5;21;01m.[39;00m[38;5;21;01mumath[39;00m [38;5;28;01mimport[39;00m [38;5;241m*[39m
+[1;32m   2530[0m [38;5;28;01mfrom[39;00m [38;5;21;01m.[39;00m[38;5;21;01mnumerictypes[39;00m [38;5;28;01mimport[39;00m [38;5;241m*[39m
+[1;32m   2531[0m [38;5;28;01mfrom[39;00m [38;5;21;01m.[39;00m [38;5;28;01mimport[39;00m fromnumeric
+
+[0;31mKeyboardInterrupt[0m: 
+KeyboardInterrupt: 
 

@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>Conceptual brief &#8212; chandra notes</title>
+    <title>ML Conceptual brief</title>
     
   <!-- Loaded before other Sphinx assets -->
   <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
@@ -99,8 +99,6 @@ const thebe_selector_output = ".output, .cell_output"
       <img src="../_static/mylogo.png" class="logo" alt="logo">
       
       
-      <h1 class="site-logo" id="site-title">chandra notes</h1>
-      
     </a>
 </div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
   <i class="icon fas fa-search"></i>
@@ -147,7 +145,7 @@ const thebe_selector_output = ".output, .cell_output"
 <ul class="current nav bd-sidenav">
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
-   Conceptual brief
+   ML Conceptual brief
   </a>
  </li>
  <li class="toctree-l1">
@@ -2124,7 +2122,7 @@ title="Print to PDF"
         <div class="col pl-md-3 pl-lg-5 content-container">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
-                <h1>Conceptual brief</h1>
+                <h1>ML Conceptual brief</h1>
                 <!-- Table of contents -->
                 <div id="print-main-content">
                     <div id="jb-print-toc">
@@ -3784,8 +3782,8 @@ title="Print to PDF"
                 
               <div>
                 
-  <section class="tex2jax_ignore mathjax_ignore" id="conceptual-brief">
-<h1>Conceptual brief<a class="headerlink" href="#conceptual-brief" title="Permalink to this headline">#</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="ml-conceptual-brief">
+<h1>ML Conceptual brief<a class="headerlink" href="#ml-conceptual-brief" title="Permalink to this headline">#</a></h1>
 <p><img alt="ML Mind Map" src="../_images/ml_mind_map.png" /></p>
 <p><span class="math notranslate nohighlight">\(\tiny{\text{Jason Brownlee}}\)</span></p>
 <section id="machine-learning">
@@ -4023,18 +4021,22 @@ $<span class="math notranslate nohighlight">\(IG(Y,X) = E(Y) - E(Y|X)\)</span>$<
 <h3>Logistic Regression<a class="headerlink" href="#logistic-regression" title="Permalink to this headline">#</a></h3>
 <p>Logistic regression models generate probabilities.</p>
 <p>The logistic regression is used to model the relationship between a set of independent and dependent variables. The dependent variables are categorical in nature, which is predicted based on the probabilities given some characteristics of class variables. The logistic regression uses sigmoid function to assign class labels.</p>
-<p>The logit function is defined as the logarithm of the log odds
-$<span class="math notranslate nohighlight">\( z = \text{logit(p)} = \ln\frac{p}{1-p}\)</span>$</p>
+<p>The logit function is defined as the logarithm of the log odds</p>
+<div class="math notranslate nohighlight">
+\[ z = \text{logit(p)} = \ln\frac{p}{1-p} \]</div>
 <p><span class="math notranslate nohighlight">\(z\)</span> is also referred to as the log-odds because the inverse of the sigmoid states that <span class="math notranslate nohighlight">\(z\)</span> can be defined as the log of the probability of the <span class="math notranslate nohighlight">\(1\)</span> label (e.g., “dog bark”) divided by the probability of the <span class="math notranslate nohighlight">\(0\)</span> label(e.g., “dog does not bark”)</p>
-<p>A standard logistic sigmoid function is defined as the
-$<span class="math notranslate nohighlight">\( \sigma(z) = \frac{1}{1+e^{-z}} \)</span>$</p>
+<p>A standard logistic sigmoid function is defined as the</p>
+<div class="math notranslate nohighlight">
+\[ \sigma(z) = \frac{1}{1+e^{-z}} \]</div>
 <p>The linear part of the model predicts the log-odds of the dataset example in the form of probability using logistic sigmoid function.</p>
 <p>It tries to learn a function that approximates P(Y|X), by assuming that P(Y|X) can be approximated as a sigmoid
-function when applied to the linear combination of input features.<br />
-$<span class="math notranslate nohighlight">\( P(Y = 1|X = x) = \sigma(z) = \sigma(\theta^{T}x) \)</span><span class="math notranslate nohighlight">\(,
-where \)</span>z = \theta_{0} + \sum\limits_{i=1}^{m}\theta_{i}x_{i} $</p>
-<p>Similarly,
-$<span class="math notranslate nohighlight">\( P(Y = 0|X = x) = 1 - \sigma(\theta^{T}x) \)</span>$</p>
+function when applied to the linear combination of input features.</p>
+<div class="math notranslate nohighlight">
+\[ P(Y = 1|X = x) = \sigma(z) = \sigma(\theta^{T}x) \]</div>
+<p>where <span class="math notranslate nohighlight">\(z = \theta_{0} + \sum\limits_{i=1}^{m}\theta_{i}x_{i} \)</span></p>
+<p>Similarly,</p>
+<div class="math notranslate nohighlight">
+\[ P(Y = 0|X = x) = 1 - \sigma(\theta^{T}x) \]</div>
 <p>The gradient descent is calculated as the partial derivative of logistic cost function wrt weight, which is used to maximize the logistic cost function.</p>
 <p>The loss function for logistic regression is Log Loss defined as</p>
 <img src="./images/logisticRegressionCostFun.png" width=500 height=500>
@@ -4333,10 +4335,23 @@ and <span class="math notranslate nohighlight">\(\zeta^{(i)} \gt 0\)</span> for 
 <p><a href="#Logistic-Regression">Logistic Regression</a></p>
 <p>The hypothesis looks like</p>
 <div class="math notranslate nohighlight">
-\[ h_{\theta}(x) = \frac{1}{1+e^{-\theta^{T}x}}\]</div>
-<p>and the model parameters <span class="math notranslate nohighlight">\(\theta\)</span> are trained to minimize the cost function
-$<span class="math notranslate nohighlight">\( J(\theta) = - \left [ \sum\limits_{i=0}^{n}y^{(i)}\log\sigma(\theta^{T}x^{(i)}) + (1-y^{(i)}) \log[1-\sigma(\theta^{T}x^{(i)})] \right]  \)</span><span class="math notranslate nohighlight">\( 
-\)</span><span class="math notranslate nohighlight">\( = -\left [ \sum\limits_{i=0}^{n}y^{(i)}\log h_{\theta}(x^{(i)}) + (1-y^{(i)}) \log[1- h_{\theta}(x^{(i)})) ]\right] \)</span>$</p>
+\[\begin{split}
+\begin{equation}\
+\begin{aligned}\
+h_{\theta}(x) = \frac{1}{1+e^{-\theta^{T}x}}\\
+\end{aligned} \
+\end{equation}\
+\end{split}\]</div>
+<p>and the model parameters <span class="math notranslate nohighlight">\(\theta\)</span> are trained to minimize the cost function</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{equation}\
+\begin{aligned}\
+ J(\theta) &amp;= - \left [ \sum\limits_{i=0}^{n}y^{(i)}\log\sigma(\theta^{T}x^{(i)}) + (1-y^{(i)}) \log[1-\sigma(\theta^{T}x^{(i)})] \right]  \\
+ &amp;= -\left [ \sum\limits_{i=0}^{n}y^{(i)}\log h_{\theta}(x^{(i)}) + (1-y^{(i)}) \log[1- h_{\theta}(x^{(i)})) ]\right] \\
+\end{aligned} \
+\end{equation}\
+\end{split}\]</div>
 </section>
 <section id="two-class-neural-network">
 <h3>Two-Class Neural Network<a class="headerlink" href="#two-class-neural-network" title="Permalink to this headline">#</a></h3>
@@ -4418,7 +4433,7 @@ $<span class="math notranslate nohighlight">\( J(\theta) = - \left [ \sum\limits
 \[\begin{split} f(\mathbf {x} )={\begin{cases}1&amp;{\text{if }}\ \mathbf {w} \cdot \mathbf {x} +b&gt;0,\\0&amp;{\text{otherwise}}\end{cases}}\end{split}\]</div>
 <p>where <span class="math notranslate nohighlight">\(\mathbf {w}\)</span>  is a vector of real-valued weights, <span class="math notranslate nohighlight">\( \mathbf {w} \cdot \mathbf {x} \)</span> is the dot product <span class="math notranslate nohighlight">\( \sum _{i=1}^{m}w_{i}x_{i}\)</span>, where m is the number of inputs to the perceptron, and b is the bias. The bias shifts the decision boundary away from the origin and does not depend on any input value.</p>
 <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8a/Perceptron_example.svg/1000px-Perceptron_example.svg.png" width=500 height=500>
-$\tiny\text{Wikipedia}$
+<p><span class="math notranslate nohighlight">\(\tiny\text{Wikipedia}\)</span></p>
 </section>
 <section id="relevance-vector-machine-rvm">
 <h3>Relevance vector machine (RVM)<a class="headerlink" href="#relevance-vector-machine-rvm" title="Permalink to this headline">#</a></h3>
@@ -4889,31 +4904,40 @@ $\tiny\text{Wikipedia}$
 </li>
 </ul>
 <img src="https://miro.medium.com/max/1400/1*qtinjiZct2w7Dr4XoFixnA.gif">
-$$\text{Convolutional Layer}$$
+<div class="math notranslate nohighlight">
+\[\text{Convolutional Layer}\]</div>
 <hr class="docutils" />
 <img src="https://miro.medium.com/max/1400/1*uAeANQIOQPqWZnnuH-VEyw.jpeg">
-$$\text{A CNN sequence to classify handwritten digits}$$
+<div class="math notranslate nohighlight">
+\[\text{A CNN sequence to classify handwritten digits}\]</div>
 <hr class="docutils" />
 <img src="https://miro.medium.com/max/850/1*GLQjM9k0gZ14nYF0XmkRWQ.png" width=500 height=500>
-$$\text{Flattened 3x3 image matrix 1 dimension}$$
+<div class="math notranslate nohighlight">
+\[\text{Flattened 3x3 image matrix 1 dimension}\]</div>
 <hr class="docutils" />
 <img src="https://miro.medium.com/max/1052/1*GcI7G-JLAQiEoCON7xFbhg.gif" width=500 height=500>
-$$\text{Convolution Layer — The Kernel - Convoluting a 5x5x1 image(Green) with a 3x3x1 kernel(Yellow) to get a 3x3x1(Red) convolved feature}$$
+<div class="math notranslate nohighlight">
+\[\text{Convolution Layer — The Kernel - Convoluting a 5x5x1 image(Green) with a 3x3x1 kernel(Yellow) to get a 3x3x1(Red) convolved feature}\]</div>
 <hr class="docutils" />
 <img src="https://miro.medium.com/max/1400/1*ciDgQEjViWLnCbmX-EeSrA.gif">
-$$\text{Convolution operation on a MxNx3 image matrix with a 3x3x3 Kernel}$$
+<div class="math notranslate nohighlight">
+\[\text{Convolution operation on a MxNx3 image matrix with a 3x3x3 Kernel}\]</div>
 <hr class="docutils" />
 <img src="https://miro.medium.com/max/790/1*1VJDP6qDY9-ExTuQVEOlVg.gif" width=500 height=500>
-$$\text{Convolution Operation with Stride Length = 2}$$
+<div class="math notranslate nohighlight">
+\[\text{Convolution Operation with Stride Length = 2}\]</div>
 <hr class="docutils" />
 <img src="https://miro.medium.com/max/790/1*nYf_cUIHFEWU1JXGwnz-Ig.gif" width=500 height=500>
-$$\text{SAME padding: 5x5x1 image is padded with 0s to create a 6x6x1 image}$$
+<div class="math notranslate nohighlight">
+\[\text{SAME padding: 5x5x1 image is padded with 0s to create a 6x6x1 image}\]</div>
 <hr class="docutils" />
 <img src="https://miro.medium.com/max/1192/1*KQIEqhxzICU7thjaQBfPBQ.png" width=500 height=500>
-$$\text{Types of Pooling}$$
+<div class="math notranslate nohighlight">
+\[\text{Types of Pooling}\]</div>
 <hr class="docutils" />
 <img src="https://miro.medium.com/max/1400/1*kToStLowjokojIQ7pY2ynQ.jpeg" width=500 height=500>
-$$\text{Classification — Fully Connected Layer (FC Layer)}$$
+<div class="math notranslate nohighlight">
+\[\text{Classification — Fully Connected Layer (FC Layer)}\]</div>
 <hr class="docutils" />
 <ul class="simple">
 <li><p><a class="reference external" href="https://towardsdatascience.com/a-comprehensive-guide-to-convolutional-neural-networks-the-eli5-way-3bd2b1164a53">https://towardsdatascience.com/a-comprehensive-guide-to-convolutional-neural-networks-the-eli5-way-3bd2b1164a53</a></p></li>
@@ -5601,8 +5625,9 @@ k = 1 - the logistic growth rate or steepness of curve</p>
 </section>
 <section id="logit-function">
 <h3>Logit function<a class="headerlink" href="#logit-function" title="Permalink to this headline">#</a></h3>
-<p>The logit function is the logarithm of the odds ratio (log-odds)
-$<span class="math notranslate nohighlight">\( \text{logit(p)} = \ln\frac{p}{1-p}\)</span>$</p>
+<p>The logit function is the logarithm of the odds ratio (log-odds)</p>
+<div class="math notranslate nohighlight">
+\[ \text{logit(p)} = \ln\frac{p}{1-p}\]</div>
 </section>
 <section id="probit-function">
 <h3>Probit function<a class="headerlink" href="#probit-function" title="Permalink to this headline">#</a></h3>
@@ -5639,13 +5664,15 @@ $<span class="math notranslate nohighlight">\( \text{logit(p)} = \ln\frac{p}{1-p
 </section>
 <section id="log-likelihood-function">
 <h3>Log-Likelihood function<a class="headerlink" href="#log-likelihood-function" title="Permalink to this headline">#</a></h3>
-<p>The log likelihood for logistic regression is given by
-$<span class="math notranslate nohighlight">\( LL(\theta) = - \sum\limits_{i=0}^{n}\left[y^{(i)}\log\sigma(\theta^{T}x^{(i)}) + (1-y^{(i)}) \log[1-\sigma(\theta^{T}x^{(i)})]\right]  \)</span>$</p>
+<p>The log likelihood for logistic regression is given by</p>
+<div class="math notranslate nohighlight">
+\[ LL(\theta) = - \sum\limits_{i=0}^{n}\left[y^{(i)}\log\sigma(\theta^{T}x^{(i)}) + (1-y^{(i)}) \log[1-\sigma(\theta^{T}x^{(i)})]\right]  \]</div>
 </section>
 <section id="gradient-of-log-likelihood-function">
 <h3>Gradient of log likelihood function<a class="headerlink" href="#gradient-of-log-likelihood-function" title="Permalink to this headline">#</a></h3>
-<p>It tries to choose values of <span class="math notranslate nohighlight">\(\theta\)</span> that maximizes the function
-$<span class="math notranslate nohighlight">\( \frac{\partial LL(\theta)}{\partial \theta_{j}} = \sum\limits_{i=0}^{n}\left[ y^{(i)} - \sigma(\theta^{T}x^{(i)}) \right]x_{j}^{(i)} \)</span>$</p>
+<p>It tries to choose values of <span class="math notranslate nohighlight">\(\theta\)</span> that maximizes the function</p>
+<div class="math notranslate nohighlight">
+\[ \frac{\partial LL(\theta)}{\partial \theta_{j}} = \sum\limits_{i=0}^{n}\left[ y^{(i)} - \sigma(\theta^{T}x^{(i)}) \right]x_{j}^{(i)} \]</div>
 </section>
 <section id="negative-log-likelihood-function">
 <h3>Negative log likelihood function<a class="headerlink" href="#negative-log-likelihood-function" title="Permalink to this headline">#</a></h3>
@@ -5790,11 +5817,19 @@ $<span class="math notranslate nohighlight">\( \frac{\partial LL(\theta)}{\parti
 </li>
 <li><p>Function</p>
 <ul>
-<li><p>Equation: $<span class="math notranslate nohighlight">\( f(x) = s = \frac{1}{1+e^{-x}}\)</span>$</p></li>
-<li><p>Derivative: $<span class="math notranslate nohighlight">\( f’(x) = s*(1-s) \)</span>$</p></li>
-<li><p>Range: (0,1)</p></li>
+<li><p>Equation:</p></li>
 </ul>
 </li>
+</ul>
+<div class="math notranslate nohighlight">
+\[ f(x) = s = \frac{1}{1+e^{-x}}\]</div>
+<ul class="simple">
+<li><p>Derivative:</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[ f’(x) = s*(1-s) \]</div>
+<ul class="simple">
+<li><p>Range: (0,1)</p></li>
 <li><p>Adv</p>
 <ul>
 <li><p>function is differentiable. can find the slope of the sigmoid curve at any two points</p></li>
@@ -5821,11 +5856,19 @@ $<span class="math notranslate nohighlight">\( \frac{\partial LL(\theta)}{\parti
 </li>
 <li><p>Function</p>
 <ul>
-<li><p>Equation: $<span class="math notranslate nohighlight">\( f(x) = \frac{e^{x_{i}}}{\sum_{j=1}^{n} e^{x_{i}}} \)</span>$</p></li>
-<li><p>Probabilistic interpretation: $<span class="math notranslate nohighlight">\( S_{j} = P(y=j|x) \)</span>$</p></li>
-<li><p>Range: (0, 1)</p></li>
+<li><p>Equation:</p></li>
 </ul>
 </li>
+</ul>
+<div class="math notranslate nohighlight">
+\[ f(x) = \frac{e^{x_{i}}}{\sum_{j=1}^{n} e^{x_{i}}} \]</div>
+<ul class="simple">
+<li><p>Probabilistic interpretation:</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[ S_{j} = P(y=j|x) \]</div>
+<ul class="simple">
+<li><p>Range: (0, 1)</p></li>
 <li><p>Adv</p>
 <ul>
 <li><p>Able to handle multiple classes only one class in other activation functions</p>
@@ -5843,11 +5886,19 @@ $<span class="math notranslate nohighlight">\( \frac{\partial LL(\theta)}{\parti
 <ul class="simple">
 <li><p>Function</p>
 <ul>
-<li><p>Equation: $<span class="math notranslate nohighlight">\( f(x) = a = \tanh(x) =\frac{e^{x} - e^{-x}}{e^{x} + e^{-x}} \)</span>$</p></li>
-<li><p>Derivative: $<span class="math notranslate nohighlight">\(f’(x) = (1- a^{2})\)</span>$</p></li>
-<li><p>Range: (-1, 1)</p></li>
+<li><p>Equation:</p></li>
 </ul>
 </li>
+</ul>
+<div class="math notranslate nohighlight">
+\[ f(x) = a = \tanh(x) =\frac{e^{x} - e^{-x}}{e^{x} + e^{-x}} \]</div>
+<ul class="simple">
+<li><p>Derivative:</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[f’(x) = (1- a^{2})\]</div>
+<ul class="simple">
+<li><p>Range: (-1, 1)</p></li>
 <li><p>Adv</p>
 <ul>
 <li><p>zero centered</p>
@@ -5882,11 +5933,23 @@ $<span class="math notranslate nohighlight">\( \frac{\partial LL(\theta)}{\parti
 </li>
 <li><p>Function</p>
 <ul>
-<li><p>Equation: $<span class="math notranslate nohighlight">\( f(x) = \max(x, 0) \)</span>$</p></li>
-<li><p>Derivative: $<span class="math notranslate nohighlight">\( f'(x) = 1 \text{ if } x \gt 0 \text{ otherwise } 0 \)</span>$</p></li>
-<li><p>Range: $<span class="math notranslate nohighlight">\([0, +\infty)\)</span>$</p></li>
+<li><p>Equation:</p></li>
 </ul>
 </li>
+</ul>
+<div class="math notranslate nohighlight">
+\[ f(x) = \max(x, 0) \]</div>
+<ul class="simple">
+<li><p>Derivative:</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[ f'(x) = 1 \text{ if } x \gt 0 \text{ otherwise } 0 \]</div>
+<ul class="simple">
+<li><p>Range:</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[[0, +\infty)\]</div>
+<ul class="simple">
 <li><p>Adv</p>
 <ul>
 <li><p>Computationally efficient</p>
@@ -5925,11 +5988,19 @@ $<span class="math notranslate nohighlight">\( \frac{\partial LL(\theta)}{\parti
 </li>
 <li><p>Function</p>
 <ul>
-<li><p>Equation: $<span class="math notranslate nohighlight">\(f(x)= a = \max(0.01x, x)\)</span>$</p></li>
-<li><p>Derivative: $<span class="math notranslate nohighlight">\( f'(x) = 1 \text{ if } x \gt 0 \text{ otherwise } 0.01 \)</span>$</p></li>
-<li><p>Range: (0.01, +<span class="math notranslate nohighlight">\(\infty\)</span>)</p></li>
+<li><p>Equation:</p></li>
 </ul>
 </li>
+</ul>
+<div class="math notranslate nohighlight">
+\[f(x)= a = \max(0.01x, x)\]</div>
+<ul class="simple">
+<li><p>Derivative:</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[ f'(x) = 1 \text{ if } x \gt 0 \text{ otherwise } 0.01 \]</div>
+<ul class="simple">
+<li><p>Range: (0.01, +<span class="math notranslate nohighlight">\(\infty\)</span>)</p></li>
 <li><p>Adv</p>
 <ul>
 <li><p>Prevents dying ReLU problem</p>
