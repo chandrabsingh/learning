@@ -1,4 +1,4 @@
-# Welcome to my ML Book
+# My ML Book
 
 Here are small projects to expand my understanding of machine learning algorithms.
 

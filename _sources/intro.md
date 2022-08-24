@@ -23,10 +23,10 @@ It does not go in-depth into any particular topic - check out [the Jupyter Book 
 :link-type: doc
 :class-header: bg-light
 
-Text content ✏️
+Python FAQs ✏️
 ^^^
 
-Structure books with text files and Jupyter Notebooks with minimal configuration.
+Python FAQs.
 :::
 
 :::{grid-item-card}

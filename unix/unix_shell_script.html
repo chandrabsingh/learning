@@ -1,0 +1,2336 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Unix/Shell FAQs</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Markdown Files" href="../markdown.html" />
+    <link rel="prev" title="Python FAQs" href="../codes/python_faqs.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../_static/mylogo.png" class="logo" alt="logo">
+      
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    My learning notebook
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Machine Learning
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../ml_examples/intro.html">
+   My ML Book
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../ml_examples/Store_Sales_Forecasting_With_Tensorflow.html">
+     Store Sales Forecasting with TensorFlow
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../ml_examples/decision_tree_classification.html">
+     Decision Tree - classification
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../ml_examples/ml_design_patterns.html">
+     The Need for ML Design Patterns
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Unix/Shell Scripting
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="intro.html">
+   My Unix/Shell Book
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="my_zshrc.html">
+     My .zshrc script
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Reference
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../ml_examples/ml_glossary.html">
+   ML Conceptual brief
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../codes/python_faqs.html">
+   Python FAQs
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Unix/Shell FAQs
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../markdown.html">
+   Markdown Files
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../notebooks.html">
+   Content with notebooks
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../markdown-notebooks.html">
+   Notebooks with MyST Markdown
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Lecture Notes
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../cs229_ml/intro.html">
+   CS229 ML - by Andrew Ng
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+  <label for="toctree-checkbox-3">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../cs229_ml/lec02-LinearReg-GradientDescent.html">
+     Lec 02-Linear Regression - Gradient Descent
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../cs229_ml/lec03-LocallyWeighted-LogisticRegression.html">
+     Lec 03-Locally Weighted Regression - Logistic Regression
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../cs229_ml/lec04-Perceptron-GLM.html">
+     Lec 04-Perceptron - GLM
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../cs229_ml/lec05-GDA-NaiveBayes.html">
+     Lec 05-GDA - Naive Bayes
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../cs229_ml/lec06-NaiveBayes-SVM.html">
+     Lec 06-Naive Bayes - SVM
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../cs229_ml/lec07-Kernels-SVM.html">
+     Lec 07-Kernels - SVM
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../cs229_ml/lec08-DataSplits-Models-CrossValidation.html">
+     Lec 08-Data Splits - Models - Cross Validation
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../cs229_ml/lec09-Approx-EstimationError-ERM.html">
+     Lec 09-Estimation Error - ERM
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../cs229_ml/lec10-DecisionTrees-EnsembleMethods.html">
+     Lec 10-Decision Trees - Ensemble Methods
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../cs229_ml/lec11-Intro-NN.html">
+     Lec 11-Neural Networks
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../cs229_ml/lec12-Backpropagation-ImprovingNN.html">
+     Lec 12-Improving NN
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../cs229_ml/lec13-DebuggingMLModels-ErrorAnalysis.html">
+     Lec 13-Debugging ML Models-Error Analysis
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../cs229_ml/lec14-Expectation-MaximizationAlgo.html">
+     Lec 14-Expectation-Maximization Algo
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../cs229_ml/lec15-EMAlgo-FactorAnalysis.html">
+     Lec 15-EM Algo-Factor Analysis
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../cs229_ml/lec16-IndependentComponentAnalysis-RL.html">
+     Lec 16-Independent Component Analysis-RL
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../cs229_ml/lec17-MDPs-ValuePolicyIteration.html">
+     Lec 17-MDPs-Value Policy Iteration
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../cs229_ml/lec18-continuousMDPs-ModelSimulation.html">
+     Lec 18-Continuous MDPs-Model Simulation
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+    </div>
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<div class="menu-dropdown menu-dropdown-launch-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Launch interactive content">
+      <i class="fas fa-rocket"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://mybinder.org/v2/gh/chandrabsingh/learning/master?urlpath=tree/learning/unix/unix_shell_script.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Binder"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="../_static/images/logo_binder.svg">
+  </span>
+<span class="headerbtn__text-container">Binder</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-repository-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Source repositories">
+      <i class="fab fa-github"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://github.com/chandrabsingh/learning"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Source repository"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="headerbtn__text-container">repository</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/chandrabsingh/learning/issues/new?title=Issue%20on%20page%20%2Funix/unix_shell_script.html&body=Your%20issue%20content%20here."
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Open an issue"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="headerbtn__text-container">open issue</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="../_sources/unix/unix_shell_script.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.ipynb</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#vi-commands">
+   vi commands
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#editing">
+     Editing
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#motion-navigation">
+     Motion/Navigation
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#vi-settings">
+     vi settings
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#vi-extras">
+     vi extras
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#vi-csv">
+     vi csv
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#shell-commands">
+   Shell commands
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#mac-specific">
+     Mac specific
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#find-files-dir">
+     find files/dir
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#shell">
+     Shell
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#important-folder-file-locations">
+       Important folder/file locations
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#ls">
+       ls
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#file-content-edits">
+       File Content Edits
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#disk-usage">
+     Disk usage
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#process-port">
+     Process/Port
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#vi-cheat-sheet">
+   vi cheat sheet
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#graphical-cheat-sheet">
+     graphical cheat sheet
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#basic-editing">
+     basic editing
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#operators-and-repetitions">
+     operators and repetitions
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#yank-and-paste">
+     yank and paste
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#searching">
+     searching
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#marks-and-macros">
+     marks and macros
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#various-motions">
+     various motions
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#various-commands">
+     various commands
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#iterm2">
+   iTerm2
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#cassandra">
+   Cassandra
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#pyspark">
+   PySpark
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#llvm-clang">
+   llvm/clang
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#install-llvm">
+     Install llvm
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#clang-from-xcode-vs-llvm">
+     clang from Xcode vs llvm
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#run-clang-with-different-flags">
+     Run clang with different flags
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#jupyter-notebook">
+   Jupyter Notebook
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#git">
+   git
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#conda">
+   conda
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#pip">
+   pip
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#mac-services">
+   Mac Services
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#makefile">
+   Makefile
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#pytest">
+   pytest
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#docker">
+   docker
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#compound-operations">
+   Compound operations
+  </a>
+ </li>
+</ul>
+
+    </nav>
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Unix/Shell FAQs</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#vi-commands">
+   vi commands
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#editing">
+     Editing
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#motion-navigation">
+     Motion/Navigation
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#vi-settings">
+     vi settings
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#vi-extras">
+     vi extras
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#vi-csv">
+     vi csv
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#shell-commands">
+   Shell commands
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#mac-specific">
+     Mac specific
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#find-files-dir">
+     find files/dir
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#shell">
+     Shell
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#important-folder-file-locations">
+       Important folder/file locations
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#ls">
+       ls
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#file-content-edits">
+       File Content Edits
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#disk-usage">
+     Disk usage
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#process-port">
+     Process/Port
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#vi-cheat-sheet">
+   vi cheat sheet
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#graphical-cheat-sheet">
+     graphical cheat sheet
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#basic-editing">
+     basic editing
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#operators-and-repetitions">
+     operators and repetitions
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#yank-and-paste">
+     yank and paste
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#searching">
+     searching
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#marks-and-macros">
+     marks and macros
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#various-motions">
+     various motions
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#various-commands">
+     various commands
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#iterm2">
+   iTerm2
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#cassandra">
+   Cassandra
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#pyspark">
+   PySpark
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#llvm-clang">
+   llvm/clang
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#install-llvm">
+     Install llvm
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#clang-from-xcode-vs-llvm">
+     clang from Xcode vs llvm
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#run-clang-with-different-flags">
+     Run clang with different flags
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#jupyter-notebook">
+   Jupyter Notebook
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#git">
+   git
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#conda">
+   conda
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#pip">
+   pip
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#mac-services">
+   Mac Services
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#makefile">
+   Makefile
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#pytest">
+   pytest
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#docker">
+   docker
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#compound-operations">
+   Compound operations
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <section class="tex2jax_ignore mathjax_ignore" id="unix-shell-faqs">
+<h1>Unix/Shell FAQs<a class="headerlink" href="#unix-shell-faqs" title="Permalink to this headline">#</a></h1>
+<section id="vi-commands">
+<h2>vi commands<a class="headerlink" href="#vi-commands" title="Permalink to this headline">#</a></h2>
+<section id="editing">
+<h3>Editing<a class="headerlink" href="#editing" title="Permalink to this headline">#</a></h3>
+<ul>
+<li><p>Add same string at the beginning of each line: <code class="docutils literal notranslate"><span class="pre">:%s/^/helloworld/</span></code></p></li>
+<li><p>Undo last commands: <code class="docutils literal notranslate"><span class="pre">:u</span></code></p></li>
+<li><p>Undo last 2 commands: <code class="docutils literal notranslate"><span class="pre">:2u</span></code></p></li>
+<li><p>Copy all the lines in buffer: <code class="docutils literal notranslate"><span class="pre">:%y+</span></code></p></li>
+<li><p>Delete all the lines in file: <code class="docutils literal notranslate"><span class="pre">:1,\$d</span></code></p></li>
+<li><p>Delete lines from cursor to specific line number: <code class="docutils literal notranslate"><span class="pre">:.,10d</span></code></p></li>
+<li><p>Delete current line: <code class="docutils literal notranslate"><span class="pre">:.d</span></code></p></li>
+<li><p>Exit without saving: <code class="docutils literal notranslate"><span class="pre">:q!</span></code></p></li>
+<li><p>Save and exit: <code class="docutils literal notranslate"><span class="pre">:wq</span></code></p></li>
+<li><p>Insert mode: <code class="docutils literal notranslate"><span class="pre">:I</span></code></p></li>
+<li><p>Copy next 2 lines: <code class="docutils literal notranslate"><span class="pre">2yy</span></code></p></li>
+<li><p>Paste copied items: <code class="docutils literal notranslate"><span class="pre">p</span></code></p></li>
+<li><p>Copy/Paste specific line numbers:</p>
+<ul class="simple">
+<li><p>yank those lines in register:</p></li>
+</ul>
+<blockquote>
+<div><p><code class="docutils literal notranslate"><span class="pre">:364,757y</span></code></p>
+</div></blockquote>
+<ul class="simple">
+<li><p>if you want to copy those lines and paste to some certain line, t is your friend. for example:</p></li>
+</ul>
+<blockquote>
+<div><p><code class="docutils literal notranslate"><span class="pre">:364,757t2</span></code>  - will copy those lines to under 2nd line.</p>
+</div></blockquote>
+<ul class="simple">
+<li><p>if you want to copy them to right under your current line:</p></li>
+</ul>
+<blockquote>
+<div><p><code class="docutils literal notranslate"><span class="pre">:364,757t.</span></code></p>
+</div></blockquote>
+</li>
+<li><p>Undo last command: <code class="docutils literal notranslate"><span class="pre">u</span></code></p></li>
+<li><p>Undo last 2 commands: <code class="docutils literal notranslate"><span class="pre">2u</span></code></p></li>
+<li><p>For tab characters that appear 4-spaces-wide: <code class="docutils literal notranslate"><span class="pre">set</span> <span class="pre">tabstop=4</span></code></p></li>
+<li><p>If you’re using actual tab character in your source code you probably also want these settings (these are actually the defaults, but you may want to set them defensively): <code class="docutils literal notranslate"><span class="pre">set</span> <span class="pre">softtabstop=0</span> <span class="pre">noexpandtab</span></code></p></li>
+<li><p>Finally, if you want an indent to correspond to a single tab, you should also use: <code class="docutils literal notranslate"><span class="pre">set</span> <span class="pre">shiftwidth=4</span></code></p></li>
+<li><p>For indents that consist of 4 space characters but are entered with the tab key: <code class="docutils literal notranslate"><span class="pre">set</span> <span class="pre">tabstop=8</span> <span class="pre">softtabstop=0</span> <span class="pre">expandtab</span> <span class="pre">shiftwidth=4</span> <span class="pre">smarttab</span></code></p></li>
+<li><p>Permanent setting in <code class="docutils literal notranslate"><span class="pre">~/.vimrc</span></code>:  <code class="docutils literal notranslate"><span class="pre">:set</span> <span class="pre">number</span></code></p></li>
+<li><p>Comment in ~/.vimrc <code class="docutils literal notranslate"><span class="pre">&quot;</span> <span class="pre">This</span> <span class="pre">is</span> <span class="pre">comment</span></code></p></li>
+<li><p>to search for all occurences, with highlight</p></li>
+</ul>
+<blockquote>
+<div><p>set hlsearch<br />
+<code class="docutils literal notranslate"><span class="pre">/\cGoogle</span></code><br />
+set nohlsearch</p>
+</div></blockquote>
+<ul class="simple">
+<li><p>Search and replace <code class="docutils literal notranslate"><span class="pre">:[range]s/{pattern}/{string}/[flags]</span> <span class="pre">[count]</span></code></p>
+<ul>
+<li><p>To search for the first occurrence of the string ‘foo’ in the current line and replace it with ‘bar’, you would use: <code class="docutils literal notranslate"><span class="pre">:s/foo/bar/</span></code></p></li>
+<li><p>To replace all occurrences of the search pattern in the current line, add the g flag: <code class="docutils literal notranslate"><span class="pre">:s/foo/bar/g</span></code></p></li>
+<li><p>If you want to search and replace the pattern in the entire file, use the percentage character % as a range. This character indicates a range from the first to the last line of the file: <code class="docutils literal notranslate"><span class="pre">:%s/foo/bar/g</span></code></p></li>
+<li><p>If the {string} part is omitted, it is considered as an empty string, and the matched pattern is deleted. The following command deletes all instances of the string ‘foo’ in the current line: <code class="docutils literal notranslate"><span class="pre">:s/foo//g</span></code></p></li>
+<li><p>Instead of the slash character (/), you can use any other non-alphanumeric single-byte character except as a delimiter. This option is useful when you have the ‘/’ character in the search pattern or the replacement string: <code class="docutils literal notranslate"><span class="pre">:s|foo|bar|</span></code></p></li>
+<li><p>To confirm each substitution, use the c flag: <code class="docutils literal notranslate"><span class="pre">:s/foo/bar/gc</span></code></p></li>
+<li><p>You can also use regular expressions as a search pattern. The command bellow replaces all lines starting with ‘foo’ with ‘Vim is the best’: <code class="docutils literal notranslate"><span class="pre">:%s/^foo.*/Vim</span> <span class="pre">is</span> <span class="pre">the</span> <span class="pre">best/gc</span></code></p></li>
+<li><p>By default, the search operation is case sensitive; searching for “FOO” will not match “Foo”. To ignore case for the search pattern, use the i flag: <code class="docutils literal notranslate"><span class="pre">:s/Foo/bar/gi</span></code></p></li>
+<li><p>To substitute all occurrences of ‘foo’ to ‘bar’ in all lines starting from line 3 to line 10 you would use(range is inclusive): <code class="docutils literal notranslate"><span class="pre">:3,10s/foo/bar/g</span></code></p></li>
+<li><p>The dot . character indicates the current line and $ - the dollar sign the last line. To substitute ‘foo’ in all lines starting from the current line to the last one: <code class="docutils literal notranslate"><span class="pre">:.,$s/foo/bar/</span></code></p></li>
+<li><p>To search for a whole word, type &lt; to mark the beginning of a word, enter the search pattern, type &gt; to mark the end of a word: <code class="docutils literal notranslate"><span class="pre">:s/\&lt;foo\&gt;/bar/</span></code></p></li>
+<li><p>Comment lines (add # before the line) from 5 to 20: <code class="docutils literal notranslate"><span class="pre">:5,20s/^/#/</span></code></p></li>
+<li><p>Uncomment lines from 5 to 20, revert the previous changes: <code class="docutils literal notranslate"><span class="pre">:5,20s/^#//</span></code></p></li>
+<li><p>Replace all instances of ‘apple’, ‘orange’, and ‘mango’ with ‘fruit’: <code class="docutils literal notranslate"><span class="pre">:%s/apple\|orange\|mango/fruit/g</span></code></p></li>
+<li><p>Remove trailing whitespace at the end of each line: <code class="docutils literal notranslate"><span class="pre">:%s/\s\+$//e</span></code></p></li>
+</ul>
+</li>
+<li><p>To run shell commands while on vim use <code class="docutils literal notranslate"><span class="pre">:!ls</span></code></p></li>
+<li><p>To run shell commands and copy the result of executed command into opened vim document <code class="docutils literal notranslate"><span class="pre">:.!ls</span></code></p></li>
+<li><p>To list directory names only: <code class="docutils literal notranslate"><span class="pre">ls</span> <span class="pre">-d</span> <span class="pre">*/</span></code></p></li>
+<li><p>To try different characters: <code class="docutils literal notranslate"><span class="pre">dig</span></code></p></li>
+<li><p>To print foreign characters:</p></li>
+</ul>
+<blockquote>
+<div><p>Go in insert mode <code class="docutils literal notranslate"><span class="pre">a</span></code><br />
+Type <code class="docutils literal notranslate"><span class="pre">Ctrl</span> <span class="pre">k</span></code><br />
+Type in the combination of foreign letters learnt from dig, and press enter</p>
+</div></blockquote>
+</section>
+<section id="motion-navigation">
+<h3>Motion/Navigation<a class="headerlink" href="#motion-navigation" title="Permalink to this headline">#</a></h3>
+<ul class="simple">
+<li><p>Go to end of line <code class="docutils literal notranslate"><span class="pre">:\$</span></code></p></li>
+<li><p>Go to beginning of line:  <code class="docutils literal notranslate"><span class="pre">:0</span></code></p></li>
+<li><p>move to the top of the current window (high): <code class="docutils literal notranslate"><span class="pre">:H</span></code></p></li>
+<li><p>move to the middle of the current window (middle) <code class="docutils literal notranslate"><span class="pre">:M</span></code></p></li>
+<li><p>move to the bottom line of the current window (low) <code class="docutils literal notranslate"><span class="pre">:L</span></code></p></li>
+<li><p>move to the first line of the file <code class="docutils literal notranslate"><span class="pre">:1G</span></code></p></li>
+<li><p>move to the 20th line of the file <code class="docutils literal notranslate"><span class="pre">:20G</span></code></p></li>
+<li><p>move to the last line of the file <code class="docutils literal notranslate"><span class="pre">:G</span></code></p></li>
+<li><p>Moves screen up one line <code class="docutils literal notranslate"><span class="pre">Ctrl-y</span></code></p></li>
+<li><p>Moves screen down one line <code class="docutils literal notranslate"><span class="pre">Ctrl-e</span></code></p></li>
+<li><p>Moves cursor &amp; screen up ½ page <code class="docutils literal notranslate"><span class="pre">Ctrl-u</span></code></p></li>
+<li><p>Moves cursor &amp; screen down ½ page <code class="docutils literal notranslate"><span class="pre">Ctrl-d</span></code></p></li>
+<li><p>Moves screen up one page, cursor to last line <code class="docutils literal notranslate"><span class="pre">Ctrl-b</span></code></p></li>
+<li><p>Moves screen down one page, cursor to first line <code class="docutils literal notranslate"><span class="pre">Ctrl-f</span></code></p></li>
+</ul>
+</section>
+<section id="vi-settings">
+<h3>vi settings<a class="headerlink" href="#vi-settings" title="Permalink to this headline">#</a></h3>
+<ul class="simple">
+<li><p>set colorscheme <code class="docutils literal notranslate"><span class="pre">:colorscheme</span> <span class="pre">ron</span></code></p></li>
+<li><p>list colorschemes available <code class="docutils literal notranslate"><span class="pre">ls</span> <span class="pre">-l</span> <span class="pre">/usr/share/vim/vim*/colors/</span></code></p></li>
+<li><p>list current colorscheme <code class="docutils literal notranslate"><span class="pre">:echo</span> <span class="pre">g:colors_name</span></code></p></li>
+<li><p>turn syntax highlight  <code class="docutils literal notranslate"><span class="pre">:syntax</span> <span class="pre">on</span></code></p></li>
+<li><p>delete characters from the cursor to the end of the line <code class="docutils literal notranslate"><span class="pre">:d$</span></code></p></li>
+<li><p>repeat characters(Hello) in a line <code class="docutils literal notranslate"><span class="pre">:2Hello-Esc</span></code></p></li>
+<li><p>switch from vim to console</p></li>
+</ul>
+<blockquote>
+<div><ul class="simple">
+<li><p>When inside Vim editing my Python scripts, I simply hit <em>Ctrl Z</em> so as to return in console mode</p></li>
+<li><p>Run my script with command \$ python my_script.py</p></li>
+<li><p>When done, I enter \$ fg in the command line and that gets me back inside Vim, in the state I was before hitting <em>Ctrl Z</em>. (fg as in foreground)</p></li>
+</ul>
+</div></blockquote>
+<ul class="simple">
+<li><p>download and extract file using wget command</p></li>
+</ul>
+<blockquote>
+<div><p>wget -c <a class="reference external" href="http://xyz.com.tar.gz">http://xyz.com.tar.gz</a> | tar -xz</p>
+</div></blockquote>
+<ul class="simple">
+<li><p>go to previous commands entered</p></li>
+</ul>
+<blockquote>
+<div><p>Type : and press up or down arrow<br />
+q: will show you command history in Vim.<br />
+q/ will show you history of searches.<br />
+And must importantly, :q will quite the mode.</p>
+</div></blockquote>
+<ul class="simple">
+<li><p>Set line number  <code class="docutils literal notranslate"><span class="pre">:set</span> <span class="pre">number</span></code> or <code class="docutils literal notranslate"><span class="pre">:set</span> <span class="pre">nu</span></code></p></li>
+<li><p>Set no line number <code class="docutils literal notranslate"><span class="pre">:set</span> <span class="pre">nonumber</span></code> or <code class="docutils literal notranslate"><span class="pre">:set</span> <span class="pre">number!</span></code> or <code class="docutils literal notranslate"><span class="pre">:set</span> <span class="pre">nu!</span></code></p></li>
+<li><p>Set relative line number  <code class="docutils literal notranslate"><span class="pre">:set</span> <span class="pre">relativenumber</span></code> or <code class="docutils literal notranslate"><span class="pre">:set</span> <span class="pre">rnu</span></code></p></li>
+</ul>
+</section>
+<section id="vi-extras">
+<h3>vi extras<a class="headerlink" href="#vi-extras" title="Permalink to this headline">#</a></h3>
+<ul class="simple">
+<li><p>Take input from commands and put it into new file</p></li>
+</ul>
+<blockquote>
+<div><p><code class="docutils literal notranslate"><span class="pre">echo</span> <span class="pre">&quot;Test</span> <span class="pre">this&quot;</span> <span class="pre">|</span> <span class="pre">vim</span> <span class="pre">-</span></code> # Reading from standard input</p>
+</div></blockquote>
+<ul class="simple">
+<li><p>Other way would be</p></li>
+</ul>
+<blockquote>
+<div><p><code class="docutils literal notranslate"><span class="pre">vim</span> <span class="pre">'+</span> <span class="pre">:.!</span> <span class="pre">echo</span> <span class="pre">&quot;Test</span> <span class="pre">this&quot;</span> <span class="pre">'</span></code><br />
+<code class="docutils literal notranslate"><span class="pre">vim</span> <span class="pre">&quot;+</span> <span class="pre">&lt;commands&gt;&quot;</span> <span class="pre">&lt;file&gt;</span></code></p>
+</div></blockquote>
+<ul class="simple">
+<li><p>marks in vim</p>
+<ul>
+<li><p>To add mark for row <code class="docutils literal notranslate"><span class="pre">m&lt;id&gt;</span></code> for example <code class="docutils literal notranslate"><span class="pre">ma</span></code>, a is the mark</p></li>
+<li><p>To delete mark for row <code class="docutils literal notranslate"><span class="pre">dm&lt;id&gt;</span></code> for example <code class="docutils literal notranslate"><span class="pre">dma</span></code>, a is the mark</p></li>
+<li><p>to view all marks <code class="docutils literal notranslate"><span class="pre">:marks</span></code></p></li>
+</ul>
+</li>
+<li><p>folds in vim</p></li>
+</ul>
+</section>
+<section id="vi-csv">
+<h3>vi csv<a class="headerlink" href="#vi-csv" title="Permalink to this headline">#</a></h3>
+<ul class="simple">
+<li><p>view csv on shell</p></li>
+</ul>
+<blockquote>
+<div><p><code class="docutils literal notranslate"><span class="pre">column</span> <span class="pre">-s,</span> <span class="pre">-t</span> <span class="pre">&lt;</span> <span class="pre">somefile.csv</span> <span class="pre">|</span> <span class="pre">less</span> <span class="pre">-#2</span> <span class="pre">-N</span> <span class="pre">-S</span></code></p>
+</div></blockquote>
+</section>
+</section>
+<section id="shell-commands">
+<h2>Shell commands<a class="headerlink" href="#shell-commands" title="Permalink to this headline">#</a></h2>
+<section id="mac-specific">
+<h3>Mac specific<a class="headerlink" href="#mac-specific" title="Permalink to this headline">#</a></h3>
+<ol class="simple">
+<li><p>Search for files at command line with mdfind(Spotlight)</p></li>
+</ol>
+<blockquote>
+<div><p><code class="docutils literal notranslate"><span class="pre">mdfind</span> <span class="pre">-name</span> <span class="pre">Filename</span></code></p>
+</div></blockquote>
+<ol class="simple">
+<li><p>Search for string from another search result</p></li>
+</ol>
+<blockquote>
+<div><p><code class="docutils literal notranslate"><span class="pre">mdfind</span> <span class="pre">-name</span> <span class="pre">Filename</span> <span class="pre">|</span> <span class="pre">grep</span> <span class="pre">&quot;stri2&quot;</span></code></p>
+</div></blockquote>
+</section>
+<section id="find-files-dir">
+<h3>find files/dir<a class="headerlink" href="#find-files-dir" title="Permalink to this headline">#</a></h3>
+<ol class="simple">
+<li><p>find all file recursively in current working directory</p></li>
+</ol>
+<blockquote>
+<div><p><code class="docutils literal notranslate"><span class="pre">find</span> <span class="pre">.</span> <span class="pre">-type</span> <span class="pre">f</span></code></p>
+</div></blockquote>
+<ol class="simple">
+<li><p>find all directory recursively in current working directory</p></li>
+</ol>
+<blockquote>
+<div><p><code class="docutils literal notranslate"><span class="pre">find</span> <span class="pre">.</span> <span class="pre">-type</span> <span class="pre">d</span></code></p>
+</div></blockquote>
+<ol class="simple">
+<li><p>find contents of files in current directory recursively</p></li>
+</ol>
+<blockquote>
+<div><p><code class="docutils literal notranslate"><span class="pre">find</span> <span class="pre">./learnings</span> <span class="pre">-type</span> <span class="pre">f</span> <span class="pre">-exec</span> <span class="pre">grep</span> <span class="pre">-H</span> <span class="pre">'xgboost'</span> <span class="pre">{}</span> <span class="pre">\;</span></code></p>
+</div></blockquote>
+<ol class="simple">
+<li><p>find all files recursively in current working directory with case sensitive pattern and redirect into a file</p></li>
+</ol>
+<blockquote>
+<div><p><code class="docutils literal notranslate"><span class="pre">find</span> <span class="pre">.</span> <span class="pre">-type</span> <span class="pre">f</span> <span class="pre">-name</span> <span class="pre">&quot;*Boost*&quot;</span></code></p>
+</div></blockquote>
+<ol class="simple">
+<li><p>find all files recursively in current working directory with case insensitive pattern and redirect into a file</p></li>
+</ol>
+<blockquote>
+<div><p><code class="docutils literal notranslate"><span class="pre">find</span> <span class="pre">.</span> <span class="pre">-type</span> <span class="pre">f</span> <span class="pre">-iname</span> <span class="pre">&quot;*Boost*&quot;</span></code><br />
+<code class="docutils literal notranslate"><span class="pre">find</span> <span class="pre">.</span> <span class="pre">-type</span> <span class="pre">f</span> <span class="pre">&gt;</span> <span class="pre">somefile.txt</span></code></p>
+</div></blockquote>
+<ol class="simple">
+<li><p>copy buffer from/into mac terminal</p></li>
+</ol>
+<blockquote>
+<div><p><code class="docutils literal notranslate"><span class="pre">pbcopy/pbpaste</span></code></p>
+</div></blockquote>
+<ol class="simple">
+<li><p>find all files recursively in current working directory and redirect into buffer</p></li>
+</ol>
+<blockquote>
+<div><p><code class="docutils literal notranslate"><span class="pre">find</span> <span class="pre">.</span> <span class="pre">-type</span> <span class="pre">f</span> <span class="pre">|</span> <span class="pre">pbcopy</span></code></p>
+</div></blockquote>
+<ol class="simple">
+<li><p>find text in all files in current folder recursively</p></li>
+</ol>
+<blockquote>
+<div><p><code class="docutils literal notranslate"><span class="pre">grep</span> <span class="pre">-r</span> <span class="pre">'vector'</span> </code></p>
+</div></blockquote>
+<ol class="simple">
+<li><p>find text in all files in current folder recursively, only file names</p></li>
+</ol>
+<blockquote>
+<div><p><code class="docutils literal notranslate"><span class="pre">grep</span> <span class="pre">-rl</span> <span class="pre">'vector'</span></code></p>
+</div></blockquote>
+<ol class="simple">
+<li><p>find text in all files in current folder recursively, only file names, only unique names</p></li>
+</ol>
+<blockquote>
+<div><p><code class="docutils literal notranslate"><span class="pre">grep</span> <span class="pre">-rle</span> <span class="pre">'vector'</span></code> .</p>
+</div></blockquote>
+<ol class="simple">
+<li><p>find text in all files in current folder recursively, only file names, only unique names, only cpp files</p></li>
+</ol>
+<blockquote>
+<div><p><code class="docutils literal notranslate"><span class="pre">grep</span> <span class="pre">--include=&quot;*.cpp&quot;</span> <span class="pre">-rle</span> <span class="pre">'vector'</span> <span class="pre">.</span></code></p>
+</div></blockquote>
+</section>
+<section id="shell">
+<h3>Shell<a class="headerlink" href="#shell" title="Permalink to this headline">#</a></h3>
+<ol class="simple">
+<li><p>How to check which sh am i using</p></li>
+</ol>
+<blockquote>
+<div><p><code class="docutils literal notranslate"><span class="pre">$SHELL</span> <span class="pre">--version</span></code></p>
+</div></blockquote>
+<ol class="simple">
+<li><p>Print environment details</p></li>
+</ol>
+<blockquote>
+<div><p><code class="docutils literal notranslate"><span class="pre">printenv</span></code></p>
+</div></blockquote>
+<ol class="simple">
+<li><p>List processes run</p></li>
+</ol>
+<blockquote>
+<div><p><code class="docutils literal notranslate"><span class="pre">ps</span> <span class="pre">-elf</span></code></p>
+</div></blockquote>
+<section id="important-folder-file-locations">
+<h4>Important folder/file locations<a class="headerlink" href="#important-folder-file-locations" title="Permalink to this headline">#</a></h4>
+<ol class="simple">
+<li><p>Python packages installation directory</p></li>
+</ol>
+<blockquote>
+<div><p><code class="docutils literal notranslate"><span class="pre">ls</span> <span class="pre">~/opt/anaconda3/envs/reco/lib/python3.8/site-packages/</span></code></p>
+</div></blockquote>
+</section>
+<section id="ls">
+<h4>ls<a class="headerlink" href="#ls" title="Permalink to this headline">#</a></h4>
+<ol class="simple">
+<li><p>List directory only</p></li>
+</ol>
+<blockquote>
+<div><p><code class="docutils literal notranslate"><span class="pre">ls</span> <span class="pre">-d</span> <span class="pre">*/</span></code> or<br />
+<code class="docutils literal notranslate"><span class="pre">ls</span> <span class="pre">-l</span> <span class="pre">|</span> <span class="pre">grep</span> <span class="pre">'^d'</span></code> or<br />
+<code class="docutils literal notranslate"><span class="pre">ls</span> <span class="pre">-l</span> <span class="pre">|</span> <span class="pre">egrep</span> <span class="pre">'^d'</span></code></p>
+</div></blockquote>
+<ol class="simple">
+<li><p>List last edited files in subdirectory recursively</p></li>
+</ol>
+<blockquote>
+<div><p><code class="docutils literal notranslate"><span class="pre">ls</span> <span class="pre">-lRt</span> <span class="pre">|</span> <span class="pre">less</span></code></p>
+</div></blockquote>
+</section>
+<section id="file-content-edits">
+<h4>File Content Edits<a class="headerlink" href="#file-content-edits" title="Permalink to this headline">#</a></h4>
+<ol class="simple">
+<li><p>Delete odd/even lines from file</p></li>
+</ol>
+<ul class="simple">
+<li><p>keep odd lines</p></li>
+</ul>
+<blockquote>
+<div><p><code class="docutils literal notranslate"><span class="pre">sed</span> <span class="pre">'n;</span> <span class="pre">d'</span> <span class="pre">infile</span> <span class="pre">&gt;</span> <span class="pre">outfile</span></code></p>
+</div></blockquote>
+<ul class="simple">
+<li><p>keep even lines</p></li>
+</ul>
+<blockquote>
+<div><p><code class="docutils literal notranslate"><span class="pre">sed</span> <span class="pre">'1d;</span> <span class="pre">n;</span> <span class="pre">d'</span> <span class="pre">infile</span> <span class="pre">&gt;</span> <span class="pre">outfile</span></code></p>
+</div></blockquote>
+<ul class="simple">
+<li><p>to remove the even numbered lines from the file(The -i option would cause the changes to be saved to the file in-place)</p></li>
+</ul>
+<blockquote>
+<div><p><code class="docutils literal notranslate"><span class="pre">sed</span> <span class="pre">-i</span> <span class="pre">'0~2d'</span> <span class="pre">filename</span></code></p>
+</div></blockquote>
+<ul class="simple">
+<li><p>For removing odd numbered lines</p></li>
+</ul>
+<blockquote>
+<div><p><code class="docutils literal notranslate"><span class="pre">sed</span> <span class="pre">-i</span> <span class="pre">'1~2d'</span> <span class="pre">filename</span></code></p>
+</div></blockquote>
+<ul class="simple">
+<li><p>Using awk - NR is the current line number</p></li>
+</ul>
+<blockquote>
+<div><p><code class="docutils literal notranslate"><span class="pre">awk</span> <span class="pre">'NR%2==0'</span> <span class="pre">infile</span> <span class="pre">&gt;</span> <span class="pre">outfile</span></code></p>
+</div></blockquote>
+<ol class="simple">
+<li><p>find the 3rd word in a sentence</p></li>
+</ol>
+<blockquote>
+<div><p><code class="docutils literal notranslate"><span class="pre">string1=&quot;this</span> <span class="pre">is</span> <span class="pre">just</span> <span class="pre">a</span> <span class="pre">dummy</span> <span class="pre">string&quot;</span></code><br />
+<code class="docutils literal notranslate"><span class="pre">echo</span> <span class="pre">&quot;$string1&quot;</span> <span class="pre">|</span> <span class="pre">awk</span> <span class="pre">-F</span> <span class="pre">'</span> <span class="pre">'</span>&#160; <span class="pre">'{print</span> <span class="pre">$3}'</span></code></p>
+</div></blockquote>
+<ol class="simple">
+<li><p>find the 2nd word in all sentences in a file</p></li>
+</ol>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>awk -F <span class="s1">&#39; &#39;</span>  <span class="s1">&#39;{print $2}&#39;</span> testFile3 &gt; testFile4
+</pre></div>
+</div>
+</section>
+</section>
+<section id="disk-usage">
+<h3>Disk usage<a class="headerlink" href="#disk-usage" title="Permalink to this headline">#</a></h3>
+<ol class="simple">
+<li><p>Find the folder size of one folder in human readable format</p></li>
+</ol>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>du -sh directory_name
+</pre></div>
+</div>
+<ol class="simple">
+<li><p>Find the folder size of all folders in human readable format</p></li>
+</ol>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>du -hd1 directory_name
+</pre></div>
+</div>
+<ol class="simple">
+<li><p>Find all the big folders of particular size upto a limit</p></li>
+</ol>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>du -hax gitrepos/dlwpt-code <span class="p">|</span> grep <span class="s1">&#39;[0-9]M&#39;</span> <span class="p">|</span> sort -nr
+</pre></div>
+</div>
+</section>
+<section id="process-port">
+<h3>Process/Port<a class="headerlink" href="#process-port" title="Permalink to this headline">#</a></h3>
+<ol class="simple">
+<li><p>Find information about specific port(where 3000 is your current port in use)</p></li>
+</ol>
+<blockquote>
+<div><p>lsof -i :3000</p>
+</div></blockquote>
+<ol class="simple">
+<li><p>Find information about specific pid</p></li>
+</ol>
+<blockquote>
+<div><p>ps ax | grep <PID></p>
+</div></blockquote>
+</section>
+</section>
+<section id="vi-cheat-sheet">
+<h2>vi cheat sheet<a class="headerlink" href="#vi-cheat-sheet" title="Permalink to this headline">#</a></h2>
+<section id="graphical-cheat-sheet">
+<h3>graphical cheat sheet<a class="headerlink" href="#graphical-cheat-sheet" title="Permalink to this headline">#</a></h3>
+<p><img alt="vi-vim-cheat-sheet" src="../_images/vi-vim-cheat-sheet.gif" /></p>
+</section>
+<section id="basic-editing">
+<h3>basic editing<a class="headerlink" href="#basic-editing" title="Permalink to this headline">#</a></h3>
+<p><img alt="vi-vim-tutorial-1" src="../_images/vi-vim-tutorial-1.gif" /></p>
+</section>
+<section id="operators-and-repetitions">
+<h3>operators and repetitions<a class="headerlink" href="#operators-and-repetitions" title="Permalink to this headline">#</a></h3>
+<p><img alt="vi-vim-tutorial-2" src="../_images/vi-vim-tutorial-2.gif" /></p>
+</section>
+<section id="yank-and-paste">
+<h3>yank and paste<a class="headerlink" href="#yank-and-paste" title="Permalink to this headline">#</a></h3>
+<p><img alt="vi-vim-tutorial-3" src="../_images/vi-vim-tutorial-3.gif" /></p>
+</section>
+<section id="searching">
+<h3>searching<a class="headerlink" href="#searching" title="Permalink to this headline">#</a></h3>
+<p><img alt="vi-vim-tutorial-4" src="../_images/vi-vim-tutorial-4.gif" /></p>
+</section>
+<section id="marks-and-macros">
+<h3>marks and macros<a class="headerlink" href="#marks-and-macros" title="Permalink to this headline">#</a></h3>
+<p><img alt="vi-vim-tutorial-5" src="../_images/vi-vim-tutorial-5.gif" /></p>
+</section>
+<section id="various-motions">
+<h3>various motions<a class="headerlink" href="#various-motions" title="Permalink to this headline">#</a></h3>
+<p><img alt="vi-vim-tutorial-6" src="../_images/vi-vim-tutorial-6.gif" /></p>
+</section>
+<section id="various-commands">
+<h3>various commands<a class="headerlink" href="#various-commands" title="Permalink to this headline">#</a></h3>
+<p><img alt="vi-vim-tutorial-7" src="../_images/vi-vim-tutorial-7.gif" /></p>
+</section>
+</section>
+<section id="iterm2">
+<h2>iTerm2<a class="headerlink" href="#iterm2" title="Permalink to this headline">#</a></h2>
+<ul class="simple">
+<li><p>Vertical Split: <code class="docutils literal notranslate"><span class="pre">cmd</span> <span class="pre">+</span> <span class="pre">d</span></code></p></li>
+<li><p>Horizontal split: <code class="docutils literal notranslate"><span class="pre">cmd</span> <span class="pre">+</span> <span class="pre">shift</span> <span class="pre">+</span> <span class="pre">d</span></code></p></li>
+<li><p>To navigate between the vertical splits in left/right or up/down fashion: <code class="docutils literal notranslate"><span class="pre">cmd</span> <span class="pre">+</span> <span class="pre">[</span> <span class="pre">and</span> <span class="pre">cmd</span> <span class="pre">+</span> <span class="pre">]</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Alt/Option</span></code>: Mouse reporting will be disabled. If you’re using vim and you can’t make a selection, try holding down the alt key and see if that fixes it.</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">Alt</span> <span class="pre">+</span> <span class="pre">Cmd</span></code>: Make a rectangular selection.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Shift</span></code>: Extend an existing selection.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Alt</span> <span class="pre">+</span> <span class="pre">Shift</span></code>: Extend a rectangular selection.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Cmd</span></code>: Make a discontinuous selection</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="cassandra">
+<h2>Cassandra<a class="headerlink" href="#cassandra" title="Permalink to this headline">#</a></h2>
+<ul class="simple">
+<li><p>To install Cassandra, java 8 or 11 is prerequisite</p></li>
+<li><p>To install Cassandra</p></li>
+</ul>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>brew install cassandra
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>To check status of Cassandra</p></li>
+</ul>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>brew info cassandra
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>To start Cassandra</p></li>
+</ul>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>brew services start cassandra
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>To stop Cassandra</p></li>
+</ul>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>brew services stop cassandra
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Cassandra file locations</p>
+<ul>
+<li><p>System file (INFO level): <code class="docutils literal notranslate"><span class="pre">/usr/local/var/log/cassandra/system.log</span></code></p></li>
+<li><p>Debug file (DEBUG level): <code class="docutils literal notranslate"><span class="pre">/usr/local/var/log/cassandra/debug.log</span></code></p></li>
+<li><p>Properties file: <code class="docutils literal notranslate"><span class="pre">/usr/local/etc/cassandra/cassandra.yaml</span></code></p></li>
+<li><p>Data files: <code class="docutils literal notranslate"><span class="pre">/usr/local/var/lib/cassandra/data</span></code></p></li>
+</ul>
+</li>
+<li><p>Cassandra executables location</p></li>
+</ul>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span> /usr/local/opt/cassandra/bin/
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Install cassandra-driver</p></li>
+</ul>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>pip install cassandra-driver
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Start CQLSH</p></li>
+</ul>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>cqlsh localhost
+</pre></div>
+</div>
+</section>
+<section id="pyspark">
+<h2>PySpark<a class="headerlink" href="#pyspark" title="Permalink to this headline">#</a></h2>
+<div class="alert alert-warning"> Check the active sh - bash or zsh, accordingly update ~/.bash_profile or ~/.zshrc</div>
+<ul class="simple">
+<li><p>Renamed config.json to be able to switch to different venv</p></li>
+</ul>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span> ~/.jupyter/  
+mv jupyter_notebook_config.json jupyter_notebook_config.json.bkp
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Create new venv</p></li>
+</ul>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>python --version
+</pre></div>
+</div>
+<p>3.8.8</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>conda create --name reco <span class="nv">python</span><span class="o">=</span><span class="m">3</span>.8.8
+conda activate reco
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>As a pre-requisite to installing the dependencies, if using Conda, make sure that Anaconda and the package manager Conda are both up to date</p></li>
+</ul>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>conda update conda -n root
+conda install anaconda
+</pre></div>
+</div>
+<p>since it is a new venv, otherwise <code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">update</span> <span class="pre">anaconda</span></code></p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>pip install pyspark
+</pre></div>
+</div>
+<p>Successfully installed py4j-0.10.9.3 pyspark-3.2.1</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://stackoverflow.com/questions/24342886/how-to-install-java-8-on-mac">How to install java on mac</a></p></li>
+</ul>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>brew tap adoptopenjdk/openjdk  
+brew install --cask adoptopenjdk8
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>NOTE Spark requires Java version 8 or 11. We support Spark versions 3.0 and 3.1, but versions 2.4+ with Java version 8 may also work.</p></li>
+</ul>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>brew install --cask adoptopenjdk11
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>If you want to install/manage multiple version then you can use ‘jenv’:</p></li>
+</ul>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="nb">echo</span> <span class="s1">&#39;export PATH=&quot;$HOME/.jenv/bin:$PATH&quot;&#39;</span> &gt;&gt; ~/.bash_profile
+<span class="nb">echo</span> <span class="s1">&#39;eval &quot;$(jenv init -)&quot;&#39;</span> &gt;&gt; ~/.bash_profile  
+<span class="nb">source</span> ~/.bash_profile
+</pre></div>
+</div>
+<p>This will change the venv to base. Switch/Activate the environment</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>jenv doctor
+</pre></div>
+</div>
+<p>No JAVA_HOME set</p>
+<ul class="simple">
+<li><p>Add the installed java to jenv</p></li>
+</ul>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>jenv add /Library/Java/JavaVirtualMachines/adoptopenjdk-8.jdk/Contents/Home
+jenv add /Library/Java/JavaVirtualMachines/adoptopenjdk-11.jdk/Contents/Home  
+jenv versions
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Configure the java version which you want to use:</p></li>
+</ul>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>jenv global <span class="m">11</span>
+jenv versions
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>For v11</p></li>
+</ul>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="nb">echo</span> <span class="s1">&#39;export JAVA_HOME=$(/usr/libexec/java_home -v11)&#39;</span> &gt;&gt; ~/.bash_profile
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>or for v1.8</p></li>
+</ul>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="nb">echo</span> <span class="s1">&#39;export JAVA_HOME=$(/usr/libexec/java_home -v1.8)&#39;</span> &gt;&gt; ~/.bash_profile
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>If <code class="docutils literal notranslate"><span class="pre">jenv</span> <span class="pre">doctor</span></code> not set, use</p></li>
+</ul>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="nb">echo</span> <span class="s1">&#39;eval &quot;$(jenv init -)&quot;&#39;</span> &gt;&gt; ~/.zshrc   
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Test <code class="docutils literal notranslate"><span class="pre">java</span> <span class="pre">--version</span></code> or <code class="docutils literal notranslate"><span class="pre">which</span> <span class="pre">java</span></code></p></li>
+<li><p>Setup PySpark</p></li>
+</ul>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="nv">RECO_ENV</span><span class="o">=</span><span class="k">$(</span>conda env list <span class="p">|</span> grep reco <span class="p">|</span> awk <span class="s1">&#39;{print $NF}&#39;</span><span class="k">)</span>  
+mkdir -p <span class="nv">$RECO_ENV</span>/etc/conda/activate.d  
+mkdir -p <span class="nv">$RECO_ENV</span>/etc/conda/deactivate.d   
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Then, create the file $RECO_ENV/etc/conda/activate.d/env_vars.sh and add:</p></li>
+</ul>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/bin/sh</span>
+<span class="nv">RECO_ENV</span><span class="o">=</span><span class="k">$(</span>conda env list <span class="p">|</span> grep reco <span class="p">|</span> awk <span class="s1">&#39;{print $NF}&#39;</span><span class="k">)</span>
+<span class="nb">export</span> <span class="nv">PYSPARK_PYTHON</span><span class="o">=</span><span class="nv">$RECO_ENV</span>/bin/python
+<span class="nb">export</span> <span class="nv">PYSPARK_DRIVER_PYTHON</span><span class="o">=</span><span class="nv">$RECO_ENV</span>/bin/python
+<span class="nb">unset</span> SPARK_HOME
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>This will export the variables every time we do <code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">activate</span> <span class="pre">reco</span></code>. To unset these variables when we deactivate the environment, create the file $RECO_ENV/etc/conda/deactivate.d/env_vars.sh and add:</p></li>
+</ul>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/bin/sh</span>
+<span class="nb">unset</span> PYSPARK_PYTHON
+<span class="nb">unset</span> PYSPARK_DRIVER_PYTHON
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Register environment as kernel in Jupyter</p></li>
+</ul>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>python -m ipykernel install --name reco --display-name <span class="s2">&quot;Python (reco)&quot;</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Clone recommenders repo</p></li>
+</ul>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>git clone https://github.com/microsoft/recommenders
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Change root directory of recommenders git folder where <code class="docutils literal notranslate"><span class="pre">setup.py</span></code> sits</p></li>
+<li><p>Install recommenders and additional package setups</p></li>
+</ul>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>pip install -e .
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>To go back to older java version</p></li>
+</ul>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>jenv <span class="nb">local</span> <span class="m">1</span>.8
+</pre></div>
+</div>
+</section>
+<section id="llvm-clang">
+<h2>llvm/clang<a class="headerlink" href="#llvm-clang" title="Permalink to this headline">#</a></h2>
+<section id="install-llvm">
+<h3>Install llvm<a class="headerlink" href="#install-llvm" title="Permalink to this headline">#</a></h3>
+<p>To use the bundled libc++ please add the following LDFLAGS:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>  <span class="nv">LDFLAGS</span><span class="o">=</span><span class="s2">&quot;-L/usr/local/opt/llvm/lib -Wl,-rpath,/usr/local/opt/llvm/lib&quot;</span>  
+</pre></div>
+</div>
+<p>llvm is keg-only, which means it was not symlinked into /usr/local,<br />
+because macOS already provides this software and installing another version in<br />
+parallel can cause all kinds of trouble.</p>
+<p>If you need to have llvm first in your PATH, run:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="nb">echo</span> <span class="s1">&#39;export PATH=&quot;/usr/local/opt/llvm/bin:$PATH&quot;&#39;</span> &gt;&gt; ~/.zshrc  
+</pre></div>
+</div>
+<p>For compilers to find llvm you may need to set:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>  <span class="nb">export</span> <span class="nv">LDFLAGS</span><span class="o">=</span><span class="s2">&quot;-L/usr/local/opt/llvm/lib&quot;</span>  
+  <span class="nb">export</span> <span class="nv">CPPFLAGS</span><span class="o">=</span><span class="s2">&quot;-I/usr/local/opt/llvm/include&quot;</span>  
+</pre></div>
+</div>
+</section>
+<section id="clang-from-xcode-vs-llvm">
+<h3>clang from Xcode vs llvm<a class="headerlink" href="#clang-from-xcode-vs-llvm" title="Permalink to this headline">#</a></h3>
+<p>Cause<br />
+Thanks for the comments - the errors above are an indication of a Clang version that was built without module support. This is what Xcode comes with, i.e. by running xcode-select –install in a terminal.</p>
+<p>Solution<br />
+As suggested the solution has been to install Clang thru HomeBrew which is done as follows (tested on macOS Monterey):</p>
+<p>brew install llvm<br />
+Clang gets installed to /opt/homebrew/opt/llvm/bin/clang++. Confirm the running version as shown below:</p>
+<p>Homebrew clang version 13.0.0<br />
+Target: arm64-apple-darwin21.1.0<br />
+Thread model: posix<br />
+InstalledDir: /opt/homebrew/opt/llvm/bin<br />
+Which is a different build from the Xcode system-wide default version:</p>
+<p>Apple clang version 13.0.0 (clang-1300.0.29.3)<br />
+Target: arm64-apple-darwin21.1.0<br />
+Thread model: posix<br />
+InstalledDir: /Library/Developer/CommandLineTools/usr/bin</p>
+<p>(base) chandrasingh&#64;Chandras-MBP slidingWindow % clang –version<br />
+Homebrew clang version 13.0.1<br />
+Target: x86_64-apple-darwin21.2.0<br />
+Thread model: posix<br />
+InstalledDir: /usr/local/opt/llvm/bin</p>
+</section>
+<section id="run-clang-with-different-flags">
+<h3>Run clang with different flags<a class="headerlink" href="#run-clang-with-different-flags" title="Permalink to this headline">#</a></h3>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>clang++ -Wall -std<span class="o">=</span>c++11 SubArrayAverage.cpp -o SubArrayAverage
+</pre></div>
+</div>
+</section>
+</section>
+<section id="jupyter-notebook">
+<h2>Jupyter Notebook<a class="headerlink" href="#jupyter-notebook" title="Permalink to this headline">#</a></h2>
+<ol class="simple">
+<li><p>Convert notebook into interactive slide</p></li>
+</ol>
+<blockquote>
+<div><p>jupyter nbconvert slides-in-a-notebook.ipynb –to slides –ServePostProcessor.port=8910 –post serve<br />
+this uses reveal.js</p>
+</div></blockquote>
+<ol class="simple">
+<li><p>Convert notebook into html with toc</p></li>
+</ol>
+<blockquote>
+<div><p>jupyter nbconvert –to html_toc FILE.ipynb</p>
+</div></blockquote>
+<ol class="simple">
+<li><p><a class="reference external" href="https://blog.kdheepak.com/jupyter-notebook-revealjs-and-github-pages">How to host using reveal.js</a></p></li>
+<li><p>Launch notebook in other env</p></li>
+</ol>
+<blockquote>
+<div><p>cd ~/anaconda/workingDir/<br />
+jupyter notebook –port 5656</p>
+</div></blockquote>
+<ol class="simple">
+<li><p>Running without password</p></li>
+</ol>
+<blockquote>
+<div><p>../../bin/jupyter notebook –port 5657 –ip=’*’ –NotebookApp.token=’’ –NotebookApp.password=’’</p>
+</div></blockquote>
+<ol class="simple">
+<li><p>Jupyter magic line and cell commands</p></li>
+</ol>
+<blockquote>
+<div></div></blockquote>
+<ol class="simple">
+<li><p>terminal commands</p></li>
+</ol>
+<blockquote>
+<div><p>! ls -l ../.</p>
+</div></blockquote>
+<ol class="simple">
+<li><p>Help on any python command</p></li>
+</ol>
+<blockquote>
+<div><p>??pd.merge</p>
+</div></blockquote>
+<ol class="simple">
+<li><p>Print script with code highlighting and syntax</p></li>
+</ol>
+<blockquote>
+<div></div></blockquote>
+<ol class="simple">
+<li><p>Print specific lines of a script with code highlighting and syntax</p></li>
+</ol>
+<blockquote>
+<div></div></blockquote>
+<ol class="simple">
+<li><p>Print script without code highlighting and syntax</p></li>
+</ol>
+<blockquote>
+<div><p>! cat <a class="reference external" href="http://script.py">script.py</a></p>
+</div></blockquote>
+<ol class="simple">
+<li><p>Read this</p></li>
+</ol>
+<blockquote>
+<div></div></blockquote>
+<ol class="simple">
+<li><p>List of keyboard shortcuts</p></li>
+</ol>
+<blockquote>
+<div><p>Cmd + Shift + P</p>
+</div></blockquote>
+<ol class="simple">
+<li><p>IPython Magic – %run: Execute python code</p></li>
+</ol>
+<blockquote>
+<div></div></blockquote>
+<ol class="simple">
+<li><p>How to install nbconvert html_toc</p></li>
+</ol>
+<blockquote>
+<div><p>conda install -c conda-forge jupyter_nbextensions_configurator<br />
+conda install -c conda-forge “nbconvert=5.6.1” # This version only works</p>
+</div></blockquote>
+</section>
+<section id="git">
+<h2>git<a class="headerlink" href="#git" title="Permalink to this headline">#</a></h2>
+<ol class="simple">
+<li><p>Check git version</p></li>
+</ol>
+<blockquote>
+<div><p>git version</p>
+</div></blockquote>
+<ol class="simple">
+<li><p>Check user details</p></li>
+</ol>
+<blockquote>
+<div><p>git config –list</p>
+</div></blockquote>
+<ol class="simple">
+<li><p>Check git configuration file</p></li>
+</ol>
+<blockquote>
+<div><p>cat ~/.gitconfig</p>
+</div></blockquote>
+<ol class="simple">
+<li><p>Change git configuration</p></li>
+</ol>
+<blockquote>
+<div><p>git config –global <a class="reference external" href="http://user.name">user.name</a> “Chandra”</p>
+</div></blockquote>
+<ol class="simple">
+<li><p>To clone a repository</p></li>
+</ol>
+<blockquote>
+<div><p>git clone <a class="reference external" href="https://github.com/chandrabsingh/learnings">https://github.com/chandrabsingh/learnings</a></p>
+</div></blockquote>
+<ol class="simple">
+<li><p>To check status of files</p></li>
+</ol>
+<blockquote>
+<div><p>Go inside the directory
+git status</p>
+</div></blockquote>
+<ol class="simple">
+<li><p>Lifecycle of status of file</p></li>
+</ol>
+<blockquote>
+<div><p><img alt="alt-text" src="https://git-scm.com/book/en/v2/images/lifecycle.png" /></p>
+</div></blockquote>
+<ol class="simple">
+<li><p>Initialize a repository</p></li>
+</ol>
+<blockquote>
+<div><p>git init
+this creates .git file in the folder</p>
+</div></blockquote>
+<ol class="simple">
+<li><p>Local or Remote</p></li>
+<li><p>Add files</p></li>
+</ol>
+<blockquote>
+<div><p>touch index.html<br />
+git add index.html<br />
+this adds the file in unstaged area</p>
+</div></blockquote>
+<ol class="simple">
+<li><p>Delete files from git after deleting from fs</p></li>
+</ol>
+<blockquote>
+<div><p>git ls-files –deleted -z | xargs -0 git rm</p>
+</div></blockquote>
+<ol class="simple">
+<li><p>To commit a files</p></li>
+</ol>
+<blockquote>
+<div><p>git commit -m “Commit message”</p>
+</div></blockquote>
+<ol class="simple">
+<li><p>History of commits</p></li>
+</ol>
+<blockquote>
+<div><p>git log</p>
+</div></blockquote>
+<ol class="simple">
+<li><p>New files added are called untracked files</p></li>
+<li><p>After updating file, it needs to be added as well</p></li>
+</ol>
+<blockquote>
+<div><p>git add index.html</p>
+</div></blockquote>
+<ol class="simple">
+<li><p>To add all files at once</p></li>
+</ol>
+<blockquote>
+<div><p>git add .</p>
+</div></blockquote>
+<ol class="simple">
+<li><p>How to undo git add before commit</p></li>
+</ol>
+<blockquote>
+<div><p>git reset filename</p>
+</div></blockquote>
+<ol class="simple">
+<li><p>How to roll back</p></li>
+</ol>
+<blockquote>
+<div><p>git log<br />
+Copy the hash of the version you want to
+git checkout xyz</p>
+</div></blockquote>
+<ol class="simple">
+<li><p>To list local branches</p></li>
+</ol>
+<blockquote>
+<div><p>git branch</p>
+</div></blockquote>
+<ol class="simple">
+<li><p>To list remote branches</p></li>
+</ol>
+<blockquote>
+<div><p>git branch -r</p>
+</div></blockquote>
+<ol class="simple">
+<li><p>To list both local and remote branches</p></li>
+</ol>
+<blockquote>
+<div><p>git branch -a</p>
+</div></blockquote>
+<ol class="simple">
+<li><p>To create a branch</p></li>
+</ol>
+<blockquote>
+<div><p>git branch colors</p>
+</div></blockquote>
+<ol class="simple">
+<li><p>To merge branch into master</p></li>
+</ol>
+<blockquote>
+<div><p>Be on the master<br />
+git merge colors<br />
+This updates colors changes onto master</p>
+</div></blockquote>
+<ol class="simple">
+<li><p>push changes</p></li>
+</ol>
+<blockquote>
+<div><p>This will lead to changes onto the remote repository from local repository</p>
+</div></blockquote>
+<ol class="simple">
+<li><p>pull changes</p></li>
+</ol>
+<blockquote>
+<div><p>This will lead to changes from the remote repository onto local repository</p>
+</div></blockquote>
+<ol class="simple">
+<li><p>How does pull work</p></li>
+</ol>
+<blockquote>
+<div><p>git pull origin master<br />
+is equivalent to<br />
+git fetch origin<br />
+git merge master origin/master<br />
+<img alt="alt-text" src="../_images/git_fetch_merge.png" /></p>
+</div></blockquote>
+<ol class="simple">
+<li><p>How to compare two branches</p></li>
+</ol>
+<blockquote>
+<div><p>git diff origin/master master</p>
+</div></blockquote>
+<ol class="simple">
+<li><p>Moving files</p></li>
+</ol>
+<blockquote>
+<div><p>Git does not explicitly track file changes<br />
+git mv file_from file_to</p>
+</div></blockquote>
+<ol class="simple">
+<li><p>Better git log with git ls</p></li>
+</ol>
+<blockquote>
+<div><div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Add this to ~./gitconfig  
+</pre></div>
+</div>
+<p>[alias]
+ls = log –graph –abbrev-commit –decorate –color=always –date=relative –format=format:’%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) - %C(dim red)%an%C(reset)%C(bold yellow)%d%C(reset)’ –all</p>
+</div></blockquote>
+</section>
+<section id="conda">
+<h2>conda<a class="headerlink" href="#conda" title="Permalink to this headline">#</a></h2>
+<ol class="simple">
+<li><p>Display Conda environment information</p></li>
+</ol>
+<blockquote>
+<div></div></blockquote>
+<ol class="simple">
+<li><p>List all existing environments</p></li>
+</ol>
+<blockquote>
+<div><p>(base) username % conda env list</p>
+</div></blockquote>
+<ol class="simple">
+<li><p>Create a new environment</p></li>
+</ol>
+<blockquote>
+<div><p>(base) username % conda create –name project-env python=3.7</p>
+</div></blockquote>
+<ol class="simple">
+<li><p>Activate your new environment</p></li>
+</ol>
+<blockquote>
+<div><p>(base) username % conda activate project-env
+(project-env) username %</p>
+</div></blockquote>
+<ol class="simple">
+<li><p>Display all packages in this environment</p></li>
+</ol>
+<blockquote>
+<div><p>(project-env) username ~ % conda list</p>
+</div></blockquote>
+<ol class="simple">
+<li><p>Display revision history</p></li>
+</ol>
+<blockquote>
+<div><p>(project-env) username ~ % conda list –revision</p>
+</div></blockquote>
+<ol class="simple">
+<li><p>Change your active environment</p></li>
+</ol>
+<blockquote>
+<div><p>(project-env) username ~ % conda activate base
+(base) username ~ %</p>
+</div></blockquote>
+<ol class="simple">
+<li><p>Deactivate your active environment</p></li>
+</ol>
+<blockquote>
+<div><p>(project-env) username ~ % conda deactivate
+(base) username ~ %</p>
+</div></blockquote>
+</section>
+<section id="pip">
+<h2>pip<a class="headerlink" href="#pip" title="Permalink to this headline">#</a></h2>
+<ol class="simple">
+<li><p>Install specific version of package</p></li>
+</ol>
+<blockquote>
+<div><p><code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">&quot;SomeProject==1.4&quot;</span></code></p>
+</div></blockquote>
+<ol class="simple">
+<li><p>Install using requirements file</p></li>
+</ol>
+<blockquote>
+<div><p><code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">-r</span> <span class="pre">requirements.txt</span></code></p>
+</div></blockquote>
+</section>
+<section id="mac-services">
+<h2>Mac Services<a class="headerlink" href="#mac-services" title="Permalink to this headline">#</a></h2>
+<ol class="simple">
+<li><p>list all services</p></li>
+</ol>
+<blockquote>
+<div><p>launchctl list</p>
+</div></blockquote>
+<ol class="simple">
+<li><p>This command installs/add a service:</p></li>
+</ol>
+<blockquote>
+<div><p>launchctl load /Library/LaunchDaemons/com.ServiceExample.plist</p>
+</div></blockquote>
+<ol class="simple">
+<li><p>This command enable a service to auto run after installed:</p></li>
+</ol>
+<blockquote>
+<div><p>launchctl enable system/com.ServiceExample</p>
+</div></blockquote>
+<ol class="simple">
+<li><p>This command disable a installed service from auto-running:</p></li>
+</ol>
+<blockquote>
+<div><p>launchctl disable system/com.ServiceExample</p>
+</div></blockquote>
+<ol class="simple">
+<li><p>This command start a service:</p></li>
+</ol>
+<blockquote>
+<div><p>launchctl start system/com.ServiceExample</p>
+</div></blockquote>
+<ol class="simple">
+<li><p>This command stop a service:</p></li>
+</ol>
+<blockquote>
+<div><p>launchctl stop system/com.ServiceExample</p>
+</div></blockquote>
+<ol class="simple">
+<li><p>This command remove a service:</p></li>
+</ol>
+<blockquote>
+<div><p>launchctl unload /Library/LaunchDaemons/com.ServiceExample.plist</p>
+</div></blockquote>
+<ol class="simple">
+<li><p>This command force execution of a recent loaded service:</p></li>
+</ol>
+<blockquote>
+<div><p>launchctl kickstart -p /Library/LaunchDaemons/com.ServiceExample.plist</p>
+</div></blockquote>
+<ol class="simple">
+<li><p>This command Stops and Disable a running service</p></li>
+</ol>
+<blockquote>
+<div><p>launchctl bootout system/com.ServiceExample</p>
+</div></blockquote>
+</section>
+<section id="makefile">
+<h2>Makefile<a class="headerlink" href="#makefile" title="Permalink to this headline">#</a></h2>
+<img src="./images/make1.png">
+<img src="./images/make2.png"></section>
+<section id="pytest">
+<h2>pytest<a class="headerlink" href="#pytest" title="Permalink to this headline">#</a></h2>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">pytest</span> <span class="pre">--help</span> <span class="pre">|</span> <span class="pre">less</span></code></p></li>
+<li><p>CheatSheet</p>
+<ul>
+<li><p><a class="reference external" href="https://gist.github.com/kwmiebach/3fd49612ef7a52b5ce3a">https://gist.github.com/kwmiebach/3fd49612ef7a52b5ce3a</a></p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="docker">
+<h2>docker<a class="headerlink" href="#docker" title="Permalink to this headline">#</a></h2>
+<ul class="simple">
+<li><p>List all running processes</p></li>
+</ul>
+<blockquote>
+<div><p><code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">container</span> <span class="pre">ls</span></code><br />
+<code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">ps</span></code></p>
+</div></blockquote>
+<ul class="simple">
+<li><p>Stop process</p></li>
+</ul>
+<blockquote>
+<div><p><code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">stop</span> <span class="pre">&lt;containerid&gt;</span></code></p>
+</div></blockquote>
+<ul class="simple">
+<li><p>Attach local standard input, output, and error streams to a running container</p></li>
+</ul>
+<blockquote>
+<div><p><code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">container</span> <span class="pre">attach</span> </code></p>
+</div></blockquote>
+<ul class="simple">
+<li><p>Create a new image from a container’s changes</p></li>
+</ul>
+<blockquote>
+<div><p><code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">container</span> <span class="pre">commit</span> </code></p>
+</div></blockquote>
+<ul class="simple">
+<li><p>Copy files/folders between a container and the local filesystem</p></li>
+</ul>
+<blockquote>
+<div><p><code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">container</span> <span class="pre">cp</span> </code></p>
+</div></blockquote>
+<ul class="simple">
+<li><p>Create a new container</p></li>
+</ul>
+<blockquote>
+<div><p><code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">container</span> <span class="pre">create</span> </code></p>
+</div></blockquote>
+<ul class="simple">
+<li><p>Inspect changes to files or directories on a container’s filesystem</p></li>
+</ul>
+<blockquote>
+<div><p><code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">container</span> <span class="pre">diff</span> </code></p>
+</div></blockquote>
+<ul class="simple">
+<li><p>Run a command in a running container</p></li>
+</ul>
+<blockquote>
+<div><p><code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">container</span> <span class="pre">exec</span> </code></p>
+</div></blockquote>
+<ul class="simple">
+<li><p>Export a container’s filesystem as a tar archive</p></li>
+</ul>
+<blockquote>
+<div><p><code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">container</span> <span class="pre">export</span> </code></p>
+</div></blockquote>
+<ul class="simple">
+<li><p>Display detailed information on one or more containers</p></li>
+</ul>
+<blockquote>
+<div><p><code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">container</span> <span class="pre">inspect	</span></code></p>
+</div></blockquote>
+<ul class="simple">
+<li><p>Kill one or more running containers</p></li>
+</ul>
+<blockquote>
+<div><p><code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">container</span> <span class="pre">kill</span></code></p>
+</div></blockquote>
+<ul class="simple">
+<li><p>Fetch the logs of a container</p></li>
+</ul>
+<blockquote>
+<div><p><code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">container</span> <span class="pre">logs</span></code></p>
+</div></blockquote>
+<ul class="simple">
+<li><p>List containers</p></li>
+</ul>
+<blockquote>
+<div><p><code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">container</span> <span class="pre">ls	</span></code></p>
+</div></blockquote>
+<ul class="simple">
+<li><p>Pause all processes within one or more containers</p></li>
+</ul>
+<blockquote>
+<div><p><code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">container</span> <span class="pre">pause</span></code></p>
+</div></blockquote>
+<ul class="simple">
+<li><p>List port mappings or a specific mapping for the container</p></li>
+</ul>
+<blockquote>
+<div><p><code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">container</span> <span class="pre">port</span></code></p>
+</div></blockquote>
+<ul class="simple">
+<li><p>Remove all stopped containers</p></li>
+</ul>
+<blockquote>
+<div><p><code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">container</span> <span class="pre">prune</span></code></p>
+</div></blockquote>
+<ul class="simple">
+<li><p>Rename a container</p></li>
+</ul>
+<blockquote>
+<div><p><code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">container</span> <span class="pre">rename</span></code></p>
+</div></blockquote>
+<ul class="simple">
+<li><p>Restart one or more containers</p></li>
+</ul>
+<blockquote>
+<div><p><code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">container</span> <span class="pre">restart</span></code></p>
+</div></blockquote>
+<ul class="simple">
+<li><p>Remove one or more containers</p></li>
+</ul>
+<blockquote>
+<div><p><code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">container</span> <span class="pre">rm</span></code></p>
+</div></blockquote>
+<ul class="simple">
+<li><p>Run a command in a new container</p></li>
+</ul>
+<blockquote>
+<div><p><code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">container</span> <span class="pre">run</span></code></p>
+</div></blockquote>
+<ul class="simple">
+<li><p>Start one or more stopped containers</p></li>
+</ul>
+<blockquote>
+<div><p><code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">container</span> <span class="pre">start</span></code></p>
+</div></blockquote>
+<ul class="simple">
+<li><p>Display a live stream of container(s) resource usage statistics</p></li>
+</ul>
+<blockquote>
+<div><p><code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">container</span> <span class="pre">stats</span></code></p>
+</div></blockquote>
+<ul class="simple">
+<li><p>Stop one or more running containers</p></li>
+</ul>
+<blockquote>
+<div><p><code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">container</span> <span class="pre">stop</span></code></p>
+</div></blockquote>
+<ul class="simple">
+<li><p>Display the running processes of a container</p></li>
+</ul>
+<blockquote>
+<div><p><code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">container</span> <span class="pre">top</span></code></p>
+</div></blockquote>
+<ul class="simple">
+<li><p>Unpause all processes within one or more containers</p></li>
+</ul>
+<blockquote>
+<div><p><code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">container</span> <span class="pre">unpause</span></code></p>
+</div></blockquote>
+<ul class="simple">
+<li><p>Update configuration of one or more containers</p></li>
+</ul>
+<blockquote>
+<div><p><code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">container</span> <span class="pre">update</span></code></p>
+</div></blockquote>
+<ul class="simple">
+<li><p>Block until one or more containers stop, then print their exit codes</p></li>
+</ul>
+<blockquote>
+<div><p><code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">container</span> <span class="pre">wait</span></code></p>
+</div></blockquote>
+</section>
+<section id="compound-operations">
+<h2>Compound operations<a class="headerlink" href="#compound-operations" title="Permalink to this headline">#</a></h2>
+<ul class="simple">
+<li><p>Extract file names from ls -l</p></li>
+</ul>
+<blockquote>
+<div><p><code class="docutils literal notranslate"><span class="pre">ls</span> <span class="pre">-l</span> <span class="pre">cs229_ml/*.ipynb</span> <span class="pre">|</span> <span class="pre">tr</span> <span class="pre">-s</span> <span class="pre">'</span> <span class="pre">'</span> <span class="pre">|</span> <span class="pre">cut</span> <span class="pre">-d</span> <span class="pre">&quot;</span> <span class="pre">&quot;</span> <span class="pre">-f</span> <span class="pre">9</span></code></p>
+</div></blockquote>
+<ul class="simple">
+<li><p>Extract file names from ls and append text at the beginning</p></li>
+</ul>
+<blockquote>
+<div><p><code class="docutils literal notranslate"><span class="pre">ls</span> <span class="pre">-l</span> <span class="pre">cs229_ml/*.ipynb</span> <span class="pre">|</span> <span class="pre">tr</span> <span class="pre">-s</span> <span class="pre">'</span> <span class="pre">'</span> <span class="pre">|</span> <span class="pre">cut</span> <span class="pre">-d</span> <span class="pre">&quot;</span> <span class="pre">&quot;</span> <span class="pre">-f</span> <span class="pre">9</span> <span class="pre">|</span> <span class="pre">sed</span> <span class="pre">'s/^/</span>&#160;&#160;&#160; <span class="pre">-</span> <span class="pre">file:/g'</span> </code></p>
+</div></blockquote>
+<ul class="simple">
+<li><p>Extract file names from ls and append text at the beginning and remove last 6 characters from end</p></li>
+</ul>
+<blockquote>
+<div><p><code class="docutils literal notranslate"><span class="pre">ls</span> <span class="pre">-l</span> <span class="pre">cs229_ml/*.ipynb</span> <span class="pre">|</span> <span class="pre">tr</span> <span class="pre">-s</span> <span class="pre">'</span> <span class="pre">'</span> <span class="pre">|</span> <span class="pre">cut</span> <span class="pre">-d</span> <span class="pre">&quot;</span> <span class="pre">&quot;</span> <span class="pre">-f</span> <span class="pre">9</span> <span class="pre">|</span> <span class="pre">sed</span> <span class="pre">'s/^/</span>&#160;&#160;&#160; <span class="pre">-</span> <span class="pre">file:/g'</span> <span class="pre">|</span> <span class="pre">sed</span> <span class="pre">-r</span> <span class="pre">'s/.{6}$//'</span></code></p>
+</div></blockquote>
+<ul class="simple">
+<li><p><a class="reference external" href="https://www.theunixschool.com/2014/08/sed-examples-remove-delete-chars-from-line-file.html">https://www.theunixschool.com/2014/08/sed-examples-remove-delete-chars-from-line-file.html</a></p></li>
+</ul>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./unix"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="../codes/python_faqs.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Python FAQs</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="../markdown.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Markdown Files</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By Chandra<br/>
+  
+      &copy; Copyright 2022.<br/>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>
