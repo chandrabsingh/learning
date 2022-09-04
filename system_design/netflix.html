@@ -1,0 +1,1860 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Netflix creativity</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="My ML Book" href="../ml_examples/intro.html" />
+    <link rel="prev" title="Case study" href="design_general_use_cases.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../_static/mylogo.png" class="logo" alt="logo">
+      
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    <no title>
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  System Design
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="intro.html">
+   My System Design Book
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2">
+    <a class="reference internal" href="design_patterns.html">
+     System Design Summary
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="googlecloud_use_cases.html">
+     Google - Customer story
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="aws_usecases.html">
+     AWS - Customer story
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="design_general_use_cases.html">
+     Case study
+    </a>
+   </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     Netflix creativity
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Machine Learning
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../ml_examples/intro.html">
+   My ML Book
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../ml_examples/Store_Sales_Forecasting_With_Tensorflow.html">
+     Store Sales Forecasting with TensorFlow
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../ml_examples/decision_tree_classification.html">
+     Decision Tree - classification
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../ml_examples/ml_design_patterns.html">
+     The Need for ML Design Patterns
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Unix/Shell Scripting
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../unix/intro.html">
+   My Unix/Shell Book
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+  <label for="toctree-checkbox-3">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../unix/my_zshrc.html">
+     My .zshrc script
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Reference
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../ml_examples/ml_glossary.html">
+   ML Conceptual brief
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../codes/python_faqs.html">
+   Python FAQs
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../unix/unix_shell_script.html">
+   Unix/Shell FAQs
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../markdown.html">
+   Markdown Files
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../notebooks.html">
+   Content with notebooks
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../markdown-notebooks.html">
+   Notebooks with MyST Markdown
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Lecture Notes
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../cs229_ml/intro.html">
+   CS229 ML - by Andrew Ng
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+  <label for="toctree-checkbox-4">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../cs229_ml/lec02-LinearReg-GradientDescent.html">
+     Lec 02-Linear Regression - Gradient Descent
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../cs229_ml/lec03-LocallyWeighted-LogisticRegression.html">
+     Lec 03-Locally Weighted Regression - Logistic Regression
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../cs229_ml/lec04-Perceptron-GLM.html">
+     Lec 04-Perceptron - GLM
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../cs229_ml/lec05-GDA-NaiveBayes.html">
+     Lec 05-GDA - Naive Bayes
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../cs229_ml/lec06-NaiveBayes-SVM.html">
+     Lec 06-Naive Bayes - SVM
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../cs229_ml/lec07-Kernels-SVM.html">
+     Lec 07-Kernels - SVM
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../cs229_ml/lec08-DataSplits-Models-CrossValidation.html">
+     Lec 08-Data Splits - Models - Cross Validation
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../cs229_ml/lec09-Approx-EstimationError-ERM.html">
+     Lec 09-Estimation Error - ERM
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../cs229_ml/lec10-DecisionTrees-EnsembleMethods.html">
+     Lec 10-Decision Trees - Ensemble Methods
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../cs229_ml/lec11-Intro-NN.html">
+     Lec 11-Neural Networks
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../cs229_ml/lec12-Backpropagation-ImprovingNN.html">
+     Lec 12-Improving NN
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../cs229_ml/lec13-DebuggingMLModels-ErrorAnalysis.html">
+     Lec 13-Debugging ML Models-Error Analysis
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../cs229_ml/lec14-Expectation-MaximizationAlgo.html">
+     Lec 14-Expectation-Maximization Algo
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../cs229_ml/lec15-EMAlgo-FactorAnalysis.html">
+     Lec 15-EM Algo-Factor Analysis
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../cs229_ml/lec16-IndependentComponentAnalysis-RL.html">
+     Lec 16-Independent Component Analysis-RL
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../cs229_ml/lec17-MDPs-ValuePolicyIteration.html">
+     Lec 17-MDPs-Value Policy Iteration
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../cs229_ml/lec18-continuousMDPs-ModelSimulation.html">
+     Lec 18-Continuous MDPs-Model Simulation
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+    </div>
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<div class="menu-dropdown menu-dropdown-launch-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Launch interactive content">
+      <i class="fas fa-rocket"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://mybinder.org/v2/gh/chandrabsingh/learning/master?urlpath=tree/learning/system_design/netflix.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Binder"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="../_static/images/logo_binder.svg">
+  </span>
+<span class="headerbtn__text-container">Binder</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-repository-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Source repositories">
+      <i class="fab fa-github"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://github.com/chandrabsingh/learning"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Source repository"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="headerbtn__text-container">repository</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/chandrabsingh/learning/issues/new?title=Issue%20on%20page%20%2Fsystem_design/netflix.html&body=Your%20issue%20content%20here."
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Open an issue"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="headerbtn__text-container">open issue</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="../_sources/system_design/netflix.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.ipynb</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#system-architecture-for-personalization-and-recommendation">
+   System Architecture for Personalization and Recommendation
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#online-computation">
+     Online Computation
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#offline-computation">
+     Offline computation
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#nearline-computation">
+     Nearline computation
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#ways-to-combine-these-3-approaches">
+     ways to combine these 3 approaches
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#offline-jobs">
+     Offline Jobs
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#signals-and-models">
+     Signals and Models
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#event-and-data-distribution">
+     Event and Data Distribution
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#recommendation-results">
+     Recommendation results
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#rapid-event-notification-system-reno">
+   Rapid Event Notification System (RENO)
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#netflix-recommendations">
+   Netflix Recommendations
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#personalization-algorithms">
+   Personalization algorithms
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#caching-at-netflix">
+   Caching at Netflix
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#netflix-components">
+   Netflix components
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#netflix-on-cloud">
+     Netflix on cloud
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#how-does-netflix-support-different-clients">
+     How does Netflix support different clients
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#how-netflix-onboards-video">
+     How Netflix onboards video
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#how-does-openconnect-work">
+     How does OpenConnect work
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#why-zuul">
+     Why Zuul
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#why-hystrix">
+     Why Hystrix
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#why-evcache">
+     Why EVCache
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#why-mantis">
+     Why Mantis
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#why-big-data">
+     Why Big Data
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#manhattan">
+     Manhattan
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#why-titus">
+     Why Titus
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#why-papermill">
+     Why Papermill
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#data-at-a-glance-as-in-oct-2017">
+   Data at a glance (as in Oct 2017)
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#a-b-testing">
+   A/B Testing
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#interpreting-a-b-test-results-false-positives-and-statistical-significance">
+     Interpreting A/B test results: false positives and statistical significance
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#interpreting-a-b-test-results-false-negatives-and-power">
+     Interpreting A/B test results: false negatives and power
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#power-of-hypothesis-test">
+     Power of hypothesis test
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#cloud-based-microservices-architecture">
+     Cloud based Microservices architecture
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#references-toread">
+     References (ToRead)
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+    </nav>
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Netflix creativity</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#system-architecture-for-personalization-and-recommendation">
+   System Architecture for Personalization and Recommendation
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#online-computation">
+     Online Computation
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#offline-computation">
+     Offline computation
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#nearline-computation">
+     Nearline computation
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#ways-to-combine-these-3-approaches">
+     ways to combine these 3 approaches
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#offline-jobs">
+     Offline Jobs
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#signals-and-models">
+     Signals and Models
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#event-and-data-distribution">
+     Event and Data Distribution
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#recommendation-results">
+     Recommendation results
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#rapid-event-notification-system-reno">
+   Rapid Event Notification System (RENO)
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#netflix-recommendations">
+   Netflix Recommendations
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#personalization-algorithms">
+   Personalization algorithms
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#caching-at-netflix">
+   Caching at Netflix
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#netflix-components">
+   Netflix components
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#netflix-on-cloud">
+     Netflix on cloud
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#how-does-netflix-support-different-clients">
+     How does Netflix support different clients
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#how-netflix-onboards-video">
+     How Netflix onboards video
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#how-does-openconnect-work">
+     How does OpenConnect work
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#why-zuul">
+     Why Zuul
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#why-hystrix">
+     Why Hystrix
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#why-evcache">
+     Why EVCache
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#why-mantis">
+     Why Mantis
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#why-big-data">
+     Why Big Data
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#manhattan">
+     Manhattan
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#why-titus">
+     Why Titus
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#why-papermill">
+     Why Papermill
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#data-at-a-glance-as-in-oct-2017">
+   Data at a glance (as in Oct 2017)
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#a-b-testing">
+   A/B Testing
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#interpreting-a-b-test-results-false-positives-and-statistical-significance">
+     Interpreting A/B test results: false positives and statistical significance
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#interpreting-a-b-test-results-false-negatives-and-power">
+     Interpreting A/B test results: false negatives and power
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#power-of-hypothesis-test">
+     Power of hypothesis test
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#cloud-based-microservices-architecture">
+     Cloud based Microservices architecture
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#references-toread">
+     References (ToRead)
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <section class="tex2jax_ignore mathjax_ignore" id="netflix-creativity">
+<h1>Netflix creativity<a class="headerlink" href="#netflix-creativity" title="Permalink to this headline">#</a></h1>
+<section id="system-architecture-for-personalization-and-recommendation">
+<h2><a class="reference external" href="https://netflixtechblog.com/system-architectures-for-personalization-and-recommendation-e081aa94b5d8">System Architecture for Personalization and Recommendation</a><a class="headerlink" href="#system-architecture-for-personalization-and-recommendation" title="Permalink to this headline">#</a></h2>
+<section id="online-computation">
+<h3>Online Computation<a class="headerlink" href="#online-computation" title="Permalink to this headline">#</a></h3>
+<ul class="simple">
+<li><p>subject to SLA with maximum latency to respond recommendation</p></li>
+<li><p>fallback mechanism of precomputed result is adopted in case of failures</p></li>
+<li><p>computational expensive</p></li>
+</ul>
+</section>
+<section id="offline-computation">
+<h3>Offline computation<a class="headerlink" href="#offline-computation" title="Permalink to this headline">#</a></h3>
+<ul class="simple">
+<li><p>less limitation on latency, providing more choices to complex algorithms</p></li>
+<li><p>aggregate stats periodically</p></li>
+<li><p>new algorithms testing</p></li>
+<li><p>allows focus on experiments than optimization</p></li>
+</ul>
+</section>
+<section id="nearline-computation">
+<h3>Nearline computation<a class="headerlink" href="#nearline-computation" title="Permalink to this headline">#</a></h3>
+<ul class="simple">
+<li><p>intermediate compromise between two modes</p></li>
+<li><p>allows system to be more responsive</p></li>
+<li><p>sandbox for applying incremental learning algorithms</p></li>
+</ul>
+<img src="https://miro.medium.com/max/1400/1*qqTSkHNOzukJ5r-b54-wJQ.png" width=500 height=500>
+</section>
+<section id="ways-to-combine-these-3-approaches">
+<h3>ways to combine these 3 approaches<a class="headerlink" href="#ways-to-combine-these-3-approaches" title="Permalink to this headline">#</a></h3>
+<ul class="simple">
+<li><p>fallback</p></li>
+<li><p>partial precomputation in offline mode allowing less costly operation in online mode</p></li>
+<li><p>modeling can be done in hybrid offline/online manner</p>
+<ul>
+<li><p>use case of Matrix Factorization calculation</p>
+<ul>
+<li><p>can be done in hybrid online/offline way</p></li>
+<li><p>some factors can be precomputed offline while others updated in real-time</p></li>
+</ul>
+</li>
+<li><p>use case of unsupervised clustering</p>
+<ul>
+<li><p>offline computation of cluster centers</p></li>
+<li><p>online assignment of clusters</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="offline-jobs">
+<h3>Offline Jobs<a class="headerlink" href="#offline-jobs" title="Permalink to this headline">#</a></h3>
+<img src="https://miro.medium.com/max/1400/1*cwfWTmdtk0Z6pOl9uVU0JA.png" width=500 height=500>
+<ul class="simple">
+<li><p>scheduled periodic jobs</p></li>
+<li><p>two primary types</p>
+<ul>
+<li><p>model training</p>
+<ul>
+<li><p>collect data</p></li>
+<li><p>apply ML algo</p></li>
+<li><p>online learning techniques also possible</p></li>
+</ul>
+</li>
+<li><p>batch computation of intermediate or final results</p></li>
+</ul>
+</li>
+<li><p>these queries run over large amounts of data</p>
+<ul>
+<li><p>run on Hadoop via Hive or Pig jobs</p></li>
+<li><p>once completed, publish results and notify subscribers</p></li>
+<li><p>support different repo as HDFS, S3, Cassandra</p></li>
+<li><p>handle errors, allow monitoring</p></li>
+</ul>
+</li>
+<li><p>this is supported using internal tool called <strong>Hermes</strong></p>
+<ul>
+<li><p>this covers use cases similar to Apache Kafka, but is not a message/event queue system</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="signals-and-models">
+<h3>Signals and Models<a class="headerlink" href="#signals-and-models" title="Permalink to this headline">#</a></h3>
+<img src="https://miro.medium.com/max/1400/1*8lw3s6XZxOUTGM0yVJLJxA.png" width=500 height=500>
+<ul class="simple">
+<li><p>In all modes either online or offline computation, three type of inputs are required - models, data, and signals</p>
+<ul>
+<li><p>Models - small parameter files that have been previously trained offline</p></li>
+<li><p>Data - is previously processed information stored in database, such as movie metadata or popularity</p></li>
+<li><p>Signals - refer to information inputed to algorithm obtained from live services and other user-related information such as watch history, or context data such as session, device, date, or time</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="event-and-data-distribution">
+<h3>Event and Data Distribution<a class="headerlink" href="#event-and-data-distribution" title="Permalink to this headline">#</a></h3>
+<img src="https://miro.medium.com/max/1400/1*dzpP6wfwejPQ-xKUDJlukg.png" width=500 height=500>
+<ul class="simple">
+<li><p>goal: translate interaction data into insights</p></li>
+<li><p>source:</p>
+<ul>
+<li><p>user interface such as smart TVs, tablets, game consoles</p></li>
+<li><p>user events such as click, browses, viewing history</p></li>
+</ul>
+</li>
+<li><p>events: time sensitive information</p></li>
+<li><p>data: dense information where latency is not concern</p></li>
+<li><p>near-real-time event flow is managed through an internal framework called <strong>Manhattan</strong>, similar to Twitter Storm</p>
+<ul>
+<li><p>data flow is managed through logging through Chukwa to Hadoop</p></li>
+<li><p>Hermes is used for publish-subscribe mechanism</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="recommendation-results">
+<h3>Recommendation results<a class="headerlink" href="#recommendation-results" title="Permalink to this headline">#</a></h3>
+<img src="https://miro.medium.com/max/1400/1*Y1oZvmQnwc7lJTL07Q4eXg.png" width=500 height=500>
+<ul class="simple">
+<li><p>goal: personalized recommendations</p>
+<ul>
+<li><p>mostly offline algorithms are applied</p></li>
+<li><p>freshness applied using online algorithms real-time signals</p></li>
+</ul>
+</li>
+<li><p>offline and intermediate results stored in Cassandra, EVCache, and MySQL</p>
+<ul>
+<li><p>MySQL allows storage of structured relational data</p>
+<ul>
+<li><p>not scalable  in distributed environments</p></li>
+</ul>
+</li>
+<li><p>Cassandra and EVCache both provide key-value stores</p></li>
+<li><p>Cassandra is a standard solution for distributed and scalable no-SQL store</p></li>
+<li><p>Cassandra works well generally</p>
+<ul>
+<li><p>however for intensive and constant write operations, EVCache gives better performance</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>optimal solution is required to handle conflicting goals of query complexity, read/write latency, and transactional consistency</p></li>
+</ul>
+</section>
+</section>
+<section id="rapid-event-notification-system-reno">
+<h2><a class="reference external" href="https://netflixtechblog.com/rapid-event-notification-system-at-netflix-6deb1d2b57d1">Rapid Event Notification System (RENO)</a><a class="headerlink" href="#rapid-event-notification-system-reno" title="Permalink to this headline">#</a></h2>
+<ul class="simple">
+<li><p>To maintain real time experience, RENO facilitates server initiated communication in scalable and extensible manner</p></li>
+<li><p>the system works asynchronously that supports both online and offline computation</p></li>
+<li><p>seemless experience across platforms and devices</p></li>
+<li><p>requires more than traditional request-response model</p></li>
+<li><p>Use cases</p>
+<ul>
+<li><p>viewing activity,</p></li>
+<li><p>personalized experience refresh</p></li>
+<li><p>membership plan changes</p></li>
+<li><p>profile changes</p></li>
+</ul>
+</li>
+<li><p>Design decisions</p>
+<ul>
+<li><p>Single Events Source</p>
+<ul>
+<li><p>listen for events from different microservices</p></li>
+<li><p>real time event flow is managed by Manhattan project</p></li>
+<li><p>Manhattan project - event management framework</p></li>
+</ul>
+</li>
+<li><p>Event prioritization</p>
+<ul>
+<li><p>wide ranging use cases</p></li>
+<li><p>segmented event processing</p></li>
+<li><p>different events and traffic will have different priority</p></li>
+</ul>
+</li>
+<li><p>Hybrid Communication Model</p>
+<ul>
+<li><p>key challenge is to support multiple platforms</p></li>
+<li><p>a pull model would result in chatty applications</p></li>
+<li><p>a push model would result in missing notifications</p></li>
+<li><p>hybrid is the best solution</p></li>
+</ul>
+</li>
+<li><p>Targeted Delivery</p>
+<ul>
+<li><p>device specific notification delivery</p></li>
+<li><p>limits outgoing traffic footprint</p></li>
+</ul>
+</li>
+<li><p>Managing High RPS</p>
+<ul>
+<li><p>at peak times, serves 150k events/second</p></li>
+<li><p>thundering herd problem</p>
+<ul>
+<li><p>large number of processes/threads waiting for an event are awoken, but only one process is able to handle the event</p></li>
+<li><p>results in system freeze</p></li>
+</ul>
+</li>
+<li><p>few optimizations</p>
+<ul>
+<li><p>event age filter</p></li>
+<li><p>notifications to online devices only, using Zuul</p></li>
+<li><p>to keep thresholds under threshold, aggressive cluster scale-up configurations</p></li>
+<li><p>merge duplicate events</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>RENO service is broken into following components:</p>
+<ul>
+<li><p>Event triggers</p></li>
+<li><p>Event Management Engine</p></li>
+<li><p>Event Priority Based Queue</p></li>
+<li><p>Event Priority Based Clusters</p></li>
+<li><p>Outbound Messaging System</p></li>
+<li><p>Persistent Store (Cassandra)</p></li>
+</ul>
+</li>
+<li><p>RENO is the centralized rapid notification service for all Netflix products</p></li>
+</ul>
+<img src="https://miro.medium.com/max/1400/0*i6o12AqlvqZDMcAj" width=500 height=500>
+</section>
+<section id="netflix-recommendations">
+<h2>Netflix Recommendations<a class="headerlink" href="#netflix-recommendations" title="Permalink to this headline">#</a></h2>
+<ul class="simple">
+<li><p>Netflix Prize - 2006 - improve accuracy by 10%, earlier was Cinematch</p></li>
+<li><p>beat existing Netflix RMSE of 0.9525 to 0.8572 or less</p></li>
+<li><p>Korbell team - Progress Prize 8.43% improvement - 107 algorithms - 2000 hours of work</p></li>
+<li><p>2 algorithms with best performance</p>
+<ul>
+<li><p>Matrix Factorization or the Singular Value Decomposition SVD</p></li>
+<li><p>Restricted Boltzmann Machines (RBM)</p></li>
+<li><p>SVD resulted in RMSE of 0.8914</p></li>
+<li><p>RBM resulted in RMSE of 0.8990</p></li>
+<li><p>a linear blend reduced the error to 0.88</p></li>
+</ul>
+</li>
+<li><p>75% of people follow recommendations</p></li>
+<li><p>Type of personalization</p>
+<ul>
+<li><p>Diversity - suited as per family member</p></li>
+<li><p>Awareness - adapt to the change in taste</p></li>
+<li><p>Explanations - friends watch history, explicit taste preferences and ratings</p></li>
+<li><p>Genre collections, subsets within genre, ranking of those titles</p></li>
+<li><p>Freshness - Most popular, Top rated</p></li>
+<li><p>Similarity - More like ‘XYZ’</p></li>
+<li><p>Ranking</p></li>
+</ul>
+</li>
+<li><p>Goal: rank attractive items</p></li>
+<li><p>Learning to rank</p>
+<ul>
+<li><p>application of ML (supervised, semisupervised, RL), to construct ranking models for information retrieval systems</p></li>
+<li><p>supervised classification methods are used for ranking</p>
+<ul>
+<li><p>Logistic Regression,</p></li>
+<li><p>Support Vector Machines,</p></li>
+<li><p>Neural Networks, or</p></li>
+<li><p>Decision Tree-based methods</p>
+<ul>
+<li><p>Gradient Boosted Decision Trees (GBDT)</p></li>
+</ul>
+</li>
+<li><p>RankSVM or RankBoost.</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>commonly used ml algorithms</p>
+<ul>
+<li><p>Linear regression</p></li>
+<li><p>Logistic regression</p></li>
+<li><p>Elastic nets</p></li>
+<li><p>Singular Value Decomposition</p></li>
+<li><p>Restricted Boltzmann Machines</p></li>
+<li><p>Markov Chains</p></li>
+<li><p>Latent Dirichlet Allocation</p></li>
+<li><p>Association Rules</p></li>
+<li><p>Gradient Boosted Decision Trees</p></li>
+<li><p>Random Forests</p></li>
+<li><p>Clustering techniques from the simple k-means to novel graphical approaches such as Affinity Propagation</p></li>
+<li><p>Matrix factorization</p></li>
+</ul>
+</li>
+<li><p>A/B testing (bucket testing)</p>
+<ul>
+<li><p>how to integrate our machine learning approaches into this data-driven A/B test culture</p>
+<ul>
+<li><p>an offline-online testing process</p>
+<ul>
+<li><p>offline testing cycle is a step where we test and optimize our algorithms prior to performing online A/B testing</p>
+<ul>
+<li><p>to measure model performance in offline mode using</p>
+<ul>
+<li><p>track ranking measures such as</p>
+<ul>
+<li><p>normalized discounted cumulative gain,</p></li>
+<li><p>mean reciprocal rank, or</p></li>
+<li><p>fraction of concordant pairs,</p></li>
+</ul>
+</li>
+<li><p>track classification metrics such as</p>
+<ul>
+<li><p>accuracy,</p></li>
+<li><p>precision,</p></li>
+<li><p>recall, or</p></li>
+<li><p>F-score</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>measure famous RMSE from the Netflix Prize</p></li>
+<li><p>or other more exotic metrics</p></li>
+<li><p>track how well these metrics correlate to measurable online gains in our A/B tests</p></li>
+<li><p>since mapping is not perfect, offline performance is used only as an indication to make informed decisions on follow up tests</p></li>
+</ul>
+</li>
+<li><p>after validating offline testing hypothesis, launch A/B test</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<img src="https://miro.medium.com/max/1400/1*30KWZ38MzCXDB9AXjMtGjA.png" width=500 height=500>
+<img src="https://miro.medium.com/max/1400/1*i1g98589DuVhbKDqyIhl1w.png" width=500 height=500>
+<img src="./images/netflixPrice.png" width=500 height=500> 
+</section>
+<section id="personalization-algorithms">
+<h2>Personalization algorithms<a class="headerlink" href="#personalization-algorithms" title="Permalink to this headline">#</a></h2>
+<ul class="simple">
+<li><p>Different household members will have different tastes</p></li>
+<li><p>Optimize both accuracy and diversity</p></li>
+<li><p>Adapt to the taste, which encourages trust in the system</p></li>
+<li><p>connected with Facebook which gives personalization algorithm generate recommendations based on social circle</p></li>
+<li><p>genre personalization</p>
+<ul>
+<li><p>choice of genre</p></li>
+<li><p>subset of titles within that genre</p></li>
+<li><p>ranking among those titles</p></li>
+</ul>
+</li>
+<li><p>freshness and diversity</p></li>
+<li><p>Similarity is another personalization</p>
+<ul>
+<li><p>most popular,</p></li>
+<li><p>top rated,</p></li>
+<li><p>based on your taste preferences</p></li>
+<li><p>similar titles</p></li>
+<li><p>more like “title watched”</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="caching-at-netflix">
+<h2>Caching at Netflix<a class="headerlink" href="#caching-at-netflix" title="Permalink to this headline">#</a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="https://www.slideshare.net/ShashiShekarMadappa/evcache-at-netflix">https://www.slideshare.net/ShashiShekarMadappa/evcache-at-netflix</a></p></li>
+<li><p><a class="reference external" href="https://www.linkedin.com/in/shashishekar/#experience">https://www.linkedin.com/in/shashishekar/#experience</a></p></li>
+<li><p>highly scalable memcache-based caching solution called as <strong>EVCache</strong>(Ephemeral Volatile Cache)</p></li>
+<li><p>a memcached &amp; spymemcached based caching solution</p></li>
+<li><p><strong>Why caching?</strong></p>
+<ul>
+<li><p>fast: faster response time</p>
+<ul>
+<li><p>use case: HomePage - algorithm needs to know Users Taste, Movie Viewing History, Queue, Rating, etc</p></li>
+</ul>
+</li>
+<li><p>shared: allows session based app to be stateless without sessions in cloud</p></li>
+<li><p>scalable: allows NoSQL based persistence like Cassandra/SimpleDB/S3</p></li>
+</ul>
+</li>
+<li><p><strong>Overview</strong></p>
+<ul>
+<li><p>distributed Key-Value store - spread across multiple instances</p></li>
+<li><p>AWS Zone-Aware and data can be replicated across zones.</p></li>
+<li><p>registers and works with Netflix’s internal Naming Service for automatic discovery of new nodes/services.</p></li>
+<li><p>stores the data in key-value format</p>
+<ul>
+<li><p>Key has to be a non-null String and value can be a non-null byte-array, primitives, or serializable object</p></li>
+<li><p>Value should be less than 1 MB</p></li>
+</ul>
+</li>
+<li><p>As a generic cache cluster that can be used across various applications, it supports an optional Cache Name, to be used as namespace to avoid key collisions</p></li>
+<li><p>Typical cache hit rates are above 99%</p></li>
+<li><p>Works well with Netflix Persister Framework for e.g., In-memory -&gt; backed by EVCache -&gt; backed by Cassandra/SimpleDB/S3</p></li>
+</ul>
+</li>
+<li><p><strong>Elasticity and deployment ease:</strong></p>
+<ul>
+<li><p>linearly scalable</p></li>
+<li><p>monitor capacity</p></li>
+<li><p>can add capacity within a minute and potentially re-balance and warm data in the new node within a few minutes</p></li>
+</ul>
+</li>
+<li><p><strong>Latency:</strong></p>
+<ul>
+<li><p>response time in low milliseconds</p></li>
+<li><p>Reads from EVCache are typically served back from within the same AWS zone</p></li>
+</ul>
+</li>
+<li><p><strong>Single Zone Deployment:</strong></p>
+<ul>
+<li><p>scenario: AWS US-EAST Region and Zone-A where an EVCache cluster with 3 instances has a Web Application performing CRUD operations (on the EVcache system)</p>
+<ul>
+<li><p>Upon startup, an EVCache Server instance registers with the Naming Service</p></li>
+<li><p>During startup of the Web App, the EVCache Client library is initialized which looks up for all the EVCache server instances registered with the Naming Services and establishes a connection with them</p></li>
+<li><p>When the Web App needs to perform CRUD operation for a key the EVCache client selects the instance on which these operations can be performed. Consistent Hashing is used to shard the data across the cluster</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<img src="https://miro.medium.com/max/1400/1*oBCJjtUw80I8O5CO3zZ4Mg.png" width=500 height=500>
+<ul class="simple">
+<li><p><strong>Multi Zone Deployment:</strong></p>
+<ul>
+<li><p>scenario: replication across multiple zones in AWS US-EAST Region. It has an EVCache cluster with 3 instances and a Web App in Zone-A and Zone-B</p>
+<ul>
+<li><p>Upon startup, an EVCache Server instance in Zone-A registers with the Naming Service in Zone-A and Zone-B</p></li>
+<li><p>During startup of the Web App in Zone-A, the Web App initializes the EVCache Client library which looks up for all the EVCache server instances registered with the Naming Service and connects to them across all zones</p></li>
+<li><p>When the Web App in Zone-A needs to read the data for a key, the EVCache client looks up the EVCache Server instance in Zone-A which stores this data and fetches the data from this instance</p></li>
+<li><p>When the Web App in Zone-A needs to write or delete the data for a key, the EVCache client looks up the EVCache Server instances in Zone-A and Zone-B and writes or deletes it</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<img src="https://miro.medium.com/max/1400/1*xPIXw-Lufyqy2JCIVpRu6A.png" width=500 height=500>
+<ul class="simple">
+<li><p><strong>Case study: Movie and TV show similarity</strong>
+<img src="https://miro.medium.com/max/1400/0*4qVbkm-lCUT3V11p." width=500 height=500></p></li>
+</ul>
+</section>
+<section id="netflix-components">
+<h2>Netflix components<a class="headerlink" href="#netflix-components" title="Permalink to this headline">#</a></h2>
+<section id="netflix-on-cloud">
+<h3>Netflix on cloud<a class="headerlink" href="#netflix-on-cloud" title="Permalink to this headline">#</a></h3>
+<ul class="simple">
+<li><p>AWS</p>
+<ul>
+<li><p>components that dont involve video streaming</p></li>
+</ul>
+</li>
+<li><p>OpenConnect</p>
+<ul>
+<li><p>use it for video streaming</p></li>
+<li><p>OpenConnect is Netflix’s proprietary CDN - Content Delivery Network</p>
+<ul>
+<li><p>CDN - network of distributed servers</p></li>
+<li><p>distributed across geographies for low latency</p></li>
+<li><p>maintained by Netflix</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<img src="./images/netflix_system_design.png" width=500 height=500>  
+</section>
+<section id="how-does-netflix-support-different-clients">
+<h3>How does Netflix support different clients<a class="headerlink" href="#how-does-netflix-support-different-clients" title="Permalink to this headline">#</a></h3>
+<ul class="simple">
+<li><p>all the apps are written using platform specific code</p></li>
+<li><p>Netflix web app is written using React.js</p></li>
+<li><p>why React.js?</p>
+<ul>
+<li><p>startup speed</p></li>
+<li><p>run time performance</p></li>
+<li><p>modularity</p></li>
+</ul>
+</li>
+<li><p>How does Netflix load balancing work</p>
+<ul>
+<li><p>uses Amazon’s Elastic Load Balancer ELB service to different front-end instances/services</p></li>
+<li><p>ELB is configured so that load is first balanced across the zones and then instances</p></li>
+<li><p>2-tier balancing scheme</p></li>
+<li><p>first tier consists of DNS based round-robin balancing across different zones</p></li>
+<li><p>zones are logical grouping of servers</p></li>
+<li><p>second tier is an array of instances which does round-robin load balancing across instances</p></li>
+</ul>
+</li>
+</ul>
+<img src="./images/netflixLoadBalancer.png" width=400 height=400>  
+</section>
+<section id="how-netflix-onboards-video">
+<h3>How Netflix onboards video<a class="headerlink" href="#how-netflix-onboards-video" title="Permalink to this headline">#</a></h3>
+<ul class="simple">
+<li><p>lot of preprocessing</p>
+<ul>
+<li><p>converting videos into different resolutions</p></li>
+<li><p>this process is called transcoding</p>
+<ul>
+<li><p>optimization for particular type of device</p></li>
+<li><p>each format is of different resolutions</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>a video is broken into</p></li>
+<li><p>it also file optimize for different network</p>
+<ul>
+<li><p>depending on fast or slow bandwidth, resolution and format will be different</p></li>
+<li><p>adaptive bitrate steaming</p>
+<ul>
+<li><p>where if the bandwidth improves/deteriorate, the experience/streaming will switch accordingly</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>multiple copies of same movie is saved across different geography of different format/resolution</p>
+<ul>
+<li><p>more than 1000 copies are made for each movie</p></li>
+</ul>
+</li>
+<li><p>uses lot of parallel workers</p>
+<ul>
+<li><p>breaks movie into different pieces/chunks and puts into a queue</p></li>
+<li><p>pieces from the queue will then be picked from different workers</p></li>
+<li><p>workers will then merge these clips and place them into Amazon S3</p></li>
+</ul>
+</li>
+</ul>
+<img src="./images/netflixOC.png" width=600 height=600>  
+<img src="./images/netflixTranscoding.png" width=600 height=600>  
+<img src="./images/netflixVideoStreaming.png" width=400 height=400>  
+</section>
+<section id="how-does-openconnect-work">
+<h3>How does OpenConnect work<a class="headerlink" href="#how-does-openconnect-work" title="Permalink to this headline">#</a></h3>
+<ul class="simple">
+<li><p>all the different formats are uploaded into OC</p></li>
+<li><p>when user makes request</p>
+<ul>
+<li><p>based on the AWS data centers, models,</p></li>
+</ul>
+</li>
+<li><p>OpenConnect delivers 100% of Netlix video traffic</p></li>
+<li><p>235 million hours of streaming per day</p></li>
+<li><p>simultaneous peak traffic, making Netflix Open Connect, highest-volume networks in the world</p></li>
+<li><p>close to 90% of Netflix’s traffic is delivered via direct connections between Open Connect and the residential Internet Service Providers (ISPs)</p></li>
+<li><p>these are localized to the regional point of interconnection that’s geographically closest to Netflix member</p></li>
+<li><p>using installed Open Connect Appliances (OCAs) in an ISP’s data center, almost all Netflix content is served from the local OCAs rather than “upstream” from the internet</p>
+<ul>
+<li><p>dual benefit of reducing the ISP’s cost of operation and ensuring best possible Netflix experience for their subscribers</p></li>
+</ul>
+</li>
+<li><p>OCA in 1000 separate locations around the world</p></li>
+</ul>
+<img src="./images/netflix_isp_cdn.png" width=400 height=400>  
+<p><strong>New Content</strong></p>
+<ul class="simple">
+<li><p>a new content goes through various preprocessing, encoding, bitrates, subtitles and other quality enhancements</p></li>
+<li><p>deployed to AWS Simple Storage Service (S3)</p></li>
+<li><p>then these are deployed to Open Connect Appliances (OCAs)</p></li>
+</ul>
+<p><strong>Proactive Caching</strong></p>
+<ul class="simple">
+<li><p>can predict with high accuracy what members will watch and at what time of day</p></li>
+<li><p>upload contents to OCAs during non-peak hours bandwidth</p></li>
+<li><p>this optimizes disk efficiency by avoiding read/write contention</p></li>
+</ul>
+<p><strong>OCA Clusters</strong></p>
+<p><strong>Minimizing network distance</strong></p>
+<ul class="simple">
+<li><p>Open Connect global CDN consists of servers that are either physically located in ISP data centers (ISP servers) or IXP data centers (IX servers)</p></li>
+<li><p>aims to transmit content across shortest networking path, maximizing members streaming experience</p></li>
+<li><p>popularity content ranked by country, region, or other selection criteria are distributed into manifest clusters</p></li>
+<li><p>OCAs are grouped into manifest clusters, to distribute one or more copies of the catalog, depending on the popularity of the title</p></li>
+</ul>
+<p><strong>Maximizing traffic by minimizing inter-server traffic variance</strong></p>
+<ul class="simple">
+<li><p>uses consistent hashing</p></li>
+<li><p>results in well balanced cluster</p></li>
+</ul>
+<img src="https://miro.medium.com/max/1400/1*7Dja7NTcH0UQhfL427L2lg.png" width=500 height=500>
+<p><strong>Content organization</strong></p>
+<ul class="simple">
+<li><p>1200 files of content for one episode of The Crown</p></li>
+<li><p>by title, encoding profile, bitrate, language</p></li>
+</ul>
+<img src="https://miro.medium.com/max/1170/1*FMvFhiNp0i68ppOuDDUKyg.png" width=500 height=500>
+<p><strong>Per title encoding optimization</strong></p>
+<p><strong>Adaptive streaming algorithms</strong></p>
+<ul class="simple">
+<li><p>bitrate-resolution pairs (bitrate ladder)</p></li>
+</ul>
+<img src="https://miro.medium.com/max/1266/1*tCdB8E0X6zDJKAhpTLxNBA.png" width=200 height=200></section>
+<section id="why-zuul">
+<h3>Why Zuul<a class="headerlink" href="#why-zuul" title="Permalink to this headline">#</a></h3>
+<ul class="simple">
+<li><p>handles request from devices and websites to backend of streaming application</p></li>
+<li><p>supports dynamic routing to different backend clusters</p></li>
+<li><p>supports monitoring and route requests to multiple Amazon scaling services</p></li>
+<li><p>supports authentication and security</p></li>
+<li><p>helps in gauging performance while stress testing, by increasing traffic to a particular cluster</p></li>
+<li><p>load shedding</p></li>
+<li><p>multi region resiliency - routing requests across AWS regions</p></li>
+</ul>
+<blockquote>
+<div><p>The following are the key characteristics of a Zuul Filter:</p>
+<ul class="simple">
+<li><p>Type: most often defines the stage during the routing flow when the Filter will be applied (although it can be any custom string)</p></li>
+<li><p>Execution Order: applied within the Type, defines the order of execution across multiple Filters</p></li>
+<li><p>Criteria: the conditions required in order for the Filter to be executed</p></li>
+<li><p>Action: the action to be executed if the Criteria is met</p></li>
+</ul>
+</div></blockquote>
+<blockquote>
+<div><p>There are several standard Filter types that correspond to the typical lifecycle of a request:</p>
+<ul class="simple">
+<li><p>PRE Filters execute before routing to the origin. Examples include request authentication, choosing origin servers, and logging debug info.</p></li>
+<li><p>ROUTING Filters handle routing the request to an origin. This is where the origin HTTP request is built and sent using Apache HttpClient or Netflix Ribbon.</p></li>
+<li><p>POST Filters execute after the request has been routed to the origin. Examples include adding standard HTTP headers to the response, gathering statistics and metrics, and streaming the response from the origin to the client.</p></li>
+<li><p>ERROR Filters execute when an error occurs during one of the other phases</p></li>
+</ul>
+</div></blockquote>
+<ul class="simple">
+<li><p>Summary</p>
+<ul>
+<li><p>Netty handlers handles the inward/outward messaging into the network protocol, web server, connection management and proxying</p></li>
+<li><p>Inbound filters run before proxying the request and is used for authentication, routing, or decorating request</p></li>
+<li><p>Endpoint filters is used to return static response or proxy request to backend service</p></li>
+<li><p>Outbound filters are applied after a response has been returned for gzipping, or handling metrics or customizing headers</p></li>
+</ul>
+</li>
+</ul>
+<img src="./images/netflixZuul.png" width=400 height=400>  
+<ul class="simple">
+<li><p><a class="reference external" href="https://qconnewyork.com/ny2018/presentation/architectures-youve-always-wondered-about-presentation">https://qconnewyork.com/ny2018/presentation/architectures-youve-always-wondered-about-presentation</a></p></li>
+</ul>
+</section>
+<section id="why-hystrix">
+<h3>Why Hystrix<a class="headerlink" href="#why-hystrix" title="Permalink to this headline">#</a></h3>
+<ul class="simple">
+<li><p>Netflix uses microservices architecture</p></li>
+<li><p>there is a dependency of quick throughput of these services to respond quickly</p></li>
+<li><p>critical services are identified to prevent cascading service failure</p></li>
+<li><p>each service is configured a set timeout withing which it needs to respond back</p></li>
+<li><p>Netflix’s stateless microservices architecture helps in routing the service request if it does not respond in timely fashion</p></li>
+</ul>
+</section>
+<section id="why-evcache">
+<h3>Why EVCache<a class="headerlink" href="#why-evcache" title="Permalink to this headline">#</a></h3>
+<ul class="simple">
+<li><p><a class="reference external" href="#Caching-at-Netflix">Caching at Netflix (above)</a></p></li>
+</ul>
+</section>
+<section id="why-mantis">
+<h3>Why Mantis<a class="headerlink" href="#why-mantis" title="Permalink to this headline">#</a></h3>
+<ul class="simple">
+<li><p><a class="reference external" href="https://netflixtechblog.com/open-sourcing-mantis-a-platform-for-building-cost-effective-realtime-operations-focused-5b8ff387813a">https://netflixtechblog.com/open-sourcing-mantis-a-platform-for-building-cost-effective-realtime-operations-focused-5b8ff387813a</a></p></li>
+<li><p>track events in real time at device specific granularity</p></li>
+</ul>
+</section>
+<section id="why-big-data">
+<h3>Why Big Data<a class="headerlink" href="#why-big-data" title="Permalink to this headline">#</a></h3>
+<ul class="simple">
+<li><p>facilitates algorithms and analytics</p></li>
+<li><p>use Hadoop, Hive, Pig, Parquet, Presto, Spark</p></li>
+<li><p>use Genie is a powerful, REST-based abstraction to data processing frameworks, notably Hadoop</p></li>
+<li><p>Inviso provides detailed insights into performance of Hadoop jobs and clusters</p></li>
+<li><p>Lipstick provides visual workflow representation of Pig jobs</p></li>
+<li><p>Aegisthus enables bulk abstraction of data out of Cassandra for downstream analytic processing</p></li>
+</ul>
+</section>
+<section id="manhattan">
+<h3>Manhattan<a class="headerlink" href="#manhattan" title="Permalink to this headline">#</a></h3>
+</section>
+<section id="why-titus">
+<h3>Why Titus<a class="headerlink" href="#why-titus" title="Permalink to this headline">#</a></h3>
+<ul class="simple">
+<li><p>container management platform</p></li>
+<li><p>tight integration between Titus and both Amazon and Netflix infrastructure</p></li>
+</ul>
+<blockquote>
+<div><p>Titus aims to enable easy and reliable deployment of containerized batch and service applications. Achieving this goal requires:</p>
+<ul class="simple">
+<li><p>Allowing containerized applications to seamlessly interact with AWS, Netflix, and other cloud services. Interactions with other systems should not be an application burden simply because it is running in a container.</p></li>
+<li><p>Operability to ensure the system is capable of running mission critical workloads and meeting SLAs.</p></li>
+<li><p>Scalability to run tens of thousands of containers on top of thousands of hosts across a variety of use cases.</p></li>
+</ul>
+</div></blockquote>
+<img src="https://netflix.github.io/titus/images/titus-arch.png" width=500 height=500>
+</section>
+<section id="why-papermill">
+<h3>Why Papermill<a class="headerlink" href="#why-papermill" title="Permalink to this headline">#</a></h3>
+<ul class="simple">
+<li><p>Schedule Notebooks at Netflix</p></li>
+<li><p>Which single tool can data scientist, data engineer, and machine learning engineer work on?</p>
+<ul>
+<li><p>Jupyter notebook</p>
+<ul>
+<li><p>managed JSON documents with a simple interface to execute code within</p></li>
+<li><p>uses Jupyter protocol</p></li>
+</ul>
+</li>
+<li><p>Papermill</p>
+<ul>
+<li><p>nteract library built for configurable and reliable execution of notebooks in production ecosystems</p></li>
+<li><p>it takes notebook path and input parameters, executes the requested notebook, and saves the resulting artifact to another output notebook</p></li>
+<li><p>doesn’t modify the source notebook</p></li>
+<li><p>as output notebooks are isolated records, it can be used by users in isolation for debugging or creating new templates</p></li>
+<li><p>as it controls its own runtime processes, maintainence of notebook kernels is not required</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Overview of nteract’s Papermill library
+<img src="https://miro.medium.com/max/1400/0*QLer52L9p-T72bGW" width=500 height=500></p></li>
+<li><p>Deeper look at Papermill library
+<img src="https://miro.medium.com/max/1400/0*058TIxB_YEFxmUDy" width=500 height=500></p></li>
+</ul>
+<p><strong>Scheduling Notebooks</strong></p>
+<ul class="simple">
+<li><p>Running scheduled notebooks on Docker containers
+<img src="https://miro.medium.com/max/1400/0*byeqo-pBXVPU6xjq" width=500 height=500></p></li>
+<li><p>Run integration tests with Papermill
+<img src="https://miro.medium.com/max/1400/0*j6RNZN-IO3fXW-Ff" width=500 height=500></p></li>
+</ul>
+<p><strong>Notebook infrastructure at Netflix</strong>
+<img src="https://miro.medium.com/max/1400/1*WOEEJizYnO8ibtU2l9jWbA.jpeg" width=500 height=500></p>
+</section>
+</section>
+<section id="data-at-a-glance-as-in-oct-2017">
+<h2>Data at a glance (as in Oct 2017)<a class="headerlink" href="#data-at-a-glance-as-in-oct-2017" title="Permalink to this headline">#</a></h2>
+<ul class="simple">
+<li><p>launched in 1997</p></li>
+<li><p>125+ million hours watched every day</p>
+<ul>
+<li><p>peak - 250+ million hours/a day</p></li>
+</ul>
+</li>
+<li><p>130 countries worldwide</p></li>
+<li><p>4000 different devices</p></li>
+<li><p>700+ billion events written/every day</p>
+<ul>
+<li><p>peak - a trillion events/a day</p></li>
+</ul>
+</li>
+<li><p>60+PB in data warehouse</p></li>
+<li><p>grows at a rate of 300TB DW writes/per day</p></li>
+<li><p>on average 5PB DW reads</p></li>
+</ul>
+<img src="./images/netflix_eventsArch.png" width=400 height=400>
+<img src="./images/netflix_pullData.png" width=400 height=400>
+<img src="./images/netflix_pushData.png" width=400 height=400>
+<img src="./images/netflix_typeofengineers.png" width=300 height=300>
+<p><strong>N Takeaways</strong></p>
+<ul class="simple">
+<li><p>“<strong>Expecting failure</strong> is more efficient than trying to <strong>prevent failure</strong>”</p></li>
+<li><p>“<strong>Stale data</strong> is almost always preferred over <strong>unfortunate data</strong>”</p></li>
+<li><p>“Delivering <strong>high quality</strong> analytics is really, <strong>really difficult</strong> to do well”</p></li>
+</ul>
+</section>
+<section id="a-b-testing">
+<h2>A/B Testing<a class="headerlink" href="#a-b-testing" title="Permalink to this headline">#</a></h2>
+<ul class="simple">
+<li><p>“Making decisions is easy - what’s hard is making the right decisions”</p></li>
+<li><p>split sample into two groups</p>
+<ul>
+<li><p>Group A - control group - uses base Netflix experience</p></li>
+<li><p>Group B - treatment group - based on specific hypothesis</p></li>
+</ul>
+</li>
+<li><p>some metrics are specific to hypothesis</p></li>
+<li><p>monitor variants of new feature</p></li>
+<li><p>individuals in two groups are on average balanced on all dimensions</p>
+<ul>
+<li><p>random assignments ensures for example average length of membership is not markedly different</p></li>
+</ul>
+</li>
+<li><p>If there’s a positive change, or no evidence of any meaningful change, the new experience is adapted; if there’s evidence of a negative change, prior product experience is rolled back</p></li>
+<li><p>A/B tests helps make causal analysis</p></li>
+<li><p>Running A/B tests allows substantiate causality and confidently make changes to the product knowing that customers have voted positively for their actions</p></li>
+<li><p>With the Top 10 example, the hypothesis read: “Showing members the Top 10 experience will help them find something to watch, increasing member joy and satisfaction.”</p></li>
+</ul>
+<section id="interpreting-a-b-test-results-false-positives-and-statistical-significance">
+<h3>Interpreting A/B test results: false positives and statistical significance<a class="headerlink" href="#interpreting-a-b-test-results-false-positives-and-statistical-significance" title="Permalink to this headline">#</a></h3>
+<ul class="simple">
+<li><p>If a test shows a statistically significant improvement in primary decision metric, the feature is a strong candidate for a roll out</p></li>
+<li><p>no approach to decision making can entirely eliminate uncertainty and the possibility of making mistakes</p></li>
+<li><p>two types of error</p>
+<ul>
+<li><p>false positive (Type I error) occurs when data from the test indicates meaningful difference between control and treatment experiences, but in truth there is no difference</p>
+<ul>
+<li><p>a medical test shows result as positive for a disease when patient is healthy</p></li>
+</ul>
+</li>
+<li><p>false negative (Type II error), occurs when data do not indicate a meaningful difference between control and treatment, but in reality there is a difference</p>
+<ul>
+<li><p>a medical test shows result as negative — when patient is unhealthy</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>two concepts in A/B testing that are closely related to p-value</p>
+<ul>
+<li><p>rejection region for a test</p></li>
+<li><p>confidence interval for an observation</p></li>
+</ul>
+</li>
+<li><p>TODO more</p></li>
+</ul>
+<img src="https://miro.medium.com/max/1400/1*8d7ysHOGOLop7xU4dBY_RQ.gif" width = 500 height= 500>
+</section>
+<section id="interpreting-a-b-test-results-false-negatives-and-power">
+<h3>Interpreting A/B test results: false negatives and power<a class="headerlink" href="#interpreting-a-b-test-results-false-negatives-and-power" title="Permalink to this headline">#</a></h3>
+<ul class="simple">
+<li><p>Label the photo of cat as “not cat”</p></li>
+<li><p>TODO more</p></li>
+</ul>
+</section>
+<section id="power-of-hypothesis-test">
+<h3>Power of hypothesis test<a class="headerlink" href="#power-of-hypothesis-test" title="Permalink to this headline">#</a></h3>
+<blockquote>
+<div><p>The statistical power of a binary hypothesis test is the probability that the test correctly rejects the null hypothesis (<span class="math notranslate nohighlight">\(H_{0}\)</span>) when a specific alternative hypothesis (<span class="math notranslate nohighlight">\(H_{1}\)</span>) is true. It is commonly denoted by <span class="math notranslate nohighlight">\((1-\beta)\)</span> , and represents the chances of a “true positive” detection conditional on the actual existence of an effect to detect. Statistical power ranges from 0 to 1, and as the power of a test increases, the probability <span class="math notranslate nohighlight">\(\beta\)</span>  of making a type II error by wrongly failing to reject the null hypothesis decreases.</p>
+<ul class="simple">
+<li><p>where <span class="math notranslate nohighlight">\(\beta\)</span> is the probability of Type 2 error (false negative)</p></li>
+<li><p><span class="math notranslate nohighlight">\((1-\beta)\)</span> is the probability of true positive, i.e. correctly rejecting the null hypothesis (power of the test)</p></li>
+<li><p><span class="math notranslate nohighlight">\(\alpha\)</span> is the probability of Type 1 error (false positive)</p></li>
+<li><p><span class="math notranslate nohighlight">\((1-\alpha)\)</span> is the probability of true negative (correctly not rejecting the null hypothesis)</p></li>
+</ul>
+</div></blockquote>
+<img src="./images/significance_level_power.png" height=300 width=300>
+</section>
+<section id="cloud-based-microservices-architecture">
+<h3>Cloud based Microservices architecture<a class="headerlink" href="#cloud-based-microservices-architecture" title="Permalink to this headline">#</a></h3>
+<ul class="simple">
+<li><p><a class="reference external" href="https://medium.com/swlh/a-design-analysis-of-cloud-based-microservices-architecture-at-netflix-98836b2da45f">https://medium.com/swlh/a-design-analysis-of-cloud-based-microservices-architecture-at-netflix-98836b2da45f</a></p></li>
+</ul>
+</section>
+<section id="references-toread">
+<h3>References (ToRead)<a class="headerlink" href="#references-toread" title="Permalink to this headline">#</a></h3>
+<ul class="simple">
+<li><p>Chukwa</p></li>
+<li><p><a class="reference external" href="https://github.com/Netflix">Netflix Github repository</a></p></li>
+<li><p><a class="reference external" href="https://netflixtechblog.com/netflixs-viewing-data-how-we-know-where-you-are-in-house-of-cards-608dd61077da">Netflix Viewing Data</a></p></li>
+<li><p><a class="reference external" href="https://netflixtechblog.com/">Netflix tech blog</a></p></li>
+<li><p>Spinnaker</p></li>
+<li><p>Chaos Monkey</p></li>
+<li><p><a class="reference external" href="https://github.com/Netflix/concurrency-limits">concurrency-limits</a></p></li>
+<li><p><a class="reference external" href="https://www.slideshare.net/FaisalZakariaSiddiqi/linkedin-talk-at-netflix-ml-platform-meetup-sep-2019">Netflix ML Presentation</a></p></li>
+<li><p><span class="xref myst">Netflix Research</span></p></li>
+<li><p><a class="reference external" href="https://netflixtechblog.com/ml-platform-meetup-infra-for-contextual-bandits-and-reinforcement-learning-4a90305948ef">Bandit and RL</a></p></li>
+<li><p><a class="reference external" href="http://memcached.org/blog">http://memcached.org/blog</a></p></li>
+<li><p><a class="reference external" href="https://code.google.com/archive/p/spymemcached/">https://code.google.com/archive/p/spymemcached/</a></p></li>
+<li><p><a class="reference external" href="https://netflixtechblog.com/building-confidence-in-a-decision-8705834e6fd8">A/B testing - 5 part series</a></p></li>
+</ul>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./system_design"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="design_general_use_cases.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Case study</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="../ml_examples/intro.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">My ML Book</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By Chandra<br/>
+  
+      &copy; Copyright 2022.<br/>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>

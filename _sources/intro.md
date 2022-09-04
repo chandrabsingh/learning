@@ -29,7 +29,7 @@ Python FAQs.
 :link-type: doc
 :class-header: bg-light
 
-System Design Overview ✨
+System Design ✨
 ^^^
 
 System Design Overview.
