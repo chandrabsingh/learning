@@ -113,6 +113,30 @@ const thebe_selector_output = ".output, .cell_output"
         </ul>
         <p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
+  System Design
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../system_design/intro.html">
+   My ML Book
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../system_design/design_patterns.html">
+     Asynchronous request reply
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
   Machine Learning
  </span>
 </p>
@@ -121,8 +145,8 @@ const thebe_selector_output = ".output, .cell_output"
   <a class="reference internal" href="../ml_examples/intro.html">
    My ML Book
   </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
-  <label for="toctree-checkbox-1">
+  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
    <i class="fas fa-chevron-down">
    </i>
   </label>
@@ -155,8 +179,8 @@ const thebe_selector_output = ".output, .cell_output"
   <a class="reference internal" href="intro.html">
    My Unix/Shell Book
   </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
-  <label for="toctree-checkbox-2">
+  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+  <label for="toctree-checkbox-3">
    <i class="fas fa-chevron-down">
    </i>
   </label>
@@ -216,8 +240,8 @@ const thebe_selector_output = ".output, .cell_output"
   <a class="reference internal" href="../cs229_ml/intro.html">
    CS229 ML - by Andrew Ng
   </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
-  <label for="toctree-checkbox-3">
+  <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+  <label for="toctree-checkbox-4">
    <i class="fas fa-chevron-down">
    </i>
   </label>
@@ -1151,131 +1175,131 @@ And must importantly, :q will quite the mode.</p>
 <ol class="simple">
 <li><p>Search for files at command line with mdfind(Spotlight)</p></li>
 </ol>
-<blockquote>
-<div><p><code class="docutils literal notranslate"><span class="pre">mdfind</span> <span class="pre">-name</span> <span class="pre">Filename</span></code></p>
-</div></blockquote>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>mdfind -name Filename
+</pre></div>
+</div>
 <ol class="simple">
 <li><p>Search for string from another search result</p></li>
 </ol>
-<blockquote>
-<div><p><code class="docutils literal notranslate"><span class="pre">mdfind</span> <span class="pre">-name</span> <span class="pre">Filename</span> <span class="pre">|</span> <span class="pre">grep</span> <span class="pre">&quot;stri2&quot;</span></code></p>
-</div></blockquote>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>mdfind -name Filename <span class="p">|</span> grep <span class="s2">&quot;stri2&quot;</span>
+</pre></div>
+</div>
 </section>
 <section id="find-files-dir">
 <h3>find files/dir<a class="headerlink" href="#find-files-dir" title="Permalink to this headline">#</a></h3>
 <ol class="simple">
 <li><p>find all file recursively in current working directory</p></li>
 </ol>
-<blockquote>
-<div><p><code class="docutils literal notranslate"><span class="pre">find</span> <span class="pre">.</span> <span class="pre">-type</span> <span class="pre">f</span></code></p>
-</div></blockquote>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>find . -type f
+</pre></div>
+</div>
 <ol class="simple">
 <li><p>find all directory recursively in current working directory</p></li>
 </ol>
-<blockquote>
-<div><p><code class="docutils literal notranslate"><span class="pre">find</span> <span class="pre">.</span> <span class="pre">-type</span> <span class="pre">d</span></code></p>
-</div></blockquote>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>find . -type d
+</pre></div>
+</div>
 <ol class="simple">
 <li><p>find contents of files in current directory recursively</p></li>
 </ol>
-<blockquote>
-<div><p><code class="docutils literal notranslate"><span class="pre">find</span> <span class="pre">./learnings</span> <span class="pre">-type</span> <span class="pre">f</span> <span class="pre">-exec</span> <span class="pre">grep</span> <span class="pre">-H</span> <span class="pre">'xgboost'</span> <span class="pre">{}</span> <span class="pre">\;</span></code></p>
-</div></blockquote>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>find ./learnings -type f -exec grep -H <span class="s1">&#39;xgboost&#39;</span> <span class="o">{}</span> <span class="se">\;</span>
+</pre></div>
+</div>
 <ol class="simple">
 <li><p>find all files recursively in current working directory with case sensitive pattern and redirect into a file</p></li>
 </ol>
-<blockquote>
-<div><p><code class="docutils literal notranslate"><span class="pre">find</span> <span class="pre">.</span> <span class="pre">-type</span> <span class="pre">f</span> <span class="pre">-name</span> <span class="pre">&quot;*Boost*&quot;</span></code></p>
-</div></blockquote>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>find . -type f -name <span class="s2">&quot;*Boost*&quot;</span>
+</pre></div>
+</div>
 <ol class="simple">
 <li><p>find all files recursively in current working directory with case insensitive pattern and redirect into a file</p></li>
 </ol>
-<blockquote>
-<div><p><code class="docutils literal notranslate"><span class="pre">find</span> <span class="pre">.</span> <span class="pre">-type</span> <span class="pre">f</span> <span class="pre">-iname</span> <span class="pre">&quot;*Boost*&quot;</span></code><br />
-<code class="docutils literal notranslate"><span class="pre">find</span> <span class="pre">.</span> <span class="pre">-type</span> <span class="pre">f</span> <span class="pre">&gt;</span> <span class="pre">somefile.txt</span></code></p>
-</div></blockquote>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>find . -type f -iname <span class="s2">&quot;*Boost*&quot;</span>  
+find . -type f &gt; somefile.txt
+</pre></div>
+</div>
 <ol class="simple">
 <li><p>copy buffer from/into mac terminal</p></li>
 </ol>
-<blockquote>
-<div><p><code class="docutils literal notranslate"><span class="pre">pbcopy/pbpaste</span></code></p>
-</div></blockquote>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>pbcopy/pbpaste
+</pre></div>
+</div>
 <ol class="simple">
 <li><p>find all files recursively in current working directory and redirect into buffer</p></li>
 </ol>
-<blockquote>
-<div><p><code class="docutils literal notranslate"><span class="pre">find</span> <span class="pre">.</span> <span class="pre">-type</span> <span class="pre">f</span> <span class="pre">|</span> <span class="pre">pbcopy</span></code></p>
-</div></blockquote>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>find . -type f <span class="p">|</span> pbcopy
+</pre></div>
+</div>
 <ol class="simple">
 <li><p>find text in all files in current folder recursively</p></li>
 </ol>
-<blockquote>
-<div><p><code class="docutils literal notranslate"><span class="pre">grep</span> <span class="pre">-r</span> <span class="pre">'vector'</span> </code></p>
-</div></blockquote>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>grep -r <span class="s1">&#39;vector&#39;</span> 
+</pre></div>
+</div>
 <ol class="simple">
 <li><p>find text in all files in current folder recursively, only file names</p></li>
 </ol>
-<blockquote>
-<div><p><code class="docutils literal notranslate"><span class="pre">grep</span> <span class="pre">-rl</span> <span class="pre">'vector'</span></code></p>
-</div></blockquote>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>grep -rl <span class="s1">&#39;vector&#39;</span>
+</pre></div>
+</div>
 <ol class="simple">
 <li><p>find text in all files in current folder recursively, only file names, only unique names</p></li>
 </ol>
-<blockquote>
-<div><p><code class="docutils literal notranslate"><span class="pre">grep</span> <span class="pre">-rle</span> <span class="pre">'vector'</span></code> .</p>
-</div></blockquote>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>grep -rle <span class="s1">&#39;vector&#39;</span> 
+</pre></div>
+</div>
 <ol class="simple">
 <li><p>find text in all files in current folder recursively, only file names, only unique names, only cpp files</p></li>
 </ol>
-<blockquote>
-<div><p><code class="docutils literal notranslate"><span class="pre">grep</span> <span class="pre">--include=&quot;*.cpp&quot;</span> <span class="pre">-rle</span> <span class="pre">'vector'</span> <span class="pre">.</span></code></p>
-</div></blockquote>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>grep --include<span class="o">=</span><span class="s2">&quot;*.cpp&quot;</span> -rle <span class="s1">&#39;vector&#39;</span> .
+</pre></div>
+</div>
 </section>
 <section id="shell">
 <h3>Shell<a class="headerlink" href="#shell" title="Permalink to this headline">#</a></h3>
 <ol class="simple">
 <li><p>How to check which sh am i using</p></li>
 </ol>
-<blockquote>
-<div><p><code class="docutils literal notranslate"><span class="pre">$SHELL</span> <span class="pre">--version</span></code></p>
-</div></blockquote>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="nv">$SHELL</span> --version
+</pre></div>
+</div>
 <ol class="simple">
 <li><p>Print environment details</p></li>
 </ol>
-<blockquote>
-<div><p><code class="docutils literal notranslate"><span class="pre">printenv</span></code></p>
-</div></blockquote>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>printenv
+</pre></div>
+</div>
 <ol class="simple">
 <li><p>List processes run</p></li>
 </ol>
-<blockquote>
-<div><p><code class="docutils literal notranslate"><span class="pre">ps</span> <span class="pre">-elf</span></code></p>
-</div></blockquote>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>ps -elf
+</pre></div>
+</div>
 <section id="important-folder-file-locations">
 <h4>Important folder/file locations<a class="headerlink" href="#important-folder-file-locations" title="Permalink to this headline">#</a></h4>
 <ol class="simple">
 <li><p>Python packages installation directory</p></li>
 </ol>
-<blockquote>
-<div><p><code class="docutils literal notranslate"><span class="pre">ls</span> <span class="pre">~/opt/anaconda3/envs/reco/lib/python3.8/site-packages/</span></code></p>
-</div></blockquote>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>ls ~/opt/anaconda3/envs/reco/lib/python3.8/site-packages/
+</pre></div>
+</div>
 </section>
 <section id="ls">
 <h4>ls<a class="headerlink" href="#ls" title="Permalink to this headline">#</a></h4>
 <ol class="simple">
 <li><p>List directory only</p></li>
 </ol>
-<blockquote>
-<div><p><code class="docutils literal notranslate"><span class="pre">ls</span> <span class="pre">-d</span> <span class="pre">*/</span></code> or<br />
-<code class="docutils literal notranslate"><span class="pre">ls</span> <span class="pre">-l</span> <span class="pre">|</span> <span class="pre">grep</span> <span class="pre">'^d'</span></code> or<br />
-<code class="docutils literal notranslate"><span class="pre">ls</span> <span class="pre">-l</span> <span class="pre">|</span> <span class="pre">egrep</span> <span class="pre">'^d'</span></code></p>
-</div></blockquote>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>ls -d */  <span class="c1"># or   </span>
+ls -l <span class="p">|</span> grep <span class="s1">&#39;^d&#39;</span>  <span class="c1"># or  </span>
+ls -l <span class="p">|</span> egrep <span class="s1">&#39;^d&#39;</span>
+</pre></div>
+</div>
 <ol class="simple">
 <li><p>List last edited files in subdirectory recursively</p></li>
 </ol>
-<blockquote>
-<div><p><code class="docutils literal notranslate"><span class="pre">ls</span> <span class="pre">-lRt</span> <span class="pre">|</span> <span class="pre">less</span></code></p>
-</div></blockquote>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>ls -lRt <span class="p">|</span> less
+</pre></div>
+</div>
 </section>
 <section id="file-content-edits">
 <h4>File Content Edits<a class="headerlink" href="#file-content-edits" title="Permalink to this headline">#</a></h4>
@@ -1285,40 +1309,40 @@ And must importantly, :q will quite the mode.</p>
 <ul class="simple">
 <li><p>keep odd lines</p></li>
 </ul>
-<blockquote>
-<div><p><code class="docutils literal notranslate"><span class="pre">sed</span> <span class="pre">'n;</span> <span class="pre">d'</span> <span class="pre">infile</span> <span class="pre">&gt;</span> <span class="pre">outfile</span></code></p>
-</div></blockquote>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>sed <span class="s1">&#39;n; d&#39;</span> infile &gt; outfile
+</pre></div>
+</div>
 <ul class="simple">
 <li><p>keep even lines</p></li>
 </ul>
-<blockquote>
-<div><p><code class="docutils literal notranslate"><span class="pre">sed</span> <span class="pre">'1d;</span> <span class="pre">n;</span> <span class="pre">d'</span> <span class="pre">infile</span> <span class="pre">&gt;</span> <span class="pre">outfile</span></code></p>
-</div></blockquote>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>sed <span class="s1">&#39;1d; n; d&#39;</span> infile &gt; outfile
+</pre></div>
+</div>
 <ul class="simple">
 <li><p>to remove the even numbered lines from the file(The -i option would cause the changes to be saved to the file in-place)</p></li>
 </ul>
-<blockquote>
-<div><p><code class="docutils literal notranslate"><span class="pre">sed</span> <span class="pre">-i</span> <span class="pre">'0~2d'</span> <span class="pre">filename</span></code></p>
-</div></blockquote>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>sed -i <span class="s1">&#39;0~2d&#39;</span> filename
+</pre></div>
+</div>
 <ul class="simple">
 <li><p>For removing odd numbered lines</p></li>
 </ul>
-<blockquote>
-<div><p><code class="docutils literal notranslate"><span class="pre">sed</span> <span class="pre">-i</span> <span class="pre">'1~2d'</span> <span class="pre">filename</span></code></p>
-</div></blockquote>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>sed -i <span class="s1">&#39;1~2d&#39;</span> filename
+</pre></div>
+</div>
 <ul class="simple">
 <li><p>Using awk - NR is the current line number</p></li>
 </ul>
-<blockquote>
-<div><p><code class="docutils literal notranslate"><span class="pre">awk</span> <span class="pre">'NR%2==0'</span> <span class="pre">infile</span> <span class="pre">&gt;</span> <span class="pre">outfile</span></code></p>
-</div></blockquote>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>awk <span class="s1">&#39;NR%2==0&#39;</span> infile &gt; outfile
+</pre></div>
+</div>
 <ol class="simple">
 <li><p>find the 3rd word in a sentence</p></li>
 </ol>
-<blockquote>
-<div><p><code class="docutils literal notranslate"><span class="pre">string1=&quot;this</span> <span class="pre">is</span> <span class="pre">just</span> <span class="pre">a</span> <span class="pre">dummy</span> <span class="pre">string&quot;</span></code><br />
-<code class="docutils literal notranslate"><span class="pre">echo</span> <span class="pre">&quot;$string1&quot;</span> <span class="pre">|</span> <span class="pre">awk</span> <span class="pre">-F</span> <span class="pre">'</span> <span class="pre">'</span>&#160; <span class="pre">'{print</span> <span class="pre">$3}'</span></code></p>
-</div></blockquote>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="nv">string1</span><span class="o">=</span><span class="s2">&quot;this is just a dummy string&quot;</span>
+<span class="nb">echo</span> <span class="s2">&quot;</span><span class="nv">$string1</span><span class="s2">&quot;</span> <span class="p">|</span> awk -F <span class="s1">&#39; &#39;</span>  <span class="s1">&#39;{print $3}&#39;</span>
+</pre></div>
+</div>
 <ol class="simple">
 <li><p>find the 2nd word in all sentences in a file</p></li>
 </ol>

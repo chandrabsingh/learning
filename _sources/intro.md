@@ -20,6 +20,7 @@ It does not go in-depth into any particular topic - check out [the Jupyter Book 
 :gutter: 3
 
 :::{grid-item-card}
+:link: codes/python_faqs
 :link-type: doc
 :class-header: bg-light
 

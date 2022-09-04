@@ -52,7 +52,7 @@ const thebe_selector_output = ".output, .cell_output"
     <script async="async" src="_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="My ML Book" href="ml_examples/intro.html" />
+    <link rel="next" title="My ML Book" href="system_design/intro.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -112,6 +112,30 @@ const thebe_selector_output = ".output, .cell_output"
         </ul>
         <p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
+  System Design
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="system_design/intro.html">
+   My ML Book
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="system_design/design_patterns.html">
+     Asynchronous request reply
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
   Machine Learning
  </span>
 </p>
@@ -120,8 +144,8 @@ const thebe_selector_output = ".output, .cell_output"
   <a class="reference internal" href="ml_examples/intro.html">
    My ML Book
   </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
-  <label for="toctree-checkbox-1">
+  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
    <i class="fas fa-chevron-down">
    </i>
   </label>
@@ -154,8 +178,8 @@ const thebe_selector_output = ".output, .cell_output"
   <a class="reference internal" href="unix/intro.html">
    My Unix/Shell Book
   </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
-  <label for="toctree-checkbox-2">
+  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+  <label for="toctree-checkbox-3">
    <i class="fas fa-chevron-down">
    </i>
   </label>
@@ -215,8 +239,8 @@ const thebe_selector_output = ".output, .cell_output"
   <a class="reference internal" href="cs229_ml/intro.html">
    CS229 ML - by Andrew Ng
   </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
-  <label for="toctree-checkbox-3">
+  <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+  <label for="toctree-checkbox-4">
    <i class="fas fa-chevron-down">
    </i>
   </label>
@@ -499,14 +523,14 @@ It does not go in-depth into any particular topic - check out <a class="referenc
 <div class="sd-container-fluid sd-sphinx-override sd-mb-4 text-center docutils">
 <div class="sd-row sd-row-cols-1 sd-row-cols-xs-1 sd-row-cols-sm-1 sd-row-cols-md-2 sd-row-cols-lg-3 sd-g-3 sd-g-xs-3 sd-g-sm-3 sd-g-md-3 sd-g-lg-3 docutils">
 <div class="sd-col sd-d-flex-row docutils">
-<div class="sd-card sd-sphinx-override sd-w-100 sd-shadow-sm docutils">
+<div class="sd-card sd-sphinx-override sd-w-100 sd-shadow-sm sd-card-hover docutils">
 <div class="sd-card-header bg-light docutils">
 <p class="sd-card-text">Python FAQs ✏️</p>
 </div>
 <div class="sd-card-body docutils">
 <p class="sd-card-text">Python FAQs.</p>
 </div>
-</div>
+<a class="sd-stretched-link reference internal" href="codes/python_faqs.html"><span class="doc"></span></a></div>
 </div>
 <div class="sd-col sd-d-flex-row docutils">
 <div class="sd-card sd-sphinx-override sd-w-100 sd-shadow-sm docutils">
@@ -561,6 +585,46 @@ It does not go in-depth into any particular topic - check out <a class="referenc
 </div>
 </div>
 <p>This notebook is organized into a few major sections.</p>
+<div class="toctree-wrapper compound">
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">System Design</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="system_design/intro.html">My ML Book</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="system_design/design_patterns.html">Asynchronous request reply</a></li>
+<li class="toctree-l2"><a class="reference internal" href="system_design/design_patterns.html#sharding-database">Sharding database</a></li>
+<li class="toctree-l2"><a class="reference internal" href="system_design/design_patterns.html#stateful-vs-stateless">Stateful vs Stateless</a></li>
+<li class="toctree-l2"><a class="reference internal" href="system_design/design_patterns.html#orchestration">Orchestration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="system_design/design_patterns.html#loose-coupling">Loose coupling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="system_design/design_patterns.html#software-design-patterns">Software Design Patterns</a></li>
+<li class="toctree-l2"><a class="reference internal" href="system_design/design_patterns.html#other-design-patterns">Other design patterns</a></li>
+<li class="toctree-l2"><a class="reference internal" href="system_design/design_patterns.html#solid-design-principles">SOLID design principles</a></li>
+<li class="toctree-l2"><a class="reference internal" href="system_design/design_patterns.html#antipatterns">Antipatterns</a></li>
+<li class="toctree-l2"><a class="reference internal" href="system_design/design_patterns.html#event-driven-architecture">Event driven architecture</a></li>
+<li class="toctree-l2"><a class="reference internal" href="system_design/design_patterns.html#web-service">Web service</a></li>
+<li class="toctree-l2"><a class="reference internal" href="system_design/design_patterns.html#api-design">API design</a></li>
+<li class="toctree-l2"><a class="reference internal" href="system_design/design_patterns.html#functional-programming">Functional programming</a></li>
+<li class="toctree-l2"><a class="reference internal" href="system_design/design_patterns.html#acid-compliant">ACID compliant</a></li>
+<li class="toctree-l2"><a class="reference internal" href="system_design/design_patterns.html#base-semantics">BASE semantics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="system_design/design_patterns.html#crud">CRUD</a></li>
+<li class="toctree-l2"><a class="reference internal" href="system_design/design_patterns.html#staged-event-driven-architecture-seda">Staged event-driven architecture (SEDA)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="system_design/design_patterns.html#ipaas">iPaaS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="system_design/design_patterns.html#data-ingestion-pipeline-patterns">Data Ingestion Pipeline Patterns</a></li>
+<li class="toctree-l2"><a class="reference internal" href="system_design/design_patterns.html#data-modeling">Data Modeling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="system_design/design_patterns.html#message-broker-models">Message Broker Models</a></li>
+<li class="toctree-l2"><a class="reference internal" href="system_design/design_patterns.html#micro-frontends">Micro frontends</a></li>
+<li class="toctree-l2"><a class="reference internal" href="system_design/design_patterns.html#service-mesh">Service Mesh</a></li>
+<li class="toctree-l2"><a class="reference internal" href="system_design/design_patterns.html#restful-vs-restless">RESTful vs RESTless</a></li>
+<li class="toctree-l2"><a class="reference internal" href="system_design/design_patterns.html#service-oriented-architecture">Service Oriented Architecture</a></li>
+<li class="toctree-l2"><a class="reference internal" href="system_design/design_patterns.html#programming-paradigm">Programming Paradigm</a></li>
+<li class="toctree-l2"><a class="reference internal" href="system_design/design_patterns.html#circuit-design-patttern">Circuit design patttern</a></li>
+<li class="toctree-l2"><a class="reference internal" href="system_design/design_patterns.html#saas">SaaS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="system_design/design_patterns.html#paas">PaaS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="system_design/design_patterns.html#apns-apple-push-notification-service">APNS - Apple Push Notification Service</a></li>
+<li class="toctree-l2"><a class="reference internal" href="system_design/design_patterns.html#fcm-google-s-firebase-cloud-messaging">FCM - Google’s Firebase Cloud Messaging</a></li>
+<li class="toctree-l2"><a class="reference internal" href="system_design/design_patterns.html#references">References</a></li>
+</ul>
+</li>
+</ul>
+</div>
 <div class="toctree-wrapper compound">
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Machine Learning</span></p>
 <ul>
@@ -646,7 +710,7 @@ It does not go in-depth into any particular topic - check out <a class="referenc
                 
     <!-- Previous / next buttons -->
 <div class='prev-next-area'>
-    <a class='right-next' id="next-link" href="ml_examples/intro.html" title="next page">
+    <a class='right-next' id="next-link" href="system_design/intro.html" title="next page">
     <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
         <p class="prev-next-title">My ML Book</p>

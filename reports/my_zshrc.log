@@ -1,0 +1,173 @@
+Traceback (most recent call last):
+  File "/Users/chandrasingh/opt/anaconda3/envs/fast/lib/python3.8/site-packages/jupyter_cache/executors/utils.py", line 51, in single_nb_execution
+    executenb(
+  File "/Users/chandrasingh/opt/anaconda3/envs/fast/lib/python3.8/site-packages/nbclient/client.py", line 1204, in execute
+    return NotebookClient(nb=nb, resources=resources, km=km, **kwargs).execute()
+  File "/Users/chandrasingh/opt/anaconda3/envs/fast/lib/python3.8/site-packages/nbclient/util.py", line 84, in wrapped
+    return just_run(coro(*args, **kwargs))
+  File "/Users/chandrasingh/opt/anaconda3/envs/fast/lib/python3.8/site-packages/nbclient/util.py", line 62, in just_run
+    return loop.run_until_complete(coro)
+  File "/Users/chandrasingh/opt/anaconda3/envs/fast/lib/python3.8/asyncio/base_events.py", line 616, in run_until_complete
+    return future.result()
+  File "/Users/chandrasingh/opt/anaconda3/envs/fast/lib/python3.8/site-packages/nbclient/client.py", line 663, in async_execute
+    await self.async_execute_cell(
+  File "/Users/chandrasingh/opt/anaconda3/envs/fast/lib/python3.8/site-packages/nbclient/client.py", line 965, in async_execute_cell
+    await self._check_raise_for_error(cell, cell_index, exec_reply)
+  File "/Users/chandrasingh/opt/anaconda3/envs/fast/lib/python3.8/site-packages/nbclient/client.py", line 862, in _check_raise_for_error
+    raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
+nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
+------------------
+# %load /Users/chandrasingh/.zshrc
+
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+__conda_setup="$('/Users/chandrasingh/opt/anaconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    eval "$__conda_setup"
+else
+    if [ -f "/Users/chandrasingh/opt/anaconda3/etc/profile.d/conda.sh" ]; then
+        . "/Users/chandrasingh/opt/anaconda3/etc/profile.d/conda.sh"
+    else
+        export PATH="/Users/chandrasingh/opt/anaconda3/bin:$PATH"
+    fi
+fi
+unset __conda_setup
+# <<< conda initialize <<<
+
+export PATH=$PATH:~/.local/bin
+eval "$(jenv init -)"
+export PATH="$HOME/.jenv/bin:$PATH"
+eval "$(jenv init -)"
+# export JAVA_HOME=$(/usr/libexec/java_home -v11)
+# eval "$(jenv init -)"
+export JAVA_HOME=$(/usr/libexec/java_home -v1.8)
+# eval "$(jenv init -)"
+eval "$(jenv init -)"
+export PATH="/usr/local/opt/llvm/bin:$PATH"
+
+# Set working directory aliases here
+alias le="cd ~/anaconda3/workingDir/learnings/"
+alias cpp_templates="cd ~/anaconda3/workingDir/learnings/codes/cpp_templates/"
+alias cpp_algos="cd ~/anaconda3/workingDir/learnings/algos/cpp/slidingWindow/"
+# Set common directory aliases here
+alias dl="cd ~/Downloads"
+alias dt="cd ~/Desktop"
+alias dc="cd ~/Documents"
+alias home="cd ~"
+# Set navigation aliases
+alias ..="cd .."
+alias ...="cd ../.."
+alias ....="cd ../../.."
+# Set cloud aliases
+alias cnotes="cd /Users/chandrasingh/Library/Mobile\ Documents/com~apple~CloudDocs/notes"
+alias cbooks="cd /Users/chandrasingh/Library/Mobile\ Documents/com~apple~CloudDocs/books"
+
+# Set vi commands
+set hlsearch
+# set nohlsearch
+
+# Set bash prompt
+# GIT FUNCTIONS
+git_branch() {
+    git branch 2>/dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ (\1)/'
+}
+
+
+# TERMINAL PROMPT
+PS1="%B%F{51}"
+# Add conda environment to prompt
+if [ ! -z "$CONDA_DEFAULT_ENV" ]
+then
+    PS1+="($CONDA_DEFAULT_ENV)"
+fi
+PS1+=" " # space
+PS1+='%1~'
+# PS1+="$(git_branch)"
+PS1+=" %f%b" # space
+PS1+=">> " # end prompt
+# PS1+="$(tput blink)"
+# PS1+="$(trap 'tput sgr0' DEBUG)"
+export PS1;
+
+
+
+# Define custom functions here
+function jh(){
+    jupyter nbconvert --to html_toc "$1"
+}
+
+function jbg(){
+    # jupyter-book build and ghp-import 
+    if jb build ~/anaconda3/workingDir/learning; then ghp-import -n -p -f ~/anaconda3/workingDir/learning/_build/html; fi
+}
+
+function oc(){
+    open -a "Google Chrome" "$1"
+}
+
+function jhc(){
+    $(jh "$1")
+    oldstr=".ipynb"
+    newstr=".html"
+    secStr=$(echo $1 | sed "s/$oldstr/$newstr/")
+    $(oc $secStr)
+}
+
+function cppclang(){
+    set -x
+    oldstr=".cpp"
+    newstr=""
+    objName=$(echo $1 | sed "s/$oldstr/$newstr/")
+    if [[ $# -gt 1 ]]  
+        # then clang++ "$1" -o $objName -Wall "${2:-1}" && ./$objName
+        then clang++ "$1" -o $objName -Wall "${@:2}" && ./$objName
+        else clang++ "$1" -o $objName -Wall && ./$objName
+    fi
+    # clang++ "$1" -o $objName -Wall "${2:-1}" && ./$objName
+    set +x
+}
+
+function weather(){
+    if [[ $# -eq 1 ]]
+    then curl wttr.in/"$1"
+    else curl wttr.in/OysterBay
+    fi
+}
+
+function mvSnap(){
+    set -x
+    latestFileName=$(ls -t ~/Desktop | head -1)
+    oldFileLocation=~/Desktop/$latestFileName
+    newFolderName=${PWD}
+    newFolderLocation=$newFolderName
+    if [[ $# -eq 1 ]] 
+    then mv $oldFileLocation $newFolderLocation/"$1"
+    else mv $oldFileLocation $newFolderLocation/
+    fi
+    set +x
+}
+
+function mvdl(){
+    set -x
+    latestFileName=$(ls -t ~/Downloads | head -1)
+    oldFileLocation=~/Downloads/$latestFileName
+    newFolderLocation=${PWD}
+    mv $oldFileLocation $newFolderLocation/
+    set +x
+}
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/Users/chandrasingh/Downloads/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/chandrasingh/Downloads/google-cloud-sdk/path.zsh.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f '/Users/chandrasingh/Downloads/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/chandrasingh/Downloads/google-cloud-sdk/completion.zsh.inc'; fi
+
+------------------
+
+[0;36m  Input [0;32mIn [1][0;36m[0m
+[0;31m    if [ $? -eq 0 ]; then[0m
+[0m         ^[0m
+[0;31mSyntaxError[0m[0;31m:[0m invalid syntax
+
+SyntaxError: invalid syntax (3502930470.py, line 6)
+

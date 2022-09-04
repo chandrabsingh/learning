@@ -54,7 +54,7 @@ const thebe_selector_output = ".output, .cell_output"
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="ML Conceptual brief" href="ml_glossary.html" />
+    <link rel="next" title="The Need for ML Design Patterns" href="ml_design_patterns.html" />
     <link rel="prev" title="Store Sales Forecasting with TensorFlow" href="Store_Sales_Forecasting_With_Tensorflow.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
@@ -115,16 +115,40 @@ const thebe_selector_output = ".output, .cell_output"
         </ul>
         <p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
+  System Design
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../system_design/intro.html">
+   My ML Book
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../system_design/design_patterns.html">
+     Asynchronous request reply
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
   Machine Learning
  </span>
 </p>
 <ul class="current nav bd-sidenav">
  <li class="toctree-l1 current active has-children">
   <a class="reference internal" href="intro.html">
-   Welcome to your ML Book
+   My ML Book
   </a>
-  <input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
-  <label for="toctree-checkbox-1">
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
    <i class="fas fa-chevron-down">
    </i>
   </label>
@@ -137,6 +161,35 @@ const thebe_selector_output = ".output, .cell_output"
    <li class="toctree-l2 current active">
     <a class="current reference internal" href="#">
      Decision Tree - classification
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="ml_design_patterns.html">
+     The Need for ML Design Patterns
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Unix/Shell Scripting
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../unix/intro.html">
+   My Unix/Shell Book
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+  <label for="toctree-checkbox-3">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../unix/my_zshrc.html">
+     My .zshrc script
     </a>
    </li>
   </ul>
@@ -156,6 +209,11 @@ const thebe_selector_output = ".output, .cell_output"
  <li class="toctree-l1">
   <a class="reference internal" href="../codes/python_faqs.html">
    Python FAQs
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../unix/unix_shell_script.html">
+   Unix/Shell FAQs
   </a>
  </li>
  <li class="toctree-l1">
@@ -184,8 +242,8 @@ const thebe_selector_output = ".output, .cell_output"
   <a class="reference internal" href="../cs229_ml/intro.html">
    CS229 ML - by Andrew Ng
   </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
-  <label for="toctree-checkbox-2">
+  <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+  <label for="toctree-checkbox-4">
    <i class="fas fa-chevron-down">
    </i>
   </label>
@@ -850,8 +908,8 @@ node=0 is a split node: go to node 1 if X[:, 2] &lt;= 2.350000023841858 else to 
 			node=5 is a split node: go to node 6 if X[:, 1] &lt;= 3.100000023841858 else to node 7.
 				node=6 is a leaf node.
 				node=7 is a leaf node.
-		node=8 is a split node: go to node 9 if X[:, 3] &lt;= 1.75 else to node 12.
-			node=9 is a split node: go to node 10 if X[:, 3] &lt;= 1.6500000357627869 else to node 11.
+		node=8 is a split node: go to node 9 if X[:, 2] &lt;= 5.049999952316284 else to node 12.
+			node=9 is a split node: go to node 10 if X[:, 0] &lt;= 6.5 else to node 11.
 				node=10 is a leaf node.
 				node=11 is a leaf node.
 			node=12 is a leaf node.
@@ -1001,7 +1059,7 @@ weighted avg       0.98      0.97      0.97        38
 
 decision node 0 : (X_test[0, 2] = 5.1) &gt; 2.350000023841858)
 decision node 2 : (X_test[0, 2] = 5.1) &gt; 4.950000047683716)
-decision node 8 : (X_test[0, 3] = 2.4) &gt; 1.75)
+decision node 8 : (X_test[0, 2] = 5.1) &gt; 5.049999952316284)
 </pre></div>
 </div>
 </div>
@@ -1021,8 +1079,8 @@ decision node 8 : (X_test[0, 3] = 2.4) &gt; 1.75)
  Text(0.3, 0.3, &#39;X[1] &lt;= 3.1\ngini = 0.375\nsamples = 4\nvalue = [0, 1, 3]&#39;),
  Text(0.2, 0.1, &#39;gini = 0.0\nsamples = 3\nvalue = [0, 0, 3]&#39;),
  Text(0.4, 0.1, &#39;gini = 0.0\nsamples = 1\nvalue = [0, 1, 0]&#39;),
- Text(0.8, 0.5, &#39;X[3] &lt;= 1.75\ngini = 0.05\nsamples = 39\nvalue = [0, 1, 38]&#39;),
- Text(0.7, 0.3, &#39;X[3] &lt;= 1.65\ngini = 0.375\nsamples = 4\nvalue = [0, 1, 3]&#39;),
+ Text(0.8, 0.5, &#39;X[2] &lt;= 5.05\ngini = 0.05\nsamples = 39\nvalue = [0, 1, 38]&#39;),
+ Text(0.7, 0.3, &#39;X[0] &lt;= 6.5\ngini = 0.375\nsamples = 4\nvalue = [0, 1, 3]&#39;),
  Text(0.6, 0.1, &#39;gini = 0.0\nsamples = 3\nvalue = [0, 0, 3]&#39;),
  Text(0.8, 0.1, &#39;gini = 0.0\nsamples = 1\nvalue = [0, 1, 0]&#39;),
  Text(0.9, 0.3, &#39;gini = 0.0\nsamples = 35\nvalue = [0, 0, 35]&#39;)]
@@ -1091,10 +1149,10 @@ decision node 8 : (X_test[0, 3] = 2.4) &gt; 1.75)
             <p class="prev-next-title">Store Sales Forecasting with TensorFlow</p>
         </div>
     </a>
-    <a class='right-next' id="next-link" href="ml_glossary.html" title="next page">
+    <a class='right-next' id="next-link" href="ml_design_patterns.html" title="next page">
     <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">ML Conceptual brief</p>
+        <p class="prev-next-title">The Need for ML Design Patterns</p>
     </div>
     <i class="fas fa-angle-right"></i>
     </a>
