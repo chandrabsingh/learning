@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>Asynchronous request reply</title>
+    <title>System Design Summary</title>
     
   <!-- Loaded before other Sphinx assets -->
   <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
@@ -55,7 +55,7 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="My ML Book" href="../ml_examples/intro.html" />
-    <link rel="prev" title="My ML Book" href="intro.html" />
+    <link rel="prev" title="My System Design Book" href="intro.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -121,7 +121,7 @@ const thebe_selector_output = ".output, .cell_output"
 <ul class="current nav bd-sidenav">
  <li class="toctree-l1 current active has-children">
   <a class="reference internal" href="intro.html">
-   My ML Book
+   My System Design Book
   </a>
   <input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
   <label for="toctree-checkbox-1">
@@ -131,7 +131,7 @@ const thebe_selector_output = ".output, .cell_output"
   <ul class="current">
    <li class="toctree-l2 current active">
     <a class="current reference internal" href="#">
-     Asynchronous request reply
+     System Design Summary
     </a>
    </li>
   </ul>
@@ -541,361 +541,361 @@ title="Print to PDF"
     </div>
     <nav id="bd-toc-nav" aria-label="Page">
         <ul class="visible nav section-nav flex-column">
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#asynchronous-request-reply">
    Asynchronous request reply
   </a>
  </li>
- <li class="toc-h1 nav-item toc-entry">
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#sharding-database">
    Sharding database
   </a>
-  <ul class="visible nav section-nav flex-column">
-   <li class="toc-h2 nav-item toc-entry">
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#types-of-partitioning">
      Types of partitioning
     </a>
    </li>
-   <li class="toc-h2 nav-item toc-entry">
+   <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#what-is-sharding">
      What is Sharding
     </a>
    </li>
-   <li class="toc-h2 nav-item toc-entry">
+   <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#benefits-of-sharding">
      Benefits of sharding
     </a>
    </li>
-   <li class="toc-h2 nav-item toc-entry">
+   <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#sharding-architectures">
      Sharding architectures
     </a>
    </li>
   </ul>
  </li>
- <li class="toc-h1 nav-item toc-entry">
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#stateful-vs-stateless">
    Stateful vs Stateless
   </a>
  </li>
- <li class="toc-h1 nav-item toc-entry">
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#orchestration">
    Orchestration
   </a>
  </li>
- <li class="toc-h1 nav-item toc-entry">
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#loose-coupling">
    Loose coupling
   </a>
  </li>
- <li class="toc-h1 nav-item toc-entry">
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#software-design-patterns">
    Software Design Patterns
   </a>
-  <ul class="visible nav section-nav flex-column">
-   <li class="toc-h2 nav-item toc-entry">
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#creational-patterns">
      Creational patterns
     </a>
    </li>
-   <li class="toc-h2 nav-item toc-entry">
+   <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#structural-patterns">
      Structural patterns
     </a>
    </li>
-   <li class="toc-h2 nav-item toc-entry">
+   <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#behavioral-patterns">
      Behavioral patterns
     </a>
    </li>
-   <li class="toc-h2 nav-item toc-entry">
+   <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#concurrency-patterns">
      Concurrency patterns
     </a>
    </li>
   </ul>
  </li>
- <li class="toc-h1 nav-item toc-entry">
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#other-design-patterns">
    Other design patterns
   </a>
-  <ul class="visible nav section-nav flex-column">
-   <li class="toc-h2 nav-item toc-entry">
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#inversion-of-control">
      Inversion of Control
     </a>
    </li>
-   <li class="toc-h2 nav-item toc-entry">
+   <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#dispatcher">
      Dispatcher
     </a>
    </li>
-   <li class="toc-h2 nav-item toc-entry">
+   <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#dependency-inversion-principle">
      Dependency Inversion principle
     </a>
     <ul class="nav section-nav flex-column">
-     <li class="toc-h3 nav-item toc-entry">
+     <li class="toc-h4 nav-item toc-entry">
       <a class="reference internal nav-link" href="#callbacks">
        Callbacks
       </a>
      </li>
-     <li class="toc-h3 nav-item toc-entry">
+     <li class="toc-h4 nav-item toc-entry">
       <a class="reference internal nav-link" href="#schedulers">
        Schedulers
       </a>
      </li>
-     <li class="toc-h3 nav-item toc-entry">
+     <li class="toc-h4 nav-item toc-entry">
       <a class="reference internal nav-link" href="#event-loops">
        Event Loops
       </a>
      </li>
-     <li class="toc-h3 nav-item toc-entry">
+     <li class="toc-h4 nav-item toc-entry">
       <a class="reference internal nav-link" href="#dependency-injection">
        Dependency Injection
       </a>
      </li>
-     <li class="toc-h3 nav-item toc-entry">
+     <li class="toc-h4 nav-item toc-entry">
       <a class="reference internal nav-link" href="#template-method">
        Template Method
       </a>
      </li>
     </ul>
    </li>
-   <li class="toc-h2 nav-item toc-entry">
+   <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#decorator-vs-wrapper-pattern">
      Decorator vs Wrapper pattern
     </a>
    </li>
-   <li class="toc-h2 nav-item toc-entry">
+   <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#fan-out-pattern">
      Fan-out pattern
     </a>
    </li>
-   <li class="toc-h2 nav-item toc-entry">
+   <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#fan-in-fan-out-pattern">
      Fan-in/Fan-out pattern
     </a>
    </li>
-   <li class="toc-h2 nav-item toc-entry">
+   <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#mixin-pattern">
      Mixin pattern
     </a>
    </li>
   </ul>
  </li>
- <li class="toc-h1 nav-item toc-entry">
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#solid-design-principles">
    SOLID design principles
   </a>
-  <ul class="visible nav section-nav flex-column">
-   <li class="toc-h2 nav-item toc-entry">
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#single-responsibility-pattern">
      Single responsibility pattern
     </a>
    </li>
-   <li class="toc-h2 nav-item toc-entry">
+   <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#separation-of-concerns">
      Separation of Concerns
     </a>
    </li>
   </ul>
  </li>
- <li class="toc-h1 nav-item toc-entry">
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#antipatterns">
    Antipatterns
   </a>
  </li>
- <li class="toc-h1 nav-item toc-entry">
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#event-driven-architecture">
    Event driven architecture
   </a>
-  <ul class="visible nav section-nav flex-column">
-   <li class="toc-h2 nav-item toc-entry">
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#publish-subscribe-pattern">
      Publish-Subscribe pattern
     </a>
    </li>
-   <li class="toc-h2 nav-item toc-entry">
+   <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#request-reply">
      Request-Reply
     </a>
    </li>
-   <li class="toc-h2 nav-item toc-entry">
+   <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#sockets">
      Sockets
     </a>
    </li>
-   <li class="toc-h2 nav-item toc-entry">
+   <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#unix-sockets">
      Unix Sockets
     </a>
    </li>
-   <li class="toc-h2 nav-item toc-entry">
+   <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#message-queue">
      Message Queue
     </a>
    </li>
-   <li class="toc-h2 nav-item toc-entry">
+   <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#producer-consumer-queue">
      Producer Consumer Queue
     </a>
    </li>
-   <li class="toc-h2 nav-item toc-entry">
+   <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#soap">
      SOAP
     </a>
    </li>
-   <li class="toc-h2 nav-item toc-entry">
+   <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#rest">
      REST
     </a>
    </li>
-   <li class="toc-h2 nav-item toc-entry">
+   <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#event-channels">
      Event channels
     </a>
    </li>
-   <li class="toc-h2 nav-item toc-entry">
+   <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#http-endpoint">
      HTTP endpoint
     </a>
    </li>
   </ul>
  </li>
- <li class="toc-h1 nav-item toc-entry">
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#web-service">
    Web service
   </a>
  </li>
- <li class="toc-h1 nav-item toc-entry">
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#api-design">
    API design
   </a>
-  <ul class="visible nav section-nav flex-column">
-   <li class="toc-h2 nav-item toc-entry">
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#rpc-vs-rest-vs-graphql">
      RPC vs REST vs GraphQL
     </a>
    </li>
-   <li class="toc-h2 nav-item toc-entry">
+   <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#rpc-remote-procedure-call">
      RPC - Remote Procedure Call
     </a>
    </li>
-   <li class="toc-h2 nav-item toc-entry">
+   <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#id1">
      REST
     </a>
    </li>
-   <li class="toc-h2 nav-item toc-entry">
+   <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#graphql">
      GraphQL
     </a>
    </li>
-   <li class="toc-h2 nav-item toc-entry">
+   <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#webhook">
      Webhook
     </a>
    </li>
   </ul>
  </li>
- <li class="toc-h1 nav-item toc-entry">
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#functional-programming">
    Functional programming
   </a>
  </li>
- <li class="toc-h1 nav-item toc-entry">
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#acid-compliant">
    ACID compliant
   </a>
  </li>
- <li class="toc-h1 nav-item toc-entry">
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#base-semantics">
    BASE semantics
   </a>
  </li>
- <li class="toc-h1 nav-item toc-entry">
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#crud">
    CRUD
   </a>
  </li>
- <li class="toc-h1 nav-item toc-entry">
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#staged-event-driven-architecture-seda">
    Staged event-driven architecture (SEDA)
   </a>
  </li>
- <li class="toc-h1 nav-item toc-entry">
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#ipaas">
    iPaaS
   </a>
  </li>
- <li class="toc-h1 nav-item toc-entry">
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#data-ingestion-pipeline-patterns">
    Data Ingestion Pipeline Patterns
   </a>
  </li>
- <li class="toc-h1 nav-item toc-entry">
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#data-modeling">
    Data Modeling
   </a>
  </li>
- <li class="toc-h1 nav-item toc-entry">
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#message-broker-models">
    Message Broker Models
   </a>
  </li>
- <li class="toc-h1 nav-item toc-entry">
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#micro-frontends">
    Micro frontends
   </a>
  </li>
- <li class="toc-h1 nav-item toc-entry">
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#service-mesh">
    Service Mesh
   </a>
  </li>
- <li class="toc-h1 nav-item toc-entry">
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#restful-vs-restless">
    RESTful vs RESTless
   </a>
  </li>
- <li class="toc-h1 nav-item toc-entry">
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#service-oriented-architecture">
    Service Oriented Architecture
   </a>
  </li>
- <li class="toc-h1 nav-item toc-entry">
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#programming-paradigm">
    Programming Paradigm
   </a>
  </li>
- <li class="toc-h1 nav-item toc-entry">
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#circuit-design-patttern">
    Circuit design patttern
   </a>
  </li>
- <li class="toc-h1 nav-item toc-entry">
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#saas">
    SaaS
   </a>
  </li>
- <li class="toc-h1 nav-item toc-entry">
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#paas">
    PaaS
   </a>
  </li>
- <li class="toc-h1 nav-item toc-entry">
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#apns-apple-push-notification-service">
    APNS - Apple Push Notification Service
   </a>
  </li>
- <li class="toc-h1 nav-item toc-entry">
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#fcm-google-s-firebase-cloud-messaging">
    FCM - Google’s Firebase Cloud Messaging
   </a>
  </li>
- <li class="toc-h1 nav-item toc-entry">
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#references">
    References
   </a>
@@ -909,7 +909,7 @@ title="Print to PDF"
         <div class="col pl-md-3 pl-lg-5 content-container">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
-                <h1>Asynchronous request reply</h1>
+                <h1>System Design Summary</h1>
                 <!-- Table of contents -->
                 <div id="print-main-content">
                     <div id="jb-print-toc">
@@ -919,361 +919,361 @@ title="Print to PDF"
                         </div>
                         <nav aria-label="Page">
                             <ul class="visible nav section-nav flex-column">
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#asynchronous-request-reply">
    Asynchronous request reply
   </a>
  </li>
- <li class="toc-h1 nav-item toc-entry">
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#sharding-database">
    Sharding database
   </a>
-  <ul class="visible nav section-nav flex-column">
-   <li class="toc-h2 nav-item toc-entry">
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#types-of-partitioning">
      Types of partitioning
     </a>
    </li>
-   <li class="toc-h2 nav-item toc-entry">
+   <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#what-is-sharding">
      What is Sharding
     </a>
    </li>
-   <li class="toc-h2 nav-item toc-entry">
+   <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#benefits-of-sharding">
      Benefits of sharding
     </a>
    </li>
-   <li class="toc-h2 nav-item toc-entry">
+   <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#sharding-architectures">
      Sharding architectures
     </a>
    </li>
   </ul>
  </li>
- <li class="toc-h1 nav-item toc-entry">
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#stateful-vs-stateless">
    Stateful vs Stateless
   </a>
  </li>
- <li class="toc-h1 nav-item toc-entry">
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#orchestration">
    Orchestration
   </a>
  </li>
- <li class="toc-h1 nav-item toc-entry">
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#loose-coupling">
    Loose coupling
   </a>
  </li>
- <li class="toc-h1 nav-item toc-entry">
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#software-design-patterns">
    Software Design Patterns
   </a>
-  <ul class="visible nav section-nav flex-column">
-   <li class="toc-h2 nav-item toc-entry">
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#creational-patterns">
      Creational patterns
     </a>
    </li>
-   <li class="toc-h2 nav-item toc-entry">
+   <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#structural-patterns">
      Structural patterns
     </a>
    </li>
-   <li class="toc-h2 nav-item toc-entry">
+   <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#behavioral-patterns">
      Behavioral patterns
     </a>
    </li>
-   <li class="toc-h2 nav-item toc-entry">
+   <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#concurrency-patterns">
      Concurrency patterns
     </a>
    </li>
   </ul>
  </li>
- <li class="toc-h1 nav-item toc-entry">
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#other-design-patterns">
    Other design patterns
   </a>
-  <ul class="visible nav section-nav flex-column">
-   <li class="toc-h2 nav-item toc-entry">
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#inversion-of-control">
      Inversion of Control
     </a>
    </li>
-   <li class="toc-h2 nav-item toc-entry">
+   <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#dispatcher">
      Dispatcher
     </a>
    </li>
-   <li class="toc-h2 nav-item toc-entry">
+   <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#dependency-inversion-principle">
      Dependency Inversion principle
     </a>
     <ul class="nav section-nav flex-column">
-     <li class="toc-h3 nav-item toc-entry">
+     <li class="toc-h4 nav-item toc-entry">
       <a class="reference internal nav-link" href="#callbacks">
        Callbacks
       </a>
      </li>
-     <li class="toc-h3 nav-item toc-entry">
+     <li class="toc-h4 nav-item toc-entry">
       <a class="reference internal nav-link" href="#schedulers">
        Schedulers
       </a>
      </li>
-     <li class="toc-h3 nav-item toc-entry">
+     <li class="toc-h4 nav-item toc-entry">
       <a class="reference internal nav-link" href="#event-loops">
        Event Loops
       </a>
      </li>
-     <li class="toc-h3 nav-item toc-entry">
+     <li class="toc-h4 nav-item toc-entry">
       <a class="reference internal nav-link" href="#dependency-injection">
        Dependency Injection
       </a>
      </li>
-     <li class="toc-h3 nav-item toc-entry">
+     <li class="toc-h4 nav-item toc-entry">
       <a class="reference internal nav-link" href="#template-method">
        Template Method
       </a>
      </li>
     </ul>
    </li>
-   <li class="toc-h2 nav-item toc-entry">
+   <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#decorator-vs-wrapper-pattern">
      Decorator vs Wrapper pattern
     </a>
    </li>
-   <li class="toc-h2 nav-item toc-entry">
+   <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#fan-out-pattern">
      Fan-out pattern
     </a>
    </li>
-   <li class="toc-h2 nav-item toc-entry">
+   <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#fan-in-fan-out-pattern">
      Fan-in/Fan-out pattern
     </a>
    </li>
-   <li class="toc-h2 nav-item toc-entry">
+   <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#mixin-pattern">
      Mixin pattern
     </a>
    </li>
   </ul>
  </li>
- <li class="toc-h1 nav-item toc-entry">
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#solid-design-principles">
    SOLID design principles
   </a>
-  <ul class="visible nav section-nav flex-column">
-   <li class="toc-h2 nav-item toc-entry">
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#single-responsibility-pattern">
      Single responsibility pattern
     </a>
    </li>
-   <li class="toc-h2 nav-item toc-entry">
+   <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#separation-of-concerns">
      Separation of Concerns
     </a>
    </li>
   </ul>
  </li>
- <li class="toc-h1 nav-item toc-entry">
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#antipatterns">
    Antipatterns
   </a>
  </li>
- <li class="toc-h1 nav-item toc-entry">
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#event-driven-architecture">
    Event driven architecture
   </a>
-  <ul class="visible nav section-nav flex-column">
-   <li class="toc-h2 nav-item toc-entry">
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#publish-subscribe-pattern">
      Publish-Subscribe pattern
     </a>
    </li>
-   <li class="toc-h2 nav-item toc-entry">
+   <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#request-reply">
      Request-Reply
     </a>
    </li>
-   <li class="toc-h2 nav-item toc-entry">
+   <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#sockets">
      Sockets
     </a>
    </li>
-   <li class="toc-h2 nav-item toc-entry">
+   <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#unix-sockets">
      Unix Sockets
     </a>
    </li>
-   <li class="toc-h2 nav-item toc-entry">
+   <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#message-queue">
      Message Queue
     </a>
    </li>
-   <li class="toc-h2 nav-item toc-entry">
+   <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#producer-consumer-queue">
      Producer Consumer Queue
     </a>
    </li>
-   <li class="toc-h2 nav-item toc-entry">
+   <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#soap">
      SOAP
     </a>
    </li>
-   <li class="toc-h2 nav-item toc-entry">
+   <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#rest">
      REST
     </a>
    </li>
-   <li class="toc-h2 nav-item toc-entry">
+   <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#event-channels">
      Event channels
     </a>
    </li>
-   <li class="toc-h2 nav-item toc-entry">
+   <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#http-endpoint">
      HTTP endpoint
     </a>
    </li>
   </ul>
  </li>
- <li class="toc-h1 nav-item toc-entry">
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#web-service">
    Web service
   </a>
  </li>
- <li class="toc-h1 nav-item toc-entry">
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#api-design">
    API design
   </a>
-  <ul class="visible nav section-nav flex-column">
-   <li class="toc-h2 nav-item toc-entry">
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#rpc-vs-rest-vs-graphql">
      RPC vs REST vs GraphQL
     </a>
    </li>
-   <li class="toc-h2 nav-item toc-entry">
+   <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#rpc-remote-procedure-call">
      RPC - Remote Procedure Call
     </a>
    </li>
-   <li class="toc-h2 nav-item toc-entry">
+   <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#id1">
      REST
     </a>
    </li>
-   <li class="toc-h2 nav-item toc-entry">
+   <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#graphql">
      GraphQL
     </a>
    </li>
-   <li class="toc-h2 nav-item toc-entry">
+   <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#webhook">
      Webhook
     </a>
    </li>
   </ul>
  </li>
- <li class="toc-h1 nav-item toc-entry">
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#functional-programming">
    Functional programming
   </a>
  </li>
- <li class="toc-h1 nav-item toc-entry">
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#acid-compliant">
    ACID compliant
   </a>
  </li>
- <li class="toc-h1 nav-item toc-entry">
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#base-semantics">
    BASE semantics
   </a>
  </li>
- <li class="toc-h1 nav-item toc-entry">
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#crud">
    CRUD
   </a>
  </li>
- <li class="toc-h1 nav-item toc-entry">
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#staged-event-driven-architecture-seda">
    Staged event-driven architecture (SEDA)
   </a>
  </li>
- <li class="toc-h1 nav-item toc-entry">
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#ipaas">
    iPaaS
   </a>
  </li>
- <li class="toc-h1 nav-item toc-entry">
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#data-ingestion-pipeline-patterns">
    Data Ingestion Pipeline Patterns
   </a>
  </li>
- <li class="toc-h1 nav-item toc-entry">
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#data-modeling">
    Data Modeling
   </a>
  </li>
- <li class="toc-h1 nav-item toc-entry">
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#message-broker-models">
    Message Broker Models
   </a>
  </li>
- <li class="toc-h1 nav-item toc-entry">
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#micro-frontends">
    Micro frontends
   </a>
  </li>
- <li class="toc-h1 nav-item toc-entry">
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#service-mesh">
    Service Mesh
   </a>
  </li>
- <li class="toc-h1 nav-item toc-entry">
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#restful-vs-restless">
    RESTful vs RESTless
   </a>
  </li>
- <li class="toc-h1 nav-item toc-entry">
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#service-oriented-architecture">
    Service Oriented Architecture
   </a>
  </li>
- <li class="toc-h1 nav-item toc-entry">
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#programming-paradigm">
    Programming Paradigm
   </a>
  </li>
- <li class="toc-h1 nav-item toc-entry">
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#circuit-design-patttern">
    Circuit design patttern
   </a>
  </li>
- <li class="toc-h1 nav-item toc-entry">
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#saas">
    SaaS
   </a>
  </li>
- <li class="toc-h1 nav-item toc-entry">
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#paas">
    PaaS
   </a>
  </li>
- <li class="toc-h1 nav-item toc-entry">
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#apns-apple-push-notification-service">
    APNS - Apple Push Notification Service
   </a>
  </li>
- <li class="toc-h1 nav-item toc-entry">
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#fcm-google-s-firebase-cloud-messaging">
    FCM - Google’s Firebase Cloud Messaging
   </a>
  </li>
- <li class="toc-h1 nav-item toc-entry">
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#references">
    References
   </a>
@@ -1288,8 +1288,10 @@ title="Print to PDF"
                 
               <div>
                 
-  <section class="tex2jax_ignore mathjax_ignore" id="asynchronous-request-reply">
-<h1>Asynchronous request reply<a class="headerlink" href="#asynchronous-request-reply" title="Permalink to this headline">#</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="system-design-summary">
+<h1>System Design Summary<a class="headerlink" href="#system-design-summary" title="Permalink to this headline">#</a></h1>
+<section id="asynchronous-request-reply">
+<h2>Asynchronous request reply<a class="headerlink" href="#asynchronous-request-reply" title="Permalink to this headline">#</a></h2>
 <ul class="simple">
 <li><p>Client sends POST request and gets HTTP 202 accepted message</p></li>
 <li><p>Client again sends GET request to status endpoint and gets pending HTTP 202 accepted message</p></li>
@@ -1299,10 +1301,10 @@ title="Print to PDF"
 <img src="images/async-request-reply.png" width=600 height=600>  
 $\tiny{\text{https://docs.microsoft.com/}}$   
 </section>
-<section class="tex2jax_ignore mathjax_ignore" id="sharding-database">
-<h1>Sharding database<a class="headerlink" href="#sharding-database" title="Permalink to this headline">#</a></h1>
+<section id="sharding-database">
+<h2>Sharding database<a class="headerlink" href="#sharding-database" title="Permalink to this headline">#</a></h2>
 <section id="types-of-partitioning">
-<h2>Types of partitioning<a class="headerlink" href="#types-of-partitioning" title="Permalink to this headline">#</a></h2>
+<h3>Types of partitioning<a class="headerlink" href="#types-of-partitioning" title="Permalink to this headline">#</a></h3>
 <ul class="simple">
 <li><p>Horizontal partitioning(sharding)</p>
 <ul>
@@ -1317,7 +1319,7 @@ $\tiny{\text{https://docs.microsoft.com/}}$
 </ul>
 </section>
 <section id="what-is-sharding">
-<h2>What is Sharding<a class="headerlink" href="#what-is-sharding" title="Permalink to this headline">#</a></h2>
+<h3>What is Sharding<a class="headerlink" href="#what-is-sharding" title="Permalink to this headline">#</a></h3>
 <ul class="simple">
 <li><p>breaking data into logical shards</p></li>
 <li><p>distribute these logical shards into separate database nodes or into physical shards</p></li>
@@ -1326,7 +1328,7 @@ $\tiny{\text{https://docs.microsoft.com/}}$
 </ul>
 </section>
 <section id="benefits-of-sharding">
-<h2>Benefits of sharding<a class="headerlink" href="#benefits-of-sharding" title="Permalink to this headline">#</a></h2>
+<h3>Benefits of sharding<a class="headerlink" href="#benefits-of-sharding" title="Permalink to this headline">#</a></h3>
 <ul class="simple">
 <li><p>horizontal scaling or scaling out</p>
 <ul>
@@ -1341,7 +1343,7 @@ $\tiny{\text{https://docs.microsoft.com/}}$
 </ul>
 </section>
 <section id="sharding-architectures">
-<h2>Sharding architectures<a class="headerlink" href="#sharding-architectures" title="Permalink to this headline">#</a></h2>
+<h3>Sharding architectures<a class="headerlink" href="#sharding-architectures" title="Permalink to this headline">#</a></h3>
 <ul class="simple">
 <li><p>Key based sharding</p>
 <ul>
@@ -1366,8 +1368,8 @@ $\tiny{\text{Types of Partitioning - digitalocean.com}}$
 $\tiny{\text{Lookup Partitioning - https://docs.microsoft.com/}}$   
 </section>
 </section>
-<section class="tex2jax_ignore mathjax_ignore" id="stateful-vs-stateless">
-<h1>Stateful vs Stateless<a class="headerlink" href="#stateful-vs-stateless" title="Permalink to this headline">#</a></h1>
+<section id="stateful-vs-stateless">
+<h2>Stateful vs Stateless<a class="headerlink" href="#stateful-vs-stateless" title="Permalink to this headline">#</a></h2>
 <img src="images/stateful_stateless.png" width=400 height=400>  
 $\tiny{\text{Stateful vs Stateless - https://virtasant.com/}}$   
 <ul class="simple">
@@ -1379,8 +1381,8 @@ $\tiny{\text{Stateful vs Stateless - https://virtasant.com/}}$
 <span class="math notranslate nohighlight">\(\tiny{\text{Stateless Transaction - https://virtasant.com/}}\)</span></p></li>
 </ul>
 </section>
-<section class="tex2jax_ignore mathjax_ignore" id="orchestration">
-<h1>Orchestration<a class="headerlink" href="#orchestration" title="Permalink to this headline">#</a></h1>
+<section id="orchestration">
+<h2>Orchestration<a class="headerlink" href="#orchestration" title="Permalink to this headline">#</a></h2>
 <ul class="simple">
 <li><p>Run multiple container instances in each node.</p></li>
 <li><p>Load balance traffic between the instances.</p></li>
@@ -1400,58 +1402,58 @@ $\tiny{\text{Stateful vs Stateless - https://virtasant.com/}}$
 </ul>
 <img src="https://docs.microsoft.com/en-us/azure/architecture/microservices/design/images/orchestration/multi-container-cluster-with-orchestrator.png">
 </section>
-<section class="tex2jax_ignore mathjax_ignore" id="loose-coupling">
-<h1>Loose coupling<a class="headerlink" href="#loose-coupling" title="Permalink to this headline">#</a></h1>
+<section id="loose-coupling">
+<h2>Loose coupling<a class="headerlink" href="#loose-coupling" title="Permalink to this headline">#</a></h2>
 </section>
-<section class="tex2jax_ignore mathjax_ignore" id="software-design-patterns">
-<h1>Software Design Patterns<a class="headerlink" href="#software-design-patterns" title="Permalink to this headline">#</a></h1>
+<section id="software-design-patterns">
+<h2>Software Design Patterns<a class="headerlink" href="#software-design-patterns" title="Permalink to this headline">#</a></h2>
 <section id="creational-patterns">
-<h2>Creational patterns<a class="headerlink" href="#creational-patterns" title="Permalink to this headline">#</a></h2>
+<h3>Creational patterns<a class="headerlink" href="#creational-patterns" title="Permalink to this headline">#</a></h3>
 </section>
 <section id="structural-patterns">
-<h2>Structural patterns<a class="headerlink" href="#structural-patterns" title="Permalink to this headline">#</a></h2>
+<h3>Structural patterns<a class="headerlink" href="#structural-patterns" title="Permalink to this headline">#</a></h3>
 </section>
 <section id="behavioral-patterns">
-<h2>Behavioral patterns<a class="headerlink" href="#behavioral-patterns" title="Permalink to this headline">#</a></h2>
+<h3>Behavioral patterns<a class="headerlink" href="#behavioral-patterns" title="Permalink to this headline">#</a></h3>
 </section>
 <section id="concurrency-patterns">
-<h2>Concurrency patterns<a class="headerlink" href="#concurrency-patterns" title="Permalink to this headline">#</a></h2>
+<h3>Concurrency patterns<a class="headerlink" href="#concurrency-patterns" title="Permalink to this headline">#</a></h3>
 </section>
 </section>
-<section class="tex2jax_ignore mathjax_ignore" id="other-design-patterns">
-<h1>Other design patterns<a class="headerlink" href="#other-design-patterns" title="Permalink to this headline">#</a></h1>
+<section id="other-design-patterns">
+<h2>Other design patterns<a class="headerlink" href="#other-design-patterns" title="Permalink to this headline">#</a></h2>
 <section id="inversion-of-control">
-<h2>Inversion of Control<a class="headerlink" href="#inversion-of-control" title="Permalink to this headline">#</a></h2>
+<h3>Inversion of Control<a class="headerlink" href="#inversion-of-control" title="Permalink to this headline">#</a></h3>
 </section>
 <section id="dispatcher">
-<h2>Dispatcher<a class="headerlink" href="#dispatcher" title="Permalink to this headline">#</a></h2>
+<h3>Dispatcher<a class="headerlink" href="#dispatcher" title="Permalink to this headline">#</a></h3>
 </section>
 <section id="dependency-inversion-principle">
-<h2>Dependency Inversion principle<a class="headerlink" href="#dependency-inversion-principle" title="Permalink to this headline">#</a></h2>
+<h3>Dependency Inversion principle<a class="headerlink" href="#dependency-inversion-principle" title="Permalink to this headline">#</a></h3>
 <section id="callbacks">
-<h3>Callbacks<a class="headerlink" href="#callbacks" title="Permalink to this headline">#</a></h3>
+<h4>Callbacks<a class="headerlink" href="#callbacks" title="Permalink to this headline">#</a></h4>
 </section>
 <section id="schedulers">
-<h3>Schedulers<a class="headerlink" href="#schedulers" title="Permalink to this headline">#</a></h3>
+<h4>Schedulers<a class="headerlink" href="#schedulers" title="Permalink to this headline">#</a></h4>
 </section>
 <section id="event-loops">
-<h3>Event Loops<a class="headerlink" href="#event-loops" title="Permalink to this headline">#</a></h3>
+<h4>Event Loops<a class="headerlink" href="#event-loops" title="Permalink to this headline">#</a></h4>
 </section>
 <section id="dependency-injection">
-<h3>Dependency Injection<a class="headerlink" href="#dependency-injection" title="Permalink to this headline">#</a></h3>
+<h4>Dependency Injection<a class="headerlink" href="#dependency-injection" title="Permalink to this headline">#</a></h4>
 </section>
 <section id="template-method">
-<h3>Template Method<a class="headerlink" href="#template-method" title="Permalink to this headline">#</a></h3>
+<h4>Template Method<a class="headerlink" href="#template-method" title="Permalink to this headline">#</a></h4>
 </section>
 </section>
 <section id="decorator-vs-wrapper-pattern">
-<h2>Decorator vs Wrapper pattern<a class="headerlink" href="#decorator-vs-wrapper-pattern" title="Permalink to this headline">#</a></h2>
+<h3>Decorator vs Wrapper pattern<a class="headerlink" href="#decorator-vs-wrapper-pattern" title="Permalink to this headline">#</a></h3>
 </section>
 <section id="fan-out-pattern">
-<h2>Fan-out pattern<a class="headerlink" href="#fan-out-pattern" title="Permalink to this headline">#</a></h2>
+<h3>Fan-out pattern<a class="headerlink" href="#fan-out-pattern" title="Permalink to this headline">#</a></h3>
 </section>
 <section id="fan-in-fan-out-pattern">
-<h2>Fan-in/Fan-out pattern<a class="headerlink" href="#fan-in-fan-out-pattern" title="Permalink to this headline">#</a></h2>
+<h3>Fan-in/Fan-out pattern<a class="headerlink" href="#fan-in-fan-out-pattern" title="Permalink to this headline">#</a></h3>
 <ul class="simple">
 <li><p><strong>Low fan-in, low fan-out</strong>: a module with little dependencies in either direction. All good.</p></li>
 <li><p><strong>High fan-in, low fan-out</strong>: a module that’s highly depended upon, but itself doesn’t depend on much. Like a low-level utility library.</p></li>
@@ -1460,14 +1462,14 @@ $\tiny{\text{Stateful vs Stateless - https://virtasant.com/}}$
 </ul>
 </section>
 <section id="mixin-pattern">
-<h2>Mixin pattern<a class="headerlink" href="#mixin-pattern" title="Permalink to this headline">#</a></h2>
+<h3>Mixin pattern<a class="headerlink" href="#mixin-pattern" title="Permalink to this headline">#</a></h3>
 <ul class="simple">
 <li><p>What is the difference between mixin and multiple inheritance</p></li>
 </ul>
 </section>
 </section>
-<section class="tex2jax_ignore mathjax_ignore" id="solid-design-principles">
-<h1>SOLID design principles<a class="headerlink" href="#solid-design-principles" title="Permalink to this headline">#</a></h1>
+<section id="solid-design-principles">
+<h2>SOLID design principles<a class="headerlink" href="#solid-design-principles" title="Permalink to this headline">#</a></h2>
 <p>The SOLID ideas were introduced by Robert C Martin in his paper:</p>
 <ul class="simple">
 <li><p>Single-responsibility principle: “There should never be more than one reason for a class to change.” In other words, every class should have only one responsibility</p></li>
@@ -1477,7 +1479,7 @@ $\tiny{\text{Stateful vs Stateless - https://virtasant.com/}}$
 <li><p>Dependency inversion principle: “Depend upon abstractions, not concretions.”</p></li>
 </ul>
 <section id="single-responsibility-pattern">
-<h2>Single responsibility pattern<a class="headerlink" href="#single-responsibility-pattern" title="Permalink to this headline">#</a></h2>
+<h3>Single responsibility pattern<a class="headerlink" href="#single-responsibility-pattern" title="Permalink to this headline">#</a></h3>
 <ul class="simple">
 <li><p>Each component has one responsibility only within a system</p></li>
 <li><p>With this pattern, the components are loosely coupled and it doesnot impact functionality of other components</p></li>
@@ -1485,56 +1487,56 @@ $\tiny{\text{Stateful vs Stateless - https://virtasant.com/}}$
 </ul>
 </section>
 <section id="separation-of-concerns">
-<h2>Separation of Concerns<a class="headerlink" href="#separation-of-concerns" title="Permalink to this headline">#</a></h2>
+<h3>Separation of Concerns<a class="headerlink" href="#separation-of-concerns" title="Permalink to this headline">#</a></h3>
 </section>
 </section>
-<section class="tex2jax_ignore mathjax_ignore" id="antipatterns">
-<h1>Antipatterns<a class="headerlink" href="#antipatterns" title="Permalink to this headline">#</a></h1>
+<section id="antipatterns">
+<h2>Antipatterns<a class="headerlink" href="#antipatterns" title="Permalink to this headline">#</a></h2>
 </section>
-<section class="tex2jax_ignore mathjax_ignore" id="event-driven-architecture">
-<h1>Event driven architecture<a class="headerlink" href="#event-driven-architecture" title="Permalink to this headline">#</a></h1>
+<section id="event-driven-architecture">
+<h2>Event driven architecture<a class="headerlink" href="#event-driven-architecture" title="Permalink to this headline">#</a></h2>
 <section id="publish-subscribe-pattern">
-<h2>Publish-Subscribe pattern<a class="headerlink" href="#publish-subscribe-pattern" title="Permalink to this headline">#</a></h2>
+<h3>Publish-Subscribe pattern<a class="headerlink" href="#publish-subscribe-pattern" title="Permalink to this headline">#</a></h3>
 </section>
 <section id="request-reply">
-<h2>Request-Reply<a class="headerlink" href="#request-reply" title="Permalink to this headline">#</a></h2>
+<h3>Request-Reply<a class="headerlink" href="#request-reply" title="Permalink to this headline">#</a></h3>
 </section>
 <section id="sockets">
-<h2>Sockets<a class="headerlink" href="#sockets" title="Permalink to this headline">#</a></h2>
+<h3>Sockets<a class="headerlink" href="#sockets" title="Permalink to this headline">#</a></h3>
 </section>
 <section id="unix-sockets">
-<h2>Unix Sockets<a class="headerlink" href="#unix-sockets" title="Permalink to this headline">#</a></h2>
+<h3>Unix Sockets<a class="headerlink" href="#unix-sockets" title="Permalink to this headline">#</a></h3>
 </section>
 <section id="message-queue">
-<h2>Message Queue<a class="headerlink" href="#message-queue" title="Permalink to this headline">#</a></h2>
+<h3>Message Queue<a class="headerlink" href="#message-queue" title="Permalink to this headline">#</a></h3>
 </section>
 <section id="producer-consumer-queue">
-<h2>Producer Consumer Queue<a class="headerlink" href="#producer-consumer-queue" title="Permalink to this headline">#</a></h2>
+<h3>Producer Consumer Queue<a class="headerlink" href="#producer-consumer-queue" title="Permalink to this headline">#</a></h3>
 </section>
 <section id="soap">
-<h2>SOAP<a class="headerlink" href="#soap" title="Permalink to this headline">#</a></h2>
+<h3>SOAP<a class="headerlink" href="#soap" title="Permalink to this headline">#</a></h3>
 </section>
 <section id="rest">
-<h2>REST<a class="headerlink" href="#rest" title="Permalink to this headline">#</a></h2>
+<h3>REST<a class="headerlink" href="#rest" title="Permalink to this headline">#</a></h3>
 </section>
 <section id="event-channels">
-<h2>Event channels<a class="headerlink" href="#event-channels" title="Permalink to this headline">#</a></h2>
+<h3>Event channels<a class="headerlink" href="#event-channels" title="Permalink to this headline">#</a></h3>
 </section>
 <section id="http-endpoint">
-<h2>HTTP endpoint<a class="headerlink" href="#http-endpoint" title="Permalink to this headline">#</a></h2>
+<h3>HTTP endpoint<a class="headerlink" href="#http-endpoint" title="Permalink to this headline">#</a></h3>
 </section>
 </section>
-<section class="tex2jax_ignore mathjax_ignore" id="web-service">
-<h1>Web service<a class="headerlink" href="#web-service" title="Permalink to this headline">#</a></h1>
+<section id="web-service">
+<h2>Web service<a class="headerlink" href="#web-service" title="Permalink to this headline">#</a></h2>
 <p><a class="reference external" href="https://en.wikipedia.org/wiki/Web_service">https://en.wikipedia.org/wiki/Web_service</a></p>
 </section>
-<section class="tex2jax_ignore mathjax_ignore" id="api-design">
-<h1>API design<a class="headerlink" href="#api-design" title="Permalink to this headline">#</a></h1>
+<section id="api-design">
+<h2>API design<a class="headerlink" href="#api-design" title="Permalink to this headline">#</a></h2>
 <section id="rpc-vs-rest-vs-graphql">
-<h2>RPC vs REST vs GraphQL<a class="headerlink" href="#rpc-vs-rest-vs-graphql" title="Permalink to this headline">#</a></h2>
+<h3>RPC vs REST vs GraphQL<a class="headerlink" href="#rpc-vs-rest-vs-graphql" title="Permalink to this headline">#</a></h3>
 </section>
 <section id="rpc-remote-procedure-call">
-<h2>RPC - Remote Procedure Call<a class="headerlink" href="#rpc-remote-procedure-call" title="Permalink to this headline">#</a></h2>
+<h3>RPC - Remote Procedure Call<a class="headerlink" href="#rpc-remote-procedure-call" title="Permalink to this headline">#</a></h3>
 <ul class="simple">
 <li><p>call function in remote server</p></li>
 <li><p>wrap a function over transport and have an endpoint attached to it, and we get RPC</p>
@@ -1547,7 +1549,7 @@ $\tiny{\text{Stateful vs Stateless - https://virtasant.com/}}$
 </ul>
 </section>
 <section id="id1">
-<h2>REST<a class="headerlink" href="#id1" title="Permalink to this headline">#</a></h2>
+<h3>REST<a class="headerlink" href="#id1" title="Permalink to this headline">#</a></h3>
 <ul class="simple">
 <li><p><a class="reference external" href="https://hub.packtpub.com/defining-rest-and-its-various-architectural-styles/">https://hub.packtpub.com/defining-rest-and-its-various-architectural-styles/</a></p></li>
 <li><p><a class="reference external" href="https://www.altexsoft.com/blog/rest-api-design/">https://www.altexsoft.com/blog/rest-api-design/</a></p></li>
@@ -1555,24 +1557,24 @@ $\tiny{\text{Stateful vs Stateless - https://virtasant.com/}}$
 </ul>
 </section>
 <section id="graphql">
-<h2>GraphQL<a class="headerlink" href="#graphql" title="Permalink to this headline">#</a></h2>
+<h3>GraphQL<a class="headerlink" href="#graphql" title="Permalink to this headline">#</a></h3>
 </section>
 <section id="webhook">
-<h2>Webhook<a class="headerlink" href="#webhook" title="Permalink to this headline">#</a></h2>
+<h3>Webhook<a class="headerlink" href="#webhook" title="Permalink to this headline">#</a></h3>
 <ul class="simple">
 <li><p><a class="reference external" href="https://sendgrid.com/blog/whats-webhook/">https://sendgrid.com/blog/whats-webhook/</a></p></li>
 </ul>
 </section>
 </section>
-<section class="tex2jax_ignore mathjax_ignore" id="functional-programming">
-<h1>Functional programming<a class="headerlink" href="#functional-programming" title="Permalink to this headline">#</a></h1>
+<section id="functional-programming">
+<h2>Functional programming<a class="headerlink" href="#functional-programming" title="Permalink to this headline">#</a></h2>
 <ul class="simple">
 <li><p>Functions dont retain any state</p></li>
 <li><p>this means they are stateless and helps in maintaining consistent application wide state</p></li>
 </ul>
 </section>
-<section class="tex2jax_ignore mathjax_ignore" id="acid-compliant">
-<h1>ACID compliant<a class="headerlink" href="#acid-compliant" title="Permalink to this headline">#</a></h1>
+<section id="acid-compliant">
+<h2>ACID compliant<a class="headerlink" href="#acid-compliant" title="Permalink to this headline">#</a></h2>
 <ul class="simple">
 <li><p><strong>Atomicity</strong></p>
 <ul>
@@ -1600,8 +1602,8 @@ $\tiny{\text{Stateful vs Stateless - https://virtasant.com/}}$
 </li>
 </ul>
 </section>
-<section class="tex2jax_ignore mathjax_ignore" id="base-semantics">
-<h1>BASE semantics<a class="headerlink" href="#base-semantics" title="Permalink to this headline">#</a></h1>
+<section id="base-semantics">
+<h2>BASE semantics<a class="headerlink" href="#base-semantics" title="Permalink to this headline">#</a></h2>
 <ul class="simple">
 <li><p>basically-available, soft-state, eventual consistency</p></li>
 <li><p>Eventually consistent services has only liveness guarantee - updates will be observed eventually</p>
@@ -1613,28 +1615,28 @@ $\tiny{\text{Stateful vs Stateless - https://virtasant.com/}}$
 </li>
 </ul>
 </section>
-<section class="tex2jax_ignore mathjax_ignore" id="crud">
-<h1>CRUD<a class="headerlink" href="#crud" title="Permalink to this headline">#</a></h1>
+<section id="crud">
+<h2>CRUD<a class="headerlink" href="#crud" title="Permalink to this headline">#</a></h2>
 <ul class="simple">
 <li><p>Create, Read, Update, Delete</p></li>
 </ul>
 </section>
-<section class="tex2jax_ignore mathjax_ignore" id="staged-event-driven-architecture-seda">
-<h1>Staged event-driven architecture (SEDA)<a class="headerlink" href="#staged-event-driven-architecture-seda" title="Permalink to this headline">#</a></h1>
+<section id="staged-event-driven-architecture-seda">
+<h2>Staged event-driven architecture (SEDA)<a class="headerlink" href="#staged-event-driven-architecture-seda" title="Permalink to this headline">#</a></h2>
 </section>
-<section class="tex2jax_ignore mathjax_ignore" id="ipaas">
-<h1>iPaaS<a class="headerlink" href="#ipaas" title="Permalink to this headline">#</a></h1>
+<section id="ipaas">
+<h2>iPaaS<a class="headerlink" href="#ipaas" title="Permalink to this headline">#</a></h2>
 </section>
-<section class="tex2jax_ignore mathjax_ignore" id="data-ingestion-pipeline-patterns">
-<h1>Data Ingestion Pipeline Patterns<a class="headerlink" href="#data-ingestion-pipeline-patterns" title="Permalink to this headline">#</a></h1>
+<section id="data-ingestion-pipeline-patterns">
+<h2>Data Ingestion Pipeline Patterns<a class="headerlink" href="#data-ingestion-pipeline-patterns" title="Permalink to this headline">#</a></h2>
 <ul class="simple">
 <li><p><a class="reference external" href="https://www.snaplogic.com/blog/big-data-ingestion-patterns">https://www.snaplogic.com/blog/big-data-ingestion-patterns</a></p></li>
 <li><p><a class="reference external" href="https://www.upsolver.com/blog/data-pipeline-architecture-building-blocks-diagrams-and-patterns">https://www.upsolver.com/blog/data-pipeline-architecture-building-blocks-diagrams-and-patterns</a></p></li>
 <li><p><a class="reference external" href="https://www.snaplogic.com/glossary/data-ingestion-pipeline">https://www.snaplogic.com/glossary/data-ingestion-pipeline</a></p></li>
 </ul>
 </section>
-<section class="tex2jax_ignore mathjax_ignore" id="data-modeling">
-<h1>Data Modeling<a class="headerlink" href="#data-modeling" title="Permalink to this headline">#</a></h1>
+<section id="data-modeling">
+<h2>Data Modeling<a class="headerlink" href="#data-modeling" title="Permalink to this headline">#</a></h2>
 <ul class="simple">
 <li><p>Relational data modeling</p></li>
 <li><p>Dimensional data modeling</p></li>
@@ -1642,16 +1644,16 @@ $\tiny{\text{Stateful vs Stateless - https://virtasant.com/}}$
 </ul>
 <p><a class="reference external" href="https://segment.com/blog/data-modeling/">https://segment.com/blog/data-modeling/</a></p>
 </section>
-<section class="tex2jax_ignore mathjax_ignore" id="message-broker-models">
-<h1>Message Broker Models<a class="headerlink" href="#message-broker-models" title="Permalink to this headline">#</a></h1>
+<section id="message-broker-models">
+<h2>Message Broker Models<a class="headerlink" href="#message-broker-models" title="Permalink to this headline">#</a></h2>
 <ul class="simple">
 <li><p>Point-to-point messaging</p></li>
 <li><p>Publish/subscribe messaging</p></li>
 </ul>
 <p><a class="reference external" href="https://www.ibm.com/cloud/learn/message-brokers#toc-message-br-Qe5q5uIC">https://www.ibm.com/cloud/learn/message-brokers#toc-message-br-Qe5q5uIC</a></p>
 </section>
-<section class="tex2jax_ignore mathjax_ignore" id="micro-frontends">
-<h1>Micro frontends<a class="headerlink" href="#micro-frontends" title="Permalink to this headline">#</a></h1>
+<section id="micro-frontends">
+<h2>Micro frontends<a class="headerlink" href="#micro-frontends" title="Permalink to this headline">#</a></h2>
 <ul class="simple">
 <li><p>Micro-frontend architecture is a design approach in which a front-end app is decomposed into individual, semi-independent “microapps” working loosely together. The micro-frontend concept is vaguely inspired by, and named after, microservices.</p></li>
 <li><p>Micro-frontend architectures may be simpler, and thus easier to reason about and manage.</p></li>
@@ -1661,12 +1663,12 @@ $\tiny{\text{Stateful vs Stateless - https://virtasant.com/}}$
 <img src="https://miro.medium.com/max/1400/1*o9NfGBM20TJDrAfopPj2mg.png" width=600 height=400>
 <p><a class="reference external" href="https://www.toptal.com/front-end/micro-frontends-strengths-benefits#:~:text=Micro%2Dfrontend%20architecture%20is%20a,%2C%20and%20named%20after%2C%20microservices">https://www.toptal.com/front-end/micro-frontends-strengths-benefits#:~:text=Micro-frontend architecture is a,, and named after, microservices</a>.</p>
 </section>
-<section class="tex2jax_ignore mathjax_ignore" id="service-mesh">
-<h1>Service Mesh<a class="headerlink" href="#service-mesh" title="Permalink to this headline">#</a></h1>
+<section id="service-mesh">
+<h2>Service Mesh<a class="headerlink" href="#service-mesh" title="Permalink to this headline">#</a></h2>
 <p><a class="reference external" href="https://istio.io/latest/about/service-mesh/#what-is-a-service-mesh">https://istio.io/latest/about/service-mesh/#what-is-a-service-mesh</a></p>
 </section>
-<section class="tex2jax_ignore mathjax_ignore" id="restful-vs-restless">
-<h1>RESTful vs RESTless<a class="headerlink" href="#restful-vs-restless" title="Permalink to this headline">#</a></h1>
+<section id="restful-vs-restless">
+<h2>RESTful vs RESTless<a class="headerlink" href="#restful-vs-restless" title="Permalink to this headline">#</a></h2>
 <ul class="simple">
 <li><p>Protocol</p>
 <ul>
@@ -1706,38 +1708,38 @@ $\tiny{\text{Stateful vs Stateless - https://virtasant.com/}}$
 </li>
 </ul>
 </section>
-<section class="tex2jax_ignore mathjax_ignore" id="service-oriented-architecture">
-<h1>Service Oriented Architecture<a class="headerlink" href="#service-oriented-architecture" title="Permalink to this headline">#</a></h1>
+<section id="service-oriented-architecture">
+<h2>Service Oriented Architecture<a class="headerlink" href="#service-oriented-architecture" title="Permalink to this headline">#</a></h2>
 </section>
-<section class="tex2jax_ignore mathjax_ignore" id="programming-paradigm">
-<h1>Programming Paradigm<a class="headerlink" href="#programming-paradigm" title="Permalink to this headline">#</a></h1>
+<section id="programming-paradigm">
+<h2>Programming Paradigm<a class="headerlink" href="#programming-paradigm" title="Permalink to this headline">#</a></h2>
 <ul class="simple">
 <li><p><a class="reference external" href="https://en.wikipedia.org/wiki/Programming_paradigm">https://en.wikipedia.org/wiki/Programming_paradigm</a></p></li>
 </ul>
 </section>
-<section class="tex2jax_ignore mathjax_ignore" id="circuit-design-patttern">
-<h1>Circuit design patttern<a class="headerlink" href="#circuit-design-patttern" title="Permalink to this headline">#</a></h1>
+<section id="circuit-design-patttern">
+<h2>Circuit design patttern<a class="headerlink" href="#circuit-design-patttern" title="Permalink to this headline">#</a></h2>
 </section>
-<section class="tex2jax_ignore mathjax_ignore" id="saas">
-<h1>SaaS<a class="headerlink" href="#saas" title="Permalink to this headline">#</a></h1>
+<section id="saas">
+<h2>SaaS<a class="headerlink" href="#saas" title="Permalink to this headline">#</a></h2>
 </section>
-<section class="tex2jax_ignore mathjax_ignore" id="paas">
-<h1>PaaS<a class="headerlink" href="#paas" title="Permalink to this headline">#</a></h1>
+<section id="paas">
+<h2>PaaS<a class="headerlink" href="#paas" title="Permalink to this headline">#</a></h2>
 </section>
-<section class="tex2jax_ignore mathjax_ignore" id="apns-apple-push-notification-service">
-<h1>APNS - Apple Push Notification Service<a class="headerlink" href="#apns-apple-push-notification-service" title="Permalink to this headline">#</a></h1>
+<section id="apns-apple-push-notification-service">
+<h2>APNS - Apple Push Notification Service<a class="headerlink" href="#apns-apple-push-notification-service" title="Permalink to this headline">#</a></h2>
 <ul class="simple">
 <li><p><a class="reference external" href="https://developer.apple.com/go/?id=push-notifications">https://developer.apple.com/go/?id=push-notifications</a></p></li>
 </ul>
 </section>
-<section class="tex2jax_ignore mathjax_ignore" id="fcm-google-s-firebase-cloud-messaging">
-<h1>FCM - Google’s Firebase Cloud Messaging<a class="headerlink" href="#fcm-google-s-firebase-cloud-messaging" title="Permalink to this headline">#</a></h1>
+<section id="fcm-google-s-firebase-cloud-messaging">
+<h2>FCM - Google’s Firebase Cloud Messaging<a class="headerlink" href="#fcm-google-s-firebase-cloud-messaging" title="Permalink to this headline">#</a></h2>
 <ul class="simple">
 <li><p><a class="reference external" href="https://firebase.google.com/docs/cloud-messaging">https://firebase.google.com/docs/cloud-messaging</a></p></li>
 </ul>
 </section>
-<section class="tex2jax_ignore mathjax_ignore" id="references">
-<h1>References<a class="headerlink" href="#references" title="Permalink to this headline">#</a></h1>
+<section id="references">
+<h2>References<a class="headerlink" href="#references" title="Permalink to this headline">#</a></h2>
 <ul class="simple">
 <li><p><a class="reference external" href="https://docs.microsoft.com/en-us/azure/architecture/patterns/">Microsoft Azure - Cloud Design Patterns</a></p></li>
 <li><p><a class="reference external" href="https://docs.microsoft.com/en-us/azure/architecture/guide/architecture-styles/event-driven">Event driven architecture</a></p></li>
@@ -1746,6 +1748,7 @@ $\tiny{\text{Stateful vs Stateless - https://virtasant.com/}}$
 <li><p><a class="reference external" href="https://docs.microsoft.com/en-us/azure/architecture/guide/architecture-styles/n-tier">N-tier</a></p></li>
 <li><p><a class="reference external" href="https://docs.microsoft.com/en-us/azure/architecture/guide/architecture-styles/web-queue-worker">Web Queue worker</a></p></li>
 </ul>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -1779,7 +1782,7 @@ $\tiny{\text{Stateful vs Stateless - https://virtasant.com/}}$
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
             <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">My ML Book</p>
+            <p class="prev-next-title">My System Design Book</p>
         </div>
     </a>
     <a class='right-next' id="next-link" href="../ml_examples/intro.html" title="next page">
