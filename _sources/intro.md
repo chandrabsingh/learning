@@ -3,13 +3,7 @@ title: Chandra notebook
 author: Chandra
 ---
 
-# My learning notebook
-
-This is a small sample book to give you a feel for how book content is
-structured.
-It shows off a few of the major file types, as well as some sample content.
-It does not go in-depth into any particular topic - check out [the Jupyter Book documentation](https://jupyterbook.org) for more information.
-
+Here are project work, notes and understanding of the tools I learn. This is also to practice habit of writing. Happy reading! :)
 
 :::
 
@@ -31,13 +25,14 @@ Python FAQs.
 :::
 
 :::{grid-item-card}
+:link: system_design/design_patterns
 :link-type: doc
 :class-header: bg-light
 
-MyST Markdown ✨
+System Design Overview ✨
 ^^^
 
-Write MyST Markdown to create enriched documents with publication-quality features.
+System Design Overview.
 
 :::
 
