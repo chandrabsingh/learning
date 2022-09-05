@@ -2,8 +2,11 @@
 title: Chandra notebook
 author: Chandra
 ---
+# Welcome
 
-Here are project work, notes and understanding of the tools I learn. This is also to practice habit of writing. Happy reading! :)
+Here are project work, notes and understanding of the tools I learn. This is also to practice habit of writing. 
+
+Happy writing! :)
 
 :::
 

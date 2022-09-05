@@ -1,0 +1,1673 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Book - System Design Interview - Alex Xu</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Design Pattern - Python" href="design_patterns_python.html" />
+    <link rel="prev" title="Netflix creativity" href="netflix.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../_static/mylogo.png" class="logo" alt="logo">
+      
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    Welcome
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  System Design
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="intro.html">
+   My System Design Book
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2">
+    <a class="reference internal" href="design_patterns.html">
+     System Design Summary
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="software_engineering_concepts.html">
+     Software Engineering concepts
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="googlecloud_use_cases.html">
+     Google - Customer story
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="aws_usecases.html">
+     AWS - Customer story
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="design_general_use_cases.html">
+     Case study
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="netflix.html">
+     Netflix creativity
+    </a>
+   </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     Book - System Design Interview - Alex Xu
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="design_patterns_python.html">
+     Design Pattern - Python
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Machine Learning
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../ml_examples/intro.html">
+   My ML Book
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../ml_examples/Store_Sales_Forecasting_With_Tensorflow.html">
+     Store Sales Forecasting with TensorFlow
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../ml_examples/decision_tree_classification.html">
+     Decision Tree - classification
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../ml_examples/ml_design_patterns.html">
+     The Need for ML Design Patterns
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Unix/Shell Scripting
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../unix/intro.html">
+   My Unix/Shell Book
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+  <label for="toctree-checkbox-3">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../unix/my_zshrc.html">
+     My .zshrc script
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Reference
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../ml_examples/ml_glossary.html">
+   ML Conceptual brief
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../codes/python_faqs.html">
+   Python FAQs
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../unix/unix_shell_script.html">
+   Unix/Shell FAQs
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../markdown.html">
+   Markdown Files
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../notebooks.html">
+   Content with notebooks
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../markdown-notebooks.html">
+   Notebooks with MyST Markdown
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Lecture Notes
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../cs229_ml/intro.html">
+   CS229 ML - by Andrew Ng
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+  <label for="toctree-checkbox-4">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../cs229_ml/lec02-LinearReg-GradientDescent.html">
+     Lec 02-Linear Regression - Gradient Descent
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../cs229_ml/lec03-LocallyWeighted-LogisticRegression.html">
+     Lec 03-Locally Weighted Regression - Logistic Regression
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../cs229_ml/lec04-Perceptron-GLM.html">
+     Lec 04-Perceptron - GLM
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../cs229_ml/lec05-GDA-NaiveBayes.html">
+     Lec 05-GDA - Naive Bayes
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../cs229_ml/lec06-NaiveBayes-SVM.html">
+     Lec 06-Naive Bayes - SVM
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../cs229_ml/lec07-Kernels-SVM.html">
+     Lec 07-Kernels - SVM
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../cs229_ml/lec08-DataSplits-Models-CrossValidation.html">
+     Lec 08-Data Splits - Models - Cross Validation
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../cs229_ml/lec09-Approx-EstimationError-ERM.html">
+     Lec 09-Estimation Error - ERM
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../cs229_ml/lec10-DecisionTrees-EnsembleMethods.html">
+     Lec 10-Decision Trees - Ensemble Methods
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../cs229_ml/lec11-Intro-NN.html">
+     Lec 11-Neural Networks
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../cs229_ml/lec12-Backpropagation-ImprovingNN.html">
+     Lec 12-Improving NN
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../cs229_ml/lec13-DebuggingMLModels-ErrorAnalysis.html">
+     Lec 13-Debugging ML Models-Error Analysis
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../cs229_ml/lec14-Expectation-MaximizationAlgo.html">
+     Lec 14-Expectation-Maximization Algo
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../cs229_ml/lec15-EMAlgo-FactorAnalysis.html">
+     Lec 15-EM Algo-Factor Analysis
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../cs229_ml/lec16-IndependentComponentAnalysis-RL.html">
+     Lec 16-Independent Component Analysis-RL
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../cs229_ml/lec17-MDPs-ValuePolicyIteration.html">
+     Lec 17-MDPs-Value Policy Iteration
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../cs229_ml/lec18-continuousMDPs-ModelSimulation.html">
+     Lec 18-Continuous MDPs-Model Simulation
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+    </div>
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<div class="menu-dropdown menu-dropdown-launch-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Launch interactive content">
+      <i class="fas fa-rocket"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://mybinder.org/v2/gh/chandrabsingh/learning/master?urlpath=tree/learning/system_design/bk_AlexXu_SystemDesignInterview.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Binder"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="../_static/images/logo_binder.svg">
+  </span>
+<span class="headerbtn__text-container">Binder</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-repository-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Source repositories">
+      <i class="fab fa-github"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://github.com/chandrabsingh/learning"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Source repository"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="headerbtn__text-container">repository</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/chandrabsingh/learning/issues/new?title=Issue%20on%20page%20%2Fsystem_design/bk_AlexXu_SystemDesignInterview.html&body=Your%20issue%20content%20here."
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Open an issue"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="headerbtn__text-container">open issue</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="../_sources/system_design/bk_AlexXu_SystemDesignInterview.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.ipynb</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#scale-from-zero-to-millions">
+   Scale from zero to millions
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#concepts">
+     Concepts
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#references">
+     References
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#hypertext-transfer-protocol">
+       Hypertext Transfer Protocol
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#should-i-go-beyond-relational-databases">
+       Should I go beyond relational databases
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#replication">
+       Replication
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#multi-master-replication">
+       Multi-master replication
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#ndb-cluster-replication-multimaster-and-circular-replication">
+       NDB Cluster Replication: Multimaster and Circular Replication
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#caching-strategies-and-how-to-choose-the-right-one">
+       Caching Strategies and How to Choose the right one
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#scaling-memcache-at-facebook">
+       Scaling Memcache at Facebook
+      </a>
+      <ul class="nav section-nav flex-column">
+       <li class="toc-h5 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#pre-memcache">
+         Pre-memcache
+        </a>
+       </li>
+       <li class="toc-h5 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#a-few-memcache-server">
+         A few memcache server
+        </a>
+       </li>
+       <li class="toc-h5 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#many-memcache-servers-in-one-cluster">
+         Many memcache servers in one cluster
+        </a>
+       </li>
+       <li class="toc-h5 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#many-memcache-servers-in-multiple-clusters">
+         Many memcache servers in multiple clusters
+        </a>
+        <ul class="nav section-nav flex-column">
+         <li class="toc-h6 nav-item toc-entry">
+          <a class="reference internal nav-link" href="#geographically-distributed-clusters">
+           Geographically distributed clusters
+          </a>
+         </li>
+        </ul>
+       </li>
+      </ul>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#single-point-of-failure">
+       Single point of Failure
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#amazon-cloudfront-dynamic-content-delivery">
+       Amazon CloudFront Dynamic Content Delivery
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#configure-sticky-sessions-for-your-classic-load-balancer">
+       Configure Sticky Sessions for Your Classic Load Balancer
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#active-active-for-multi-regional-resiliency">
+       Active-Active for Multi-Regional Resiliency
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#amazon-ec2-high-memory-instances">
+       Amazon EC2 High Memory Instances
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#what-it-takes-to-run-stack-overflow">
+       What it takes to run Stack Overflow
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#what-the-heck-are-you-actually-using-nosql-for">
+       What the Heck are you actually using NoSQL for
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#facts-statistics-23rd-jul-2022">
+     Facts statistics (23rd Jul 2022)
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+    </nav>
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Book - System Design Interview - Alex Xu</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#scale-from-zero-to-millions">
+   Scale from zero to millions
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#concepts">
+     Concepts
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#references">
+     References
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#hypertext-transfer-protocol">
+       Hypertext Transfer Protocol
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#should-i-go-beyond-relational-databases">
+       Should I go beyond relational databases
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#replication">
+       Replication
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#multi-master-replication">
+       Multi-master replication
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#ndb-cluster-replication-multimaster-and-circular-replication">
+       NDB Cluster Replication: Multimaster and Circular Replication
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#caching-strategies-and-how-to-choose-the-right-one">
+       Caching Strategies and How to Choose the right one
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#scaling-memcache-at-facebook">
+       Scaling Memcache at Facebook
+      </a>
+      <ul class="nav section-nav flex-column">
+       <li class="toc-h5 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#pre-memcache">
+         Pre-memcache
+        </a>
+       </li>
+       <li class="toc-h5 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#a-few-memcache-server">
+         A few memcache server
+        </a>
+       </li>
+       <li class="toc-h5 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#many-memcache-servers-in-one-cluster">
+         Many memcache servers in one cluster
+        </a>
+       </li>
+       <li class="toc-h5 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#many-memcache-servers-in-multiple-clusters">
+         Many memcache servers in multiple clusters
+        </a>
+        <ul class="nav section-nav flex-column">
+         <li class="toc-h6 nav-item toc-entry">
+          <a class="reference internal nav-link" href="#geographically-distributed-clusters">
+           Geographically distributed clusters
+          </a>
+         </li>
+        </ul>
+       </li>
+      </ul>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#single-point-of-failure">
+       Single point of Failure
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#amazon-cloudfront-dynamic-content-delivery">
+       Amazon CloudFront Dynamic Content Delivery
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#configure-sticky-sessions-for-your-classic-load-balancer">
+       Configure Sticky Sessions for Your Classic Load Balancer
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#active-active-for-multi-regional-resiliency">
+       Active-Active for Multi-Regional Resiliency
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#amazon-ec2-high-memory-instances">
+       Amazon EC2 High Memory Instances
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#what-it-takes-to-run-stack-overflow">
+       What it takes to run Stack Overflow
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#what-the-heck-are-you-actually-using-nosql-for">
+       What the Heck are you actually using NoSQL for
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#facts-statistics-23rd-jul-2022">
+     Facts statistics (23rd Jul 2022)
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <section class="tex2jax_ignore mathjax_ignore" id="book-system-design-interview-alex-xu">
+<h1>Book - System Design Interview - Alex Xu<a class="headerlink" href="#book-system-design-interview-alex-xu" title="Permalink to this headline">#</a></h1>
+<section id="scale-from-zero-to-millions">
+<h2>Scale from zero to millions<a class="headerlink" href="#scale-from-zero-to-millions" title="Permalink to this headline">#</a></h2>
+<section id="concepts">
+<h3>Concepts<a class="headerlink" href="#concepts" title="Permalink to this headline">#</a></h3>
+<ul class="simple">
+<li><p>Single Server Startup</p>
+<ul>
+<li><p>request flow</p></li>
+<li><p>DNS</p></li>
+<li><p>Web servers</p></li>
+<li><p>GET/POST request</p></li>
+<li><p>Type of sources</p>
+<ul>
+<li><p>Mobile/Web application</p></li>
+</ul>
+</li>
+<li><p>Database</p>
+<ul>
+<li><p>NoSQL/RDBMS</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Vertical/Horizontal Scaling</p></li>
+<li><p>Load Balancer</p>
+<ul>
+<li><p>Private IP</p></li>
+<li><p>What is the job of load balancer</p></li>
+<li><p>What happens when one server goes down</p></li>
+<li><p>Server pool</p></li>
+<li><p>System availability</p></li>
+</ul>
+</li>
+<li><p>Database Replication</p>
+<ul>
+<li><p>Master/Slave Relationship</p></li>
+<li><p>Advantages</p></li>
+<li><p>Better performance</p></li>
+<li><p>Reliability</p></li>
+<li><p>High System availability</p></li>
+</ul>
+</li>
+<li><p>Cache</p>
+<ul>
+<li><p>read-through cache</p></li>
+<li><p>when to use cache</p>
+<ul>
+<li><p>read frequently</p></li>
+<li><p>modified infrequently</p></li>
+</ul>
+</li>
+<li><p>expiration policy</p></li>
+<li><p>consistency</p>
+<ul>
+<li><p>datastore and cache in sync</p></li>
+</ul>
+</li>
+<li><p>single point of failure(SPOF)</p>
+<ul>
+<li><p>multiple cache</p></li>
+</ul>
+</li>
+<li><p>eviction policy</p>
+<ul>
+<li><p>LRU</p></li>
+<li><p>LFU</p></li>
+<li><p>FIFO</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>CDN</p>
+<ul>
+<li><p>network of geographically dispersed servers</p></li>
+<li><p>static content</p></li>
+<li><p>dynamic content caching</p></li>
+<li><p>header TTL</p></li>
+<li><p>cost - as it comes from 3rd party</p></li>
+<li><p>cache expiry</p></li>
+</ul>
+</li>
+<li><p>Stateless web tier</p>
+<ul>
+<li><p>Stateful architecture</p></li>
+<li><p>Shared data store</p>
+<ul>
+<li><p>NoSQL</p></li>
+<li><p>RDBMS</p></li>
+<li><p>Cache</p></li>
+</ul>
+</li>
+<li><p>Autoscaling</p>
+<ul>
+<li><p>adding/removing web servers based on traffic load</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>DataCenters</p>
+<ul>
+<li><p>geo-DNS routed</p></li>
+<li><p>Multi-data center setup</p>
+<ul>
+<li><p>traffic redirection</p></li>
+<li><p>data synchronization</p></li>
+<li><p>test and deployment</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Message Queue</p>
+<ul>
+<li><p>Asynchronous communication</p></li>
+<li><p>decoupled architecture</p></li>
+<li><p>producer/consumer</p></li>
+</ul>
+</li>
+<li><p>Logging, Metrics, Automation</p></li>
+<li><p>Database scaling</p>
+<ul>
+<li><p>Vertical</p></li>
+<li><p>Horizontal</p></li>
+<li><p>Sharded databases</p></li>
+<li><p>Resharding</p>
+<ul>
+<li><p>Consistent hashing</p></li>
+</ul>
+</li>
+<li><p>Celebrity problem</p></li>
+<li><p>Join/De-normalization</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="references">
+<h3>References<a class="headerlink" href="#references" title="Permalink to this headline">#</a></h3>
+<section id="hypertext-transfer-protocol">
+<h4>Hypertext Transfer Protocol<a class="headerlink" href="#hypertext-transfer-protocol" title="Permalink to this headline">#</a></h4>
+<ul class="simple">
+<li><p>Application Layer</p>
+<ul>
+<li><p>HTTP</p></li>
+<li><p>SMTP</p></li>
+<li><p>FTP</p></li>
+</ul>
+</li>
+<li><p>Transport Layer</p>
+<ul>
+<li><p>TCP</p></li>
+<li><p>UDP - low latency</p></li>
+</ul>
+</li>
+<li><p>Interaction between Application layer and Transport layer</p>
+<ul>
+<li><p>happen using Port</p></li>
+<li><p>so it knows where is the data coming from</p></li>
+<li><p>HTTP uses port 80</p></li>
+</ul>
+</li>
+<li><p>Packets</p>
+<ul>
+<li><p>Transport Layer breaks it into packets</p></li>
+<li><p>each individual packet takes independent route to reach its destination</p></li>
+</ul>
+</li>
+<li><p>Headers</p>
+<ul>
+<li><p>TCP adds header into the packets</p></li>
+<li><p>helps to reassemble packets</p></li>
+<li><p>did packet arrive without any mishap</p></li>
+</ul>
+</li>
+<li><p>Internet Layer</p>
+<ul>
+<li><p>packets are put in internet layer (IP)</p></li>
+<li><p>attaches origin and destination IP addresses</p></li>
+</ul>
+</li>
+<li><p>Network Layer</p>
+<ul>
+<li><p>knows the MAC addressing</p></li>
+<li><p>so that packet goes to the right physical machine</p></li>
+</ul>
+</li>
+<li><p>Not using same route</p>
+<ul>
+<li><p>avoids data congestion</p></li>
+<li><p>reaches earlier compared if all packets went the same route</p></li>
+</ul>
+</li>
+<li><p>OSI(Open System Interconnection) model of computer networking</p>
+<ul>
+<li><p>Application Layer (7)</p></li>
+<li><p>Presentation Layer (6)</p></li>
+<li><p>Session Layer (5)</p></li>
+<li><p>Transport Layer (4)</p></li>
+<li><p>Network Layer (3)</p></li>
+<li><p>Data Link Layer (2)</p></li>
+<li><p>Physical Layer (1)</p></li>
+</ul>
+</li>
+<li><p>HTTP version</p>
+<ul>
+<li><p>HTTP Anatomy</p>
+<ul>
+<li><p>Client/Server architecture</p></li>
+<li><p>request/response</p></li>
+<li><p>HTTP request</p>
+<ul>
+<li><p>URL</p></li>
+<li><p>Method type</p>
+<ul>
+<li><p>GET/POST/PUT/DELETE - different semantics</p></li>
+<li><p>GET - reading</p></li>
+<li><p>POST - write</p></li>
+</ul>
+</li>
+<li><p>Headers</p>
+<ul>
+<li><p>what kind of content</p></li>
+<li><p>cookies</p></li>
+<li><p>which host/location</p></li>
+</ul>
+</li>
+<li><p>Body</p>
+<ul>
+<li><p>GET does not has body - send with URL</p></li>
+<li><p>POST will have a body - upload image</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>HTTP response</p>
+<ul>
+<li><p>Status Code</p>
+<ul>
+<li><p>whether it succeeded/warning/error</p></li>
+</ul>
+</li>
+<li><p>Headers</p></li>
+<li><p>Body</p>
+<ul>
+<li><p>content that was requested</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>How HTTP works</p></li>
+<li><p>HTTP 1.0 over TCP</p>
+<ul>
+<li><p>TODO</p></li>
+</ul>
+</li>
+<li><p>HTTP 1.1 over TCP</p>
+<ul>
+<li><p>TODO</p></li>
+</ul>
+</li>
+<li><p>HTTP 2.0 over TCP</p>
+<ul>
+<li><p>TODO</p></li>
+</ul>
+</li>
+<li><p>HTTP 2.0 over QUIC (HTTP 3.0)</p>
+<ul>
+<li><p>TODO</p></li>
+<li><p>UDP version</p></li>
+<li><p>google is experimenting on</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="should-i-go-beyond-relational-databases">
+<h4>Should I go beyond relational databases<a class="headerlink" href="#should-i-go-beyond-relational-databases" title="Permalink to this headline">#</a></h4>
+<ul class="simple">
+<li><p>2009 article</p></li>
+</ul>
+</section>
+<section id="replication">
+<h4>Replication<a class="headerlink" href="#replication" title="Permalink to this headline">#</a></h4>
+<ul class="simple">
+<li><p>strategy</p>
+<ul>
+<li><p>active/passive</p></li>
+<li><p>synchronous/asynchronous</p></li>
+</ul>
+</li>
+<li><p>multi-master/primary</p></li>
+<li><p>distributed concurrency control</p></li>
+</ul>
+</section>
+<section id="multi-master-replication">
+<h4>Multi-master replication<a class="headerlink" href="#multi-master-replication" title="Permalink to this headline">#</a></h4>
+<ul class="simple">
+<li><p>advantages</p>
+<ul>
+<li><p>availability</p></li>
+<li><p>distributed access</p></li>
+</ul>
+</li>
+<li><p>disadvantages</p>
+<ul>
+<li><p>consistency</p>
+<ul>
+<li><p>violates ACID properties</p></li>
+</ul>
+</li>
+<li><p>performance</p></li>
+<li><p>integrity</p>
+<ul>
+<li><p>conflict resolution becomes difficult</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="ndb-cluster-replication-multimaster-and-circular-replication">
+<h4>NDB Cluster Replication: Multimaster and Circular Replication<a class="headerlink" href="#ndb-cluster-replication-multimaster-and-circular-replication" title="Permalink to this headline">#</a></h4>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="text-align:center head"><p>AllSourcesAreReplicas</p></th>
+<th class="text-align:center head"><p></p></th>
+<th class="text-align:center head"><p>NotAllSourcesAreReplicas</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-align:center"><p><img src="https://dev.mysql.com/doc/refman/5.7/en/images/cluster-circular-replication-1.png" width=300 height=300></p></td>
+<td class="text-align:center"><p></p></td>
+<td class="text-align:center"><p><img src="https://dev.mysql.com/doc/refman/5.7/en/images/cluster-circular-replication-2.png" width=300 height=300></p></td>
+</tr>
+</tbody>
+</table>
+<ul class="simple">
+<li><p>Data replicates from Cluster 1 to 3 through 2 different routes</p>
+<ul>
+<li><p>directly</p></li>
+<li><p>through cluster 2</p></li>
+</ul>
+</li>
+</ul>
+<p align="center"><img src="https://dev.mysql.com/doc/refman/5.7/en/images/cluster-replication-multi-source.png" title="https://dev.mysql.com/" width=300 height=300></p>
+</section>
+<section id="caching-strategies-and-how-to-choose-the-right-one">
+<h4>Caching Strategies and How to Choose the right one<a class="headerlink" href="#caching-strategies-and-how-to-choose-the-right-one" title="Permalink to this headline">#</a></h4>
+<ul class="simple">
+<li><p>data access patterns</p>
+<ul>
+<li><p>is system write heavy/read less frequently (eg time based logs)</p></li>
+<li><p>is data written once and read multiple times (user profile)</p></li>
+<li><p>is data returned always unique (search query)</p></li>
+</ul>
+</li>
+<li><p>Cache Strategy</p>
+<ul>
+<li><p>Cache-Aside</p>
+<ul>
+<li><p>application directly talks to both the cache and the database</p></li>
+<li><p>cache hit</p></li>
+<li><p>cache miss</p></li>
+<li><p>used mostly for read heavy workloads</p>
+<ul>
+<li><p>Memcached/Redis</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Read-Through Cache</p>
+<ul>
+<li><p>cache sits in-line with the database</p></li>
+<li><p>missing data is read from database, populated in the cache and returned</p></li>
+</ul>
+</li>
+<li><p>Write-Through Cache</p>
+<ul>
+<li><p>data is first written to cache, then to database</p></li>
+<li><p>cache sits in-line with the database</p></li>
+<li><p>DynamoDB Accelerator (DAX)</p>
+<ul>
+<li><p>both read-through and write-through cache</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Write-Around</p>
+<ul>
+<li><p>data is written directly to the database</p></li>
+<li><p>only the data that is read goes to the cache</p></li>
+</ul>
+</li>
+<li><p>Write-Back</p>
+<ul>
+<li><p>used primarily for write-heavy workloads</p></li>
+<li><p>write to cache immediately, after delay is written back into database</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="scaling-memcache-at-facebook">
+<h4>Scaling Memcache at Facebook<a class="headerlink" href="#scaling-memcache-at-facebook" title="Permalink to this headline">#</a></h4>
+<ul class="simple">
+<li><p>2013 research paper</p></li>
+<li><p>Youtube - Scaling Memcache at Facebook - Rajesh Nishtala</p></li>
+<li><p>infrastructure requirements for Facebook</p>
+<ul>
+<li><p>near real time communication</p></li>
+<li><p>aggregate content on the fly from multiple sources</p></li>
+<li><p>be able to access and update very popular shared content</p></li>
+<li><p>scale to process millions of user requests per second</p></li>
+</ul>
+</li>
+<li><p>design requirements</p>
+<ul>
+<li><p>support a very heavy read load</p></li>
+<li><p>geographically distributed</p></li>
+<li><p>support constantly evolving product</p></li>
+<li><p>persistence handled outside the system</p></li>
+</ul>
+</li>
+<li><p>memcached</p>
+<ul>
+<li><p>basic building block for distributed key-value store for Facebook</p></li>
+<li><p>network attached in-memory hash table</p>
+<ul>
+<li><p>supports LRU based eviction</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Roadmap</p>
+<ul>
+<li><p>Single front end cluster</p>
+<ul>
+<li><p>read heavy workload</p></li>
+<li><p>wide fanout</p></li>
+<li><p>handling failures</p></li>
+</ul>
+</li>
+<li><p>Multiple front-end clusters</p>
+<ul>
+<li><p>controlling data replication</p></li>
+<li><p>data consistency</p></li>
+</ul>
+</li>
+<li><p>multiple regions</p>
+<ul>
+<li><p>data consistency</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p align="center"><img src="./images/fb_cluster_roadmap.png" width=400></p>
+<ul class="simple">
+<li><p>Scaling memcache in 4 steps</p></li>
+</ul>
+<ol class="simple">
+<li><p>No memcache server</p></li>
+<li><p>A few memcache server</p></li>
+</ol>
+<ul class="simple">
+<li><p>10s of server and millions of operations per second</p></li>
+</ul>
+<ol class="simple">
+<li><p>Many memcache server in one cluster</p></li>
+<li><p>Many memcache server in multiple cluster</p></li>
+<li><p>Geographically distributed servers</p></li>
+</ol>
+<section id="pre-memcache">
+<h5>Pre-memcache<a class="headerlink" href="#pre-memcache" title="Permalink to this headline">#</a></h5>
+<ul class="simple">
+<li><p>data was sharded across databases</p></li>
+</ul>
+<p align="center"><img src="./images/fb_prememcache.png" width=400></p>
+<ul class="simple">
+<li><p>Why separate cache?</p>
+<ul>
+<li><p>high fanout and multiple rounds of data fetching</p></li>
+</ul>
+</li>
+</ul>
+<p align="center"><img src="./images/fb_whySeparateCache.png" width=400></p>
+</section>
+<section id="a-few-memcache-server">
+<h5>A few memcache server<a class="headerlink" href="#a-few-memcache-server" title="Permalink to this headline">#</a></h5>
+<ul class="simple">
+<li><p>2 orders of magnitude more reads than writes</p>
+<ul>
+<li><p>Solution: Deploy a few memcache hosts to handle the read capacity</p></li>
+</ul>
+</li>
+<li><p>how to store data</p>
+<ul>
+<li><p>Demand-filled look-aside cache</p>
+<ul>
+<li><p>look for key in memcache</p>
+<ul>
+<li><p>if it exists, return the value</p></li>
+</ul>
+</li>
+<li><p>if it does not exist</p>
+<ul>
+<li><p>db lookup</p></li>
+<li><p>refill the cache</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Handling updates</p>
+<ul>
+<li><p>update the db</p></li>
+<li><p>invalidate the cache by deleting(why delete)</p>
+<ul>
+<li><p>idempotent - delete is a delete</p></li>
+<li><p>works with demand filled model pretty well</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Problems with look-aside caching</p>
+<ul>
+<li><p>stale sets</p>
+<ul>
+<li><p>Webserver A reads value A from DB</p></li>
+<li><p>Webserver B updates value B into DB</p></li>
+<li><p>Webserver B sets memcache with value B</p></li>
+<li><p>Webserver A sets memcache with value A</p></li>
+<li><p>Memcache and DB are inconsistent till a delete event is triggered. This is not a transient inconsistency, its a permanent inconsistency</p></li>
+<li><p>Solution:</p>
+<ul>
+<li><p>extend memcache protocol with leases</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>thundering herds</p>
+<ul>
+<li><p>accessing popular celebrity content</p></li>
+<li><p>any update deletes the memcache content</p></li>
+<li><p>all webserver then access db at the same time</p></li>
+<li><p>Solution</p>
+<ul>
+<li><p>cache holds-off request till it gets refilled</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="many-memcache-servers-in-one-cluster">
+<h5>Many memcache servers in one cluster<a class="headerlink" href="#many-memcache-servers-in-one-cluster" title="Permalink to this headline">#</a></h5>
+<ul class="simple">
+<li><p>need even more read capacity</p></li>
+<li><p>100s of server and 10s of millions of request</p></li>
+<li><p>items are distributed across memcache servers by using consistent hashing on the key</p></li>
+<li><p>all web servers talk to all memcache servers</p>
+<ul>
+<li><p>this puts lot of load on memcache</p></li>
+</ul>
+</li>
+<li><p>Problems</p>
+<ul>
+<li><p>Incast congestion</p>
+<ul>
+<li><p>wide parallel fetch to many servers</p>
+<ul>
+<li><p>memcache returns the value</p></li>
+<li><p>when all values come back at webserver, they share networking resources at the client side not the server side</p></li>
+<li><p>this results in packet drops</p></li>
+</ul>
+</li>
+<li><p>Solution</p>
+<ul>
+<li><p>sliding-window protocol that limits the number of outstanding messages</p></li>
+<li><p>larger windows cause more congestion</p></li>
+<li><p>smaller windows results in more round tripis to the network</p></li>
+<li><p>there is a sweet spot</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="many-memcache-servers-in-multiple-clusters">
+<h5>Many memcache servers in multiple clusters<a class="headerlink" href="#many-memcache-servers-in-multiple-clusters" title="Permalink to this headline">#</a></h5>
+<ul class="simple">
+<li><p>thousands of servers and hundreds of millions of operations per second</p></li>
+<li><p>all-to-all limits horizontal scalability</p>
+<ul>
+<li><p>all-to-all worsens as increase</p></li>
+<li><p>so second cluster (a collection of web servers and memcache) needs to be added in</p></li>
+<li><p>challenge</p>
+<ul>
+<li><p>multiple copies of cluster cache needs to be consistent</p></li>
+<li><p>manage over-replication of data</p>
+<ul>
+<li><p>interesting - read paper</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Problems</p>
+<ul>
+<li><p>Manage multiple copies of cache consistent</p>
+<ul>
+<li><p>Solution</p></li>
+<li><p>db storage is MySQL</p></li>
+<li><p>on top of MySQL, there is a system called McSqueal</p>
+<ul>
+<li><p>this looks at all the database transactions that have been committed</p></li>
+<li><p>reads them out of the commit log</p></li>
+<li><p>extract the memcache items that needs to be invalidated</p></li>
+<li><p>then this system broadcasts invalidations to all the front-end clusters</p></li>
+<li><p>this invalidates after the database operation commits</p>
+<ul>
+<li><p>otherwise risk of stale data is possible</p></li>
+<li><p>this guarantees that upon cache invalidation, a cache miss will result in fresh right value</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Invalidation pipeline</p>
+<ul>
+<li><p>too many packets</p></li>
+<li><p>Solution</p>
+<ul>
+<li><p>there are databases where MySQL is running</p></li>
+<li><p>on top of them McSqueal is running</p></li>
+<li><p>these database instances are then routed using Memcache Routers(MacRouter)</p></li>
+<li><p>these MacRouter then fan the deletes out into different front-end clusters with each cluster having their own MacRouter running</p></li>
+<li><p>these then broadcastt the delete</p></li>
+<li><p>advantage of this is</p>
+<ul>
+<li><p>inter-cluster bandwidth is much smaller than intra-cluster bandwidth</p></li>
+<li><p>this minimizes the amount of bandwidth used and maximizes packet density</p></li>
+<li><p>this improves packet density by 18x</p></li>
+<li><p>each layer can buffer its deletes in case of failure of downstream component</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p align="center"><img src="./images/fb_invalidate_caches.png" title="Scaling Memcache at Facebook - Rajesh Nishtala - YouTube" width=400></p>
+<section id="geographically-distributed-clusters">
+<h6>Geographically distributed clusters<a class="headerlink" href="#geographically-distributed-clusters" title="Permalink to this headline">#</a></h6>
+</section>
+</section>
+</section>
+<section id="single-point-of-failure">
+<h4>Single point of Failure<a class="headerlink" href="#single-point-of-failure" title="Permalink to this headline">#</a></h4>
+<ul class="simple">
+<li><p>Wiki</p></li>
+</ul>
+</section>
+<section id="amazon-cloudfront-dynamic-content-delivery">
+<h4>Amazon CloudFront Dynamic Content Delivery<a class="headerlink" href="#amazon-cloudfront-dynamic-content-delivery" title="Permalink to this headline">#</a></h4>
+<ul class="simple">
+<li><p><a class="reference external" href="https://aws.amazon.com/cloudfront/dynamic-content">https://aws.amazon.com/cloudfront/dynamic-content</a></p></li>
+</ul>
+</section>
+<section id="configure-sticky-sessions-for-your-classic-load-balancer">
+<h4>Configure Sticky Sessions for Your Classic Load Balancer<a class="headerlink" href="#configure-sticky-sessions-for-your-classic-load-balancer" title="Permalink to this headline">#</a></h4>
+<ul class="simple">
+<li><p><a class="reference external" href="https://docs.aws.amazon.com/elasticloadbalancing/latest/application/sticky-sessions.html">https://docs.aws.amazon.com/elasticloadbalancing/latest/application/sticky-sessions.html</a></p></li>
+</ul>
+</section>
+<section id="active-active-for-multi-regional-resiliency">
+<h4>Active-Active for Multi-Regional Resiliency<a class="headerlink" href="#active-active-for-multi-regional-resiliency" title="Permalink to this headline">#</a></h4>
+<ul class="simple">
+<li><p><a class="reference external" href="https://netflixtechblog.com/active-active-for-multi-regional-resiliency-c47719f6685b">https://netflixtechblog.com/active-active-for-multi-regional-resiliency-c47719f6685b</a></p></li>
+</ul>
+</section>
+<section id="amazon-ec2-high-memory-instances">
+<h4>Amazon EC2 High Memory Instances<a class="headerlink" href="#amazon-ec2-high-memory-instances" title="Permalink to this headline">#</a></h4>
+<ul class="simple">
+<li><p><a class="reference external" href="https://aws.amazon.com/ec2/instance-types/high-memory/">https://aws.amazon.com/ec2/instance-types/high-memory/</a></p></li>
+</ul>
+</section>
+<section id="what-it-takes-to-run-stack-overflow">
+<h4>What it takes to run Stack Overflow<a class="headerlink" href="#what-it-takes-to-run-stack-overflow" title="Permalink to this headline">#</a></h4>
+<ul class="simple">
+<li><p><a class="reference external" href="https://nickcraver.com/blog/2013/11/22/what-it-takes-to-run-stack-overflow/">https://nickcraver.com/blog/2013/11/22/what-it-takes-to-run-stack-overflow/</a></p></li>
+</ul>
+</section>
+<section id="what-the-heck-are-you-actually-using-nosql-for">
+<h4>What the Heck are you actually using NoSQL for<a class="headerlink" href="#what-the-heck-are-you-actually-using-nosql-for" title="Permalink to this headline">#</a></h4>
+<ul class="simple">
+<li><p><a class="reference external" href="http://highscalability.com/blog/2010/12/6/what-the-heck-are-you-actually-using-nosql-for.html">http://highscalability.com/blog/2010/12/6/what-the-heck-are-you-actually-using-nosql-for.html</a></p></li>
+<li><p>What problems are you using NoSQL to solve? Which product are you using? How is it helping you?</p></li>
+</ul>
+</section>
+</section>
+<section id="facts-statistics-23rd-jul-2022">
+<h3>Facts statistics (23rd Jul 2022)<a class="headerlink" href="#facts-statistics-23rd-jul-2022" title="Permalink to this headline">#</a></h3>
+<ul class="simple">
+<li><p>Faceboook</p></li>
+<li><p>YouTube</p></li>
+<li><p>WhatsApp</p></li>
+<li><p>Instagram</p></li>
+<li><p>Facebook Messenger</p>
+<ul>
+<li><p>How many messages does Facebook messenger manage every day?</p>
+<ul>
+<li><p>100B</p></li>
+</ul>
+</li>
+<li><p>Number of active users worldwide?</p>
+<ul>
+<li><p>1.3B</p></li>
+</ul>
+</li>
+<li><p>How many groups are started every day?</p>
+<ul>
+<li><p>2.5M</p></li>
+</ul>
+</li>
+<li><p>Number of bots operating on messenger?</p>
+<ul>
+<li><p>300K</p></li>
+</ul>
+</li>
+<li><p>Over 500,000 Facebook users are added to Facebook Messenger on a daily basis</p></li>
+<li><p>Over 150 million video calls are made on Messenger every day</p></li>
+<li><p>Around 56% of US Messenger users are men</p></li>
+</ul>
+</li>
+<li><p>SnapChat</p></li>
+<li><p>TikTok</p></li>
+</ul>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./system_design"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="netflix.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Netflix creativity</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="design_patterns_python.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Design Pattern - Python</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By Chandra<br/>
+  
+      &copy; Copyright 2022.<br/>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>

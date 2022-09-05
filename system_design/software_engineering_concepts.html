@@ -1,0 +1,4130 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Software Engineering concepts</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Google - Customer story" href="googlecloud_use_cases.html" />
+    <link rel="prev" title="System Design Summary" href="design_patterns.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../_static/mylogo.png" class="logo" alt="logo">
+      
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    Welcome
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  System Design
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="intro.html">
+   My System Design Book
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2">
+    <a class="reference internal" href="design_patterns.html">
+     System Design Summary
+    </a>
+   </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     Software Engineering concepts
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="googlecloud_use_cases.html">
+     Google - Customer story
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="aws_usecases.html">
+     AWS - Customer story
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="design_general_use_cases.html">
+     Case study
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="netflix.html">
+     Netflix creativity
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="bk_AlexXu_SystemDesignInterview.html">
+     Book - System Design Interview - Alex Xu
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="design_patterns_python.html">
+     Design Pattern - Python
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Machine Learning
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../ml_examples/intro.html">
+   My ML Book
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../ml_examples/Store_Sales_Forecasting_With_Tensorflow.html">
+     Store Sales Forecasting with TensorFlow
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../ml_examples/decision_tree_classification.html">
+     Decision Tree - classification
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../ml_examples/ml_design_patterns.html">
+     The Need for ML Design Patterns
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Unix/Shell Scripting
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../unix/intro.html">
+   My Unix/Shell Book
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+  <label for="toctree-checkbox-3">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../unix/my_zshrc.html">
+     My .zshrc script
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Reference
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../ml_examples/ml_glossary.html">
+   ML Conceptual brief
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../codes/python_faqs.html">
+   Python FAQs
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../unix/unix_shell_script.html">
+   Unix/Shell FAQs
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../markdown.html">
+   Markdown Files
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../notebooks.html">
+   Content with notebooks
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../markdown-notebooks.html">
+   Notebooks with MyST Markdown
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Lecture Notes
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../cs229_ml/intro.html">
+   CS229 ML - by Andrew Ng
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+  <label for="toctree-checkbox-4">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../cs229_ml/lec02-LinearReg-GradientDescent.html">
+     Lec 02-Linear Regression - Gradient Descent
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../cs229_ml/lec03-LocallyWeighted-LogisticRegression.html">
+     Lec 03-Locally Weighted Regression - Logistic Regression
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../cs229_ml/lec04-Perceptron-GLM.html">
+     Lec 04-Perceptron - GLM
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../cs229_ml/lec05-GDA-NaiveBayes.html">
+     Lec 05-GDA - Naive Bayes
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../cs229_ml/lec06-NaiveBayes-SVM.html">
+     Lec 06-Naive Bayes - SVM
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../cs229_ml/lec07-Kernels-SVM.html">
+     Lec 07-Kernels - SVM
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../cs229_ml/lec08-DataSplits-Models-CrossValidation.html">
+     Lec 08-Data Splits - Models - Cross Validation
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../cs229_ml/lec09-Approx-EstimationError-ERM.html">
+     Lec 09-Estimation Error - ERM
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../cs229_ml/lec10-DecisionTrees-EnsembleMethods.html">
+     Lec 10-Decision Trees - Ensemble Methods
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../cs229_ml/lec11-Intro-NN.html">
+     Lec 11-Neural Networks
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../cs229_ml/lec12-Backpropagation-ImprovingNN.html">
+     Lec 12-Improving NN
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../cs229_ml/lec13-DebuggingMLModels-ErrorAnalysis.html">
+     Lec 13-Debugging ML Models-Error Analysis
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../cs229_ml/lec14-Expectation-MaximizationAlgo.html">
+     Lec 14-Expectation-Maximization Algo
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../cs229_ml/lec15-EMAlgo-FactorAnalysis.html">
+     Lec 15-EM Algo-Factor Analysis
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../cs229_ml/lec16-IndependentComponentAnalysis-RL.html">
+     Lec 16-Independent Component Analysis-RL
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../cs229_ml/lec17-MDPs-ValuePolicyIteration.html">
+     Lec 17-MDPs-Value Policy Iteration
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../cs229_ml/lec18-continuousMDPs-ModelSimulation.html">
+     Lec 18-Continuous MDPs-Model Simulation
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+    </div>
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<div class="menu-dropdown menu-dropdown-launch-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Launch interactive content">
+      <i class="fas fa-rocket"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://mybinder.org/v2/gh/chandrabsingh/learning/master?urlpath=tree/learning/system_design/software_engineering_concepts.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Binder"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="../_static/images/logo_binder.svg">
+  </span>
+<span class="headerbtn__text-container">Binder</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-repository-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Source repositories">
+      <i class="fab fa-github"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://github.com/chandrabsingh/learning"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Source repository"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="headerbtn__text-container">repository</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/chandrabsingh/learning/issues/new?title=Issue%20on%20page%20%2Fsystem_design/software_engineering_concepts.html&body=Your%20issue%20content%20here."
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Open an issue"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="headerbtn__text-container">open issue</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="../_sources/system_design/software_engineering_concepts.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.ipynb</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#database-design">
+   Database design
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#db-stack">
+     DB stack
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#types-of-database">
+     Types of database
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#relational">
+     Relational
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#nosql">
+     NoSQL
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#datalake">
+     DataLake
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#bigquery-data-warehouse">
+     BigQuery - data warehouse
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#why-postgres">
+     Why Postgres
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#why-mysql">
+     Why MySQL
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#graph-database">
+     Graph database
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#document-oriented-database">
+     Document-oriented database
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#mongodb-document">
+       MongoDB - Document
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#key-value-database">
+     Key-Value database
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#time-series-database">
+     Time Series database
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#wide-column-database">
+     Wide-Column database
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#eventual-vs-strong-consistency">
+     Eventual vs Strong Consistency
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#polyglot-persistence">
+     Polyglot persistence
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#cap-theorem">
+     CAP theorem
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#base-semantics">
+     BASE semantics
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#multi-model-database">
+     Multi-model database
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#cassandra">
+     Cassandra
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#memcached">
+     Memcached
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#hbase">
+     HBase
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#neo4j">
+     Neo4j
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#mongodb">
+     MongoDB
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#mapreduce">
+     MapReduce
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#elasticsearch">
+     Elasticsearch
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#redis">
+     Redis
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#google-cloud-datastore">
+     Google Cloud Datastore
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#redis-vs-memcached">
+     Redis vs Memcached
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#oracle-vs-mysql">
+     Oracle vs MySQL
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#cloud-design">
+   Cloud design
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#aws-vs-azure-vs-google-cloud">
+   AWS vs Azure vs Google Cloud
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#amazon-web-services-aws">
+   Amazon Web Services (AWS)
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#chaos-engineering">
+   Chaos Engineering
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#scalability">
+   Scalability
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#scale-trade-offs">
+   Scale trade-offs
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#autoscaling">
+   AutoScaling
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#latency">
+   Latency
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#cost-considerations">
+   Cost considerations
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#high-availability">
+   High availability
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#redundancy">
+     Redundancy
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#replication">
+     Replication
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#high-available-cluster">
+     High available cluster
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#load-balancing">
+   Load balancing
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#load-balancers-methods">
+     Load balancers methods
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#load-balancing-algorithms">
+     Load balancing algorithms
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#fault-isolation">
+   Fault isolation
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#fault-tolerance">
+   Fault tolerance
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#distributed-system">
+   Distributed system
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#caching">
+   Caching
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#distributed-caching">
+   Distributed Caching
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#distributed-transactions">
+   Distributed Transactions
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#distributed-file-system">
+   Distributed File System
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#distributed-datastore">
+   Distributed Datastore
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#locks">
+   Locks
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#distributed-locks">
+   Distributed Locks
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#development-practices">
+   Development practices
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#intelligent-automation">
+   Intelligent Automation
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#project-management">
+   Project Management
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#tools">
+   Tools
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#containers-vs-virtual-machines">
+   Containers vs Virtual Machines
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#clusters">
+   Clusters
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#pipelines">
+   Pipelines
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#google-compute-engine">
+   Google Compute Engine
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#microsoft-azure">
+   Microsoft Azure
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#microservice">
+   Microservice
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#monolithic-architecture">
+     Monolithic Architecture
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#microservice-architecture">
+     Microservice Architecture
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#micro-frontends">
+     Micro frontends
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#sharded-services">
+   Sharded services
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#sharding-database">
+   Sharding database
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#types-of-partitioning">
+     Types of partitioning
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#what-is-sharding">
+     What is Sharding
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#benefits-of-sharding">
+     Benefits of sharding
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#sharding-architectures">
+     Sharding architectures
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#hashing">
+   Hashing
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#consistent-hashing">
+     Consistent Hashing
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#http-messaging">
+   HTTP Messaging
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#http-get-vs-post-message">
+     HTTP GET vs POST Message
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#http-codes">
+     HTTP codes
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#http-1-0-vs-2-0-vs-3-0">
+   HTTP 1.0 vs 2.0 vs 3.0
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#messaging">
+   Messaging
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#messaging-patterns">
+     Messaging patterns
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#components-vs-services">
+   Components vs Services
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#stateless-architecture">
+   Stateless architecture
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#transport-protocols">
+   Transport Protocols
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#grpc">
+   gRPC
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#payload">
+   Payload
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#sockets">
+   Sockets
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#connection-pools">
+   Connection Pools
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#connection-proxy">
+   Connection Proxy
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#posix-message-queue">
+   POSIX message queue
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#windows-message-queues">
+   Windows message queues
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#distributed-system-or-n-tier-application">
+   Distributed system or N-tier application
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#layers-vs-tiers">
+   Layers vs Tiers
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#posix-thread-model">
+   POSIX thread model
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#static-and-dynamic-dispatch">
+   Static and Dynamic Dispatch
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#static-vs-dynamic-typing">
+   Static vs Dynamic typing
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#name-binding">
+   Name binding
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#static-binding-vs-dynamic-binding">
+     Static binding vs Dynamic binding
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#typing">
+   Typing
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#static-typing-vs-dynamic-typing">
+     Static typing vs Dynamic typing
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#dynamic-typing-vs-dynamic-binding">
+     Dynamic typing vs Dynamic binding
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#weak-vs-strong-typing">
+   Weak vs Strong typing
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#single-vs-multiple-dispatch">
+   Single vs Multiple Dispatch
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#dynamic-dispatch-mechanisms">
+   Dynamic Dispatch mechanisms
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#virtual-method-table">
+   Virtual Method Table
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#bottlenecks">
+   Bottlenecks
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#cdn-content-delivery-network">
+   CDN - Content delivery network
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#point-of-presence-pop">
+   Point of Presence(PoP)
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#domain-name-service-dns">
+   Domain Name Service (DNS)
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#system-design-problems">
+   System Design Problems
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#design-url-shortening-system-like-bit-ly-or-tinyurl">
+     Design URL shortening system like bit.ly or tinyurl
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#how-hotstar-scaled-10-3-million-concurrent-users">
+     How hotstar scaled 10.3 million concurrent users
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#how-facebook-support-global-events">
+     How facebook support global events
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#application-server-features">
+   Application server features
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#web-server-features">
+   Web server features
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#api">
+   API
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#proxy-server">
+   Proxy Server
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#reverse-proxy-server">
+   Reverse Proxy Server
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#oauth-2-0">
+   OAuth 2.0
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#master-slave-model">
+   Master Slave Model
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#api-gateway">
+   API Gateway
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#worker-pool">
+   Worker Pool
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#data-lake">
+   Data Lake
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#message-queue">
+   Message Queue
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#message-broker">
+     Message Broker
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#web-components">
+   Web components
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#amp-component">
+     AMP component
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#web-2-0">
+   Web 2.0
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#costs-of-operation">
+   Costs of operation
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#solution-patterns">
+   Solution Patterns
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#trade-offs-and-compromise">
+   Trade-Offs and Compromise
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#better-practices">
+   Better Practices
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#hardware">
+   Hardware
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#stack-vs-heap">
+   Stack vs Heap
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#functional-programming-vs-oop">
+   Functional programming vs OOP
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#advantages-of-physical-layer-vs-logical-layer-separation">
+   Advantages of Physical layer vs Logical layer separation
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#service-providers">
+   Service Providers
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#calculate-capacity-of-shard-services">
+   Calculate capacity of shard services
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#calculate-acceptable-latency">
+   Calculate acceptable latency
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#calculate-hardware-capability">
+   Calculate hardware capability
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#calculate-scalability-requirements">
+   Calculate scalability requirements
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#elasticity-of-cloud">
+   Elasticity of cloud
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#features-that-cloud-provides">
+   Features that cloud provides
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#user-session">
+   User Session
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#algorithms">
+   Algorithms
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#completeness">
+     Completeness
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#time-complexity">
+     Time complexity
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#space-complexity">
+     Space complexity
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#hypervisor">
+   Hypervisor
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#virtualization">
+   Virtualization
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#containerization">
+   Containerization
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#virtualization-vs-containerization">
+   Virtualization vs Containerization
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#bare-metal-deployment">
+   Bare metal deployment
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#bare-metal-vs-virtual-machine-deployments">
+     Bare Metal vs. Virtual Machine Deployments
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#ttl">
+   TTL
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#tls-ssl">
+   TLS/SSL
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#ca-certificate">
+   CA certificate
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#public-private-key">
+   Public-Private Key
+  </a>
+ </li>
+</ul>
+
+    </nav>
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Software Engineering concepts</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#database-design">
+   Database design
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#db-stack">
+     DB stack
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#types-of-database">
+     Types of database
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#relational">
+     Relational
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#nosql">
+     NoSQL
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#datalake">
+     DataLake
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#bigquery-data-warehouse">
+     BigQuery - data warehouse
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#why-postgres">
+     Why Postgres
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#why-mysql">
+     Why MySQL
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#graph-database">
+     Graph database
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#document-oriented-database">
+     Document-oriented database
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#mongodb-document">
+       MongoDB - Document
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#key-value-database">
+     Key-Value database
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#time-series-database">
+     Time Series database
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#wide-column-database">
+     Wide-Column database
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#eventual-vs-strong-consistency">
+     Eventual vs Strong Consistency
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#polyglot-persistence">
+     Polyglot persistence
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#cap-theorem">
+     CAP theorem
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#base-semantics">
+     BASE semantics
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#multi-model-database">
+     Multi-model database
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#cassandra">
+     Cassandra
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#memcached">
+     Memcached
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#hbase">
+     HBase
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#neo4j">
+     Neo4j
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#mongodb">
+     MongoDB
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#mapreduce">
+     MapReduce
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#elasticsearch">
+     Elasticsearch
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#redis">
+     Redis
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#google-cloud-datastore">
+     Google Cloud Datastore
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#redis-vs-memcached">
+     Redis vs Memcached
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#oracle-vs-mysql">
+     Oracle vs MySQL
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#cloud-design">
+   Cloud design
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#aws-vs-azure-vs-google-cloud">
+   AWS vs Azure vs Google Cloud
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#amazon-web-services-aws">
+   Amazon Web Services (AWS)
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#chaos-engineering">
+   Chaos Engineering
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#scalability">
+   Scalability
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#scale-trade-offs">
+   Scale trade-offs
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#autoscaling">
+   AutoScaling
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#latency">
+   Latency
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#cost-considerations">
+   Cost considerations
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#high-availability">
+   High availability
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#redundancy">
+     Redundancy
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#replication">
+     Replication
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#high-available-cluster">
+     High available cluster
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#load-balancing">
+   Load balancing
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#load-balancers-methods">
+     Load balancers methods
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#load-balancing-algorithms">
+     Load balancing algorithms
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#fault-isolation">
+   Fault isolation
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#fault-tolerance">
+   Fault tolerance
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#distributed-system">
+   Distributed system
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#caching">
+   Caching
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#distributed-caching">
+   Distributed Caching
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#distributed-transactions">
+   Distributed Transactions
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#distributed-file-system">
+   Distributed File System
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#distributed-datastore">
+   Distributed Datastore
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#locks">
+   Locks
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#distributed-locks">
+   Distributed Locks
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#development-practices">
+   Development practices
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#intelligent-automation">
+   Intelligent Automation
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#project-management">
+   Project Management
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#tools">
+   Tools
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#containers-vs-virtual-machines">
+   Containers vs Virtual Machines
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#clusters">
+   Clusters
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#pipelines">
+   Pipelines
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#google-compute-engine">
+   Google Compute Engine
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#microsoft-azure">
+   Microsoft Azure
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#microservice">
+   Microservice
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#monolithic-architecture">
+     Monolithic Architecture
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#microservice-architecture">
+     Microservice Architecture
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#micro-frontends">
+     Micro frontends
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#sharded-services">
+   Sharded services
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#sharding-database">
+   Sharding database
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#types-of-partitioning">
+     Types of partitioning
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#what-is-sharding">
+     What is Sharding
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#benefits-of-sharding">
+     Benefits of sharding
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#sharding-architectures">
+     Sharding architectures
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#hashing">
+   Hashing
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#consistent-hashing">
+     Consistent Hashing
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#http-messaging">
+   HTTP Messaging
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#http-get-vs-post-message">
+     HTTP GET vs POST Message
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#http-codes">
+     HTTP codes
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#http-1-0-vs-2-0-vs-3-0">
+   HTTP 1.0 vs 2.0 vs 3.0
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#messaging">
+   Messaging
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#messaging-patterns">
+     Messaging patterns
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#components-vs-services">
+   Components vs Services
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#stateless-architecture">
+   Stateless architecture
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#transport-protocols">
+   Transport Protocols
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#grpc">
+   gRPC
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#payload">
+   Payload
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#sockets">
+   Sockets
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#connection-pools">
+   Connection Pools
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#connection-proxy">
+   Connection Proxy
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#posix-message-queue">
+   POSIX message queue
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#windows-message-queues">
+   Windows message queues
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#distributed-system-or-n-tier-application">
+   Distributed system or N-tier application
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#layers-vs-tiers">
+   Layers vs Tiers
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#posix-thread-model">
+   POSIX thread model
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#static-and-dynamic-dispatch">
+   Static and Dynamic Dispatch
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#static-vs-dynamic-typing">
+   Static vs Dynamic typing
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#name-binding">
+   Name binding
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#static-binding-vs-dynamic-binding">
+     Static binding vs Dynamic binding
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#typing">
+   Typing
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#static-typing-vs-dynamic-typing">
+     Static typing vs Dynamic typing
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#dynamic-typing-vs-dynamic-binding">
+     Dynamic typing vs Dynamic binding
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#weak-vs-strong-typing">
+   Weak vs Strong typing
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#single-vs-multiple-dispatch">
+   Single vs Multiple Dispatch
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#dynamic-dispatch-mechanisms">
+   Dynamic Dispatch mechanisms
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#virtual-method-table">
+   Virtual Method Table
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#bottlenecks">
+   Bottlenecks
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#cdn-content-delivery-network">
+   CDN - Content delivery network
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#point-of-presence-pop">
+   Point of Presence(PoP)
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#domain-name-service-dns">
+   Domain Name Service (DNS)
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#system-design-problems">
+   System Design Problems
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#design-url-shortening-system-like-bit-ly-or-tinyurl">
+     Design URL shortening system like bit.ly or tinyurl
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#how-hotstar-scaled-10-3-million-concurrent-users">
+     How hotstar scaled 10.3 million concurrent users
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#how-facebook-support-global-events">
+     How facebook support global events
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#application-server-features">
+   Application server features
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#web-server-features">
+   Web server features
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#api">
+   API
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#proxy-server">
+   Proxy Server
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#reverse-proxy-server">
+   Reverse Proxy Server
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#oauth-2-0">
+   OAuth 2.0
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#master-slave-model">
+   Master Slave Model
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#api-gateway">
+   API Gateway
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#worker-pool">
+   Worker Pool
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#data-lake">
+   Data Lake
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#message-queue">
+   Message Queue
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#message-broker">
+     Message Broker
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#web-components">
+   Web components
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#amp-component">
+     AMP component
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#web-2-0">
+   Web 2.0
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#costs-of-operation">
+   Costs of operation
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#solution-patterns">
+   Solution Patterns
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#trade-offs-and-compromise">
+   Trade-Offs and Compromise
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#better-practices">
+   Better Practices
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#hardware">
+   Hardware
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#stack-vs-heap">
+   Stack vs Heap
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#functional-programming-vs-oop">
+   Functional programming vs OOP
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#advantages-of-physical-layer-vs-logical-layer-separation">
+   Advantages of Physical layer vs Logical layer separation
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#service-providers">
+   Service Providers
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#calculate-capacity-of-shard-services">
+   Calculate capacity of shard services
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#calculate-acceptable-latency">
+   Calculate acceptable latency
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#calculate-hardware-capability">
+   Calculate hardware capability
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#calculate-scalability-requirements">
+   Calculate scalability requirements
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#elasticity-of-cloud">
+   Elasticity of cloud
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#features-that-cloud-provides">
+   Features that cloud provides
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#user-session">
+   User Session
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#algorithms">
+   Algorithms
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#completeness">
+     Completeness
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#time-complexity">
+     Time complexity
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#space-complexity">
+     Space complexity
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#hypervisor">
+   Hypervisor
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#virtualization">
+   Virtualization
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#containerization">
+   Containerization
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#virtualization-vs-containerization">
+   Virtualization vs Containerization
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#bare-metal-deployment">
+   Bare metal deployment
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#bare-metal-vs-virtual-machine-deployments">
+     Bare Metal vs. Virtual Machine Deployments
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#ttl">
+   TTL
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#tls-ssl">
+   TLS/SSL
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#ca-certificate">
+   CA certificate
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#public-private-key">
+   Public-Private Key
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <section class="tex2jax_ignore mathjax_ignore" id="software-engineering-concepts">
+<h1>Software Engineering concepts<a class="headerlink" href="#software-engineering-concepts" title="Permalink to this headline">#</a></h1>
+<section id="database-design">
+<h2>Database design<a class="headerlink" href="#database-design" title="Permalink to this headline">#</a></h2>
+<section id="db-stack">
+<h3>DB stack<a class="headerlink" href="#db-stack" title="Permalink to this headline">#</a></h3>
+<ul class="simple">
+<li><p>SQL vs NoSQL</p></li>
+<li><p>RDBMS</p></li>
+<li><p>Oracle</p></li>
+<li><p>MSSQL</p></li>
+<li><p>Sybase</p></li>
+<li><p>Hadoop</p></li>
+<li><p>MapReduce</p></li>
+<li><p>Cassandra</p></li>
+<li><p>MongoDB</p></li>
+<li><p>Reddis</p></li>
+<li><p>Kafka</p></li>
+<li><p>BigData</p></li>
+<li><p>Data warehousing</p></li>
+<li><p>OLAP</p></li>
+<li><p>OLTP</p></li>
+</ul>
+</section>
+<section id="types-of-database">
+<h3>Types of database<a class="headerlink" href="#types-of-database" title="Permalink to this headline">#</a></h3>
+<ul class="simple">
+<li><p>Structured</p>
+<ul>
+<li><p>Relational/Normalized</p></li>
+</ul>
+</li>
+<li><p>Unstructured</p>
+<ul>
+<li><p>Heterogenous type</p></li>
+<li><p>text, image, video, blobs, etc</p></li>
+<li><p>cannot be consumed directly</p></li>
+</ul>
+</li>
+<li><p>Semi-structured</p>
+<ul>
+<li><p>mix of structured and unstructured data</p></li>
+<li><p>XML, JSON or as per business needs</p></li>
+</ul>
+</li>
+<li><p>User state data</p>
+<ul>
+<li><p>information of activity that user performs on website</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="relational">
+<h3>Relational<a class="headerlink" href="#relational" title="Permalink to this headline">#</a></h3>
+<ul class="simple">
+<li><p>Forms</p>
+<ul>
+<li><p>one-to-one</p></li>
+<li><p>one-to-many</p></li>
+<li><p>many-to-one</p></li>
+<li><p>many-to-many</p></li>
+</ul>
+</li>
+<li><p>data consistency</p>
+<ul>
+<li><p>normalized</p></li>
+</ul>
+</li>
+</ul>
+<p align="center"><img src="https://miro.medium.com/max/1236/1*kTcdlLdvq6pZUpsjKpifOg.png" title="medium.com" width=500></p>
+<ul class="simple">
+<li><p>ACID compliant</p>
+<ul>
+<li><p>Atomicity</p>
+<ul>
+<li><p>Transactions are made up of multiple statements</p></li>
+<li><p>Atomicity guarantees that either it succeeds completely, or fails completely</p></li>
+<li><p>if any statement in a transaction fails to complete, the entire transaction fails and the database is left unchanged</p></li>
+</ul>
+</li>
+<li><p>Consistency</p>
+<ul>
+<li><p>any data written to database must be valid as per the rules, including constraints, cascades, triggers, and any combination thereof.</p></li>
+<li><p>no illegal/incorrect transaction must be allowed</p></li>
+</ul>
+</li>
+<li><p>Isolation</p>
+<ul>
+<li><p>concurrent execution of transactions leaves database in same state if the transactions were executed sequentially</p></li>
+<li><p>incomplete transaction must not be visible to other transactions</p></li>
+</ul>
+</li>
+<li><p>Durability</p>
+<ul>
+<li><p>if a transaction has been committed it will remain committed during reboot or a system failure or crash</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Scaling</p>
+<ul>
+<li><p>scaling relational databases is not trivial</p></li>
+<li><p>they have to be sharded, replicated to make them run smoothly on a cluster</p></li>
+<li><p>require high skill set resources</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="nosql">
+<h3>NoSQL<a class="headerlink" href="#nosql" title="Permalink to this headline">#</a></h3>
+<ul class="simple">
+<li><p>they are more like JSON-based databases</p></li>
+<li><p>built for high-frequency read writes</p></li>
+<li><p>Scaling</p>
+<ul>
+<li><p>can add new server nodes easily</p></li>
+<li><p>designed to manage exponential growth of Web</p></li>
+<li><p>as nodes can be added easily, it allows handling more concurrent traffic quickly</p></li>
+</ul>
+</li>
+<li><p>Cluster</p>
+<ul>
+<li><p>they are designed to run on clusters</p></li>
+</ul>
+</li>
+<li><p>ACID</p>
+<ul>
+<li><p>support for ACID transactions, limited to an extent</p></li>
+<li><p>when a large application is deployed on hundreds of servers across the globe, the distributed nodes may take some time to reach a global consensus and actual figures as in Twitter like/follower count</p></li>
+<li><p>it works on the principle of <strong>eventual consistency</strong></p></li>
+<li><p>best fit for analytics use case</p></li>
+</ul>
+</li>
+<li><p>Examples</p>
+<ul>
+<li><p>MongoDB, Redis, Neo4J, Cassandra, Memcache, Elasticsearch, Google Cloud Datastore</p></li>
+</ul>
+</li>
+</ul>
+<p align="center"><img src="https://storage.googleapis.com/gweb-cloudblog-publish/images/Which-Database_v07-10-21_1.max-2000x2000.jpeg"></p>
+$\tiny\text{Priyanka Vergadia}$
+</section>
+<section id="datalake">
+<h3>DataLake<a class="headerlink" href="#datalake" title="Permalink to this headline">#</a></h3>
+</section>
+<section id="bigquery-data-warehouse">
+<h3>BigQuery - data warehouse<a class="headerlink" href="#bigquery-data-warehouse" title="Permalink to this headline">#</a></h3>
+</section>
+<section id="why-postgres">
+<h3>Why Postgres<a class="headerlink" href="#why-postgres" title="Permalink to this headline">#</a></h3>
+</section>
+<section id="why-mysql">
+<h3>Why MySQL<a class="headerlink" href="#why-mysql" title="Permalink to this headline">#</a></h3>
+</section>
+<section id="graph-database">
+<h3>Graph database<a class="headerlink" href="#graph-database" title="Permalink to this headline">#</a></h3>
+</section>
+<section id="document-oriented-database">
+<h3>Document-oriented database<a class="headerlink" href="#document-oriented-database" title="Permalink to this headline">#</a></h3>
+<ul class="simple">
+<li><p>data is generally semi-structured and stored in a JSON-like format</p></li>
+<li><p>optimal for use cases that require flexibility and fast, continual development</p></li>
+<li><p>MongoDB, CouchDB, Elasticsearch, Google Cloud Datastore, and Amazon DocumentDB</p></li>
+</ul>
+<section id="mongodb-document">
+<h4>MongoDB - Document<a class="headerlink" href="#mongodb-document" title="Permalink to this headline">#</a></h4>
+<ul class="simple">
+<li><p>A <strong>document is a record in a document database</strong>.</p></li>
+<li><p>A document typically stores information about one object and any of its related metadata.</p></li>
+<li><p>Documents <strong>store data in field-value pairs</strong>.</p></li>
+<li><p>The values can be a <strong>variety of types and structures</strong>, including strings, numbers, dates, arrays, or objects. Documents can be stored in formats like JSON, BSON, and XML.</p></li>
+<li><p>A <strong>collection is a group of documents</strong>. Collections typically store documents that have similar contents.</p></li>
+<li><p>Not all documents in a collection are required to have the same fields, because <strong>document databases have a flexible schema</strong>. Note that <strong>some document databases provide schema validation</strong>, so the schema can optionally be locked down when needed.</p></li>
+</ul>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="w"></span>
+<span class="w">     </span><span class="nt">&quot;_id&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"></span>
+<span class="w">     </span><span class="nt">&quot;first_name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Tom&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">     </span><span class="nt">&quot;email&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;tom@example.com&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">     </span><span class="nt">&quot;cell&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;765-555-5555&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">     </span><span class="nt">&quot;likes&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"></span>
+<span class="w">        </span><span class="s2">&quot;fashion&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="s2">&quot;spas&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="s2">&quot;shopping&quot;</span><span class="w"></span>
+<span class="w">     </span><span class="p">],</span><span class="w"></span>
+<span class="w">     </span><span class="nt">&quot;businesses&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"></span>
+<span class="w">        </span><span class="p">{</span><span class="w"></span>
+<span class="w">           </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Entertainment 1080&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">           </span><span class="nt">&quot;partner&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Jean&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">           </span><span class="nt">&quot;status&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Bankrupt&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">           </span><span class="nt">&quot;date_founded&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">              </span><span class="nt">&quot;$date&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2012-05-19T04:00:00Z&quot;</span><span class="w"></span>
+<span class="w">           </span><span class="p">}</span><span class="w"></span>
+<span class="w">        </span><span class="p">},</span><span class="w"></span>
+<span class="w">        </span><span class="p">{</span><span class="w"></span>
+<span class="w">           </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Swag for Tweens&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">           </span><span class="nt">&quot;date_founded&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">              </span><span class="nt">&quot;$date&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2012-11-01T04:00:00Z&quot;</span><span class="w"></span>
+<span class="w">           </span><span class="p">}</span><span class="w"></span>
+<span class="w">        </span><span class="p">}</span><span class="w"></span>
+<span class="w">     </span><span class="p">]</span><span class="w"></span>
+<span class="w">  </span><span class="p">}</span><span class="w"></span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="key-value-database">
+<h3>Key-Value database<a class="headerlink" href="#key-value-database" title="Permalink to this headline">#</a></h3>
+<ul class="simple">
+<li><p>dictionary data structure</p></li>
+<li><p>key has to be unique</p></li>
+<li><p>commonly used for caching, storing, and managing user sessions, ad servicing, and recommendations</p></li>
+<li><p>examples - Redis</p></li>
+</ul>
+</section>
+<section id="time-series-database">
+<h3>Time Series database<a class="headerlink" href="#time-series-database" title="Permalink to this headline">#</a></h3>
+</section>
+<section id="wide-column-database">
+<h3>Wide-Column database<a class="headerlink" href="#wide-column-database" title="Permalink to this headline">#</a></h3>
+</section>
+<section id="eventual-vs-strong-consistency">
+<h3>Eventual vs Strong Consistency<a class="headerlink" href="#eventual-vs-strong-consistency" title="Permalink to this headline">#</a></h3>
+<ul class="simple">
+<li><p>Eventual consistency</p>
+<ul>
+<li><p>enables datastores to be highly available</p></li>
+<li><p>is also known as <strong>optimistic replication</strong> and is key to distributed systems.</p></li>
+<li><p>each data centers have multiple clusters with numerous server nodes running</p></li>
+<li><p>data is initially inconsistent but eventually becomes consistent across all the server nodes deployed around the world</p></li>
+</ul>
+</li>
+<li><p>Strong consistency</p>
+<ul>
+<li><p>data has to be consistent at all times</p></li>
+<li><p>to achieve this all nodes need to be locked down while getting updated</p></li>
+<li><p>this behavior enables implementation of ACID transactions</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="polyglot-persistence">
+<h3>Polyglot persistence<a class="headerlink" href="#polyglot-persistence" title="Permalink to this headline">#</a></h3>
+<ul class="simple">
+<li></li>
+</ul>
+<p align="center"><img src="https://www.abhishek-tiwari.com/assets/images/Polyglot-persistence-pattern-for-an-ecommerce-application.png"></p>
+</section>
+<section id="cap-theorem">
+<h3>CAP theorem<a class="headerlink" href="#cap-theorem" title="Permalink to this headline">#</a></h3>
+<ul>
+<li><p>consistency, availability, partition tolerance(fault tolerance)</p>
+<ul class="simple">
+<li><p>Consistency</p>
+<ul>
+<li><p>Every read receives the most recent write or an error.</p></li>
+</ul>
+</li>
+<li><p>Availability</p>
+<ul>
+<li><p>Every request receives a (non-error) response, without the guarantee that it contains the most recent write.</p></li>
+</ul>
+</li>
+<li><p>Partition tolerance</p>
+<ul>
+<li><p>The system continues to operate despite an arbitrary number of messages being dropped (or delayed) by the network between nodes.</p></li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<div><ul class="simple">
+<li><p>No distributed system is safe from network failures, thus network partitioning generally has to be tolerated. In the presence of a partition, one is then left with two options: consistency or availability.</p></li>
+</ul>
+<blockquote>
+<div><ul class="simple">
+<li><p>When choosing consistency over availability, the system will return an error or a time out if particular information cannot be guaranteed to be up to date due to network partitioning.</p></li>
+<li><p>When choosing availability over consistency, the system will always process the query and try to return the most recent available version of the information, even if it cannot guarantee it is up to date due to network partitioning.</p></li>
+</ul>
+</div></blockquote>
+</div></blockquote>
+</li>
+</ul>
+</section>
+<section id="base-semantics">
+<h3>BASE semantics<a class="headerlink" href="#base-semantics" title="Permalink to this headline">#</a></h3>
+<ul class="simple">
+<li><p>basically-available, soft-state, eventual consistency</p></li>
+<li><p>Eventually consistent services has only liveness guarantee - updates will be observed eventually</p>
+<ul>
+<li><p><strong>Basically available:</strong> reading and writing operations are available as much as possible (using all nodes of a database cluster), but might not be consistent (the write might not persist after conflicts are reconciled, the read might not get the latest write)</p></li>
+<li><p><strong>Soft-state:</strong> without consistency guarantees, after some amount of time, we only have some probability of knowing the state, since it might not yet have converged</p></li>
+<li><p><strong>Eventually consistent:</strong> If we execute some writes and then the system functions long enough, we can know the state of the data; any further reads of that data item will return the same value</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="multi-model-database">
+<h3>Multi-model database<a class="headerlink" href="#multi-model-database" title="Permalink to this headline">#</a></h3>
+<ul class="simple">
+<li><p>ArangoDB, CosmosDB, OrientDB, Couchbase, etc</p></li>
+<li><p>support multiple data models like the graph, document-oriented, relational, etc.</p></li>
+<li><p>They also avert the need for managing multiple persistence technologies in a single service.</p></li>
+<li><p>They reduce the operational complexity by notches</p></li>
+</ul>
+</section>
+<section id="cassandra">
+<h3>Cassandra<a class="headerlink" href="#cassandra" title="Permalink to this headline">#</a></h3>
+</section>
+<section id="memcached">
+<h3>Memcached<a class="headerlink" href="#memcached" title="Permalink to this headline">#</a></h3>
+</section>
+<section id="hbase">
+<h3>HBase<a class="headerlink" href="#hbase" title="Permalink to this headline">#</a></h3>
+</section>
+<section id="neo4j">
+<h3>Neo4j<a class="headerlink" href="#neo4j" title="Permalink to this headline">#</a></h3>
+</section>
+<section id="mongodb">
+<h3>MongoDB<a class="headerlink" href="#mongodb" title="Permalink to this headline">#</a></h3>
+</section>
+<section id="mapreduce">
+<h3>MapReduce<a class="headerlink" href="#mapreduce" title="Permalink to this headline">#</a></h3>
+</section>
+<section id="elasticsearch">
+<h3>Elasticsearch<a class="headerlink" href="#elasticsearch" title="Permalink to this headline">#</a></h3>
+</section>
+<section id="redis">
+<h3>Redis<a class="headerlink" href="#redis" title="Permalink to this headline">#</a></h3>
+</section>
+<section id="google-cloud-datastore">
+<h3>Google Cloud Datastore<a class="headerlink" href="#google-cloud-datastore" title="Permalink to this headline">#</a></h3>
+</section>
+<section id="redis-vs-memcached">
+<h3>Redis vs Memcached<a class="headerlink" href="#redis-vs-memcached" title="Permalink to this headline">#</a></h3>
+</section>
+<section id="oracle-vs-mysql">
+<h3>Oracle vs MySQL<a class="headerlink" href="#oracle-vs-mysql" title="Permalink to this headline">#</a></h3>
+</section>
+</section>
+<section id="cloud-design">
+<h2>Cloud design<a class="headerlink" href="#cloud-design" title="Permalink to this headline">#</a></h2>
+<ul class="simple">
+<li><p><span class="xref myst">Cloud design considerations</span></p></li>
+</ul>
+</section>
+<section id="aws-vs-azure-vs-google-cloud">
+<h2>AWS vs Azure vs Google Cloud<a class="headerlink" href="#aws-vs-azure-vs-google-cloud" title="Permalink to this headline">#</a></h2>
+</section>
+<section id="amazon-web-services-aws">
+<h2>Amazon Web Services (AWS)<a class="headerlink" href="#amazon-web-services-aws" title="Permalink to this headline">#</a></h2>
+<ul class="simple">
+<li><p>Infrastructure as a service</p>
+<ul>
+<li><p>ec2 - virtual machine</p>
+<ul>
+<li><p>launch any application</p></li>
+<li><p>based on memory requirement</p></li>
+<li><p>configure with different data centers</p></li>
+<li><p>install software and get started</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Platform as a service</p>
+<ul>
+<li><p>not interested in virtual machine</p></li>
+<li><p>but use platform</p></li>
+<li><p>use elastic beanstalk</p>
+<ul>
+<li><p>deploy application</p></li>
+<li><p>which gets deployed on AWS cloud</p></li>
+<li><p>no control on middleware such as Java</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Software as a service</p></li>
+<li><p>Database as a service</p>
+<ul>
+<li><p>RDBMS</p></li>
+<li><p>Load balancing services</p></li>
+</ul>
+</li>
+<li><p>flexible billings</p></li>
+</ul>
+<hr class="docutils" />
+<ul class="simple">
+<li><p>Services</p>
+<ul>
+<li><p>Batch</p>
+<ul>
+<li><p>can run batch/overnight applications</p></li>
+</ul>
+</li>
+<li><p>Lambda</p>
+<ul>
+<li><p>based on event triggered, a program will run and will give response back</p></li>
+<li><p>no server is running in background</p></li>
+<li><p>server gets initialized when the request comes in</p></li>
+<li><p>server will be initialized, it will be served and then will be destroyed once complete</p></li>
+</ul>
+</li>
+<li><p>Elastic container service</p>
+<ul>
+<li><p>equivalent to docker container</p></li>
+<li><p>deploy containers into AWS</p></li>
+</ul>
+</li>
+<li><p>Developer tools</p>
+<ul>
+<li><p>CodeStar/CodeCommit/CodeBuild/CodeDeploy</p></li>
+<li><p>code, build, deploy and pipe it into the queue</p></li>
+</ul>
+</li>
+<li><p>Services for Machine Learning</p>
+<ul>
+<li><p>to check</p></li>
+</ul>
+</li>
+<li><p>Storage</p>
+<ul>
+<li><p>S3</p>
+<ul>
+<li><p>simple storage</p></li>
+<li><p>can use in any of the computing design pattern</p></li>
+</ul>
+</li>
+<li><p>EFS</p></li>
+<li><p>Glacier</p></li>
+<li><p>Storage Gateway</p></li>
+</ul>
+</li>
+<li><p>Management Tools</p>
+<ul>
+<li><p>CloudWatch</p></li>
+<li><p>AWS Auto scaling</p>
+<ul>
+<li><p>automatically deploy and spawn new instance of say Tomcat server</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Analytics</p>
+<ul>
+<li><p>Athena</p></li>
+<li><p>EMR</p></li>
+<li><p>CloudSearch</p></li>
+</ul>
+</li>
+<li><p>Security</p></li>
+<li><p>Migration services</p></li>
+<li><p>Networking</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="chaos-engineering">
+<h2>Chaos Engineering<a class="headerlink" href="#chaos-engineering" title="Permalink to this headline">#</a></h2>
+<ul class="simple">
+<li><p>discipline of experimenting distributed system in production to build system capability</p></li>
+<li><p>designed by Netflix</p></li>
+<li><p>nothing breaks in production</p></li>
+<li><p>but if it breaks how do we address system availability</p></li>
+<li><p>helps in identifying loopholes in system</p></li>
+<li><p>what are the principles</p>
+<ul>
+<li><p>build a hypothesis around steady state behaviour</p></li>
+<li><p>real world events</p>
+<ul>
+<li><p>plugging out the real world scenario and experimenting on it</p></li>
+<li><p>increasing the traffic</p></li>
+<li><p>adding failure events</p></li>
+<li><p>adding non-expected events</p></li>
+</ul>
+</li>
+<li><p>run experiments in production</p></li>
+<li><p>automate experiments in a continuous manner</p></li>
+<li><p>minimize the blast radius</p>
+<ul>
+<li><p>identify the problem and localize the problem to an extent</p></li>
+<li><p>live traffic does not get impacted heavily or is minimalized</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>how does it work in AWS</p>
+<ul>
+<li><p>different services are launched for NA-East, NA-West, EU-East, EU-West and APAC</p></li>
+<li><p>if one service goes down the traffic is rerouted to another service and server request is handled by another service</p></li>
+</ul>
+</li>
+<li><p>Open Source Tools</p>
+<ul>
+<li><p>Netflix</p>
+<ul>
+<li><p>Chaos Monkey</p>
+<ul>
+<li><p>randomly kills a service not a server in production</p></li>
+<li><p>identify resilence</p></li>
+<li><p>checks system behaviour</p></li>
+</ul>
+</li>
+<li><p>Chaos Gorilla</p>
+<ul>
+<li><p>kill entire availability zone</p></li>
+<li><p>NA West will be killed</p></li>
+</ul>
+</li>
+<li><p>Chaos Kong</p>
+<ul>
+<li><p>kill the whole region</p></li>
+</ul>
+</li>
+<li><p>Latency Monkey</p>
+<ul>
+<li><p>delay the response</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Facebook</p>
+<ul>
+<li><p>Facebook Storm</p>
+<ul>
+<li><p>datacenter goes down</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>AWS</p>
+<ul>
+<li><p>AWS gamedays</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="scalability">
+<h2>Scalability<a class="headerlink" href="#scalability" title="Permalink to this headline">#</a></h2>
+<ul class="simple">
+<li><p>Applications’s ability to handle increased workload without impacting performance</p></li>
+<li><p>If application was able to respond to a user request in x seconds, it should take same x seconds to respond, when concurrent user base increases</p></li>
+</ul>
+<p>Types of scaling</p>
+<ul class="simple">
+<li><p>Horizonal scaling/ Scale out</p>
+<ul>
+<li><p>add servers</p></li>
+</ul>
+</li>
+<li><p>Vertical scaling/ Scale up</p>
+<ul>
+<li><p>add more power to server, increase RAM</p></li>
+<li><p>this is simple, as we don’t need code or complex system configuration changes</p></li>
+</ul>
+</li>
+<li><p>Cloud elasticity</p>
+<ul>
+<li><p>scale up/down your servers, as per demand</p></li>
+</ul>
+</li>
+</ul>
+<p>The scalability of application should be tested using load and stress tests by simulating concurrent traffic</p>
+</section>
+<section id="scale-trade-offs">
+<h2>Scale trade-offs<a class="headerlink" href="#scale-trade-offs" title="Permalink to this headline">#</a></h2>
+</section>
+<section id="autoscaling">
+<h2>AutoScaling<a class="headerlink" href="#autoscaling" title="Permalink to this headline">#</a></h2>
+<ul class="simple">
+<li><p>Autoscaling is a cloud computing feature that enables organizations to scale cloud services such as server capacities or virtual machines up or down automatically, based on defined situations such as traffic utilization levels. Cloud computing providers, such as Amazon Web Services (AWS), Microsoft Azure, and Google Cloud Platform (GCP), offer autoscaling tools.</p></li>
+<li><p>Overall benefit of autoscaling is that it eliminates the need to respond manually in real-time to traffic spikes that merit new resources and instances by automatically changing the active number of servers</p></li>
+<li><p>An application load balancer and auto scaling package works in tandem as follows. You can deploy an auto scaling group load balancer to improve availability and performance, and decrease application latency. This works because you can define your autoscaling policies based on your application requirements to scale-in and scale-out instances and thus instruct how the load balancer distributes the traffic load between the running instances.</p></li>
+<li><p>Autoscaling allows a user to set a policy based on predefined criteria that manage the number of available instances in both peak and off-peak hours. This enables multiple instances with the same functionality—parallel capabilities increasing or decreasing depending on demand.</p></li>
+</ul>
+</section>
+<section id="latency">
+<h2>Latency<a class="headerlink" href="#latency" title="Permalink to this headline">#</a></h2>
+<ul class="simple">
+<li><p>Network latency</p></li>
+<li><p>Application latency</p>
+<ul>
+<li><p>use stress and load tests for bottlenecks</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="cost-considerations">
+<h2>Cost considerations<a class="headerlink" href="#cost-considerations" title="Permalink to this headline">#</a></h2>
+</section>
+<section id="high-availability">
+<h2>High availability<a class="headerlink" href="#high-availability" title="Permalink to this headline">#</a></h2>
+<p>The ability of system to stay online despite failures at infrastructural level in real-time. The hosting time SLA of cloud platforms should be 99.99999% available. The distributed system must be designed to fault-tolerant and redundant.</p>
+<p>To achieve high availability at application level, the entire service is architecturally broken down into granular loosely coupled services called <strong><em>microservices</em></strong>.</p>
+<section id="redundancy">
+<h3>Redundancy<a class="headerlink" href="#redundancy" title="Permalink to this headline">#</a></h3>
+<p>Redundancy is the process of duplicating the server instances and keeping them on standby incase any of the active server instances goes down. It is the fail-safe backup mechanism.</p>
+<p>This helps:</p>
+<ul class="simple">
+<li><p>eliminate single point failures with monolithic architecture</p></li>
+<li><p>facilitate fault-tolerant microservices architecture</p></li>
+</ul>
+<p>Tools like <strong><em>Kubernetes</em></strong> are intelligent enough to add or remove instances on the fly as per requirement, thereby reducing human error.</p>
+</section>
+<section id="replication">
+<h3>Replication<a class="headerlink" href="#replication" title="Permalink to this headline">#</a></h3>
+<ul class="simple">
+<li><p>running a <strong><em>similar/duplicate node</em></strong>, so that when a few nodes go down, other nodes bear the load. Its a <strong><em>fail-safe backup mechanism</em></strong>.</p></li>
+</ul>
+</section>
+<section id="high-available-cluster">
+<h3>High available cluster<a class="headerlink" href="#high-available-cluster" title="Permalink to this headline">#</a></h3>
+<ul class="simple">
+<li><p>Fail-over cluster, contains a set of nodes running in conjunction with each other that ensures high availability of service</p></li>
+</ul>
+<p>Tools like <strong><em>Zookeeper</em></strong>, monitor the state of cluster network with <strong><em>heartbeat network</em></strong> and maintain shared distributed memory (to maintain a common state across several nodes in a cluster). It uses node coordinator service to maintain nodes in its cluster.</p>
+<p>Multiple HA clusters run together in one geographical zone to ensure minimum downtime and uninterrupted service.</p>
+</section>
+</section>
+<section id="load-balancing">
+<h2>Load balancing<a class="headerlink" href="#load-balancing" title="Permalink to this headline">#</a></h2>
+<p>Load balancing enables services to scale well when the traffic load increases. The component that facilitates this are called <em><strong>load balancers</strong></em>. It distributes load across servers in cluster using different algorithms, thereby safe-guarding overloads and spikes in latency.</p>
+<p>Load balancers are <em><strong>single point of contact for client requests</strong></em>. They can be setup to <strong><em>manage traffic</em></strong> at application component level, database component level, message queue level or at backend server level. They regularly perform <strong><em>health checks</em></strong> on the machines in the cluster. They keep track of <em><strong>in service</strong></em> and <strong><em>out of service</em></strong> instances.</p>
+<section id="load-balancers-methods">
+<h3>Load balancers methods<a class="headerlink" href="#load-balancers-methods" title="Permalink to this headline">#</a></h3>
+<ul class="simple">
+<li><p>DNS load balancing</p></li>
+<li><p>Hardware based load balancing</p>
+<ul>
+<li><p>expensive</p></li>
+<li><p>high performance</p></li>
+</ul>
+</li>
+<li><p>Software based load balancing</p>
+<ul>
+<li><p>cost effective</p></li>
+<li><p>flexible</p></li>
+<li><p>advanced compared to DNS load balancers</p></li>
+<li><p>continually perform health checks</p></li>
+<li><p><strong><em>HAProxy</em></strong> one of leading software load balancers</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="load-balancing-algorithms">
+<h3>Load balancing algorithms<a class="headerlink" href="#load-balancing-algorithms" title="Permalink to this headline">#</a></h3>
+<ul class="simple">
+<li><p>Round Robin</p></li>
+<li><p>Weighted Round Robin</p></li>
+<li><p>Least Connection (dynamic)</p></li>
+<li><p>Weighted Least Connection</p></li>
+<li><p>Resource Based (Adaptive)</p></li>
+<li><p>Weighted Response Time</p></li>
+<li><p>Source IP Hash</p></li>
+<li><p>URL Hash</p></li>
+<li><p>Random</p></li>
+</ul>
+</section>
+</section>
+<section id="fault-isolation">
+<h2>Fault isolation<a class="headerlink" href="#fault-isolation" title="Permalink to this headline">#</a></h2>
+<ul class="simple">
+<li><p>Microservice architecture enables isolate faults, debug and fix issues</p></li>
+</ul>
+</section>
+<section id="fault-tolerance">
+<h2>Fault tolerance<a class="headerlink" href="#fault-tolerance" title="Permalink to this headline">#</a></h2>
+<p>Fault tolerance is the system’s ability to stay up and running despite taking hits and faults. The instances/nodes may go offline/down but they come back up, which is called <strong><em>fail soft</em></strong>.</p>
+</section>
+<section id="distributed-system">
+<h2>Distributed system<a class="headerlink" href="#distributed-system" title="Permalink to this headline">#</a></h2>
+<ul class="simple">
+<li><p>There are four capabilities that are involved in a resilient, scalable, distributed system:</p>
+<ul>
+<li><p><strong>Load balancing (aka spraying)</strong> - The ability to spread a load source in an arbitrary manner to certain servers in a distributed system;</p></li>
+<li><p><strong>Partition targeting (aka routing)</strong> - The ability to direct a request to a particular sever based on attributes of the request and/or the service that handles the request;</p></li>
+<li><p><strong>Partitioning (aka sharding)</strong> - The ability to divide a domain into discrete, identifiable sub-divisions that together form the whole; and</p></li>
+<li><p><strong>Replication</strong> - The use of events, transaction logs, state copy, or other means to provide (i) resiliency to server failure, (ii) dynamic repartitioning, (iii) immediate access to non-mutating state, and (iv) local cache copies of mutating state.<br />
+<span class="math notranslate nohighlight">\(\tiny{\text{Source - Quora}}\)</span></p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="caching">
+<h2>Caching<a class="headerlink" href="#caching" title="Permalink to this headline">#</a></h2>
+</section>
+<section id="distributed-caching">
+<h2>Distributed Caching<a class="headerlink" href="#distributed-caching" title="Permalink to this headline">#</a></h2>
+</section>
+<section id="distributed-transactions">
+<h2>Distributed Transactions<a class="headerlink" href="#distributed-transactions" title="Permalink to this headline">#</a></h2>
+</section>
+<section id="distributed-file-system">
+<h2>Distributed File System<a class="headerlink" href="#distributed-file-system" title="Permalink to this headline">#</a></h2>
+</section>
+<section id="distributed-datastore">
+<h2>Distributed Datastore<a class="headerlink" href="#distributed-datastore" title="Permalink to this headline">#</a></h2>
+</section>
+<section id="locks">
+<h2>Locks<a class="headerlink" href="#locks" title="Permalink to this headline">#</a></h2>
+</section>
+<section id="distributed-locks">
+<h2>Distributed Locks<a class="headerlink" href="#distributed-locks" title="Permalink to this headline">#</a></h2>
+</section>
+<section id="development-practices">
+<h2>Development practices<a class="headerlink" href="#development-practices" title="Permalink to this headline">#</a></h2>
+<ul class="simple">
+<li><p>Continuous integration</p>
+<ul>
+<li><p>Available tools</p>
+<ul>
+<li><p>Jenkins, Azure DevOps</p></li>
+</ul>
+</li>
+<li><p>Practices</p>
+<ul>
+<li><p>merge as often as possible</p></li>
+<li><p>automated build and tests run(integration/acceptance)</p></li>
+<li><p>emphasis on testing automation to check new commits dont break the main branch</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Continuous delivery</p>
+<ul>
+<li><p>Available tools</p>
+<ul>
+<li><p>Jenkins, TeamCity, AWS CodeBuild, Spinnaker</p></li>
+</ul>
+</li>
+<li><p>Practices</p>
+<ul>
+<li><p>extension of continuous integration</p></li>
+<li><p>automated deployment and release to test and prod environment</p></li>
+<li><p>best practice is to deploy and release in small batches</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Continuous deployment</p>
+<ul>
+<li><p>Available tools</p>
+<ul>
+<li><p>Jenkins, TeamCity</p></li>
+</ul>
+</li>
+<li><p>Practices</p>
+<ul>
+<li><p>extension of continuous delivery</p></li>
+<li><p>the changes that passes production pipeline is released to customers</p></li>
+<li><p>no human intervention and accelerates the feedback loop from customers to developers</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><a class="reference external" href="https://www.atlassian.com/continuous-delivery/principles/continuous-integration-vs-delivery-vs-deployment">Link</a></p></li>
+</ul>
+</section>
+<section id="intelligent-automation">
+<h2>Intelligent Automation<a class="headerlink" href="#intelligent-automation" title="Permalink to this headline">#</a></h2>
+</section>
+<section id="project-management">
+<h2>Project Management<a class="headerlink" href="#project-management" title="Permalink to this headline">#</a></h2>
+<ul class="simple">
+<li><p>Agile</p>
+<ul>
+<li><p>structured iterative approach</p></li>
+<li><p>self organizing teams</p></li>
+</ul>
+</li>
+<li><p>Kanban</p>
+<ul>
+<li><p>continuous improving flow of work</p></li>
+<li><p>uses boards or visuals</p></li>
+</ul>
+</li>
+<li><p>Scrum</p>
+<ul>
+<li><p>short structured work sprints</p></li>
+</ul>
+</li>
+<li><p>Jira</p></li>
+</ul>
+</section>
+<section id="tools">
+<h2>Tools<a class="headerlink" href="#tools" title="Permalink to this headline">#</a></h2>
+<ul class="simple">
+<li><p>Kubernetes</p>
+<ul>
+<li><p>orchestrates clusters of virtual machines and schedules containers to run on those machines based on their available computing resources</p></li>
+</ul>
+</li>
+<li><p>Docker</p>
+<ul>
+<li><p>packages containerized application on a single node</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="containers-vs-virtual-machines">
+<h2>Containers vs Virtual Machines<a class="headerlink" href="#containers-vs-virtual-machines" title="Permalink to this headline">#</a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="https://www.docker.com/resources/what-container">Containers vs VM</a></p></li>
+</ul>
+</section>
+<section id="clusters">
+<h2>Clusters<a class="headerlink" href="#clusters" title="Permalink to this headline">#</a></h2>
+</section>
+<section id="pipelines">
+<h2>Pipelines<a class="headerlink" href="#pipelines" title="Permalink to this headline">#</a></h2>
+</section>
+<section id="google-compute-engine">
+<h2>Google Compute Engine<a class="headerlink" href="#google-compute-engine" title="Permalink to this headline">#</a></h2>
+</section>
+<section id="microsoft-azure">
+<h2>Microsoft Azure<a class="headerlink" href="#microsoft-azure" title="Permalink to this headline">#</a></h2>
+</section>
+<section id="microservice">
+<h2>Microservice<a class="headerlink" href="#microservice" title="Permalink to this headline">#</a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="https://martinfowler.com/articles/microservices.html">Architecture</a></p></li>
+</ul>
+<p><em>“In short, the microservice architectural style is an approach to developing a single application as a suite of small services, each running in its own process and communicating with lightweight mechanisms, often an HTTP resource API. These services are built around business capabilities and independently deployable by fully automated deployment machinery. There is a bare minimum of centralized management of these services, which may be written in different programming languages and use different data storage technologies.”</em><br />
+<span class="math notranslate nohighlight">\(\tiny{\text{martinfowler.com - Microservices Guide}}\)</span></p>
+<section id="monolithic-architecture">
+<h3>Monolithic Architecture<a class="headerlink" href="#monolithic-architecture" title="Permalink to this headline">#</a></h3>
+<ul class="simple">
+<li><p>self-contained as a single codebase</p></li>
+<li><p>tightly coupled application</p></li>
+<li><p>LinkedIn started as monolithic architecture in 2003 and then scaled out as cloud computing and microservices architecture</p></li>
+<li><p>Simple to develop, test, deploy and manage as everything resides in one repo</p></li>
+<li><p>reduced complexity of deployment</p></li>
+<li><p>a monolithic architecture holds a lot of application state in the static variables, and an application to scale inherently on the cloud needs to be stateless.</p></li>
+</ul>
+</section>
+<section id="microservice-architecture">
+<h3>Microservice Architecture<a class="headerlink" href="#microservice-architecture" title="Permalink to this headline">#</a></h3>
+<ul class="simple">
+<li><p>Loosely coupled services deployed and working in conjunction to form large distributed service as a whole</p></li>
+<li><p>This architecture is designed to scale, which is relatively easy than in monolithic</p></li>
+<li><p>Continuous deployment is a pre-requisite, dedicated teams can have their independent release and deployments</p></li>
+<li><p>Regression testing becomes easier</p></li>
+<li><p>No single point of failure</p></li>
+<li><p>Can leverage heterogenous technologies</p></li>
+<li><p>one of the ways of interaction can be REST API gateway interface</p></li>
+</ul>
+</section>
+<section id="micro-frontends">
+<h3>Micro frontends<a class="headerlink" href="#micro-frontends" title="Permalink to this headline">#</a></h3>
+<img src="https://devblogs.microsoft.com/dotnet/wp-content/uploads/sites/10/2017/08/eShopOnContainers_Architecture_Diagram.png">
+</section>
+</section>
+<section id="sharded-services">
+<h2>Sharded services<a class="headerlink" href="#sharded-services" title="Permalink to this headline">#</a></h2>
+<ul class="simple">
+<li><p>Do we have sharding of services, or is it applicable only in database management?</p></li>
+</ul>
+</section>
+<section id="sharding-database">
+<h2>Sharding database<a class="headerlink" href="#sharding-database" title="Permalink to this headline">#</a></h2>
+<section id="types-of-partitioning">
+<h3>Types of partitioning<a class="headerlink" href="#types-of-partitioning" title="Permalink to this headline">#</a></h3>
+<ul class="simple">
+<li><p>Horizontal partitioning(sharding)</p>
+<ul>
+<li><p>separating table rows into multiple tables with same schema</p></li>
+</ul>
+</li>
+<li><p>Vertical partitioning</p>
+<ul>
+<li><p>separating columns into distinct tables</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="what-is-sharding">
+<h3>What is Sharding<a class="headerlink" href="#what-is-sharding" title="Permalink to this headline">#</a></h3>
+<ul class="simple">
+<li><p>breaking data into logical shards</p></li>
+<li><p>distribute these logical shards into separate database nodes or into physical shards</p></li>
+<li><p>physical shards can hold multiple logical shards</p></li>
+<li><p>helps in mitigating impact of outages</p></li>
+</ul>
+</section>
+<section id="benefits-of-sharding">
+<h3>Benefits of sharding<a class="headerlink" href="#benefits-of-sharding" title="Permalink to this headline">#</a></h3>
+<ul class="simple">
+<li><p>horizontal scaling or scaling out</p>
+<ul>
+<li><p>adding more machines to exsiting stack to spread out load and allow for more traffic</p></li>
+</ul>
+</li>
+<li><p>vertical scaling or scaling up</p>
+<ul>
+<li><p>upgrading hardware by adding more RAM or CPU</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="sharding-architectures">
+<h3>Sharding architectures<a class="headerlink" href="#sharding-architectures" title="Permalink to this headline">#</a></h3>
+<ul class="simple">
+<li><p>Key based sharding</p>
+<ul>
+<li><p>hash based sharding based on partition key</p></li>
+</ul>
+</li>
+<li><p>Range based sharding</p>
+<ul>
+<li><p>for example, price range</p></li>
+</ul>
+</li>
+<li><p>Directory based sharding</p>
+<ul>
+<li><p>maintain lookup table</p></li>
+<li><p>Multiple tenants might share the same shard, but the data for a single tenant won’t be spread across multiple shards</p></li>
+</ul>
+</li>
+</ul>
+<img src="images/shardTable.png" width=600 height=600>  
+$\tiny{\text{Types of Partitioning - digitalocean.com}}$   
+</section>
+</section>
+<section id="hashing">
+<h2>Hashing<a class="headerlink" href="#hashing" title="Permalink to this headline">#</a></h2>
+<ul class="simple">
+<li><p>bucket</p></li>
+<li><p>hash collison</p></li>
+<li><p>consistent hashing</p></li>
+</ul>
+<section id="consistent-hashing">
+<h3>Consistent Hashing<a class="headerlink" href="#consistent-hashing" title="Permalink to this headline">#</a></h3>
+<ul class="simple">
+<li><p>is a special kind of hashing technique such that when a hash table is resized, only n/m keys need to be remapped on average where n is the number of keys and m is the number of slots. In contrast, in most traditional hash tables, a change in the number of array slots causes nearly all keys to be remapped because the mapping between the keys and the slots is defined by a modular operation.</p></li>
+<li><p>it allows requests to be mapped into hash buckets while allowing the system to add and remove nodes flexibly so as to maintain a good load factor on each machine</p></li>
+<li><p>the standard way to hash objects is to map them to a search space, and then transfer the load to the mapped computer</p>
+<ul>
+<li><p>systems using this policy is likely to suffer when new nodes are added or removed from it</p></li>
+</ul>
+</li>
+<li><p>Consistent Hashing maps servers to the key space and assigns requests(mapped to relevant buckets, called load) to the next clockwise server. Servers can then store relevant request data in them while allowing the system flexibility and scalability</p></li>
+<li><p>system design scenarios</p>
+<ul>
+<li><p>such as fault tolerance - in which a machine crashes</p></li>
+<li><p>or scalability - in which a machine needs to be added to process more requests</p>
+<ul>
+<li><p>in both these principles consistent hashing is used</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>this principle is used extensively in load balancing, caching, databases</p></li>
+<li><p>request allocation</p></li>
+</ul>
+<img src="./images/consistentHashing.png" width=400 height=400>
+$\tiny{\text{YouTube - Gaurav Sen}}$   </section>
+</section>
+<section id="http-messaging">
+<h2>HTTP Messaging<a class="headerlink" href="#http-messaging" title="Permalink to this headline">#</a></h2>
+<section id="http-get-vs-post-message">
+<h3>HTTP GET vs POST Message<a class="headerlink" href="#http-get-vs-post-message" title="Permalink to this headline">#</a></h3>
+<ul class="simple">
+<li><p>GET is used for viewing something, without changing it</p>
+<ul>
+<li><p>fetch data</p></li>
+<li><p>GET carries request parameter appended in URL string</p></li>
+</ul>
+</li>
+<li><p>POST is used for changing something</p>
+<ul>
+<li><p>change pwd</p></li>
+<li><p>writing data into resources</p></li>
+<li><p>POST carries request parameter in message body which makes it more secure way of transferring data</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="http-codes">
+<h3>HTTP codes<a class="headerlink" href="#http-codes" title="Permalink to this headline">#</a></h3>
+<img src="images/http_codes.png" width=600 height=600>  
+$\tiny{\text{https://datatracker.ietf.org/}}$   
+</section>
+</section>
+<section id="http-1-0-vs-2-0-vs-3-0">
+<h2>HTTP 1.0 vs 2.0 vs 3.0<a class="headerlink" href="#http-1-0-vs-2-0-vs-3-0" title="Permalink to this headline">#</a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="https://cheapsslsecurity.com/p/http2-vs-http1/">https://cheapsslsecurity.com/p/http2-vs-http1/</a></p></li>
+<li><p><a class="reference external" href="https://ably.com/topic/http-2-vs-http-3">https://ably.com/topic/http-2-vs-http-3</a></p></li>
+</ul>
+<img src="images/httpProtocol.webp" width=600 height=600>  
+$\tiny{\text{https://ably.com/}}$   
+</section>
+<section id="messaging">
+<h2>Messaging<a class="headerlink" href="#messaging" title="Permalink to this headline">#</a></h2>
+<section id="messaging-patterns">
+<h3>Messaging patterns<a class="headerlink" href="#messaging-patterns" title="Permalink to this headline">#</a></h3>
+<ul class="simple">
+<li><p>Client-Server</p></li>
+<li><p>Publish-Subscribe</p>
+<ul>
+<li><p><a class="reference external" href="https://ably.com/topic/pub-sub">https://ably.com/topic/pub-sub</a></p></li>
+<li><p>Topic</p></li>
+<li><p><a class="reference external" href="https://cloud.google.com/pubsub/docs/subscriber">https://cloud.google.com/pubsub/docs/subscriber</a></p></li>
+<li><p><a class="reference external" href="https://www.bmc.com/blogs/pub-sub-publish-subscribe/">https://www.bmc.com/blogs/pub-sub-publish-subscribe/</a></p></li>
+</ul>
+</li>
+<li><p>Push-Pull</p></li>
+<li><p>Polling</p></li>
+<li><p>Conventional sockets</p>
+<ul>
+<li><p>One-to-one</p></li>
+<li><p>Many-to-one</p></li>
+<li><p>One-to-many(multicast)</p></li>
+</ul>
+</li>
+<li><p>Event streaming</p>
+<ul>
+<li><p><a class="reference external" href="https://ably.com/topic/event-streaming">https://ably.com/topic/event-streaming</a></p></li>
+</ul>
+</li>
+</ul>
+</section>
+</section>
+<section id="components-vs-services">
+<h2>Components vs Services<a class="headerlink" href="#components-vs-services" title="Permalink to this headline">#</a></h2>
+</section>
+<section id="stateless-architecture">
+<h2>Stateless architecture<a class="headerlink" href="#stateless-architecture" title="Permalink to this headline">#</a></h2>
+</section>
+<section id="transport-protocols">
+<h2>Transport Protocols<a class="headerlink" href="#transport-protocols" title="Permalink to this headline">#</a></h2>
+<ul class="simple">
+<li><p>TCP</p></li>
+<li><p>UDP</p></li>
+<li><p>Gossip Protocol</p></li>
+<li><p>Broadcast</p></li>
+<li><p>Multicast</p></li>
+<li><p>Web sockets</p></li>
+<li><p>FTP</p></li>
+<li><p>Telnet</p></li>
+</ul>
+</section>
+<section id="grpc">
+<h2>gRPC<a class="headerlink" href="#grpc" title="Permalink to this headline">#</a></h2>
+<ul class="simple">
+<li><p>gRPC</p></li>
+<li><p>Protocol buffers</p></li>
+</ul>
+</section>
+<section id="payload">
+<h2>Payload<a class="headerlink" href="#payload" title="Permalink to this headline">#</a></h2>
+<ul class="simple">
+<li><p>Request payload</p></li>
+<li><p>API payload</p></li>
+</ul>
+</section>
+<section id="sockets">
+<h2>Sockets<a class="headerlink" href="#sockets" title="Permalink to this headline">#</a></h2>
+<ul class="simple">
+<li><p>TCP sockets</p></li>
+<li><p>SSL sockets</p></li>
+<li><p>IPv4/IPv6 connections</p></li>
+</ul>
+</section>
+<section id="connection-pools">
+<h2>Connection Pools<a class="headerlink" href="#connection-pools" title="Permalink to this headline">#</a></h2>
+</section>
+<section id="connection-proxy">
+<h2>Connection Proxy<a class="headerlink" href="#connection-proxy" title="Permalink to this headline">#</a></h2>
+</section>
+<section id="posix-message-queue">
+<h2>POSIX message queue<a class="headerlink" href="#posix-message-queue" title="Permalink to this headline">#</a></h2>
+</section>
+<section id="windows-message-queues">
+<h2>Windows message queues<a class="headerlink" href="#windows-message-queues" title="Permalink to this headline">#</a></h2>
+<p><a class="reference external" href="https://web.archive.org/web/20120317065349/http://msdn.microsoft.com/en-us/library/ms644927(VS.85).aspx">Windows Message Queue</a></p>
+</section>
+<section id="distributed-system-or-n-tier-application">
+<h2>Distributed system or N-tier application<a class="headerlink" href="#distributed-system-or-n-tier-application" title="Permalink to this headline">#</a></h2>
+<p>An n-tier application has more than 3 components</p>
+<ul class="simple">
+<li><p>user interface</p></li>
+<li><p>backend server</p></li>
+<li><p>database</p></li>
+</ul>
+<p>The components that are part of such system architecture are:</p>
+<ul class="simple">
+<li><p>Load balancers</p></li>
+<li><p>Caching system</p></li>
+<li><p>Message queue for asynchronous activity</p></li>
+<li><p>Microservices</p></li>
+<li><p>Web services</p></li>
+<li><p>etc</p></li>
+</ul>
+</section>
+<section id="layers-vs-tiers">
+<h2>Layers vs Tiers<a class="headerlink" href="#layers-vs-tiers" title="Permalink to this headline">#</a></h2>
+<ul class="simple">
+<li><p>Layers are at code level, it represent conceptual organization of code. In application, it means the logical separation at code level, for example business layer, service layer and data access layer</p></li>
+<li><p>Tiers is at physical layer of components, where layers are deployed and where layers are run</p></li>
+</ul>
+<blockquote>
+<div><ul class="simple">
+<li><p><i> Logical layers are merely a way of organizing your code. Typical layers include Presentation, Business and Data – the same as the traditional 3-tier model. But when we’re talking about layers, we’re only talking about logical organization of code. In no way is it implied that these layers might run on different computers or in different processes on a single computer or even in a single process on a single computer. All we are doing is discussing a way of organizing a code into a set of layers defined by specific function. </i></p></li>
+<li><p><i> Physical tiers however, are only about where the code runs. Specifically, tiers are places where layers are deployed and where layers run. In other words, tiers are the physical deployment of layers.</i></p></li>
+</ul>
+</div></blockquote>
+<p><span class="math notranslate nohighlight">\(\tiny{\text{Rockford Lhotka, Should all apps be n-tier?}}\)</span></p>
+</section>
+<section id="posix-thread-model">
+<h2>POSIX thread model<a class="headerlink" href="#posix-thread-model" title="Permalink to this headline">#</a></h2>
+</section>
+<section id="static-and-dynamic-dispatch">
+<h2>Static and Dynamic Dispatch<a class="headerlink" href="#static-and-dynamic-dispatch" title="Permalink to this headline">#</a></h2>
+<p><a class="reference external" href="https://medium.com/ingeniouslysimple/static-and-dynamic-dispatch-324d3dc890a3">https://medium.com/ingeniouslysimple/static-and-dynamic-dispatch-324d3dc890a3</a></p>
+</section>
+<section id="static-vs-dynamic-typing">
+<h2>Static vs Dynamic typing<a class="headerlink" href="#static-vs-dynamic-typing" title="Permalink to this headline">#</a></h2>
+<p><a class="reference external" href="http://en.wikipedia.org/wiki/Type_system">http://en.wikipedia.org/wiki/Type_system</a></p>
+<blockquote>
+<div><p><strong>Static typing</strong></p>
+</div></blockquote>
+<blockquote>
+<div><p>A programming language is said to use static typing when type checking is performed during compile-time as opposed to run-time. In static typing, types are associated with variables not values. Statically typed languages include Ada, C, C++, C#, JADE, Java, Fortran, Haskell, ML, Pascal, Perl (with respect to distinguishing scalars, arrays, hashes and subroutines) and Scala. Static typing is a limited form of program verification (see type safety): accordingly, it allows many type errors to be caught early in the development cycle. Static type checkers evaluate only the type information that can be determined at compile time, but are able to verify that the checked conditions hold for all possible executions of the program, which eliminates the need to repeat type checks every time the program is executed. Program execution may also be made more efficient (i.e. faster or taking reduced memory) by omitting runtime type checks and enabling other optimizations.</p>
+</div></blockquote>
+<blockquote>
+<div><p>Because they evaluate type information during compilation, and therefore lack type information that is only available at run-time, static type checkers are conservative. They will reject some programs that may be well-behaved at run-time, but that cannot be statically determined to be well-typed. For example, even if an expression always evaluates to true at run-time, a program containing the code</p>
+</div></blockquote>
+<blockquote>
+<div><p>if &lt;complex test&gt; then 42 else &lt;type error&gt;
+will be rejected as ill-typed, because a static analysis cannot determine that the else branch won’t be taken. The conservative behaviour of static type checkers is advantageous when evaluates to false infrequently: A static type checker can detect type errors in rarely used code paths. Without static type checking, even code coverage tests with 100% code coverage may be unable to find such type errors. Code coverage tests may fail to detect such type errors because the combination of all places where values are created and all places where a certain value is used must be taken into account.</p>
+</div></blockquote>
+<blockquote>
+<div><p>The most widely used statically typed languages are not formally type safe. They have “loopholes” in the programming language specification enabling programmers to write code that circumvents the verification performed by a static type checker and so address a wider range of problems. For example, Java and most C-style languages have type punning, and Haskell has such features as unsafePerformIO: such operations may be unsafe at runtime, in that they can cause unwanted behaviour due to incorrect typing of values when the program runs.</p>
+</div></blockquote>
+<blockquote>
+<div><p><strong>Dynamic typing</strong></p>
+</div></blockquote>
+<blockquote>
+<div><p>A programming language is said to be dynamically typed, or just ‘dynamic’, when the majority of its type checking is performed at run-time as opposed to at compile-time. In dynamic typing, types are associated with values not variables. Dynamically typed languages include Groovy, JavaScript, Lisp, Lua, Objective-C, Perl (with respect to user-defined types but not built-in types), PHP, Prolog, Python, Ruby, Smalltalk and Tcl. Compared to static typing, dynamic typing can be more flexible (e.g. by allowing programs to generate types and functionality based on run-time data), though at the expense of fewer a priori guarantees. This is because a dynamically typed language accepts and attempts to execute some programs which may be ruled as invalid by a static type checker.</p>
+</div></blockquote>
+<blockquote>
+<div><p>Dynamic typing may result in runtime type errors—that is, at runtime, a value may have an unexpected type, and an operation nonsensical for that type is applied. This operation may occur long after the place where the programming mistake was made—that is, the place where the wrong type of data passed into a place it should not have. This makes the bug difficult to locate.</p>
+</div></blockquote>
+<blockquote>
+<div><p>Dynamically typed language systems, compared to their statically typed cousins, make fewer “compile-time” checks on the source code (but will check, for example, that the program is syntactically correct). Run-time checks can potentially be more sophisticated, since they can use dynamic information as well as any information that was present during compilation. On the other hand, runtime checks only assert that conditions hold in a particular execution of the program, and these checks are repeated for every execution of the program.</p>
+</div></blockquote>
+<blockquote>
+<div><p>Development in dynamically typed languages is often supported by programming practices such as unit testing. Testing is a key practice in professional software development, and is particularly important in dynamically typed languages. In practice, the testing done to ensure correct program operation can detect a much wider range of errors than static type-checking, but conversely cannot search as comprehensively for the errors that both testing and static type checking are able to detect. Testing can be incorporated into the software build cycle, in which case it can be thought of as a “compile-time” check, in that the program user will not have to manually run such tests.</p>
+</div></blockquote>
+</section>
+<section id="name-binding">
+<h2>Name binding<a class="headerlink" href="#name-binding" title="Permalink to this headline">#</a></h2>
+<section id="static-binding-vs-dynamic-binding">
+<h3>Static binding vs Dynamic binding<a class="headerlink" href="#static-binding-vs-dynamic-binding" title="Permalink to this headline">#</a></h3>
+<ul class="simple">
+<li><p>Static binding</p>
+<ul>
+<li><p>checks performed without running the program</p>
+<ul>
+<li><p>in most statically typed languages it is done when the program is compiled</p></li>
+</ul>
+</li>
+<li><p>such variables dont change during the course of its lifetime</p>
+<ul>
+<li><p>although we may cast it to some other data type</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Dynamic binding or Late binding or Virtual binding</p>
+<ul>
+<li><p>as</p></li>
+</ul>
+</li>
+</ul>
+</section>
+</section>
+<section id="typing">
+<h2>Typing<a class="headerlink" href="#typing" title="Permalink to this headline">#</a></h2>
+<ul class="simple">
+<li><p>Typing refers to changes in program structure that are due to the differences between data values: integers, characters, floating point numbers, strings, objects and so on. These differences can have many effects, for example:</p>
+<ul>
+<li><p>memory layout (e.g. 4 bytes for an int, 8 bytes for a double, more for an object)</p></li>
+<li><p>instructions executed (e.g. primitive operations to add small integers, library calls to add large ones)</p></li>
+<li><p>program flow (simple subroutine calling conventions versus hash-dispatch for multi-methods)</p></li>
+</ul>
+</li>
+</ul>
+<section id="static-typing-vs-dynamic-typing">
+<h3>Static typing vs Dynamic typing<a class="headerlink" href="#static-typing-vs-dynamic-typing" title="Permalink to this headline">#</a></h3>
+<ul class="simple">
+<li><p>Static typing means that the executable form of a program generated at build time will vary depending upon the types of data values found in the program.</p></li>
+<li><p>Dynamic typing means that the generated code will always be the same, irrespective of type – any differences in execution will be determined at run-time.</p></li>
+</ul>
+</section>
+<section id="dynamic-typing-vs-dynamic-binding">
+<h3>Dynamic typing vs Dynamic binding<a class="headerlink" href="#dynamic-typing-vs-dynamic-binding" title="Permalink to this headline">#</a></h3>
+<ul class="simple">
+<li><p>Dynamic typing defers the determination of the class that an object belongs to until the program is executing</p></li>
+<li><p>Dynamic binding defers the determination of the actual method to invoke on an object until program execution time</p></li>
+</ul>
+</section>
+</section>
+<section id="weak-vs-strong-typing">
+<h2>Weak vs Strong typing<a class="headerlink" href="#weak-vs-strong-typing" title="Permalink to this headline">#</a></h2>
+<p>Check out this JavaScript code:</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="mf">4</span> <span class="o">+</span> <span class="s1">&#39;7&#39;</span><span class="p">;</span>      <span class="c1">// &#39;47&#39;</span>
+<span class="mf">4</span> <span class="o">*</span> <span class="s1">&#39;7&#39;</span><span class="p">;</span>      <span class="c1">// 28</span>
+<span class="mf">2</span> <span class="o">+</span> <span class="kc">true</span><span class="p">;</span>     <span class="c1">// 3</span>
+<span class="kc">false</span> <span class="o">-</span> <span class="mf">3</span><span class="p">;</span>    <span class="c1">// -3</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Adding number 4 to a string ‘7’ gives us a string ‘47’. JavaScript converted number 4 into a string ‘4’ and concatenated two strings — glued them together. JavaScript just took the liberty of assuming this is what we wanted. It’s hard to blame it — what did we want? Adding a number to a string — that doesn’t make sense. Some other language, like Ruby or Python would’ve just complained and not do anything.</p></li>
+<li><p>Multiplying number 4 by a string ‘7’ is, well, 28, according to JavaScript. In this case, it converted string ‘7’ into number 7 and did the normal multiplication.</p></li>
+<li><p>it tries to assume and convert from type to type without telling. Sometimes it’s useful, sometimes it’s mindboggling. This happens because <strong>JavaScript is a weakly typed language</strong>.</p></li>
+<li><p>This has nothing to do with dynamic versus static typing, <strong>which is about WHEN to check for types. Strong versus weak is about HOW SERIOUS DO YOU GET while checking the types.</strong></p></li>
+<li><p><strong>You can say that weak typing is relaxed typing, and strong typing is strict typing.</strong></p></li>
+<li><p>All three are dynamically typed languages</p>
+<ul>
+<li><p>JavaScript has very weak typing</p></li>
+<li><p>PHP has somewhat stronger typing</p></li>
+<li><p>Python — even stronger</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="single-vs-multiple-dispatch">
+<h2>Single vs Multiple Dispatch<a class="headerlink" href="#single-vs-multiple-dispatch" title="Permalink to this headline">#</a></h2>
+<p><a class="reference external" href="https://en.wikipedia.org/wiki/Dynamic_dispatch#Single_and_multiple_dispatch">https://en.wikipedia.org/wiki/Dynamic_dispatch#Single_and_multiple_dispatch</a></p>
+<blockquote>
+<div><p>The choice of <strong>which version of a method to call</strong> may be based either on <strong>a single object</strong>, or <strong>on a combination of objects</strong>. The former is called <strong>single dispatch</strong> and is directly supported by common object-oriented languages such as Smalltalk, C++, Java, C#, Objective-C, Swift, JavaScript, and Python. In these and similar languages, one may call a method for division with syntax that resembles</p>
+</div></blockquote>
+<blockquote>
+<div><blockquote>
+<div><p>dividend.divide(divisor)  # dividend / divisor</p>
+</div></blockquote>
+</div></blockquote>
+<blockquote>
+<div><p>where the <strong>parameters are optional</strong>. This is thought of as sending a message named divide with parameter divisor to dividend. An <strong>implementation will be chosen based only on dividend’s type</strong> (perhaps rational, floating point, matrix), <strong>disregarding the type or value of divisor</strong>.</p>
+</div></blockquote>
+<blockquote>
+<div><p>By contrast, some languages dispatch methods or functions based on the <strong>combination of operands</strong>; in the division case, the <strong>types of the dividend and divisor together</strong> determine which divide operation will be performed. This is known as <strong>multiple dispatch</strong>. Examples of languages that support multiple dispatch are Common Lisp, Dylan, and <strong>Julia</strong>.</p>
+</div></blockquote>
+</section>
+<section id="dynamic-dispatch-mechanisms">
+<h2>Dynamic Dispatch mechanisms<a class="headerlink" href="#dynamic-dispatch-mechanisms" title="Permalink to this headline">#</a></h2>
+<p>A language may be implemented with different dynamic dispatch mechanisms. The choices of the dynamic dispatch mechanism offered by a language to a large extent alter the programming paradigms that are available or are most natural to use within a given language.</p>
+<p>Normally, in a typed language, the dispatch mechanism will be performed based on the type of the arguments (most commonly based on the type of the receiver of a message). <strong>Languages with weak or no typing systems often carry a dispatch table as part of the object data for each object. This allows instance behaviour as each instance may map a given message to a separate method.</strong></p>
+<p>Some languages offer a hybrid approach.</p>
+<p><strong>Dynamic dispatch will always incur an overhead so some languages offer static dispatch for particular methods.</strong></p>
+<ul class="simple">
+<li><p>C++ uses early binding and offers both dynamic and static dispatch. The <strong>default form of dispatch is static</strong>. To get dynamic dispatch the programmer must declare a method as <strong>virtual</strong>.</p></li>
+</ul>
+<p>C++ example:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span><span class="cp"></span>
+<span class="k">using</span><span class="w"> </span><span class="k">namespace</span><span class="w"> </span><span class="nn">std</span><span class="p">;</span><span class="w"></span>
+
+<span class="c1">//make Pet an abstract virtual base class</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">Pet</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="k">public</span><span class="o">:</span><span class="w"></span>
+<span class="w">    </span><span class="k">virtual</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="n">speak</span><span class="p">()</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
+<span class="p">};</span><span class="w"></span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">Dog</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="k">public</span><span class="w"> </span><span class="n">Pet</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="k">public</span><span class="o">:</span><span class="w"></span>
+<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="n">speak</span><span class="p">()</span><span class="w"></span>
+<span class="w">    </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="o">&lt;&lt;</span><span class="s">&quot;Woof!</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="p">};</span><span class="w"></span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">Cat</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="k">public</span><span class="w"> </span><span class="n">Pet</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="k">public</span><span class="o">:</span><span class="w"></span>
+<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="n">speak</span><span class="p">()</span><span class="w"></span>
+<span class="w">    </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="o">&lt;&lt;</span><span class="s">&quot;Meow!</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="p">};</span><span class="w"></span>
+
+<span class="c1">//Speak will be able to accept anything deriving from Pet</span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">speak</span><span class="p">(</span><span class="n">Pet</span><span class="o">&amp;</span><span class="w"> </span><span class="n">pet</span><span class="p">)</span><span class="w"></span>
+<span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">pet</span><span class="p">.</span><span class="n">speak</span><span class="p">();</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+
+<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"></span>
+<span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">Dog</span><span class="w"> </span><span class="n">fido</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="n">Cat</span><span class="w"> </span><span class="n">simba</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="n">speak</span><span class="p">(</span><span class="n">fido</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="n">speak</span><span class="p">(</span><span class="n">simba</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Python example:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Cat</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">speak</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Meow&quot;</span><span class="p">)</span>
+
+<span class="k">class</span> <span class="nc">Dog</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">speak</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Woof&quot;</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">speak</span><span class="p">(</span><span class="n">pet</span><span class="p">):</span>
+    <span class="c1"># Dynamically dispatches the speak method</span>
+    <span class="c1"># pet can either be an instance of Cat or Dog</span>
+    <span class="n">pet</span><span class="o">.</span><span class="n">speak</span><span class="p">()</span>
+
+<span class="n">cat</span> <span class="o">=</span> <span class="n">Cat</span><span class="p">()</span>
+<span class="n">speak</span><span class="p">(</span><span class="n">cat</span><span class="p">)</span>
+<span class="n">dog</span> <span class="o">=</span> <span class="n">Dog</span><span class="p">()</span>
+<span class="n">speak</span><span class="p">(</span><span class="n">dog</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="virtual-method-table">
+<h2>Virtual Method Table<a class="headerlink" href="#virtual-method-table" title="Permalink to this headline">#</a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="https://legacy.python.org/workshops/1998-11/proceedings/papers/lowis/lowis.html">https://legacy.python.org/workshops/1998-11/proceedings/papers/lowis/lowis.html</a></p></li>
+<li><p><a class="reference external" href="https://programs.wiki/wiki/detailed-parsing-of-c-virtual-functions-with-examples.html">https://programs.wiki/wiki/detailed-parsing-of-c-virtual-functions-with-examples.html</a></p></li>
+</ul>
+<blockquote>
+<div><ul class="simple">
+<li><p>Anyone who knows C++ should know that virtual functions are implemented through a Virtual Table.V-Table for short. In this table, <strong>the address table of the Virtual Function of a class is the main address table</strong>. This table solves the problem of <strong>inheritance and override</strong>, and ensures that it can faithfully reflect the actual function. In this way, the <strong>table is shared by classes in instances of classes with virtual functions</strong>, so when we manipulate a subclass with the pointer of the parent class, the <strong>Virtual Function table becomes important, just like a map</strong>, indicating what functions should actually be called.</p></li>
+<li><p>The C++ compiler should ensure that the <strong>pointer to the virtual function table exists at the top of the object instance</strong> (this is to ensure the highest performance when fetching the virtual function table - if there is multiple or multiple inheritance).This means that <strong>we get this virtual function table from the address of the object instance, then we can iterate through the function pointer and call the corresponding function.</strong></p></li>
+</ul>
+</div></blockquote>
+<blockquote>
+<div><ul class="simple">
+<li><p>The <strong>inherited class derives a table of virtual functions</strong>, if any, and copies the virtual function address of the parent class.</p></li>
+<li><p>Virtual functions are <strong>placed in tables in the order in which they are declared</strong>.</p></li>
+<li><p>The virtual function of the parent class precedes the virtual function of the child class</p></li>
+</ul>
+</div></blockquote>
+<blockquote>
+<div><ul class="simple">
+<li><p>The <strong>override function is placed in the new virtual table where the parent virtual function address</strong> is, that is, the parent virtual function address is overridden, thus <strong>achieving polymorphism.</strong></p></li>
+<li><p>Functions that are not overwritten are still listed after the virtual table in the declarative order.</p></li>
+</ul>
+</div></blockquote>
+<ul class="simple">
+<li><p>codes/cpp_templates/virtual_test.cpp</p></li>
+</ul>
+</section>
+<section id="bottlenecks">
+<h2>Bottlenecks<a class="headerlink" href="#bottlenecks" title="Permalink to this headline">#</a></h2>
+</section>
+<section id="cdn-content-delivery-network">
+<h2>CDN - Content delivery network<a class="headerlink" href="#cdn-content-delivery-network" title="Permalink to this headline">#</a></h2>
+<blockquote>
+<div><p>A content delivery network (CDN) refers to a geographically distributed group of servers which work together to provide fast delivery of Internet content.</p>
+</div></blockquote>
+<blockquote>
+<div><p>A CDN allows for the quick transfer of assets needed for loading Internet content including HTML pages, javascript files, stylesheets, images, and videos. The popularity of CDN services continues to grow, and today the majority of web traffic is served through CDNs, including traffic from major sites like Facebook, Netflix, and Amazon.</p>
+</div></blockquote>
+<blockquote>
+<div><p>It helps cache content at the network edge, which improves website performance. Many websites struggle to have their performance needs met by traditional hosting services, which is why they opt for CDNs.</p>
+</div></blockquote>
+<blockquote>
+<div><p>Benfits of using a CDN:</p>
+<ul class="simple">
+<li><p>Improving website load times</p></li>
+<li><p>Reducing bandwidth costs</p></li>
+<li><p>Increasing content availability and redundancy</p></li>
+<li><p>Improving website security</p></li>
+</ul>
+</div></blockquote>
+<p><img alt="How does CDN work" src="https://cf-assets.www.cloudflare.com/slt3lc6tev37/540CpDkqSDg6QAPi5nO1AP/b44a3edb5abc4e115ddab9b4d9bf7a32/Learning-How-does-a-CDN-work.svg" /></p>
+<p><span class="math notranslate nohighlight">\(\tiny{\text{cloudflare.com}}\)</span></p>
+</section>
+<section id="point-of-presence-pop">
+<h2>Point of Presence(PoP)<a class="headerlink" href="#point-of-presence-pop" title="Permalink to this headline">#</a></h2>
+<p>A point of presence (PoP) is a demarcation point, access point, or physical location at which two or more networks or communication devices share a connection.</p>
+<p>The routers, switches, servers, and other devices necessary for traffic to cross over networks are all present at PoPs. Internet service providers and edge networks like StackPath typically have multiple points of presence located near large Internet exchange points (IXPs) at which they have peering agreements. The proximity of points of presence and Internet exchange points is one very important factor in how quickly traffic is able to traverse the Internet.</p>
+<p><span class="math notranslate nohighlight">\(\tiny{\text{https://blog.stackpath.com/}}\)</span></p>
+</section>
+<section id="domain-name-service-dns">
+<h2>Domain Name Service (DNS)<a class="headerlink" href="#domain-name-service-dns" title="Permalink to this headline">#</a></h2>
+<p>This query service maps long IP addresses to domain names such as <a class="reference external" href="http://google.com">google.com</a>. There are four key components:</p>
+<ul class="simple">
+<li><p>DNS Resolver</p></li>
+<li><p>Root nameserver</p></li>
+<li><p>Top level domain nameserver</p></li>
+<li><p>Authorative nameserver</p></li>
+</ul>
+<p>The authorative server sends list of IP addresses in a round-robin fashion, enabling to use other IP addresses if the client doesn’t respond within a time limit.</p>
+<p><img alt="How DNS works" src="https://foxutech.com/wp-content/uploads/2017/09/How-DNS-works.png" /></p>
+<p><span class="math notranslate nohighlight">\(\tiny{\text{https://foxutech.com}}\)</span></p>
+</section>
+<section id="system-design-problems">
+<h2>System Design Problems<a class="headerlink" href="#system-design-problems" title="Permalink to this headline">#</a></h2>
+<ul>
+<li><ol class="simple">
+<li><p>Requirements clarifications</p></li>
+</ol>
+<ul class="simple">
+<li><p>they are open-ended questions</p></li>
+<li><p>they dont have one correct answer</p></li>
+<li><p>define end goals of system</p></li>
+<li><p>clarify which part of system to focus on</p></li>
+</ul>
+</li>
+<li><ol class="simple">
+<li><p>Back-of-the-envelope estimation</p></li>
+</ol>
+<ul class="simple">
+<li><p>estimate scale of system to design</p></li>
+<li><p>how much storage is needed</p></li>
+<li><p>what type of storage is required, photos, videos, tweets</p></li>
+<li><p>what network bandwidth is expected</p></li>
+</ul>
+</li>
+<li><ol class="simple">
+<li><p>System interface definition</p></li>
+</ol>
+<ul class="simple">
+<li><p>define the main APIs</p></li>
+<li><p>define the main contracts expected within the system</p></li>
+</ul>
+</li>
+<li><ol class="simple">
+<li><p>Defining data model</p></li>
+</ol>
+<ul class="simple">
+<li><p>how data flows between components</p></li>
+<li><p>define different aspects of data management for example storage</p></li>
+<li><p>what type of database to choose - relational or no-sql</p></li>
+<li><p>how will storage of photos and videos be done</p></li>
+</ul>
+</li>
+<li><ol class="simple">
+<li><p>High-level design</p></li>
+</ol>
+<ul class="simple">
+<li><p>draw block diagrams,</p>
+<ul>
+<li><p>as how many application server,</p></li>
+<li><p>how will load balancers be designed,</p></li>
+<li><p>what sort of database is required,</p></li>
+<li><p>how many read-writes are needed,</p></li>
+<li><p>what sort of distributed file storage system is required</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><ol class="simple">
+<li><p>Detailed design</p></li>
+</ol>
+<ul class="simple">
+<li><p>dig deeper into couple of major components</p></li>
+<li><p>which layer would we need caching</p></li>
+<li><p>how will we partition the data</p></li>
+<li><p>what time will have major tweets and how to optimize</p></li>
+<li><p>which components need load balancing</p></li>
+</ul>
+</li>
+<li><ol class="simple">
+<li><p>Identifying and resolving bottlenecks</p></li>
+</ol>
+<ul class="simple">
+<li><p>which components may cause bottlenecks</p></li>
+<li><p>how to create redundant serives/applications to serve well</p></li>
+<li><p>how to monitor performance of services</p></li>
+</ul>
+</li>
+</ul>
+<section id="design-url-shortening-system-like-bit-ly-or-tinyurl">
+<h3>Design URL shortening system like <a class="reference external" href="http://bit.ly">bit.ly</a> or tinyurl<a class="headerlink" href="#design-url-shortening-system-like-bit-ly-or-tinyurl" title="Permalink to this headline">#</a></h3>
+<ul class="simple">
+<li><p>What is the need?</p>
+<ul>
+<li><p>shorter links</p></li>
+<li><p>saves space</p></li>
+<li><p>less likely to mistype</p></li>
+</ul>
+</li>
+<li><p>What are the requirements of designing such system?</p>
+<ul>
+<li><p>Functional requirements</p>
+<ul>
+<li><p>shorter link or aliases</p></li>
+<li><p>service must redirects them to original link</p></li>
+<li><p>users should have a choice of picking up shorter name link</p></li>
+<li><p>should expire after standard time span</p></li>
+</ul>
+</li>
+<li><p>Non-Functional requirements</p>
+<ul>
+<li><p>minimal or no downtime</p></li>
+<li><p>url redirection must happen realtime</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="how-hotstar-scaled-10-3-million-concurrent-users">
+<h3>How hotstar scaled 10.3 million concurrent users<a class="headerlink" href="#how-hotstar-scaled-10-3-million-concurrent-users" title="Permalink to this headline">#</a></h3>
+<p><a class="reference external" href="https://www.scaleyourapp.com/how-hotstar-scaled-with-10-3-million-concurrent-users-an-architectural-insight/">https://www.scaleyourapp.com/how-hotstar-scaled-with-10-3-million-concurrent-users-an-architectural-insight/</a></p>
+</section>
+<section id="how-facebook-support-global-events">
+<h3>How facebook support global events<a class="headerlink" href="#how-facebook-support-global-events" title="Permalink to this headline">#</a></h3>
+<p><a class="reference external" href="https://engineering.fb.com/2018/02/12/production-engineering/how-production-engineers-support-global-events-on-facebook/">https://engineering.fb.com/2018/02/12/production-engineering/how-production-engineers-support-global-events-on-facebook/</a></p>
+</section>
+</section>
+<section id="application-server-features">
+<h2>Application server features<a class="headerlink" href="#application-server-features" title="Permalink to this headline">#</a></h2>
+</section>
+<section id="web-server-features">
+<h2>Web server features<a class="headerlink" href="#web-server-features" title="Permalink to this headline">#</a></h2>
+</section>
+<section id="api">
+<h2>API<a class="headerlink" href="#api" title="Permalink to this headline">#</a></h2>
+<p>Application Protocol Interface</p>
+</section>
+<section id="proxy-server">
+<h2>Proxy Server<a class="headerlink" href="#proxy-server" title="Permalink to this headline">#</a></h2>
+<ul class="simple">
+<li><p>Proxy acts as a firewall</p></li>
+<li><p>Multiple clients can talk to the same proxy and can interact on our behalf with the outside world</p></li>
+<li><p>Acts as a security layer and protects against phishing and other malwares</p></li>
+<li><p>Helps in caching by saving static content</p></li>
+<li><p>helps in encrypting/decrypting sensitive client data</p></li>
+</ul>
+</section>
+<section id="reverse-proxy-server">
+<h2>Reverse Proxy Server<a class="headerlink" href="#reverse-proxy-server" title="Permalink to this headline">#</a></h2>
+<ul class="simple">
+<li><p>instead of protecting the client, it protects the server</p></li>
+<li><p>outside world can interact with reverse proxy server instead of interacting with server directly</p></li>
+<li><p>works as load balancing</p></li>
+<li><p>helps in caching</p></li>
+<li><p>helps in compressing the data, thereby improving the bandwidth and performance of network</p></li>
+</ul>
+</section>
+<section id="oauth-2-0">
+<h2>OAuth 2.0<a class="headerlink" href="#oauth-2-0" title="Permalink to this headline">#</a></h2>
+<p>When we launch Spotify to listen to some music, we may choose into login using Facebook. Spotify logins using Facebook API.</p>
+<ul class="simple">
+<li><p>We may think, Spotify uses Facebook username and password to login. Wrong. <strong><em>It does not</em></strong></p></li>
+<li><p>Passwords are never passed from server to server in an OAuth 2.0 framework</p></li>
+</ul>
+<p>In the example below, Sarah wants to check her balance in Memorial bank account. She logs into MyBucks application to check her checkings bank account in MyBucks dashboard.</p>
+<ul class="simple">
+<li><p>MyBucks makes an <em><strong>authorization request</strong></em> to memorial bank authorization server</p></li>
+<li><p>Memorial bank asks Sarah to <em><strong>authorize</strong></em> MyBucks to access her account balances</p></li>
+<li><p>Sarah’s authorization is sent back to Memorial Bank <strong><em>authorization server</em></strong> with <em><strong>authorization grant and authorization code</strong></em></p></li>
+<li><p>Authorization Server does not hold any of Sarah’s account details. It is with <em><strong>Resource Server</strong></em>, so authorization code is used for interactions</p></li>
+<li><p>Authorization Server then sends MyBucks application with <em><strong>access token</strong></em> to get Sarah’s checking details</p></li>
+<li><p>The access token has details of what <strong><em>authorization Sarah provided</em></strong>. In this case its her account balances only</p></li>
+<li><p>MyBucks sends <em><strong>access token</strong></em> to Resource Server, which validates the token</p></li>
+<li><p>Resource server sends the <strong><em>protected resource</em></strong></p></li>
+</ul>
+<p><img alt="OAuth2" src="../_images/OAuth2.png" /></p>
+<p><span class="math notranslate nohighlight">\(\tiny{\text{YouTube - InterSystems Learning Services}}\)</span></p>
+</section>
+<section id="master-slave-model">
+<h2>Master Slave Model<a class="headerlink" href="#master-slave-model" title="Permalink to this headline">#</a></h2>
+</section>
+<section id="api-gateway">
+<h2>API Gateway<a class="headerlink" href="#api-gateway" title="Permalink to this headline">#</a></h2>
+<ul class="simple">
+<li><p>APIs are the interfaces which applications use to communicate and the gateway is the control point for routing, shaping, and securing that traffic</p></li>
+<li><p>Incoming traffic is filtered and routed to the appropriate services.</p></li>
+</ul>
+<p>Example</p>
+<ul class="simple">
+<li><p>Reverse proxy server. Nginx and HAProxy</p></li>
+</ul>
+<img src="https://docs.microsoft.com/en-us/azure/architecture/microservices/images/gateway.png"></section>
+<section id="worker-pool">
+<h2>Worker Pool<a class="headerlink" href="#worker-pool" title="Permalink to this headline">#</a></h2>
+</section>
+<section id="data-lake">
+<h2>Data Lake<a class="headerlink" href="#data-lake" title="Permalink to this headline">#</a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="https://www.snaplogic.com/glossary/data-lake">https://www.snaplogic.com/glossary/data-lake</a></p></li>
+<li><p><a class="reference external" href="https://www.snaplogic.com/glossary/hadoop-data-lake">https://www.snaplogic.com/glossary/hadoop-data-lake</a></p></li>
+</ul>
+</section>
+<section id="message-queue">
+<h2>Message Queue<a class="headerlink" href="#message-queue" title="Permalink to this headline">#</a></h2>
+<p>A message queue is a data structure, or a container - a way to hold messages for eventual consumption</p>
+<section id="message-broker">
+<h3>Message Broker<a class="headerlink" href="#message-broker" title="Permalink to this headline">#</a></h3>
+<ul class="simple">
+<li><p>A message broker is a <strong>separate component that manages queues</strong></p></li>
+<li><p>It is also known as a <strong>service bus</strong> which is a piece of middleware responsible with persisting and routing of message while allowing you to decouple your system into smaller parts.</p>
+<ul>
+<li><p>A message queue is a part of a message broker and is just a persistence mechanism.</p></li>
+</ul>
+</li>
+</ul>
+</section>
+</section>
+<section id="web-components">
+<h2>Web components<a class="headerlink" href="#web-components" title="Permalink to this headline">#</a></h2>
+<ul class="simple">
+<li><p>low level browser APIs</p></li>
+<li><p>gives a standard component interface</p></li>
+<li><p>web components are not specific framework</p></li>
+<li><p>web components simply tell broser <strong>“When and Where to create components, but not how”</strong></p></li>
+</ul>
+<section id="amp-component">
+<h3>AMP component<a class="headerlink" href="#amp-component" title="Permalink to this headline">#</a></h3>
+</section>
+</section>
+<section id="web-2-0">
+<h2>Web 2.0<a class="headerlink" href="#web-2-0" title="Permalink to this headline">#</a></h2>
+</section>
+<section id="costs-of-operation">
+<h2>Costs of operation<a class="headerlink" href="#costs-of-operation" title="Permalink to this headline">#</a></h2>
+<ul class="simple">
+<li><p>Read from disk</p></li>
+<li><p>Read from memory</p></li>
+<li><p>Local Area Network (LAN) round-trip</p></li>
+<li><p>Cross Continental Network</p></li>
+</ul>
+</section>
+<section id="solution-patterns">
+<h2>Solution Patterns<a class="headerlink" href="#solution-patterns" title="Permalink to this headline">#</a></h2>
+<ul class="simple">
+<li><p>Sharding Data</p></li>
+<li><p>Replication Types</p></li>
+<li><p>Write-Ahead Logging</p></li>
+<li><p>Separating Data and Metadata Storage</p></li>
+<li><p>Load Distribution</p></li>
+</ul>
+</section>
+<section id="trade-offs-and-compromise">
+<h2>Trade-Offs and Compromise<a class="headerlink" href="#trade-offs-and-compromise" title="Permalink to this headline">#</a></h2>
+<ul class="simple">
+<li><p>Rotating disk and pay for latency</p></li>
+<li><p>Flash drive and pay more money</p></li>
+<li><p>Seek multiple solutions, pick one and commit to it</p></li>
+</ul>
+</section>
+<section id="better-practices">
+<h2>Better Practices<a class="headerlink" href="#better-practices" title="Permalink to this headline">#</a></h2>
+<ul class="simple">
+<li><p>how you think - how you solve problems</p></li>
+<li><p>most questions will be open ended</p>
+<ul>
+<li><p>ask for clarifications</p></li>
+</ul>
+</li>
+<li><p>first solution may not be the best solution</p>
+<ul>
+<li><p>ways to improve upon it</p></li>
+</ul>
+</li>
+<li><p>practice on paper or white-board</p></li>
+</ul>
+</section>
+<section id="hardware">
+<h2>Hardware<a class="headerlink" href="#hardware" title="Permalink to this headline">#</a></h2>
+</section>
+<section id="stack-vs-heap">
+<h2>Stack vs Heap<a class="headerlink" href="#stack-vs-heap" title="Permalink to this headline">#</a></h2>
+</section>
+<section id="functional-programming-vs-oop">
+<h2>Functional programming vs OOP<a class="headerlink" href="#functional-programming-vs-oop" title="Permalink to this headline">#</a></h2>
+</section>
+<section id="advantages-of-physical-layer-vs-logical-layer-separation">
+<h2>Advantages of Physical layer vs Logical layer separation<a class="headerlink" href="#advantages-of-physical-layer-vs-logical-layer-separation" title="Permalink to this headline">#</a></h2>
+</section>
+<section id="service-providers">
+<h2>Service Providers<a class="headerlink" href="#service-providers" title="Permalink to this headline">#</a></h2>
+<ul class="simple">
+<li><p>What are the type of features that service providers offer like Gmail, Microsoft or IMAP</p></li>
+</ul>
+</section>
+<section id="calculate-capacity-of-shard-services">
+<h2>Calculate capacity of shard services<a class="headerlink" href="#calculate-capacity-of-shard-services" title="Permalink to this headline">#</a></h2>
+</section>
+<section id="calculate-acceptable-latency">
+<h2>Calculate acceptable latency<a class="headerlink" href="#calculate-acceptable-latency" title="Permalink to this headline">#</a></h2>
+</section>
+<section id="calculate-hardware-capability">
+<h2>Calculate hardware capability<a class="headerlink" href="#calculate-hardware-capability" title="Permalink to this headline">#</a></h2>
+</section>
+<section id="calculate-scalability-requirements">
+<h2>Calculate scalability requirements<a class="headerlink" href="#calculate-scalability-requirements" title="Permalink to this headline">#</a></h2>
+</section>
+<section id="elasticity-of-cloud">
+<h2>Elasticity of cloud<a class="headerlink" href="#elasticity-of-cloud" title="Permalink to this headline">#</a></h2>
+</section>
+<section id="features-that-cloud-provides">
+<h2>Features that cloud provides<a class="headerlink" href="#features-that-cloud-provides" title="Permalink to this headline">#</a></h2>
+</section>
+<section id="user-session">
+<h2>User Session<a class="headerlink" href="#user-session" title="Permalink to this headline">#</a></h2>
+<ul class="simple">
+<li><p>When a website stores user state, the next time the user logs in they can continue from where they left off</p></li>
+<li><p>It would not feel like that one is starting fresh &amp; all the previous activity is lost</p></li>
+</ul>
+</section>
+<section id="algorithms">
+<h2>Algorithms<a class="headerlink" href="#algorithms" title="Permalink to this headline">#</a></h2>
+<section id="completeness">
+<h3>Completeness<a class="headerlink" href="#completeness" title="Permalink to this headline">#</a></h3>
+</section>
+<section id="time-complexity">
+<h3>Time complexity<a class="headerlink" href="#time-complexity" title="Permalink to this headline">#</a></h3>
+</section>
+<section id="space-complexity">
+<h3>Space complexity<a class="headerlink" href="#space-complexity" title="Permalink to this headline">#</a></h3>
+</section>
+</section>
+<section id="hypervisor">
+<h2>Hypervisor<a class="headerlink" href="#hypervisor" title="Permalink to this headline">#</a></h2>
+<ul class="simple">
+<li><p>Hypervisor makes virtualization possible.</p></li>
+<li><p>It is also called virtual machine monitor.</p></li>
+<li><p>It divides host system and allocates the resources to each of the divided virtual environment.</p></li>
+<li><p>there can be multiple operating system in a single host system</p></li>
+<li><p>Type 1 hypervisor</p>
+<ul>
+<li><p>native hypervisor</p></li>
+<li><p>runs directly on the underlying host system</p></li>
+<li><p>it has direct access to host system hardware, so does not require base server operating system</p></li>
+</ul>
+</li>
+<li><p>Type 2 hypervisor</p>
+<ul>
+<li><p>they make use of underlying host operating system</p></li>
+<li><p>hosted hypervisor</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="virtualization">
+<h2>Virtualization<a class="headerlink" href="#virtualization" title="Permalink to this headline">#</a></h2>
+</section>
+<section id="containerization">
+<h2>Containerization<a class="headerlink" href="#containerization" title="Permalink to this headline">#</a></h2>
+<ul class="simple">
+<li><p>An application that is developed and deployed is bundled and wrapped together with all its configuration files and dependencies. This is <strong>containerization</strong> and the bundle is called <strong>container</strong>. Examples of containerization environments are Docker and Kubernetes.</p></li>
+</ul>
+</section>
+<section id="virtualization-vs-containerization">
+<h2>Virtualization vs Containerization<a class="headerlink" href="#virtualization-vs-containerization" title="Permalink to this headline">#</a></h2>
+<ul class="simple">
+<li><p>Container provide an isolated environment for running the application</p></li>
+<li><p>the entire user space is explicitly dedicated to application</p></li>
+<li><p>any changes made inside container is not reflected to the host or other containers running on the same host</p></li>
+<li><p>container is the abstraction of application layer</p></li>
+<li><p>each ocntainer is a different application</p></li>
+<li><p>hypervisor gives the entire virtual machine to the guest which includes the kernel as well</p></li>
+<li><p>virtual machine is the abstraction of hardware layer and each virtual machine is a physical machine</p></li>
+</ul>
+</section>
+<section id="bare-metal-deployment">
+<h2>Bare metal deployment<a class="headerlink" href="#bare-metal-deployment" title="Permalink to this headline">#</a></h2>
+<section id="bare-metal-vs-virtual-machine-deployments">
+<h3>Bare Metal vs. Virtual Machine Deployments<a class="headerlink" href="#bare-metal-vs-virtual-machine-deployments" title="Permalink to this headline">#</a></h3>
+<ul class="simple">
+<li><p><a class="reference external" href="https://www.containiq.com/post/deploying-kubernetes-on-bare-metal">https://www.containiq.com/post/deploying-kubernetes-on-bare-metal</a></p></li>
+</ul>
+</section>
+</section>
+<section id="ttl">
+<h2>TTL<a class="headerlink" href="#ttl" title="Permalink to this headline">#</a></h2>
+<ul class="simple">
+<li><p>Time to live</p></li>
+</ul>
+</section>
+<section id="tls-ssl">
+<h2>TLS/SSL<a class="headerlink" href="#tls-ssl" title="Permalink to this headline">#</a></h2>
+</section>
+<section id="ca-certificate">
+<h2>CA certificate<a class="headerlink" href="#ca-certificate" title="Permalink to this headline">#</a></h2>
+</section>
+<section id="public-private-key">
+<h2>Public-Private Key<a class="headerlink" href="#public-private-key" title="Permalink to this headline">#</a></h2>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./system_design"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="design_patterns.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">System Design Summary</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="googlecloud_use_cases.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Google - Customer story</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By Chandra<br/>
+  
+      &copy; Copyright 2022.<br/>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>

@@ -107,7 +107,7 @@ const thebe_selector_output = ".output, .cell_output"
         <ul class="nav bd-sidenav bd-sidenav__home-link">
             <li class="toctree-l1">
                 <a class="reference internal" href="../intro.html">
-                    My learning notebook
+                    Welcome
                 </a>
             </li>
         </ul>
@@ -130,6 +130,26 @@ const thebe_selector_output = ".output, .cell_output"
    <li class="toctree-l2">
     <a class="reference internal" href="../system_design/design_patterns.html">
      System Design Summary
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../system_design/googlecloud_use_cases.html">
+     Google - Customer story
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../system_design/aws_usecases.html">
+     AWS - Customer story
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../system_design/design_general_use_cases.html">
+     Case study
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../system_design/netflix.html">
+     Netflix creativity
     </a>
    </li>
   </ul>
@@ -1182,149 +1202,150 @@ And must importantly, :q will quite the mode.</p>
 <h2>Shell commands<a class="headerlink" href="#shell-commands" title="Permalink to this headline">#</a></h2>
 <section id="mac-specific">
 <h3>Mac specific<a class="headerlink" href="#mac-specific" title="Permalink to this headline">#</a></h3>
-<ol class="simple">
+<ul class="simple">
 <li><p>Search for files at command line with mdfind(Spotlight)</p></li>
-</ol>
+</ul>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>mdfind -name Filename
 </pre></div>
 </div>
-<ol class="simple">
+<ul class="simple">
 <li><p>Search for string from another search result</p></li>
-</ol>
+</ul>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>mdfind -name Filename <span class="p">|</span> grep <span class="s2">&quot;stri2&quot;</span>
 </pre></div>
 </div>
 </section>
 <section id="find-files-dir">
 <h3>find files/dir<a class="headerlink" href="#find-files-dir" title="Permalink to this headline">#</a></h3>
-<ol class="simple">
+<ul class="simple">
 <li><p>find all file recursively in current working directory</p></li>
-</ol>
+</ul>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>find . -type f
 </pre></div>
 </div>
-<ol class="simple">
+<ul class="simple">
 <li><p>find all directory recursively in current working directory</p></li>
-</ol>
+</ul>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>find . -type d
 </pre></div>
 </div>
-<ol class="simple">
+<ul class="simple">
 <li><p>find contents of files in current directory recursively</p></li>
-</ol>
+</ul>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>find ./learnings -type f -exec grep -H <span class="s1">&#39;xgboost&#39;</span> <span class="o">{}</span> <span class="se">\;</span>
 </pre></div>
 </div>
-<ol class="simple">
+<ul class="simple">
 <li><p>find all files recursively in current working directory with case sensitive pattern and redirect into a file</p></li>
-</ol>
+</ul>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>find . -type f -name <span class="s2">&quot;*Boost*&quot;</span>
 </pre></div>
 </div>
-<ol class="simple">
+<ul class="simple">
 <li><p>find all files recursively in current working directory with case insensitive pattern and redirect into a file</p></li>
-</ol>
+</ul>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>find . -type f -iname <span class="s2">&quot;*Boost*&quot;</span>  
 find . -type f &gt; somefile.txt
 </pre></div>
 </div>
-<ol class="simple">
+<ul class="simple">
 <li><p>copy buffer from/into mac terminal</p></li>
-</ol>
+</ul>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>pbcopy/pbpaste
 </pre></div>
 </div>
-<ol class="simple">
+<ul class="simple">
 <li><p>find all files recursively in current working directory and redirect into buffer</p></li>
-</ol>
+</ul>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>find . -type f <span class="p">|</span> pbcopy
 </pre></div>
 </div>
-<ol class="simple">
+<ul class="simple">
 <li><p>find text in all files in current folder recursively</p></li>
-</ol>
+</ul>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>grep -r <span class="s1">&#39;vector&#39;</span> 
 </pre></div>
 </div>
-<ol class="simple">
+<ul class="simple">
 <li><p>find text in all files in current folder recursively, only file names</p></li>
-</ol>
+</ul>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>grep -rl <span class="s1">&#39;vector&#39;</span>
 </pre></div>
 </div>
-<ol class="simple">
+<ul class="simple">
 <li><p>find text in all files in current folder recursively, only file names, only unique names</p></li>
-</ol>
+</ul>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>grep -rle <span class="s1">&#39;vector&#39;</span> 
 </pre></div>
 </div>
-<ol class="simple">
+<ul class="simple">
 <li><p>find text in all files in current folder recursively, only file names, only unique names, only cpp files</p></li>
-</ol>
+</ul>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>grep --include<span class="o">=</span><span class="s2">&quot;*.cpp&quot;</span> -rle <span class="s1">&#39;vector&#39;</span> .
 </pre></div>
 </div>
 </section>
 <section id="shell">
 <h3>Shell<a class="headerlink" href="#shell" title="Permalink to this headline">#</a></h3>
-<ol class="simple">
+<ul class="simple">
 <li><p>How to check which sh am i using</p></li>
-</ol>
+</ul>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="nv">$SHELL</span> --version
 </pre></div>
 </div>
-<ol class="simple">
+<ul class="simple">
 <li><p>Print environment details</p></li>
-</ol>
+</ul>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>printenv
 </pre></div>
 </div>
-<ol class="simple">
+<ul class="simple">
 <li><p>List processes run</p></li>
-</ol>
+</ul>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>ps -elf
 </pre></div>
 </div>
 <section id="navigation">
 <h4>Navigation<a class="headerlink" href="#navigation" title="Permalink to this headline">#</a></h4>
-<ol class="simple">
+<ul class="simple">
 <li><p>How to move to the beginning of command line
 <code class="docutils literal notranslate"><span class="pre">Ctrl+A</span></code></p></li>
 <li><p>How to move to the end of command line
 <code class="docutils literal notranslate"><span class="pre">Ctrl+E</span></code></p></li>
-</ol>
+<li><p>removes all text from the cursor to the end of the line.
+<code class="docutils literal notranslate"><span class="pre">Ctrl+K</span></code></p></li>
+</ul>
 </section>
 <section id="important-folder-file-locations">
 <h4>Important folder/file locations<a class="headerlink" href="#important-folder-file-locations" title="Permalink to this headline">#</a></h4>
-<ol class="simple">
+<ul class="simple">
 <li><p>Python packages installation directory</p></li>
-</ol>
+</ul>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>ls ~/opt/anaconda3/envs/reco/lib/python3.8/site-packages/
 </pre></div>
 </div>
 </section>
 <section id="ls">
 <h4>ls<a class="headerlink" href="#ls" title="Permalink to this headline">#</a></h4>
-<ol class="simple">
+<ul class="simple">
 <li><p>List directory only</p></li>
-</ol>
+</ul>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>ls -d */  <span class="c1"># or   </span>
 ls -l <span class="p">|</span> grep <span class="s1">&#39;^d&#39;</span>  <span class="c1"># or  </span>
 ls -l <span class="p">|</span> egrep <span class="s1">&#39;^d&#39;</span>
 </pre></div>
 </div>
-<ol class="simple">
+<ul class="simple">
 <li><p>List last edited files in subdirectory recursively</p></li>
-</ol>
+</ul>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>ls -lRt <span class="p">|</span> less
 </pre></div>
 </div>
 </section>
 <section id="file-content-edits">
 <h4>File Content Edits<a class="headerlink" href="#file-content-edits" title="Permalink to this headline">#</a></h4>
-<ol class="simple">
-<li><p>Delete odd/even lines from file</p></li>
-</ol>
+<ul>
+<li><p>Delete odd/even lines from file</p>
 <ul class="simple">
 <li><p>keep odd lines</p></li>
 </ul>
@@ -1355,16 +1376,16 @@ ls -l <span class="p">|</span> egrep <span class="s1">&#39;^d&#39;</span>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>awk <span class="s1">&#39;NR%2==0&#39;</span> infile &gt; outfile
 </pre></div>
 </div>
-<ol class="simple">
+</li>
 <li><p>find the 3rd word in a sentence</p></li>
-</ol>
+</ul>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="nv">string1</span><span class="o">=</span><span class="s2">&quot;this is just a dummy string&quot;</span>
 <span class="nb">echo</span> <span class="s2">&quot;</span><span class="nv">$string1</span><span class="s2">&quot;</span> <span class="p">|</span> awk -F <span class="s1">&#39; &#39;</span>  <span class="s1">&#39;{print $3}&#39;</span>
 </pre></div>
 </div>
-<ol class="simple">
+<ul class="simple">
 <li><p>find the 2nd word in all sentences in a file</p></li>
-</ol>
+</ul>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>awk -F <span class="s1">&#39; &#39;</span>  <span class="s1">&#39;{print $2}&#39;</span> testFile3 &gt; testFile4
 </pre></div>
 </div>
@@ -1372,36 +1393,36 @@ ls -l <span class="p">|</span> egrep <span class="s1">&#39;^d&#39;</span>
 </section>
 <section id="disk-usage">
 <h3>Disk usage<a class="headerlink" href="#disk-usage" title="Permalink to this headline">#</a></h3>
-<ol class="simple">
+<ul class="simple">
 <li><p>Find the folder size of one folder in human readable format</p></li>
-</ol>
+</ul>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>du -sh directory_name
 </pre></div>
 </div>
-<ol class="simple">
+<ul class="simple">
 <li><p>Find the folder size of all folders in human readable format</p></li>
-</ol>
+</ul>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>du -hd1 directory_name
 </pre></div>
 </div>
-<ol class="simple">
+<ul class="simple">
 <li><p>Find all the big folders of particular size upto a limit</p></li>
-</ol>
+</ul>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>du -hax gitrepos/dlwpt-code <span class="p">|</span> grep <span class="s1">&#39;[0-9]M&#39;</span> <span class="p">|</span> sort -nr
 </pre></div>
 </div>
 </section>
 <section id="process-port">
 <h3>Process/Port<a class="headerlink" href="#process-port" title="Permalink to this headline">#</a></h3>
-<ol class="simple">
+<ul class="simple">
 <li><p>Find information about specific port(where 3000 is your current port in use)</p></li>
-</ol>
+</ul>
 <blockquote>
 <div><p>lsof -i :3000</p>
 </div></blockquote>
-<ol class="simple">
+<ul class="simple">
 <li><p>Find information about specific pid</p></li>
-</ol>
+</ul>
 <blockquote>
 <div><p>ps ax | grep <PID></p>
 </div></blockquote>
@@ -1710,85 +1731,85 @@ InstalledDir: /usr/local/opt/llvm/bin</p>
 </section>
 <section id="jupyter-notebook">
 <h2>Jupyter Notebook<a class="headerlink" href="#jupyter-notebook" title="Permalink to this headline">#</a></h2>
-<ol class="simple">
+<ul class="simple">
 <li><p>Convert notebook into interactive slide</p></li>
-</ol>
+</ul>
 <blockquote>
 <div><p>jupyter nbconvert slides-in-a-notebook.ipynb –to slides –ServePostProcessor.port=8910 –post serve<br />
 this uses reveal.js</p>
 </div></blockquote>
-<ol class="simple">
+<ul class="simple">
 <li><p>Convert notebook into html with toc</p></li>
-</ol>
+</ul>
 <blockquote>
 <div><p>jupyter nbconvert –to html_toc FILE.ipynb</p>
 </div></blockquote>
-<ol class="simple">
+<ul class="simple">
 <li><p><a class="reference external" href="https://blog.kdheepak.com/jupyter-notebook-revealjs-and-github-pages">How to host using reveal.js</a></p></li>
 <li><p>Launch notebook in other env</p></li>
-</ol>
+</ul>
 <blockquote>
 <div><p>cd ~/anaconda/workingDir/<br />
 jupyter notebook –port 5656</p>
 </div></blockquote>
-<ol class="simple">
+<ul class="simple">
 <li><p>Running without password</p></li>
-</ol>
+</ul>
 <blockquote>
 <div><p>../../bin/jupyter notebook –port 5657 –ip=’*’ –NotebookApp.token=’’ –NotebookApp.password=’’</p>
 </div></blockquote>
-<ol class="simple">
+<ul class="simple">
 <li><p>Jupyter magic line and cell commands</p></li>
-</ol>
+</ul>
 <blockquote>
 <div></div></blockquote>
-<ol class="simple">
+<ul class="simple">
 <li><p>terminal commands</p></li>
-</ol>
+</ul>
 <blockquote>
 <div><p>! ls -l ../.</p>
 </div></blockquote>
-<ol class="simple">
+<ul class="simple">
 <li><p>Help on any python command</p></li>
-</ol>
+</ul>
 <blockquote>
 <div><p>??pd.merge</p>
 </div></blockquote>
-<ol class="simple">
+<ul class="simple">
 <li><p>Print script with code highlighting and syntax</p></li>
-</ol>
+</ul>
 <blockquote>
 <div></div></blockquote>
-<ol class="simple">
+<ul class="simple">
 <li><p>Print specific lines of a script with code highlighting and syntax</p></li>
-</ol>
+</ul>
 <blockquote>
 <div></div></blockquote>
-<ol class="simple">
+<ul class="simple">
 <li><p>Print script without code highlighting and syntax</p></li>
-</ol>
+</ul>
 <blockquote>
 <div><p>! cat <a class="reference external" href="http://script.py">script.py</a></p>
 </div></blockquote>
-<ol class="simple">
+<ul class="simple">
 <li><p>Read this</p></li>
-</ol>
+</ul>
 <blockquote>
 <div></div></blockquote>
-<ol class="simple">
+<ul class="simple">
 <li><p>List of keyboard shortcuts</p></li>
-</ol>
+</ul>
 <blockquote>
 <div><p>Cmd + Shift + P</p>
 </div></blockquote>
-<ol class="simple">
+<ul class="simple">
 <li><p>IPython Magic – %run: Execute python code</p></li>
-</ol>
+</ul>
 <blockquote>
 <div></div></blockquote>
-<ol class="simple">
+<ul class="simple">
 <li><p>How to install nbconvert html_toc</p></li>
-</ol>
+</ul>
 <blockquote>
 <div><p>conda install -c conda-forge jupyter_nbextensions_configurator<br />
 conda install -c conda-forge “nbconvert=5.6.1” # This version only works</p>
@@ -1796,157 +1817,156 @@ conda install -c conda-forge “nbconvert=5.6.1” # This version only works</p>
 </section>
 <section id="git">
 <h2>git<a class="headerlink" href="#git" title="Permalink to this headline">#</a></h2>
-<ol class="simple">
+<ul class="simple">
 <li><p>Check git version</p></li>
-</ol>
+</ul>
 <blockquote>
 <div><p>git version</p>
 </div></blockquote>
-<ol class="simple">
+<ul class="simple">
 <li><p>Check user details</p></li>
-</ol>
+</ul>
 <blockquote>
 <div><p>git config –list</p>
 </div></blockquote>
-<ol class="simple">
+<ul class="simple">
 <li><p>Check git configuration file</p></li>
-</ol>
+</ul>
 <blockquote>
 <div><p>cat ~/.gitconfig</p>
 </div></blockquote>
-<ol class="simple">
+<ul class="simple">
 <li><p>Change git configuration</p></li>
-</ol>
+</ul>
 <blockquote>
 <div><p>git config –global <a class="reference external" href="http://user.name">user.name</a> “Chandra”</p>
 </div></blockquote>
-<ol class="simple">
+<ul class="simple">
 <li><p>To clone a repository</p></li>
-</ol>
+</ul>
 <blockquote>
 <div><p>git clone <a class="reference external" href="https://github.com/chandrabsingh/learnings">https://github.com/chandrabsingh/learnings</a></p>
 </div></blockquote>
-<ol class="simple">
+<ul class="simple">
 <li><p>To check status of files</p></li>
-</ol>
+</ul>
 <blockquote>
 <div><p>Go inside the directory
 git status</p>
 </div></blockquote>
-<ol class="simple">
+<ul class="simple">
 <li><p>Lifecycle of status of file</p></li>
-</ol>
+</ul>
 <blockquote>
 <div><p><img alt="alt-text" src="https://git-scm.com/book/en/v2/images/lifecycle.png" /></p>
 </div></blockquote>
-<ol class="simple">
+<ul class="simple">
 <li><p>Initialize a repository</p></li>
-</ol>
+</ul>
 <blockquote>
 <div><p>git init
 this creates .git file in the folder</p>
 </div></blockquote>
-<ol class="simple">
+<ul class="simple">
 <li><p>Local or Remote</p></li>
 <li><p>Add files</p></li>
-</ol>
+</ul>
 <blockquote>
 <div><p>touch index.html<br />
 git add index.html<br />
 this adds the file in unstaged area</p>
 </div></blockquote>
-<ol class="simple">
+<ul class="simple">
 <li><p>Delete files from git after deleting from fs</p></li>
-</ol>
+</ul>
 <blockquote>
 <div><p>git ls-files –deleted -z | xargs -0 git rm</p>
 </div></blockquote>
-<ol class="simple">
+<ul class="simple">
 <li><p>To commit a files</p></li>
-</ol>
+</ul>
 <blockquote>
 <div><p>git commit -m “Commit message”</p>
 </div></blockquote>
-<ol class="simple">
+<ul class="simple">
 <li><p>History of commits</p></li>
-</ol>
+</ul>
 <blockquote>
 <div><p>git log</p>
 </div></blockquote>
-<ol class="simple">
-<li><p>New files added are called untracked files</p></li>
-<li><p>After updating file, it needs to be added as well</p></li>
-</ol>
+<ul class="simple">
+<li><p>New files added are called untracked files. After updating file, it needs to be added as well</p></li>
+</ul>
 <blockquote>
 <div><p>git add index.html</p>
 </div></blockquote>
-<ol class="simple">
+<ul class="simple">
 <li><p>To add all files at once</p></li>
-</ol>
+</ul>
 <blockquote>
 <div><p>git add .</p>
 </div></blockquote>
-<ol class="simple">
+<ul class="simple">
 <li><p>How to undo git add before commit</p></li>
-</ol>
+</ul>
 <blockquote>
 <div><p>git reset filename</p>
 </div></blockquote>
-<ol class="simple">
+<ul class="simple">
 <li><p>How to roll back</p></li>
-</ol>
+</ul>
 <blockquote>
 <div><p>git log<br />
 Copy the hash of the version you want to
 git checkout xyz</p>
 </div></blockquote>
-<ol class="simple">
+<ul class="simple">
 <li><p>To list local branches</p></li>
-</ol>
+</ul>
 <blockquote>
 <div><p>git branch</p>
 </div></blockquote>
-<ol class="simple">
+<ul class="simple">
 <li><p>To list remote branches</p></li>
-</ol>
+</ul>
 <blockquote>
 <div><p>git branch -r</p>
 </div></blockquote>
-<ol class="simple">
+<ul class="simple">
 <li><p>To list both local and remote branches</p></li>
-</ol>
+</ul>
 <blockquote>
 <div><p>git branch -a</p>
 </div></blockquote>
-<ol class="simple">
+<ul class="simple">
 <li><p>To create a branch</p></li>
-</ol>
+</ul>
 <blockquote>
 <div><p>git branch colors</p>
 </div></blockquote>
-<ol class="simple">
+<ul class="simple">
 <li><p>To merge branch into master</p></li>
-</ol>
+</ul>
 <blockquote>
 <div><p>Be on the master<br />
 git merge colors<br />
 This updates colors changes onto master</p>
 </div></blockquote>
-<ol class="simple">
+<ul class="simple">
 <li><p>push changes</p></li>
-</ol>
+</ul>
 <blockquote>
 <div><p>This will lead to changes onto the remote repository from local repository</p>
 </div></blockquote>
-<ol class="simple">
+<ul class="simple">
 <li><p>pull changes</p></li>
-</ol>
+</ul>
 <blockquote>
 <div><p>This will lead to changes from the remote repository onto local repository</p>
 </div></blockquote>
-<ol class="simple">
+<ul class="simple">
 <li><p>How does pull work</p></li>
-</ol>
+</ul>
 <blockquote>
 <div><p>git pull origin master<br />
 is equivalent to<br />
@@ -1954,22 +1974,22 @@ git fetch origin<br />
 git merge master origin/master<br />
 <img alt="alt-text" src="../_images/git_fetch_merge.png" /></p>
 </div></blockquote>
-<ol class="simple">
+<ul class="simple">
 <li><p>How to compare two branches</p></li>
-</ol>
+</ul>
 <blockquote>
 <div><p>git diff origin/master master</p>
 </div></blockquote>
-<ol class="simple">
+<ul class="simple">
 <li><p>Moving files</p></li>
-</ol>
+</ul>
 <blockquote>
 <div><p>Git does not explicitly track file changes<br />
 git mv file_from file_to</p>
 </div></blockquote>
-<ol class="simple">
+<ul class="simple">
 <li><p>Better git log with git ls</p></li>
-</ol>
+</ul>
 <blockquote>
 <div><div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Add this to ~./gitconfig  
 </pre></div>
@@ -1980,52 +2000,52 @@ ls = log –graph –abbrev-commit –decorate –color=always –date=relative 
 </section>
 <section id="conda">
 <h2>conda<a class="headerlink" href="#conda" title="Permalink to this headline">#</a></h2>
-<ol class="simple">
+<ul class="simple">
 <li><p>Display Conda environment information</p></li>
-</ol>
+</ul>
 <blockquote>
 <div></div></blockquote>
-<ol class="simple">
+<ul class="simple">
 <li><p>List all existing environments</p></li>
-</ol>
+</ul>
 <blockquote>
 <div><p>(base) username % conda env list</p>
 </div></blockquote>
-<ol class="simple">
+<ul class="simple">
 <li><p>Create a new environment</p></li>
-</ol>
+</ul>
 <blockquote>
 <div><p>(base) username % conda create –name project-env python=3.7</p>
 </div></blockquote>
-<ol class="simple">
+<ul class="simple">
 <li><p>Activate your new environment</p></li>
-</ol>
+</ul>
 <blockquote>
 <div><p>(base) username % conda activate project-env
 (project-env) username %</p>
 </div></blockquote>
-<ol class="simple">
+<ul class="simple">
 <li><p>Display all packages in this environment</p></li>
-</ol>
+</ul>
 <blockquote>
 <div><p>(project-env) username ~ % conda list</p>
 </div></blockquote>
-<ol class="simple">
+<ul class="simple">
 <li><p>Display revision history</p></li>
-</ol>
+</ul>
 <blockquote>
 <div><p>(project-env) username ~ % conda list –revision</p>
 </div></blockquote>
-<ol class="simple">
+<ul class="simple">
 <li><p>Change your active environment</p></li>
-</ol>
+</ul>
 <blockquote>
 <div><p>(project-env) username ~ % conda activate base
 (base) username ~ %</p>
 </div></blockquote>
-<ol class="simple">
+<ul class="simple">
 <li><p>Deactivate your active environment</p></li>
-</ol>
+</ul>
 <blockquote>
 <div><p>(project-env) username ~ % conda deactivate
 (base) username ~ %</p>
@@ -2033,72 +2053,72 @@ ls = log –graph –abbrev-commit –decorate –color=always –date=relative 
 </section>
 <section id="pip">
 <h2>pip<a class="headerlink" href="#pip" title="Permalink to this headline">#</a></h2>
-<ol class="simple">
+<ul class="simple">
 <li><p>Install specific version of package</p></li>
-</ol>
+</ul>
 <blockquote>
 <div><p><code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">&quot;SomeProject==1.4&quot;</span></code></p>
 </div></blockquote>
-<ol class="simple">
+<ul class="simple">
 <li><p>Install using requirements file</p></li>
-</ol>
+</ul>
 <blockquote>
 <div><p><code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">-r</span> <span class="pre">requirements.txt</span></code></p>
 </div></blockquote>
 </section>
 <section id="mac-services">
 <h2>Mac Services<a class="headerlink" href="#mac-services" title="Permalink to this headline">#</a></h2>
-<ol class="simple">
+<ul class="simple">
 <li><p>list all services</p></li>
-</ol>
+</ul>
 <blockquote>
 <div><p>launchctl list</p>
 </div></blockquote>
-<ol class="simple">
+<ul class="simple">
 <li><p>This command installs/add a service:</p></li>
-</ol>
+</ul>
 <blockquote>
 <div><p>launchctl load /Library/LaunchDaemons/com.ServiceExample.plist</p>
 </div></blockquote>
-<ol class="simple">
+<ul class="simple">
 <li><p>This command enable a service to auto run after installed:</p></li>
-</ol>
+</ul>
 <blockquote>
 <div><p>launchctl enable system/com.ServiceExample</p>
 </div></blockquote>
-<ol class="simple">
+<ul class="simple">
 <li><p>This command disable a installed service from auto-running:</p></li>
-</ol>
+</ul>
 <blockquote>
 <div><p>launchctl disable system/com.ServiceExample</p>
 </div></blockquote>
-<ol class="simple">
+<ul class="simple">
 <li><p>This command start a service:</p></li>
-</ol>
+</ul>
 <blockquote>
 <div><p>launchctl start system/com.ServiceExample</p>
 </div></blockquote>
-<ol class="simple">
+<ul class="simple">
 <li><p>This command stop a service:</p></li>
-</ol>
+</ul>
 <blockquote>
 <div><p>launchctl stop system/com.ServiceExample</p>
 </div></blockquote>
-<ol class="simple">
+<ul class="simple">
 <li><p>This command remove a service:</p></li>
-</ol>
+</ul>
 <blockquote>
 <div><p>launchctl unload /Library/LaunchDaemons/com.ServiceExample.plist</p>
 </div></blockquote>
-<ol class="simple">
+<ul class="simple">
 <li><p>This command force execution of a recent loaded service:</p></li>
-</ol>
+</ul>
 <blockquote>
 <div><p>launchctl kickstart -p /Library/LaunchDaemons/com.ServiceExample.plist</p>
 </div></blockquote>
-<ol class="simple">
+<ul class="simple">
 <li><p>This command Stops and Disable a running service</p></li>
-</ol>
+</ul>
 <blockquote>
 <div><p>launchctl bootout system/com.ServiceExample</p>
 </div></blockquote>
