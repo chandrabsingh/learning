@@ -109,7 +109,7 @@ const thebe_selector_output = ".output, .cell_output"
         <ul class="nav bd-sidenav bd-sidenav__home-link">
             <li class="toctree-l1">
                 <a class="reference internal" href="../intro.html">
-                    My learning notebook
+                    Welcome
                 </a>
             </li>
         </ul>
@@ -121,7 +121,7 @@ const thebe_selector_output = ".output, .cell_output"
 <ul class="nav bd-sidenav">
  <li class="toctree-l1 has-children">
   <a class="reference internal" href="../system_design/intro.html">
-   My ML Book
+   My System Design Book
   </a>
   <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
   <label for="toctree-checkbox-1">
@@ -131,7 +131,42 @@ const thebe_selector_output = ".output, .cell_output"
   <ul>
    <li class="toctree-l2">
     <a class="reference internal" href="../system_design/design_patterns.html">
-     Asynchronous request reply
+     System Design Summary
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../system_design/software_engineering_concepts.html">
+     Software Engineering concepts
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../system_design/googlecloud_use_cases.html">
+     Google - Customer story
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../system_design/aws_usecases.html">
+     AWS - Customer story
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../system_design/design_general_use_cases.html">
+     Case study
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../system_design/netflix.html">
+     Netflix creativity
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../system_design/bk_AlexXu_SystemDesignInterview.html">
+     Book - System Design Interview - Alex Xu
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../system_design/design_patterns_python.html">
+     Design Pattern - Python
     </a>
    </li>
   </ul>
@@ -541,209 +576,214 @@ title="Print to PDF"
     </div>
     <nav id="bd-toc-nav" aria-label="Page">
         <ul class="visible nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#">
+   The Need for ML Design Patterns
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
   <a class="reference internal nav-link" href="#data-representation-design-patterns">
    Data representation design patterns
   </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
     <a class="reference internal nav-link" href="#hashed-feature">
      #1 Hashed Feature
     </a>
    </li>
-   <li class="toc-h3 nav-item toc-entry">
+   <li class="toc-h2 nav-item toc-entry">
     <a class="reference internal nav-link" href="#embedding">
      #2 Embedding
     </a>
    </li>
-   <li class="toc-h3 nav-item toc-entry">
+   <li class="toc-h2 nav-item toc-entry">
     <a class="reference internal nav-link" href="#feature-cross">
      #3 Feature Cross
     </a>
    </li>
-   <li class="toc-h3 nav-item toc-entry">
+   <li class="toc-h2 nav-item toc-entry">
     <a class="reference internal nav-link" href="#multimodal-input">
      #4 Multimodal Input
     </a>
    </li>
   </ul>
  </li>
- <li class="toc-h2 nav-item toc-entry">
+ <li class="toc-h1 nav-item toc-entry">
   <a class="reference internal nav-link" href="#problem-representation-design-patterns">
    Problem representation design patterns
   </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
     <a class="reference internal nav-link" href="#reframing">
      #5 Reframing
     </a>
    </li>
-   <li class="toc-h3 nav-item toc-entry">
+   <li class="toc-h2 nav-item toc-entry">
     <a class="reference internal nav-link" href="#multilabel">
      #6 Multilabel
     </a>
    </li>
-   <li class="toc-h3 nav-item toc-entry">
+   <li class="toc-h2 nav-item toc-entry">
     <a class="reference internal nav-link" href="#ensembles">
      #7 Ensembles
     </a>
    </li>
-   <li class="toc-h3 nav-item toc-entry">
+   <li class="toc-h2 nav-item toc-entry">
     <a class="reference internal nav-link" href="#cascade">
      #8 Cascade
     </a>
    </li>
-   <li class="toc-h3 nav-item toc-entry">
+   <li class="toc-h2 nav-item toc-entry">
     <a class="reference internal nav-link" href="#neutral-class">
      #9 Neutral Class
     </a>
    </li>
-   <li class="toc-h3 nav-item toc-entry">
+   <li class="toc-h2 nav-item toc-entry">
     <a class="reference internal nav-link" href="#rebalancing">
      #10 Rebalancing
     </a>
    </li>
   </ul>
  </li>
- <li class="toc-h2 nav-item toc-entry">
+ <li class="toc-h1 nav-item toc-entry">
   <a class="reference internal nav-link" href="#model-training-patterns">
    Model training patterns
   </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
     <a class="reference internal nav-link" href="#typical-training-loop">
      Typical Training Loop
     </a>
    </li>
-   <li class="toc-h3 nav-item toc-entry">
+   <li class="toc-h2 nav-item toc-entry">
     <a class="reference internal nav-link" href="#useful-overfitting">
      #11 Useful Overfitting
     </a>
    </li>
-   <li class="toc-h3 nav-item toc-entry">
+   <li class="toc-h2 nav-item toc-entry">
     <a class="reference internal nav-link" href="#checkpoints">
      #12 Checkpoints
     </a>
    </li>
-   <li class="toc-h3 nav-item toc-entry">
+   <li class="toc-h2 nav-item toc-entry">
     <a class="reference internal nav-link" href="#transfer-learning">
      #13 Transfer Learning
     </a>
    </li>
-   <li class="toc-h3 nav-item toc-entry">
+   <li class="toc-h2 nav-item toc-entry">
     <a class="reference internal nav-link" href="#distribution-strategy">
      #14 Distribution Strategy
     </a>
    </li>
-   <li class="toc-h3 nav-item toc-entry">
+   <li class="toc-h2 nav-item toc-entry">
     <a class="reference internal nav-link" href="#hyperparameter-tuning">
      #15 Hyperparameter Tuning
     </a>
    </li>
   </ul>
  </li>
- <li class="toc-h2 nav-item toc-entry">
+ <li class="toc-h1 nav-item toc-entry">
   <a class="reference internal nav-link" href="#resilience-patterns">
    Resilience patterns
   </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
     <a class="reference internal nav-link" href="#stateless-serving-function">
      #16 Stateless Serving Function
     </a>
    </li>
-   <li class="toc-h3 nav-item toc-entry">
+   <li class="toc-h2 nav-item toc-entry">
     <a class="reference internal nav-link" href="#batch-serving">
      #17 Batch Serving
     </a>
    </li>
-   <li class="toc-h3 nav-item toc-entry">
+   <li class="toc-h2 nav-item toc-entry">
     <a class="reference internal nav-link" href="#continuous-model-evaluation">
      #18 Continuous Model Evaluation
     </a>
    </li>
-   <li class="toc-h3 nav-item toc-entry">
+   <li class="toc-h2 nav-item toc-entry">
     <a class="reference internal nav-link" href="#two-phase-predictions">
      #19 Two Phase Predictions
     </a>
    </li>
-   <li class="toc-h3 nav-item toc-entry">
+   <li class="toc-h2 nav-item toc-entry">
     <a class="reference internal nav-link" href="#keyed-predictions">
      #20 Keyed Predictions
     </a>
    </li>
   </ul>
  </li>
- <li class="toc-h2 nav-item toc-entry">
+ <li class="toc-h1 nav-item toc-entry">
   <a class="reference internal nav-link" href="#reproducibility-patterns">
    Reproducibility patterns
   </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
     <a class="reference internal nav-link" href="#transform">
      #21 Transform
     </a>
    </li>
-   <li class="toc-h3 nav-item toc-entry">
+   <li class="toc-h2 nav-item toc-entry">
     <a class="reference internal nav-link" href="#repeatable-sampling">
      #22 Repeatable Sampling
     </a>
    </li>
-   <li class="toc-h3 nav-item toc-entry">
+   <li class="toc-h2 nav-item toc-entry">
     <a class="reference internal nav-link" href="#bridged-schema">
      #23 Bridged Schema
     </a>
    </li>
-   <li class="toc-h3 nav-item toc-entry">
+   <li class="toc-h2 nav-item toc-entry">
     <a class="reference internal nav-link" href="#windowed-inference">
      #24 Windowed Inference
     </a>
    </li>
-   <li class="toc-h3 nav-item toc-entry">
+   <li class="toc-h2 nav-item toc-entry">
     <a class="reference internal nav-link" href="#workflow-pipeline">
      #25 Workflow Pipeline
     </a>
    </li>
-   <li class="toc-h3 nav-item toc-entry">
+   <li class="toc-h2 nav-item toc-entry">
     <a class="reference internal nav-link" href="#feature-store">
      #26 Feature Store
     </a>
    </li>
-   <li class="toc-h3 nav-item toc-entry">
+   <li class="toc-h2 nav-item toc-entry">
     <a class="reference internal nav-link" href="#model-versioning">
      #27 Model Versioning
     </a>
    </li>
   </ul>
  </li>
- <li class="toc-h2 nav-item toc-entry">
+ <li class="toc-h1 nav-item toc-entry">
   <a class="reference internal nav-link" href="#responsible-ai">
    Responsible AI
   </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
     <a class="reference internal nav-link" href="#heuristic-benchmark">
      #28 Heuristic benchmark
     </a>
    </li>
-   <li class="toc-h3 nav-item toc-entry">
+   <li class="toc-h2 nav-item toc-entry">
     <a class="reference internal nav-link" href="#explainable-predictions">
      #29 Explainable Predictions
     </a>
    </li>
-   <li class="toc-h3 nav-item toc-entry">
+   <li class="toc-h2 nav-item toc-entry">
     <a class="reference internal nav-link" href="#fairness-lens">
      #30 Fairness Lens
     </a>
    </li>
   </ul>
  </li>
- <li class="toc-h2 nav-item toc-entry">
+ <li class="toc-h1 nav-item toc-entry">
   <a class="reference internal nav-link" href="#summary">
    Summary
   </a>
  </li>
- <li class="toc-h2 nav-item toc-entry">
+ <li class="toc-h1 nav-item toc-entry">
   <a class="reference internal nav-link" href="#reference">
    Reference
   </a>
@@ -767,209 +807,214 @@ title="Print to PDF"
                         </div>
                         <nav aria-label="Page">
                             <ul class="visible nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#">
+   The Need for ML Design Patterns
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
   <a class="reference internal nav-link" href="#data-representation-design-patterns">
    Data representation design patterns
   </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
     <a class="reference internal nav-link" href="#hashed-feature">
      #1 Hashed Feature
     </a>
    </li>
-   <li class="toc-h3 nav-item toc-entry">
+   <li class="toc-h2 nav-item toc-entry">
     <a class="reference internal nav-link" href="#embedding">
      #2 Embedding
     </a>
    </li>
-   <li class="toc-h3 nav-item toc-entry">
+   <li class="toc-h2 nav-item toc-entry">
     <a class="reference internal nav-link" href="#feature-cross">
      #3 Feature Cross
     </a>
    </li>
-   <li class="toc-h3 nav-item toc-entry">
+   <li class="toc-h2 nav-item toc-entry">
     <a class="reference internal nav-link" href="#multimodal-input">
      #4 Multimodal Input
     </a>
    </li>
   </ul>
  </li>
- <li class="toc-h2 nav-item toc-entry">
+ <li class="toc-h1 nav-item toc-entry">
   <a class="reference internal nav-link" href="#problem-representation-design-patterns">
    Problem representation design patterns
   </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
     <a class="reference internal nav-link" href="#reframing">
      #5 Reframing
     </a>
    </li>
-   <li class="toc-h3 nav-item toc-entry">
+   <li class="toc-h2 nav-item toc-entry">
     <a class="reference internal nav-link" href="#multilabel">
      #6 Multilabel
     </a>
    </li>
-   <li class="toc-h3 nav-item toc-entry">
+   <li class="toc-h2 nav-item toc-entry">
     <a class="reference internal nav-link" href="#ensembles">
      #7 Ensembles
     </a>
    </li>
-   <li class="toc-h3 nav-item toc-entry">
+   <li class="toc-h2 nav-item toc-entry">
     <a class="reference internal nav-link" href="#cascade">
      #8 Cascade
     </a>
    </li>
-   <li class="toc-h3 nav-item toc-entry">
+   <li class="toc-h2 nav-item toc-entry">
     <a class="reference internal nav-link" href="#neutral-class">
      #9 Neutral Class
     </a>
    </li>
-   <li class="toc-h3 nav-item toc-entry">
+   <li class="toc-h2 nav-item toc-entry">
     <a class="reference internal nav-link" href="#rebalancing">
      #10 Rebalancing
     </a>
    </li>
   </ul>
  </li>
- <li class="toc-h2 nav-item toc-entry">
+ <li class="toc-h1 nav-item toc-entry">
   <a class="reference internal nav-link" href="#model-training-patterns">
    Model training patterns
   </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
     <a class="reference internal nav-link" href="#typical-training-loop">
      Typical Training Loop
     </a>
    </li>
-   <li class="toc-h3 nav-item toc-entry">
+   <li class="toc-h2 nav-item toc-entry">
     <a class="reference internal nav-link" href="#useful-overfitting">
      #11 Useful Overfitting
     </a>
    </li>
-   <li class="toc-h3 nav-item toc-entry">
+   <li class="toc-h2 nav-item toc-entry">
     <a class="reference internal nav-link" href="#checkpoints">
      #12 Checkpoints
     </a>
    </li>
-   <li class="toc-h3 nav-item toc-entry">
+   <li class="toc-h2 nav-item toc-entry">
     <a class="reference internal nav-link" href="#transfer-learning">
      #13 Transfer Learning
     </a>
    </li>
-   <li class="toc-h3 nav-item toc-entry">
+   <li class="toc-h2 nav-item toc-entry">
     <a class="reference internal nav-link" href="#distribution-strategy">
      #14 Distribution Strategy
     </a>
    </li>
-   <li class="toc-h3 nav-item toc-entry">
+   <li class="toc-h2 nav-item toc-entry">
     <a class="reference internal nav-link" href="#hyperparameter-tuning">
      #15 Hyperparameter Tuning
     </a>
    </li>
   </ul>
  </li>
- <li class="toc-h2 nav-item toc-entry">
+ <li class="toc-h1 nav-item toc-entry">
   <a class="reference internal nav-link" href="#resilience-patterns">
    Resilience patterns
   </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
     <a class="reference internal nav-link" href="#stateless-serving-function">
      #16 Stateless Serving Function
     </a>
    </li>
-   <li class="toc-h3 nav-item toc-entry">
+   <li class="toc-h2 nav-item toc-entry">
     <a class="reference internal nav-link" href="#batch-serving">
      #17 Batch Serving
     </a>
    </li>
-   <li class="toc-h3 nav-item toc-entry">
+   <li class="toc-h2 nav-item toc-entry">
     <a class="reference internal nav-link" href="#continuous-model-evaluation">
      #18 Continuous Model Evaluation
     </a>
    </li>
-   <li class="toc-h3 nav-item toc-entry">
+   <li class="toc-h2 nav-item toc-entry">
     <a class="reference internal nav-link" href="#two-phase-predictions">
      #19 Two Phase Predictions
     </a>
    </li>
-   <li class="toc-h3 nav-item toc-entry">
+   <li class="toc-h2 nav-item toc-entry">
     <a class="reference internal nav-link" href="#keyed-predictions">
      #20 Keyed Predictions
     </a>
    </li>
   </ul>
  </li>
- <li class="toc-h2 nav-item toc-entry">
+ <li class="toc-h1 nav-item toc-entry">
   <a class="reference internal nav-link" href="#reproducibility-patterns">
    Reproducibility patterns
   </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
     <a class="reference internal nav-link" href="#transform">
      #21 Transform
     </a>
    </li>
-   <li class="toc-h3 nav-item toc-entry">
+   <li class="toc-h2 nav-item toc-entry">
     <a class="reference internal nav-link" href="#repeatable-sampling">
      #22 Repeatable Sampling
     </a>
    </li>
-   <li class="toc-h3 nav-item toc-entry">
+   <li class="toc-h2 nav-item toc-entry">
     <a class="reference internal nav-link" href="#bridged-schema">
      #23 Bridged Schema
     </a>
    </li>
-   <li class="toc-h3 nav-item toc-entry">
+   <li class="toc-h2 nav-item toc-entry">
     <a class="reference internal nav-link" href="#windowed-inference">
      #24 Windowed Inference
     </a>
    </li>
-   <li class="toc-h3 nav-item toc-entry">
+   <li class="toc-h2 nav-item toc-entry">
     <a class="reference internal nav-link" href="#workflow-pipeline">
      #25 Workflow Pipeline
     </a>
    </li>
-   <li class="toc-h3 nav-item toc-entry">
+   <li class="toc-h2 nav-item toc-entry">
     <a class="reference internal nav-link" href="#feature-store">
      #26 Feature Store
     </a>
    </li>
-   <li class="toc-h3 nav-item toc-entry">
+   <li class="toc-h2 nav-item toc-entry">
     <a class="reference internal nav-link" href="#model-versioning">
      #27 Model Versioning
     </a>
    </li>
   </ul>
  </li>
- <li class="toc-h2 nav-item toc-entry">
+ <li class="toc-h1 nav-item toc-entry">
   <a class="reference internal nav-link" href="#responsible-ai">
    Responsible AI
   </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
     <a class="reference internal nav-link" href="#heuristic-benchmark">
      #28 Heuristic benchmark
     </a>
    </li>
-   <li class="toc-h3 nav-item toc-entry">
+   <li class="toc-h2 nav-item toc-entry">
     <a class="reference internal nav-link" href="#explainable-predictions">
      #29 Explainable Predictions
     </a>
    </li>
-   <li class="toc-h3 nav-item toc-entry">
+   <li class="toc-h2 nav-item toc-entry">
     <a class="reference internal nav-link" href="#fairness-lens">
      #30 Fairness Lens
     </a>
    </li>
   </ul>
  </li>
- <li class="toc-h2 nav-item toc-entry">
+ <li class="toc-h1 nav-item toc-entry">
   <a class="reference internal nav-link" href="#summary">
    Summary
   </a>
  </li>
- <li class="toc-h2 nav-item toc-entry">
+ <li class="toc-h1 nav-item toc-entry">
   <a class="reference internal nav-link" href="#reference">
    Reference
   </a>
@@ -984,7 +1029,7 @@ title="Print to PDF"
                 
               <div>
                 
-  <section class="tex2jax_ignore mathjax_ignore" id="the-need-for-ml-design-patterns">
+  <section id="the-need-for-ml-design-patterns">
 <h1>The Need for ML Design Patterns<a class="headerlink" href="#the-need-for-ml-design-patterns" title="Permalink to this headline">#</a></h1>
 <table class="colwidths-auto table">
 <thead>
@@ -1005,8 +1050,9 @@ title="Print to PDF"
 </tbody>
 </table>
 <p><span class="math notranslate nohighlight">\(\tiny{\text{20200917 - Sara Robinson - Responsible-AI-patterns}}\)</span></p>
+</section>
 <section id="data-representation-design-patterns">
-<h2>Data representation design patterns<a class="headerlink" href="#data-representation-design-patterns" title="Permalink to this headline">#</a></h2>
+<h1>Data representation design patterns<a class="headerlink" href="#data-representation-design-patterns" title="Permalink to this headline">#</a></h1>
 <ul class="simple">
 <li><p>data representation</p>
 <ul>
@@ -1104,7 +1150,7 @@ title="Print to PDF"
 </li>
 </ul>
 <section id="hashed-feature">
-<h3>#1 Hashed Feature<a class="headerlink" href="#hashed-feature" title="Permalink to this headline">#</a></h3>
+<h2>#1 Hashed Feature<a class="headerlink" href="#hashed-feature" title="Permalink to this headline">#</a></h2>
 <ul class="simple">
 <li><p>Problem Statement:</p>
 <ul>
@@ -1264,7 +1310,7 @@ title="Print to PDF"
 </ul>
 </section>
 <section id="embedding">
-<h3>#2 Embedding<a class="headerlink" href="#embedding" title="Permalink to this headline">#</a></h3>
+<h2>#2 Embedding<a class="headerlink" href="#embedding" title="Permalink to this headline">#</a></h2>
 <ul class="simple">
 <li><p>Problem Statement:</p>
 <ul>
@@ -1418,12 +1464,12 @@ title="Print to PDF"
 </ul>
 </section>
 <section id="feature-cross">
-<h3>#3 Feature Cross<a class="headerlink" href="#feature-cross" title="Permalink to this headline">#</a></h3>
+<h2>#3 Feature Cross<a class="headerlink" href="#feature-cross" title="Permalink to this headline">#</a></h2>
 <ul class="simple">
 <li><p>helps model learn relationships between input faster by explicitly making each combination of input values a separate feature</p></li>
 <li><p>suppose we need to create a binary classifier that separates the label into + and - classes</p></li>
 </ul>
-<img src="./images/mldp_featureCross.png" width=400 height=400>
+<img src="./images/featureCross.png" width=400 height=400>
 <ul class="simple">
 <li><p>its a commonly used feature engineering technique</p></li>
 <li><p>a featuree cross is a synthetic feature formed by concatenating two or more categorical features in order to capture interaction between them</p></li>
@@ -1480,7 +1526,7 @@ title="Print to PDF"
 </ul>
 </section>
 <section id="multimodal-input">
-<h3>#4 Multimodal Input<a class="headerlink" href="#multimodal-input" title="Permalink to this headline">#</a></h3>
+<h2>#4 Multimodal Input<a class="headerlink" href="#multimodal-input" title="Permalink to this headline">#</a></h2>
 <ul class="simple">
 <li><p>Basic Idea</p>
 <ul>
@@ -1553,9 +1599,9 @@ title="Print to PDF"
 </section>
 </section>
 <section id="problem-representation-design-patterns">
-<h2>Problem representation design patterns<a class="headerlink" href="#problem-representation-design-patterns" title="Permalink to this headline">#</a></h2>
+<h1>Problem representation design patterns<a class="headerlink" href="#problem-representation-design-patterns" title="Permalink to this headline">#</a></h1>
 <section id="reframing">
-<h3>#5 Reframing<a class="headerlink" href="#reframing" title="Permalink to this headline">#</a></h3>
+<h2>#5 Reframing<a class="headerlink" href="#reframing" title="Permalink to this headline">#</a></h2>
 <ul class="simple">
 <li><p>Basic Idea</p>
 <ul>
@@ -1582,7 +1628,7 @@ title="Print to PDF"
 </ul>
 </section>
 <section id="multilabel">
-<h3>#6 Multilabel<a class="headerlink" href="#multilabel" title="Permalink to this headline">#</a></h3>
+<h2>#6 Multilabel<a class="headerlink" href="#multilabel" title="Permalink to this headline">#</a></h2>
 <ul class="simple">
 <li><p>Basic Idea</p>
 <ul>
@@ -1608,7 +1654,7 @@ title="Print to PDF"
 </ul>
 </section>
 <section id="ensembles">
-<h3>#7 Ensembles<a class="headerlink" href="#ensembles" title="Permalink to this headline">#</a></h3>
+<h2>#7 Ensembles<a class="headerlink" href="#ensembles" title="Permalink to this headline">#</a></h2>
 <ul class="simple">
 <li><p>Basic Idea</p>
 <ul>
@@ -1694,7 +1740,7 @@ title="Print to PDF"
 </ul>
 </section>
 <section id="cascade">
-<h3>#8 Cascade<a class="headerlink" href="#cascade" title="Permalink to this headline">#</a></h3>
+<h2>#8 Cascade<a class="headerlink" href="#cascade" title="Permalink to this headline">#</a></h2>
 <ul class="simple">
 <li><p>Basic Idea</p>
 <ul>
@@ -1733,7 +1779,7 @@ title="Print to PDF"
 </ul>
 </section>
 <section id="neutral-class">
-<h3>#9 Neutral Class<a class="headerlink" href="#neutral-class" title="Permalink to this headline">#</a></h3>
+<h2>#9 Neutral Class<a class="headerlink" href="#neutral-class" title="Permalink to this headline">#</a></h2>
 <ul class="simple">
 <li><p>Basic Idea</p>
 <ul>
@@ -1759,7 +1805,7 @@ title="Print to PDF"
 </ul>
 </section>
 <section id="rebalancing">
-<h3>#10 Rebalancing<a class="headerlink" href="#rebalancing" title="Permalink to this headline">#</a></h3>
+<h2>#10 Rebalancing<a class="headerlink" href="#rebalancing" title="Permalink to this headline">#</a></h2>
 <ul class="simple">
 <li><p>Basic Idea</p>
 <ul>
@@ -1813,12 +1859,12 @@ title="Print to PDF"
 </section>
 </section>
 <section id="model-training-patterns">
-<h2>Model training patterns<a class="headerlink" href="#model-training-patterns" title="Permalink to this headline">#</a></h2>
+<h1>Model training patterns<a class="headerlink" href="#model-training-patterns" title="Permalink to this headline">#</a></h1>
 <ul class="simple">
 <li><p>iterative process</p></li>
 </ul>
 <section id="typical-training-loop">
-<h3>Typical Training Loop<a class="headerlink" href="#typical-training-loop" title="Permalink to this headline">#</a></h3>
+<h2>Typical Training Loop<a class="headerlink" href="#typical-training-loop" title="Permalink to this headline">#</a></h2>
 <ul class="simple">
 <li><p>Stochastic Gradient Descent(SGD)</p>
 <ul>
@@ -1839,7 +1885,7 @@ title="Print to PDF"
 </ul>
 </section>
 <section id="useful-overfitting">
-<h3>#11 Useful Overfitting<a class="headerlink" href="#useful-overfitting" title="Permalink to this headline">#</a></h3>
+<h2>#11 Useful Overfitting<a class="headerlink" href="#useful-overfitting" title="Permalink to this headline">#</a></h2>
 <ul class="simple">
 <li><p>Basic Idea</p>
 <ul>
@@ -1861,7 +1907,7 @@ title="Print to PDF"
 </ul>
 </section>
 <section id="checkpoints">
-<h3>#12 Checkpoints<a class="headerlink" href="#checkpoints" title="Permalink to this headline">#</a></h3>
+<h2>#12 Checkpoints<a class="headerlink" href="#checkpoints" title="Permalink to this headline">#</a></h2>
 <ul class="simple">
 <li><p>Basic Idea</p>
 <ul>
@@ -1875,7 +1921,7 @@ title="Print to PDF"
 </ul>
 </section>
 <section id="transfer-learning">
-<h3>#13 Transfer Learning<a class="headerlink" href="#transfer-learning" title="Permalink to this headline">#</a></h3>
+<h2>#13 Transfer Learning<a class="headerlink" href="#transfer-learning" title="Permalink to this headline">#</a></h2>
 <ul class="simple">
 <li><p>Basic Idea</p>
 <ul>
@@ -1890,7 +1936,7 @@ title="Print to PDF"
 </ul>
 </section>
 <section id="distribution-strategy">
-<h3>#14 Distribution Strategy<a class="headerlink" href="#distribution-strategy" title="Permalink to this headline">#</a></h3>
+<h2>#14 Distribution Strategy<a class="headerlink" href="#distribution-strategy" title="Permalink to this headline">#</a></h2>
 <ul class="simple">
 <li><p>Basic Idea</p>
 <ul>
@@ -1907,7 +1953,7 @@ title="Print to PDF"
 </ul>
 </section>
 <section id="hyperparameter-tuning">
-<h3>#15 Hyperparameter Tuning<a class="headerlink" href="#hyperparameter-tuning" title="Permalink to this headline">#</a></h3>
+<h2>#15 Hyperparameter Tuning<a class="headerlink" href="#hyperparameter-tuning" title="Permalink to this headline">#</a></h2>
 <ul class="simple">
 <li><p>Basic Idea</p>
 <ul>
@@ -1921,9 +1967,9 @@ title="Print to PDF"
 </section>
 </section>
 <section id="resilience-patterns">
-<h2>Resilience patterns<a class="headerlink" href="#resilience-patterns" title="Permalink to this headline">#</a></h2>
+<h1>Resilience patterns<a class="headerlink" href="#resilience-patterns" title="Permalink to this headline">#</a></h1>
 <section id="stateless-serving-function">
-<h3>#16 Stateless Serving Function<a class="headerlink" href="#stateless-serving-function" title="Permalink to this headline">#</a></h3>
+<h2>#16 Stateless Serving Function<a class="headerlink" href="#stateless-serving-function" title="Permalink to this headline">#</a></h2>
 <ul class="simple">
 <li><p>Basic Idea</p></li>
 <li><p>Problem</p></li>
@@ -1932,7 +1978,7 @@ title="Print to PDF"
 </ul>
 </section>
 <section id="batch-serving">
-<h3>#17 Batch Serving<a class="headerlink" href="#batch-serving" title="Permalink to this headline">#</a></h3>
+<h2>#17 Batch Serving<a class="headerlink" href="#batch-serving" title="Permalink to this headline">#</a></h2>
 <ul class="simple">
 <li><p>Basic Idea</p></li>
 <li><p>Problem</p></li>
@@ -1941,7 +1987,7 @@ title="Print to PDF"
 </ul>
 </section>
 <section id="continuous-model-evaluation">
-<h3>#18 Continuous Model Evaluation<a class="headerlink" href="#continuous-model-evaluation" title="Permalink to this headline">#</a></h3>
+<h2>#18 Continuous Model Evaluation<a class="headerlink" href="#continuous-model-evaluation" title="Permalink to this headline">#</a></h2>
 <ul class="simple">
 <li><p>Basic Idea</p></li>
 <li><p>Problem</p></li>
@@ -1950,7 +1996,7 @@ title="Print to PDF"
 </ul>
 </section>
 <section id="two-phase-predictions">
-<h3>#19 Two Phase Predictions<a class="headerlink" href="#two-phase-predictions" title="Permalink to this headline">#</a></h3>
+<h2>#19 Two Phase Predictions<a class="headerlink" href="#two-phase-predictions" title="Permalink to this headline">#</a></h2>
 <ul class="simple">
 <li><p>Basic Idea</p></li>
 <li><p>Problem</p></li>
@@ -1959,7 +2005,7 @@ title="Print to PDF"
 </ul>
 </section>
 <section id="keyed-predictions">
-<h3>#20 Keyed Predictions<a class="headerlink" href="#keyed-predictions" title="Permalink to this headline">#</a></h3>
+<h2>#20 Keyed Predictions<a class="headerlink" href="#keyed-predictions" title="Permalink to this headline">#</a></h2>
 <ul class="simple">
 <li><p>Basic Idea</p></li>
 <li><p>Problem</p></li>
@@ -1969,9 +2015,9 @@ title="Print to PDF"
 </section>
 </section>
 <section id="reproducibility-patterns">
-<h2>Reproducibility patterns<a class="headerlink" href="#reproducibility-patterns" title="Permalink to this headline">#</a></h2>
+<h1>Reproducibility patterns<a class="headerlink" href="#reproducibility-patterns" title="Permalink to this headline">#</a></h1>
 <section id="transform">
-<h3>#21 Transform<a class="headerlink" href="#transform" title="Permalink to this headline">#</a></h3>
+<h2>#21 Transform<a class="headerlink" href="#transform" title="Permalink to this headline">#</a></h2>
 <ul class="simple">
 <li><p>Basic Idea</p></li>
 <li><p>Problem</p></li>
@@ -1980,7 +2026,7 @@ title="Print to PDF"
 </ul>
 </section>
 <section id="repeatable-sampling">
-<h3>#22 Repeatable Sampling<a class="headerlink" href="#repeatable-sampling" title="Permalink to this headline">#</a></h3>
+<h2>#22 Repeatable Sampling<a class="headerlink" href="#repeatable-sampling" title="Permalink to this headline">#</a></h2>
 <ul class="simple">
 <li><p>Basic Idea</p></li>
 <li><p>Problem</p></li>
@@ -1989,7 +2035,7 @@ title="Print to PDF"
 </ul>
 </section>
 <section id="bridged-schema">
-<h3>#23 Bridged Schema<a class="headerlink" href="#bridged-schema" title="Permalink to this headline">#</a></h3>
+<h2>#23 Bridged Schema<a class="headerlink" href="#bridged-schema" title="Permalink to this headline">#</a></h2>
 <ul class="simple">
 <li><p>Basic Idea</p></li>
 <li><p>Problem</p></li>
@@ -1998,7 +2044,7 @@ title="Print to PDF"
 </ul>
 </section>
 <section id="windowed-inference">
-<h3>#24 Windowed Inference<a class="headerlink" href="#windowed-inference" title="Permalink to this headline">#</a></h3>
+<h2>#24 Windowed Inference<a class="headerlink" href="#windowed-inference" title="Permalink to this headline">#</a></h2>
 <ul class="simple">
 <li><p>Basic Idea</p></li>
 <li><p>Problem</p></li>
@@ -2007,7 +2053,7 @@ title="Print to PDF"
 </ul>
 </section>
 <section id="workflow-pipeline">
-<h3>#25 Workflow Pipeline<a class="headerlink" href="#workflow-pipeline" title="Permalink to this headline">#</a></h3>
+<h2>#25 Workflow Pipeline<a class="headerlink" href="#workflow-pipeline" title="Permalink to this headline">#</a></h2>
 <ul class="simple">
 <li><p>Basic Idea</p></li>
 <li><p>Problem</p></li>
@@ -2016,7 +2062,7 @@ title="Print to PDF"
 </ul>
 </section>
 <section id="feature-store">
-<h3>#26 Feature Store<a class="headerlink" href="#feature-store" title="Permalink to this headline">#</a></h3>
+<h2>#26 Feature Store<a class="headerlink" href="#feature-store" title="Permalink to this headline">#</a></h2>
 <ul class="simple">
 <li><p>Basic Idea</p></li>
 <li><p>Problem</p></li>
@@ -2025,7 +2071,7 @@ title="Print to PDF"
 </ul>
 </section>
 <section id="model-versioning">
-<h3>#27 Model Versioning<a class="headerlink" href="#model-versioning" title="Permalink to this headline">#</a></h3>
+<h2>#27 Model Versioning<a class="headerlink" href="#model-versioning" title="Permalink to this headline">#</a></h2>
 <ul class="simple">
 <li><p>Basic Idea</p></li>
 <li><p>Problem</p></li>
@@ -2035,9 +2081,9 @@ title="Print to PDF"
 </section>
 </section>
 <section id="responsible-ai">
-<h2>Responsible AI<a class="headerlink" href="#responsible-ai" title="Permalink to this headline">#</a></h2>
+<h1>Responsible AI<a class="headerlink" href="#responsible-ai" title="Permalink to this headline">#</a></h1>
 <section id="heuristic-benchmark">
-<h3>#28 Heuristic benchmark<a class="headerlink" href="#heuristic-benchmark" title="Permalink to this headline">#</a></h3>
+<h2>#28 Heuristic benchmark<a class="headerlink" href="#heuristic-benchmark" title="Permalink to this headline">#</a></h2>
 <ul class="simple">
 <li><p>Basic Idea</p></li>
 <li><p>Problem</p></li>
@@ -2046,7 +2092,7 @@ title="Print to PDF"
 </ul>
 </section>
 <section id="explainable-predictions">
-<h3>#29 Explainable Predictions<a class="headerlink" href="#explainable-predictions" title="Permalink to this headline">#</a></h3>
+<h2>#29 Explainable Predictions<a class="headerlink" href="#explainable-predictions" title="Permalink to this headline">#</a></h2>
 <ul class="simple">
 <li><p>Basic Idea</p></li>
 <li><p>Problem</p></li>
@@ -2055,7 +2101,7 @@ title="Print to PDF"
 </ul>
 </section>
 <section id="fairness-lens">
-<h3>#30 Fairness Lens<a class="headerlink" href="#fairness-lens" title="Permalink to this headline">#</a></h3>
+<h2>#30 Fairness Lens<a class="headerlink" href="#fairness-lens" title="Permalink to this headline">#</a></h2>
 <ul class="simple">
 <li><p>Basic Idea</p></li>
 <li><p>Problem</p></li>
@@ -2065,14 +2111,13 @@ title="Print to PDF"
 </section>
 </section>
 <section id="summary">
-<h2>Summary<a class="headerlink" href="#summary" title="Permalink to this headline">#</a></h2>
+<h1>Summary<a class="headerlink" href="#summary" title="Permalink to this headline">#</a></h1>
 </section>
 <section id="reference">
-<h2>Reference<a class="headerlink" href="#reference" title="Permalink to this headline">#</a></h2>
+<h1>Reference<a class="headerlink" href="#reference" title="Permalink to this headline">#</a></h1>
 <ul class="simple">
 <li><p>Machine Learning Design Patterns - by Valliappa Lakshmanan, Sara Robinson, and Michael Munn</p></li>
 </ul>
-</section>
 </section>
 
     <script type="text/x-thebe-config">
