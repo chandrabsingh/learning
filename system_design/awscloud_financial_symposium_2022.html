@@ -852,6 +852,58 @@ title="Print to PDF"
   <a class="reference internal nav-link" href="#how-fidelity-asset-managements-equity-trading-platform-migrated-all-in-to-aws">
    How Fidelity asset management’s equity trading platform migrated all-in to AWS
   </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#fidelity-asset-management">
+     Fidelity Asset Management
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#asset-management-where-are-we-now">
+     Asset Management - Where are we now
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#asset-management-migration-progress">
+     Asset Management - Migration Progress
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#equity-trading-business-context">
+     Equity Trading Business Context
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#equity-trading-footprint">
+     Equity Trading Footprint
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#equity-trading-cloud-architecture">
+     Equity Trading Cloud Architecture
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#equity-trading-fix-protocol">
+     Equity Trading - FIX protocol
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#equity-trading-resiliency-use-case-kafka">
+     Equity Trading - Resiliency use case: Kafka
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#equity-trading-scaling-with-automation-use-case">
+     Equity Trading - Scaling with automation use case
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#reflections-on-cloud-migration-journey-success-factors">
+     Reflections on cloud migration journey - success factors
+    </a>
+   </li>
+  </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#how-fannie-mae-is-modernizing-its-technology-people-and-processes-with-aws">
@@ -1208,6 +1260,58 @@ title="Print to PDF"
   <a class="reference internal nav-link" href="#how-fidelity-asset-managements-equity-trading-platform-migrated-all-in-to-aws">
    How Fidelity asset management’s equity trading platform migrated all-in to AWS
   </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#fidelity-asset-management">
+     Fidelity Asset Management
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#asset-management-where-are-we-now">
+     Asset Management - Where are we now
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#asset-management-migration-progress">
+     Asset Management - Migration Progress
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#equity-trading-business-context">
+     Equity Trading Business Context
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#equity-trading-footprint">
+     Equity Trading Footprint
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#equity-trading-cloud-architecture">
+     Equity Trading Cloud Architecture
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#equity-trading-fix-protocol">
+     Equity Trading - FIX protocol
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#equity-trading-resiliency-use-case-kafka">
+     Equity Trading - Resiliency use case: Kafka
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#equity-trading-scaling-with-automation-use-case">
+     Equity Trading - Scaling with automation use case
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#reflections-on-cloud-migration-journey-success-factors">
+     Reflections on cloud migration journey - success factors
+    </a>
+   </li>
+  </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#how-fannie-mae-is-modernizing-its-technology-people-and-processes-with-aws">
@@ -1937,6 +2041,119 @@ title="Print to PDF"
 <li><p>John Kerin, Head of Engineering, Asset Management - Equity Technology, Fidelity</p></li>
 <li><p>Girish Maraliga, SVP, Head of Architecture &amp; Platforms, Fidelity</p></li>
 </ul>
+<section id="fidelity-asset-management">
+<h3>Fidelity Asset Management<a class="headerlink" href="#fidelity-asset-management" title="Permalink to this headline">#</a></h3>
+<ul class="simple">
+<li><p>migration of equity trading business into cloud</p></li>
+</ul>
+<p align="center"><img src="./images/fidelity_asset_mgmt.png"></p>
+<p><span class="math notranslate nohighlight">\(\tiny{\text{AWS Symposium 2022 - Fidelity Asset Management}}\)</span></p>
+</section>
+<section id="asset-management-where-are-we-now">
+<h3>Asset Management - Where are we now<a class="headerlink" href="#asset-management-where-are-we-now" title="Permalink to this headline">#</a></h3>
+<p align="center"><img src="./images/fidelity_where_r_we_now.png"></p>
+<p><span class="math notranslate nohighlight">\(\tiny{\text{AWS Symposium 2022 - Fidelity Asset Management - Where are we now}}\)</span></p>
+</section>
+<section id="asset-management-migration-progress">
+<h3>Asset Management - Migration Progress<a class="headerlink" href="#asset-management-migration-progress" title="Permalink to this headline">#</a></h3>
+<p align="center"><img src="./images/fidelity_migration_progress.png"></p>
+<p><span class="math notranslate nohighlight">\(\tiny{\text{AWS Symposium 2022 - Fidelity Asset Management - Migration Progress}}\)</span></p>
+</section>
+<section id="equity-trading-business-context">
+<h3>Equity Trading Business Context<a class="headerlink" href="#equity-trading-business-context" title="Permalink to this headline">#</a></h3>
+<p align="center"><img src="./images/fidelity_equity_trading_business_context.png"></p>
+<p><span class="math notranslate nohighlight">\(\tiny{\text{AWS Symposium 2022 - Fidelity Equity Trading Business Context}}\)</span></p>
+</section>
+<section id="equity-trading-footprint">
+<h3>Equity Trading Footprint<a class="headerlink" href="#equity-trading-footprint" title="Permalink to this headline">#</a></h3>
+<p align="center"><img src="./images/fidelity_equity_trading_footprint.png"></p>
+<p><span class="math notranslate nohighlight">\(\tiny{\text{AWS Symposium 2022 - Fidelity Equity Trading Footprint}}\)</span></p>
+</section>
+<section id="equity-trading-cloud-architecture">
+<h3>Equity Trading Cloud Architecture<a class="headerlink" href="#equity-trading-cloud-architecture" title="Permalink to this headline">#</a></h3>
+<ul class="simple">
+<li><p>on traders desktop, there are series of applications that commands down to the trading system</p></li>
+<li><p>overall command-query pattern is used overall</p></li>
+<li><p>based on orders and instructions received, traders initiate commands using public API</p></li>
+<li><p>large footprint of services</p>
+<ul>
+<li><p>roughly 70 REST based services that work with event based system like Kafka</p></li>
+<li><p>few standalone Java applicatitons that run vendor applications</p></li>
+</ul>
+</li>
+<li><p>the order management system is the entry point to EKS</p>
+<ul>
+<li><p>uses in-memory database that keeps up with high-volume of transactions in the trading system</p></li>
+<li><p>Oracle was not working through</p></li>
+</ul>
+</li>
+<li><p>the event messaging system that is used now is Kafka</p>
+<ul>
+<li><p>earlier TIBCO was used, which is migrated to Kafka</p></li>
+</ul>
+</li>
+</ul>
+<p align="center"><img src="./images/fidelity_equity_trading_cloud_arch.png"></p>
+<p><span class="math notranslate nohighlight">\(\tiny{\text{AWS Symposium 2022 - Fidelity Equity Trading Cloud Architecture}}\)</span></p>
+</section>
+<section id="equity-trading-fix-protocol">
+<h3>Equity Trading - FIX protocol<a class="headerlink" href="#equity-trading-fix-protocol" title="Permalink to this headline">#</a></h3>
+<ul class="simple">
+<li><p>protocol to communicate with external broker-dealer</p></li>
+<li><p>variety of different vendor market dealers are engaged</p></li>
+<li><p>instead of as earlier managing peer-to-peer connectivity with broker, now brokers are asked to meet at the cloud</p></li>
+</ul>
+<p align="center"><img src="./images/fidelity_fix_protocol.png"></p>
+<p><span class="math notranslate nohighlight">\(\tiny{\text{AWS Symposium 2022 - Fidelity Equity Trading - FIX Protocol}}\)</span></p>
+<p align="center"><img src="./images/fidelity_fix_protocol_comparison.png"></p>
+<p><span class="math notranslate nohighlight">\(\tiny{\text{AWS Symposium 2022 - Fidelity Equity Trading - Networking use case of FIX Protocol}}\)</span></p>
+</section>
+<section id="equity-trading-resiliency-use-case-kafka">
+<h3>Equity Trading - Resiliency use case: Kafka<a class="headerlink" href="#equity-trading-resiliency-use-case-kafka" title="Permalink to this headline">#</a></h3>
+<ul class="simple">
+<li><p>use case 1</p></li>
+<li><p>run using a hot-warm pattern because there are SLAs that are hard to achieve which is to get real time messages that needs to reach traders</p></li>
+<li><p>trying to figure out an optimal replication pattern to replicate from one region to other</p></li>
+<li><p>best option for us right now is hot-warm pattern</p></li>
+<li><p>Dec 7th AWS failure</p>
+<ul>
+<li><p>lessons learnt - fail-over often</p></li>
+<li><p>resilency of trading system</p></li>
+</ul>
+</li>
+</ul>
+<p align="center"><img src="./images/fidelity_kafka_use_case.png"></p>
+<p><span class="math notranslate nohighlight">\(\tiny{\text{AWS Symposium 2022 - Fidelity Equity Trading - Resiliency use case: Kafka}}\)</span></p>
+</section>
+<section id="equity-trading-scaling-with-automation-use-case">
+<h3>Equity Trading - Scaling with automation use case<a class="headerlink" href="#equity-trading-scaling-with-automation-use-case" title="Permalink to this headline">#</a></h3>
+<ul class="simple">
+<li><p>equity trading has around 250 applications</p></li>
+<li><p>unique tech stack</p></li>
+<li><p>rather than copying over cloud formation templates, they leverage CDK heavily</p></li>
+<li><p>true CDK is constructs, building true OOP</p></li>
+<li><p>a library of construct that supported Java/event-based standalone construct and RESTful construct</p></li>
+<li><p>at scale, this allowed them to build CI/CD workflow that then uses CDK synthesizer generate the cloud formation template, which then offers reusability across different applications</p></li>
+<li><p>this presents an example that infrastructure done right can offer scale application at another level</p></li>
+</ul>
+<p align="center"><img src="./images/fidelity_scaling_with_automation.png"></p>
+<p><span class="math notranslate nohighlight">\(\tiny{\text{AWS Symposium 2022 - Fidelity Equity Trading - Scaling with automation use case}}\)</span></p>
+</section>
+<section id="reflections-on-cloud-migration-journey-success-factors">
+<h3>Reflections on cloud migration journey - success factors<a class="headerlink" href="#reflections-on-cloud-migration-journey-success-factors" title="Permalink to this headline">#</a></h3>
+<ul class="simple">
+<li><p>equity trading was one product out of 80 products that fidelity has across 20 diff product-line</p></li>
+<li><p>understand what the portfolio of applications looks like</p></li>
+<li><p>how to codify migration into patterns and pipelines</p></li>
+<li><p>estabilishing the patterns allowed achieve the scale</p></li>
+<li><p>it was the existing team who made this possible, fixed timeframe for each app to go to cloud, clear entry-exit criteria</p>
+<ul>
+<li><p>product team owned this effort</p></li>
+<li><p>migration happens with feature development</p></li>
+</ul>
+</li>
+</ul>
+</section>
 </section>
 <section id="how-fannie-mae-is-modernizing-its-technology-people-and-processes-with-aws">
 <h2>How Fannie Mae is modernizing its technology, people, and processes with AWS<a class="headerlink" href="#how-fannie-mae-is-modernizing-its-technology-people-and-processes-with-aws" title="Permalink to this headline">#</a></h2>

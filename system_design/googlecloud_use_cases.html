@@ -52,8 +52,8 @@ const thebe_selector_output = ".output, .cell_output"
     <script async="async" src="../_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="AWS - Customer story" href="aws_usecases.html" />
-    <link rel="prev" title="System Design Summary" href="design_patterns.html" />
+    <link rel="next" title="AWS - Financial Services Cloud Symposium - 2022" href="awscloud_financial_symposium_2022.html" />
+    <link rel="prev" title="Software Engineering concepts" href="software_engineering_concepts.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -107,7 +107,7 @@ const thebe_selector_output = ".output, .cell_output"
         <ul class="nav bd-sidenav bd-sidenav__home-link">
             <li class="toctree-l1">
                 <a class="reference internal" href="../intro.html">
-                    <no title>
+                    Welcome
                 </a>
             </li>
         </ul>
@@ -132,9 +132,19 @@ const thebe_selector_output = ".output, .cell_output"
      System Design Summary
     </a>
    </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="software_engineering_concepts.html">
+     Software Engineering concepts
+    </a>
+   </li>
    <li class="toctree-l2 current active">
     <a class="current reference internal" href="#">
      Google - Customer story
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="awscloud_financial_symposium_2022.html">
+     AWS - Financial Services Cloud Symposium - 2022
     </a>
    </li>
    <li class="toctree-l2">
@@ -150,6 +160,16 @@ const thebe_selector_output = ".output, .cell_output"
    <li class="toctree-l2">
     <a class="reference internal" href="netflix.html">
      Netflix creativity
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="bk_AlexXu_SystemDesignInterview.html">
+     Book - System Design Interview - Alex Xu
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="design_patterns_python.html">
+     Design Pattern - Python
     </a>
    </li>
   </ul>
@@ -563,31 +583,193 @@ title="Print to PDF"
   <a class="reference internal nav-link" href="#how-do-pokemon-go-scale-to-millions-of-request">
    How do Pokemon Go scale to millions of request
   </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#how-does-pokemon-scale">
+     How does Pokemon scale?
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#was-the-architecture-always-the-same">
+     Was the architecture always the same?
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#how-does-the-request-flow-work-when-one-logs-into-pokemon-go">
+     How does the request flow work when one logs into Pokemon Go?
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#what-happens-when-a-pokemon-is-hunted-and-caught">
+     What happens when a Pokemon is hunted and caught?
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#how-is-it-ensured-that-two-people-in-the-same-geographic-location-see-the-same-pokemon-data-and-keep-that-relatively-in-sync-especially-during-the-events">
+     How is it ensured that two people in the same geographic location, see the same Pokemon data and keep that relatively in sync, especially during the events?
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#how-does-the-data-pipelines-work-and-what-analytics-happen">
+     How does the data pipelines work and what analytics happen?
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#as-the-traffic-grows-during-events-how-does-the-data-pipelines-scale">
+     As the traffic grows during events, how does the data pipelines scale?
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#how-is-the-health-of-the-system-monitored-during-these-massive-events">
+     How is the health of the system monitored during these massive events?
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#what-are-the-next-plans">
+     What are the next plans?
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#references">
+     References
+    </a>
+   </li>
+  </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#how-does-uber-scale-to-millions-of-concurrent-requests">
    How does Uber scale to millions of concurrent requests
   </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#uber-request-flow">
+     Uber Request Flow
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#uber-fulfillment-architecture">
+     Uber Fulfillment Architecture
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#uber-low-latency-cloud-architecture">
+     Uber Low Latency Cloud Architecture
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#uber-auto-scaler">
+     Uber Auto scaler
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#uber-on-prem-cache">
+     Uber On-prem Cache
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#read">
+     READ
+    </a>
+   </li>
+  </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#how-to-create-a-microservice-architecture-with-google-cloud-nylas">
    How to create a microservice architecture with Google Cloud - Nylas
   </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#legacy-architecture">
+     Legacy Architecture
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#current-architecture">
+     Current Architecture
+    </a>
+   </li>
+  </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#how-to-architect-an-ai-ml-powered-healthcare-platform-on-google-cloud-vida-health">
    How to architect an AI/ML powered healthcare platform on Google Cloud - Vida Health
   </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#data-analytics-architecture">
+     Data Analytics Architecture
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#web-architecture">
+     Web Architecture
+    </a>
+   </li>
+  </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#how-are-the-video-monitoring-system-architectured-arcules">
    How are the video monitoring system architectured - Arcules?
   </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#how-does-arcules-work">
+     How does Arcules work?
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#what-is-video-security-as-a-service">
+     What is video security as a service?
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#what-is-the-high-level-architecture">
+     What is the high level architecture
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#what-type-of-databases-are-used">
+     What type of databases are used?
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#storing-video-chunks-in-cloud-storage">
+     Storing video chunks in cloud storage
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#how-are-the-ci-cd-microservices-deployed">
+     How are the CI/CD microservices deployed
+    </a>
+   </li>
+  </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#cbs-interactive-ai-ml-group">
    CBS Interactive AI/ML Group
   </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#functional-infrastructure">
+     Functional Infrastructure
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#content-awareness-architecture">
+     Content Awareness Architecture
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#video-services">
+     Video Services
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#recommendations-and-search">
+     Recommendations and Search
+    </a>
+   </li>
+  </ul>
  </li>
 </ul>
 
@@ -612,31 +794,193 @@ title="Print to PDF"
   <a class="reference internal nav-link" href="#how-do-pokemon-go-scale-to-millions-of-request">
    How do Pokemon Go scale to millions of request
   </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#how-does-pokemon-scale">
+     How does Pokemon scale?
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#was-the-architecture-always-the-same">
+     Was the architecture always the same?
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#how-does-the-request-flow-work-when-one-logs-into-pokemon-go">
+     How does the request flow work when one logs into Pokemon Go?
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#what-happens-when-a-pokemon-is-hunted-and-caught">
+     What happens when a Pokemon is hunted and caught?
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#how-is-it-ensured-that-two-people-in-the-same-geographic-location-see-the-same-pokemon-data-and-keep-that-relatively-in-sync-especially-during-the-events">
+     How is it ensured that two people in the same geographic location, see the same Pokemon data and keep that relatively in sync, especially during the events?
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#how-does-the-data-pipelines-work-and-what-analytics-happen">
+     How does the data pipelines work and what analytics happen?
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#as-the-traffic-grows-during-events-how-does-the-data-pipelines-scale">
+     As the traffic grows during events, how does the data pipelines scale?
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#how-is-the-health-of-the-system-monitored-during-these-massive-events">
+     How is the health of the system monitored during these massive events?
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#what-are-the-next-plans">
+     What are the next plans?
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#references">
+     References
+    </a>
+   </li>
+  </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#how-does-uber-scale-to-millions-of-concurrent-requests">
    How does Uber scale to millions of concurrent requests
   </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#uber-request-flow">
+     Uber Request Flow
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#uber-fulfillment-architecture">
+     Uber Fulfillment Architecture
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#uber-low-latency-cloud-architecture">
+     Uber Low Latency Cloud Architecture
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#uber-auto-scaler">
+     Uber Auto scaler
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#uber-on-prem-cache">
+     Uber On-prem Cache
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#read">
+     READ
+    </a>
+   </li>
+  </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#how-to-create-a-microservice-architecture-with-google-cloud-nylas">
    How to create a microservice architecture with Google Cloud - Nylas
   </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#legacy-architecture">
+     Legacy Architecture
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#current-architecture">
+     Current Architecture
+    </a>
+   </li>
+  </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#how-to-architect-an-ai-ml-powered-healthcare-platform-on-google-cloud-vida-health">
    How to architect an AI/ML powered healthcare platform on Google Cloud - Vida Health
   </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#data-analytics-architecture">
+     Data Analytics Architecture
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#web-architecture">
+     Web Architecture
+    </a>
+   </li>
+  </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#how-are-the-video-monitoring-system-architectured-arcules">
    How are the video monitoring system architectured - Arcules?
   </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#how-does-arcules-work">
+     How does Arcules work?
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#what-is-video-security-as-a-service">
+     What is video security as a service?
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#what-is-the-high-level-architecture">
+     What is the high level architecture
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#what-type-of-databases-are-used">
+     What type of databases are used?
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#storing-video-chunks-in-cloud-storage">
+     Storing video chunks in cloud storage
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#how-are-the-ci-cd-microservices-deployed">
+     How are the CI/CD microservices deployed
+    </a>
+   </li>
+  </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#cbs-interactive-ai-ml-group">
    CBS Interactive AI/ML Group
   </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#functional-infrastructure">
+     Functional Infrastructure
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#content-awareness-architecture">
+     Content Awareness Architecture
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#video-services">
+     Video Services
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#recommendations-and-search">
+     Recommendations and Search
+    </a>
+   </li>
+  </ul>
  </li>
 </ul>
 
@@ -653,7 +997,8 @@ title="Print to PDF"
 <section id="how-do-pokemon-go-scale-to-millions-of-request">
 <h2>How do Pokemon Go scale to millions of request<a class="headerlink" href="#how-do-pokemon-go-scale-to-millions-of-request" title="Permalink to this headline">#</a></h2>
 <img src="images/pokemonGo.png">
-<p><strong>How does Pokemon scale?</strong></p>
+<section id="how-does-pokemon-scale">
+<h3>How does Pokemon scale?<a class="headerlink" href="#how-does-pokemon-scale" title="Permalink to this headline">#</a></h3>
 <ul class="simple">
 <li><p>uses Google cloud - Google Kubernetes Engine and Spanner</p></li>
 <li><p>front end service hosted on GKE, as it is easy to scale</p></li>
@@ -662,7 +1007,9 @@ title="Print to PDF"
 <li><p>uses microservices for gaming augmentations</p></li>
 <li><p>millions of players play the same game at any given moment, unlike other multiplayer games like “World of Warcraft” which split players into multiple realms</p></li>
 </ul>
-<p><strong>Was the architecture always the same?</strong></p>
+</section>
+<section id="was-the-architecture-always-the-same">
+<h3>Was the architecture always the same?<a class="headerlink" href="#was-the-architecture-always-the-same" title="Permalink to this headline">#</a></h3>
 <ul class="simple">
 <li><p>starting off, it started on Google Data Store</p></li>
 <li><p>later it decided to scale</p></li>
@@ -670,7 +1017,9 @@ title="Print to PDF"
 <li><p>Data store was also non-relational with atomic and durable transactions</p></li>
 <li><p>requirement was to have a relational database with full consistency, so Spanner was chosen, which provided global ACID transactions</p></li>
 </ul>
-<p><strong>How does the request flow work when one logs into Pokemon Go?</strong></p>
+</section>
+<section id="how-does-the-request-flow-work-when-one-logs-into-pokemon-go">
+<h3>How does the request flow work when one logs into Pokemon Go?<a class="headerlink" href="#how-does-the-request-flow-work-when-one-logs-into-pokemon-go" title="Permalink to this headline">#</a></h3>
 <ul class="simple">
 <li><p>when a user catches a Pokemon, a request is received through Google Cloud load balancer</p></li>
 <li><p>all static media is stored on Google cloud storage bucket, which is downloaded onto the phone when the app is opened on phone</p></li>
@@ -691,7 +1040,9 @@ title="Print to PDF"
 <li><p>the front end retrieves the information from the squibby to send back to the user</p></li>
 <li><p>the spatial query is a custom database that presents the map and the Pokemons</p></li>
 </ul>
-<p><strong>What happens when a Pokemon is hunted and caught?</strong></p>
+</section>
+<section id="what-happens-when-a-pokemon-is-hunted-and-caught">
+<h3>What happens when a Pokemon is hunted and caught?<a class="headerlink" href="#what-happens-when-a-pokemon-is-hunted-and-caught" title="Permalink to this headline">#</a></h3>
 <ul class="simple">
 <li><p>a request is sent from the front end to the Spanner database where player entity is stored in the store</p></li>
 <li><p>if someone is battling in the gym or adding lures enhancing Pokestop, that information is stored on spatial query backend</p></li>
@@ -701,13 +1052,17 @@ title="Print to PDF"
 <li><p>Bigtable is also used for logging and tracking purposes</p></li>
 <li><p>Pub/Sub is also used to send topic which is then used for analytics pipeline</p></li>
 </ul>
-<p><strong>How is it ensured that two people in the same geographic location, see the same Pokemon data and keep that relatively in sync, especially during the events?</strong></p>
+</section>
+<section id="how-is-it-ensured-that-two-people-in-the-same-geographic-location-see-the-same-pokemon-data-and-keep-that-relatively-in-sync-especially-during-the-events">
+<h3>How is it ensured that two people in the same geographic location, see the same Pokemon data and keep that relatively in sync, especially during the events?<a class="headerlink" href="#how-is-it-ensured-that-two-people-in-the-same-geographic-location-see-the-same-pokemon-data-and-keep-that-relatively-in-sync-especially-during-the-events" title="Permalink to this headline">#</a></h3>
 <ul class="simple">
 <li><p>everything in the servers are deterministic</p></li>
 <li><p>if they are in same locations, both the players will get returned the same details</p></li>
 <li><p>this is achieved using caching which manages precise timing especially when the settings are changed and they need to be in sync across all servers</p></li>
 </ul>
-<p><strong>How does the data pipelines work and what analytics happen?</strong></p>
+</section>
+<section id="how-does-the-data-pipelines-work-and-what-analytics-happen">
+<h3>How does the data pipelines work and what analytics happen?<a class="headerlink" href="#how-does-the-data-pipelines-work-and-what-analytics-happen" title="Permalink to this headline">#</a></h3>
 <ul class="simple">
 <li><p>about 10G of data is generated daily and stored in BigQuery</p></li>
 <li><p>this data is utilized by data science team</p></li>
@@ -722,7 +1077,9 @@ title="Print to PDF"
 <li><p>Google Dataflow is also used to set up Pokestops and gyms and habitat information around the world</p></li>
 <li><p>information from various sources are used, like OpenStreetMap, US Geological survey and WayFarer, a crowdsourced website, for players to submit points of interests in their neighborhood and combine all that information to build a living map of the world</p></li>
 </ul>
-<p><strong>As the traffic grows during events, how does the data pipelines scale?</strong></p>
+</section>
+<section id="as-the-traffic-grows-during-events-how-does-the-data-pipelines-scale">
+<h3>As the traffic grows during events, how does the data pipelines scale?<a class="headerlink" href="#as-the-traffic-grows-during-events-how-does-the-data-pipelines-scale" title="Permalink to this headline">#</a></h3>
 <ul class="simple">
 <li><p>with the increase of transactions in pipelines, is managed by BigQuery</p>
 <ul>
@@ -731,22 +1088,31 @@ title="Print to PDF"
 </li>
 <li><p>scaling works premptively on Google cloud to support the traffic</p></li>
 </ul>
-<p><strong>How is the health of the system monitored during these massive events?</strong></p>
+</section>
+<section id="how-is-the-health-of-the-system-monitored-during-these-massive-events">
+<h3>How is the health of the system monitored during these massive events?<a class="headerlink" href="#how-is-the-health-of-the-system-monitored-during-these-massive-events" title="Permalink to this headline">#</a></h3>
 <ul class="simple">
 <li><p>multiple monitoring systems like Prometheus, Grafana, and Google Cloud Monitoring is used</p></li>
 </ul>
-<p><strong>What are the next plans?</strong></p>
+</section>
+<section id="what-are-the-next-plans">
+<h3>What are the next plans?<a class="headerlink" href="#what-are-the-next-plans" title="Permalink to this headline">#</a></h3>
 <ul class="simple">
 <li><p>exploring Agones and Google Game Servers</p></li>
 </ul>
-<p><strong>References</strong></p>
+</section>
+<section id="references">
+<h3>References<a class="headerlink" href="#references" title="Permalink to this headline">#</a></h3>
 <ul class="simple">
 <li><p><a class="reference external" href="https://www.scaleyourapp.com/distributed-systems-scalability-part1-heroku-client-rate-throttling/">https://www.scaleyourapp.com/distributed-systems-scalability-part1-heroku-client-rate-throttling/</a></p></li>
 <li><p><a class="reference external" href="https://cloud.google.com/blog/topics/developers-practitioners/how-pok%C3%A9mon-go-scales-millions-requests">https://cloud.google.com/blog/topics/developers-practitioners/how-pokémon-go-scales-millions-requests</a></p></li>
 </ul>
 </section>
+</section>
 <section id="how-does-uber-scale-to-millions-of-concurrent-requests">
 <h2>How does Uber scale to millions of concurrent requests<a class="headerlink" href="#how-does-uber-scale-to-millions-of-concurrent-requests" title="Permalink to this headline">#</a></h2>
+<section id="uber-request-flow">
+<h3>Uber Request Flow<a class="headerlink" href="#uber-request-flow" title="Permalink to this headline">#</a></h3>
 <img src="./images/uberRequestFlow.png">
 <ul class="simple">
 <li><p>Fulfillment platform</p>
@@ -806,6 +1172,9 @@ title="Print to PDF"
 </ul>
 </li>
 </ul>
+</section>
+<section id="uber-fulfillment-architecture">
+<h3>Uber Fulfillment Architecture<a class="headerlink" href="#uber-fulfillment-architecture" title="Permalink to this headline">#</a></h3>
 <img src="./images/uberNewFulfillmentArchitecture.png">
 <ul class="simple">
 <li><p>latency is the biggest factor, what is the networking architecture looks like</p>
@@ -827,6 +1196,9 @@ title="Print to PDF"
 </ul>
 </li>
 </ul>
+</section>
+<section id="uber-low-latency-cloud-architecture">
+<h3>Uber Low Latency Cloud Architecture<a class="headerlink" href="#uber-low-latency-cloud-architecture" title="Permalink to this headline">#</a></h3>
 <img src="./images/uberLowLatencyNetwork.png">
 <ul class="simple">
 <li><p>how was the migration and transition made seemless</p>
@@ -867,6 +1239,9 @@ title="Print to PDF"
 </ul>
 </li>
 </ul>
+</section>
+<section id="uber-auto-scaler">
+<h3>Uber Auto scaler<a class="headerlink" href="#uber-auto-scaler" title="Permalink to this headline">#</a></h3>
 <img src="./images/uberAutoscaler.png">
 <ul class="simple">
 <li><p>On-prem cache was made to handle workload which is very read-heavy</p>
@@ -877,20 +1252,25 @@ title="Print to PDF"
 </ul>
 </li>
 </ul>
+</section>
+<section id="uber-on-prem-cache">
+<h3>Uber On-prem Cache<a class="headerlink" href="#uber-on-prem-cache" title="Permalink to this headline">#</a></h3>
 <img src="./images/uberOnpremcache.png">
+</section>
+<section id="read">
+<h3>READ<a class="headerlink" href="#read" title="Permalink to this headline">#</a></h3>
 <ul class="simple">
-<li><p>READ:</p>
-<ul>
 <li><p>“How Ringpop from Uber Engineering helps distribute your application”</p></li>
 <li><p>Saga pattern - in microservices architecture it tracks all events of distributed transactions as a sequence and decides the rollbacks events in case of a failure</p></li>
 <li><p>Planet scale</p></li>
 <li><p>Strong read and Stale read</p></li>
 </ul>
-</li>
-</ul>
+</section>
 </section>
 <section id="how-to-create-a-microservice-architecture-with-google-cloud-nylas">
 <h2>How to create a microservice architecture with Google Cloud - Nylas<a class="headerlink" href="#how-to-create-a-microservice-architecture-with-google-cloud-nylas" title="Permalink to this headline">#</a></h2>
+<section id="legacy-architecture">
+<h3>Legacy Architecture<a class="headerlink" href="#legacy-architecture" title="Permalink to this headline">#</a></h3>
 <img src="./images/nylasOldArchitecture.png">
 <ul class="simple">
 <li><p>Workflow Automation</p>
@@ -955,6 +1335,9 @@ title="Print to PDF"
 </ul>
 </li>
 </ul>
+</section>
+<section id="current-architecture">
+<h3>Current Architecture<a class="headerlink" href="#current-architecture" title="Permalink to this headline">#</a></h3>
 <img src="./images/nylasNewArchitecture.png">
 <ul class="simple">
 <li><p>PII(Personally Identifiable Information)</p>
@@ -994,8 +1377,11 @@ title="Print to PDF"
 </li>
 </ul>
 </section>
+</section>
 <section id="how-to-architect-an-ai-ml-powered-healthcare-platform-on-google-cloud-vida-health">
 <h2>How to architect an AI/ML powered healthcare platform on Google Cloud - Vida Health<a class="headerlink" href="#how-to-architect-an-ai-ml-powered-healthcare-platform-on-google-cloud-vida-health" title="Permalink to this headline">#</a></h2>
+<section id="data-analytics-architecture">
+<h3>Data Analytics Architecture<a class="headerlink" href="#data-analytics-architecture" title="Permalink to this headline">#</a></h3>
 <img src="./images/vidaDataAnalyticsArchitecture.png">
 <ul class="simple">
 <li><p>provides comprehensive virtual care solution tailored to personalized health goals and preferences</p></li>
@@ -1097,6 +1483,9 @@ title="Print to PDF"
 </ul>
 </li>
 </ul>
+</section>
+<section id="web-architecture">
+<h3>Web Architecture<a class="headerlink" href="#web-architecture" title="Permalink to this headline">#</a></h3>
 <img src="./images/vidaWebArchitecture.png">
 <ul class="simple">
 <li><p>What next</p>
@@ -1115,19 +1504,25 @@ title="Print to PDF"
 </li>
 </ul>
 </section>
+</section>
 <section id="how-are-the-video-monitoring-system-architectured-arcules">
 <h2>How are the video monitoring system architectured - Arcules?<a class="headerlink" href="#how-are-the-video-monitoring-system-architectured-arcules" title="Permalink to this headline">#</a></h2>
-<img src="images/arculesArch.png">
-<p><strong>How does Arcules work?</strong></p>
+<section id="how-does-arcules-work">
+<h3>How does Arcules work?<a class="headerlink" href="#how-does-arcules-work" title="Permalink to this headline">#</a></h3>
 <ul class="simple">
 <li><p>Arcules takes information from multitude of IoT devices, captures it, processes it and then pushes it into the Google cloud</p></li>
 </ul>
-<p><strong>What is video security as a service?</strong></p>
+<img src="images/arculesArch.png">
+</section>
+<section id="what-is-video-security-as-a-service">
+<h3>What is video security as a service?<a class="headerlink" href="#what-is-video-security-as-a-service" title="Permalink to this headline">#</a></h3>
 <ul class="simple">
 <li><p>it is like a SaaS based product, that is storing videos. Its competitors are video management services(VMS)</p></li>
 <li><p>the collected vides help finding incidences or people within video, all captured in cameras</p></li>
 </ul>
-<p><strong>What is the high level architecture</strong></p>
+</section>
+<section id="what-is-the-high-level-architecture">
+<h3>What is the high level architecture<a class="headerlink" href="#what-is-the-high-level-architecture" title="Permalink to this headline">#</a></h3>
 <ul class="simple">
 <li><p>the customers have a small appliance at the edge that allows buffering information before sending it to the cloud</p></li>
 <li><p>it can be deployed inside of bare metal or VMware</p></li>
@@ -1137,7 +1532,9 @@ title="Print to PDF"
 <li><p>different types of load balancers are used as HTTP/HTTPS and endpoint connections, along with instances of L4 with WebRTC</p></li>
 <li><p>also use IoT core, which is used for metadata that flows up through some the services at the edge, which gets fed into pub/sub, which then gets fed into BigQuery</p></li>
 </ul>
-<p><strong>What type of databases are used?</strong></p>
+</section>
+<section id="what-type-of-databases-are-used">
+<h3>What type of databases are used?<a class="headerlink" href="#what-type-of-databases-are-used" title="Permalink to this headline">#</a></h3>
 <ul class="simple">
 <li><p>different types of dbs are used</p></li>
 <li><p>use cloud SQL, both Postgres and a bit of MySQL</p></li>
@@ -1146,7 +1543,9 @@ title="Print to PDF"
 <li><p>Postgres is mostly used for device configuration storage</p></li>
 <li><p>BigQuery is used for slow storage, which is powerful to run jobs across large datasets</p></li>
 </ul>
-<p><strong>Storing video chunks in cloud storage</strong></p>
+</section>
+<section id="storing-video-chunks-in-cloud-storage">
+<h3>Storing video chunks in cloud storage<a class="headerlink" href="#storing-video-chunks-in-cloud-storage" title="Permalink to this headline">#</a></h3>
 <ul class="simple">
 <li><p>videos are stored today inside of custom container format H.264</p></li>
 <li><p>every videos have keyframes</p></li>
@@ -1154,32 +1553,42 @@ title="Print to PDF"
 <li><p>these informations are aggregated up, so that no extra spending is required on PUT requests</p></li>
 <li><p>all the messages fly through pub/sub</p></li>
 </ul>
-<p><strong>How are the CI/CD microservices deployed</strong></p>
+</section>
+<section id="how-are-the-ci-cd-microservices-deployed">
+<h3>How are the CI/CD microservices deployed<a class="headerlink" href="#how-are-the-ci-cd-microservices-deployed" title="Permalink to this headline">#</a></h3>
 <ul class="simple">
 <li><p>deployment is typically through Seneca, with build process through the cloud build platform</p></li>
 <li><p>heavy users of container services for container management</p></li>
 </ul>
+</section>
 </section>
 <section id="cbs-interactive-ai-ml-group">
 <h2>CBS Interactive AI/ML Group<a class="headerlink" href="#cbs-interactive-ai-ml-group" title="Permalink to this headline">#</a></h2>
 <ul class="simple">
 <li><p><a class="reference external" href="https://youtu.be/hX71H78UYAc">https://youtu.be/hX71H78UYAc</a></p></li>
 </ul>
-<p><strong>Functional Infrastructure</strong>
-<img src="images/googleFunctionalInfra.png"></p>
-<p><strong>Content Awareness Architecture</strong>
-<img src="images/googleContentAwarenessProduct.png"></p>
-<p><strong>Video Services</strong></p>
+<section id="functional-infrastructure">
+<h3>Functional Infrastructure<a class="headerlink" href="#functional-infrastructure" title="Permalink to this headline">#</a></h3>
+<img src="images/googleFunctionalInfra.png">
+</section>
+<section id="content-awareness-architecture">
+<h3>Content Awareness Architecture<a class="headerlink" href="#content-awareness-architecture" title="Permalink to this headline">#</a></h3>
+<img src="images/googleContentAwarenessProduct.png">
+</section>
+<section id="video-services">
+<h3>Video Services<a class="headerlink" href="#video-services" title="Permalink to this headline">#</a></h3>
 <ul class="simple">
 <li><p>the video narratives are broken down into</p>
 <ul>
 <li><p>foreground information that drives the story forward</p></li>
-<li><p>background information that provides the setting
-<img src="images/googleFunctionalInfra.png"></p></li>
+<li><p>background information that provides the setting</p></li>
 </ul>
 </li>
 </ul>
-<p><strong>Recommendations and Search</strong></p>
+<img src="images/googleFunctionalInfra.png">
+</section>
+<section id="recommendations-and-search">
+<h3>Recommendations and Search<a class="headerlink" href="#recommendations-and-search" title="Permalink to this headline">#</a></h3>
 <ul class="simple">
 <li><p>goal - general purpose recommendations to brands with simple API interface</p></li>
 <li><p>accomplished dynamically using Redis</p>
@@ -1236,6 +1645,7 @@ title="Print to PDF"
 </ul>
 <img src="images/googleFutureDirection.png"></section>
 </section>
+</section>
 
     <script type="text/x-thebe-config">
     {
@@ -1264,17 +1674,17 @@ title="Print to PDF"
                 
     <!-- Previous / next buttons -->
 <div class='prev-next-area'>
-    <a class='left-prev' id="prev-link" href="design_patterns.html" title="previous page">
+    <a class='left-prev' id="prev-link" href="software_engineering_concepts.html" title="previous page">
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
             <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">System Design Summary</p>
+            <p class="prev-next-title">Software Engineering concepts</p>
         </div>
     </a>
-    <a class='right-next' id="next-link" href="aws_usecases.html" title="next page">
+    <a class='right-next' id="next-link" href="awscloud_financial_symposium_2022.html" title="next page">
     <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">AWS - Customer story</p>
+        <p class="prev-next-title">AWS - Financial Services Cloud Symposium - 2022</p>
     </div>
     <i class="fas fa-angle-right"></i>
     </a>

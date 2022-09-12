@@ -109,7 +109,7 @@ const thebe_selector_output = ".output, .cell_output"
         <ul class="nav bd-sidenav bd-sidenav__home-link">
             <li class="toctree-l1">
                 <a class="reference internal" href="../intro.html">
-                    My learning notebook
+                    Welcome
                 </a>
             </li>
         </ul>
@@ -121,7 +121,7 @@ const thebe_selector_output = ".output, .cell_output"
 <ul class="nav bd-sidenav">
  <li class="toctree-l1 has-children">
   <a class="reference internal" href="../system_design/intro.html">
-   My ML Book
+   My System Design Book
   </a>
   <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
   <label for="toctree-checkbox-1">
@@ -131,7 +131,47 @@ const thebe_selector_output = ".output, .cell_output"
   <ul>
    <li class="toctree-l2">
     <a class="reference internal" href="../system_design/design_patterns.html">
-     Asynchronous request reply
+     System Design Summary
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../system_design/software_engineering_concepts.html">
+     Software Engineering concepts
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../system_design/googlecloud_use_cases.html">
+     Google - Customer story
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../system_design/awscloud_financial_symposium_2022.html">
+     AWS - Financial Services Cloud Symposium - 2022
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../system_design/aws_usecases.html">
+     AWS - Customer story
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../system_design/design_general_use_cases.html">
+     Case study
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../system_design/netflix.html">
+     Netflix creativity
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../system_design/bk_AlexXu_SystemDesignInterview.html">
+     Book - System Design Interview - Alex Xu
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../system_design/design_patterns_python.html">
+     Design Pattern - Python
     </a>
    </li>
   </ul>
@@ -900,7 +940,7 @@ title="Print to PDF"
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The binary tree structure has 13 nodes and has the following tree structure:
 
-node=0 is a split node: go to node 1 if X[:, 2] &lt;= 2.350000023841858 else to node 2.
+node=0 is a split node: go to node 1 if X[:, 3] &lt;= 0.800000011920929 else to node 2.
 	node=1 is a leaf node.
 	node=2 is a split node: go to node 3 if X[:, 2] &lt;= 4.950000047683716 else to node 8.
 		node=3 is a split node: go to node 4 if X[:, 3] &lt;= 1.6500000357627869 else to node 5.
@@ -908,8 +948,8 @@ node=0 is a split node: go to node 1 if X[:, 2] &lt;= 2.350000023841858 else to 
 			node=5 is a split node: go to node 6 if X[:, 1] &lt;= 3.100000023841858 else to node 7.
 				node=6 is a leaf node.
 				node=7 is a leaf node.
-		node=8 is a split node: go to node 9 if X[:, 2] &lt;= 5.049999952316284 else to node 12.
-			node=9 is a split node: go to node 10 if X[:, 0] &lt;= 6.5 else to node 11.
+		node=8 is a split node: go to node 9 if X[:, 3] &lt;= 1.75 else to node 12.
+			node=9 is a split node: go to node 10 if X[:, 3] &lt;= 1.6500000357627869 else to node 11.
 				node=10 is a leaf node.
 				node=11 is a leaf node.
 			node=12 is a leaf node.
@@ -1057,9 +1097,9 @@ weighted avg       0.98      0.97      0.97        38
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Rules used to predict sample 0:
 
-decision node 0 : (X_test[0, 2] = 5.1) &gt; 2.350000023841858)
+decision node 0 : (X_test[0, 3] = 2.4) &gt; 0.800000011920929)
 decision node 2 : (X_test[0, 2] = 5.1) &gt; 4.950000047683716)
-decision node 8 : (X_test[0, 2] = 5.1) &gt; 5.049999952316284)
+decision node 8 : (X_test[0, 3] = 2.4) &gt; 1.75)
 </pre></div>
 </div>
 </div>
@@ -1071,7 +1111,7 @@ decision node 8 : (X_test[0, 2] = 5.1) &gt; 5.049999952316284)
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[Text(0.4, 0.9, &#39;X[2] &lt;= 2.35\ngini = 0.665\nsamples = 112\nvalue = [37, 34, 41]&#39;),
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[Text(0.4, 0.9, &#39;X[3] &lt;= 0.8\ngini = 0.665\nsamples = 112\nvalue = [37, 34, 41]&#39;),
  Text(0.3, 0.7, &#39;gini = 0.0\nsamples = 37\nvalue = [37, 0, 0]&#39;),
  Text(0.5, 0.7, &#39;X[2] &lt;= 4.95\ngini = 0.496\nsamples = 75\nvalue = [0, 34, 41]&#39;),
  Text(0.2, 0.5, &#39;X[3] &lt;= 1.65\ngini = 0.153\nsamples = 36\nvalue = [0, 33, 3]&#39;),
@@ -1079,8 +1119,8 @@ decision node 8 : (X_test[0, 2] = 5.1) &gt; 5.049999952316284)
  Text(0.3, 0.3, &#39;X[1] &lt;= 3.1\ngini = 0.375\nsamples = 4\nvalue = [0, 1, 3]&#39;),
  Text(0.2, 0.1, &#39;gini = 0.0\nsamples = 3\nvalue = [0, 0, 3]&#39;),
  Text(0.4, 0.1, &#39;gini = 0.0\nsamples = 1\nvalue = [0, 1, 0]&#39;),
- Text(0.8, 0.5, &#39;X[2] &lt;= 5.05\ngini = 0.05\nsamples = 39\nvalue = [0, 1, 38]&#39;),
- Text(0.7, 0.3, &#39;X[0] &lt;= 6.5\ngini = 0.375\nsamples = 4\nvalue = [0, 1, 3]&#39;),
+ Text(0.8, 0.5, &#39;X[3] &lt;= 1.75\ngini = 0.05\nsamples = 39\nvalue = [0, 1, 38]&#39;),
+ Text(0.7, 0.3, &#39;X[3] &lt;= 1.65\ngini = 0.375\nsamples = 4\nvalue = [0, 1, 3]&#39;),
  Text(0.6, 0.1, &#39;gini = 0.0\nsamples = 3\nvalue = [0, 0, 3]&#39;),
  Text(0.8, 0.1, &#39;gini = 0.0\nsamples = 1\nvalue = [0, 1, 0]&#39;),
  Text(0.9, 0.3, &#39;gini = 0.0\nsamples = 35\nvalue = [0, 0, 35]&#39;)]

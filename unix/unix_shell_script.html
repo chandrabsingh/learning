@@ -133,8 +133,18 @@ const thebe_selector_output = ".output, .cell_output"
     </a>
    </li>
    <li class="toctree-l2">
+    <a class="reference internal" href="../system_design/software_engineering_concepts.html">
+     Software Engineering concepts
+    </a>
+   </li>
+   <li class="toctree-l2">
     <a class="reference internal" href="../system_design/googlecloud_use_cases.html">
      Google - Customer story
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../system_design/awscloud_financial_symposium_2022.html">
+     AWS - Financial Services Cloud Symposium - 2022
     </a>
    </li>
    <li class="toctree-l2">
@@ -150,6 +160,16 @@ const thebe_selector_output = ".output, .cell_output"
    <li class="toctree-l2">
     <a class="reference internal" href="../system_design/netflix.html">
      Netflix creativity
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../system_design/bk_AlexXu_SystemDesignInterview.html">
+     Book - System Design Interview - Alex Xu
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../system_design/design_patterns_python.html">
+     Design Pattern - Python
     </a>
    </li>
   </ul>
@@ -1193,9 +1213,9 @@ And must importantly, :q will quite the mode.</p>
 <ul class="simple">
 <li><p>view csv on shell</p></li>
 </ul>
-<blockquote>
-<div><p><code class="docutils literal notranslate"><span class="pre">column</span> <span class="pre">-s,</span> <span class="pre">-t</span> <span class="pre">&lt;</span> <span class="pre">somefile.csv</span> <span class="pre">|</span> <span class="pre">less</span> <span class="pre">-#2</span> <span class="pre">-N</span> <span class="pre">-S</span></code></p>
-</div></blockquote>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>column -s, -t &lt; somefile.csv <span class="p">|</span> less -#2 -N -S
+</pre></div>
+</div>
 </section>
 </section>
 <section id="shell-commands">
@@ -1820,40 +1840,42 @@ conda install -c conda-forge “nbconvert=5.6.1” # This version only works</p>
 <ul class="simple">
 <li><p>Check git version</p></li>
 </ul>
-<blockquote>
-<div><p>git version</p>
-</div></blockquote>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>git version
+</pre></div>
+</div>
 <ul class="simple">
 <li><p>Check user details</p></li>
 </ul>
-<blockquote>
-<div><p>git config –list</p>
-</div></blockquote>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>git config --list
+</pre></div>
+</div>
 <ul class="simple">
 <li><p>Check git configuration file</p></li>
 </ul>
-<blockquote>
-<div><p>cat ~/.gitconfig</p>
-</div></blockquote>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>cat ~/.gitconfig
+</pre></div>
+</div>
 <ul class="simple">
 <li><p>Change git configuration</p></li>
 </ul>
-<blockquote>
-<div><p>git config –global <a class="reference external" href="http://user.name">user.name</a> “Chandra”</p>
-</div></blockquote>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>git config --global user.name <span class="s2">&quot;Chandra&quot;</span>
+</pre></div>
+</div>
 <ul class="simple">
 <li><p>To clone a repository</p></li>
 </ul>
-<blockquote>
-<div><p>git clone <a class="reference external" href="https://github.com/chandrabsingh/learnings">https://github.com/chandrabsingh/learnings</a></p>
-</div></blockquote>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>git clone https://github.com/chandrabsingh/learnings
+</pre></div>
+</div>
 <ul class="simple">
 <li><p>To check status of files</p></li>
 </ul>
 <blockquote>
-<div><p>Go inside the directory
-git status</p>
+<div><p>Go inside the directory</p>
 </div></blockquote>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>git status
+</pre></div>
+</div>
 <ul class="simple">
 <li><p>Lifecycle of status of file</p></li>
 </ul>
@@ -1864,95 +1886,106 @@ git status</p>
 <li><p>Initialize a repository</p></li>
 </ul>
 <blockquote>
-<div><p>git init
+<div><p><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">init</span></code>
 this creates .git file in the folder</p>
 </div></blockquote>
 <ul class="simple">
 <li><p>Local or Remote</p></li>
 <li><p>Add files</p></li>
 </ul>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>touch index.html
+git add index.html
+</pre></div>
+</div>
 <blockquote>
-<div><p>touch index.html<br />
-git add index.html<br />
-this adds the file in unstaged area</p>
+<div><div class="highlight-none notranslate"><div class="highlight"><pre><span></span>this adds the file in unstaged area  
+</pre></div>
+</div>
 </div></blockquote>
 <ul class="simple">
 <li><p>Delete files from git after deleting from fs</p></li>
 </ul>
-<blockquote>
-<div><p>git ls-files –deleted -z | xargs -0 git rm</p>
-</div></blockquote>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>git ls-files --deleted -z <span class="p">|</span> xargs -0 git rm
+</pre></div>
+</div>
 <ul class="simple">
 <li><p>To commit a files</p></li>
 </ul>
-<blockquote>
-<div><p>git commit -m “Commit message”</p>
-</div></blockquote>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>git commit -m <span class="s2">&quot;Commit message&quot;</span>
+</pre></div>
+</div>
 <ul class="simple">
 <li><p>History of commits</p></li>
 </ul>
-<blockquote>
-<div><p>git log</p>
-</div></blockquote>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>git log
+</pre></div>
+</div>
 <ul class="simple">
 <li><p>New files added are called untracked files. After updating file, it needs to be added as well</p></li>
 </ul>
-<blockquote>
-<div><p>git add index.html</p>
-</div></blockquote>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>git add index.html
+</pre></div>
+</div>
 <ul class="simple">
 <li><p>To add all files at once</p></li>
 </ul>
-<blockquote>
-<div><p>git add .</p>
-</div></blockquote>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>git add .
+</pre></div>
+</div>
 <ul class="simple">
 <li><p>How to undo git add before commit</p></li>
 </ul>
-<blockquote>
-<div><p>git reset filename</p>
-</div></blockquote>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>git reset filename
+</pre></div>
+</div>
 <ul class="simple">
 <li><p>How to roll back</p></li>
 </ul>
-<blockquote>
-<div><p>git log<br />
-Copy the hash of the version you want to
-git checkout xyz</p>
-</div></blockquote>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>git log
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Copy the hash of the version you want to</p></li>
+</ul>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>git checkout xyz  
+</pre></div>
+</div>
 <ul class="simple">
 <li><p>To list local branches</p></li>
 </ul>
-<blockquote>
-<div><p>git branch</p>
-</div></blockquote>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>git branch
+</pre></div>
+</div>
 <ul class="simple">
 <li><p>To list remote branches</p></li>
 </ul>
-<blockquote>
-<div><p>git branch -r</p>
-</div></blockquote>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>git branch -r
+</pre></div>
+</div>
 <ul class="simple">
 <li><p>To list both local and remote branches</p></li>
 </ul>
-<blockquote>
-<div><p>git branch -a</p>
-</div></blockquote>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>git branch -a
+</pre></div>
+</div>
 <ul class="simple">
 <li><p>To create a branch</p></li>
 </ul>
-<blockquote>
-<div><p>git branch colors</p>
-</div></blockquote>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>git branch colors
+</pre></div>
+</div>
 <ul class="simple">
-<li><p>To merge branch into master</p></li>
+<li><p>To merge branch into master</p>
+<ul>
+<li><p>Be on the master</p></li>
 </ul>
-<blockquote>
-<div><p>Be on the master<br />
-git merge colors<br />
-This updates colors changes onto master</p>
-</div></blockquote>
+</li>
+</ul>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>git merge colors  
+</pre></div>
+</div>
 <ul class="simple">
+<li><p>This updates colors changes onto master</p></li>
 <li><p>push changes</p></li>
 </ul>
 <blockquote>
@@ -1967,26 +2000,35 @@ This updates colors changes onto master</p>
 <ul class="simple">
 <li><p>How does pull work</p></li>
 </ul>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>git pull origin master  
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>is equivalent to</p></li>
+</ul>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>git fetch origin  
+git merge master origin/master  
+</pre></div>
+</div>
 <blockquote>
-<div><p>git pull origin master<br />
-is equivalent to<br />
-git fetch origin<br />
-git merge master origin/master<br />
-<img alt="alt-text" src="../_images/git_fetch_merge.png" /></p>
+<div><p><img alt="alt-text" src="../_images/git_fetch_merge.png" /></p>
 </div></blockquote>
 <ul class="simple">
 <li><p>How to compare two branches</p></li>
 </ul>
-<blockquote>
-<div><p>git diff origin/master master</p>
-</div></blockquote>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>git diff origin/master master
+</pre></div>
+</div>
 <ul class="simple">
-<li><p>Moving files</p></li>
+<li><p>Moving files</p>
+<ul>
+<li><p>Git does not explicitly track file changes</p></li>
 </ul>
-<blockquote>
-<div><p>Git does not explicitly track file changes<br />
-git mv file_from file_to</p>
-</div></blockquote>
+</li>
+</ul>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>git mv file_from file_to
+</pre></div>
+</div>
 <ul class="simple">
 <li><p>Better git log with git ls</p></li>
 </ul>
@@ -1997,6 +2039,18 @@ git mv file_from file_to</p>
 <p>[alias]
 ls = log –graph –abbrev-commit –decorate –color=always –date=relative –format=format:’%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) - %C(dim red)%an%C(reset)%C(bold yellow)%d%C(reset)’ –all</p>
 </div></blockquote>
+<ul class="simple">
+<li><p>Delete both from local and remote repository</p></li>
+</ul>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>git rm wrong.txt
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Delete from remote repository but keep locally</p></li>
+</ul>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>git rm --cached wrong.txt
+</pre></div>
+</div>
 </section>
 <section id="conda">
 <h2>conda<a class="headerlink" href="#conda" title="Permalink to this headline">#</a></h2>
