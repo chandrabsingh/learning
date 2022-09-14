@@ -1,0 +1,1669 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Introduction to Kafka/ksqldb/stream processing</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="My ML Book" href="../ml_examples/intro.html" />
+    <link rel="prev" title="My ML Book" href="intro.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../_static/mylogo.png" class="logo" alt="logo">
+      
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    Welcome
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  System Design
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../system_design/intro.html">
+   My System Design Book
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../system_design/design_patterns.html">
+     System Design Summary
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../system_design/software_engineering_concepts.html">
+     Software Engineering concepts
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../system_design/googlecloud_use_cases.html">
+     Google - Customer story
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../system_design/awscloud_financial_symposium_2022.html">
+     AWS - Financial Services Cloud Symposium - 2022
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../system_design/aws_usecases.html">
+     AWS - Customer story
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../system_design/design_general_use_cases.html">
+     Case study
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../system_design/netflix.html">
+     Netflix creativity
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../system_design/bk_AlexXu_SystemDesignInterview.html">
+     Book - System Design Interview - Alex Xu
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../system_design/design_patterns_python.html">
+     Design Pattern - Python
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  DBs/Events
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="intro.html">
+   My ML Book
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     Introduction to Kafka/ksqldb/stream processing
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Machine Learning
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../ml_examples/intro.html">
+   My ML Book
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+  <label for="toctree-checkbox-3">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../ml_examples/Store_Sales_Forecasting_With_Tensorflow.html">
+     Store Sales Forecasting with TensorFlow
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../ml_examples/decision_tree_classification.html">
+     Decision Tree - classification
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../ml_examples/ml_design_patterns.html">
+     The Need for ML Design Patterns
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Unix/Shell Scripting
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../unix/intro.html">
+   My Unix/Shell Book
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+  <label for="toctree-checkbox-4">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../unix/my_zshrc.html">
+     My .zshrc script
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Reference
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../ml_examples/ml_glossary.html">
+   ML Conceptual brief
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../codes/python_faqs.html">
+   Python FAQs
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../unix/unix_shell_script.html">
+   Unix/Shell FAQs
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../markdown.html">
+   Markdown Files
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../notebooks.html">
+   Content with notebooks
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../markdown-notebooks.html">
+   Notebooks with MyST Markdown
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Lecture Notes
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../cs229_ml/intro.html">
+   CS229 ML - by Andrew Ng
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
+  <label for="toctree-checkbox-5">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../cs229_ml/lec02-LinearReg-GradientDescent.html">
+     Lec 02-Linear Regression - Gradient Descent
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../cs229_ml/lec03-LocallyWeighted-LogisticRegression.html">
+     Lec 03-Locally Weighted Regression - Logistic Regression
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../cs229_ml/lec04-Perceptron-GLM.html">
+     Lec 04-Perceptron - GLM
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../cs229_ml/lec05-GDA-NaiveBayes.html">
+     Lec 05-GDA - Naive Bayes
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../cs229_ml/lec06-NaiveBayes-SVM.html">
+     Lec 06-Naive Bayes - SVM
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../cs229_ml/lec07-Kernels-SVM.html">
+     Lec 07-Kernels - SVM
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../cs229_ml/lec08-DataSplits-Models-CrossValidation.html">
+     Lec 08-Data Splits - Models - Cross Validation
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../cs229_ml/lec09-Approx-EstimationError-ERM.html">
+     Lec 09-Estimation Error - ERM
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../cs229_ml/lec10-DecisionTrees-EnsembleMethods.html">
+     Lec 10-Decision Trees - Ensemble Methods
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../cs229_ml/lec11-Intro-NN.html">
+     Lec 11-Neural Networks
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../cs229_ml/lec12-Backpropagation-ImprovingNN.html">
+     Lec 12-Improving NN
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../cs229_ml/lec13-DebuggingMLModels-ErrorAnalysis.html">
+     Lec 13-Debugging ML Models-Error Analysis
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../cs229_ml/lec14-Expectation-MaximizationAlgo.html">
+     Lec 14-Expectation-Maximization Algo
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../cs229_ml/lec15-EMAlgo-FactorAnalysis.html">
+     Lec 15-EM Algo-Factor Analysis
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../cs229_ml/lec16-IndependentComponentAnalysis-RL.html">
+     Lec 16-Independent Component Analysis-RL
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../cs229_ml/lec17-MDPs-ValuePolicyIteration.html">
+     Lec 17-MDPs-Value Policy Iteration
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../cs229_ml/lec18-continuousMDPs-ModelSimulation.html">
+     Lec 18-Continuous MDPs-Model Simulation
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+    </div>
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<div class="menu-dropdown menu-dropdown-launch-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Launch interactive content">
+      <i class="fas fa-rocket"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://mybinder.org/v2/gh/chandrabsingh/learning/master?urlpath=tree/learning/dbs/intro_kafka_ksqldb_stream_processing.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Binder"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="../_static/images/logo_binder.svg">
+  </span>
+<span class="headerbtn__text-container">Binder</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-repository-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Source repositories">
+      <i class="fab fa-github"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://github.com/chandrabsingh/learning"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Source repository"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="headerbtn__text-container">repository</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/chandrabsingh/learning/issues/new?title=Issue%20on%20page%20%2Fdbs/intro_kafka_ksqldb_stream_processing.html&body=Your%20issue%20content%20here."
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Open an issue"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="headerbtn__text-container">open issue</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="../_sources/dbs/intro_kafka_ksqldb_stream_processing.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.ipynb</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#motivation-for-event-streaming">
+   Motivation for event streaming
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#event-vs-message">
+     Event vs Message
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#confluent-journey">
+     Confluent Journey
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#capital-one">
+     Capital One
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#take-away-1">
+     Take Away 1
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#event-streaming-platform">
+     Event Streaming Platform
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#kafka-101">
+   Kafka 101
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#event-streams">
+     Event streams
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#store-events-distributed-and-replicated">
+     Store Events - Distributed and Replicated
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#producing-to-kafka">
+     Producing to Kafka
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#consuming-from-kafka">
+     Consuming from Kafka
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#consuming-using-a-single-client">
+       Consuming using a single client
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#consuming-with-consumer-groups">
+       Consuming with consumer groups
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id1">
+       Consuming with consumer groups
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#delivery-guarantees">
+     Delivery Guarantees
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#take-away-2">
+     Take Away 2
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#stream-processing">
+   Stream Processing
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#kafka-streams">
+     Kafka streams
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#process-analyze-events">
+     Process &amp; Analyze events
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#topics-vs-streams-and-tables">
+     Topics vs Streams and Tables
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#take-away-3">
+     Take-away 3
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#ksqldb-an-introduction">
+   ksqldb - An introduction
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#ksql">
+     KSQL
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#what-is-ksql-not-good-for">
+     What is KSQL not good for?
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#where-is-ksql-evolving">
+     Where is KSQL evolving?
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#pull-queries">
+       Pull queries
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#embedded-connectors">
+       Embedded Connectors
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#what-use-case-is-ksqldb-good-for">
+     What use case is ksqldb good for?
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#take-away-4">
+     Take Away 4
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+    </nav>
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Introduction to Kafka/ksqldb/stream processing</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#motivation-for-event-streaming">
+   Motivation for event streaming
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#event-vs-message">
+     Event vs Message
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#confluent-journey">
+     Confluent Journey
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#capital-one">
+     Capital One
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#take-away-1">
+     Take Away 1
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#event-streaming-platform">
+     Event Streaming Platform
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#kafka-101">
+   Kafka 101
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#event-streams">
+     Event streams
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#store-events-distributed-and-replicated">
+     Store Events - Distributed and Replicated
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#producing-to-kafka">
+     Producing to Kafka
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#consuming-from-kafka">
+     Consuming from Kafka
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#consuming-using-a-single-client">
+       Consuming using a single client
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#consuming-with-consumer-groups">
+       Consuming with consumer groups
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id1">
+       Consuming with consumer groups
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#delivery-guarantees">
+     Delivery Guarantees
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#take-away-2">
+     Take Away 2
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#stream-processing">
+   Stream Processing
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#kafka-streams">
+     Kafka streams
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#process-analyze-events">
+     Process &amp; Analyze events
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#topics-vs-streams-and-tables">
+     Topics vs Streams and Tables
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#take-away-3">
+     Take-away 3
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#ksqldb-an-introduction">
+   ksqldb - An introduction
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#ksql">
+     KSQL
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#what-is-ksql-not-good-for">
+     What is KSQL not good for?
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#where-is-ksql-evolving">
+     Where is KSQL evolving?
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#pull-queries">
+       Pull queries
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#embedded-connectors">
+       Embedded Connectors
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#what-use-case-is-ksqldb-good-for">
+     What use case is ksqldb good for?
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#take-away-4">
+     Take Away 4
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <section class="tex2jax_ignore mathjax_ignore" id="introduction-to-kafka-ksqldb-stream-processing">
+<h1>Introduction to Kafka/ksqldb/stream processing<a class="headerlink" href="#introduction-to-kafka-ksqldb-stream-processing" title="Permalink to this headline">#</a></h1>
+<ul class="simple">
+<li><p><a class="reference external" href="https://www.youtube.com/watch?v=-kFU6mCnOFw">https://www.youtube.com/watch?v=-kFU6mCnOFw</a></p></li>
+</ul>
+<section id="motivation-for-event-streaming">
+<h2>Motivation for event streaming<a class="headerlink" href="#motivation-for-event-streaming" title="Permalink to this headline">#</a></h2>
+<ul class="simple">
+<li><p>two ways of connecting applications</p>
+<ul>
+<li><p>ETL</p>
+<ul>
+<li><p>pros</p>
+<ul>
+<li><p>large batch processing</p></li>
+</ul>
+</li>
+<li><p>cons</p>
+<ul>
+<li><p>gave a retro view of data post extraction, processing and loading</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Messaging</p>
+<ul>
+<li><p>pros</p>
+<ul>
+<li><p>real time processing</p></li>
+</ul>
+</li>
+<li><p>cons</p>
+<ul>
+<li><p>messages are processed in isolation</p></li>
+<li><p>no historical context</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>What kafka tries to solve</p>
+<ul>
+<li><p>brings both world together</p>
+<ul>
+<li><p>high throughput like in ETL world</p></li>
+<li><p>solves messages in real time in low latency fashion</p></li>
+</ul>
+</li>
+<li><p>other motivation</p>
+<ul>
+<li><p>constant feed about activities of friends</p></li>
+<li><p>real time news feeds, accessible online anytime, anywhere</p></li>
+<li><p>entering in company level</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<section id="event-vs-message">
+<h3>Event vs Message<a class="headerlink" href="#event-vs-message" title="Permalink to this headline">#</a></h3>
+<ul class="simple">
+<li><p>Event</p>
+<ul>
+<li><p>is a lightweight notification of a condition or a state change</p></li>
+<li><p>is immutable, so an event cannot be changed</p></li>
+<li><p>consumer decides what to do, publisher has no expectation</p></li>
+</ul>
+</li>
+<li><p>Message</p>
+<ul>
+<li><p>there is a definitive expectation as what will happen with the message</p></li>
+<li><p>who will consume the message, what will be done, is acknowledged</p></li>
+<li><p>publisher has an expectation about how the consumer will handle the message</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="confluent-journey">
+<h3>Confluent Journey<a class="headerlink" href="#confluent-journey" title="Permalink to this headline">#</a></h3>
+<ul class="simple">
+<li><p><em>Event</em> holds way more information that what the <em>state</em> does</p>
+<ul>
+<li><p>“I changed my job from Snaplogic to Confluent in April 2019” - event</p></li>
+<li><p>“I work at Confluent” - state</p></li>
+</ul>
+</li>
+<li><p>but there was data storage for events</p></li>
+<li><p>Hadoop had a file system, database has tables, but nothing was there was events</p></li>
+<li><p>this was how idea of Kafka came into existence</p></li>
+<li><p>this allows customer rich experience</p></li>
+<li><p>When will the driver arrive?</p>
+<ul>
+<li><p>combines real time data with historical data</p></li>
+<li><p>only event streaming platforms can do this</p></li>
+</ul>
+</li>
+<li><p>Event driven app vs contextual event driven app</p>
+<ul>
+<li><p>contextual event driven app combines historical data to make precise prediction/ETA</p></li>
+</ul>
+</li>
+</ul>
+<p align="center"><img src="./images/event_driven_app.png"></p>
+<p><span class="math notranslate nohighlight">\(\tiny{\text{Introduction to ksqldb and stream processing - Vish Srinivasan}}\)</span></p>
+</section>
+<section id="capital-one">
+<h3>Capital One<a class="headerlink" href="#capital-one" title="Permalink to this headline">#</a></h3>
+<ul class="simple">
+<li><p>contextual event-driven (event streaming platform) apps in the enterprise</p>
+<ul>
+<li><p>real-time fraud notifications</p></li>
+<li><p>real time “Second Look”</p>
+<ul>
+<li><p>if you swipe your card twice, or if you buy two burgers one after another</p></li>
+<li><p>gives a notifications</p></li>
+</ul>
+</li>
+<li><p>automated transaction analysis</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="take-away-1">
+<h3>Take Away 1<a class="headerlink" href="#take-away-1" title="Permalink to this headline">#</a></h3>
+<ul class="simple">
+<li><p>Event streeaming platforms lets you build contextual event driven applications combining real time and historical data</p></li>
+</ul>
+</section>
+<section id="event-streaming-platform">
+<h3>Event Streaming Platform<a class="headerlink" href="#event-streaming-platform" title="Permalink to this headline">#</a></h3>
+<ul class="simple">
+<li><p>3 key functionalities</p>
+<ul>
+<li><p>publish/subscribe to events</p></li>
+<li><p>store events</p>
+<ul>
+<li><p>persists events</p></li>
+<li><p>key differentiator vs any other event platform</p></li>
+</ul>
+</li>
+<li><p>process and analyze events</p></li>
+</ul>
+</li>
+</ul>
+</section>
+</section>
+<section id="kafka-101">
+<h2>Kafka 101<a class="headerlink" href="#kafka-101" title="Permalink to this headline">#</a></h2>
+<section id="event-streams">
+<h3>Event streams<a class="headerlink" href="#event-streams" title="Permalink to this headline">#</a></h3>
+<ul class="simple">
+<li><p>at its core Kafka is a commit log</p></li>
+<li><p>from <em>publisher</em> point of view</p>
+<ul>
+<li><p>it always append data to the end of the log</p></li>
+<li><p>writing data is immutable</p>
+<ul>
+<li><p>we cannot change existing state</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>from <em>consumer</em> point of view</p>
+<ul>
+<li><p>consumer can read from anywhere in the log</p></li>
+<li><p>consumers keep track of offset, of upto where they have read</p></li>
+<li><p>system A can be a batch ETL process which says give me all the events that happened</p></li>
+<li><p>system B can be upto date with events as and when it is happening</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="store-events-distributed-and-replicated">
+<h3>Store Events - Distributed and Replicated<a class="headerlink" href="#store-events-distributed-and-replicated" title="Permalink to this headline">#</a></h3>
+<ul class="simple">
+<li><p>3 things to consider</p>
+<ul>
+<li><p><strong>Producer</strong> writes data into Kafka</p></li>
+<li><p><strong>Consumer</strong> consumes these messages</p></li>
+<li><p>data is stored in partitions</p>
+<ul>
+<li><p><strong>Partition</strong> is fundamental to Kafka</p>
+<ul>
+<li><p>partition is the reason why/how elasticity, scalability, fault-tolerance is achieved</p></li>
+<li><p>machines only understand partitions</p></li>
+</ul>
+</li>
+<li><p><strong>Topic</strong> is the logical grouping of partition</p>
+<ul>
+<li><p>topic holds similar event types</p></li>
+<li><p>topic is meant for humans to understand</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>in the example below, topic has 2 partitions those 2 partitions have then 3 replicas each</p></li>
+<li><p>this can then be distributed across <strong>Broker</strong></p></li>
+<li><p>this allows fault tolerance</p>
+<ul>
+<li><p>if Broker 2 goes down, it has replica in 2 other systems</p></li>
+<li><p>this allows data recovery and prevents data loss</p></li>
+</ul>
+</li>
+<li><p>Kafka leverages <em>page cache network socket</em> very heavily</p>
+<ul>
+<li><p>this is the reason why inter-broker communication is so fast and happens in seamless manner</p></li>
+</ul>
+</li>
+</ul>
+<p align="center"><img src="./images/kafka_topics_partitions.png"></p>
+<p><span class="math notranslate nohighlight">\(\tiny{\text{Introduction to ksqldb and stream processing - Vish Srinivasan - Storage: Distributed and Replicated}}\)</span></p>
+</section>
+<section id="producing-to-kafka">
+<h3>Producing to Kafka<a class="headerlink" href="#producing-to-kafka" title="Permalink to this headline">#</a></h3>
+<ul class="simple">
+<li><p>data is written to end of the log</p></li>
+<li><p>but the log itself has 4 different partitions</p></li>
+<li><p>if not specified, Kafka would distribute data in a round-robin manner</p></li>
+<li><p>data is always written into the leader of the partition</p></li>
+<li><p>similar events are written into the same partition</p></li>
+<li><p>Kafka guarantees order only within a partition</p></li>
+<li><p>it doesnot guarantees across partition</p></li>
+<li><p>how do you make sure that similar events goes to the same partition</p>
+<ul>
+<li><p>using key</p>
+<ul>
+<li><p>every message written to Kafka has 3 things</p>
+<ul>
+<li><p>key, message and timestamp</p></li>
+<li><p>can leverage key for something that is domain specific</p></li>
+<li><p>key can be a userid or device id</p></li>
+<li><p>reading from partition preserves the order and does not read from across partitions</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p align="center"><img src="./images/kafka_producing.png"></p>
+<p><span class="math notranslate nohighlight">\(\tiny{\text{Introduction to ksqldb and stream processing - Vish Srinivasan - Producing to Kafka}}\)</span></p>
+</section>
+<section id="consuming-from-kafka">
+<h3>Consuming from Kafka<a class="headerlink" href="#consuming-from-kafka" title="Permalink to this headline">#</a></h3>
+<section id="consuming-using-a-single-client">
+<h4>Consuming using a single client<a class="headerlink" href="#consuming-using-a-single-client" title="Permalink to this headline">#</a></h4>
+<ul class="simple">
+<li><p>a client can consume from all the partitions at once</p></li>
+<li><p>this is scalable</p></li>
+<li><p>but there are changes that we read data that is written afterwards</p></li>
+<li><p>to make sure data is written in particular order, it must be ensured that data goes into the same partition</p></li>
+</ul>
+</section>
+<section id="consuming-with-consumer-groups">
+<h4>Consuming with consumer groups<a class="headerlink" href="#consuming-with-consumer-groups" title="Permalink to this headline">#</a></h4>
+<ul class="simple">
+<li><p>partition is good way to scale applications</p></li>
+<li><p>while using Kafka, the limit is on the network bandwidth</p></li>
+<li><p>Kafka allows to create multiple consumers</p></li>
+<li><p>there can be scenarios where same data should not be processed by two different consumers</p></li>
+<li><p>using consumer groups</p>
+<ul>
+<li><p>resolves this problem</p></li>
+<li><p>it reads the data and automatically load balance the data across various consumers</p></li>
+<li><p>so each partition is read by different consumer</p></li>
+<li><p>if the consumer goes down, then this partition will automatically be reassigned to another consumer within the same consumer group</p></li>
+<li><p><strong>Consumer group</strong> is logical grouping within consumers</p></li>
+</ul>
+</li>
+</ul>
+<p align="center"><img src="./images/kafka_consuming1.png"></p>
+<p><span class="math notranslate nohighlight">\(\tiny{\text{Introduction to ksqldb and stream processing - Vish Srinivasan - Consuming to Kafka}}\)</span></p>
+</section>
+<section id="id1">
+<h4>Consuming with consumer groups<a class="headerlink" href="#id1" title="Permalink to this headline">#</a></h4>
+<ul class="simple">
+<li><p>multiple consumer groups allows you to read same data by multiple applications</p></li>
+<li><p>Kafka can be applied across different models</p>
+<ul>
+<li><p>a consumer group mimicks very much similar to <em>message queue</em></p></li>
+<li><p>but if there are multiple consumer group, it works like <em>publish/subscribe model</em></p></li>
+</ul>
+</li>
+</ul>
+<p align="center"><img src="./images/kafka_consuming2.png"></p>
+<p><span class="math notranslate nohighlight">\(\tiny{\text{Introduction to ksqldb and stream processing - Vish Srinivasan - Consuming to Kafka}}\)</span></p>
+</section>
+</section>
+<section id="delivery-guarantees">
+<h3>Delivery Guarantees<a class="headerlink" href="#delivery-guarantees" title="Permalink to this headline">#</a></h3>
+<ul class="simple">
+<li><p>Producer Guarantees</p>
+<ul>
+<li><p>Acks = 0</p>
+<ul>
+<li><p>don’t care if data has been written or not</p></li>
+</ul>
+</li>
+<li><p>Acks = 1</p>
+<ul>
+<li><p>ensures that atleast gets that message</p></li>
+<li><p>leader can then partition as and when needed</p></li>
+<li><p>get acknowledgement back as soon as the leader has the data</p></li>
+</ul>
+</li>
+<li><p>Acks = all</p>
+<ul>
+<li><p>will wait till data has been written to all the different partitions</p></li>
+<li><p>durability is important, but latency will get a hit</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Consumer Guarantees</p>
+<ul>
+<li><p>at least once</p>
+<ul>
+<li><p>makes sure that you always process the data</p></li>
+<li><p>makes sure that the data is not dropped</p></li>
+</ul>
+</li>
+<li><p>at most once</p>
+<ul>
+<li><p>consuming application is not idempotent</p></li>
+<li><p>message that is read is read at most once, could be zero, but wont have any duplicates</p></li>
+</ul>
+</li>
+<li><p>exactly once</p>
+<ul>
+<li><p>best of both world</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="take-away-2">
+<h3>Take Away 2<a class="headerlink" href="#take-away-2" title="Permalink to this headline">#</a></h3>
+<ul class="simple">
+<li><p>Kafka lets you publish/subscribe to events as well as store event</p></li>
+</ul>
+</section>
+</section>
+<section id="stream-processing">
+<h2>Stream Processing<a class="headerlink" href="#stream-processing" title="Permalink to this headline">#</a></h2>
+<section id="kafka-streams">
+<h3>Kafka streams<a class="headerlink" href="#kafka-streams" title="Permalink to this headline">#</a></h3>
+</section>
+<section id="process-analyze-events">
+<h3>Process &amp; Analyze events<a class="headerlink" href="#process-analyze-events" title="Permalink to this headline">#</a></h3>
+<ul class="simple">
+<li><p>Kafka topics work very much like unix pipes</p></li>
+<li><p>kafka connect is easy way of getting data in and out of these pipes</p></li>
+<li><p>but along with moving data in and out, some processing is also needed</p>
+<ul>
+<li><p>that is what stream processing does</p></li>
+</ul>
+</li>
+</ul>
+<p align="center"><img src="./images/kafka_stream_processing.png"></p>
+<p><span class="math notranslate nohighlight">\(\tiny{\text{Introduction to ksqldb and stream processing - Vish Srinivasan - Stream Processing}}\)</span></p>
+<ul class="simple">
+<li><p>two ways of doing stream processing in Kafka</p>
+<ul>
+<li><p>kafka streams</p>
+<ul>
+<li><p>Java library that you embed directly into your application</p></li>
+<li><p>no separate processing cluster</p></li>
+<li><p>this is embedded directly into your system</p></li>
+<li><p>allows both stateful and stateless stream processing</p>
+<ul>
+<li><p>stateful</p>
+<ul>
+<li><p>aggregate/join where we need to remember and maintain state</p></li>
+</ul>
+</li>
+<li><p>stateless</p>
+<ul>
+<li><p>filters like events where you need to apply probability filter through</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Confluent KSQL</p>
+<ul>
+<li><p>streaming SQL engine for kafka</p></li>
+<li><p>SQL interface that sits on top of Kafka interface</p></li>
+<li><p>similar to SQL syntax</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p align="center"><img src="./images/kafka_streams_vs_confluent_ksql.png"></p>
+<p><span class="math notranslate nohighlight">\(\tiny{\text{Introduction to ksqldb and stream processing - Vish Srinivasan - kafka streams vs Confluent KSQL}}\)</span></p>
+</section>
+<section id="topics-vs-streams-and-tables">
+<h3>Topics vs Streams and Tables<a class="headerlink" href="#topics-vs-streams-and-tables" title="Permalink to this headline">#</a></h3>
+<ul class="simple">
+<li><p>data that is written into topics and partitions is in the format of bytes</p></li>
+<li><p>it is raw byte array</p></li>
+<li><p>to be able to do this processing layer is built on top of it</p>
+<ul>
+<li><p>both have “stream and table” built on top of it</p></li>
+<li><p>a stream</p>
+<ul>
+<li><p>is a topic with schema that allows you to serialize and deserialize the data (serdes)</p></li>
+<li><p>alice and bob visits to 3 cities</p></li>
+<li><p><em>streams record history</em></p>
+<ul>
+<li><p>in chess will record sequence of moves</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>a table</p>
+<ul>
+<li><p>along with stream it is also stored as table (this is quite different from table in SQL)</p></li>
+<li><p>kafka table works like a materialized aggregatted view</p></li>
+<li><p><em>tables represent state</em></p>
+<ul>
+<li><p>in chess will store state of board</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>topics are stored in partitions to boost scalability</p></li>
+<li><p>on the same lines of storage, processing is also partitioned</p></li>
+<li><p>unit of parallelism</p>
+<ul>
+<li><p>in a stream <strong>stream-task</strong></p>
+<ul>
+<li><p>one to one mapping between stream and partition</p></li>
+<li><p>as more number of partitions are added, scaling can be achieved</p></li>
+</ul>
+</li>
+<li><p>in a table <strong>underlying topic (generally) compacted</strong></p>
+<ul>
+<li><p>if there are keys and values and for same key there are multiple values, only the latest key-value is stored</p>
+<ul>
+<li><p>older key-values are dropped</p></li>
+</ul>
+</li>
+<li><p>useful in cases of total bank balance, only the total is needed</p></li>
+<li><p>ever table has a <em>state-store</em> (mutable)</p>
+<ul>
+<li><p>even if you loose the state-store, it can be recreated from the underlying</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="take-away-3">
+<h3>Take-away 3<a class="headerlink" href="#take-away-3" title="Permalink to this headline">#</a></h3>
+<ul class="simple">
+<li><p>2 tools to process data</p>
+<ul>
+<li><p>Kafka streams and KSQL</p></li>
+</ul>
+</li>
+<li><p>2 concepts in both</p>
+<ul>
+<li><p>Streams and Tables</p></li>
+</ul>
+</li>
+</ul>
+</section>
+</section>
+<section id="ksqldb-an-introduction">
+<h2>ksqldb - An introduction<a class="headerlink" href="#ksqldb-an-introduction" title="Permalink to this headline">#</a></h2>
+<section id="ksql">
+<h3>KSQL<a class="headerlink" href="#ksql" title="Permalink to this headline">#</a></h3>
+<ul class="simple">
+<li><p>used for real-time monitoring</p>
+<ul>
+<li><p>log data monitoring</p></li>
+<li><p>tracking and alerting</p></li>
+<li><p>syslog data</p></li>
+<li><p>sensor/IoT data</p></li>
+<li><p>application metrics</p>
+<ul>
+<li><p>example below is of creating a stream</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">CREATE</span><span class="w"> </span><span class="n">STREAM</span><span class="w"> </span><span class="n">syslog_invalid_users</span><span class="w"> </span><span class="k">AS</span><span class="w"></span>
+<span class="k">SELECT</span><span class="w"> </span><span class="k">host</span><span class="p">,</span><span class="w"> </span><span class="n">message</span><span class="w"></span>
+<span class="k">FROM</span><span class="w"> </span><span class="n">syslog</span><span class="w"></span>
+<span class="k">WHERE</span><span class="w"> </span><span class="n">message</span><span class="w"> </span><span class="k">LIKE</span><span class="w"> </span><span class="s1">&#39;%Invalid user%&#39;</span><span class="w"></span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>used for anomaly detection</p>
+<ul>
+<li><p>identify patterns or anomalies in real time data, surfaced in milliseconds</p>
+<ul>
+<li><p>example below is of creating a table</p></li>
+<li><p>if user has swiped more than 3 times in last 5 seconds</p>
+<ul>
+<li><p>if so, creates a possible_fraud table</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">possible_fraud</span><span class="w"> </span><span class="k">AS</span><span class="w"></span>
+<span class="n">SELEECT</span><span class="w"> </span><span class="n">card_number</span><span class="p">,</span><span class="w"> </span><span class="k">COUNT</span><span class="p">(</span><span class="o">*</span><span class="p">)</span><span class="w"> </span>
+<span class="k">FROM</span><span class="w"> </span><span class="n">authorization_attempts</span><span class="w"></span>
+<span class="n">WINDOW</span><span class="w"> </span><span class="n">TUMBLING</span><span class="w"> </span><span class="p">(</span><span class="k">SIZE</span><span class="w"> </span><span class="mi">5</span><span class="w"> </span><span class="n">SECONDS</span><span class="p">)</span><span class="w"></span>
+<span class="k">GROUP</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">card_number</span><span class="w"></span>
+<span class="k">HAVING</span><span class="w"> </span><span class="k">COUNT</span><span class="p">(</span><span class="o">*</span><span class="p">)</span><span class="o">&gt;</span><span class="mi">3</span><span class="p">;</span><span class="w"></span>
+</pre></div>
+</div>
+</section>
+<section id="what-is-ksql-not-good-for">
+<h3>What is KSQL not good for?<a class="headerlink" href="#what-is-ksql-not-good-for" title="Permalink to this headline">#</a></h3>
+<ul class="simple">
+<li><p>there are no indexes in KSQL</p></li>
+<li><p>for ad-hoc query</p>
+<ul>
+<li><p>suppose there is a user id inside of a message</p>
+<ul>
+<li><p>interested in searching for all the information by that user id</p></li>
+<li><p>as the messages are not indexed on user id</p></li>
+</ul>
+</li>
+<li><p>configured to retain data for only a limited span of time</p></li>
+</ul>
+</li>
+<li><p>BI reports</p>
+<ul>
+<li><p>view only static data</p></li>
+<li><p>not dynamic changing data in real time</p>
+<ul>
+<li><p>JDBC in future will support live-streaming updates</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="where-is-ksql-evolving">
+<h3>Where is KSQL evolving?<a class="headerlink" href="#where-is-ksql-evolving" title="Permalink to this headline">#</a></h3>
+<section id="pull-queries">
+<h4>Pull queries<a class="headerlink" href="#pull-queries" title="Permalink to this headline">#</a></h4>
+<ul class="simple">
+<li><p>in KSQL, if you do a query, it is a continuous running query</p></li>
+<li><p>so if a new change comes over, it gets included in the query result</p></li>
+<li><p>push query</p>
+<ul>
+<li><p>entire history</p></li>
+</ul>
+</li>
+</ul>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span><span class="w"> </span><span class="k">user</span><span class="p">,</span><span class="w"> </span><span class="n">credit_score</span><span class="w"></span>
+<span class="k">FROM</span><span class="w"> </span><span class="n">credit_history</span><span class="w"></span>
+<span class="k">WHERE</span><span class="w"> </span><span class="n">ROWKEY</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;jay&#39;</span><span class="w"></span>
+<span class="n">EMIT</span><span class="w"> </span><span class="n">CHANGES</span><span class="p">;</span><span class="w"></span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>pull query</p>
+<ul>
+<li><p>only latest state</p></li>
+<li><p>pull query will always show the latest result as and when new message comes</p></li>
+<li><p>point-in-time lookup of that information</p></li>
+</ul>
+</li>
+</ul>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span><span class="w"> </span><span class="k">user</span><span class="p">,</span><span class="w"> </span><span class="n">credit_score</span><span class="w"></span>
+<span class="k">FROM</span><span class="w"> </span><span class="n">credit_history</span><span class="w"></span>
+<span class="k">WHERE</span><span class="w"> </span><span class="n">ROWKEY</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;jay&#39;</span><span class="p">;</span><span class="w"></span>
+</pre></div>
+</div>
+</section>
+<section id="embedded-connectors">
+<h4>Embedded Connectors<a class="headerlink" href="#embedded-connectors" title="Permalink to this headline">#</a></h4>
+<ul class="simple">
+<li><p>combine information from extternal data systems as well</p></li>
+<li><p>can say give informatiton from Splunk or Sumologic or any others data sources</p></li>
+<li><p>list of open source and enterprise connectors are available</p></li>
+</ul>
+</section>
+</section>
+<section id="what-use-case-is-ksqldb-good-for">
+<h3>What use case is ksqldb good for?<a class="headerlink" href="#what-use-case-is-ksqldb-good-for" title="Permalink to this headline">#</a></h3>
+<ul class="simple">
+<li><p>it does not replace traditional databases</p>
+<ul>
+<li><p>raw storage is a commit log</p>
+<ul>
+<li><p>if you loose your database, you replay the log and recover it back</p></li>
+</ul>
+</li>
+<li><p>materialized events into opinionated structure (table) in the form of SQL</p>
+<ul>
+<li><p>take a subset of commit log and making it accessible to others</p></li>
+<li><p>active data vs passive data</p>
+<ul>
+<li><p>data is sitting passively unless you query it</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>in a query, state of query is produced by the processor executing the commit log</p>
+<ul>
+<li><p>same is done in Kafka in the form of materialized views or materialized cache</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>useful for 3 categories of applications</p>
+<ul>
+<li><p>building and serving materialized views that power apps</p></li>
+<li><p>creating real-time streaming apps that react to event streams and trigger side effects</p>
+<ul>
+<li><p>joins against streams</p></li>
+<li><p>trigger based on events that happen</p></li>
+</ul>
+</li>
+<li><p>creating real-time streaming pipelines that continuously transform event streams</p>
+<ul>
+<li><p>real time stream ETL</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="take-away-4">
+<h3>Take Away 4<a class="headerlink" href="#take-away-4" title="Permalink to this headline">#</a></h3>
+<ul class="simple">
+<li><p>ksqldb makes it easy to build and serve materialized views that power apps</p></li>
+</ul>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./dbs"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="intro.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">My ML Book</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="../ml_examples/intro.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">My ML Book</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By Chandra<br/>
+  
+      &copy; Copyright 2022.<br/>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>
