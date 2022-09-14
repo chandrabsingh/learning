@@ -1,4 +1,4 @@
-# My ML Book
+# My DB Book
 
 Here are small project work to expand my understanding of databases, events/stream processing and distributed databases
 
