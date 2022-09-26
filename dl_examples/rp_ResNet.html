@@ -1,0 +1,1206 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>ResNet Summary</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Anima Anandkumar - Retrospective Role of Tensors in ML" href="Anima_Anandkumar_Retrospective_Role_of_Tensors_in_Machine_Learning.html" />
+    <link rel="prev" title="AlexNet Summary" href="rp_AlexNet.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../_static/mylogo.png" class="logo" alt="logo">
+      
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    Welcome
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  System Design
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../system_design/intro.html">
+   My System Design Book
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../system_design/design_patterns.html">
+     System Design Summary
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../system_design/software_engineering_concepts.html">
+     Software Engineering concepts
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../system_design/googlecloud_use_cases.html">
+     Google - Customer story
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../system_design/awscloud_financial_symposium_2022.html">
+     AWS - Financial Services Cloud Symposium - 2022
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../system_design/aws_usecases.html">
+     AWS - Customer story
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../system_design/design_general_use_cases.html">
+     Case study
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../system_design/netflix.html">
+     Netflix creativity
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../system_design/bk_AlexXu_SystemDesignInterview.html">
+     Book - System Design Interview - Alex Xu
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../system_design/design_patterns_python.html">
+     Design Pattern - Python
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Database/Event
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../dbs/intro.html">
+   My DB Book
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../dbs/intro_kafka_ksqldb_stream_processing.html">
+     Introduction to Kafka/ksqldb/stream processing
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Machine Learning
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../ml_examples/intro.html">
+   My ML Book
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+  <label for="toctree-checkbox-3">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../ml_examples/ml_glossary.html">
+     ML Conceptual brief
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../ml_examples/Store_Sales_Forecasting_With_Tensorflow.html">
+     Store Sales Forecasting with TensorFlow
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../ml_examples/decision_tree_classification.html">
+     Decision Tree - classification
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../ml_examples/ml_design_patterns.html">
+     The Need for ML Design Patterns
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Deep Learning
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="intro.html">
+   My ML Book
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+  <label for="toctree-checkbox-4">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2">
+    <a class="reference internal" href="dl_glossary.html">
+     DL Conceptual brief
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="rp_AlexNet.html">
+     AlexNet Summary
+    </a>
+   </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     ResNet Summary
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="Anima_Anandkumar_Retrospective_Role_of_Tensors_in_Machine_Learning.html">
+     Anima Anandkumar - Retrospective Role of Tensors in ML
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Unix/Shell Scripting
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../unix/intro.html">
+   My Unix/Shell Book
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
+  <label for="toctree-checkbox-5">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../unix/unix_shell_script.html">
+     Unix/Shell FAQs
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../unix/my_zshrc.html">
+     My .zshrc script
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Reference
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../codes/python_faqs.html">
+   Python FAQs
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Lecture Notes
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../cs229_ml/intro.html">
+   CS229 ML - by Andrew Ng
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
+  <label for="toctree-checkbox-6">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../cs229_ml/lec02-LinearReg-GradientDescent.html">
+     Lec 02-Linear Regression - Gradient Descent
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../cs229_ml/lec03-LocallyWeighted-LogisticRegression.html">
+     Lec 03-Locally Weighted Regression - Logistic Regression
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../cs229_ml/lec04-Perceptron-GLM.html">
+     Lec 04-Perceptron - GLM
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../cs229_ml/lec05-GDA-NaiveBayes.html">
+     Lec 05-GDA - Naive Bayes
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../cs229_ml/lec06-NaiveBayes-SVM.html">
+     Lec 06-Naive Bayes - SVM
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../cs229_ml/lec07-Kernels-SVM.html">
+     Lec 07-Kernels - SVM
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../cs229_ml/lec08-DataSplits-Models-CrossValidation.html">
+     Lec 08-Data Splits - Models - Cross Validation
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../cs229_ml/lec09-Approx-EstimationError-ERM.html">
+     Lec 09-Estimation Error - ERM
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../cs229_ml/lec10-DecisionTrees-EnsembleMethods.html">
+     Lec 10-Decision Trees - Ensemble Methods
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../cs229_ml/lec11-Intro-NN.html">
+     Lec 11-Neural Networks
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../cs229_ml/lec12-Backpropagation-ImprovingNN.html">
+     Lec 12-Improving NN
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../cs229_ml/lec13-DebuggingMLModels-ErrorAnalysis.html">
+     Lec 13-Debugging ML Models-Error Analysis
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../cs229_ml/lec14-Expectation-MaximizationAlgo.html">
+     Lec 14-Expectation-Maximization Algo
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../cs229_ml/lec15-EMAlgo-FactorAnalysis.html">
+     Lec 15-EM Algo-Factor Analysis
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../cs229_ml/lec16-IndependentComponentAnalysis-RL.html">
+     Lec 16-Independent Component Analysis-RL
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../cs229_ml/lec17-MDPs-ValuePolicyIteration.html">
+     Lec 17-MDPs-Value Policy Iteration
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../cs229_ml/lec18-continuousMDPs-ModelSimulation.html">
+     Lec 18-Continuous MDPs-Model Simulation
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+    </div>
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<div class="menu-dropdown menu-dropdown-launch-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Launch interactive content">
+      <i class="fas fa-rocket"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://mybinder.org/v2/gh/chandrabsingh/learning/master?urlpath=tree/learning/dl_examples/rp_ResNet.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Binder"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="../_static/images/logo_binder.svg">
+  </span>
+<span class="headerbtn__text-container">Binder</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-repository-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Source repositories">
+      <i class="fab fa-github"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://github.com/chandrabsingh/learning"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Source repository"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="headerbtn__text-container">repository</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/chandrabsingh/learning/issues/new?title=Issue%20on%20page%20%2Fdl_examples/rp_ResNet.html&body=Your%20issue%20content%20here."
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Open an issue"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="headerbtn__text-container">open issue</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="../_sources/dl_examples/rp_ResNet.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.ipynb</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#paper">
+   Paper
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#abstract">
+   Abstract
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#summary">
+   Summary
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#intro-and-overview">
+     Intro and Overview
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#the-problem-with-depth">
+     The Problem with Depth
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#vgg-style-networks">
+     VGG-Style Networks
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#residual-blocks">
+     Residual Blocks
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#from-vgg-to-resnet">
+     From VGG to ResNet
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#experimental-results">
+     Experimental Results
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#bottleneck-blocks">
+     Bottleneck Blocks
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#deeper-resnets">
+     Deeper ResNets
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+    </nav>
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>ResNet Summary</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#paper">
+   Paper
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#abstract">
+   Abstract
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#summary">
+   Summary
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#intro-and-overview">
+     Intro and Overview
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#the-problem-with-depth">
+     The Problem with Depth
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#vgg-style-networks">
+     VGG-Style Networks
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#residual-blocks">
+     Residual Blocks
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#from-vgg-to-resnet">
+     From VGG to ResNet
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#experimental-results">
+     Experimental Results
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#bottleneck-blocks">
+     Bottleneck Blocks
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#deeper-resnets">
+     Deeper ResNets
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <section class="tex2jax_ignore mathjax_ignore" id="resnet-summary">
+<h1>ResNet Summary<a class="headerlink" href="#resnet-summary" title="Permalink to this headline">#</a></h1>
+<section id="paper">
+<h2>Paper<a class="headerlink" href="#paper" title="Permalink to this headline">#</a></h2>
+<ul class="simple">
+<li><p>Deep Residual Learning for Image Recognition</p>
+<ul>
+<li><p>Authors: Kaiming He, Xiangyu Zhang, Shaoqing Ren, Jian Sun (Microsoft Research)</p></li>
+<li><p>ILSVRC 2015</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="abstract">
+<h2>Abstract<a class="headerlink" href="#abstract" title="Permalink to this headline">#</a></h2>
+<blockquote>
+<div><p><em>“Deeper neural networks are more difficult to train. We present a residual learning framework to ease the training of networks that are substantially deeper than those used previously. We explicitly reformulate the layers as learning residual functions with reference to the layer inputs, instead of learning unreferenced functions. We provide comprehensive empirical evidence showing that these residual networks are easier to optimize, and can gain accuracy from considerably increased depth. On the ImageNet dataset we evaluate residual nets with a depth of up to 152 layers—8×deeper than VGG nets [41] but still having lower complexity. An ensemble of these residual nets achieves 3.57% error on the ImageNet test set. This result won the 1st place on the ILSVRC 2015 classification task. We also present analysis on CIFAR-10 with 100 and 1000 layers.</em></p>
+</div></blockquote>
+<blockquote>
+<div><p><em>The depth of representations is of central importance for many visual recognition tasks. Solely due to our extremely deep representations, we obtain a 28% relative improvement on the COCO object detection dataset. Deep residual nets are foundations of our submissions to ILSVRC &amp; COCO 2015 competitions, where we also won the 1st places on the tasks of ImageNet detection, ImageNet localization, COCO detection, and COCO segmentation.”</em></p>
+</div></blockquote>
+</section>
+<section id="summary">
+<h2>Summary<a class="headerlink" href="#summary" title="Permalink to this headline">#</a></h2>
+<section id="intro-and-overview">
+<h3>Intro and Overview<a class="headerlink" href="#intro-and-overview" title="Permalink to this headline">#</a></h3>
+<ul class="simple">
+<li><p>Prior to this paper, everyone tried making bigger networks</p>
+<ul>
+<li><p>because accuracy on ImageNet increased with bigger networks</p></li>
+</ul>
+</li>
+<li><p>reached to the limit of making bigger networks</p></li>
+<li><p>This paper was a revolution</p></li>
+<li><p>after this residual connection became a norm</p></li>
+<li><p>this is now used in</p>
+<ul>
+<li><p>image recognition</p></li>
+<li><p>transformers</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="the-problem-with-depth">
+<h3>The Problem with Depth<a class="headerlink" href="#the-problem-with-depth" title="Permalink to this headline">#</a></h3>
+<ul class="simple">
+<li><p>the norm was if depth of NN is increased</p>
+<ul>
+<li><p>it performs better</p></li>
+<li><p>it generalizes better</p></li>
+<li><p>reaches lower training loss</p>
+<ul>
+<li><p>but optimizing it was hard</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>generally there would be drop in learning rate and would reach a lower level</p>
+<ul>
+<li><p>but if on further increasing the depth,</p>
+<ul>
+<li><p>training error would increase, both for training and test error</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>this was not a problem of overfitting,</p>
+<ul>
+<li><p>as training error is not increasing after it came down with increase of iterations</p></li>
+</ul>
+</li>
+</ul>
+<img src="./images/ResNet_01_ProblemWithDepth.png">
+</section>
+<section id="vgg-style-networks">
+<h3>VGG-Style Networks<a class="headerlink" href="#vgg-style-networks" title="Permalink to this headline">#</a></h3>
+<ul class="simple">
+<li><p>VGG nets were popular network earlier</p>
+<ul>
+<li><p>An image would be input to convolutional layers</p>
+<ul>
+<li><p>at first the layer will have a big resolution but with lower channel size</p></li>
+<li><p>then image resolution would be downscaled, with an increase in number of filter</p></li>
+<li><p>so more and more filters will be stacked, as resolution is down scaled</p>
+<ul>
+<li><p>why?</p></li>
+<li><p>in image classification</p>
+<ul>
+<li><p>at lower level</p>
+<ul>
+<li><p>edges are parsed</p></li>
+</ul>
+</li>
+<li><p>at higher level</p>
+<ul>
+<li><p>NN learns more of abstract features</p>
+<ul>
+<li><p>why?</p>
+<ul>
+<li><p>at higher levels, the exact localization of these features will be less and less important</p></li>
+<li><p>so if a car is present in the image,</p></li>
+<li><p>its not that important where it is</p>
+<ul>
+<li><p>for car</p>
+<ul>
+<li></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="residual-blocks">
+<h3>Residual Blocks<a class="headerlink" href="#residual-blocks" title="Permalink to this headline">#</a></h3>
+<img src="./images/ResNet_02_Overfitting.png">
+<ul class="simple">
+<li><p>The paper talks about having skip connections</p></li>
+<li><p>Say there is a function <span class="math notranslate nohighlight">\(H(x) := F(x) + x\)</span></p>
+<ul>
+<li><p>so whatever we meed to change about x</p></li>
+<li><p>or whatever we wnat the input to be changed to output</p>
+<ul>
+<li><p>the weight layer tend towards the zero function</p></li>
+<li><p>so if <span class="math notranslate nohighlight">\(F(x)\)</span> tends towards zero function, then <span class="math notranslate nohighlight">\(H(x)\)</span> becomes identity function</p>
+<ul>
+<li><p>so the default function of this network is identity function</p></li>
+<li><p>and what we learn is how to deviate from the identity function, which is a default function</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>at the bottom we see there is a relu function, which implies the total network is nonlinear function in total</p>
+<ul>
+<li><p>but the default is the identity function</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="from-vgg-to-resnet">
+<h3>From VGG to ResNet<a class="headerlink" href="#from-vgg-to-resnet" title="Permalink to this headline">#</a></h3>
+<ul class="simple">
+<li><p>if these networks are chained, we get a residual network</p></li>
+</ul>
+<img src="./images/ResNet_03_VGG_to_ResNet.png">
+<ul class="simple">
+<li><p>In VGG-19 network,</p>
+<ul>
+<li><p>initially, image has 4 channels</p>
+<ul>
+<li><p>upscale it to 64 channels and have resolution of 224</p></li>
+</ul>
+</li>
+<li><p>then use maxpools</p>
+<ul>
+<li><p>which 1/2’s the resolution to 112, but up the filters to 128</p></li>
+</ul>
+</li>
+<li><p>then use maxpools again</p>
+<ul>
+<li><p>which 1/2’s the resolution to 56, but up the filters to 256</p></li>
+</ul>
+</li>
+<li><p>this network has lot of parameters</p>
+<ul>
+<li><p>needs lot of computation 19.6 billion FLOPs(floating point operations) for a forward pass</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>In residual network,</p>
+<ul>
+<li><p>the network has lot less parameters/complexity compared to VGG</p>
+<ul>
+<li><p>3.6 billion FLOPs</p></li>
+</ul>
+</li>
+<li><p>it is still much deeper</p></li>
+<li><p>trade-off</p>
+<ul>
+<li><p>not that many parameters are needed</p></li>
+<li><p>succession of layers makes it learn lot more than having massive layers</p></li>
+<li><p>ResNets have much less amount of filters 64 compared to 256</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<img src="./images/ResNet_04_VGG_to_ResNet_filters.png">
+<ul class="simple">
+<li><p>they also make a 34 layer network called plain</p>
+<ul>
+<li><p>with no pooling, but use stride to convolution(instead of maxpool or average pooling) to downscale</p></li>
+</ul>
+</li>
+<li><p>The paper first compares VGG19 to 34 layer plain</p>
+<ul>
+<li><p>we see that we loose performance, when the number of layers are increased</p></li>
+</ul>
+</li>
+<li><p>then it compares it to 34 layer plain to residual network</p>
+<ul>
+<li><p>no extra parameters are introduced here, the only difference</p></li>
+<li><p>is it has the jumping/skip connections</p>
+<ul>
+<li><p>the signal can travel as the identity function</p></li>
+</ul>
+</li>
+<li><p>the network becomes trainable</p>
+<ul>
+<li><p>and deeper network better network</p></li>
+</ul>
+</li>
+<li><p>caveat is</p>
+<ul>
+<li><p>output has to be of the same size as input</p>
+<ul>
+<li><p>as input needs to be added onto the output</p></li>
+</ul>
+</li>
+<li><p>for example here the output is half the size of input, but the number of filter size is double</p></li>
+<li><p>it projects 64 filters to 128 filters</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<img src="./images/ResNet_06_VGG_to_ResNet_residual.png">
+</section>
+<section id="experimental-results">
+<h3>Experimental Results<a class="headerlink" href="#experimental-results" title="Permalink to this headline">#</a></h3>
+<ul class="simple">
+<li><p>On left hand side figure,</p>
+<ul>
+<li><p>18 layer network has lower train and validation accuracy</p></li>
+<li><p>the solid line is the validation error of the center crops</p></li>
+<li><p>the training error will be higher, as they do different augmentation</p></li>
+<li><p>the training and validation error is higher in the deeper network(34 layer), if residual connection is not used</p>
+<ul>
+<li><p>this is not due to overfitting</p></li>
+<li><p>this is because the deeper network cannot be trained</p>
+<ul>
+<li><p>the solution space of 18 layer is a subspace of solution space of 34 layer</p></li>
+<li><p>we should be able to train equivalent to or lower than the accuracy of 18 layers</p>
+<ul>
+<li><p>but we can’t</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>On right hand side figure, in the residual connection</p>
+<ul>
+<li><p>trend is exactly reversed</p>
+<ul>
+<li><p>34 layer has much better training and validation error than thee 18 layer</p>
+<ul>
+<li><p>with 18 layers, the residual network error is marginally better in plain network</p></li>
+<li><p>with 34 layers, the residual network error is lot better compared to plain network</p>
+<ul>
+<li><p>residual connection help more and more, the deeper the network is</p></li>
+<li><p>more importantly, residual networks don’t degrade the shallower network</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<img src="./images/ResNet_07_ExpResults_training.png" width=400 height=400>
+<img src="./images/ResNet_08_ExpResults_result.png" width=400 height=400>
+<ul class="simple">
+<li><p>the paper also compares the error with other networks</p>
+<ul>
+<li><p>ResNet-34 A</p>
+<ul>
+<li><p>zero padding of projection</p></li>
+</ul>
+</li>
+<li><p>ResNet-34 B</p>
+<ul>
+<li><p>having projections simply between where channels don’t fit</p></li>
+<li><p>gives a quite a bit of boost</p></li>
+</ul>
+</li>
+<li><p>ResNet-34 C</p>
+<ul>
+<li><p>having projections in every single residual connection</p></li>
+<li><p>does not give that much of a boost and introduces many more parameters</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>the paper also experiments deeper layer ResNets</p>
+<ul>
+<li><p>among ResNet-50, ResNet-101, ResNet-152</p>
+<ul>
+<li><p>ResNet-152 was the best one and also implied that more depth to have better network</p></li>
+</ul>
+</li>
+<li><p>they made an ensemble of different models and won 2015 ImageNet competition</p></li>
+</ul>
+</li>
+</ul>
+<img src="./images/ResNet_09_ExpResults_comparison1.png" width=400 height=400>
+<img src="./images/ResNet_10_ExpResults_comparison2.png" width=400 height=400>
+<img src="./images/ResNet_11_ExpResults_comparison3.png" width=400 height=400>
+</section>
+<section id="bottleneck-blocks">
+<h3>Bottleneck Blocks<a class="headerlink" href="#bottleneck-blocks" title="Permalink to this headline">#</a></h3>
+<ul class="simple">
+<li><p>the paper introduced bottleneck blocks</p>
+<ul>
+<li><p>on left hand side image</p>
+<ul>
+<li><p>for 64 dimension image,</p></li>
+<li><p>it used 64 feature channels in convolution</p></li>
+<li><p>and had 64 dimension output</p></li>
+</ul>
+</li>
+<li><p>on right hand side image</p>
+<ul>
+<li><p>for 256 dimension image,</p></li>
+<li><p>can save computation power, by projecting down to 64 first</p></li>
+<li><p>as the complexity of “3x3, 64” layer will be the same as left hand network layer</p></li>
+<li><p>and then project up again</p></li>
+<li><p>1x1 convolution is significantly lower computational intensive than the 3x3 convolution</p></li>
+<li><p>its 9 times less operation</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<img src="./images/ResNet_12_BottleneckBlocks_comparison.png" width=400 height=400>
+</section>
+<section id="deeper-resnets">
+<h3>Deeper ResNets<a class="headerlink" href="#deeper-resnets" title="Permalink to this headline">#</a></h3>
+<ul class="simple">
+<li><p>this model is still used as pretrained version</p></li>
+<li><p>used in segmentation applications</p></li>
+</ul>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./dl_examples"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="rp_AlexNet.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">AlexNet Summary</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="Anima_Anandkumar_Retrospective_Role_of_Tensors_in_Machine_Learning.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Anima Anandkumar - Retrospective Role of Tensors in ML</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By Chandra<br/>
+  
+      &copy; Copyright 2022.<br/>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>

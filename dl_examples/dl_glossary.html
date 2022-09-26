@@ -1,0 +1,2931 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>DL Conceptual brief</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="AlexNet Summary" href="rp_AlexNet.html" />
+    <link rel="prev" title="My ML Book" href="intro.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../_static/mylogo.png" class="logo" alt="logo">
+      
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    Welcome
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  System Design
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../system_design/intro.html">
+   My System Design Book
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../system_design/design_patterns.html">
+     System Design Summary
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../system_design/software_engineering_concepts.html">
+     Software Engineering concepts
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../system_design/googlecloud_use_cases.html">
+     Google - Customer story
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../system_design/awscloud_financial_symposium_2022.html">
+     AWS - Financial Services Cloud Symposium - 2022
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../system_design/aws_usecases.html">
+     AWS - Customer story
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../system_design/design_general_use_cases.html">
+     Case study
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../system_design/netflix.html">
+     Netflix creativity
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../system_design/bk_AlexXu_SystemDesignInterview.html">
+     Book - System Design Interview - Alex Xu
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../system_design/design_patterns_python.html">
+     Design Pattern - Python
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Database/Event
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../dbs/intro.html">
+   My DB Book
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../dbs/intro_kafka_ksqldb_stream_processing.html">
+     Introduction to Kafka/ksqldb/stream processing
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Machine Learning
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../ml_examples/intro.html">
+   My ML Book
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+  <label for="toctree-checkbox-3">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../ml_examples/ml_glossary.html">
+     ML Conceptual brief
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../ml_examples/Store_Sales_Forecasting_With_Tensorflow.html">
+     Store Sales Forecasting with TensorFlow
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../ml_examples/decision_tree_classification.html">
+     Decision Tree - classification
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../ml_examples/ml_design_patterns.html">
+     The Need for ML Design Patterns
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Deep Learning
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="intro.html">
+   My ML Book
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+  <label for="toctree-checkbox-4">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     DL Conceptual brief
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="rp_AlexNet.html">
+     AlexNet Summary
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="rp_ResNet.html">
+     ResNet Summary
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="Anima_Anandkumar_Retrospective_Role_of_Tensors_in_Machine_Learning.html">
+     Anima Anandkumar - Retrospective Role of Tensors in ML
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Unix/Shell Scripting
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../unix/intro.html">
+   My Unix/Shell Book
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
+  <label for="toctree-checkbox-5">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../unix/unix_shell_script.html">
+     Unix/Shell FAQs
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../unix/my_zshrc.html">
+     My .zshrc script
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Reference
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../codes/python_faqs.html">
+   Python FAQs
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Lecture Notes
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../cs229_ml/intro.html">
+   CS229 ML - by Andrew Ng
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
+  <label for="toctree-checkbox-6">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../cs229_ml/lec02-LinearReg-GradientDescent.html">
+     Lec 02-Linear Regression - Gradient Descent
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../cs229_ml/lec03-LocallyWeighted-LogisticRegression.html">
+     Lec 03-Locally Weighted Regression - Logistic Regression
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../cs229_ml/lec04-Perceptron-GLM.html">
+     Lec 04-Perceptron - GLM
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../cs229_ml/lec05-GDA-NaiveBayes.html">
+     Lec 05-GDA - Naive Bayes
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../cs229_ml/lec06-NaiveBayes-SVM.html">
+     Lec 06-Naive Bayes - SVM
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../cs229_ml/lec07-Kernels-SVM.html">
+     Lec 07-Kernels - SVM
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../cs229_ml/lec08-DataSplits-Models-CrossValidation.html">
+     Lec 08-Data Splits - Models - Cross Validation
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../cs229_ml/lec09-Approx-EstimationError-ERM.html">
+     Lec 09-Estimation Error - ERM
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../cs229_ml/lec10-DecisionTrees-EnsembleMethods.html">
+     Lec 10-Decision Trees - Ensemble Methods
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../cs229_ml/lec11-Intro-NN.html">
+     Lec 11-Neural Networks
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../cs229_ml/lec12-Backpropagation-ImprovingNN.html">
+     Lec 12-Improving NN
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../cs229_ml/lec13-DebuggingMLModels-ErrorAnalysis.html">
+     Lec 13-Debugging ML Models-Error Analysis
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../cs229_ml/lec14-Expectation-MaximizationAlgo.html">
+     Lec 14-Expectation-Maximization Algo
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../cs229_ml/lec15-EMAlgo-FactorAnalysis.html">
+     Lec 15-EM Algo-Factor Analysis
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../cs229_ml/lec16-IndependentComponentAnalysis-RL.html">
+     Lec 16-Independent Component Analysis-RL
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../cs229_ml/lec17-MDPs-ValuePolicyIteration.html">
+     Lec 17-MDPs-Value Policy Iteration
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../cs229_ml/lec18-continuousMDPs-ModelSimulation.html">
+     Lec 18-Continuous MDPs-Model Simulation
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+    </div>
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<div class="menu-dropdown menu-dropdown-launch-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Launch interactive content">
+      <i class="fas fa-rocket"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://mybinder.org/v2/gh/chandrabsingh/learning/master?urlpath=tree/learning/dl_examples/dl_glossary.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Binder"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="../_static/images/logo_binder.svg">
+  </span>
+<span class="headerbtn__text-container">Binder</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-repository-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Source repositories">
+      <i class="fab fa-github"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://github.com/chandrabsingh/learning"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Source repository"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="headerbtn__text-container">repository</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/chandrabsingh/learning/issues/new?title=Issue%20on%20page%20%2Fdl_examples/dl_glossary.html&body=Your%20issue%20content%20here."
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Open an issue"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="headerbtn__text-container">open issue</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="../_sources/dl_examples/dl_glossary.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.ipynb</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#libraries">
+   Libraries
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#tensorflow">
+     TensorFlow
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#features">
+       Features
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#pytorch">
+     PyTorch
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#keras">
+     Keras
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#general-concepts">
+   General concepts
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#perceptron-algorithm">
+     Perceptron algorithm
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#softmax-algorithm">
+     Softmax algorithm
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#transfer-learning">
+     Transfer Learning
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#representation-learning">
+     Representation Learning
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#activation-function">
+     Activation function
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#relu">
+     ReLU
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#back-propagation">
+     Back propagation
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#forward-propagation">
+     Forward propagation
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#training-neural-nets">
+     Training Neural Nets
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#normalizing-feature-values">
+       Normalizing Feature Values
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#dropout-regularization">
+       Dropout Regularization
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#cross-entropy">
+     Cross Entropy
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#encoder-decoder">
+     Encoder-Decoder
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#neural-style-transfer">
+     Neural Style Transfer
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#content-loss">
+     Content Loss
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#style-loss">
+     Style Loss
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#gram-matrices">
+     Gram Matrices
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#multi-class-neural-nets">
+     Multi-Class Neural Nets
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#one-vs-all-multi-class">
+       One-Vs-All Multi-Class
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#multi-class-single-label-classification">
+       Multi-Class, Single-Label Classification:
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#multi-class-multi-label-classification">
+       Multi-Class, Multi-Label Classification:
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#softmax-options">
+     SoftMax Options
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#full-softmax">
+       Full SoftMax
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#candidate-sampling">
+       Candidate Sampling
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#local-response-normalization-vs-batch-normalization">
+     Local Response Normalization vs Batch Normalization
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#most-popular-deep-learning-algorithms">
+   10 most popular deep learning algorithms
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#convolutional-neural-networks-cnns">
+     Convolutional Neural Networks (CNNs)
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id1">
+       General Concepts
+      </a>
+      <ul class="nav section-nav flex-column">
+       <li class="toc-h5 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#convolution">
+         Convolution
+        </a>
+       </li>
+       <li class="toc-h5 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#max-pooling">
+         Max Pooling
+        </a>
+       </li>
+       <li class="toc-h5 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#average-pooling">
+         Average Pooling
+        </a>
+       </li>
+       <li class="toc-h5 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#fully-connected">
+         Fully Connected
+        </a>
+       </li>
+       <li class="toc-h5 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#sota-models">
+         SOTA Models
+        </a>
+       </li>
+       <li class="toc-h5 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#differential-learning-rate">
+         Differential Learning Rate
+        </a>
+       </li>
+       <li class="toc-h5 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#feature-maps">
+         Feature Maps
+        </a>
+       </li>
+       <li class="toc-h5 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#kernel">
+         Kernel
+        </a>
+       </li>
+       <li class="toc-h5 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#filter">
+         Filter
+        </a>
+       </li>
+       <li class="toc-h5 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#spatial-information">
+         Spatial information
+        </a>
+       </li>
+       <li class="toc-h5 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#local-receptive-fields-shared-weights-and-pooling">
+         local receptive fields, shared weights, and pooling
+        </a>
+       </li>
+       <li class="toc-h5 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#strides">
+         Strides
+        </a>
+       </li>
+       <li class="toc-h5 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#convolution2d-maxpooling2d">
+         Convolution2D, MaxPooling2D
+        </a>
+       </li>
+       <li class="toc-h5 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#padding">
+         Padding
+        </a>
+       </li>
+       <li class="toc-h5 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#flatten-layer">
+         Flatten Layer
+        </a>
+       </li>
+       <li class="toc-h5 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#pooling-layers">
+         Pooling layers
+        </a>
+       </li>
+       <li class="toc-h5 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#convolutional-layer">
+         Convolutional Layer
+        </a>
+       </li>
+       <li class="toc-h5 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#cnn-sequence-to-classify-handwritten-digits">
+         CNN sequence to classify handwritten digits
+        </a>
+       </li>
+       <li class="toc-h5 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#flattened-3x3-image-matrix-1-dimension">
+         Flattened 3x3 image matrix 1 dimension
+        </a>
+       </li>
+       <li class="toc-h5 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#id2">
+         Kernel
+        </a>
+       </li>
+       <li class="toc-h5 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#types-of-pooling">
+         Types of Pooling
+        </a>
+       </li>
+       <li class="toc-h5 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#fully-connected-layer-fc-layer">
+         Fully Connected Layer (FC Layer)
+        </a>
+       </li>
+      </ul>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#cnn-research-papers">
+       CNN Research Papers
+      </a>
+      <ul class="nav section-nav flex-column">
+       <li class="toc-h5 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#resnet">
+         ResNet
+        </a>
+       </li>
+       <li class="toc-h5 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#vgg">
+         VGG
+        </a>
+       </li>
+       <li class="toc-h5 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#densenet">
+         DenseNet
+        </a>
+       </li>
+       <li class="toc-h5 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#alexnet">
+         AlexNet
+        </a>
+       </li>
+       <li class="toc-h5 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#vgg-16">
+         VGG-16
+        </a>
+       </li>
+       <li class="toc-h5 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#mobilenetv2">
+         MobileNetV2
+        </a>
+       </li>
+       <li class="toc-h5 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#efficientnet">
+         EfficientNet
+        </a>
+       </li>
+       <li class="toc-h5 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#darknet-53">
+         Darknet-53
+        </a>
+       </li>
+       <li class="toc-h5 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#resnext">
+         ResNeXt
+        </a>
+       </li>
+       <li class="toc-h5 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#googlenet">
+         GoogLeNet
+        </a>
+       </li>
+       <li class="toc-h5 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#xception">
+         Xception
+        </a>
+       </li>
+       <li class="toc-h5 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#squeezenet">
+         SqueezeNet
+        </a>
+       </li>
+       <li class="toc-h5 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#inception-v3">
+         Inception-v3
+        </a>
+       </li>
+       <li class="toc-h5 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#cspdarknet53">
+         CSPDarknet53
+        </a>
+       </li>
+      </ul>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#cnn-applications">
+       CNN Applications
+      </a>
+      <ul class="nav section-nav flex-column">
+       <li class="toc-h5 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#general-classification">
+         General Classification
+        </a>
+       </li>
+       <li class="toc-h5 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#image-classification">
+         Image Classification
+        </a>
+       </li>
+       <li class="toc-h5 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#semantic-segmentation">
+         Semantic Segmentation
+        </a>
+       </li>
+       <li class="toc-h5 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#object-detection">
+         Object Detection
+        </a>
+       </li>
+       <li class="toc-h5 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#quantization">
+         Quantization
+        </a>
+       </li>
+       <li class="toc-h5 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#computed-tomography-ct">
+         Computed Tomography (CT)
+        </a>
+       </li>
+       <li class="toc-h5 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#domain-adaptation">
+         Domain Adaptation
+        </a>
+       </li>
+       <li class="toc-h5 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#out-of-distribution-detection">
+         Out-of-Distribution Detection
+        </a>
+       </li>
+       <li class="toc-h5 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#language-modelling">
+         Language Modelling
+        </a>
+       </li>
+      </ul>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#long-short-term-memory-networks-lstms">
+     Long Short Term Memory Networks (LSTMs)
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#recurrent-neural-networks-rnns">
+     Recurrent Neural Networks (RNNs)
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#evolution-of-r-cnn">
+       Evolution of R-CNN
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#fully-convolutional-networks-fcn">
+       Fully-Convolutional Networks (FCN)
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#rnn-vs-cnn">
+       RNN vs CNN
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#u-net">
+       U-NET
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#model-compression">
+       Model Compression
+      </a>
+      <ul class="nav section-nav flex-column">
+       <li class="toc-h5 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#knowledge-distillation">
+         Knowledge distillation
+        </a>
+       </li>
+       <li class="toc-h5 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#pruning">
+         Pruning
+        </a>
+       </li>
+       <li class="toc-h5 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#id3">
+         Quantization
+        </a>
+       </li>
+       <li class="toc-h5 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#low-rank-approximation-and-sparsity">
+         Low-rank approximation and sparsity
+        </a>
+       </li>
+      </ul>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#generative-adversarial-networks-gans">
+     Generative Adversarial Networks (GANs)
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#radial-basis-function-networks-rbfns">
+     Radial Basis Function Networks (RBFNs)
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#multilayer-perceptrons-mlps">
+     Multilayer Perceptrons (MLPs)
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#self-organizing-maps-soms">
+     Self Organizing Maps (SOMs)
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#deep-belief-networks-dbns">
+     Deep Belief Networks (DBNs)
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#restricted-boltzmann-machines-rbms">
+     Restricted Boltzmann Machines( RBMs)
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#autoencoders">
+     Autoencoders
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#optimization-algorithms-deep-learning">
+   Optimization algorithms - Deep Learning
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#asgd">
+     ASGD
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#adadelta">
+     Adadelta
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#adagrad">
+     Adagrad
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#adam">
+     Adam
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#adamw">
+     AdamW
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#adamax">
+     Adamax
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#lbfgs">
+     LBFGS
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#nadam">
+     NAdam
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#radam">
+     RAdam
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#rmsprop">
+     RMSprop
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#rprop">
+     Rprop
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#sgd">
+     SGD
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#sparseadam">
+     SparseAdam
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#artificial-neural-network">
+   Artificial neural network
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#autoencoder">
+     Autoencoder
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#cognitive-computing">
+     Cognitive computing
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#deep-learning">
+     Deep learning
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#deepdream">
+     DeepDream
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#multilayer-perceptron">
+     Multilayer perceptron
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#rnn">
+     RNN
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#lstm">
+       LSTM
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#gru">
+       GRU
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#esn">
+       ESN
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#restricted-boltzmann-machine">
+     Restricted Boltzmann machine
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#gan">
+     GAN
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#som">
+     SOM
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#convolutional-neural-network">
+     Convolutional neural network
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id4">
+       U-Net
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#transformer-vision">
+     Transformer Vision
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#spiking-neural-network">
+     Spiking neural network
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#memtransistor">
+     Memtransistor
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#electrochemical-ram-ecram">
+     Electrochemical RAM (ECRAM)
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#computer-vision">
+   Computer Vision
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#intro-to-deep-learning-lectures">
+   Intro to Deep Learning - Lectures
+  </a>
+ </li>
+</ul>
+
+    </nav>
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>DL Conceptual brief</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#libraries">
+   Libraries
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#tensorflow">
+     TensorFlow
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#features">
+       Features
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#pytorch">
+     PyTorch
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#keras">
+     Keras
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#general-concepts">
+   General concepts
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#perceptron-algorithm">
+     Perceptron algorithm
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#softmax-algorithm">
+     Softmax algorithm
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#transfer-learning">
+     Transfer Learning
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#representation-learning">
+     Representation Learning
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#activation-function">
+     Activation function
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#relu">
+     ReLU
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#back-propagation">
+     Back propagation
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#forward-propagation">
+     Forward propagation
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#training-neural-nets">
+     Training Neural Nets
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#normalizing-feature-values">
+       Normalizing Feature Values
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#dropout-regularization">
+       Dropout Regularization
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#cross-entropy">
+     Cross Entropy
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#encoder-decoder">
+     Encoder-Decoder
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#neural-style-transfer">
+     Neural Style Transfer
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#content-loss">
+     Content Loss
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#style-loss">
+     Style Loss
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#gram-matrices">
+     Gram Matrices
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#multi-class-neural-nets">
+     Multi-Class Neural Nets
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#one-vs-all-multi-class">
+       One-Vs-All Multi-Class
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#multi-class-single-label-classification">
+       Multi-Class, Single-Label Classification:
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#multi-class-multi-label-classification">
+       Multi-Class, Multi-Label Classification:
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#softmax-options">
+     SoftMax Options
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#full-softmax">
+       Full SoftMax
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#candidate-sampling">
+       Candidate Sampling
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#local-response-normalization-vs-batch-normalization">
+     Local Response Normalization vs Batch Normalization
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#most-popular-deep-learning-algorithms">
+   10 most popular deep learning algorithms
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#convolutional-neural-networks-cnns">
+     Convolutional Neural Networks (CNNs)
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id1">
+       General Concepts
+      </a>
+      <ul class="nav section-nav flex-column">
+       <li class="toc-h5 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#convolution">
+         Convolution
+        </a>
+       </li>
+       <li class="toc-h5 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#max-pooling">
+         Max Pooling
+        </a>
+       </li>
+       <li class="toc-h5 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#average-pooling">
+         Average Pooling
+        </a>
+       </li>
+       <li class="toc-h5 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#fully-connected">
+         Fully Connected
+        </a>
+       </li>
+       <li class="toc-h5 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#sota-models">
+         SOTA Models
+        </a>
+       </li>
+       <li class="toc-h5 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#differential-learning-rate">
+         Differential Learning Rate
+        </a>
+       </li>
+       <li class="toc-h5 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#feature-maps">
+         Feature Maps
+        </a>
+       </li>
+       <li class="toc-h5 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#kernel">
+         Kernel
+        </a>
+       </li>
+       <li class="toc-h5 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#filter">
+         Filter
+        </a>
+       </li>
+       <li class="toc-h5 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#spatial-information">
+         Spatial information
+        </a>
+       </li>
+       <li class="toc-h5 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#local-receptive-fields-shared-weights-and-pooling">
+         local receptive fields, shared weights, and pooling
+        </a>
+       </li>
+       <li class="toc-h5 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#strides">
+         Strides
+        </a>
+       </li>
+       <li class="toc-h5 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#convolution2d-maxpooling2d">
+         Convolution2D, MaxPooling2D
+        </a>
+       </li>
+       <li class="toc-h5 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#padding">
+         Padding
+        </a>
+       </li>
+       <li class="toc-h5 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#flatten-layer">
+         Flatten Layer
+        </a>
+       </li>
+       <li class="toc-h5 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#pooling-layers">
+         Pooling layers
+        </a>
+       </li>
+       <li class="toc-h5 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#convolutional-layer">
+         Convolutional Layer
+        </a>
+       </li>
+       <li class="toc-h5 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#cnn-sequence-to-classify-handwritten-digits">
+         CNN sequence to classify handwritten digits
+        </a>
+       </li>
+       <li class="toc-h5 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#flattened-3x3-image-matrix-1-dimension">
+         Flattened 3x3 image matrix 1 dimension
+        </a>
+       </li>
+       <li class="toc-h5 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#id2">
+         Kernel
+        </a>
+       </li>
+       <li class="toc-h5 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#types-of-pooling">
+         Types of Pooling
+        </a>
+       </li>
+       <li class="toc-h5 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#fully-connected-layer-fc-layer">
+         Fully Connected Layer (FC Layer)
+        </a>
+       </li>
+      </ul>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#cnn-research-papers">
+       CNN Research Papers
+      </a>
+      <ul class="nav section-nav flex-column">
+       <li class="toc-h5 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#resnet">
+         ResNet
+        </a>
+       </li>
+       <li class="toc-h5 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#vgg">
+         VGG
+        </a>
+       </li>
+       <li class="toc-h5 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#densenet">
+         DenseNet
+        </a>
+       </li>
+       <li class="toc-h5 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#alexnet">
+         AlexNet
+        </a>
+       </li>
+       <li class="toc-h5 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#vgg-16">
+         VGG-16
+        </a>
+       </li>
+       <li class="toc-h5 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#mobilenetv2">
+         MobileNetV2
+        </a>
+       </li>
+       <li class="toc-h5 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#efficientnet">
+         EfficientNet
+        </a>
+       </li>
+       <li class="toc-h5 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#darknet-53">
+         Darknet-53
+        </a>
+       </li>
+       <li class="toc-h5 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#resnext">
+         ResNeXt
+        </a>
+       </li>
+       <li class="toc-h5 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#googlenet">
+         GoogLeNet
+        </a>
+       </li>
+       <li class="toc-h5 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#xception">
+         Xception
+        </a>
+       </li>
+       <li class="toc-h5 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#squeezenet">
+         SqueezeNet
+        </a>
+       </li>
+       <li class="toc-h5 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#inception-v3">
+         Inception-v3
+        </a>
+       </li>
+       <li class="toc-h5 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#cspdarknet53">
+         CSPDarknet53
+        </a>
+       </li>
+      </ul>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#cnn-applications">
+       CNN Applications
+      </a>
+      <ul class="nav section-nav flex-column">
+       <li class="toc-h5 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#general-classification">
+         General Classification
+        </a>
+       </li>
+       <li class="toc-h5 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#image-classification">
+         Image Classification
+        </a>
+       </li>
+       <li class="toc-h5 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#semantic-segmentation">
+         Semantic Segmentation
+        </a>
+       </li>
+       <li class="toc-h5 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#object-detection">
+         Object Detection
+        </a>
+       </li>
+       <li class="toc-h5 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#quantization">
+         Quantization
+        </a>
+       </li>
+       <li class="toc-h5 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#computed-tomography-ct">
+         Computed Tomography (CT)
+        </a>
+       </li>
+       <li class="toc-h5 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#domain-adaptation">
+         Domain Adaptation
+        </a>
+       </li>
+       <li class="toc-h5 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#out-of-distribution-detection">
+         Out-of-Distribution Detection
+        </a>
+       </li>
+       <li class="toc-h5 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#language-modelling">
+         Language Modelling
+        </a>
+       </li>
+      </ul>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#long-short-term-memory-networks-lstms">
+     Long Short Term Memory Networks (LSTMs)
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#recurrent-neural-networks-rnns">
+     Recurrent Neural Networks (RNNs)
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#evolution-of-r-cnn">
+       Evolution of R-CNN
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#fully-convolutional-networks-fcn">
+       Fully-Convolutional Networks (FCN)
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#rnn-vs-cnn">
+       RNN vs CNN
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#u-net">
+       U-NET
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#model-compression">
+       Model Compression
+      </a>
+      <ul class="nav section-nav flex-column">
+       <li class="toc-h5 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#knowledge-distillation">
+         Knowledge distillation
+        </a>
+       </li>
+       <li class="toc-h5 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#pruning">
+         Pruning
+        </a>
+       </li>
+       <li class="toc-h5 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#id3">
+         Quantization
+        </a>
+       </li>
+       <li class="toc-h5 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#low-rank-approximation-and-sparsity">
+         Low-rank approximation and sparsity
+        </a>
+       </li>
+      </ul>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#generative-adversarial-networks-gans">
+     Generative Adversarial Networks (GANs)
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#radial-basis-function-networks-rbfns">
+     Radial Basis Function Networks (RBFNs)
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#multilayer-perceptrons-mlps">
+     Multilayer Perceptrons (MLPs)
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#self-organizing-maps-soms">
+     Self Organizing Maps (SOMs)
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#deep-belief-networks-dbns">
+     Deep Belief Networks (DBNs)
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#restricted-boltzmann-machines-rbms">
+     Restricted Boltzmann Machines( RBMs)
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#autoencoders">
+     Autoencoders
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#optimization-algorithms-deep-learning">
+   Optimization algorithms - Deep Learning
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#asgd">
+     ASGD
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#adadelta">
+     Adadelta
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#adagrad">
+     Adagrad
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#adam">
+     Adam
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#adamw">
+     AdamW
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#adamax">
+     Adamax
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#lbfgs">
+     LBFGS
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#nadam">
+     NAdam
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#radam">
+     RAdam
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#rmsprop">
+     RMSprop
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#rprop">
+     Rprop
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#sgd">
+     SGD
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#sparseadam">
+     SparseAdam
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#artificial-neural-network">
+   Artificial neural network
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#autoencoder">
+     Autoencoder
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#cognitive-computing">
+     Cognitive computing
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#deep-learning">
+     Deep learning
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#deepdream">
+     DeepDream
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#multilayer-perceptron">
+     Multilayer perceptron
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#rnn">
+     RNN
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#lstm">
+       LSTM
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#gru">
+       GRU
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#esn">
+       ESN
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#restricted-boltzmann-machine">
+     Restricted Boltzmann machine
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#gan">
+     GAN
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#som">
+     SOM
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#convolutional-neural-network">
+     Convolutional neural network
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id4">
+       U-Net
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#transformer-vision">
+     Transformer Vision
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#spiking-neural-network">
+     Spiking neural network
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#memtransistor">
+     Memtransistor
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#electrochemical-ram-ecram">
+     Electrochemical RAM (ECRAM)
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#computer-vision">
+   Computer Vision
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#intro-to-deep-learning-lectures">
+   Intro to Deep Learning - Lectures
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <section class="tex2jax_ignore mathjax_ignore" id="dl-conceptual-brief">
+<h1>DL Conceptual brief<a class="headerlink" href="#dl-conceptual-brief" title="Permalink to this headline">#</a></h1>
+<section id="libraries">
+<h2>Libraries<a class="headerlink" href="#libraries" title="Permalink to this headline">#</a></h2>
+<section id="tensorflow">
+<h3>TensorFlow<a class="headerlink" href="#tensorflow" title="Permalink to this headline">#</a></h3>
+<ul class="simple">
+<li><p>Google calls it <strong>“an open source software library for machine intelligence”</strong></p></li>
+<li><p>other deep learning libraries</p>
+<ul>
+<li><p>PyTorch (<a class="reference external" href="https://pytorch.org/">https://pytorch.org/</a>),</p></li>
+<li><p>Caffe (<a class="reference external" href="https://caffe.berkeleyvision.org/">https://caffe.berkeleyvision.org/</a>),</p></li>
+<li><p>MxNet (<a class="reference external" href="https://mxnet.apache.org/">https://mxnet.apache.org/</a>)</p></li>
+</ul>
+</li>
+</ul>
+<section id="features">
+<h4>Features<a class="headerlink" href="#features" title="Permalink to this headline">#</a></h4>
+<ul class="simple">
+<li><p>have <strong>auto-differentiation</strong>,</p></li>
+<li><p>support for CPU/GPU option,</p></li>
+<li><p>have <strong>pretrained models</strong>,</p></li>
+<li><p>support commonly used NN architectures like recurrent neural networks, convolutional neural networks, and deep belief networks</p></li>
+<li><p>support for <strong>eager computation</strong> in TensorFlow 2.0,</p></li>
+<li><p>support for <strong>graph computation based on static graphs</strong></p></li>
+<li><p>Keras – a high-level neural network API that has been <strong>integrated with TensorFlow</strong> (in 2.0, Keras became the standard API for interacting with TensorFlow)</p></li>
+</ul>
+</section>
+</section>
+<section id="pytorch">
+<h3>PyTorch<a class="headerlink" href="#pytorch" title="Permalink to this headline">#</a></h3>
+</section>
+<section id="keras">
+<h3>Keras<a class="headerlink" href="#keras" title="Permalink to this headline">#</a></h3>
+<ul class="simple">
+<li><p>The core layers in Keras includes dense layers, activation layers, and dropout layers. There are other layers that are more complex, including convolutional layers and pooling layers</p></li>
+<li><p>A dense layer is also known as a fully-connected layer. It is fully-connected because it uses all of its input (as opposed to a subset of the input) for the mathematical function that it implements.</p></li>
+<li><p>A dense layer implements the following function:</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[\hat{y} = \sigma(Wx + b)\]</div>
+<ul class="simple">
+<li><p>where <span class="math notranslate nohighlight">\(\hat{y}\)</span> is the output, <span class="math notranslate nohighlight">\(\sigma\)</span> is the activation function, <span class="math notranslate nohighlight">\(x\)</span> is the input, and <span class="math notranslate nohighlight">\(W\)</span> and <span class="math notranslate nohighlight">\(b\)</span> are the weights and biases respectively.</p></li>
+<li><p>A model is a collection of layers</p></li>
+<li><p>Loss function – error metric for neural network training</p></li>
+</ul>
+<img src="https://www.oreilly.com/library/view/neural-network-projects/9781789138900/assets/081fd69c-7a42-4394-a198-a533a7e2892d.png">
+<ul class="simple">
+<li><p>A linear classifier can solve the AND and OR problems but is not able to solve the XOR</p></li>
+<li><p><a class="reference external" href="https://dev.to/jbahire/demystifying-the-xor-problem-1blk">https://dev.to/jbahire/demystifying-the-xor-problem-1blk</a></p></li>
+</ul>
+</section>
+</section>
+<section id="general-concepts">
+<h2>General concepts<a class="headerlink" href="#general-concepts" title="Permalink to this headline">#</a></h2>
+<section id="perceptron-algorithm">
+<h3>Perceptron algorithm<a class="headerlink" href="#perceptron-algorithm" title="Permalink to this headline">#</a></h3>
+</section>
+<section id="softmax-algorithm">
+<h3>Softmax algorithm<a class="headerlink" href="#softmax-algorithm" title="Permalink to this headline">#</a></h3>
+</section>
+<section id="transfer-learning">
+<h3>Transfer Learning<a class="headerlink" href="#transfer-learning" title="Permalink to this headline">#</a></h3>
+<ul class="simple">
+<li><p>Transfer learning (TL) is a research problem in machine learning (ML) that focuses on storing knowledge gained while solving one problem and applying it to a different but related problem.</p></li>
+<li><p>How do you make an image classifier that can be trained in a few minutes on a CPU with very little data?</p>
+<ul>
+<li><p>Use pre-trained models, i.e., models with known weights</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="representation-learning">
+<h3>Representation Learning<a class="headerlink" href="#representation-learning" title="Permalink to this headline">#</a></h3>
+</section>
+<section id="activation-function">
+<h3>Activation function<a class="headerlink" href="#activation-function" title="Permalink to this headline">#</a></h3>
+</section>
+<section id="relu">
+<h3>ReLU<a class="headerlink" href="#relu" title="Permalink to this headline">#</a></h3>
+</section>
+<section id="back-propagation">
+<h3>Back propagation<a class="headerlink" href="#back-propagation" title="Permalink to this headline">#</a></h3>
+<ul class="simple">
+<li><p>Gradients are important</p>
+<ul>
+<li><p>If it’s differentiable, we can probably learn on it</p></li>
+</ul>
+</li>
+<li><p>Gradients can vanish</p>
+<ul>
+<li><p>Each additional layer can successively reduce signal vs. noise, when layers become deep</p></li>
+<li><p>ReLUs are useful here</p></li>
+<li><p>Try to limit depth of model</p></li>
+</ul>
+</li>
+<li><p>Gradients can explode</p>
+<ul>
+<li><p>can get NaNs</p></li>
+<li><p>Learning rates are important here</p>
+<ul>
+<li><p>try lower learning rate</p></li>
+</ul>
+</li>
+<li><p>Batch normalization (useful knob) can help</p></li>
+</ul>
+</li>
+<li><p>ReLu layers can die</p>
+<ul>
+<li><p>Keep calm and lower your learning rates</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="forward-propagation">
+<h3>Forward propagation<a class="headerlink" href="#forward-propagation" title="Permalink to this headline">#</a></h3>
+</section>
+<section id="training-neural-nets">
+<h3>Training Neural Nets<a class="headerlink" href="#training-neural-nets" title="Permalink to this headline">#</a></h3>
+<section id="normalizing-feature-values">
+<h4>Normalizing Feature Values<a class="headerlink" href="#normalizing-feature-values" title="Permalink to this headline">#</a></h4>
+<ul class="simple">
+<li><p>features must have reasonable scales</p>
+<ul>
+<li><p>Roughly zero-centered, [-1, 1] range often works well</p></li>
+<li><p>Helps gradient descent converge; avoid NaN trap</p></li>
+<li><p>Avoiding outlier values can also help</p></li>
+</ul>
+</li>
+<li><p>Can use a few standard methods</p>
+<ul>
+<li><p>Linear scaling</p></li>
+<li><p>Hard cap (clipping) to max, min</p></li>
+<li><p>Log scaling</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="dropout-regularization">
+<h4>Dropout Regularization<a class="headerlink" href="#dropout-regularization" title="Permalink to this headline">#</a></h4>
+<ul class="simple">
+<li><p>Dropout: Another form of regularization, useful for NNs</p>
+<ul>
+<li><p>Works by randomly “dropping out” units in a network for a single gradient step</p>
+<ul>
+<li><p>There’s a connection to ensemble models here</p></li>
+</ul>
+</li>
+<li><p>The more you drop out, the stronger the regularization</p>
+<ul>
+<li><p>0.0 = no dropout regularization</p></li>
+<li><p>1.0 = drop everything out! learns nothing</p></li>
+<li><p>Intermediate values more useful</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</section>
+</section>
+<section id="cross-entropy">
+<h3>Cross Entropy<a class="headerlink" href="#cross-entropy" title="Permalink to this headline">#</a></h3>
+</section>
+<section id="encoder-decoder">
+<h3>Encoder-Decoder<a class="headerlink" href="#encoder-decoder" title="Permalink to this headline">#</a></h3>
+</section>
+<section id="neural-style-transfer">
+<h3>Neural Style Transfer<a class="headerlink" href="#neural-style-transfer" title="Permalink to this headline">#</a></h3>
+<ul class="simple">
+<li><p>is the technique of blending style from one image into another image keeping its content intact. The only change is the style configurations of the image to give an artistic touch to your image.</p></li>
+</ul>
+</section>
+<section id="content-loss">
+<h3>Content Loss<a class="headerlink" href="#content-loss" title="Permalink to this headline">#</a></h3>
+</section>
+<section id="style-loss">
+<h3>Style Loss<a class="headerlink" href="#style-loss" title="Permalink to this headline">#</a></h3>
+</section>
+<section id="gram-matrices">
+<h3>Gram Matrices<a class="headerlink" href="#gram-matrices" title="Permalink to this headline">#</a></h3>
+</section>
+<section id="multi-class-neural-nets">
+<h3>Multi-Class Neural Nets<a class="headerlink" href="#multi-class-neural-nets" title="Permalink to this headline">#</a></h3>
+<section id="one-vs-all-multi-class">
+<h4>One-Vs-All Multi-Class<a class="headerlink" href="#one-vs-all-multi-class" title="Permalink to this headline">#</a></h4>
+<ul class="simple">
+<li><p>SoftMax Multi-Class</p>
+<ul>
+<li><p>Add an additional constraint: Require output of all one-vs-all nodes to sum to 1.0</p></li>
+<li><p>use logits that sums to 1</p></li>
+<li><p>The additional constraint helps training converge quickly</p></li>
+<li><p>Plus, allows outputs to be interpreted as probabilities</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="multi-class-single-label-classification">
+<h4>Multi-Class, Single-Label Classification:<a class="headerlink" href="#multi-class-single-label-classification" title="Permalink to this headline">#</a></h4>
+<ul class="simple">
+<li><p>An example may be a <strong>member of only one class.</strong></p></li>
+<li><p>Constraint that classes are <strong>mutually exclusive</strong> is helpful structure.</p></li>
+<li><p>Useful to encode this in the loss.</p></li>
+<li><p>Use <strong>one softmax loss for all possible classes.</strong></p></li>
+</ul>
+</section>
+<section id="multi-class-multi-label-classification">
+<h4>Multi-Class, Multi-Label Classification:<a class="headerlink" href="#multi-class-multi-label-classification" title="Permalink to this headline">#</a></h4>
+<ul class="simple">
+<li><p>An example may be a <strong>member of more than one class.</strong></p></li>
+<li><p>No additional constraints on class membership to exploit.</p></li>
+<li><p><strong>One logistic regression loss for each possible class.</strong></p></li>
+<li><p><strong>Multiple logistic regression</strong></p></li>
+</ul>
+</section>
+</section>
+<section id="softmax-options">
+<h3>SoftMax Options<a class="headerlink" href="#softmax-options" title="Permalink to this headline">#</a></h3>
+<section id="full-softmax">
+<h4>Full SoftMax<a class="headerlink" href="#full-softmax" title="Permalink to this headline">#</a></h4>
+<ul class="simple">
+<li><p>For Multi-Class classification problems</p>
+<ul>
+<li><p>Brute force; calculates for all classes.</p></li>
+</ul>
+</li>
+<li><p>DisAdv</p>
+<ul>
+<li><p>relatively expensive to train</p></li>
+<li><p>for million classes, million output nodes needs to be trained, for every single example</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="candidate-sampling">
+<h4>Candidate Sampling<a class="headerlink" href="#candidate-sampling" title="Permalink to this headline">#</a></h4>
+<ul class="simple">
+<li><p>allows to be more efficient by differentiating between classes</p>
+<ul>
+<li><p>for labrador/pup, we can easily differentiate it with a toaster</p></li>
+</ul>
+</li>
+<li><p>Calculates for all the positive labels, but only for a random sample of negatives.</p>
+<ul>
+<li><p>is more efficient</p></li>
+</ul>
+</li>
+</ul>
+</section>
+</section>
+<section id="local-response-normalization-vs-batch-normalization">
+<h3>Local Response Normalization vs Batch Normalization<a class="headerlink" href="#local-response-normalization-vs-batch-normalization" title="Permalink to this headline">#</a></h3>
+<ul class="simple">
+<li><p><a class="reference external" href="https://towardsdatascience.com/difference-between-local-response-normalization-and-batch-normalization-272308c034ac">https://towardsdatascience.com/difference-between-local-response-normalization-and-batch-normalization-272308c034ac</a></p></li>
+</ul>
+</section>
+</section>
+<section id="most-popular-deep-learning-algorithms">
+<h2>10 most popular deep learning algorithms<a class="headerlink" href="#most-popular-deep-learning-algorithms" title="Permalink to this headline">#</a></h2>
+<p><a class="reference external" href="https://www.simplilearn.com/tutorials/deep-learning-tutorial/deep-learning-algorithm">Link</a></p>
+<section id="convolutional-neural-networks-cnns">
+<h3>Convolutional Neural Networks (CNNs)<a class="headerlink" href="#convolutional-neural-networks-cnns" title="Permalink to this headline">#</a></h3>
+<ul class="simple">
+<li><p>Computer Vision with Deep Learning has been constructed and perfected with time, primarily over one particular algorithm — a <strong>Convolutional Neural Network(ConvNet/CNN)</strong>.</p></li>
+<li><p>Neural networks came to prominence in <strong>2012</strong> as machine learning expert <strong>Alex Krizhevsky</strong> utilized them to get <strong>first prize in the ImageNet competition</strong>.</p></li>
+<li><p>Applications</p>
+<ul>
+<li><p>Facebook’s famous automatic tagging algorithm works? The answer is neural networks.</p></li>
+<li><p>product recommendation you get on Amazon and several other similar platforms is because of neural networks.</p></li>
+<li><p>Neural networks are the reason behind Google’s superb image searching abilities.</p></li>
+<li><p>Instagram’s solid search infrastructure is possible because the social media network uses neural networks.</p></li>
+</ul>
+</li>
+<li><p>A convolutional network <strong>ingests such images</strong> as three separate strata of color <strong>stacked one on top of the other</strong>. A normal color image is seen as a rectangular box whose width and height are measured by the number of pixels from those dimensions. The depth layers in the three layers of colours(RGB) interpreted by CNNs are referred to as channels.</p></li>
+<li><p>A ConvNet is able to successfully <strong>capture the Spatial and Temporal dependencies</strong> in an image through the application of relevant filters.</p></li>
+<li><p>The <strong>role of the ConvNet</strong> is to <strong>reduce the images</strong> into a form which is easier to process, <strong>without losing features</strong> which are critical for getting a good prediction.</p></li>
+<li><p>The objective of the Convolution Operation is to <strong>extract the high-level features</strong> such as edges, from the input image. ConvNets need not be limited to only one Convolutional Layer. Conventionally, the <strong>first ConvLayer</strong> is responsible for <strong>capturing the Low-Level features</strong> such as edges, color, gradient orientation, etc.</p></li>
+<li><p>CNN’s have a <strong>ReLU layer</strong> to <strong>perform operations on elements</strong>. The output is a rectified feature map.</p></li>
+<li><p>the <strong>Pooling layer</strong> is responsible for <strong>reducing the spatial size of the Convolved Feature</strong>. This is to <strong>decrease the computational power required to process the data through dimensionality reduction</strong>. Furthermore, it is useful for <strong>extracting dominant features which are rotational and positional invariant</strong>, thus maintaining the process of effectively training of the model.</p></li>
+<li><p><strong>Adding a Fully-Connected layer</strong> is a (usually) <strong>cheap way of learning non-linear combinations of the high-level features</strong> as represented by the output of the convolutional layer. The Fully-Connected layer is learning a possibly non-linear function in that space.</p></li>
+<li><p>There are <strong>various architectures of CNNs available</strong> which have been key in building algorithms which power and shall power AI as a whole in the foreseeable future. Some of them have been listed below:</p>
+<ul>
+<li><p>LeNet</p></li>
+<li><p>AlexNet</p></li>
+<li><p>VGGNet</p></li>
+<li><p>GoogLeNet</p></li>
+<li><p>ResNet</p></li>
+<li><p>ZFNet</p></li>
+</ul>
+</li>
+<li><p><a class="reference external" href="https://poloclub.github.io/cnn-explainer/">https://poloclub.github.io/cnn-explainer/</a></p></li>
+</ul>
+<section id="id1">
+<h4>General Concepts<a class="headerlink" href="#id1" title="Permalink to this headline">#</a></h4>
+<section id="convolution">
+<h5>Convolution<a class="headerlink" href="#convolution" title="Permalink to this headline">#</a></h5>
+</section>
+<section id="max-pooling">
+<h5>Max Pooling<a class="headerlink" href="#max-pooling" title="Permalink to this headline">#</a></h5>
+</section>
+<section id="average-pooling">
+<h5>Average Pooling<a class="headerlink" href="#average-pooling" title="Permalink to this headline">#</a></h5>
+</section>
+<section id="fully-connected">
+<h5>Fully Connected<a class="headerlink" href="#fully-connected" title="Permalink to this headline">#</a></h5>
+</section>
+<section id="sota-models">
+<h5>SOTA Models<a class="headerlink" href="#sota-models" title="Permalink to this headline">#</a></h5>
+</section>
+<section id="differential-learning-rate">
+<h5>Differential Learning Rate<a class="headerlink" href="#differential-learning-rate" title="Permalink to this headline">#</a></h5>
+</section>
+<section id="feature-maps">
+<h5>Feature Maps<a class="headerlink" href="#feature-maps" title="Permalink to this headline">#</a></h5>
+</section>
+<section id="kernel">
+<h5>Kernel<a class="headerlink" href="#kernel" title="Permalink to this headline">#</a></h5>
+</section>
+<section id="filter">
+<h5>Filter<a class="headerlink" href="#filter" title="Permalink to this headline">#</a></h5>
+</section>
+<section id="spatial-information">
+<h5>Spatial information<a class="headerlink" href="#spatial-information" title="Permalink to this headline">#</a></h5>
+</section>
+<section id="local-receptive-fields-shared-weights-and-pooling">
+<h5>local receptive fields, shared weights, and pooling<a class="headerlink" href="#local-receptive-fields-shared-weights-and-pooling" title="Permalink to this headline">#</a></h5>
+</section>
+<section id="strides">
+<h5>Strides<a class="headerlink" href="#strides" title="Permalink to this headline">#</a></h5>
+</section>
+<section id="convolution2d-maxpooling2d">
+<h5>Convolution2D, MaxPooling2D<a class="headerlink" href="#convolution2d-maxpooling2d" title="Permalink to this headline">#</a></h5>
+</section>
+<section id="padding">
+<h5>Padding<a class="headerlink" href="#padding" title="Permalink to this headline">#</a></h5>
+</section>
+<section id="flatten-layer">
+<h5>Flatten Layer<a class="headerlink" href="#flatten-layer" title="Permalink to this headline">#</a></h5>
+</section>
+<section id="pooling-layers">
+<h5>Pooling layers<a class="headerlink" href="#pooling-layers" title="Permalink to this headline">#</a></h5>
+</section>
+<section id="convolutional-layer">
+<h5>Convolutional Layer<a class="headerlink" href="#convolutional-layer" title="Permalink to this headline">#</a></h5>
+<img src="https://miro.medium.com/max/1400/1*qtinjiZct2w7Dr4XoFixnA.gif">
+</section>
+<section id="cnn-sequence-to-classify-handwritten-digits">
+<h5>CNN sequence to classify handwritten digits<a class="headerlink" href="#cnn-sequence-to-classify-handwritten-digits" title="Permalink to this headline">#</a></h5>
+<img src="https://miro.medium.com/max/1400/1*uAeANQIOQPqWZnnuH-VEyw.jpeg">
+</section>
+<section id="flattened-3x3-image-matrix-1-dimension">
+<h5>Flattened 3x3 image matrix 1 dimension<a class="headerlink" href="#flattened-3x3-image-matrix-1-dimension" title="Permalink to this headline">#</a></h5>
+<img src="https://miro.medium.com/max/850/1*GLQjM9k0gZ14nYF0XmkRWQ.png" width=500 height=500>
+</section>
+<section id="id2">
+<h5>Kernel<a class="headerlink" href="#id2" title="Permalink to this headline">#</a></h5>
+<ul class="simple">
+<li><p>Convoluting a 5x5x1 image(Green) with a 3x3x1 kernel(Yellow) to get a 3x3x1(Red) convolved feature</p></li>
+</ul>
+<img src="https://miro.medium.com/max/1052/1*GcI7G-JLAQiEoCON7xFbhg.gif" width=500 height=500>
+<ul class="simple">
+<li><p>Convolution operation on a MxNx3 image matrix with a 3x3x3 Kernel</p></li>
+</ul>
+<img src="https://miro.medium.com/max/1400/1*ciDgQEjViWLnCbmX-EeSrA.gif">
+<ul class="simple">
+<li><p>Convolution Operation with Stride Length = 2</p></li>
+</ul>
+<img src="https://miro.medium.com/max/790/1*1VJDP6qDY9-ExTuQVEOlVg.gif" width=500 height=500>
+<ul class="simple">
+<li><p>SAME padding: 5x5x1 image is padded with 0s to create a 6x6x1 image</p></li>
+</ul>
+<img src="https://miro.medium.com/max/790/1*nYf_cUIHFEWU1JXGwnz-Ig.gif" width=500 height=500>
+</section>
+<section id="types-of-pooling">
+<h5>Types of Pooling<a class="headerlink" href="#types-of-pooling" title="Permalink to this headline">#</a></h5>
+<img src="https://miro.medium.com/max/1192/1*KQIEqhxzICU7thjaQBfPBQ.png" width=500 height=500>
+</section>
+<section id="fully-connected-layer-fc-layer">
+<h5>Fully Connected Layer (FC Layer)<a class="headerlink" href="#fully-connected-layer-fc-layer" title="Permalink to this headline">#</a></h5>
+<img src="https://miro.medium.com/max/1400/1*kToStLowjokojIQ7pY2ynQ.jpeg" width=500 height=500>
+<ul class="simple">
+<li><p><a class="reference external" href="https://towardsdatascience.com/a-comprehensive-guide-to-convolutional-neural-networks-the-eli5-way-3bd2b1164a53">https://towardsdatascience.com/a-comprehensive-guide-to-convolutional-neural-networks-the-eli5-way-3bd2b1164a53</a></p></li>
+<li><p><a class="reference external" href="https://github.com/ss-is-master-chief/MNIST-Digit.Recognizer-CNNs/blob/master/MNIST-Hand.Written.Digit.Recognition-CNN.ipynb">https://github.com/ss-is-master-chief/MNIST-Digit.Recognizer-CNNs/blob/master/MNIST-Hand.Written.Digit.Recognition-CNN.ipynb</a></p></li>
+<li><p><a class="reference external" href="https://medium.datadriveninvestor.com/introduction-to-how-cnns-work-77e0e4cde99b">https://medium.datadriveninvestor.com/introduction-to-how-cnns-work-77e0e4cde99b</a></p></li>
+</ul>
+</section>
+</section>
+<section id="cnn-research-papers">
+<h4>CNN Research Papers<a class="headerlink" href="#cnn-research-papers" title="Permalink to this headline">#</a></h4>
+<section id="resnet">
+<h5>ResNet<a class="headerlink" href="#resnet" title="Permalink to this headline">#</a></h5>
+<ul class="simple">
+<li><p>Deep Residual Learning for Image Recognition</p></li>
+</ul>
+</section>
+<section id="vgg">
+<h5>VGG<a class="headerlink" href="#vgg" title="Permalink to this headline">#</a></h5>
+<ul class="simple">
+<li><p>Very Deep Convolutional Networks for Large-Scale Image Recognition</p></li>
+</ul>
+</section>
+<section id="densenet">
+<h5>DenseNet<a class="headerlink" href="#densenet" title="Permalink to this headline">#</a></h5>
+<ul class="simple">
+<li><p>Densely Connected Convolutional Networks</p></li>
+<li><p>A DenseNet is a type of convolutional neural network that utilises dense connections between layers, through Dense Blocks, where we connect all layers (with matching feature-map sizes) directly with each other. To preserve the feed-forward nature, each layer obtains additional inputs from all preceding layers and passes on its own feature-maps to all subsequent layers.</p></li>
+</ul>
+</section>
+<section id="alexnet">
+<h5>AlexNet<a class="headerlink" href="#alexnet" title="Permalink to this headline">#</a></h5>
+<ul class="simple">
+<li><p>ImageNet Classification with Deep Convolutional Neural Networks</p></li>
+</ul>
+</section>
+<section id="vgg-16">
+<h5>VGG-16<a class="headerlink" href="#vgg-16" title="Permalink to this headline">#</a></h5>
+<ul class="simple">
+<li><p>Very Deep Convolutional Networks for Large-Scale Image Recognition</p></li>
+<li><p><a class="reference external" href="https://arxiv.org/pdf/1409.1556.pdf">https://arxiv.org/pdf/1409.1556.pdf</a></p></li>
+</ul>
+</section>
+<section id="mobilenetv2">
+<h5>MobileNetV2<a class="headerlink" href="#mobilenetv2" title="Permalink to this headline">#</a></h5>
+<ul class="simple">
+<li><p>MobileNetV2: Inverted Residuals and Linear Bottlenecks</p></li>
+</ul>
+</section>
+<section id="efficientnet">
+<h5>EfficientNet<a class="headerlink" href="#efficientnet" title="Permalink to this headline">#</a></h5>
+<ul class="simple">
+<li><p>EfficientNet: Rethinking Model Scaling for Convolutional Neural Networks</p></li>
+</ul>
+</section>
+<section id="darknet-53">
+<h5>Darknet-53<a class="headerlink" href="#darknet-53" title="Permalink to this headline">#</a></h5>
+<ul class="simple">
+<li><p>YOLOv3: An Incremental Improvement</p></li>
+</ul>
+</section>
+<section id="resnext">
+<h5>ResNeXt<a class="headerlink" href="#resnext" title="Permalink to this headline">#</a></h5>
+<ul class="simple">
+<li><p>Aggregated Residual Transformations for Deep Neural Networks</p></li>
+</ul>
+</section>
+<section id="googlenet">
+<h5>GoogLeNet<a class="headerlink" href="#googlenet" title="Permalink to this headline">#</a></h5>
+<ul class="simple">
+<li><p>Going Deeper with Convolutions</p></li>
+</ul>
+</section>
+<section id="xception">
+<h5>Xception<a class="headerlink" href="#xception" title="Permalink to this headline">#</a></h5>
+<ul class="simple">
+<li><p>Xception: Deep Learning With Depthwise Separable Convolutions</p></li>
+</ul>
+</section>
+<section id="squeezenet">
+<h5>SqueezeNet<a class="headerlink" href="#squeezenet" title="Permalink to this headline">#</a></h5>
+<ul class="simple">
+<li><p>SqueezeNet: AlexNet-level accuracy with 50x fewer parameters and &lt;0.5MB model size</p></li>
+</ul>
+</section>
+<section id="inception-v3">
+<h5>Inception-v3<a class="headerlink" href="#inception-v3" title="Permalink to this headline">#</a></h5>
+<ul class="simple">
+<li><p>Rethinking the Inception Architecture for Computer Vision</p></li>
+</ul>
+</section>
+<section id="cspdarknet53">
+<h5>CSPDarknet53<a class="headerlink" href="#cspdarknet53" title="Permalink to this headline">#</a></h5>
+<ul class="simple">
+<li><p>YOLOv4: Optimal Speed and Accuracy of Object Detection</p></li>
+</ul>
+</section>
+</section>
+<section id="cnn-applications">
+<h4>CNN Applications<a class="headerlink" href="#cnn-applications" title="Permalink to this headline">#</a></h4>
+<section id="general-classification">
+<h5>General Classification<a class="headerlink" href="#general-classification" title="Permalink to this headline">#</a></h5>
+</section>
+<section id="image-classification">
+<h5>Image Classification<a class="headerlink" href="#image-classification" title="Permalink to this headline">#</a></h5>
+</section>
+<section id="semantic-segmentation">
+<h5>Semantic Segmentation<a class="headerlink" href="#semantic-segmentation" title="Permalink to this headline">#</a></h5>
+<ul class="simple">
+<li><p>Classify Each Pixel</p></li>
+<li><p>Fully-Convolutional Networks</p></li>
+<li><p>SegNet &amp; U-NET</p></li>
+<li><p>Faster R-CNN linked to Semantic Segmentation: Mask R-CNN</p></li>
+</ul>
+</section>
+<section id="object-detection">
+<h5>Object Detection<a class="headerlink" href="#object-detection" title="Permalink to this headline">#</a></h5>
+</section>
+<section id="quantization">
+<h5>Quantization<a class="headerlink" href="#quantization" title="Permalink to this headline">#</a></h5>
+</section>
+<section id="computed-tomography-ct">
+<h5>Computed Tomography (CT)<a class="headerlink" href="#computed-tomography-ct" title="Permalink to this headline">#</a></h5>
+</section>
+<section id="domain-adaptation">
+<h5>Domain Adaptation<a class="headerlink" href="#domain-adaptation" title="Permalink to this headline">#</a></h5>
+</section>
+<section id="out-of-distribution-detection">
+<h5>Out-of-Distribution Detection<a class="headerlink" href="#out-of-distribution-detection" title="Permalink to this headline">#</a></h5>
+</section>
+<section id="language-modelling">
+<h5>Language Modelling<a class="headerlink" href="#language-modelling" title="Permalink to this headline">#</a></h5>
+</section>
+</section>
+</section>
+<section id="long-short-term-memory-networks-lstms">
+<h3>Long Short Term Memory Networks (LSTMs)<a class="headerlink" href="#long-short-term-memory-networks-lstms" title="Permalink to this headline">#</a></h3>
+</section>
+<section id="recurrent-neural-networks-rnns">
+<h3>Recurrent Neural Networks (RNNs)<a class="headerlink" href="#recurrent-neural-networks-rnns" title="Permalink to this headline">#</a></h3>
+<ul class="simple">
+<li><p><strong>Recurrent Neural Networks (RNNs)</strong> are widely used for data with some kind of <strong>sequential structure</strong>. For instance, <strong>time series data has an intrinsic ordering based on time</strong>. Sentences are also sequential, “I love dogs” has a different meaning than “Dogs I love.” Simply put, if the <strong>semantics of your data is altered by random permutation, you have a sequential dataset and RNNs may be used for your problem!</strong> To help solidify the types of problems RNNs can solve, here is a list of common applications :</p></li>
+<li><p><strong>Applications</strong></p>
+<ul>
+<li><p>Speech Recognition</p></li>
+<li><p>Sentiment Classification</p></li>
+<li><p>Machine Translation (i.e. Chinese to English)</p></li>
+<li><p>Video Activity Recognition</p></li>
+<li><p>Name Entity Recognition — (i.e. Identifying names in a sentence)</p></li>
+</ul>
+</li>
+<li><p>What are RNNs</p>
+<ul>
+<li><p>RNNs are <strong>different than the classical multi-layer perceptron (MLP) networks</strong> because of two main reasons:</p>
+<ul>
+<li><ol class="simple">
+<li><p>They take into account what happened previously and</p></li>
+</ol>
+</li>
+<li><ol class="simple">
+<li><p>they share parameters/weights.</p></li>
+</ol>
+</li>
+</ul>
+</li>
+<li><p>A recurrent neural network is a neural network that is specialized for processing a sequence of data x(t)= x(1), … , x(τ) with the time step index t ranging from 1 to τ. For tasks that involve sequential inputs, such as speech and language, it is often better to use RNNs. In a NLP problem, if you want to predict the next word in a sentence it is important to know the words before it. RNNs are called recurrent because they perform the same task for every element of a sequence, with the output being depended on the previous computations. Another way to think about RNNs is that they have a “memory” which captures information about what has been calculated so far.</p></li>
+</ul>
+</li>
+</ul>
+<hr class="docutils" />
+<ul class="simple">
+<li><p><a class="reference external" href="https://pub.towardsai.net/whirlwind-tour-of-rnns-a11effb7808f">https://pub.towardsai.net/whirlwind-tour-of-rnns-a11effb7808f</a></p></li>
+<li><p><a class="reference external" href="https://towardsdatascience.com/recurrent-neural-networks-rnns-3f06d7653a85">https://towardsdatascience.com/recurrent-neural-networks-rnns-3f06d7653a85</a></p></li>
+<li><p><a class="reference external" href="https://github.com/javaidnabi31/RNN-from-scratch/blob/master/RNN_char_text%20generator.ipynb">https://github.com/javaidnabi31/RNN-from-scratch/blob/master/RNN_char_text generator.ipynb</a></p></li>
+<li><p><a class="reference external" href="https://www.deeplearningbook.org/contents/rnn.html">https://www.deeplearningbook.org/contents/rnn.html</a></p></li>
+<li><p><a class="reference external" href="https://gist.github.com/karpathy/d4dee566867f8291f086">https://gist.github.com/karpathy/d4dee566867f8291f086</a></p></li>
+<li><p><a class="reference external" href="https://www.coursera.org/learn/nlp-sequence-models/lecture/0h7gT/why-sequence-models">https://www.coursera.org/learn/nlp-sequence-models/lecture/0h7gT/why-sequence-models</a></p></li>
+<li><p><a class="reference external" href="https://arxiv.org/pdf/1610.02583.pdf">A Gentle Tutorial of Recurrent Neural Network with Error Backpropagation</a></p></li>
+</ul>
+<section id="evolution-of-r-cnn">
+<h4>Evolution of R-CNN<a class="headerlink" href="#evolution-of-r-cnn" title="Permalink to this headline">#</a></h4>
+<ul class="simple">
+<li><p>Region based CNN</p></li>
+<li><p>Fast R-CNN</p></li>
+<li><p>Faster R-CNN</p></li>
+</ul>
+</section>
+<section id="fully-convolutional-networks-fcn">
+<h4>Fully-Convolutional Networks (FCN)<a class="headerlink" href="#fully-convolutional-networks-fcn" title="Permalink to this headline">#</a></h4>
+</section>
+<section id="rnn-vs-cnn">
+<h4>RNN vs CNN<a class="headerlink" href="#rnn-vs-cnn" title="Permalink to this headline">#</a></h4>
+<ul class="simple">
+<li><p>Type of Data</p>
+<ul>
+<li><p>CNNs are used in solving problems related to spatial data, such as images.</p></li>
+<li><p>RNNs are better suited to analyzing temporal, sequential data, such as text or videos.</p></li>
+</ul>
+</li>
+<li><p>Architecture</p>
+<ul>
+<li><p>CNNs are “feed-forward neural networks” that use filters and pooling layers,</p></li>
+<li><p>RNNs feed results back into the network</p></li>
+</ul>
+</li>
+<li><p>Size of input</p>
+<ul>
+<li><p>CNNs have fixed size of the input and the resulting output are fixed.</p></li>
+<li><p>In RNNs size of input and its resulting output may vary</p></li>
+</ul>
+</li>
+<li><p>Use cases</p>
+<ul>
+<li><p>CNNs include facial recognition, medical analysis and classification</p></li>
+<li><p>RNNs include text translation, NLP, sentiment analysis and speech analysis</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="u-net">
+<h4>U-NET<a class="headerlink" href="#u-net" title="Permalink to this headline">#</a></h4>
+<ul class="simple">
+<li><p>Long Skip Connections</p></li>
+</ul>
+</section>
+<section id="model-compression">
+<h4>Model Compression<a class="headerlink" href="#model-compression" title="Permalink to this headline">#</a></h4>
+<section id="knowledge-distillation">
+<h5>Knowledge distillation<a class="headerlink" href="#knowledge-distillation" title="Permalink to this headline">#</a></h5>
+</section>
+<section id="pruning">
+<h5>Pruning<a class="headerlink" href="#pruning" title="Permalink to this headline">#</a></h5>
+</section>
+<section id="id3">
+<h5>Quantization<a class="headerlink" href="#id3" title="Permalink to this headline">#</a></h5>
+</section>
+<section id="low-rank-approximation-and-sparsity">
+<h5>Low-rank approximation and sparsity<a class="headerlink" href="#low-rank-approximation-and-sparsity" title="Permalink to this headline">#</a></h5>
+</section>
+</section>
+</section>
+<section id="generative-adversarial-networks-gans">
+<h3>Generative Adversarial Networks (GANs)<a class="headerlink" href="#generative-adversarial-networks-gans" title="Permalink to this headline">#</a></h3>
+</section>
+<section id="radial-basis-function-networks-rbfns">
+<h3>Radial Basis Function Networks (RBFNs)<a class="headerlink" href="#radial-basis-function-networks-rbfns" title="Permalink to this headline">#</a></h3>
+</section>
+<section id="multilayer-perceptrons-mlps">
+<h3>Multilayer Perceptrons (MLPs)<a class="headerlink" href="#multilayer-perceptrons-mlps" title="Permalink to this headline">#</a></h3>
+</section>
+<section id="self-organizing-maps-soms">
+<h3>Self Organizing Maps (SOMs)<a class="headerlink" href="#self-organizing-maps-soms" title="Permalink to this headline">#</a></h3>
+</section>
+<section id="deep-belief-networks-dbns">
+<h3>Deep Belief Networks (DBNs)<a class="headerlink" href="#deep-belief-networks-dbns" title="Permalink to this headline">#</a></h3>
+</section>
+<section id="restricted-boltzmann-machines-rbms">
+<h3>Restricted Boltzmann Machines( RBMs)<a class="headerlink" href="#restricted-boltzmann-machines-rbms" title="Permalink to this headline">#</a></h3>
+</section>
+<section id="autoencoders">
+<h3>Autoencoders<a class="headerlink" href="#autoencoders" title="Permalink to this headline">#</a></h3>
+</section>
+</section>
+<section id="optimization-algorithms-deep-learning">
+<h2>Optimization algorithms - Deep Learning<a class="headerlink" href="#optimization-algorithms-deep-learning" title="Permalink to this headline">#</a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="https://ruder.io/optimizing-gradient-descent/">Optimizing GD</a></p></li>
+<li><p><a class="reference external" href="https://github.com/Jaewan-Yun/optimizer-visualization">Optimizer Visualization</a></p></li>
+</ul>
+<section id="asgd">
+<h3>ASGD<a class="headerlink" href="#asgd" title="Permalink to this headline">#</a></h3>
+</section>
+<section id="adadelta">
+<h3>Adadelta<a class="headerlink" href="#adadelta" title="Permalink to this headline">#</a></h3>
+</section>
+<section id="adagrad">
+<h3>Adagrad<a class="headerlink" href="#adagrad" title="Permalink to this headline">#</a></h3>
+</section>
+<section id="adam">
+<h3>Adam<a class="headerlink" href="#adam" title="Permalink to this headline">#</a></h3>
+</section>
+<section id="adamw">
+<h3>AdamW<a class="headerlink" href="#adamw" title="Permalink to this headline">#</a></h3>
+</section>
+<section id="adamax">
+<h3>Adamax<a class="headerlink" href="#adamax" title="Permalink to this headline">#</a></h3>
+</section>
+<section id="lbfgs">
+<h3>LBFGS<a class="headerlink" href="#lbfgs" title="Permalink to this headline">#</a></h3>
+</section>
+<section id="nadam">
+<h3>NAdam<a class="headerlink" href="#nadam" title="Permalink to this headline">#</a></h3>
+</section>
+<section id="radam">
+<h3>RAdam<a class="headerlink" href="#radam" title="Permalink to this headline">#</a></h3>
+</section>
+<section id="rmsprop">
+<h3>RMSprop<a class="headerlink" href="#rmsprop" title="Permalink to this headline">#</a></h3>
+</section>
+<section id="rprop">
+<h3>Rprop<a class="headerlink" href="#rprop" title="Permalink to this headline">#</a></h3>
+</section>
+<section id="sgd">
+<h3>SGD<a class="headerlink" href="#sgd" title="Permalink to this headline">#</a></h3>
+</section>
+<section id="sparseadam">
+<h3>SparseAdam<a class="headerlink" href="#sparseadam" title="Permalink to this headline">#</a></h3>
+</section>
+</section>
+<section id="artificial-neural-network">
+<h2>Artificial neural network<a class="headerlink" href="#artificial-neural-network" title="Permalink to this headline">#</a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="https://towardsdatascience.com/neural-network-architectures-156e5bad51ba">https://towardsdatascience.com/neural-network-architectures-156e5bad51ba</a></p></li>
+</ul>
+<section id="autoencoder">
+<h3>Autoencoder<a class="headerlink" href="#autoencoder" title="Permalink to this headline">#</a></h3>
+</section>
+<section id="cognitive-computing">
+<h3>Cognitive computing<a class="headerlink" href="#cognitive-computing" title="Permalink to this headline">#</a></h3>
+</section>
+<section id="deep-learning">
+<h3>Deep learning<a class="headerlink" href="#deep-learning" title="Permalink to this headline">#</a></h3>
+</section>
+<section id="deepdream">
+<h3>DeepDream<a class="headerlink" href="#deepdream" title="Permalink to this headline">#</a></h3>
+</section>
+<section id="multilayer-perceptron">
+<h3>Multilayer perceptron<a class="headerlink" href="#multilayer-perceptron" title="Permalink to this headline">#</a></h3>
+<p>A <strong>perceptron</strong> was the name given to a model having one single linear layer and, if it has multiple layers, it is  called a <strong>multi-layer perceptron (MLP)</strong>. Note that the input and the output layers are visible from outside, while all the other layers in the middle are hidden – hence the name hidden layers. In this context, a single layer is simply a linear function and the MLP is therefore obtained by stacking multiple single layers one after the other:</p>
+<img src="https://www.researchgate.net/profile/Hassan-Afzaal/publication/338103191/figure/fig2/AS:838599264174093@1576949053675/The-multilayer-perceptron-MLP-model-for-various-input-variable-combinations.jpg" width=500 height=500>
+</section>
+<section id="rnn">
+<h3>RNN<a class="headerlink" href="#rnn" title="Permalink to this headline">#</a></h3>
+<section id="lstm">
+<h4>LSTM<a class="headerlink" href="#lstm" title="Permalink to this headline">#</a></h4>
+</section>
+<section id="gru">
+<h4>GRU<a class="headerlink" href="#gru" title="Permalink to this headline">#</a></h4>
+</section>
+<section id="esn">
+<h4>ESN<a class="headerlink" href="#esn" title="Permalink to this headline">#</a></h4>
+</section>
+</section>
+<section id="restricted-boltzmann-machine">
+<h3>Restricted Boltzmann machine<a class="headerlink" href="#restricted-boltzmann-machine" title="Permalink to this headline">#</a></h3>
+</section>
+<section id="gan">
+<h3>GAN<a class="headerlink" href="#gan" title="Permalink to this headline">#</a></h3>
+</section>
+<section id="som">
+<h3>SOM<a class="headerlink" href="#som" title="Permalink to this headline">#</a></h3>
+</section>
+<section id="convolutional-neural-network">
+<h3>Convolutional neural network<a class="headerlink" href="#convolutional-neural-network" title="Permalink to this headline">#</a></h3>
+<section id="id4">
+<h4>U-Net<a class="headerlink" href="#id4" title="Permalink to this headline">#</a></h4>
+</section>
+</section>
+<section id="transformer-vision">
+<h3>Transformer Vision<a class="headerlink" href="#transformer-vision" title="Permalink to this headline">#</a></h3>
+</section>
+<section id="spiking-neural-network">
+<h3>Spiking neural network<a class="headerlink" href="#spiking-neural-network" title="Permalink to this headline">#</a></h3>
+</section>
+<section id="memtransistor">
+<h3>Memtransistor<a class="headerlink" href="#memtransistor" title="Permalink to this headline">#</a></h3>
+</section>
+<section id="electrochemical-ram-ecram">
+<h3>Electrochemical RAM (ECRAM)<a class="headerlink" href="#electrochemical-ram-ecram" title="Permalink to this headline">#</a></h3>
+</section>
+</section>
+<section id="computer-vision">
+<h2>Computer Vision<a class="headerlink" href="#computer-vision" title="Permalink to this headline">#</a></h2>
+<ul class="simple">
+<li><p>Background Subtraction</p></li>
+<li><p>Colorspace</p></li>
+<li><p>Features</p></li>
+<li><p>Filters</p></li>
+<li><p>Geometry</p></li>
+<li><p>Affine transforms</p></li>
+<li><p>Projective transforms</p></li>
+<li><p>HOG Features</p></li>
+<li><p>Histograms</p></li>
+<li><p>Homography</p></li>
+<li><p>Hough Transform</p></li>
+<li><p>Image Gradients</p></li>
+<li><p>K-Means</p></li>
+<li><p>Kalman Filter</p></li>
+<li><p>Linear algebra</p></li>
+<li><p>Vectors</p></li>
+<li><p>Matrices</p></li>
+<li><p>Morphological Operations</p></li>
+<li><p>Optical Flow</p></li>
+<li><p>Segmentation</p></li>
+<li><p>Thresholding</p></li>
+</ul>
+</section>
+<section id="intro-to-deep-learning-lectures">
+<h2>Intro to Deep Learning - Lectures<a class="headerlink" href="#intro-to-deep-learning-lectures" title="Permalink to this headline">#</a></h2>
+<ul class="simple">
+<li><p>Lecture 1 - Intro to Deep Learning</p></li>
+<li><p>Lecture 2 - Deep Sequence Modeling</p></li>
+<li><p>Software Lab 1 - Intro to TensorFlow; Music Generation</p></li>
+<li><p>Lecture 3 - Deep Computer Vision</p></li>
+<li><p>Lecture 4 - Deep Generative Modeling</p></li>
+<li><p>Software Lab 2 - De-biasing Facial Recognition Systems</p></li>
+<li><p>Lecture 5 - Deep Reinforcement Learning</p></li>
+<li><p>Lecture 6 - Limitations and New Frontiers</p></li>
+<li><p>Software Lab 3 - Learning End-to-End Self-Driving Control</p></li>
+<li><p>Lecture 7 - Autonomous Driving with LiDAR</p></li>
+<li><p>Lecture 8 - Uncertainty in Deep Learning</p></li>
+<li><p>Lecture 9 - AI 4 Science</p></li>
+<li><p>Lecture 10 - Speech Recognition</p></li>
+<li><p>Final Project</p></li>
+<li><p>Project Competition</p></li>
+</ul>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./dl_examples"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="intro.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">My ML Book</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="rp_AlexNet.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">AlexNet Summary</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By Chandra<br/>
+  
+      &copy; Copyright 2022.<br/>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>
