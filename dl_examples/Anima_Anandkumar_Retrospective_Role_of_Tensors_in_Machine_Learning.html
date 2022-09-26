@@ -246,7 +246,7 @@ const thebe_selector_output = ".output, .cell_output"
 <ul class="current nav bd-sidenav">
  <li class="toctree-l1 current active has-children">
   <a class="reference internal" href="intro.html">
-   My ML Book
+   My DL Book
   </a>
   <input checked="" class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
   <label for="toctree-checkbox-4">
@@ -636,6 +636,98 @@ title="Print to PDF"
   <a class="reference internal nav-link" href="#presentation-summary">
    Presentation-Summary
   </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#introduction">
+     Introduction
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#probabilistic-graphical-models-2007-08">
+     Probabilistic Graphical Models - 2007/08
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#unsupervised-learning-topic-models">
+     Unsupervised Learning - Topic Models
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#prior-art">
+     Prior Art
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#method-of-moments">
+     Method of Moments
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#tensor-extension-of-matrix">
+     Tensor: Extension of Matrix
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#matrix-vs-tensor-decomposition">
+     Matrix vs Tensor decomposition
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#tensors-for-modeling">
+     Tensors for Modeling
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#why-not-tensors">
+     Why Not Tensors
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#why-tensors">
+     Why Tensors
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#cloud-deployment-at-aws">
+     Cloud Deployment at AWS
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#trinity-of-ai-ml">
+     Trinity of AI/ML
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#tensor-primitives">
+     Tensor Primitives
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#computation-with-tensors-tensor-contraction-primitive">
+     Computation with Tensors - Tensor Contraction Primitive
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#new-primitive-for-tensor-contractions">
+     New Primitive for Tensor Contractions
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#nvidia-cutensor">
+     Nvidia Cutensor
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#tensorly-high-level-api-for-tensor-algebra">
+     Tensorly: High level API for Tensor algebra
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#tensors-for-models">
+     Tensors for Models
+    </a>
+   </li>
+  </ul>
  </li>
 </ul>
 
@@ -665,6 +757,98 @@ title="Print to PDF"
   <a class="reference internal nav-link" href="#presentation-summary">
    Presentation-Summary
   </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#introduction">
+     Introduction
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#probabilistic-graphical-models-2007-08">
+     Probabilistic Graphical Models - 2007/08
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#unsupervised-learning-topic-models">
+     Unsupervised Learning - Topic Models
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#prior-art">
+     Prior Art
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#method-of-moments">
+     Method of Moments
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#tensor-extension-of-matrix">
+     Tensor: Extension of Matrix
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#matrix-vs-tensor-decomposition">
+     Matrix vs Tensor decomposition
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#tensors-for-modeling">
+     Tensors for Modeling
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#why-not-tensors">
+     Why Not Tensors
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#why-tensors">
+     Why Tensors
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#cloud-deployment-at-aws">
+     Cloud Deployment at AWS
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#trinity-of-ai-ml">
+     Trinity of AI/ML
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#tensor-primitives">
+     Tensor Primitives
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#computation-with-tensors-tensor-contraction-primitive">
+     Computation with Tensors - Tensor Contraction Primitive
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#new-primitive-for-tensor-contractions">
+     New Primitive for Tensor Contractions
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#nvidia-cutensor">
+     Nvidia Cutensor
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#tensorly-high-level-api-for-tensor-algebra">
+     Tensorly: High level API for Tensor algebra
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#tensors-for-models">
+     Tensors for Models
+    </a>
+   </li>
+  </ul>
  </li>
 </ul>
 
@@ -690,15 +874,14 @@ title="Print to PDF"
 </section>
 <section id="presentation-summary">
 <h2>Presentation-Summary<a class="headerlink" href="#presentation-summary" title="Permalink to this headline">#</a></h2>
-<ol class="simple">
-<li><p>Introduction</p></li>
-</ol>
+<section id="introduction">
+<h3>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">#</a></h3>
 <ul class="simple">
 <li><p>how did the idea came for?</p></li>
 </ul>
-<ol class="simple">
-<li><p>Probabilistic Graphical Models - 2007/08</p></li>
-</ol>
+</section>
+<section id="probabilistic-graphical-models-2007-08">
+<h3>Probabilistic Graphical Models - 2007/08<a class="headerlink" href="#probabilistic-graphical-models-2007-08" title="Permalink to this headline">#</a></h3>
 <ul class="simple">
 <li><p>from signal processing</p></li>
 <li><p>sensor networks, now called as IoT</p></li>
@@ -723,9 +906,9 @@ title="Print to PDF"
 </ul>
 </li>
 </ul>
-<ol class="simple">
-<li><p>Unsupervised Learning - Topic Models</p></li>
-</ol>
+</section>
+<section id="unsupervised-learning-topic-models">
+<h3>Unsupervised Learning - Topic Models<a class="headerlink" href="#unsupervised-learning-topic-models" title="Permalink to this headline">#</a></h3>
 <ul class="simple">
 <li><p>wide spread applicability</p></li>
 <li><p>text document</p>
@@ -753,9 +936,9 @@ title="Print to PDF"
 <li><p><code class="docutils literal notranslate"><span class="pre">this</span> <span class="pre">is</span> <span class="pre">a</span> <span class="pre">graphical</span> <span class="pre">model</span> <span class="pre">and</span> <span class="pre">whats</span> <span class="pre">hidden</span> <span class="pre">are</span> <span class="pre">the</span> <span class="pre">topics</span></code></p></li>
 <li><p>this needs to be learned and is a challenge</p></li>
 </ul>
-<ol class="simple">
-<li><p>Prior Art</p></li>
-</ol>
+</section>
+<section id="prior-art">
+<h3>Prior Art<a class="headerlink" href="#prior-art" title="Permalink to this headline">#</a></h3>
 <ul class="simple">
 <li><p>standard approach to solve the problem</p>
 <ul>
@@ -776,9 +959,9 @@ title="Print to PDF"
 </ul>
 </li>
 </ul>
-<ol class="simple">
-<li><p>Method of Moments</p></li>
-</ol>
+</section>
+<section id="method-of-moments">
+<h3>Method of Moments<a class="headerlink" href="#method-of-moments" title="Permalink to this headline">#</a></h3>
 <ul class="simple">
 <li><p>Alternative to Maximum Likelihood</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">record</span> <span class="pre">the</span> <span class="pre">empirical</span> <span class="pre">moments</span> <span class="pre">of</span> <span class="pre">observed</span> <span class="pre">variables</span> <span class="pre">and</span> <span class="pre">then</span> <span class="pre">try</span> <span class="pre">to</span> <span class="pre">fit</span> <span class="pre">them</span></code></p>
@@ -803,9 +986,9 @@ title="Print to PDF"
 </li>
 <li><p>this is even more needed in multivariate higher order moments</p></li>
 </ul>
-<ol class="simple">
-<li><p>Tensor: Extension of Matrix</p></li>
-</ol>
+</section>
+<section id="tensor-extension-of-matrix">
+<h3>Tensor: Extension of Matrix<a class="headerlink" href="#tensor-extension-of-matrix" title="Permalink to this headline">#</a></h3>
 <ul class="simple">
 <li><p>What tensors are</p></li>
 <li><p>what is the algebra behind it</p></li>
@@ -817,9 +1000,9 @@ title="Print to PDF"
 </li>
 <li><p>in quantum studies, this is the foundation and in many other areas</p></li>
 </ul>
-<ol class="simple">
-<li><p>Matrix vs Tensor decomposition</p></li>
-</ol>
+</section>
+<section id="matrix-vs-tensor-decomposition">
+<h3>Matrix vs Tensor decomposition<a class="headerlink" href="#matrix-vs-tensor-decomposition" title="Permalink to this headline">#</a></h3>
 <ul class="simple">
 <li><p>tensor algebra is very different from matrix algebra</p></li>
 <li><p>to decompose tensors into rank 1 components</p>
@@ -855,9 +1038,9 @@ title="Print to PDF"
 </ul>
 </li>
 </ul>
-<ol class="simple">
-<li><p>Tensors for Modeling</p></li>
-</ol>
+</section>
+<section id="tensors-for-modeling">
+<h3>Tensors for Modeling<a class="headerlink" href="#tensors-for-modeling" title="Permalink to this headline">#</a></h3>
 <ul class="simple">
 <li><p>topic detection in text</p></li>
 <li><p>co-occurence of word</p>
@@ -876,9 +1059,9 @@ title="Print to PDF"
 </li>
 <li><p>tensor decomposition for topic discovery</p></li>
 </ul>
-<ol class="simple">
-<li><p>Why Not Tensors</p></li>
-</ol>
+</section>
+<section id="why-not-tensors">
+<h3>Why Not Tensors<a class="headerlink" href="#why-not-tensors" title="Permalink to this headline">#</a></h3>
 <ul class="simple">
 <li><p>why did others not consider tensors</p>
 <ul>
@@ -896,9 +1079,9 @@ title="Print to PDF"
 </ul>
 </li>
 </ul>
-<ol class="simple">
-<li><p>Why Tensors</p></li>
-</ol>
+</section>
+<section id="why-tensors">
+<h3>Why Tensors<a class="headerlink" href="#why-tensors" title="Permalink to this headline">#</a></h3>
 <ul class="simple">
 <li><p>Statistical reasons</p>
 <ul>
@@ -915,16 +1098,16 @@ title="Print to PDF"
 </ul>
 </li>
 </ul>
-<ol class="simple">
-<li><p>Cloud Deployment at AWS</p></li>
-</ol>
+</section>
+<section id="cloud-deployment-at-aws">
+<h3>Cloud Deployment at AWS<a class="headerlink" href="#cloud-deployment-at-aws" title="Permalink to this headline">#</a></h3>
 <ul class="simple">
 <li><p>Mallet - open source topic modeling</p></li>
 <li><p>AWS sagemaker platform</p></li>
 </ul>
-<ol class="simple">
-<li><p>Trinity of AI/ML</p></li>
-</ol>
+</section>
+<section id="trinity-of-ai-ml">
+<h3>Trinity of AI/ML<a class="headerlink" href="#trinity-of-ai-ml" title="Permalink to this headline">#</a></h3>
 <ul class="simple">
 <li><p>Algorithms, Compute, Data</p>
 <ul>
@@ -948,9 +1131,9 @@ title="Print to PDF"
 </ul>
 </li>
 </ul>
-<ol class="simple">
-<li><p>Tensor Primitives</p></li>
-</ol>
+</section>
+<section id="tensor-primitives">
+<h3>Tensor Primitives<a class="headerlink" href="#tensor-primitives" title="Permalink to this headline">#</a></h3>
 <ul class="simple">
 <li><p>Hardware</p>
 <ul>
@@ -971,15 +1154,15 @@ title="Print to PDF"
 </ul>
 </li>
 </ul>
-<ol class="simple">
-<li><p>Computation with Tensors - Tensor Contraction Primitive</p></li>
-</ol>
+</section>
+<section id="computation-with-tensors-tensor-contraction-primitive">
+<h3>Computation with Tensors - Tensor Contraction Primitive<a class="headerlink" href="#computation-with-tensors-tensor-contraction-primitive" title="Permalink to this headline">#</a></h3>
 <ul class="simple">
 <li><p>extends the notion of matrix product</p></li>
 </ul>
-<ol class="simple">
-<li><p>New Primitive for Tensor Contractions</p></li>
-</ol>
+</section>
+<section id="new-primitive-for-tensor-contractions">
+<h3>New Primitive for Tensor Contractions<a class="headerlink" href="#new-primitive-for-tensor-contractions" title="Permalink to this headline">#</a></h3>
 <ul class="simple">
 <li><p>NVidia</p></li>
 <li><p>better alternative for tensor contractions</p>
@@ -988,9 +1171,9 @@ title="Print to PDF"
 </ul>
 </li>
 </ul>
-<ol class="simple">
-<li><p>Nvidia Cutensor</p></li>
-</ol>
+</section>
+<section id="nvidia-cutensor">
+<h3>Nvidia Cutensor<a class="headerlink" href="#nvidia-cutensor" title="Permalink to this headline">#</a></h3>
 <ul class="simple">
 <li><p>high performance cuda-library for tensor primitives</p>
 <ul>
@@ -1004,9 +1187,9 @@ title="Print to PDF"
 </ul>
 </li>
 </ul>
-<ol class="simple">
-<li><p>Tensorly: High level API for Tensor algebra</p></li>
-</ol>
+</section>
+<section id="tensorly-high-level-api-for-tensor-algebra">
+<h3>Tensorly: High level API for Tensor algebra<a class="headerlink" href="#tensorly-high-level-api-for-tensor-algebra" title="Permalink to this headline">#</a></h3>
 <ul class="simple">
 <li><p>Jean Kossaifi</p>
 <ul>
@@ -1019,13 +1202,14 @@ title="Print to PDF"
 <li><p>unified backend</p></li>
 <li><p>Keras</p></li>
 </ul>
-<ol class="simple">
-<li><p>Tensors for Models</p></li>
-</ol>
+</section>
+<section id="tensors-for-models">
+<h3>Tensors for Models<a class="headerlink" href="#tensors-for-models" title="Permalink to this headline">#</a></h3>
 <ul class="simple">
 <li><p>Standard CNN use linear algebra</p></li>
 <li><p>inductive biases</p></li>
 </ul>
+</section>
 </section>
 </section>
 
