@@ -246,7 +246,7 @@ const thebe_selector_output = ".output, .cell_output"
 <ul class="nav bd-sidenav">
  <li class="toctree-l1 has-children">
   <a class="reference internal" href="../dl_examples/intro.html">
-   My ML Book
+   My DL Book
   </a>
   <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
   <label for="toctree-checkbox-4">
@@ -836,6 +836,13 @@ title="Print to PDF"
   <a class="reference internal nav-link" href="#docker">
    docker
   </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#install-ms-sql-using-docker">
+     Install MS-SQL using Docker
+    </a>
+   </li>
+  </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#kakka-zookeeper">
@@ -1080,6 +1087,13 @@ title="Print to PDF"
   <a class="reference internal nav-link" href="#docker">
    docker
   </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#install-ms-sql-using-docker">
+     Install MS-SQL using Docker
+    </a>
+   </li>
+  </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#kakka-zookeeper">
@@ -2425,6 +2439,31 @@ ls = log –graph –abbrev-commit –decorate –color=always –date=relative 
 <blockquote>
 <div><p><code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">container</span> <span class="pre">wait</span></code></p>
 </div></blockquote>
+<section id="install-ms-sql-using-docker">
+<h3>Install MS-SQL using Docker<a class="headerlink" href="#install-ms-sql-using-docker" title="Permalink to this headline">#</a></h3>
+<ul class="simple">
+<li><p>Download, setup and run SQL Server on Mac using Docker</p></li>
+</ul>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="o">(</span>base<span class="o">)</span> ~ &gt;&gt; docker pull mcr.microsoft.com/mssql/server:2019-latest
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>launch downloaded SQL Server image from Docker</p></li>
+</ul>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>docker run --name ChandraMSSQLServer -e <span class="s1">&#39;ACCEPT_EULA=Y&#39;</span> -e <span class="s1">&#39;SA_PASSWORD=HelloWorld1@&#39;</span> -e <span class="s1">&#39;MSSQL_PID=Express&#39;</span> -p <span class="m">1433</span>:1433 -d mcr.microsoft.com/mssql/server:2019-latest
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>download and install Azure Data Studio. This tool is the Mac equivalent for SQL Server Management Studio (SSMS)</p></li>
+</ul>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>download AdventureWorks2019.bak</p></li>
+<li></li>
+</ul>
+</section>
 </section>
 <section id="kakka-zookeeper">
 <h2>Kakka/Zookeeper<a class="headerlink" href="#kakka-zookeeper" title="Permalink to this headline">#</a></h2>
