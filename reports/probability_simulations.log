@@ -1,0 +1,187 @@
+Traceback (most recent call last):
+  File "/Users/chandrasingh/opt/anaconda3/envs/fast/lib/python3.8/site-packages/jupyter_cache/executors/utils.py", line 51, in single_nb_execution
+    executenb(
+  File "/Users/chandrasingh/opt/anaconda3/envs/fast/lib/python3.8/site-packages/nbclient/client.py", line 1204, in execute
+    return NotebookClient(nb=nb, resources=resources, km=km, **kwargs).execute()
+  File "/Users/chandrasingh/opt/anaconda3/envs/fast/lib/python3.8/site-packages/nbclient/util.py", line 84, in wrapped
+    return just_run(coro(*args, **kwargs))
+  File "/Users/chandrasingh/opt/anaconda3/envs/fast/lib/python3.8/site-packages/nbclient/util.py", line 62, in just_run
+    return loop.run_until_complete(coro)
+  File "/Users/chandrasingh/opt/anaconda3/envs/fast/lib/python3.8/asyncio/base_events.py", line 616, in run_until_complete
+    return future.result()
+  File "/Users/chandrasingh/opt/anaconda3/envs/fast/lib/python3.8/site-packages/nbclient/client.py", line 663, in async_execute
+    await self.async_execute_cell(
+  File "/Users/chandrasingh/opt/anaconda3/envs/fast/lib/python3.8/site-packages/nbclient/client.py", line 965, in async_execute_cell
+    await self._check_raise_for_error(cell, cell_index, exec_reply)
+  File "/Users/chandrasingh/opt/anaconda3/envs/fast/lib/python3.8/site-packages/nbclient/client.py", line 862, in _check_raise_for_error
+    raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
+nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
+------------------
+import numpy as np
+import matplotlib.pyplot as plt
+from ordered_set import OrderedSet
+
+def montyHallProblem(switch, doorsCt, noOfDoorsHostOpens, noOfRuns):
+    winSwitchCt = 0
+    winNoSwitchCt = 0
+    loseSwitchCt = 0
+    loseNoSwitchCt = 0
+    doors = range(doorsCt)
+
+    # Randomly choose the door with car behind
+    doorWithCar = np.random.randint(0, doorsCt)  
+    # Host knows where the car is
+    host = doorWithCar  
+    # Player randomly chooses a door
+    playerChoice = np.random.randint(0, doorsCt)
+    # This was players original choice
+    originalPlayerChoice = playerChoice
+    # Host opens door which neither player chose nor which has car behind
+#     openedDoor = switchFunction(host, doorsCt, playerChoice)
+    hostOpenedDoorsList = switchFunction2([host], doorsCt, playerChoice, 
+                                          noOfDoorsOpenRequest=noOfDoorsHostOpens)
+    if switch == True:
+        # If player decides to switch
+#         playerChoice = switchFunction(openedDoor, doorsCt, playerChoice)
+        playerChoice = switchFunction2(hostOpenedDoorsList, doorsCt, playerChoice, 
+                                       noOfDoorsOpenRequest=1)[0]
+
+    if playerChoice == host and switch == False:
+        # Player wins from not switching
+        winNoSwitchCt += 1
+    elif playerChoice == host and switch == True:
+        # Player wins from switching
+        winSwitchCt += 1
+    elif playerChoice != host and switch == False:
+        # Player lost from not switching
+        loseNoSwitchCt += 1
+    elif playerChoice != host and switch == True:
+        # Player lost from switching
+        loseSwitchCt += 1
+    
+    if switch:
+        return winSwitchCt
+    else:
+        return winNoSwitchCt
+#     return winNoSwitchCt, winSwitchCt, loseNoSwitchCt, loseSwitchCt
+
+
+# Let the player switch to another unopened door - first version
+def switchFunction(openedDoor, doorsCt, playerChoice):
+    nextPick = np.random.choice(doorsCt, 1, replace=False)
+    while(nextPick in [openedDoor, playerChoice]):
+        nextPick = np.random.choice(doorsCt, 1, replace=False)
+    return nextPick
+
+
+def switchFunction2(openedDoorsList, doorsCt, playerChoice, noOfDoorsOpenRequest=1):
+    '''
+    This function takes a list of opened or known doors and returns a list of new 
+    unopened doors ready to be opened. This new return list will not include known 
+    input door or players choice door.
+    The count of return door list will match the requested doors to open
+        Parameters:
+            openedDoorsList (list)    : A list of known/opened doors
+            doorsCt (int)             : Number of doors count
+            playerChoice (int)        : Players choice door
+            noOfDoorsOpenRequest (int): (default 1) number of doors requested to open
+
+        Returns:
+            returnDoorsList (list)    : List of unopened door
+    '''
+    doorsLst = []
+    assert doorsCt >= noOfDoorsOpenRequest + len(openedDoorsList) + 1
+    doorsLst.extend(openedDoorsList)
+    doorsLst.append(playerChoice)
+    
+    nextRandomPickList = np.random.choice(doorsCt, doorsCt, replace=False)
+    nextRandomPickSet = OrderedSet(nextRandomPickList)
+    openedSet = OrderedSet(doorsLst)
+    newUnopenedList = list(nextRandomPickSet - openedSet)[:noOfDoorsOpenRequest]
+    return newUnopenedList
+
+def plotMontyHallProblem(doorsCt, noOfDoorsHostOpens, noOfRuns, saveNameLocation=None, switch=True):
+    x = []
+    y = []
+    x1 = []
+    y1 = []
+
+    plotEveryTenth = 10
+    winCt = []
+
+    for i in range(1, noOfRuns):
+        x.append(i)
+        retValue = montyHallProblem(switch, doorsCt, noOfDoorsHostOpens, noOfRuns)
+        winCt.append(retValue)
+        y.append(sum(winCt[:i]) / i)
+
+        if i % plotEveryTenth == 0:
+            x1.append(i)
+            y1.append(sum(winCt[:i]) / i)
+
+    if switch:
+        switchStr = 'switches door'
+    else:
+        switchStr = 'does not switch door'
+    print(f'Monty Hall win percentage when host opens {noOfDoorsHostOpens} '+
+          f'of {doorsCt} doors and player {switchStr} = {y[-1]}')
+
+    # Plot the simulation
+    plt.figure(figsize=(12, 6))  
+    plt.plot(x1, y1, 'r', label='Simulated: ({})'.format(y[-1]))
+
+    # Theoretical formula for switch door
+    # Theoretical formula for no switch door - MISSING (INCORRECT)
+    yVal=round((1/doorsCt)*(doorsCt-1)/(doorsCt-noOfDoorsHostOpens-1), 5)
+    # plot the calculated line     
+    plt.axhline(y=yVal, color='k', ls='--', label='Theoretical Prob: ({})'.format(yVal))
+
+    # Place legend 
+    plt.legend(loc='upper right')
+
+    plt.title('Monty Hall Problem - Host opens {} of {} doors and player {}'.format(
+        noOfDoorsHostOpens, doorsCt, switchStr))
+    plt.xlabel('Number of Test')
+    plt.ylabel('Cum Win Perc')
+    if saveNameLocation:
+        plt.savefig(saveNameLocation)
+        plt.close()
+    else:
+        plt.show()
+
+
+plotMontyHallProblem(doorsCt=3, noOfDoorsHostOpens=1, noOfRuns=5001, saveNameLocation=False)
+#                      saveNameLocation='./images/montyHallProblem3_1.png')
+plotMontyHallProblem(doorsCt=3, noOfDoorsHostOpens=1, noOfRuns=5001, saveNameLocation=False,
+#                      saveNameLocation='./images/montyHallProblem3_1_NoSwitch.png',
+                     switch=False)
+plotMontyHallProblem(doorsCt=4, noOfDoorsHostOpens=2, noOfRuns=5001, saveNameLocation=False)
+#                      saveNameLocation='./images/montyHallProblem4_2.png')
+plotMontyHallProblem(doorsCt=4, noOfDoorsHostOpens=2, noOfRuns=5001, saveNameLocation=False,
+#                      saveNameLocation='./images/montyHallProblem4_2_NoSwitch.png',
+                     switch=False)
+plotMontyHallProblem(doorsCt=4, noOfDoorsHostOpens=1, noOfRuns=5001, saveNameLocation=False)
+#                      saveNameLocation='./images/montyHallProblem4_1.png')
+plotMontyHallProblem(doorsCt=10, noOfDoorsHostOpens=8, noOfRuns=5001, saveNameLocation=False)
+#                      saveNameLocation='./images/montyHallProblem10_8.png')
+plotMontyHallProblem(doorsCt=10, noOfDoorsHostOpens=3, noOfRuns=5001, saveNameLocation=False)
+#                      saveNameLocation='./images/montyHallProblem10_3.png')
+plotMontyHallProblem(doorsCt=10, noOfDoorsHostOpens=3, noOfRuns=5001, saveNameLocation=False,
+#                      saveNameLocation='./images/montyHallProblem10_3_NoSwitch.png',
+                     switch=False)
+plotMontyHallProblem(doorsCt=100, noOfDoorsHostOpens=98, noOfRuns=5001, saveNameLocation=False)
+#                      saveNameLocation='./images/montyHallProblem100_98.png')
+------------------
+
+[0;31m---------------------------------------------------------------------------[0m
+[0;31mModuleNotFoundError[0m                       Traceback (most recent call last)
+Input [0;32mIn [6][0m, in [0;36m<cell line: 3>[0;34m()[0m
+[1;32m      1[0m [38;5;28;01mimport[39;00m [38;5;21;01mnumpy[39;00m [38;5;28;01mas[39;00m [38;5;21;01mnp[39;00m
+[1;32m      2[0m [38;5;28;01mimport[39;00m [38;5;21;01mmatplotlib[39;00m[38;5;21;01m.[39;00m[38;5;21;01mpyplot[39;00m [38;5;28;01mas[39;00m [38;5;21;01mplt[39;00m
+[0;32m----> 3[0m [38;5;28;01mfrom[39;00m [38;5;21;01mordered_set[39;00m [38;5;28;01mimport[39;00m OrderedSet
+[1;32m      5[0m [38;5;28;01mdef[39;00m [38;5;21mmontyHallProblem[39m(switch, doorsCt, noOfDoorsHostOpens, noOfRuns):
+[1;32m      6[0m     winSwitchCt [38;5;241m=[39m [38;5;241m0[39m
+
+[0;31mModuleNotFoundError[0m: No module named 'ordered_set'
+ModuleNotFoundError: No module named 'ordered_set'
+

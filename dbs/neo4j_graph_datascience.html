@@ -1,0 +1,1752 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Game of Thrones - Knowledge Graph analysis using Neo4j</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="My Math Book" href="../maths/intro.html" />
+    <link rel="prev" title="Building Neo4j Applications with Python" href="neo4j_basics.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../_static/mylogo.png" class="logo" alt="logo">
+      
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    Welcome
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  System Design
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../system_design/intro.html">
+   My System Design Book
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../system_design/design_patterns.html">
+     System Design Summary
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../system_design/software_engineering_concepts.html">
+     Software Engineering concepts
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../system_design/googlecloud_use_cases.html">
+     Google - Customer story
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../system_design/awscloud_financial_symposium_2022.html">
+     AWS - Financial Services Cloud Symposium - 2022
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../system_design/aws_usecases.html">
+     AWS - Customer story
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../system_design/design_general_use_cases.html">
+     Case study
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../system_design/netflix.html">
+     Netflix creativity
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../system_design/bk_AlexXu_SystemDesignInterview.html">
+     Book - System Design Interview - Alex Xu
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../system_design/design_patterns_python.html">
+     Design Pattern - Python
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Code
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../codes/intro.html">
+   My Code Book
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../codes/python_faqs.html">
+     Python FAQs
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../algos/all_algos.html">
+     Coding Challenges
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../codes/python_data_analytics.html">
+     Python Data Analytics - FAQs
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Database/Event
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="intro.html">
+   My DB Book
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+  <label for="toctree-checkbox-3">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2">
+    <a class="reference internal" href="intro_kafka_ksqldb_stream_processing.html">
+     Introduction to Kafka/ksqldb/stream processing
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="neo4j_basics.html">
+     Building Neo4j Applications with Python
+    </a>
+   </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     Game of Thrones - Knowledge Graph analysis using Neo4j
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Math
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../maths/intro.html">
+   My Math Book
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+  <label for="toctree-checkbox-4">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../maths/probability_simulations.html">
+     Probability Simulations
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../maths/linear_algebra.html">
+     Linear Algebra - FAQs
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../maths/probabilistic_programming.html">
+     Getting started with PyMC3
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../maths/causal_inference_learning.html">
+     Causal Inference Learning
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Machine Learning
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../ml_examples/intro.html">
+   My ML Book
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
+  <label for="toctree-checkbox-5">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../ml_examples/ml_glossary.html">
+     ML Conceptual brief
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../ml_examples/Store_Sales_Forecasting_With_Tensorflow.html">
+     Store Sales Forecasting with TensorFlow
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../ml_examples/decision_tree_classification.html">
+     Decision Tree - classification
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../ml_examples/ml_design_patterns.html">
+     Machine Learning Design Patterns
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Deep Learning
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../dl_examples/intro.html">
+   My DL Book
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
+  <label for="toctree-checkbox-6">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../dl_examples/dl_glossary.html">
+     DL Conceptual brief
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../dl_examples/rp_AlexNet.html">
+     AlexNet Summary
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../dl_examples/rp_ResNet.html">
+     ResNet Summary
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../dl_examples/Anima_Anandkumar_Retrospective_Role_of_Tensors_in_Machine_Learning.html">
+     Anima Anandkumar - Retrospective Role of Tensors in ML
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Shell Scripting
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../unix/intro.html">
+   My Unix/Shell Book
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/>
+  <label for="toctree-checkbox-7">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../unix/unix_shell_script.html">
+     Unix/Shell FAQs
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../unix/my_zshrc.html">
+     My .zshrc script
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Lecture Notes
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../cs229_ml/intro.html">
+   CS229 ML - by Andrew Ng
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/>
+  <label for="toctree-checkbox-8">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../cs229_ml/lec02-LinearReg-GradientDescent.html">
+     Lec 02-Linear Regression - Gradient Descent
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../cs229_ml/lec03-LocallyWeighted-LogisticRegression.html">
+     Lec 03-Locally Weighted Regression - Logistic Regression
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../cs229_ml/lec04-Perceptron-GLM.html">
+     Lec 04-Perceptron - GLM
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../cs229_ml/lec05-GDA-NaiveBayes.html">
+     Lec 05-GDA - Naive Bayes
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../cs229_ml/lec06-NaiveBayes-SVM.html">
+     Lec 06-Naive Bayes - SVM
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../cs229_ml/lec07-Kernels-SVM.html">
+     Lec 07-Kernels - SVM
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../cs229_ml/lec08-DataSplits-Models-CrossValidation.html">
+     Lec 08-Data Splits - Models - Cross Validation
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../cs229_ml/lec09-Approx-EstimationError-ERM.html">
+     Lec 09-Estimation Error - ERM
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../cs229_ml/lec10-DecisionTrees-EnsembleMethods.html">
+     Lec 10-Decision Trees - Ensemble Methods
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../cs229_ml/lec11-Intro-NN.html">
+     Lec 11-Neural Networks
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../cs229_ml/lec12-Backpropagation-ImprovingNN.html">
+     Lec 12-Improving NN
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../cs229_ml/lec13-DebuggingMLModels-ErrorAnalysis.html">
+     Lec 13-Debugging ML Models-Error Analysis
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../cs229_ml/lec14-Expectation-MaximizationAlgo.html">
+     Lec 14-Expectation-Maximization Algo
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../cs229_ml/lec15-EMAlgo-FactorAnalysis.html">
+     Lec 15-EM Algo-Factor Analysis
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../cs229_ml/lec16-IndependentComponentAnalysis-RL.html">
+     Lec 16-Independent Component Analysis-RL
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../cs229_ml/lec17-MDPs-ValuePolicyIteration.html">
+     Lec 17-MDPs-Value Policy Iteration
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../cs229_ml/lec18-continuousMDPs-ModelSimulation.html">
+     Lec 18-Continuous MDPs-Model Simulation
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+    </div>
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<div class="menu-dropdown menu-dropdown-launch-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Launch interactive content">
+      <i class="fas fa-rocket"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://mybinder.org/v2/gh/chandrabsingh/learning/master?urlpath=tree/learning/dbs/neo4j_graph_datascience.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Binder"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="../_static/images/logo_binder.svg">
+  </span>
+<span class="headerbtn__text-container">Binder</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-repository-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Source repositories">
+      <i class="fab fa-github"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://github.com/chandrabsingh/learning"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Source repository"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="headerbtn__text-container">repository</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/chandrabsingh/learning/issues/new?title=Issue%20on%20page%20%2Fdbs/neo4j_graph_datascience.html&body=Your%20issue%20content%20here."
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Open an issue"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="headerbtn__text-container">open issue</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="../_sources/dbs/neo4j_graph_datascience.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.ipynb</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#example-dataset">
+   Example Dataset
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#graph-creation">
+   Graph creation
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#graph-algorithms">
+   Graph Algorithms
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#page-rank">
+     Page Rank
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#label-propagation">
+     Label Propagation
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#weakly-connected-components">
+     Weakly Connected Components
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#louvain">
+     Louvain
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#node-similarity">
+     Node Similarity
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#triangle-count">
+     Triangle Count
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#betweenness-centrality">
+     Betweenness Centrality
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#references">
+   References
+  </a>
+ </li>
+</ul>
+
+    </nav>
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Game of Thrones - Knowledge Graph analysis using Neo4j</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#example-dataset">
+   Example Dataset
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#graph-creation">
+   Graph creation
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#graph-algorithms">
+   Graph Algorithms
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#page-rank">
+     Page Rank
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#label-propagation">
+     Label Propagation
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#weakly-connected-components">
+     Weakly Connected Components
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#louvain">
+     Louvain
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#node-similarity">
+     Node Similarity
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#triangle-count">
+     Triangle Count
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#betweenness-centrality">
+     Betweenness Centrality
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#references">
+   References
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <section class="tex2jax_ignore mathjax_ignore" id="game-of-thrones-knowledge-graph-analysis-using-neo4j">
+<h1>Game of Thrones - Knowledge Graph analysis using Neo4j<a class="headerlink" href="#game-of-thrones-knowledge-graph-analysis-using-neo4j" title="Permalink to this headline">#</a></h1>
+<p>The Neo4j Graph Data Science (GDS) library contains a set of graph algorithms, exposed through Cypher procedures. Graph algorithms provide insights into the graph structure and elements, for example, by computing centrality and similarity scores, detecting communities and path finding algorithms.</p>
+<p>The goal of this study is to understand the workings of neo4j data science library algorithms.</p>
+<p><code class="docutils literal notranslate"><span class="pre">:play</span> <span class="pre">https://guides.neo4j.com/sandbox/graph-data-science/index.html</span></code></p>
+<p align="center"><img src="./images/db_schema_visualization.png" ></p>
+<p>Following is a walkthrough over the product tier algorithms with examples on: PageRank, Label Propagation, Weakly Connected Components, Louvain, Node Similarity and Betweenness Centrality.</p>
+<section id="example-dataset">
+<h2>Example Dataset<a class="headerlink" href="#example-dataset" title="Permalink to this headline">#</a></h2>
+<p>The dataset comprises of <strong>Neo4j Graph Data Science library</strong> based on Game of Thrones fantasy saga, data collected from:</p>
+<ul class="simple">
+<li><p>Chris Albon’s collection of battles from “The War of the Five Kings” dataset</p></li>
+<li><p>Erin Pierce and Ben Kahle’s Character deaths</p></li>
+<li><p>Team at A Song of Ice and Data - which makes prediction of characters death</p></li>
+</ul>
+<p>The graph comprises of <code class="docutils literal notranslate"><span class="pre">:Person</span></code> nodes representing characters and <code class="docutils literal notranslate"><span class="pre">:INTERACTS</span></code> relationships, representing characters. An interaction occurs each time two characters names appear within 15 words of one another in the book text - Network of Thrones, A Song of Math and Westeros, research by Dr Andrew Beveridge. The graph is enriched with data on houses, battles, commanders, kings, knights, regions, locations and deaths.</p>
+<p><strong>Summary Statistics</strong></p>
+<ul class="simple">
+<li><p>Number of interactions per character</p></li>
+</ul>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">MATCH</span><span class="w"> </span><span class="p">(</span><span class="k">c</span><span class="p">:</span><span class="n">Person</span><span class="p">)</span><span class="o">-</span><span class="p">[:</span><span class="n">INTERACTS</span><span class="p">]</span><span class="o">-&gt;</span><span class="p">()</span><span class="w"></span>
+<span class="k">WITH</span><span class="w"> </span><span class="k">c</span><span class="p">,</span><span class="w"> </span><span class="k">count</span><span class="p">(</span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">num</span><span class="w"></span>
+<span class="k">RETURN</span><span class="w"> </span><span class="k">min</span><span class="p">(</span><span class="n">num</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="k">min</span><span class="p">,</span><span class="w"> </span><span class="k">max</span><span class="p">(</span><span class="n">num</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="k">max</span><span class="p">,</span><span class="w"> </span><span class="k">avg</span><span class="p">(</span><span class="n">num</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">avg_interactions</span><span class="p">,</span><span class="w"> </span><span class="n">stdev</span><span class="p">(</span><span class="n">num</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">stdev</span><span class="w"></span>
+</pre></div>
+</div>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="text-align:center head"><p>min</p></th>
+<th class="text-align:center head"><p>max</p></th>
+<th class="text-align:center head"><p>avg_interactions</p></th>
+<th class="text-align:center head"><p>stdev</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-align:center"><p>1</p></td>
+<td class="text-align:center"><p>170</p></td>
+<td class="text-align:center"><p>6.783</p></td>
+<td class="text-align:center"><p>14.926</p></td>
+</tr>
+</tbody>
+</table>
+<ul class="simple">
+<li><p>Number of interactions per book</p></li>
+</ul>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">MATCH</span><span class="w"> </span><span class="p">(</span><span class="k">c</span><span class="p">:</span><span class="n">Person</span><span class="p">)</span><span class="o">-</span><span class="p">[</span><span class="n">r</span><span class="p">:</span><span class="n">INTERACTS</span><span class="p">]</span><span class="o">-&gt;</span><span class="p">()</span><span class="w"></span>
+<span class="k">WITH</span><span class="w"> </span><span class="n">r</span><span class="p">.</span><span class="n">book</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">book</span><span class="p">,</span><span class="w"> </span><span class="k">c</span><span class="p">,</span><span class="w"> </span><span class="k">count</span><span class="p">(</span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">num</span><span class="w"></span>
+<span class="k">RETURN</span><span class="w"> </span><span class="n">book</span><span class="p">,</span><span class="w"> </span><span class="k">min</span><span class="p">(</span><span class="n">num</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="k">min</span><span class="p">,</span><span class="w"> </span><span class="k">max</span><span class="p">(</span><span class="n">num</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="k">max</span><span class="p">,</span><span class="w"> </span><span class="k">avg</span><span class="p">(</span><span class="n">num</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">avg_interactions</span><span class="p">,</span><span class="w"> </span><span class="n">stdev</span><span class="p">(</span><span class="n">num</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">stdev</span><span class="w"></span>
+<span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">book</span><span class="w"></span>
+</pre></div>
+</div>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="head"><p>“book”</p></th>
+<th class="head"><p>“min”</p></th>
+<th class="head"><p>“max”</p></th>
+<th class="head"><p>“avg_interactions”</p></th>
+<th class="head"><p>“stdev”</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>1</p></td>
+<td><p>1</p></td>
+<td><p>51</p></td>
+<td><p>4.920863309352513</p></td>
+<td><p>7.096707491528077</p></td>
+</tr>
+<tr class="row-odd"><td><p>2</p></td>
+<td><p>1</p></td>
+<td><p>37</p></td>
+<td><p>4.015544041450774</p></td>
+<td><p>5.360422756122161</p></td>
+</tr>
+<tr class="row-even"><td><p>3</p></td>
+<td><p>1</p></td>
+<td><p>36</p></td>
+<td><p>4.299145299145296</p></td>
+<td><p>5.359624862384757</p></td>
+</tr>
+<tr class="row-odd"><td><p>4</p></td>
+<td><p>1</p></td>
+<td><p>52</p></td>
+<td><p>3.589473684210528</p></td>
+<td><p>5.477215406610821</p></td>
+</tr>
+<tr class="row-even"><td><p>5</p></td>
+<td><p>1</p></td>
+<td><p>45</p></td>
+<td><p>3.290043290043290</p></td>
+<td><p>4.758318619541398</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="graph-creation">
+<h2>Graph creation<a class="headerlink" href="#graph-creation" title="Permalink to this headline">#</a></h2>
+<p>To enable fast caching of the graph topology, containing only the relevant nodes, relationships, and weights, the GDS library operates on in-memory graphs that are created as projections of the Neo4j stored graph.</p>
+<p>These projections may change the nature of the graph elements by any of the following:</p>
+<ul class="simple">
+<li><p>Subgraphing</p></li>
+<li><p>Renaming relationship types or node labels</p></li>
+<li><p>Merging several relationship types or node labels</p></li>
+<li><p>Altering relationship direction</p></li>
+<li><p>Aggregating parallel relationships and their properties</p></li>
+<li><p>Deriving relationships from larger patterns</p></li>
+</ul>
+<p>There are two ways of creating graphs – explicit and implicit.</p>
+</section>
+<section id="graph-algorithms">
+<h2>Graph Algorithms<a class="headerlink" href="#graph-algorithms" title="Permalink to this headline">#</a></h2>
+<p>Centrality algorithms are used to determine the importance of distinct nodes in a network. The Neo4j GDS library includes the following centrality algorithms in production:</p>
+<ul class="simple">
+<li><p>Page Rank</p></li>
+<li><p>Label Propagation</p></li>
+<li><p>Weakly Connected Components (WCC)</p></li>
+<li><p>Louvain</p></li>
+<li><p>Node Similarity</p></li>
+<li><p>Triangle Count</p></li>
+<li><p>Local Clustering Coefficient</p></li>
+</ul>
+<section id="page-rank">
+<h3>Page Rank<a class="headerlink" href="#page-rank" title="Permalink to this headline">#</a></h3>
+<p>The PageRank algorithm <strong>measures the importance of each node within the graph</strong>, based on the number of incoming relationships and the importance of the corresponding source nodes. The underlying assumption is that a page is only as important as the pages that link to it.</p>
+<p>PageRank was introduced in the original Google paper as a function that solves the following equation:
+$<span class="math notranslate nohighlight">\(PR(A) = (1-d) + d\left(\frac{PR(T_{1})}{C(T_{1})} + ... + \frac{PR(T_{n})}{C(T_{n})}\right)\)</span>$
+where</p>
+<ul class="simple">
+<li><p>assuming page A has pages <span class="math notranslate nohighlight">\(T_{1}\)</span> to <span class="math notranslate nohighlight">\(T_{n}\)</span> which are linked to it</p></li>
+<li><p>d is the damping factor which can be between 0(inclusive) to 1(exclusive). This is usually set to 0.85</p></li>
+<li><p>C(A) is defined as the number of links going out of page A</p></li>
+</ul>
+<p>The algorithm measures transitive influence and connectivity of nodes <strong>to find the most influential nodes</strong> in a graph. It computes an influence value for each node called <strong>score</strong>. As a result, the score of a node is a certain weighted average of the scores of its direct neighbors.</p>
+<p>PageRank is an <strong>iterative algorithm</strong>. In each iteration, every node <strong>propagates its score evenly divided to its neighbors</strong>. The algorithm runs for a configurable maximum number of iterations (default is 20), or until the node <strong>scores converge</strong>. That is, when the maximum change in node score between two sequential iterations is smaller than the configured tolerance value.</p>
+<p>The syntax for PageRank algorithm is:</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">CALL</span><span class="w"> </span><span class="n">gds</span><span class="p">.</span><span class="n">pageRank</span><span class="p">.</span><span class="n">stream</span><span class="p">(</span><span class="w"></span>
+<span class="w">  </span><span class="n">graphName</span><span class="p">:</span><span class="w"> </span><span class="n">String</span><span class="p">,</span><span class="w"></span>
+<span class="w">  </span><span class="n">configuration</span><span class="p">:</span><span class="w"> </span><span class="k">Map</span><span class="w"></span>
+<span class="p">)</span><span class="w"></span>
+<span class="n">YIELD</span><span class="w"></span>
+<span class="w">  </span><span class="n">nodeId</span><span class="p">:</span><span class="w"> </span><span class="nb">Integer</span><span class="p">,</span><span class="w"></span>
+<span class="w">  </span><span class="n">score</span><span class="p">:</span><span class="w"> </span><span class="nb">Float</span><span class="w"></span>
+</pre></div>
+</div>
+<p>The following Cypher code snippet tries to <strong>identify the most important nodes</strong>.</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span>CALL gds.graph.create(&#39;got-interactions&#39;, &#39;Person&#39;, {
+  INTERACTS: {
+    orientation: &#39;UNDIRECTED&#39;
+  }
+})
+</pre></div>
+</div>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">CALL</span><span class="w"> </span><span class="n">gds</span><span class="p">.</span><span class="n">pageRank</span><span class="p">.</span><span class="n">stream</span><span class="p">(</span><span class="s1">&#39;got-interactions&#39;</span><span class="p">)</span><span class="w"> </span><span class="n">YIELD</span><span class="w"> </span><span class="n">nodeId</span><span class="p">,</span><span class="w"> </span><span class="n">score</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">pageRank</span><span class="w"></span>
+<span class="k">WITH</span><span class="w"> </span><span class="n">gds</span><span class="p">.</span><span class="n">util</span><span class="p">.</span><span class="n">asNode</span><span class="p">(</span><span class="n">nodeId</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">n</span><span class="p">,</span><span class="w"> </span><span class="n">pageRank</span><span class="w"></span>
+<span class="k">MATCH</span><span class="w"> </span><span class="p">(</span><span class="n">n</span><span class="p">)</span><span class="o">-</span><span class="p">[</span><span class="n">i</span><span class="p">:</span><span class="n">INTERACTS</span><span class="p">]</span><span class="o">-</span><span class="p">()</span><span class="w"></span>
+<span class="k">RETURN</span><span class="w"> </span><span class="n">n</span><span class="p">.</span><span class="n">name</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">name</span><span class="p">,</span><span class="w"> </span><span class="n">pageRank</span><span class="p">,</span><span class="w"> </span><span class="k">count</span><span class="p">(</span><span class="n">i</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">interactions</span><span class="w"></span>
+<span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">pageRank</span><span class="w"> </span><span class="k">DESC</span><span class="w"> </span><span class="k">LIMIT</span><span class="w"> </span><span class="mi">10</span><span class="w"></span>
+</pre></div>
+</div>
+<p>The query above results in following results:</p>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="head"><p>“name”</p></th>
+<th class="head"><p>“pageRank”</p></th>
+<th class="head"><p>“interactions”</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>“Jon Snow”</p></td>
+<td><p>17.1010599025714</p></td>
+<td><p>190</p></td>
+</tr>
+<tr class="row-odd"><td><p>“Tyrion Lannister”</p></td>
+<td><p>16.7364341247767</p></td>
+<td><p>217</p></td>
+</tr>
+<tr class="row-even"><td><p>“Cersei Lannister”</p></td>
+<td><p>13.6152983867876</p></td>
+<td><p>199</p></td>
+</tr>
+<tr class="row-odd"><td><p>“Jaime Lannister”</p></td>
+<td><p>13.4245845259372</p></td>
+<td><p>169</p></td>
+</tr>
+<tr class="row-even"><td><p>“Stannis Baratheon”</p></td>
+<td><p>11.9814333622074</p></td>
+<td><p>147</p></td>
+</tr>
+<tr class="row-odd"><td><p>“Daenerys Targaryen”</p></td>
+<td><p>11.7172358243941</p></td>
+<td><p>120</p></td>
+</tr>
+<tr class="row-even"><td><p>“Arya Stark”</p></td>
+<td><p>11.1453364684568</p></td>
+<td><p>132</p></td>
+</tr>
+<tr class="row-odd"><td><p>“Robb Stark”</p></td>
+<td><p>10.7403650320015</p></td>
+<td><p>136</p></td>
+</tr>
+<tr class="row-even"><td><p>“Eddard Stark”</p></td>
+<td><p>10.1710391296468</p></td>
+<td><p>126</p></td>
+</tr>
+<tr class="row-odd"><td><p>“Catelyn Stark”</p></td>
+<td><p>9.92414068839982</p></td>
+<td><p>126</p></td>
+</tr>
+</tbody>
+</table>
+<p>Here is the visualization graph for <strong>interactions of Jon Snow</strong>:</p>
+<p align="center"><img src="./images/jon_snow.png"></p>
+<p>The following Cypher code snippet creates <strong>graph of Houses that fought in the same Battle</strong>.</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">CALL</span><span class="w"> </span><span class="n">gds</span><span class="p">.</span><span class="n">graph</span><span class="p">.</span><span class="n">project</span><span class="p">.</span><span class="n">cypher</span><span class="p">(</span><span class="w"></span>
+<span class="w">  </span><span class="s1">&#39;house-battles&#39;</span><span class="p">,</span><span class="w"></span>
+<span class="w">  </span><span class="s1">&#39;MATCH (h:House) RETURN id(h) AS id&#39;</span><span class="p">,</span><span class="w"></span>
+<span class="w">  </span><span class="s1">&#39;MATCH (h1:House)--&gt;(b:Battle)&lt;--(h2:House) RETURN id(h1) AS source, id(h2) AS target, count(b) AS weight&#39;</span><span class="w"></span>
+<span class="p">)</span><span class="w"></span>
+</pre></div>
+</div>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span>CALL gds.pageRank.stream(
+  &#39;house-battles&#39;,
+  {
+    relationshipWeightProperty: &#39;weight&#39;
+  }
+)
+YIELD nodeId, score
+RETURN gds.util.asNode(nodeId).name AS name, score
+ORDER BY score DESC LIMIT 5
+</pre></div>
+</div>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="head"><p>“name”</p></th>
+<th class="head"><p>“score”</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>“Lannister”</p></td>
+<td><p>2.7287894781441078</p></td>
+</tr>
+<tr class="row-odd"><td><p>“Stark”</p></td>
+<td><p>2.1861648255406108</p></td>
+</tr>
+<tr class="row-even"><td><p>“Baratheon”</p></td>
+<td><p>2.1530046026822225</p></td>
+</tr>
+<tr class="row-odd"><td><p>“Greyjoy”</p></td>
+<td><p>1.5496328928325231</p></td>
+</tr>
+<tr class="row-even"><td><p>“Tully”</p></td>
+<td><p>1.2214130540720485</p></td>
+</tr>
+</tbody>
+</table>
+<p>The Neo4j GDS library includes the following centrality algorithms to determine the importance of nodes in network:</p>
+<ul class="simple">
+<li><p>Page Rank</p></li>
+<li><p>Article Rank</p></li>
+<li><p>Eigenvector Centrality</p></li>
+<li><p>Betweenness Centrality</p></li>
+<li><p>Degree Centrality</p></li>
+<li><p>Closeness Centrality</p></li>
+<li><p>Harmonic Centrality</p></li>
+<li><p>HITS</p></li>
+<li><p>Influence Maximization</p></li>
+</ul>
+</section>
+<section id="label-propagation">
+<h3>Label Propagation<a class="headerlink" href="#label-propagation" title="Permalink to this headline">#</a></h3>
+<p>Label propagation is a <strong>semi-supervised machine learning algorithm</strong> that <strong>assigns labels to previously unlabeled data points</strong>. At the start of the algorithm, a small subset of the data points have labels or classifications. These <strong>labels are propagated to the unlabeled points</strong> throughout the course of the algorithm.</p>
+<p>The algorithm works as follows:</p>
+<ul class="simple">
+<li><p>Every node is initialized with a unique community label or an identifier.</p></li>
+<li><p>These labels propagate through the network.</p></li>
+<li><p>At every iteration of propagation, each node updates its label to the one that the maximum number of its neighbours belongs to.</p></li>
+<li><p>LPA reaches convergence when each node has the majority label of its neighbours.</p></li>
+<li><p>LPA stops if either convergence, or the user-defined maximum number of iterations is achieved</p></li>
+</ul>
+<p>Use case:</p>
+<ul class="simple">
+<li><p><strong>Twitter polarity classification with label propagation</strong> over lexical links and the follower graph</p></li>
+</ul>
+<p>The syntax for Label Propagation algorithm is:</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">CALL</span><span class="w"> </span><span class="n">gds</span><span class="p">.</span><span class="n">labelPropagation</span><span class="p">.</span><span class="n">stream</span><span class="p">(</span><span class="w"></span>
+<span class="w">  </span><span class="n">graphName</span><span class="p">:</span><span class="w"> </span><span class="n">String</span><span class="p">,</span><span class="w"></span>
+<span class="w">  </span><span class="n">configuration</span><span class="p">:</span><span class="w"> </span><span class="k">Map</span><span class="w"></span>
+<span class="p">)</span><span class="w"></span>
+<span class="n">YIELD</span><span class="w"></span>
+<span class="w">    </span><span class="n">nodeId</span><span class="p">:</span><span class="w"> </span><span class="nb">Integer</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="n">communityId</span><span class="p">:</span><span class="w"> </span><span class="nb">Integer</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Following is the Label Propagation code snippet to find the five largest communities of people interacting with each other.
+The weight property on the relationship represents the number of interactions between two people. In LPA, the weight is used to determine the influence of neighboring nodes when voting on community assignment.</p>
+<p>Running LPA with one iteration:</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span>CALL gds.graph.create(
+  &#39;got-interactions-weighted&#39;,
+  &#39;Person&#39;,
+  {
+    INTERACTS: {
+      orientation: &#39;UNDIRECTED&#39;,
+      properties: &#39;weight&#39;
+    }
+  }
+)
+</pre></div>
+</div>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span>CALL gds.labelPropagation.stream(
+  &#39;got-interactions-weighted&#39;,
+  {
+    relationshipWeightProperty: &#39;weight&#39;,
+    maxIterations: 1
+  }
+) YIELD nodeId, communityId
+RETURN communityId, count(nodeId) AS size
+ORDER BY size DESC
+LIMIT 5
+</pre></div>
+</div>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="head"><p>“communityId”</p></th>
+<th class="head"><p>“size”</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>304</p></td>
+<td><p>243</p></td>
+</tr>
+<tr class="row-odd"><td><p>155</p></td>
+<td><p>90</p></td>
+</tr>
+<tr class="row-even"><td><p>863</p></td>
+<td><p>89</p></td>
+</tr>
+<tr class="row-odd"><td><p>332</p></td>
+<td><p>67</p></td>
+</tr>
+<tr class="row-even"><td><p>115</p></td>
+<td><p>53</p></td>
+</tr>
+</tbody>
+</table>
+<p>Running LPA with two iteration:</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span>CALL gds.labelPropagation.stream(
+  &#39;got-interactions-weighted&#39;,
+  {
+    relationshipWeightProperty: &#39;weight&#39;,
+    maxIterations: 2
+  }
+) YIELD nodeId, communityId
+RETURN communityId, count(nodeId) AS size
+ORDER BY size DESC
+LIMIT 5
+</pre></div>
+</div>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="head"><p>“communityId”</p></th>
+<th class="head"><p>“size”</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>304</p></td>
+<td><p>331</p></td>
+</tr>
+<tr class="row-odd"><td><p>863</p></td>
+<td><p>110</p></td>
+</tr>
+<tr class="row-even"><td><p>155</p></td>
+<td><p>90</p></td>
+</tr>
+<tr class="row-odd"><td><p>332</p></td>
+<td><p>79</p></td>
+</tr>
+<tr class="row-even"><td><p>115</p></td>
+<td><p>59</p></td>
+</tr>
+</tbody>
+</table>
+<p>Running LPA with ten iteration:</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span>CALL gds.labelPropagation.stream(
+  &#39;got-interactions-weighted&#39;,
+  {
+    relationshipWeightProperty: &#39;weight&#39;,
+    maxIterations: 2
+  }
+) YIELD nodeId, communityId
+RETURN communityId, count(nodeId) AS size
+ORDER BY size DESC
+LIMIT 5
+</pre></div>
+</div>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="head"><p>“communityId”</p></th>
+<th class="head"><p>“size”</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>304</p></td>
+<td><p>381</p></td>
+</tr>
+<tr class="row-odd"><td><p>863</p></td>
+<td><p>110</p></td>
+</tr>
+<tr class="row-even"><td><p>332</p></td>
+<td><p>80</p></td>
+</tr>
+<tr class="row-odd"><td><p>155</p></td>
+<td><p>66</p></td>
+</tr>
+<tr class="row-even"><td><p>115</p></td>
+<td><p>41</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="weakly-connected-components">
+<h3>Weakly Connected Components<a class="headerlink" href="#weakly-connected-components" title="Permalink to this headline">#</a></h3>
+<p>The Weakly Connected Components algorithm or Union Find finds sets of connected nodes in an undirected graph, where each node is reachable from any other node in the same set. It is called weakly because it relies on the relationship between two nodes regardless of its direction, wherefore the graph is treated as undirected.
+This algorithm is useful for identifying disjoint subgraphs, when pre-processing graphs, or for disambiguation purposes.</p>
+<p>UseCase:</p>
+<ul class="simple">
+<li><p>“Characterizing and Mining Citation Graph of Computer Science Literature”</p></li>
+</ul>
+<p>The following Cypher code snippet creates graph of character components.</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span>CALL gds.graph.project(&#39;got-interactions&#39;, &#39;Person&#39;, {
+  INTERACTS: {
+    orientation: &#39;UNDIRECTED&#39;
+  }
+})
+</pre></div>
+</div>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">CALL</span><span class="w"> </span><span class="n">gds</span><span class="p">.</span><span class="n">wcc</span><span class="p">.</span><span class="n">stream</span><span class="p">(</span><span class="s1">&#39;got-interactions&#39;</span><span class="p">)</span><span class="w"></span>
+<span class="n">YIELD</span><span class="w"> </span><span class="n">nodeId</span><span class="p">,</span><span class="w"> </span><span class="n">componentId</span><span class="w"></span>
+<span class="k">RETURN</span><span class="w"> </span><span class="n">componentId</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">component</span><span class="p">,</span><span class="w"> </span><span class="k">count</span><span class="p">(</span><span class="n">nodeId</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="k">size</span><span class="w"></span>
+<span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="k">size</span><span class="w"> </span><span class="k">DESC</span><span class="w"></span>
+</pre></div>
+</div>
+<p>The result is one large component containing 795 characters and many isolated characters.</p>
+<p>The following Cypher code snippet creates graph of people that belong to the same culture.</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">CALL</span><span class="w"> </span><span class="n">gds</span><span class="p">.</span><span class="n">graph</span><span class="p">.</span><span class="n">project</span><span class="p">.</span><span class="n">cypher</span><span class="p">(</span><span class="w"></span>
+<span class="w">  </span><span class="s1">&#39;got-culture-interactions-cypher&#39;</span><span class="p">,</span><span class="w"></span>
+<span class="w">  </span><span class="s1">&#39;MATCH (n:Person) RETURN id(n) AS id&#39;</span><span class="p">,</span><span class="w"></span>
+<span class="w">  </span><span class="s1">&#39;MATCH (p1:Person)-[:MEMBER_OF_CULTURE]-&gt;(c:Culture)&lt;-[:MEMBER_OF_CULTURE]-(p2:Person) RETURN id(p1) AS source, id(p2) AS target&#39;</span><span class="w"></span>
+<span class="p">)</span><span class="w"></span>
+</pre></div>
+</div>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">CALL</span><span class="w"> </span><span class="n">gds</span><span class="p">.</span><span class="n">wcc</span><span class="p">.</span><span class="n">stream</span><span class="p">(</span><span class="s1">&#39;got-culture-interactions-cypher&#39;</span><span class="p">)</span><span class="w"></span>
+<span class="n">YIELD</span><span class="w"> </span><span class="n">nodeId</span><span class="p">,</span><span class="w"> </span><span class="n">componentId</span><span class="w"></span>
+<span class="k">RETURN</span><span class="w"> </span><span class="n">componentId</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">component</span><span class="p">,</span><span class="w"> </span><span class="k">count</span><span class="p">(</span><span class="n">nodeId</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="k">size</span><span class="w"> </span><span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="k">size</span><span class="w"> </span><span class="k">DESC</span><span class="w"></span>
+</pre></div>
+</div>
+<p>The result is components with different sizes.</p>
+</section>
+<section id="louvain">
+<h3>Louvain<a class="headerlink" href="#louvain" title="Permalink to this headline">#</a></h3>
+<p>The Louvain algorithm is a community detection algorithm designed to identify clusters of nodes in a graph. It applies heuristic modularity to define the community structure by calculating how densely connected the nodes within a community. Louvain also reveals a hierarchy of communities at different scales, which enables you to zoom in on different levels of granularity and find sub-communities within sub-communities within sub-communities.</p>
+<p>The algorithm works as follows:</p>
+<ul class="simple">
+<li><p>Louvain is a greedy hierarchical clustering algorithm. It repeats the following two steps until it finds a global optimum:</p>
+<ul>
+<li><p>Assign the nodes to communities, favoring local optimizations of modularity.</p></li>
+<li><p>Aggregate the nodes from the same community to form a single node, which inherits all connected relationships.</p></li>
+</ul>
+</li>
+</ul>
+<p>The method is a greedy optimization method that appears to run in time <span class="math notranslate nohighlight">\({\displaystyle O(n\cdot \log n)}\)</span> where n is the number of nodes in the network</p>
+<p>The syntax for Louvain algorithm is:</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">CALL</span><span class="w"> </span><span class="n">gds</span><span class="p">.</span><span class="n">louvain</span><span class="p">.</span><span class="n">stream</span><span class="p">(</span><span class="w"></span>
+<span class="w">  </span><span class="n">graphName</span><span class="p">:</span><span class="w"> </span><span class="n">String</span><span class="p">,</span><span class="w"></span>
+<span class="w">  </span><span class="n">configuration</span><span class="p">:</span><span class="w"> </span><span class="k">Map</span><span class="w"></span>
+<span class="p">)</span><span class="w"></span>
+<span class="n">YIELD</span><span class="w"></span>
+<span class="w">  </span><span class="n">nodeId</span><span class="p">:</span><span class="w"> </span><span class="nb">Integer</span><span class="p">,</span><span class="w"></span>
+<span class="w">  </span><span class="n">communityId</span><span class="p">:</span><span class="w"> </span><span class="nb">Integer</span><span class="p">,</span><span class="w"></span>
+<span class="w">  </span><span class="n">intermediateCommunityIds</span><span class="p">:</span><span class="w"> </span><span class="n">List</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="nb">Integer</span><span class="w"></span>
+</pre></div>
+</div>
+<p>The Cypher query to find name of each person and id of the community to which it belong is:</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span>CALL gds.graph.project(&#39;got-interactions&#39;, &#39;Person&#39;, {
+  INTERACTS: {
+    orientation: &#39;UNDIRECTED&#39;
+  }
+})
+</pre></div>
+</div>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">CALL</span><span class="w"> </span><span class="n">gds</span><span class="p">.</span><span class="n">louvain</span><span class="p">.</span><span class="n">stream</span><span class="p">(</span><span class="s1">&#39;got-interactions&#39;</span><span class="p">)</span><span class="w"></span>
+<span class="n">YIELD</span><span class="w"> </span><span class="n">nodeId</span><span class="p">,</span><span class="w"> </span><span class="n">communityId</span><span class="w"></span>
+<span class="k">RETURN</span><span class="w"> </span><span class="n">gds</span><span class="p">.</span><span class="n">util</span><span class="p">.</span><span class="n">asNode</span><span class="p">(</span><span class="n">nodeId</span><span class="p">).</span><span class="n">name</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">person</span><span class="p">,</span><span class="w"> </span><span class="n">communityId</span><span class="w"></span>
+<span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">communityId</span><span class="w"> </span><span class="k">DESC</span><span class="w"></span>
+</pre></div>
+</div>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="head"><p>“person”</p></th>
+<th class="head"><p>“communityId”</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>“Aemon Targaryen”</p></td>
+<td><p>2092</p></td>
+</tr>
+<tr class="row-odd"><td><p>“Durran the Devout”</p></td>
+<td><p>2091</p></td>
+</tr>
+<tr class="row-even"><td><p>“Baelor ‘Breakspear’ Targaryen”</p></td>
+<td><p>2090</p></td>
+</tr>
+<tr class="row-odd"><td><p>“Arlan V Durrandon”</p></td>
+<td><p>2089</p></td>
+</tr>
+<tr class="row-even"><td><p>“Aenys Targaryen”</p></td>
+<td><p>2088</p></td>
+</tr>
+</tbody>
+</table>
+<p>The Cypher query to find communities and number of members in each community is:</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">CALL</span><span class="w"> </span><span class="n">gds</span><span class="p">.</span><span class="n">louvain</span><span class="p">.</span><span class="n">stream</span><span class="p">(</span><span class="s1">&#39;got-interactions&#39;</span><span class="p">)</span><span class="w"></span>
+<span class="n">YIELD</span><span class="w"> </span><span class="n">nodeId</span><span class="p">,</span><span class="w"> </span><span class="n">communityId</span><span class="w"></span>
+<span class="k">RETURN</span><span class="w"> </span><span class="n">communityId</span><span class="p">,</span><span class="w"> </span><span class="k">COUNT</span><span class="p">(</span><span class="k">DISTINCT</span><span class="w"> </span><span class="n">nodeId</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">members</span><span class="w"></span>
+<span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">members</span><span class="w"> </span><span class="k">DESC</span><span class="w"></span>
+</pre></div>
+</div>
+<p>The result is 1382 communities, 11 of which with more than one member.</p>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="head"><p>“communityId”</p></th>
+<th class="head"><p>“members”</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>1202</p></td>
+<td><p>162</p></td>
+</tr>
+<tr class="row-odd"><td><p>205</p></td>
+<td><p>155</p></td>
+</tr>
+<tr class="row-even"><td><p>77</p></td>
+<td><p>118</p></td>
+</tr>
+<tr class="row-odd"><td><p>233</p></td>
+<td><p>112</p></td>
+</tr>
+<tr class="row-even"><td><p>706</p></td>
+<td><p>67</p></td>
+</tr>
+<tr class="row-odd"><td><p>20</p></td>
+<td><p>60</p></td>
+</tr>
+<tr class="row-even"><td><p>46</p></td>
+<td><p>45</p></td>
+</tr>
+<tr class="row-odd"><td><p>1966</p></td>
+<td><p>32</p></td>
+</tr>
+<tr class="row-even"><td><p>636</p></td>
+<td><p>26</p></td>
+</tr>
+<tr class="row-odd"><td><p>1857</p></td>
+<td><p>11</p></td>
+</tr>
+<tr class="row-even"><td><p>1890</p></td>
+<td><p>7</p></td>
+</tr>
+</tbody>
+</table>
+<p>The Cypher query to identify communities at multiple levels in the graph is:</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span>CALL gds.louvain.stream(&#39;got-interactions&#39;, { includeIntermediateCommunities: true })
+YIELD nodeId, communityId, intermediateCommunityIds
+RETURN gds.util.asNode(nodeId).name AS person, communityId, intermediateCommunityIds
+ORDER BY person ASC
+LIMIT 5
+</pre></div>
+</div>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="head"><p>“person”</p></th>
+<th class="head"><p>“communityId”</p></th>
+<th class="head"><p>“intermediateCommunityIds”</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>“1st: unknown2nd: unknown3rd: unknown”</p></td>
+<td><p>2055</p></td>
+<td><p>[2055,2055,2055]</p></td>
+</tr>
+<tr class="row-odd"><td><p>“Abelar Hightower”</p></td>
+<td><p>1099</p></td>
+<td><p>[1099,1099,1099]</p></td>
+</tr>
+<tr class="row-even"><td><p>“Addam”</p></td>
+<td><p>1101</p></td>
+<td><p>[1101,1101,1101]</p></td>
+</tr>
+<tr class="row-odd"><td><p>“Addam Frey”</p></td>
+<td><p>1100</p></td>
+<td><p>[1100,1100,1100]</p></td>
+</tr>
+<tr class="row-even"><td><p>“Addam Marbrand”</p></td>
+<td><p>205</p></td>
+<td><p>[205,205,205]</p></td>
+</tr>
+</tbody>
+</table>
+<p align="center"><img src="https://neo4j.com/docs/graph-data-science/current/_images/louvain-multilevel-graph.svg"></p>
+<p>The Neo4j GDS library includes the following community detection algorithms:</p>
+<ul class="simple">
+<li><p>Louvain</p></li>
+<li><p>Label Propagation</p></li>
+<li><p>Weakly Connected Components</p></li>
+<li><p>Triangle Count</p></li>
+<li><p>Local Clustering Coefficient</p></li>
+<li><p>K-1 Coloring</p></li>
+<li><p>Modularity Optimization</p></li>
+<li><p>Strongly Connected Components</p></li>
+<li><p>Speaker-Listener Label Propagation</p></li>
+<li><p>Approximate Maximum k-cut</p></li>
+<li><p>Conductance metric</p></li>
+</ul>
+</section>
+<section id="node-similarity">
+<h3>Node Similarity<a class="headerlink" href="#node-similarity" title="Permalink to this headline">#</a></h3>
+<p>The Node Similarity algorithm compares pairs of nodes in a graph based on their connections to other nodes. Two nodes are considered similar if they share many of the same neighbors.</p>
+<p>The node similarity is computed using pair-wise similarities based on either the Jaccard metric also known as Jaccard Similarity Score, or the Overlap coefficient also known as the Szymkiewicz–Simpson coefficient.</p>
+<p>Given two sets A and B, the <strong>Jaccard Similarity</strong> is computed using the following formula:</p>
+<div class="math notranslate nohighlight">
+\[J(A, B) = \frac{|A \cap B|}{|A \cup B|} = \frac{|A \cap B|}{|A| + |B| - |A \cap B|} \]</div>
+<p>The <strong>Overlap coefficient</strong> is computed using the following formula:</p>
+<div class="math notranslate nohighlight">
+\[O(A, B) = \frac{|A \cap B|}{\min(|A|, |B|)} \]</div>
+<p>The nodes A and B are similar if most nodes that are neighbors to either node are also neighbors to both.</p>
+<p>The algorithm works as follows:</p>
+<ul class="simple">
+<li><p>The input of this algorithm is a bipartite, connected graph containing two disjoint node sets.</p></li>
+<li><p>Each relationship starts from a node in the first node set and ends at a node in the second node set.</p></li>
+<li><p>The Node Similarity algorithm compares all nodes from the first node set with each other based on their relationships to nodes in the second set.</p></li>
+<li><p>The complexity of this comparison grows quadratically with the number of nodes to compare.</p></li>
+<li><p>The algorithm reduces the complexity by ignoring disconnected nodes.</p></li>
+</ul>
+<p>Node Similarity has time complexity <span class="math notranslate nohighlight">\(O(n^3)\)</span> and space complexity <span class="math notranslate nohighlight">\(O(n^2)\)</span>. We compute and store neighbour sets in time and space <span class="math notranslate nohighlight">\(O(n^2)\)</span>, then compute pairwise similarity scores in time <span class="math notranslate nohighlight">\(O(n^3)\)</span>.</p>
+<p>The syntax for the algorithm is:</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">CALL</span><span class="w"> </span><span class="n">gds</span><span class="p">.</span><span class="n">nodeSimilarity</span><span class="p">.</span><span class="n">stream</span><span class="p">(</span><span class="w"></span>
+<span class="w">  </span><span class="n">graphName</span><span class="p">:</span><span class="w"> </span><span class="n">String</span><span class="p">,</span><span class="w"></span>
+<span class="w">  </span><span class="n">configuration</span><span class="p">:</span><span class="w"> </span><span class="k">Map</span><span class="w"></span>
+<span class="p">)</span><span class="w"> </span><span class="n">YIELD</span><span class="w"></span>
+<span class="w">  </span><span class="n">node1</span><span class="p">:</span><span class="w"> </span><span class="nb">Integer</span><span class="p">,</span><span class="w"></span>
+<span class="w">  </span><span class="n">node2</span><span class="p">:</span><span class="w"> </span><span class="nb">Integer</span><span class="p">,</span><span class="w"></span>
+<span class="w">  </span><span class="n">similarity</span><span class="p">:</span><span class="w"> </span><span class="nb">Float</span><span class="w"></span>
+</pre></div>
+</div>
+<p>The Cypher query to find similar characters by comparing the books they appear or die in, and the houses and cultures to which they belong</p>
+<p>It is a bipartite graph between Person on one side and Book, House, and Culture on the other side.</p>
+<p>This graph creation uses projection with multiple node labels loading all types of relationships with *.</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">CALL</span><span class="w"> </span><span class="n">gds</span><span class="p">.</span><span class="n">graph</span><span class="p">.</span><span class="n">project</span><span class="p">(</span><span class="s1">&#39;got-character-related-entities&#39;</span><span class="p">,</span><span class="w"> </span><span class="p">[</span><span class="s1">&#39;Person&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Book&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;House&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Culture&#39;</span><span class="p">],</span><span class="w"> </span><span class="s1">&#39;*&#39;</span><span class="p">)</span><span class="w"></span>
+</pre></div>
+</div>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span>CALL gds.nodeSimilarity.stream(
+  &#39;got-character-related-entities&#39;,
+  {
+    degreeCutoff: 20, # limits character with at least 20 related entities
+    similarityCutoff: 0.45
+  }
+)
+YIELD node1, node2, similarity
+RETURN gds.util.asNode(node1).name AS character1, gds.util.asNode(node2).name AS character2, similarity
+ORDER BY similarity DESC
+</pre></div>
+</div>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="head"><p>“character1”</p></th>
+<th class="head"><p>“character2”</p></th>
+<th class="head"><p>“similarity”</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>“Gregor Clegane”</p></td>
+<td><p>“Ilyn Payne”</p></td>
+<td><p>0.5</p></td>
+</tr>
+<tr class="row-odd"><td><p>“Ilyn Payne”</p></td>
+<td><p>“Gregor Clegane”</p></td>
+<td><p>0.5</p></td>
+</tr>
+<tr class="row-even"><td><p>“Mace Tyrell”</p></td>
+<td><p>“Loras Tyrell”</p></td>
+<td><p>0.4666666666666667</p></td>
+</tr>
+<tr class="row-odd"><td><p>“Loras Tyrell”</p></td>
+<td><p>“Mace Tyrell”</p></td>
+<td><p>0.4666666666666667</p></td>
+</tr>
+<tr class="row-even"><td><p>“Loras Tyrell”</p></td>
+<td><p>“Margaery Tyrell”</p></td>
+<td><p>0.45161290322580644</p></td>
+</tr>
+<tr class="row-odd"><td><p>“Margaery Tyrell”</p></td>
+<td><p>“Loras Tyrell”</p></td>
+<td><p>0.45161290322580644</p></td>
+</tr>
+</tbody>
+</table>
+<p>The Neo4j GDS library includes the following similarity algorithms:</p>
+<ul class="simple">
+<li><p>Node Similarity</p></li>
+<li><p>K-Nearest Neighbors</p></li>
+</ul>
+</section>
+<section id="triangle-count">
+<h3>Triangle Count<a class="headerlink" href="#triangle-count" title="Permalink to this headline">#</a></h3>
+<p>A triangle in a graph is a set of three nodes all connected to each other. The triangle count of a node is the number of triangles that node belongs to.</p>
+<p>In order to better understand the concept of triangle counting, let us visualize a part of the GoT graph. We will select two characters and only include relationships from the first book between them and their neighbours. First make sure to uncheck ‘Connect result nodes’ in the settings of Neo4j Browser.</p>
+<p>The Cypher query to detect triangles in the first book between these two names and their neighbors</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">MATCH</span><span class="w"> </span><span class="p">(</span><span class="n">n</span><span class="p">:</span><span class="n">Person</span><span class="p">)</span><span class="o">-</span><span class="p">[</span><span class="n">r</span><span class="p">:</span><span class="n">INTERACTS_1</span><span class="p">]</span><span class="o">-&gt;</span><span class="p">(</span><span class="n">m</span><span class="p">:</span><span class="n">Person</span><span class="p">)</span><span class="w"></span>
+<span class="k">WHERE</span><span class="w"> </span><span class="n">n</span><span class="p">.</span><span class="n">name</span><span class="w"> </span><span class="k">IN</span><span class="w"> </span><span class="p">[</span><span class="ss">&quot;Robb Stark&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">&quot;Tyrion Lannister&quot;</span><span class="p">]</span><span class="w"></span>
+<span class="k">RETURN</span><span class="w"> </span><span class="n">n</span><span class="p">,</span><span class="w"> </span><span class="n">m</span><span class="p">,</span><span class="w"> </span><span class="n">r</span><span class="w"></span>
+</pre></div>
+</div>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">CALL</span><span class="w"> </span><span class="n">gds</span><span class="p">.</span><span class="n">graph</span><span class="p">.</span><span class="n">project</span><span class="p">.</span><span class="n">cypher</span><span class="p">(</span><span class="s1">&#39;small_got&#39;</span><span class="p">,</span><span class="w"> </span><span class="ss">&quot;</span>
+<span class="ss">  MATCH (n:Person) RETURN id(n) AS id&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">&quot;MATCH (n:Person)-[r:INTERACTS_1]-&gt;(m:Person)</span>
+<span class="ss">  WHERE n.name IN [&#39;Robb Stark&#39;, &#39;Tyrion Lannister&#39;] RETURN id(n) AS source, id(m) AS target</span>
+<span class="ss">  UNION MATCH (n:Person)-[r:INTERACTS_1]-&gt;(m:Person) WHERE n.name IN [&#39;Robb Stark&#39;, &#39;Tyrion Lannister&#39;] RETURN id(m) AS source, id(n) AS target&quot;</span><span class="p">)</span><span class="w"></span>
+</pre></div>
+</div>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">CALL</span><span class="w"> </span><span class="n">gds</span><span class="p">.</span><span class="n">triangleCount</span><span class="p">.</span><span class="n">stream</span><span class="p">(</span><span class="s1">&#39;small_got&#39;</span><span class="p">)</span><span class="w"></span>
+<span class="n">YIELD</span><span class="w"> </span><span class="n">nodeId</span><span class="p">,</span><span class="w"> </span><span class="n">triangleCount</span><span class="w"></span>
+<span class="k">WITH</span><span class="w"> </span><span class="n">gds</span><span class="p">.</span><span class="n">util</span><span class="p">.</span><span class="n">asNode</span><span class="p">(</span><span class="n">nodeId</span><span class="p">).</span><span class="n">name</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">name</span><span class="p">,</span><span class="w"> </span><span class="n">triangleCount</span><span class="w"></span>
+<span class="k">WHERE</span><span class="w"> </span><span class="n">triangleCount</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">0</span><span class="w"></span>
+<span class="k">RETURN</span><span class="w"> </span><span class="n">name</span><span class="p">,</span><span class="w"> </span><span class="n">triangleCount</span><span class="w"></span>
+</pre></div>
+</div>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="head"><p>“name”</p></th>
+<th class="head"><p>“triangleCount”</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>“Robb Stark”</p></td>
+<td><p>2</p></td>
+</tr>
+<tr class="row-odd"><td><p>“Tywin Lannister”</p></td>
+<td><p>1</p></td>
+</tr>
+<tr class="row-even"><td><p>“Tyrion Lannister”</p></td>
+<td><p>2</p></td>
+</tr>
+<tr class="row-odd"><td><p>“Yoren”</p></td>
+<td><p>1</p></td>
+</tr>
+</tbody>
+</table>
+<p>This results in two triangles count for Tyrion and Robb and one triangle for Tywin and Yoren</p>
+</section>
+<section id="betweenness-centrality">
+<h3>Betweenness Centrality<a class="headerlink" href="#betweenness-centrality" title="Permalink to this headline">#</a></h3>
+<p>Betweenness Centrality is a way of detecting the amount of influence a node has over the flow of information in a graph. It is often used to find nodes that serve as a bridge from one part of a graph to another.</p>
+<p>The betweenness centrality of a node <span class="math notranslate nohighlight">\({\displaystyle v}\)</span> is given by the expression:</p>
+<div class="math notranslate nohighlight">
+\[g(v)=\sum _{{s\neq v\neq t}}{\frac  {\sigma _{{st}}(v)}{\sigma _{{st}}}}\]</div>
+<p>where <span class="math notranslate nohighlight">\(\sigma_{st}\)</span> is the total number of shortest paths from node <span class="math notranslate nohighlight">\(s\)</span> to node <span class="math notranslate nohighlight">\(t\)</span> and <span class="math notranslate nohighlight">\(\sigma_{st}(v)\)</span> is the number of those paths that pass through <span class="math notranslate nohighlight">\(v\)</span> (not where <span class="math notranslate nohighlight">\(v\)</span> is an end point)</p>
+<p>The algorithms works as follows:</p>
+<ul class="simple">
+<li><p>It calculates unweighted shortest paths between all pairs of nodes in a graph.</p></li>
+<li><p>Each node receives a score, based on the number of shortest paths that pass through the node.</p></li>
+<li><p>Nodes that more frequently lie on shortest paths between other nodes will have higher betweenness centrality scores</p></li>
+</ul>
+<p>The GDS implementation is based on <strong>Brandes’ approximate algorithm for unweighted graphs</strong>. The implementation requires <span class="math notranslate nohighlight">\(O(n + m)\)</span> space and runs in <span class="math notranslate nohighlight">\(O(n * m)\)</span> time, where n is the number of nodes and m the number of relationships in the graph.</p>
+<p>The following Cypher code snippet tries to identify the most important nodes.</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">CALL</span><span class="w"> </span><span class="n">gds</span><span class="p">.</span><span class="n">betweenness</span><span class="p">.</span><span class="n">stream</span><span class="p">(</span><span class="s1">&#39;got-interactions&#39;</span><span class="p">)</span><span class="w"> </span><span class="n">YIELD</span><span class="w"> </span><span class="n">nodeId</span><span class="p">,</span><span class="w"> </span><span class="n">score</span><span class="w"></span>
+<span class="k">RETURN</span><span class="w"> </span><span class="n">gds</span><span class="p">.</span><span class="n">util</span><span class="p">.</span><span class="n">asNode</span><span class="p">(</span><span class="n">nodeId</span><span class="p">).</span><span class="n">name</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">name</span><span class="p">,</span><span class="w"> </span><span class="n">score</span><span class="w"></span>
+<span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">score</span><span class="w"> </span><span class="k">DESC</span><span class="w"> </span><span class="k">LIMIT</span><span class="w"> </span><span class="mi">5</span><span class="w"></span>
+</pre></div>
+</div>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="head"><p>“name”</p></th>
+<th class="head"><p>“score”</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>“Jon Snow”</p></td>
+<td><p>65746.10756233713</p></td>
+</tr>
+<tr class="row-odd"><td><p>“Tyrion Lannister”</p></td>
+<td><p>49958.79998213849</p></td>
+</tr>
+<tr class="row-even"><td><p>“Daenerys Targaryen”</p></td>
+<td><p>38022.02252425336</p></td>
+</tr>
+<tr class="row-odd"><td><p>“Stannis Baratheon”</p></td>
+<td><p>37406.523703627994</p></td>
+</tr>
+<tr class="row-even"><td><p>“Theon Greyjoy”</p></td>
+<td><p>35336.02748203102</p></td>
+</tr>
+</tbody>
+</table>
+<p>In comparison, Betweenness Centrality is a good metric to identify bottlenecks and bridges in a graph while Page Rank is used to understand the influence of a node in a network. The result is similar, but not identical.</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">CALL</span><span class="w"> </span><span class="n">gds</span><span class="p">.</span><span class="n">pageRank</span><span class="p">.</span><span class="n">stream</span><span class="p">(</span><span class="s1">&#39;got-interactions&#39;</span><span class="p">)</span><span class="w"> </span><span class="n">YIELD</span><span class="w"> </span><span class="n">nodeId</span><span class="p">,</span><span class="w"> </span><span class="n">score</span><span class="w"></span>
+<span class="k">RETURN</span><span class="w"> </span><span class="n">gds</span><span class="p">.</span><span class="n">util</span><span class="p">.</span><span class="n">asNode</span><span class="p">(</span><span class="n">nodeId</span><span class="p">).</span><span class="n">name</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">name</span><span class="p">,</span><span class="w"> </span><span class="n">score</span><span class="w"></span>
+<span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">score</span><span class="w"> </span><span class="k">DESC</span><span class="w"> </span><span class="k">LIMIT</span><span class="w"> </span><span class="mi">5</span><span class="w"></span>
+</pre></div>
+</div>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="head"><p>“name”</p></th>
+<th class="head"><p>“score”</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>“Jon Snow”</p></td>
+<td><p>17.101059902571397</p></td>
+</tr>
+<tr class="row-odd"><td><p>“Tyrion Lannister”</p></td>
+<td><p>16.736434124776785</p></td>
+</tr>
+<tr class="row-even"><td><p>“Cersei Lannister”</p></td>
+<td><p>13.615298386787629</p></td>
+</tr>
+<tr class="row-odd"><td><p>“Jaime Lannister”</p></td>
+<td><p>13.42458452593728</p></td>
+</tr>
+<tr class="row-even"><td><p>“Stannis Baratheon”</p></td>
+<td><p>11.981433362207436</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+<section id="references">
+<h2>References<a class="headerlink" href="#references" title="Permalink to this headline">#</a></h2>
+<ul class="simple">
+<li><p>Neo4j Graph Data Science, URL: <a class="reference external" href="https://neo4j.com/docs/graph-data-science/current/">https://neo4j.com/docs/graph-data-science/current/</a></p></li>
+<li><p>Neo4j Sandbox, URL: <a class="reference external" href="https://sandbox.neo4j.com">https://sandbox.neo4j.com</a></p></li>
+</ul>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./dbs"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="neo4j_basics.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Building Neo4j Applications with Python</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="../maths/intro.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">My Math Book</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By Chandra<br/>
+  
+      &copy; Copyright 2022.<br/>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>

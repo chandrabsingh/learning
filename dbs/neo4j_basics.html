@@ -1,0 +1,1256 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Building Neo4j Applications with Python</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Game of Thrones - Knowledge Graph analysis using Neo4j" href="neo4j_graph_datascience.html" />
+    <link rel="prev" title="Introduction to Kafka/ksqldb/stream processing" href="intro_kafka_ksqldb_stream_processing.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../_static/mylogo.png" class="logo" alt="logo">
+      
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    Welcome
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  System Design
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../system_design/intro.html">
+   My System Design Book
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../system_design/design_patterns.html">
+     System Design Summary
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../system_design/software_engineering_concepts.html">
+     Software Engineering concepts
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../system_design/googlecloud_use_cases.html">
+     Google - Customer story
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../system_design/awscloud_financial_symposium_2022.html">
+     AWS - Financial Services Cloud Symposium - 2022
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../system_design/aws_usecases.html">
+     AWS - Customer story
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../system_design/design_general_use_cases.html">
+     Case study
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../system_design/netflix.html">
+     Netflix creativity
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../system_design/bk_AlexXu_SystemDesignInterview.html">
+     Book - System Design Interview - Alex Xu
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../system_design/design_patterns_python.html">
+     Design Pattern - Python
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Code
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../codes/intro.html">
+   My Code Book
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../codes/python_faqs.html">
+     Python FAQs
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../algos/all_algos.html">
+     Coding Challenges
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../codes/python_data_analytics.html">
+     Python Data Analytics - FAQs
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Database/Event
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="intro.html">
+   My DB Book
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+  <label for="toctree-checkbox-3">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2">
+    <a class="reference internal" href="intro_kafka_ksqldb_stream_processing.html">
+     Introduction to Kafka/ksqldb/stream processing
+    </a>
+   </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     Building Neo4j Applications with Python
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="neo4j_graph_datascience.html">
+     Game of Thrones - Knowledge Graph analysis using Neo4j
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Math
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../maths/intro.html">
+   My Math Book
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+  <label for="toctree-checkbox-4">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../maths/probability_simulations.html">
+     Probability Simulations
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../maths/linear_algebra.html">
+     Linear Algebra - FAQs
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../maths/probabilistic_programming.html">
+     Getting started with PyMC3
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../maths/causal_inference_learning.html">
+     Causal Inference Learning
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Machine Learning
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../ml_examples/intro.html">
+   My ML Book
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
+  <label for="toctree-checkbox-5">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../ml_examples/ml_glossary.html">
+     ML Conceptual brief
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../ml_examples/Store_Sales_Forecasting_With_Tensorflow.html">
+     Store Sales Forecasting with TensorFlow
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../ml_examples/decision_tree_classification.html">
+     Decision Tree - classification
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../ml_examples/ml_design_patterns.html">
+     Machine Learning Design Patterns
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Deep Learning
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../dl_examples/intro.html">
+   My DL Book
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
+  <label for="toctree-checkbox-6">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../dl_examples/dl_glossary.html">
+     DL Conceptual brief
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../dl_examples/rp_AlexNet.html">
+     AlexNet Summary
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../dl_examples/rp_ResNet.html">
+     ResNet Summary
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../dl_examples/Anima_Anandkumar_Retrospective_Role_of_Tensors_in_Machine_Learning.html">
+     Anima Anandkumar - Retrospective Role of Tensors in ML
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Shell Scripting
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../unix/intro.html">
+   My Unix/Shell Book
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/>
+  <label for="toctree-checkbox-7">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../unix/unix_shell_script.html">
+     Unix/Shell FAQs
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../unix/my_zshrc.html">
+     My .zshrc script
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Lecture Notes
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../cs229_ml/intro.html">
+   CS229 ML - by Andrew Ng
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/>
+  <label for="toctree-checkbox-8">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../cs229_ml/lec02-LinearReg-GradientDescent.html">
+     Lec 02-Linear Regression - Gradient Descent
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../cs229_ml/lec03-LocallyWeighted-LogisticRegression.html">
+     Lec 03-Locally Weighted Regression - Logistic Regression
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../cs229_ml/lec04-Perceptron-GLM.html">
+     Lec 04-Perceptron - GLM
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../cs229_ml/lec05-GDA-NaiveBayes.html">
+     Lec 05-GDA - Naive Bayes
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../cs229_ml/lec06-NaiveBayes-SVM.html">
+     Lec 06-Naive Bayes - SVM
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../cs229_ml/lec07-Kernels-SVM.html">
+     Lec 07-Kernels - SVM
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../cs229_ml/lec08-DataSplits-Models-CrossValidation.html">
+     Lec 08-Data Splits - Models - Cross Validation
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../cs229_ml/lec09-Approx-EstimationError-ERM.html">
+     Lec 09-Estimation Error - ERM
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../cs229_ml/lec10-DecisionTrees-EnsembleMethods.html">
+     Lec 10-Decision Trees - Ensemble Methods
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../cs229_ml/lec11-Intro-NN.html">
+     Lec 11-Neural Networks
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../cs229_ml/lec12-Backpropagation-ImprovingNN.html">
+     Lec 12-Improving NN
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../cs229_ml/lec13-DebuggingMLModels-ErrorAnalysis.html">
+     Lec 13-Debugging ML Models-Error Analysis
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../cs229_ml/lec14-Expectation-MaximizationAlgo.html">
+     Lec 14-Expectation-Maximization Algo
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../cs229_ml/lec15-EMAlgo-FactorAnalysis.html">
+     Lec 15-EM Algo-Factor Analysis
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../cs229_ml/lec16-IndependentComponentAnalysis-RL.html">
+     Lec 16-Independent Component Analysis-RL
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../cs229_ml/lec17-MDPs-ValuePolicyIteration.html">
+     Lec 17-MDPs-Value Policy Iteration
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../cs229_ml/lec18-continuousMDPs-ModelSimulation.html">
+     Lec 18-Continuous MDPs-Model Simulation
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+    </div>
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<div class="menu-dropdown menu-dropdown-launch-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Launch interactive content">
+      <i class="fas fa-rocket"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://mybinder.org/v2/gh/chandrabsingh/learning/master?urlpath=tree/learning/dbs/neo4j_basics.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Binder"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="../_static/images/logo_binder.svg">
+  </span>
+<span class="headerbtn__text-container">Binder</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-repository-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Source repositories">
+      <i class="fab fa-github"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://github.com/chandrabsingh/learning"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Source repository"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="headerbtn__text-container">repository</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/chandrabsingh/learning/issues/new?title=Issue%20on%20page%20%2Fdbs/neo4j_basics.html&body=Your%20issue%20content%20here."
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Open an issue"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="headerbtn__text-container">open issue</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="../_sources/dbs/neo4j_basics.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.ipynb</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#setting-up-project">
+   Setting up project
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#neo4j-fundamentals">
+   Neo4j Fundamentals
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#cypher-fundamentals">
+   Cypher Fundamentals
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#writing-data-to-neo4j">
+   Writing Data to Neo4j
+  </a>
+ </li>
+</ul>
+
+    </nav>
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Building Neo4j Applications with Python</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#setting-up-project">
+   Setting up project
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#neo4j-fundamentals">
+   Neo4j Fundamentals
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#cypher-fundamentals">
+   Cypher Fundamentals
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#writing-data-to-neo4j">
+   Writing Data to Neo4j
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <section class="tex2jax_ignore mathjax_ignore" id="building-neo4j-applications-with-python">
+<h1>Building Neo4j Applications with Python<a class="headerlink" href="#building-neo4j-applications-with-python" title="Permalink to this headline">#</a></h1>
+<p>Neo4j Graph Academy</p>
+<ul class="simple">
+<li><p>you will work on a pre-built repository for the fictional client Neoflix. The course is designed to be framework agnostic, so although we have chosen a specific framework, the tasks that you will perform will be the same regardless of your choice of framework.</p></li>
+<li><p><a class="reference external" href="https://graphacademy.neo4j.com/courses/app-python/0-setup/">https://graphacademy.neo4j.com/courses/app-python/0-setup/</a></p></li>
+</ul>
+<p>We have built a repository that takes care of the boiler plate, so you can focus on implementing the functionality.</p>
+<ul class="simple">
+<li><p>The project is designed to work with Python version 3.9</p></li>
+<li><p>Packages can be installed with pip</p></li>
+<li><p>A web server has been built with <strong>Flask</strong></p>
+<ul>
+<li><p>Authentication is handled with <strong>JWT Tokens</strong> and <strong>PyJWT</strong></p></li>
+<li><p>Passwords are encrypted and verified with <strong>bcrypt</strong></p></li>
+<li><p>Testing is performed using <strong>pytest</strong></p></li>
+</ul>
+</li>
+</ul>
+<section id="setting-up-project">
+<h2>Setting up project<a class="headerlink" href="#setting-up-project" title="Permalink to this headline">#</a></h2>
+<p><a class="reference external" href="https://graphacademy.neo4j.com/courses/app-python/0-setup/1-setup/">https://graphacademy.neo4j.com/courses/app-python/0-setup/1-setup/</a></p>
+<ul class="simple">
+<li><p><strong>Setting environment and dependencies</strong></p></li>
+</ul>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>git clone https://github.com/neo4j-graphacademy/app-python.git  
+conda create --name node4jgraph  
+conda activate node4jgraph  
+conda install pip  
+pip install -r requirements.txt  
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><strong>Setting Environment Variables</strong></p></li>
+</ul>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>cp .env.example .env
+</pre></div>
+</div>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>  - FLASK_APP=api                       # FLASK_APP tells Flask to use the application in the api/ folder
+  - FLASK_ENV=development               # Run Flask in Development Mode
+  - FLASK_RUN_PORT=3000                 # Run the server on port 3000
+  - JWT_SECRET=secret                   # A secret key for signing JWT tokens 
+  - SALT_ROUNDS=10                      # The cost parameter used when hashing passwords
+
+  - NEO4J_URI=neo4j://localhost:7687    # The URI for your Neo4j Sandbox instance
+  - NEO4J_USERNAME=neo4j                # The username for your Neo4j Sandbox instance
+  - NEO4J_PASSWORD=password             # The password for your Neo4j Sandbox instance
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><strong>Start the project</strong></p></li>
+</ul>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>flask run
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><strong>Notes</strong></p></li>
+</ul>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>* Serving Flask app &#39;api&#39; (lazy loading)
+* Environment: development
+* Debug mode: on
+* Running on http://127.0.0.1:3000/ (Press CTRL+C to quit)
+* Restarting with stat
+* Debugger is active!
+* Debugger PIN: 106-203-194
+</pre></div>
+</div>
+</section>
+<section id="neo4j-fundamentals">
+<h2>Neo4j Fundamentals<a class="headerlink" href="#neo4j-fundamentals" title="Permalink to this headline">#</a></h2>
+<p><strong>The Seven Bridges</strong></p>
+<ul class="simple">
+<li><p>Leonardo Euler (founder of graph theory)</p></li>
+</ul>
+<p><strong>Graph Elements</strong></p>
+<ul class="simple">
+<li><p>Nodes(Vertices)</p></li>
+<li><p>Edges(Relationships)</p></li>
+</ul>
+<p><strong>Graph Structures</strong></p>
+<ul class="simple">
+<li><p>Bidirectional/Directional(Strength)</p></li>
+<li><p>strength can help us predict how relationships will flow</p></li>
+<li><p>time it takes to fly package can be used as edge between 2 points</p></li>
+<li><p>or how long does it take for packets to get transmitted</p></li>
+<li><p>traversal can help in finding shortest path</p></li>
+<li><p>while traversal, it is assumed that relationship is followed in graph</p></li>
+<li><p>while traversal, can a node be visited multiple times</p></li>
+<li><p>neo4j is optimized for node traversal so that nodes are not traverse multiple times</p></li>
+</ul>
+<p><strong>Graphs are evereywhere</strong></p>
+<ul class="simple">
+<li><p>GraphGists - Use cases</p></li>
+</ul>
+<p><strong>Property Graphs</strong></p>
+<ul class="simple">
+<li><p>The key elements a property graph and why they are useful.</p></li>
+<li><p>How Neo4j implements a native graph using index-free adjacency.</p></li>
+<li><p>Some of the ways that Relational and other NoSQL databases can be implemented in Neo4j.</p></li>
+</ul>
+<p><strong>What is a Property Graph</strong></p>
+<ul class="simple">
+<li><p>additional elements into a graph, which helps in cypher query</p></li>
+<li><p><strong>labels</strong>: gives a starting point for a query</p>
+<ul>
+<li><p>in neo4j, a node can have 0,1 or many labels</p></li>
+<li><p>for example - Michael is a man, Sarah is a woman, GraphInc is a company</p></li>
+</ul>
+</li>
+<li><p><strong>property</strong>: key-value pair</p>
+<ul>
+<li><p>can be a single value or a list of values</p></li>
+<li><p>for example - Michael firstname is Michael, Michael lastname is Faraday, Michael birthday is 01/01/1900, GraphInc has employeeCount 50</p></li>
+</ul>
+</li>
+</ul>
+<p><strong>Native Graph Advantage</strong></p>
+<ul class="simple">
+<li><p>index free adjacency results in much better result queries than rdbms</p></li>
+<li><p><strong>native</strong> means everything from storage of the data to query language is designed with traversal in mind</p></li>
+<li><p>native graph database are different from other databases due to its feature of <strong>index free adjacency</strong></p></li>
+<li><p>A traditional rdbms query results in <strong>multiple index lookups and multiple db reads/table scans</strong> to read traversal sort of queries</p></li>
+<li><p>Native graph instead <strong>traverses using pointer nodes</strong> which result in faster result</p>
+<ul>
+<li><p>it <strong>stores nodes and relationships as objects</strong> that are linked to each other via pointers.</p></li>
+<li><p>In the example below, the Cypher query <strong>starts with the anchor of the query</strong> which is the group node of id=3. Then it uses the links stored in the relationship in node objects to traverse the graph pattern</p></li>
+<li><p>this resulted in <strong>fewer index lookups, no table scans, reduced duplication of data</strong></p></li>
+</ul>
+</li>
+</ul>
+<p align="center"><img src="./images/rdbms_query.png" width=600 height=400></p>
+<p align="center"><img src="./images/native_query.png" width=600 height=400></p>
+<p><strong>Non-Graph databases as graphs</strong></p>
+<ul class="simple">
+<li><p>in traditional rdbms,</p>
+<ul>
+<li><p>the joins are computed at read time.</p></li>
+<li><p>as number of records increase, the query time becomes slow</p></li>
+<li><p>modeling many-to-many relationships means visualizing pivot tables</p></li>
+</ul>
+</li>
+<li><p>in native graphs,</p>
+<ul>
+<li><p>relationships are stored at the very beginning in a graph database.</p></li>
+<li><p>as number of records increase, the query time is proportional to number of records touched</p></li>
+<li><p>modeling many-to-many relationships are more natural</p></li>
+</ul>
+</li>
+</ul>
+<p align="center"><img src="./images/rdbms_northwind.png" width=600 height=400></p>
+<p align="center"><img src="./images/native_northwind.png" width=600 height=400></p>
+<ul class="simple">
+<li><p>NoSQL databases store data as</p>
+<ul>
+<li><p>key-value stores</p></li>
+<li><p>document stores</p></li>
+</ul>
+</li>
+</ul>
+<p align="center"><img src="./images/rdbms_keyvalue.png" width=600 height=400></p>
+<p align="center"><img src="./images/native_keyvalue.png" width=600 height=400></p></section>
+<section id="cypher-fundamentals">
+<h2>Cypher Fundamentals<a class="headerlink" href="#cypher-fundamentals" title="Permalink to this headline">#</a></h2>
+<ul class="simple">
+<li><p>In this module we learn how to write Cypher code to retrieve data from the graph</p>
+<ul>
+<li><p>Retrieve nodes from the graph.</p>
+<ul>
+<li><p>Retrieve nodes with a particular label.</p></li>
+<li><p>Filter the retrieval by a property value.</p></li>
+<li><p>Return property values.</p></li>
+</ul>
+</li>
+<li><p>Retrieve nodes and relationships from the graph using patterns in the graph.</p></li>
+<li><p>Filter queries</p></li>
+</ul>
+</li>
+<li><p><strong>DataModel</strong></p></li>
+</ul>
+<p align="center"><img src="https://graphacademy.neo4j.com/courses/cypher-fundamentals/1-reading/images/movie-schema.svg"></p>
+<ul class="simple">
+<li><p><strong>Introduction to Cypher</strong></p>
+<ul>
+<li><p>Nodes</p>
+<ul>
+<li><p>nodes are represented with labels as <code class="docutils literal notranslate"><span class="pre">(:Person)</span></code> or <code class="docutils literal notranslate"><span class="pre">(:Movie)</span></code></p></li>
+</ul>
+</li>
+<li><p>Relationship</p>
+<ul>
+<li><p>relationship must have a direction and a type as <code class="docutils literal notranslate"><span class="pre">--&gt;</span></code></p></li>
+<li><p>in Cypher they are represented as <code class="docutils literal notranslate"><span class="pre">[:DIRECTED]</span></code> or <code class="docutils literal notranslate"><span class="pre">[:ACTED_IN]</span></code></p></li>
+</ul>
+</li>
+<li><p>Properties</p>
+<ul>
+<li><p>Both nodes and relationships can contain properties</p></li>
+<li><p>properties are used to represent data in graph</p></li>
+<li><p>they are represented as (:Person <code class="docutils literal notranslate"><span class="pre">{name:</span> <span class="pre">'Tom</span> <span class="pre">Hanks'}</span></code>) or (:Movie <code class="docutils literal notranslate"><span class="pre">{title:</span> <span class="pre">'Cloud</span> <span class="pre">Atlas'}</span></code>)</p></li>
+</ul>
+</li>
+<li><p>A typical Cypher query</p>
+<ul>
+<li><p>Retrieve person nodes of person named ‘Tom Hanks’ who acted in the movie ‘Cloud Atlas’</p></li>
+<li><p>MATCH clause tells us to retrieve data in graph</p></li>
+<li><p>RETURN clause tells us to return Person and Movie node information</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<div class="highlight-cypher notranslate"><div class="highlight"><pre><span></span>MATCH
+  (p: Person {name: &#39;Tom Hanks&#39;}) - [:ACTED_IN] -&gt; (m:Movie {title: &#39;Cloud Atlas&#39;})
+RETURN p, m
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><strong>Finding Relationships</strong></p>
+<ul>
+<li><p>traverse the graph using relationships</p></li>
+<li><p>a Cypher pattern <code class="docutils literal notranslate"><span class="pre">()</span> <span class="pre">-&lt;relationship&gt;-&gt;</span> <span class="pre">()</span></code></p></li>
+<li><p>if we are interested in all the movies Tom Hanks has acted in, we use</p></li>
+<li><p>a (:Person) has acted in a (:Movie)</p></li>
+</ul>
+</li>
+</ul>
+<div class="highlight-cypher notranslate"><div class="highlight"><pre><span></span>    MATCH (p:Person {name: &#39;Tom Hanks&#39;})-[:ACTED_IN]-&gt;(m) 
+    RETURN m.title
+</pre></div>
+</div>
+<div class="highlight-cypher notranslate"><div class="highlight"><pre><span></span>    MATCH (p:Person)-[:ACTED_IN]-&gt;(m) 
+    WHERE p.name = &#39;Tom Hanks&#39; 
+    RETURN m.title
+</pre></div>
+</div>
+<div class="highlight-cypher notranslate"><div class="highlight"><pre><span></span><span class="w">    </span><span class="k">MATCH</span><span class="w"> </span><span class="p">(</span><span class="n">m</span><span class="p">:</span><span class="n">Movie</span><span class="p">)</span><span class="o">&lt;-[</span><span class="p">:</span><span class="n">ACTED_IN</span><span class="o">]-</span><span class="w"> </span><span class="p">(</span><span class="n">p</span><span class="p">:</span><span class="n">Person</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="k">RETURN</span><span class="w"> </span><span class="n">m</span><span class="p">.</span><span class="n">title</span><span class="p">,</span><span class="w"> </span><span class="n">p</span><span class="p">.</span><span class="n">name</span><span class="w"></span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>p and m are variables</p></li>
+<li><p>Movies released in 2008 or 2009</p></li>
+</ul>
+<div class="highlight-cypher notranslate"><div class="highlight"><pre><span></span><span class="w">    </span><span class="k">MATCH</span><span class="w"> </span><span class="p">(</span><span class="n">m</span><span class="p">:</span><span class="n">Movie</span><span class="p">)</span><span class="o">&lt;-[</span><span class="p">:</span><span class="n">ACTED_IN</span><span class="o">]-</span><span class="p">(</span><span class="n">p</span><span class="p">:</span><span class="n">Person</span><span class="p">)</span><span class="w"> </span>
+<span class="w">    </span><span class="k">WHERE</span><span class="w"> </span><span class="n">m</span><span class="p">.</span><span class="n">released</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="m">2008</span><span class="w"> </span><span class="n">or</span><span class="w"> </span><span class="n">m</span><span class="p">.</span><span class="n">released</span><span class="p">=</span><span class="m">2009</span><span class="w"> </span>
+<span class="w">    </span><span class="k">RETURN</span><span class="w"> </span><span class="n">m</span><span class="w"></span>
+</pre></div>
+</div>
+<div class="highlight-cypher notranslate"><div class="highlight"><pre><span></span><span class="w">    </span><span class="k">MATCH</span><span class="w"> </span><span class="p">(</span><span class="n">p</span><span class="p">:</span><span class="n">Person</span><span class="p">)</span><span class="w"> </span><span class="o">-[</span><span class="p">:</span><span class="n">ACTED_IN</span><span class="o">]-&gt;</span><span class="w"> </span><span class="p">(</span><span class="n">m</span><span class="p">:</span><span class="n">Movie</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="k">WHERE</span><span class="w"> </span><span class="n">m</span><span class="p">.</span><span class="n">released</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="m">2008</span><span class="w"> </span><span class="n">or</span><span class="w"> </span><span class="n">m</span><span class="p">.</span><span class="n">released</span><span class="p">=</span><span class="m">2009</span><span class="w"> </span>
+<span class="w">    </span><span class="k">RETURN</span><span class="w"> </span><span class="n">m</span><span class="w"></span>
+</pre></div>
+</div>
+<div class="highlight-cypher notranslate"><div class="highlight"><pre><span></span><span class="w">    </span><span class="k">MATCH</span><span class="w"> </span><span class="p">(</span><span class="n">p</span><span class="p">:</span><span class="n">Person</span><span class="p">)</span><span class="w"> </span><span class="o">-[</span><span class="p">:</span><span class="n">ACTED_IN</span><span class="o">]-&gt;</span><span class="w"> </span><span class="p">(</span><span class="n">m</span><span class="p">:</span><span class="n">Movie</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="k">WHERE</span><span class="w"> </span><span class="n">m</span><span class="p">.</span><span class="n">released</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="m">2008</span><span class="w"> </span><span class="n">or</span><span class="w"> </span><span class="n">m</span><span class="p">.</span><span class="n">released</span><span class="p">=</span><span class="m">2009</span><span class="w"> </span>
+<span class="w">    </span><span class="k">RETURN</span><span class="w"> </span><span class="n">m</span><span class="w"></span>
+</pre></div>
+</div>
+<p align="center"><img src="./images/query_movie2008-9.png"></p>
+<ul class="simple">
+<li><p>All the movies released between 2000 and 2003</p></li>
+</ul>
+<div class="highlight-cypher notranslate"><div class="highlight"><pre><span></span><span class="k">MATCH</span><span class="w"> </span><span class="p">(</span><span class="n">p</span><span class="p">:</span><span class="n">Person</span><span class="p">)</span><span class="o">-[</span><span class="p">:</span><span class="n">ACTED_IN</span><span class="o">]-&gt;</span><span class="p">(</span><span class="n">m</span><span class="p">:</span><span class="n">Movie</span><span class="p">)</span><span class="w"></span>
+<span class="k">WHERE</span><span class="w"> </span><span class="m">2000</span><span class="w"> </span><span class="p">&lt;=</span><span class="w"> </span><span class="n">m</span><span class="p">.</span><span class="n">released</span><span class="w"> </span><span class="p">&lt;=</span><span class="w"> </span><span class="m">2003</span><span class="w"></span>
+<span class="k">RETURN</span><span class="w"> </span><span class="n">p</span><span class="p">.</span><span class="n">name</span><span class="p">,</span><span class="w"> </span><span class="n">m</span><span class="p">.</span><span class="n">title</span><span class="p">,</span><span class="w"> </span><span class="n">m</span><span class="p">.</span><span class="n">released</span><span class="w"></span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>All the actor names starting with Michael</p></li>
+</ul>
+<div class="highlight-cypher notranslate"><div class="highlight"><pre><span></span>MATCH (p:Person)-[:ACTED_IN]-&gt;()
+WHERE p.name STARTS WITH &#39;Michael&#39;
+RETURN p.name
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>People who wrote movie but did not direct the same movie</p></li>
+</ul>
+<div class="highlight-cypher notranslate"><div class="highlight"><pre><span></span><span class="k">MATCH</span><span class="w"> </span><span class="p">(</span><span class="n">p</span><span class="p">:</span><span class="n">Person</span><span class="p">)</span><span class="o">-[</span><span class="p">:</span><span class="n">WROTE</span><span class="o">]-&gt;</span><span class="p">(</span><span class="n">m</span><span class="p">:</span><span class="n">Movie</span><span class="p">)</span><span class="w"></span>
+<span class="k">WHERE</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="n">exists</span><span class="p">(</span><span class="w"> </span><span class="p">(</span><span class="n">p</span><span class="p">)</span><span class="o">-[</span><span class="p">:</span><span class="n">DIRECTED</span><span class="o">]-&gt;</span><span class="p">(</span><span class="n">m</span><span class="p">)</span><span class="w"> </span><span class="p">)</span><span class="w"></span>
+<span class="k">RETURN</span><span class="w"> </span><span class="n">p</span><span class="p">.</span><span class="n">name</span><span class="p">,</span><span class="w"> </span><span class="n">m</span><span class="p">.</span><span class="n">title</span><span class="w"></span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>People who were born in year 1965, 70 and 75</p></li>
+</ul>
+<div class="highlight-cypher notranslate"><div class="highlight"><pre><span></span><span class="k">MATCH</span><span class="w"> </span><span class="p">(</span><span class="n">p</span><span class="p">:</span><span class="n">Person</span><span class="p">)</span><span class="w"></span>
+<span class="k">WHERE</span><span class="w"> </span><span class="n">p</span><span class="p">.</span><span class="n">born</span><span class="w"> </span><span class="k">IN</span><span class="w"> </span><span class="o">[</span><span class="m">1965</span><span class="p">,</span><span class="w"> </span><span class="m">1970</span><span class="p">,</span><span class="w"> </span><span class="m">1975</span><span class="o">]</span><span class="w"></span>
+<span class="k">RETURN</span><span class="w"> </span><span class="n">p</span><span class="p">.</span><span class="n">name</span><span class="p">,</span><span class="w"> </span><span class="n">p</span><span class="p">.</span><span class="n">born</span><span class="w"></span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Actors who played Neo in movie The Matrix</p></li>
+</ul>
+<div class="highlight-cypher notranslate"><div class="highlight"><pre><span></span>MATCH (p:Person)-[r:ACTED_IN]-&gt;(m:Movie)
+WHERE  &#39;Neo&#39; IN r.roles AND m.title=&#39;The Matrix&#39;
+RETURN p.name, r.roles
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Actors in movie ‘The Matrix’ who were born after 1960</p></li>
+</ul>
+<div class="highlight-cypher notranslate"><div class="highlight"><pre><span></span>MATCH (a:Person)-[:ACTED_IN]-&gt;(m:Movie)
+WHERE a.born &gt; 1960 and m.title = &#39;The Matrix&#39;
+RETURN a.name, a.born
+</pre></div>
+</div>
+</section>
+<section id="writing-data-to-neo4j">
+<h2>Writing Data to Neo4j<a class="headerlink" href="#writing-data-to-neo4j" title="Permalink to this headline">#</a></h2>
+<ul class="simple">
+<li><p>Objectives</p>
+<ul>
+<li><p>Use MERGE to create nodes in the graph.</p></li>
+<li><p>Use MERGE to create relationships in the graph.</p></li>
+<li><p>Create, update and remove properties for nodes and relationships in the graph.</p></li>
+<li><p>Perform conditional MERGE processing, depending on what is in the graph.</p></li>
+<li><p>Delete nodes and relationships from the graph.</p></li>
+</ul>
+</li>
+<li><p><strong>Create node in database</strong></p>
+<ul>
+<li><p>CREATE or MERGE can be used to create nodes</p></li>
+<li><p>MERGE eliminates duplication of nodes</p></li>
+<li><p>CREATE does not lookup the primary key before adding nodes</p></li>
+<li><p>multiple MERGE clauses can be used together within one code block</p></li>
+<li><p>Added 1 label, created 1 node, set 1 property</p></li>
+</ul>
+</li>
+</ul>
+<div class="highlight-cypher notranslate"><div class="highlight"><pre><span></span>MERGE (p:Person {name: &#39;Michael Cain&#39;})
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Match the created node</p></li>
+</ul>
+<div class="highlight-cypher notranslate"><div class="highlight"><pre><span></span>MATCH (p:Person {name: &#39;Michael Cain&#39;})
+RETURN p
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>multiple MERGE clauses</p></li>
+</ul>
+<div class="highlight-cypher notranslate"><div class="highlight"><pre><span></span>MERGE (p:Person {name: &#39;Katie Holmes&#39;})
+MERGE (m:Movie {title: &#39;The Dark Knight&#39;})
+RETURN p, m
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><strong>Create relationship in database</strong></p>
+<ul>
+<li><p>first find nodes and then create relationship among them</p></li>
+</ul>
+</li>
+</ul>
+<div class="highlight-cypher notranslate"><div class="highlight"><pre><span></span>MATCH (p:Person {name: &#39;Michael Cain&#39;})
+MATCH (m:Movie {title: &#39;The Dark Knight&#39;})
+MERGE (p)-[:ACTED_IN]-&gt;(m)
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>validate the relationship created</p></li>
+</ul>
+<div class="highlight-cypher notranslate"><div class="highlight"><pre><span></span>MATCH (p:Person {name: &#39;Michael Cain&#39;})-[:ACTED_IN]-(m:Movie {title: &#39;The Dark Knight&#39;})
+RETURN p, m
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>the reverse relationship does not exist</p></li>
+</ul>
+<div class="highlight-cypher notranslate"><div class="highlight"><pre><span></span>MATCH (p:Person {name: &#39;Michael Cain&#39;})&lt;-[:ACTED_IN]-(m:Movie {title: &#39;The Dark Knight&#39;})
+RETURN p, m
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>creates nodes and relationships together</p></li>
+<li><p>by default if relationship direction is not specified, it creates from left node to right node specified in the query</p></li>
+</ul>
+<div class="highlight-cypher notranslate"><div class="highlight"><pre><span></span>MERGE (p:Person {name: &#39;Chadwick Boseman&#39;})
+MERGE (m:Movie {title: &#39;Black Panther&#39;})
+MERGE (p)-[:ACTED_IN]-(m)
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Validate query above</p></li>
+</ul>
+<div class="highlight-cypher notranslate"><div class="highlight"><pre><span></span>MATCH (p:Person {name: &#39;Chadwick Boseman&#39;})-[:ACTED_IN]-(m:Movie {title: &#39;Black Panther&#39;})
+RETURN p, m
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Create node and relationship</p>
+<ul>
+<li><p>Find the Person node for Daniel Kaluuya.</p></li>
+<li><p>Create the Movie node, Get Out.</p></li>
+<li><p>Add the ACTED_IN relationship between Daniel Kaluuya and the movie, Get Out.</p></li>
+</ul>
+</li>
+</ul>
+<div class="highlight-cypher notranslate"><div class="highlight"><pre><span></span>MATCH (p:Person {name: &#39;Daniel Kaluuya&#39;}) 
+MERGE (m:Movie {title: &#39;Get Out&#39;})
+MERGE (p)-[:ACTED_IN]-&gt;(m)
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Validate query above</p></li>
+</ul>
+<div class="highlight-cypher notranslate"><div class="highlight"><pre><span></span>MATCH (p:Person {name: &#39;Daniel Kaluuya&#39;})-[:ACTED_IN]-(m:Movie {title: &#39;Get Out&#39;})
+RETURN p, m
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><strong>Updating Properties</strong></p></li>
+</ul>
+<div class="highlight-cypher notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./dbs"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="intro_kafka_ksqldb_stream_processing.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Introduction to Kafka/ksqldb/stream processing</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="neo4j_graph_datascience.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Game of Thrones - Knowledge Graph analysis using Neo4j</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By Chandra<br/>
+  
+      &copy; Copyright 2022.<br/>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>
