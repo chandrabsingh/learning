@@ -1,0 +1,3334 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>SARIMA modeling</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="My ML Book" href="../ml_examples/intro.html" />
+    <link rel="prev" title="Causal Inference Learning" href="../maths/causal_inference_learning.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../_static/mylogo.png" class="logo" alt="logo">
+      
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    Welcome
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  System Design
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../system_design/intro.html">
+   My System Design Book
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../system_design/design_patterns.html">
+     System Design Summary
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../system_design/software_engineering_concepts.html">
+     Software Engineering concepts
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../system_design/googlecloud_use_cases.html">
+     Google - Customer story
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../system_design/awscloud_financial_symposium_2022.html">
+     AWS - Financial Services Cloud Symposium - 2022
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../system_design/aws_usecases.html">
+     AWS - Customer story
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../system_design/design_general_use_cases.html">
+     Case study
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../system_design/netflix.html">
+     Netflix creativity
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../system_design/bk_AlexXu_SystemDesignInterview.html">
+     Book - System Design Interview - Alex Xu
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../system_design/design_patterns_python.html">
+     Design Pattern - Python
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Code
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../codes/intro.html">
+   My Code Book
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../codes/python_faqs.html">
+     Python FAQs
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../algos/all_algos.html">
+     Coding Challenges
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../codes/python_data_analytics.html">
+     Python Data Analytics - FAQs
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Database/Event
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../dbs/intro.html">
+   My DB Book
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+  <label for="toctree-checkbox-3">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../dbs/intro_kafka_ksqldb_stream_processing.html">
+     Introduction to Kafka/ksqldb/stream processing
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../dbs/neo4j_basics.html">
+     Building Neo4j Applications with Python
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../dbs/neo4j_graph_datascience.html">
+     Game of Thrones - Knowledge Graph analysis using Neo4j
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Math
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="../maths/intro.html">
+   My Math Book
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+  <label for="toctree-checkbox-4">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2">
+    <a class="reference internal" href="../maths/probability_simulations.html">
+     Probability Simulations
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../maths/linear_algebra.html">
+     Linear Algebra - FAQs
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../maths/probabilistic_programming.html">
+     Getting started with PyMC3
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../maths/causal_inference_learning.html">
+     Causal Inference Learning
+    </a>
+   </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     SARIMA modeling
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Machine Learning
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../ml_examples/intro.html">
+   My ML Book
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
+  <label for="toctree-checkbox-5">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../ml_examples/ml_glossary.html">
+     ML Conceptual brief
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../ml_examples/Store_Sales_Forecasting_With_Tensorflow.html">
+     Store Sales Forecasting with TensorFlow
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../ml_examples/decision_tree_classification.html">
+     Decision Tree - classification
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../ml_examples/ml_design_patterns.html">
+     Machine Learning Design Patterns
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Deep Learning
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../dl_examples/intro.html">
+   My DL Book
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
+  <label for="toctree-checkbox-6">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../dl_examples/dl_glossary.html">
+     DL Conceptual brief
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../dl_examples/rp_AlexNet.html">
+     AlexNet Summary
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../dl_examples/rp_ResNet.html">
+     ResNet Summary
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../dl_examples/Anima_Anandkumar_Retrospective_Role_of_Tensors_in_Machine_Learning.html">
+     Anima Anandkumar - Retrospective Role of Tensors in ML
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Shell Scripting
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../unix/intro.html">
+   My Unix/Shell Book
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/>
+  <label for="toctree-checkbox-7">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../unix/unix_shell_script.html">
+     Unix/Shell FAQs
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../unix/my_zshrc.html">
+     My .zshrc script
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Lecture Notes
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../cs229_ml/intro.html">
+   CS229 ML - by Andrew Ng
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/>
+  <label for="toctree-checkbox-8">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../cs229_ml/lec02-LinearReg-GradientDescent.html">
+     Lec 02-Linear Regression - Gradient Descent
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../cs229_ml/lec03-LocallyWeighted-LogisticRegression.html">
+     Lec 03-Locally Weighted Regression - Logistic Regression
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../cs229_ml/lec04-Perceptron-GLM.html">
+     Lec 04-Perceptron - GLM
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../cs229_ml/lec05-GDA-NaiveBayes.html">
+     Lec 05-GDA - Naive Bayes
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../cs229_ml/lec06-NaiveBayes-SVM.html">
+     Lec 06-Naive Bayes - SVM
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../cs229_ml/lec07-Kernels-SVM.html">
+     Lec 07-Kernels - SVM
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../cs229_ml/lec08-DataSplits-Models-CrossValidation.html">
+     Lec 08-Data Splits - Models - Cross Validation
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../cs229_ml/lec09-Approx-EstimationError-ERM.html">
+     Lec 09-Estimation Error - ERM
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../cs229_ml/lec10-DecisionTrees-EnsembleMethods.html">
+     Lec 10-Decision Trees - Ensemble Methods
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../cs229_ml/lec11-Intro-NN.html">
+     Lec 11-Neural Networks
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../cs229_ml/lec12-Backpropagation-ImprovingNN.html">
+     Lec 12-Improving NN
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../cs229_ml/lec13-DebuggingMLModels-ErrorAnalysis.html">
+     Lec 13-Debugging ML Models-Error Analysis
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../cs229_ml/lec14-Expectation-MaximizationAlgo.html">
+     Lec 14-Expectation-Maximization Algo
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../cs229_ml/lec15-EMAlgo-FactorAnalysis.html">
+     Lec 15-EM Algo-Factor Analysis
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../cs229_ml/lec16-IndependentComponentAnalysis-RL.html">
+     Lec 16-Independent Component Analysis-RL
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../cs229_ml/lec17-MDPs-ValuePolicyIteration.html">
+     Lec 17-MDPs-Value Policy Iteration
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../cs229_ml/lec18-continuousMDPs-ModelSimulation.html">
+     Lec 18-Continuous MDPs-Model Simulation
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+    </div>
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<div class="menu-dropdown menu-dropdown-launch-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Launch interactive content">
+      <i class="fas fa-rocket"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://mybinder.org/v2/gh/chandrabsingh/learning/master?urlpath=tree/learning/econometrics/SARIMA_modeling.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Binder"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="../_static/images/logo_binder.svg">
+  </span>
+<span class="headerbtn__text-container">Binder</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-repository-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Source repositories">
+      <i class="fab fa-github"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://github.com/chandrabsingh/learning"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Source repository"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="headerbtn__text-container">repository</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/chandrabsingh/learning/issues/new?title=Issue%20on%20page%20%2Feconometrics/SARIMA_modeling.html&body=Your%20issue%20content%20here."
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Open an issue"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="headerbtn__text-container">open issue</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="../_sources/econometrics/SARIMA_modeling.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.ipynb</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#theoretical-aspects">
+   Theoretical Aspects
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#goals">
+     Goals
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#extending-arma-models-time-trends">
+     Extending ARMA Models - Time trends
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#time-trends">
+       Time trends
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#exponential-trends">
+       Exponential trends
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#forecasting">
+       Forecasting
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#forecasting-exponential-trends">
+       Forecasting exponential trends
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#seasonality">
+     Seasonality
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#seasonal-dummies">
+       Seasonal dummies
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#estimation">
+       Estimation
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#restricted-unrestricted-seasonality-anova">
+       ?? Restricted/Unrestricted seasonality ANOVA
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#forecasting-and-prediction-intervals">
+       Forecasting and Prediction Intervals
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#fourier-series-for-seasonality">
+       ?? Fourier Series for seasonality
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#seasonal-ma">
+     Seasonal MA
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#ma-models">
+       MA models
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#prediction-interval-in-ma-models">
+       Prediction Interval in MA models
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#ma-invertibility-and-prediction">
+       MA Invertibility and Prediction
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#summary">
+       Summary
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#seasonal-autoregression">
+     Seasonal Autoregression
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#lag-operator">
+       Lag operator
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#seasonal-ar-models">
+       Seasonal AR models
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#ignoring-the-restriction">
+       Ignoring the restriction
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#prediction-intervals">
+       Prediction Intervals
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#random-walks-with-seasonality">
+       Random Walks with Seasonality
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#seasonal-differencing">
+       Seasonal Differencing
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#sarima-models">
+     SARIMA Models
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#seasonal-arma">
+       Seasonal ARMA
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#incorporate-the-differencing-parameter">
+       Incorporate the differencing parameter
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id1">
+       Forecasting
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#forecasting-with-seasonal-differencing">
+       Forecasting with Seasonal Differencing
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#complete-model">
+       Complete Model
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#practical-aspects">
+   Practical Aspects
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#import-packages">
+     Import Packages
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#load-data">
+     Load Data
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#non-seasonal-modeling">
+     Non-seasonal modeling
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#time-trend-and-ar-1">
+     Time Trend and AR(1)
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#arma-1-1-with-a-trend">
+     ARMA(1,1) with a Trend
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#information-criteria-aic-bic-hqic">
+     Information Criteria: AIC, BIC &amp; HQIC
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#arima-1-1-1">
+     ARIMA(1, 1, 1)
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#arima-0-1-1">
+     ARIMA(0, 1, 1)
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#arima-0-1-1-without-a-constant">
+     ARIMA(0,1,1) without a constant
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#seasonal">
+     Seasonal
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#constructing-seasonal-dummies">
+     Constructing Seasonal Dummies
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#arima-1-0-0-with-seasonal-dummies">
+     ARIMA(1, 0, 0) with seasonal dummies
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#sarima-0-0-0-times-0-1-0-12">
+     SARIMA
+     <span class="math notranslate nohighlight">
+      \((0,0,0)\times(0,1,0)_{12}\)
+     </span>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#pmdarima">
+     pmdarima
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#references">
+   References
+  </a>
+ </li>
+</ul>
+
+    </nav>
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>SARIMA modeling</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#theoretical-aspects">
+   Theoretical Aspects
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#goals">
+     Goals
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#extending-arma-models-time-trends">
+     Extending ARMA Models - Time trends
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#time-trends">
+       Time trends
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#exponential-trends">
+       Exponential trends
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#forecasting">
+       Forecasting
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#forecasting-exponential-trends">
+       Forecasting exponential trends
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#seasonality">
+     Seasonality
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#seasonal-dummies">
+       Seasonal dummies
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#estimation">
+       Estimation
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#restricted-unrestricted-seasonality-anova">
+       ?? Restricted/Unrestricted seasonality ANOVA
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#forecasting-and-prediction-intervals">
+       Forecasting and Prediction Intervals
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#fourier-series-for-seasonality">
+       ?? Fourier Series for seasonality
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#seasonal-ma">
+     Seasonal MA
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#ma-models">
+       MA models
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#prediction-interval-in-ma-models">
+       Prediction Interval in MA models
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#ma-invertibility-and-prediction">
+       MA Invertibility and Prediction
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#summary">
+       Summary
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#seasonal-autoregression">
+     Seasonal Autoregression
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#lag-operator">
+       Lag operator
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#seasonal-ar-models">
+       Seasonal AR models
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#ignoring-the-restriction">
+       Ignoring the restriction
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#prediction-intervals">
+       Prediction Intervals
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#random-walks-with-seasonality">
+       Random Walks with Seasonality
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#seasonal-differencing">
+       Seasonal Differencing
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#sarima-models">
+     SARIMA Models
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#seasonal-arma">
+       Seasonal ARMA
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#incorporate-the-differencing-parameter">
+       Incorporate the differencing parameter
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id1">
+       Forecasting
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#forecasting-with-seasonal-differencing">
+       Forecasting with Seasonal Differencing
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#complete-model">
+       Complete Model
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#practical-aspects">
+   Practical Aspects
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#import-packages">
+     Import Packages
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#load-data">
+     Load Data
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#non-seasonal-modeling">
+     Non-seasonal modeling
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#time-trend-and-ar-1">
+     Time Trend and AR(1)
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#arma-1-1-with-a-trend">
+     ARMA(1,1) with a Trend
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#information-criteria-aic-bic-hqic">
+     Information Criteria: AIC, BIC &amp; HQIC
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#arima-1-1-1">
+     ARIMA(1, 1, 1)
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#arima-0-1-1">
+     ARIMA(0, 1, 1)
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#arima-0-1-1-without-a-constant">
+     ARIMA(0,1,1) without a constant
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#seasonal">
+     Seasonal
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#constructing-seasonal-dummies">
+     Constructing Seasonal Dummies
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#arima-1-0-0-with-seasonal-dummies">
+     ARIMA(1, 0, 0) with seasonal dummies
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#sarima-0-0-0-times-0-1-0-12">
+     SARIMA
+     <span class="math notranslate nohighlight">
+      \((0,0,0)\times(0,1,0)_{12}\)
+     </span>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#pmdarima">
+     pmdarima
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#references">
+   References
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <section class="tex2jax_ignore mathjax_ignore" id="sarima-modeling">
+<h1>SARIMA modeling<a class="headerlink" href="#sarima-modeling" title="Permalink to this headline">#</a></h1>
+<section id="theoretical-aspects">
+<h2>Theoretical Aspects<a class="headerlink" href="#theoretical-aspects" title="Permalink to this headline">#</a></h2>
+<section id="goals">
+<h3>Goals<a class="headerlink" href="#goals" title="Permalink to this headline">#</a></h3>
+<ul class="simple">
+<li><p>Extend understanding from ARMA models to SARIMA (Seasonal AutoRegressive Integrated Moving Average) models</p>
+<ul>
+<li><p>time trends</p></li>
+<li><p>seasonal dummies</p></li>
+<li><p>seasonal auto aggressive</p></li>
+<li><p>moving average components</p></li>
+<li><p>differencing into unified framework</p></li>
+</ul>
+</li>
+<li><p>Experiment with pmdarima package</p></li>
+</ul>
+</section>
+<section id="extending-arma-models-time-trends">
+<h3>Extending ARMA Models - Time trends<a class="headerlink" href="#extending-arma-models-time-trends" title="Permalink to this headline">#</a></h3>
+<ul class="simple">
+<li><p>Interested in forecasting h step-ahead forecast(multiple horizon T+1, T+2, .. T+h) given information available at time T
+(<span class="math notranslate nohighlight">\(X_{T+h|T}\)</span>)</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[X_t = T_t + S_t + C_t + \epsilon_t\]</div>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(T_t\)</span> - Trend</p></li>
+<li><p><span class="math notranslate nohighlight">\(S_t\)</span> - Seasonal - deterministic</p></li>
+<li><p><span class="math notranslate nohighlight">\(C_t\)</span> - Cyclical - ARMA component</p></li>
+<li><p><span class="math notranslate nohighlight">\(\epsilon\)</span> - white noise</p></li>
+</ul>
+<section id="time-trends">
+<h4>Time trends<a class="headerlink" href="#time-trends" title="Permalink to this headline">#</a></h4>
+<ul class="simple">
+<li><p>A basic trend model
+$<span class="math notranslate nohighlight">\(X_t + \beta_0 + \beta_1t + \epsilon_t\)</span>$</p></li>
+<li><p>A cross sectional regression model
+$<span class="math notranslate nohighlight">\(X_t + \beta_0 + \beta_1t + \beta_2t^2 + \epsilon_t\)</span>$</p>
+<ul>
+<li><p>quadratic or higher terms are rarely used</p></li>
+<li><p>or if used their impact is monitored carefully</p></li>
+<li><p>log terms are generally used instead of X itself</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="exponential-trends">
+<h4>Exponential trends<a class="headerlink" href="#exponential-trends" title="Permalink to this headline">#</a></h4>
+<ul class="simple">
+<li><p>Models estimated in logs have exponential trends
+$<span class="math notranslate nohighlight">\(\ln X_t + \beta_0 + \beta_1t + \epsilon_t\)</span>$</p></li>
+<li><p><span class="math notranslate nohighlight">\(\beta_1\)</span> is the growth rate of <span class="math notranslate nohighlight">\(X_t\)</span>
+$<span class="math notranslate nohighlight">\(X_t = \beta_0 \exp(\beta_1t)\epsilon_t\)</span>$</p></li>
+<li><p>can use simple trend model using OLS</p></li>
+</ul>
+</section>
+<section id="forecasting">
+<h4>Forecasting<a class="headerlink" href="#forecasting" title="Permalink to this headline">#</a></h4>
+<ul class="simple">
+<li><p>Trend forecasting is simple
+$<span class="math notranslate nohighlight">\(X_t + \beta_0 + \beta_1t + \epsilon_t\)</span>$</p></li>
+<li><p>Forecast will be
+$<span class="math notranslate nohighlight">\(E_T[X_{T+h}] = \hat{X}_{T+h|T} = \beta_0 + \beta_1{(T+h)} \)</span>$</p></li>
+<li><p>Generally interested in prediction intervals (eg 95%)
+$<span class="math notranslate nohighlight">\( PI = [\hat{X}_{T+h|T} - 1.96\sigma, \hat{X}_{T+h|T} + 1.96\sigma] \)</span>$</p>
+<ul>
+<li><p>assuming errors are normally distributed</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="forecasting-exponential-trends">
+<h4>Forecasting exponential trends<a class="headerlink" href="#forecasting-exponential-trends" title="Permalink to this headline">#</a></h4>
+<ul class="simple">
+<li><p>Assumption</p>
+<ul>
+<li><p><span class="math notranslate nohighlight">\(\epsilon_t \overset{\text{i.i.d.}}{\sim} N(0, \sigma^2)\)</span></p></li>
+<li><p>forecast variable is log-normal</p></li>
+</ul>
+</li>
+<li><p>Mean
+$<span class="math notranslate nohighlight">\(\ln \hat{X}_{T+h|T} \sim N(\beta_0 + \beta_1{(T+h)}, \sigma^2) \implies \hat{X}_{T+h|T} \sim \text{LogNormal}(\beta_0 + \beta_1{(T+h)}, \sigma^2) \)</span>$</p></li>
+<li><p>2 ways of forecasting</p>
+<ul>
+<li><p>Median as it is normally distributed</p>
+<ul>
+<li><p><span class="math notranslate nohighlight">\(\hat{X}_{T+h|T} = \exp(\beta_0 + \beta_1{(T+h)})\)</span></p></li>
+<li><p>this method is simple,</p></li>
+<li><p>doesnot require any knowledge about the variance</p></li>
+<li><p>more common than the mean method</p></li>
+</ul>
+</li>
+<li><p>Mean method</p>
+<ul>
+<li><p>Jensen’s inequality</p></li>
+<li><p>as exp(.) is a convex function</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Prediction intervals (eg 95%) is simple
+$<span class="math notranslate nohighlight">\( PI = [\exp(\beta_0 + \beta_1{(T+h)} - 1.96\sigma), \exp(\beta_0 + \beta_1{(T+h)} + 1.96\sigma)] \)</span>$</p>
+<ul>
+<li><p>Symmetric in logs, asymetric in levels</p></li>
+<li><p>Forecasting logs is very common</p>
+<ul>
+<li><p>by differencing we get growth rate</p></li>
+<li><p>use when the series is strictly positive</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</section>
+</section>
+<section id="seasonality">
+<h3>Seasonality<a class="headerlink" href="#seasonality" title="Permalink to this headline">#</a></h3>
+<ul class="simple">
+<li><p>Pure seasonal model
+$<span class="math notranslate nohighlight">\(X_t = S_t + \epsilon_t\)</span>$</p></li>
+<li><p>Seasonal pattern repeats every m observations</p></li>
+<li><p>different frequencies</p></li>
+<li><p>completely predictable</p></li>
+</ul>
+<section id="seasonal-dummies">
+<h4>Seasonal dummies<a class="headerlink" href="#seasonal-dummies" title="Permalink to this headline">#</a></h4>
+<div class="math notranslate nohighlight">
+\[X_t = \sum\limits_{i=1}^{m}\gamma_iI_{[S_m(t)=i]} + \epsilon_t\]</div>
+<ul class="simple">
+<li><p>dummy variables for each season</p>
+<ul>
+<li><p>use indicator function</p></li>
+<li><p><span class="math notranslate nohighlight">\(S_m(t) = t - m\lfloor(t-1)/m\rfloor \)</span></p>
+<ul>
+<li><p>this returns values from 1,..,m</p></li>
+</ul>
+</li>
+<li><p><span class="math notranslate nohighlight">\(\gamma_i\)</span> - for each period there is a different coeff</p>
+<ul>
+<li><p>allows regular variation that depends on that season only</p></li>
+</ul>
+</li>
+<li><p>m seasonal dummies</p></li>
+</ul>
+</li>
+<li><p>Multiplicative seasonalities using additive decomposition
+$<span class="math notranslate nohighlight">\(X_t = \sum\limits_{i=1}^{m_1}\gamma_iI_{[S_{m_{1}}(t)=i]} + \sum\limits_{j=2}^{m_2}\delta_jI_{[S_{m_{2}}(t)=j]} + \epsilon_t\)</span>$</p>
+<ul>
+<li><p><span class="math notranslate nohighlight">\(m_2 \gt m_1\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(m_2\)</span> is not an integer multiple of <span class="math notranslate nohighlight">\(m_1\)</span></p></li>
+<li><p>must drop one dummy when using multiple seasons</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="estimation">
+<h4>Estimation<a class="headerlink" href="#estimation" title="Permalink to this headline">#</a></h4>
+<ul class="simple">
+<li><p>generally use OLS</p></li>
+<li><p>combine with time trends
+$<span class="math notranslate nohighlight">\(X_t = \beta_1t + \beta_2t^2 + \sum\limits_{i=1}^{m}\gamma_iI_{[S_m(t)=i]} + \epsilon_t\)</span>$</p></li>
+<li><p>Restricted
+$<span class="math notranslate nohighlight">\(X_t = \beta_0 + \epsilon_t\)</span>$</p></li>
+<li><p>Unrestricted
+$<span class="math notranslate nohighlight">\(X_t = \beta_0 + \sum\limits_{i=1}^{m-1}\gamma_iI_{[S_m(t)=i]} + \epsilon_t\)</span>$</p></li>
+<li><p>F-test only depends on the unrestricted R-squared</p>
+<ul>
+<li><p>in this case, as there is no time trends, restricted R-squared is zero</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="restricted-unrestricted-seasonality-anova">
+<h4>?? Restricted/Unrestricted seasonality ANOVA<a class="headerlink" href="#restricted-unrestricted-seasonality-anova" title="Permalink to this headline">#</a></h4>
+</section>
+<section id="forecasting-and-prediction-intervals">
+<h4>Forecasting and Prediction Intervals<a class="headerlink" href="#forecasting-and-prediction-intervals" title="Permalink to this headline">#</a></h4>
+<ul class="simple">
+<li><p>Forecasts are simple
+$<span class="math notranslate nohighlight">\(\hat{X}_{T+h|T} = \beta_1t + \beta_2t^2 + \gamma S_m(T+h) \)</span>$</p></li>
+<li><p>Prediction intervals (eg 95%) is standard
+$<span class="math notranslate nohighlight">\( PI = [\hat{X}_{T+h|T} - 1.96\sigma, \hat{X}_{T+h|T} + 1.96\sigma] \)</span>$</p></li>
+<li><p>If modeling <span class="math notranslate nohighlight">\(\ln X_t\)</span>, use mean or median forecast</p></li>
+</ul>
+</section>
+<section id="fourier-series-for-seasonality">
+<h4>?? Fourier Series for seasonality<a class="headerlink" href="#fourier-series-for-seasonality" title="Permalink to this headline">#</a></h4>
+<ul class="simple">
+<li><p><a class="reference external" href="https://medium.com/intive-developers/forecasting-time-series-with-multiple-seasonalities-using-tbats-in-python-398a00ac0e8a">https://medium.com/intive-developers/forecasting-time-series-with-multiple-seasonalities-using-tbats-in-python-398a00ac0e8a</a></p></li>
+</ul>
+</section>
+</section>
+<section id="seasonal-ma">
+<h3>Seasonal MA<a class="headerlink" href="#seasonal-ma" title="Permalink to this headline">#</a></h3>
+<section id="ma-models">
+<h4>MA models<a class="headerlink" href="#ma-models" title="Permalink to this headline">#</a></h4>
+<ul class="simple">
+<li><p>General MA(1) series
+$<span class="math notranslate nohighlight">\(X_t = (1+\theta_1L)\epsilon_t = \epsilon_t + \theta_1L\epsilon_t = \epsilon_t + \theta_1\epsilon_{t-1}\)</span>$</p></li>
+<li><p>Seasonal MA(1)x(1) series
+$<span class="math notranslate nohighlight">\( \begin{equation} \\
+\begin{aligned}\\
+X_t &amp;= (1+\theta_1L)(1+\theta_mL^m)\epsilon_t \\
+&amp;= (1+\theta_1L +\theta_mL^m + \theta_1\theta_mL^{m+1})\epsilon_t \\
+&amp;= \epsilon_t +\theta_1\epsilon_{t-1} +\theta_m\epsilon_{t-m} + \theta_1\theta_m\epsilon_{t-m-1} \\
+\end{aligned}\\
+\end{equation} \)</span>$</p>
+<ul>
+<li><p>1st line</p>
+<ul>
+<li><p>2nd term <span class="math notranslate nohighlight">\((1+\theta_mL^m)\)</span> has a lag of seasonal frequency</p></li>
+</ul>
+</li>
+<li><p>2nd line</p>
+<ul>
+<li><p><span class="math notranslate nohighlight">\(\theta_1\theta_mL^{m+1}\)</span> is a restricted term</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="prediction-interval-in-ma-models">
+<h4>Prediction Interval in MA models<a class="headerlink" href="#prediction-interval-in-ma-models" title="Permalink to this headline">#</a></h4>
+<ul class="simple">
+<li><p>Prediction intervals for MA process
+$<span class="math notranslate nohighlight">\(X_t = \mu + \sum\limits_{i=1}^{Q} \theta_i \epsilon_{t-i} + \epsilon_{t} \)</span>$</p></li>
+<li><p>h-step error
+$<span class="math notranslate nohighlight">\(X_{T+h} - \hat{X}_{T+h|T} = \epsilon_{T+h} + \sum\limits_{i=1}^{min(h-1, Q)} \theta_i \epsilon_{T+h-i} \)</span>$</p></li>
+<li><p>variance of forecast error
+$<span class="math notranslate nohighlight">\(\sigma^2_h = \sigma^2 \left( 1 + \sum\limits_{i=1}^{min(h-1, Q)} \theta^2_i \right) \)</span>$</p></li>
+<li><p>Prediction intervals
+$<span class="math notranslate nohighlight">\(\big[ \hat{X}_{T+h|T} \pm 1.96\sigma_h \big]\)</span>$</p>
+<ul>
+<li><p><span class="math notranslate nohighlight">\(\sigma_h \)</span> ahead volatility</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="ma-invertibility-and-prediction">
+<h4>MA Invertibility and Prediction<a class="headerlink" href="#ma-invertibility-and-prediction" title="Permalink to this headline">#</a></h4>
+</section>
+<section id="summary">
+<h4>Summary<a class="headerlink" href="#summary" title="Permalink to this headline">#</a></h4>
+<ul class="simple">
+<li><p>Optimal forecast in MA models only depends on observed data</p></li>
+<li><p>this happens by inverting MA into AR</p></li>
+<li><p>Seasonal MA are constructed using the exact same methods as seasonal auto regressions by constructing products of lag polynomials where lags are there both at seasonal frequency and at time series frequency</p></li>
+</ul>
+</section>
+</section>
+<section id="seasonal-autoregression">
+<h3>Seasonal Autoregression<a class="headerlink" href="#seasonal-autoregression" title="Permalink to this headline">#</a></h3>
+<section id="lag-operator">
+<h4>Lag operator<a class="headerlink" href="#lag-operator" title="Permalink to this headline">#</a></h4>
+<ul class="simple">
+<li><p>Lag operator L is essential to understanding seasonal ARMAs</p></li>
+<li><p>Key properties</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{aligned}
+LX_t &amp;= X_{t-1} \\
+L^2X_t &amp;= L(LX_{t}) = LX_{t-1} = X_{t-2} \\
+L^pL^qX_t &amp;= L^{p+q}X_t = X_{t-(p+q)} \\
+\end{aligned}\end{split}\]</div>
+<ul class="simple">
+<li><p>Lag polynomials</p>
+<ul>
+<li><p>AR(1)
+$<span class="math notranslate nohighlight">\(\begin{aligned}
+X_t &amp;= \phi_0 + \phi_1X_{t-1} + \epsilon_t \\
+X_t - \phi_1X_{t-1} &amp;= \phi_0 + \epsilon_t \\
+X_t - \phi_1LX_{t} &amp;= \phi_0 + \epsilon_t \\
+(1 - \phi_1L)X_{t} &amp;= \phi_0 + \epsilon_t \\
+\end{aligned}\)</span>$</p></li>
+<li><p>AR(p)
+$<span class="math notranslate nohighlight">\(\begin{aligned}
+(1 - \phi_1L - \phi_2L^2 - ... - \phi_pL^p)X_{t} &amp;= \phi_0 + \epsilon_t \\
+X_t &amp;= \phi_0 + \phi_1X_{t-1} + \phi_2X_{t-2} + ... + \phi_pX_{t-p} + \epsilon_t \\
+\end{aligned}\)</span>$</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="seasonal-ar-models">
+<h4>Seasonal AR models<a class="headerlink" href="#seasonal-ar-models" title="Permalink to this headline">#</a></h4>
+<ul class="simple">
+<li><p>Pure seasonal AR
+$<span class="math notranslate nohighlight">\(\begin{aligned}
+(1 - \phi_mL^m)X_{t} &amp;= \phi_0 + \epsilon_t \\
+X_t &amp;= \phi_0 + \phi_mX_{t-m} + \epsilon_t \\
+\end{aligned}\)</span>$</p>
+<ul>
+<li><p>m is the seasonal period of series</p></li>
+<li><p>such model is not plausible because it will have m unrelated AR1 models combined together</p></li>
+<li><p>what we need is to include short run dynamics</p></li>
+</ul>
+</li>
+<li><p>Seasonal AR with short-run dynamics
+$<span class="math notranslate nohighlight">\(\begin{aligned}
+(1 - \phi_1L)(1 - \phi_mL^m)X_{t} &amp;= \phi_0 + \epsilon_t \\
+(1 - \phi_1L - \phi_mL^m + \phi_1\phi_mL^{(m+1)})X_{t} &amp;= \phi_0 + \epsilon_t \\
+X_t &amp;= \phi_0 + \phi_1X_{t-1} + \phi_mX_{t-m} - \phi_1\phi_mX_{t-m-1} + \epsilon_t \\
+\end{aligned}\)</span>$</p>
+<ul>
+<li><p><span class="math notranslate nohighlight">\(\phi_1LX_{t}\)</span> - AR(1) term</p></li>
+<li><p><span class="math notranslate nohighlight">\(\phi_mL^mX_{t}\)</span> - AR(m) seasonal term</p></li>
+<li><p><span class="math notranslate nohighlight">\(\phi_1\phi_mL^{(m+1)}X_{t}\)</span> - extra term in seasonal AR model</p></li>
+<li><p>Restricted AR(m+1) in two ways</p>
+<ul>
+<li><p>lot of terms missing <span class="math notranslate nohighlight">\(\phi_2\)</span>, <span class="math notranslate nohighlight">\(\phi_3\)</span>, …, <span class="math notranslate nohighlight">\(\phi_{m-1}\)</span></p></li>
+<li><p>negative <span class="math notranslate nohighlight">\(\phi_1\phi_mL^{(m+1)}X_{t}\)</span> - extra term</p></li>
+</ul>
+</li>
+<li><p>SAR(1)x(1)</p>
+<ul>
+<li><p>1st term (1) is the short run dynamics</p></li>
+<li><p>2nd term (1) is the seasonal dynamics</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="ignoring-the-restriction">
+<h4>Ignoring the restriction<a class="headerlink" href="#ignoring-the-restriction" title="Permalink to this headline">#</a></h4>
+<ul class="simple">
+<li><p>can also estimate Unrestricted model as
+$<span class="math notranslate nohighlight">\( X_t = \phi_0 + \phi_1X_{t-1} + \phi_mX_{t-m} + \phi_{m+1}X_{t-m-1} + \epsilon_t \)</span>$</p>
+<ul>
+<li><p>ignore the restriction term</p></li>
+<li><p>much easier as it can be estimated using OLS, because we can then include</p>
+<ul>
+<li><p>time trends</p></li>
+<li><p>seasonal dummies</p></li>
+<li><p>Fourier trends</p></li>
+<li><p>SAR terms</p></li>
+<li><p>and can estimate all using OLS</p></li>
+</ul>
+</li>
+<li><p>restricted model requires a constrained estimator as Non-Linear Least square(NLLS) where <span class="math notranslate nohighlight">\(\phi_{m+1} = - \phi_{1}\phi_{m}\)</span></p>
+<ul>
+<li><p>more complex</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="prediction-intervals">
+<h4>Prediction Intervals<a class="headerlink" href="#prediction-intervals" title="Permalink to this headline">#</a></h4>
+<ul class="simple">
+<li><p>In SAR models prediction intervals are not constant</p></li>
+<li><p>In earlier models, the prediction intervals are constant for time trends or seasonality</p>
+<ul>
+<li><p>but not for cyclical component</p></li>
+</ul>
+</li>
+<li><p>For SAR it depends on the horizon, on the model parameters and also on the model specification</p></li>
+</ul>
+</section>
+<section id="random-walks-with-seasonality">
+<h4>Random Walks with Seasonality<a class="headerlink" href="#random-walks-with-seasonality" title="Permalink to this headline">#</a></h4>
+<ul class="simple">
+<li><p>A seasonal random walk has unit root at seasonal frequency
+$<span class="math notranslate nohighlight">\((1-L^m)X_t = \epsilon_t\)</span>$</p>
+<ul>
+<li><p>coefficient is 1 or unit root here</p></li>
+</ul>
+</li>
+<li><p>Add short run dynamics to make is plausible
+$<span class="math notranslate nohighlight">\((1-\phi_1L)(1-L^m)X_t = \epsilon_t\)</span>$</p>
+<ul>
+<li><p>short run dynamics is combined with seasonal unit root</p></li>
+</ul>
+</li>
+<li><p>Seasonal unit roots need <code class="docutils literal notranslate"><span class="pre">seasonal</span> <span class="pre">differencing</span></code>
+$<span class="math notranslate nohighlight">\(\Delta_mX_t = X_t - X_{t-m}\)</span>$</p>
+<ul>
+<li><p>interested in seasonal growth rather than short run growth</p></li>
+</ul>
+</li>
+<li><p>Note that <span class="math notranslate nohighlight">\(\Delta^m\)</span> and <span class="math notranslate nohighlight">\(\Delta_m\)</span> are different
+$<span class="math notranslate nohighlight">\(\begin{aligned}
+\Delta^mX_t &amp;= \Delta(\Delta^{m-1})X_t = \Delta(\Delta(\Delta(...(\Delta X_t)))) \\
+\Delta_mX_t &amp;= X_t - X_{t-m} \\
+\Delta^2X_t &amp;= \Delta(X_t - X_{t-1}) = X_t - 2X_{t-1} + X_{t-2} \\
+\Delta_2X_t &amp;= X_t -  X_{t-2} \\
+\end{aligned}\)</span>$</p></li>
+</ul>
+</section>
+<section id="seasonal-differencing">
+<h4>Seasonal Differencing<a class="headerlink" href="#seasonal-differencing" title="Permalink to this headline">#</a></h4>
+<ul class="simple">
+<li><p>Seasonal difference removes seasonal unit root
+$<span class="math notranslate nohighlight">\(\Delta_mX_t = X_t - X_{t-m} = (1-L^m)X_t \)</span>$</p></li>
+<li><p>Applying seasonal differencing term, we get
+$<span class="math notranslate nohighlight">\(\begin{aligned}
+(1-\phi_1L)(1-L^m)X_t &amp;= \epsilon_t \\
+(1-\phi_1L)\Delta_mX_t &amp;= \epsilon_t \\
+\Delta_mX_t &amp;= \phi_1\Delta_mX_{t-1} + \epsilon_t \\
+\tilde{X}_t &amp;= \phi_1\tilde{X}_{t-1} + \epsilon_t \\
+\end{aligned}\)</span>$</p>
+<ul>
+<li><p>Remember the seasonal differencing term in forecasts</p></li>
+<li><p>there is no need of using seasonal differencing</p>
+<ul>
+<li><p>if we had a dummy that happens every fourth quarter, when we take difference of a fourth quarter with the previous fourth quarter, then the level shift will be lost</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</section>
+</section>
+<section id="sarima-models">
+<h3>SARIMA Models<a class="headerlink" href="#sarima-models" title="Permalink to this headline">#</a></h3>
+<section id="seasonal-arma">
+<h4>Seasonal ARMA<a class="headerlink" href="#seasonal-arma" title="Permalink to this headline">#</a></h4>
+<ul class="simple">
+<li><p>Seasonal ARMA<span class="math notranslate nohighlight">\((P,Q)\text{x}(P_s,Q_s)\)</span></p>
+<ul>
+<li><p><span class="math notranslate nohighlight">\((P,Q)\)</span> corresponds the time series lag</p></li>
+<li><p><span class="math notranslate nohighlight">\((P_s,Q_s)\)</span> corresponds the seasonal lag</p></li>
+</ul>
+</li>
+<li><p>Seasonal ARMA<span class="math notranslate nohighlight">\((1,1)\text{x}(1,1)\)</span>
+$<span class="math notranslate nohighlight">\((1-\phi_1L)(1-\phi_mL^m)X_t = (1+\theta_1L)(1+\theta_mL^m)\epsilon_t\)</span>$</p></li>
+</ul>
+</section>
+<section id="incorporate-the-differencing-parameter">
+<h4>Incorporate the differencing parameter<a class="headerlink" href="#incorporate-the-differencing-parameter" title="Permalink to this headline">#</a></h4>
+<ul class="simple">
+<li><p>SARIMA - Seasonal Autoregression Integrated Moving Average
+$<span class="math notranslate nohighlight">\((P,D,Q)\text{x}(P_s,D_s,Q_s)\)</span>$</p>
+<ul>
+<li><p><span class="math notranslate nohighlight">\(D\)</span> - standard differencing operator</p>
+<ul>
+<li><p><span class="math notranslate nohighlight">\(\Delta X_t\)</span></p></li>
+</ul>
+</li>
+<li><p><span class="math notranslate nohighlight">\(D_s\)</span> - seasonal differencing operator</p>
+<ul>
+<li><p><span class="math notranslate nohighlight">\(\Delta_m X_t\)</span></p></li>
+</ul>
+</li>
+<li><p>generally <span class="math notranslate nohighlight">\(D\)</span> or <span class="math notranslate nohighlight">\(D_s\)</span> is either</p>
+<ul>
+<li><p>both 0 or</p></li>
+<li><p>either one is 0 and other 1</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="id1">
+<h4>Forecasting<a class="headerlink" href="#id1" title="Permalink to this headline">#</a></h4>
+<ul class="simple">
+<li><p>order of integration matters for forecasting and prediction intervals</p></li>
+<li><p>for non-seasonal differenced series
+$<span class="math notranslate nohighlight">\(\hat{X}_{T+h|T} = X_T + \sum\limits_{i=1}^{h}E_T\left[\Delta X_{T+i} \right]\)</span>$</p></li>
+<li><p>Prediction intervals have the form
+$<span class="math notranslate nohighlight">\(PI = \left[ \hat{X}_{T+h|T} \pm 1.96 \tilde{\sigma}_h \right]\)</span>$</p>
+<ul>
+<li><p>where
+$<span class="math notranslate nohighlight">\(\tilde{\sigma}^2_{h} = \sigma^2_{h} \sum\limits_{i=1}^{h}\left( 1 + \sum\limits_{j=1}^{i} \xi_j \right)^2\)</span>$</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="forecasting-with-seasonal-differencing">
+<h4>Forecasting with Seasonal Differencing<a class="headerlink" href="#forecasting-with-seasonal-differencing" title="Permalink to this headline">#</a></h4>
+<ul class="simple">
+<li><p>we model <span class="math notranslate nohighlight">\(\Delta_mX_t\)</span>
+$<span class="math notranslate nohighlight">\(\begin{aligned} \\
+E\left[X_{T+1}\right] &amp;= X_{T+1-m} + E_T\left[\Delta_m X_{T+1}\right] \\
+&amp;= X_{T+1-m} + E_T\left[ X_{T+1} \right] + E_T\left[ X_{T+1-m} \right] \\
+&amp;= E_T\left[ X_{T+1|T} \right] + X_{T+1-m} - X_{T+1-m|T} \\
+&amp;= E_T\left[ X_{T+1|T} \right] \\
+\end{aligned}\)</span>$</p>
+<ul>
+<li><p>Go back m periods from the time to forecast</p></li>
+<li><p>Add to that the change and the forecast horizon <span class="math notranslate nohighlight">\(E_T\left[\Delta_m X_{T+1}\right]\)</span> which is 1-step from model</p></li>
+</ul>
+</li>
+<li><p>Generally,
+$<span class="math notranslate nohighlight">\(\hat{X}_{T+h|T} = X_{T+1-m} + \sum\limits_{i=1}^{h}E_T \left[ \Delta_m X_{T+h|T} \right]\)</span>$</p></li>
+</ul>
+</section>
+<section id="complete-model">
+<h4>Complete Model<a class="headerlink" href="#complete-model" title="Permalink to this headline">#</a></h4>
+<ul class="simple">
+<li><p>Start by transforming <span class="math notranslate nohighlight">\(X_t\)</span></p>
+<ul>
+<li><p>Log or level</p></li>
+<li><p>Level, Difference, or Seasonal Difference
+$<span class="math notranslate nohighlight">\(\begin{aligned}
+Y_t &amp;= \text{Constant} \\
+&amp;+ \text{Trend} \\
+&amp;+ \text{Seasonal Dummies} \\ 
+&amp;+ \text{AR} + \text{Seasonal AR} \\
+&amp;+ \text{MA} + \text{Seasonal MA} + \epsilon_t \\
+\end{aligned}
+\)</span>$</p></li>
+<li><p>All the terms other than MA or Seasonal MA are common</p>
+<ul>
+<li><p>and can be estimated using OLS</p></li>
+</ul>
+</li>
+<li><p>MA or Seasonal MA make the estimation difficult</p></li>
+</ul>
+</li>
+<li><p>Recommendations for forecasting</p>
+<ul>
+<li><p>most of forecast component must come from trends and seasonal dummy</p></li>
+<li><p>AR components should more or less run out by then</p>
+<ul>
+<li><p>especially for long horizon forecast</p></li>
+<li><p>for short horizon, they will play role</p></li>
+</ul>
+</li>
+<li><p>for differencing, the rule of thumb is, if you are close to unit root</p>
+<ul>
+<li><p>use Augmented Dickey-Fuller test or some other</p></li>
+<li><p>even if you are close to unit root say like 0.9 or 0.95 or less</p>
+<ul>
+<li><p>estimate model using differences</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</section>
+</section>
+</section>
+<section id="practical-aspects">
+<h2>Practical Aspects<a class="headerlink" href="#practical-aspects" title="Permalink to this headline">#</a></h2>
+<section id="import-packages">
+<h3>Import Packages<a class="headerlink" href="#import-packages" title="Permalink to this headline">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">from</span> <span class="nn">statsmodels.tsa.statespace.sarimax</span> <span class="kn">import</span> <span class="n">SARIMAX</span>
+<span class="kn">from</span> <span class="nn">scipy</span> <span class="kn">import</span> <span class="n">stats</span>
+<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">set_style</span><span class="p">(</span><span class="s2">&quot;darkgrid&quot;</span><span class="p">)</span>
+<span class="c1"># These values are optimized for full-screen on a high-resolution monitor</span>
+<span class="c1"># plt.rc(&quot;figure&quot;, figsize=(32,12))</span>
+<span class="c1"># plt.rc(&quot;font&quot;, size=28)</span>
+<span class="c1"># plt.rc(&quot;lines&quot;, linewidth=4)</span>
+
+<span class="kn">import</span> <span class="nn">warnings</span>
+<span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s1">&#39;ignore&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">ModuleNotFoundError</span><span class="g g-Whitespace">                       </span>Traceback (most recent call last)
+<span class="nn">Input In [1],</span> in <span class="ni">&lt;cell line: 4&gt;</span><span class="nt">()</span>
+<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="ne">----&gt; </span><span class="mi">4</span> <span class="kn">from</span> <span class="nn">statsmodels.tsa.statespace.sarimax</span> <span class="kn">import</span> <span class="n">SARIMAX</span>
+<span class="g g-Whitespace">      </span><span class="mi">5</span> <span class="kn">from</span> <span class="nn">scipy</span> <span class="kn">import</span> <span class="n">stats</span>
+<span class="g g-Whitespace">      </span><span class="mi">6</span> <span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+
+<span class="ne">ModuleNotFoundError</span>: No module named &#39;statsmodels&#39;
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="load-data">
+<h3>Load Data<a class="headerlink" href="#load-data" title="Permalink to this headline">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_hdf</span><span class="p">(</span><span class="s2">&quot;./monthly-data.h5&quot;</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;nobs_432&quot;</span><span class="p">)</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">df</span><span class="p">[[</span><span class="s2">&quot;M3276&quot;</span><span class="p">,</span><span class="s2">&quot;M23579&quot;</span><span class="p">,</span><span class="s2">&quot;M25698&quot;</span><span class="p">]]</span>
+<span class="n">data</span><span class="o">.</span><span class="n">index</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+<span class="n">std_data</span> <span class="o">=</span> <span class="p">(</span><span class="n">data</span> <span class="o">-</span> <span class="n">data</span><span class="o">.</span><span class="n">mean</span><span class="p">())</span> <span class="o">/</span> <span class="n">data</span><span class="o">.</span><span class="n">std</span><span class="p">()</span>
+<span class="n">plts</span> <span class="o">=</span> <span class="n">std_data</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">subplots</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="c1"># plt.savefig(&#39;./images/datatrends.png&#39;)</span>
+<span class="c1"># plt.close();</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">();</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Figure size 864x432 with 0 Axes&gt;
+</pre></div>
+</div>
+<img alt="../_images/SARIMA_modeling_12_1.png" src="../_images/SARIMA_modeling_12_1.png" />
+</div>
+</div>
+</section>
+<section id="non-seasonal-modeling">
+<h3>Non-seasonal modeling<a class="headerlink" href="#non-seasonal-modeling" title="Permalink to this headline">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># len(y)</span>
+<span class="mi">432</span><span class="o">/</span><span class="mi">6</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>72.0
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s2">&quot;M3276&quot;</span><span class="p">])</span>
+<span class="n">_</span> <span class="o">=</span> <span class="n">y</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+<span class="c1"># plt.savefig(&#39;./images/datatrends02_nonseasonal.png&#39;)</span>
+<span class="c1"># plt.close();</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">();</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/SARIMA_modeling_15_0.png" src="../_images/SARIMA_modeling_15_0.png" />
+</div>
+</div>
+</section>
+<section id="time-trend-and-ar-1">
+<h3>Time Trend and AR(1)<a class="headerlink" href="#time-trend-and-ar-1" title="Permalink to this headline">#</a></h3>
+<div class="math notranslate nohighlight">
+\[ Y_t = \delta_0 + \delta_1 t + \phi Y_{t-1} + \epsilon_t \]</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ar1_trend</span> <span class="o">=</span> <span class="n">SARIMAX</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">),</span> <span class="n">trend</span><span class="o">=</span><span class="s2">&quot;ct&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">maxiter</span><span class="o">=</span><span class="mi">250</span><span class="p">)</span>
+<span class="n">ar1_trend</span><span class="o">.</span><span class="n">summary</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> This problem is unconstrained.
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>RUNNING THE L-BFGS-B CODE
+
+           * * *
+
+Machine precision = 2.220D-16
+ N =            4     M =           10
+
+At X0         0 variables are exactly at the bounds
+
+At iterate    0    f= -1.91726D+00    |proj g|=  2.45479D+02
+
+           * * *
+
+Tit   = total number of iterations
+Tnf   = total number of function evaluations
+Tnint = total number of segments explored during Cauchy searches
+Skip  = number of BFGS updates skipped
+Nact  = number of active bounds at final generalized Cauchy point
+Projg = norm of the final projected gradient
+F     = final function value
+
+           * * *
+
+   N    Tit     Tnf  Tnint  Skip  Nact     Projg        F
+    4      1     21      1     0     0   2.455D+02  -1.917D+00
+  F =  -1.9172630741791070     
+
+ABNORMAL_TERMINATION_IN_LNSRCH                              
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> Line search cannot locate an adequate point after MAXLS
+  function and gradient evaluations.
+  Previous x, f and g restored.
+ Possible causes: 1 error in function or gradient evaluation;
+                  2 rounding error dominate computation.
+</pre></div>
+</div>
+<div class="output text_html"><table class="simpletable">
+<caption>SARIMAX Results</caption>
+<tr>
+  <th>Dep. Variable:</th>         <td>M3276</td>      <th>  No. Observations:  </th>    <td>432</td>   
+</tr>
+<tr>
+  <th>Model:</th>           <td>SARIMAX(1, 0, 0)</td> <th>  Log Likelihood     </th>  <td>828.258</td> 
+</tr>
+<tr>
+  <th>Date:</th>            <td>Sat, 01 Oct 2022</td> <th>  AIC                </th> <td>-1648.515</td>
+</tr>
+<tr>
+  <th>Time:</th>                <td>21:16:17</td>     <th>  BIC                </th> <td>-1632.242</td>
+</tr>
+<tr>
+  <th>Sample:</th>                  <td>0</td>        <th>  HQIC               </th> <td>-1642.091</td>
+</tr>
+<tr>
+  <th></th>                      <td> - 432</td>      <th>                     </th>     <td> </td>    
+</tr>
+<tr>
+  <th>Covariance Type:</th>        <td>opg</td>       <th>                     </th>     <td> </td>    
+</tr>
+</table>
+<table class="simpletable">
+<tr>
+      <td></td>         <th>coef</th>     <th>std err</th>      <th>z</th>      <th>P>|z|</th>  <th>[0.025</th>    <th>0.975]</th>  
+</tr>
+<tr>
+  <th>intercept</th> <td>    0.8916</td> <td>    0.166</td> <td>    5.376</td> <td> 0.000</td> <td>    0.567</td> <td>    1.217</td>
+</tr>
+<tr>
+  <th>drift</th>     <td> 9.836e-05</td> <td>  2.3e-05</td> <td>    4.271</td> <td> 0.000</td> <td> 5.32e-05</td> <td>    0.000</td>
+</tr>
+<tr>
+  <th>ar.L1</th>     <td>    0.8686</td> <td>    0.024</td> <td>   35.550</td> <td> 0.000</td> <td>    0.821</td> <td>    0.917</td>
+</tr>
+<tr>
+  <th>sigma2</th>    <td>    0.0013</td> <td> 8.38e-05</td> <td>   15.075</td> <td> 0.000</td> <td>    0.001</td> <td>    0.001</td>
+</tr>
+</table>
+<table class="simpletable">
+<tr>
+  <th>Ljung-Box (L1) (Q):</th>     <td>49.78</td> <th>  Jarque-Bera (JB):  </th> <td>2.18</td>
+</tr>
+<tr>
+  <th>Prob(Q):</th>                <td>0.00</td>  <th>  Prob(JB):          </th> <td>0.34</td>
+</tr>
+<tr>
+  <th>Heteroskedasticity (H):</th> <td>1.31</td>  <th>  Skew:              </th> <td>0.14</td>
+</tr>
+<tr>
+  <th>Prob(H) (two-sided):</th>    <td>0.11</td>  <th>  Kurtosis:          </th> <td>3.21</td>
+</tr>
+</table><br/><br/>Warnings:<br/>[1] Covariance matrix calculated using the outer product of gradients (complex-step).</div></div>
+</div>
+</section>
+<section id="arma-1-1-with-a-trend">
+<h3>ARMA(1,1) with a Trend<a class="headerlink" href="#arma-1-1-with-a-trend" title="Permalink to this headline">#</a></h3>
+<div class="math notranslate nohighlight">
+\[ Y_t = \delta_0 + \delta_1 t + \phi Y_{t-1} + \theta \epsilon_{t-1} + \epsilon_t \]</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s2">&quot;M3276&quot;</span><span class="p">])</span>
+<span class="n">arma11_trend</span> <span class="o">=</span> <span class="n">SARIMAX</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">),</span> <span class="n">trend</span><span class="o">=</span><span class="s2">&quot;ct&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">maxiter</span><span class="o">=</span><span class="mi">250</span><span class="p">)</span>
+<span class="n">arma11_trend</span><span class="o">.</span><span class="n">summary</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>RUNNING THE L-BFGS-B CODE
+
+           * * *
+
+Machine precision = 2.220D-16
+ N =            5     M =           10
+
+At X0         0 variables are exactly at the bounds
+
+At iterate    0    f= -2.01805D+00    |proj g|=  1.55899D+03
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> This problem is unconstrained.
+
+ Bad direction in the line search;
+   refresh the lbfgs memory and restart the iteration.
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>           * * *
+
+Tit   = total number of iterations
+Tnf   = total number of function evaluations
+Tnint = total number of segments explored during Cauchy searches
+Skip  = number of BFGS updates skipped
+Nact  = number of active bounds at final generalized Cauchy point
+Projg = norm of the final projected gradient
+F     = final function value
+
+           * * *
+
+   N    Tit     Tnf  Tnint  Skip  Nact     Projg        F
+    5      2     44      2     0     0   1.262D+03  -2.018D+00
+  F =  -2.0180983396934171     
+
+ABNORMAL_TERMINATION_IN_LNSRCH                              
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> Line search cannot locate an adequate point after MAXLS
+  function and gradient evaluations.
+  Previous x, f and g restored.
+ Possible causes: 1 error in function or gradient evaluation;
+                  2 rounding error dominate computation.
+</pre></div>
+</div>
+<div class="output text_html"><table class="simpletable">
+<caption>SARIMAX Results</caption>
+<tr>
+  <th>Dep. Variable:</th>         <td>M3276</td>      <th>  No. Observations:  </th>    <td>432</td>   
+</tr>
+<tr>
+  <th>Model:</th>           <td>SARIMAX(1, 0, 1)</td> <th>  Log Likelihood     </th>  <td>871.818</td> 
+</tr>
+<tr>
+  <th>Date:</th>            <td>Sat, 01 Oct 2022</td> <th>  AIC                </th> <td>-1733.637</td>
+</tr>
+<tr>
+  <th>Time:</th>                <td>21:16:18</td>     <th>  BIC                </th> <td>-1713.295</td>
+</tr>
+<tr>
+  <th>Sample:</th>                  <td>0</td>        <th>  HQIC               </th> <td>-1725.606</td>
+</tr>
+<tr>
+  <th></th>                      <td> - 432</td>      <th>                     </th>     <td> </td>    
+</tr>
+<tr>
+  <th>Covariance Type:</th>        <td>opg</td>       <th>                     </th>     <td> </td>    
+</tr>
+</table>
+<table class="simpletable">
+<tr>
+      <td></td>         <th>coef</th>     <th>std err</th>      <th>z</th>      <th>P>|z|</th>  <th>[0.025</th>    <th>0.975]</th>  
+</tr>
+<tr>
+  <th>intercept</th> <td>    0.3852</td> <td>    0.088</td> <td>    4.385</td> <td> 0.000</td> <td>    0.213</td> <td>    0.557</td>
+</tr>
+<tr>
+  <th>drift</th>     <td> 4.312e-05</td> <td> 1.11e-05</td> <td>    3.901</td> <td> 0.000</td> <td> 2.15e-05</td> <td> 6.48e-05</td>
+</tr>
+<tr>
+  <th>ar.L1</th>     <td>    0.9433</td> <td>    0.013</td> <td>   72.878</td> <td> 0.000</td> <td>    0.918</td> <td>    0.969</td>
+</tr>
+<tr>
+  <th>ma.L1</th>     <td>   -0.5243</td> <td>    0.040</td> <td>  -13.111</td> <td> 0.000</td> <td>   -0.603</td> <td>   -0.446</td>
+</tr>
+<tr>
+  <th>sigma2</th>    <td>    0.0010</td> <td>  6.6e-05</td> <td>   15.096</td> <td> 0.000</td> <td>    0.001</td> <td>    0.001</td>
+</tr>
+</table>
+<table class="simpletable">
+<tr>
+  <th>Ljung-Box (L1) (Q):</th>     <td>0.21</td> <th>  Jarque-Bera (JB):  </th> <td>1.35</td>
+</tr>
+<tr>
+  <th>Prob(Q):</th>                <td>0.65</td> <th>  Prob(JB):          </th> <td>0.51</td>
+</tr>
+<tr>
+  <th>Heteroskedasticity (H):</th> <td>1.49</td> <th>  Skew:              </th> <td>0.14</td>
+</tr>
+<tr>
+  <th>Prob(H) (two-sided):</th>    <td>0.02</td> <th>  Kurtosis:          </th> <td>3.03</td>
+</tr>
+</table><br/><br/>Warnings:<br/>[1] Covariance matrix calculated using the outer product of gradients (complex-step).</div></div>
+</div>
+</section>
+<section id="information-criteria-aic-bic-hqic">
+<h3>Information Criteria: AIC, BIC &amp; HQIC<a class="headerlink" href="#information-criteria-aic-bic-hqic" title="Permalink to this headline">#</a></h3>
+<p>The ICs are designed so that lower values indicate a model that fits better, controlling for the number of parameters. We see that ARMA(1,1) has a much lower BIC than that AR(1).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">([[</span><span class="n">ar1_trend</span><span class="o">.</span><span class="n">aic</span><span class="p">,</span> <span class="n">ar1_trend</span><span class="o">.</span><span class="n">hqic</span><span class="p">,</span> <span class="n">ar1_trend</span><span class="o">.</span><span class="n">bic</span><span class="p">],</span>
+              <span class="p">[</span><span class="n">arma11_trend</span><span class="o">.</span><span class="n">aic</span><span class="p">,</span> <span class="n">arma11_trend</span><span class="o">.</span><span class="n">hqic</span><span class="p">,</span> <span class="n">arma11_trend</span><span class="o">.</span><span class="n">bic</span><span class="p">]],</span>
+            <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;AIC&quot;</span><span class="p">,</span> <span class="s2">&quot;HQIC&quot;</span><span class="p">,</span> <span class="s2">&quot;BIC&quot;</span><span class="p">],</span> <span class="n">index</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;AR(1)&quot;</span><span class="p">,</span> <span class="s2">&quot;ARMA(1,1)&quot;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>AIC</th>
+      <th>HQIC</th>
+      <th>BIC</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>AR(1)</th>
+      <td>-1648.515296</td>
+      <td>-1642.090503</td>
+      <td>-1632.241594</td>
+    </tr>
+    <tr>
+      <th>ARMA(1,1)</th>
+      <td>-1733.636965</td>
+      <td>-1725.605974</td>
+      <td>-1713.294838</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">plot_forecast</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">forecast</span><span class="p">,</span> <span class="n">tail</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s2">&quot;forecast&quot;</span><span class="p">:</span><span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">nan</span> <span class="o">*</span> <span class="n">y</span><span class="p">)</span> <span class="o">+</span> <span class="nb">list</span><span class="p">(</span><span class="n">forecast</span><span class="p">)),</span>
+                   <span class="s2">&quot;y&quot;</span><span class="p">:</span> <span class="n">y</span><span class="p">})</span>
+    <span class="k">if</span> <span class="n">tail</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">tail</span><span class="p">(</span><span class="n">tail</span><span class="p">)</span>
+    <span class="n">df</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+
+<span class="n">plot_forecast</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">arma11_trend</span><span class="o">.</span><span class="n">forecast</span><span class="p">(</span><span class="mi">24</span><span class="p">))</span>
+<span class="c1"># plt.savefig(&#39;./images/datatrends03_ARMA11_forecast.png&#39;)</span>
+<span class="c1"># plt.close();</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">();</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/SARIMA_modeling_22_0.png" src="../_images/SARIMA_modeling_22_0.png" />
+</div>
+</div>
+</section>
+<section id="arima-1-1-1">
+<h3>ARIMA(1, 1, 1)<a class="headerlink" href="#arima-1-1-1" title="Permalink to this headline">#</a></h3>
+<div class="math notranslate nohighlight">
+\[\begin{split} \begin{align*} 
+(1-\phi_1 L) (1-L) Y_t = &amp; \delta_0 \theta \epsilon_{t-1} + \epsilon_t \\
+\Delta Y_t = &amp; \delta_0 + \phi \Delta Y_{t-1} + \theta \epsilon_{t-1} + \epsilon_t \\
+\end{align*}
+\end{split}\]</div>
+<p><span class="math notranslate nohighlight">\(\Delta Y_t\)</span> is used since <span class="math notranslate nohighlight">\(d=1\)</span>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">arima_111</span> <span class="o">=</span> <span class="n">SARIMAX</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">trend</span><span class="o">=</span><span class="s2">&quot;c&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">maxiter</span><span class="o">=</span><span class="mi">250</span><span class="p">)</span>
+<span class="n">arima_111</span><span class="o">.</span><span class="n">summary</span><span class="p">()</span>
+<span class="n">plot_forecast</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">arima_111</span><span class="o">.</span><span class="n">forecast</span><span class="p">(</span><span class="mi">24</span><span class="p">))</span>
+<span class="c1"># plt.savefig(&#39;./images/datatrends04_ARIMA111_forecast.png&#39;)</span>
+<span class="c1"># plt.close();</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">();</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> This problem is unconstrained.
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>RUNNING THE L-BFGS-B CODE
+
+           * * *
+
+Machine precision = 2.220D-16
+ N =            4     M =           10
+
+At X0         0 variables are exactly at the bounds
+
+At iterate    0    f= -2.01907D+00    |proj g|=  3.12568D+00
+
+At iterate    5    f= -2.02078D+00    |proj g|=  1.18442D-01
+
+At iterate   10    f= -2.02103D+00    |proj g|=  2.32532D-01
+
+At iterate   15    f= -2.02105D+00    |proj g|=  3.97098D-02
+
+At iterate   20    f= -2.02124D+00    |proj g|=  2.78793D-01
+
+At iterate   25    f= -2.02130D+00    |proj g|=  1.64644D-03
+
+           * * *
+
+Tit   = total number of iterations
+Tnf   = total number of function evaluations
+Tnint = total number of segments explored during Cauchy searches
+Skip  = number of BFGS updates skipped
+Nact  = number of active bounds at final generalized Cauchy point
+Projg = norm of the final projected gradient
+F     = final function value
+
+           * * *
+
+   N    Tit     Tnf  Tnint  Skip  Nact     Projg        F
+    4     25     32      1     0     0   1.646D-03  -2.021D+00
+  F =  -2.0212971280030851     
+
+CONVERGENCE: REL_REDUCTION_OF_F_&lt;=_FACTR*EPSMCH             
+</pre></div>
+</div>
+<img alt="../_images/SARIMA_modeling_24_2.png" src="../_images/SARIMA_modeling_24_2.png" />
+</div>
+</div>
+</section>
+<section id="arima-0-1-1">
+<h3>ARIMA(0, 1, 1)<a class="headerlink" href="#arima-0-1-1" title="Permalink to this headline">#</a></h3>
+<div class="math notranslate nohighlight">
+\[ \Delta Y_t = \delta_0 +  \theta \epsilon_{t-1} + \epsilon_t \]</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">arima_011</span> <span class="o">=</span> <span class="n">SARIMAX</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">trend</span><span class="o">=</span><span class="s2">&quot;c&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">maxiter</span><span class="o">=</span><span class="mi">250</span><span class="p">)</span>
+<span class="n">arima_011</span><span class="o">.</span><span class="n">summary</span><span class="p">()</span>
+<span class="n">plot_forecast</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">arima_011</span><span class="o">.</span><span class="n">forecast</span><span class="p">(</span><span class="mi">24</span><span class="p">))</span>
+<span class="c1"># plt.savefig(&#39;./images/datatrends05_ARIMA011_forecast.png&#39;)</span>
+<span class="c1"># plt.close();</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">();</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>RUNNING THE L-BFGS-B CODE
+
+           * * *
+
+Machine precision = 2.220D-16
+ N =            3     M =           10
+
+At X0         0 variables are exactly at the bounds
+
+At iterate    0    f= -2.01784D+00    |proj g|=  5.09688D+00
+
+At iterate    5    f= -2.02089D+00    |proj g|=  2.90026D-03
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> This problem is unconstrained.
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>At iterate   10    f= -2.02089D+00    |proj g|=  7.15942D-02
+
+           * * *
+
+Tit   = total number of iterations
+Tnf   = total number of function evaluations
+Tnint = total number of segments explored during Cauchy searches
+Skip  = number of BFGS updates skipped
+Nact  = number of active bounds at final generalized Cauchy point
+Projg = norm of the final projected gradient
+F     = final function value
+
+           * * *
+
+   N    Tit     Tnf  Tnint  Skip  Nact     Projg        F
+    3     13     18      1     0     0   3.526D-03  -2.021D+00
+  F =  -2.0208950364025480     
+
+CONVERGENCE: REL_REDUCTION_OF_F_&lt;=_FACTR*EPSMCH             
+</pre></div>
+</div>
+<img alt="../_images/SARIMA_modeling_26_3.png" src="../_images/SARIMA_modeling_26_3.png" />
+</div>
+</div>
+</section>
+<section id="arima-0-1-1-without-a-constant">
+<h3>ARIMA(0,1,1) without a constant<a class="headerlink" href="#arima-0-1-1-without-a-constant" title="Permalink to this headline">#</a></h3>
+<div class="math notranslate nohighlight">
+\[ \Delta Y_t =  \theta \epsilon_{t-1} + \epsilon_t \]</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">arima_011_nc</span> <span class="o">=</span> <span class="n">SARIMAX</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">trend</span><span class="o">=</span><span class="s2">&quot;n&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">maxiter</span><span class="o">=</span><span class="mi">250</span><span class="p">)</span>
+<span class="n">arima_011_nc</span><span class="o">.</span><span class="n">summary</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>RUNNING THE L-BFGS-B CODE
+
+           * * *
+
+Machine precision = 2.220D-16
+ N =            2     M =           10
+
+At X0         0 variables are exactly at the bounds
+
+At iterate    0    f= -2.01791D+00    |proj g|=  1.05404D+00
+
+           * * *
+
+Tit   = total number of iterations
+Tnf   = total number of function evaluations
+Tnint = total number of segments explored during Cauchy searches
+Skip  = number of BFGS updates skipped
+Nact  = number of active bounds at final generalized Cauchy point
+Projg = norm of the final projected gradient
+F     = final function value
+
+           * * *
+
+   N    Tit     Tnf  Tnint  Skip  Nact     Projg        F
+    2      4     10      1     0     0   8.482D-04  -2.018D+00
+  F =  -2.0182051803877363     
+
+CONVERGENCE: REL_REDUCTION_OF_F_&lt;=_FACTR*EPSMCH             
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> This problem is unconstrained.
+</pre></div>
+</div>
+<div class="output text_html"><table class="simpletable">
+<caption>SARIMAX Results</caption>
+<tr>
+  <th>Dep. Variable:</th>         <td>M3276</td>      <th>  No. Observations:  </th>    <td>432</td>   
+</tr>
+<tr>
+  <th>Model:</th>           <td>SARIMAX(0, 1, 1)</td> <th>  Log Likelihood     </th>  <td>871.865</td> 
+</tr>
+<tr>
+  <th>Date:</th>            <td>Sat, 01 Oct 2022</td> <th>  AIC                </th> <td>-1739.729</td>
+</tr>
+<tr>
+  <th>Time:</th>                <td>21:16:22</td>     <th>  BIC                </th> <td>-1731.597</td>
+</tr>
+<tr>
+  <th>Sample:</th>                  <td>0</td>        <th>  HQIC               </th> <td>-1736.518</td>
+</tr>
+<tr>
+  <th></th>                      <td> - 432</td>      <th>                     </th>     <td> </td>    
+</tr>
+<tr>
+  <th>Covariance Type:</th>        <td>opg</td>       <th>                     </th>     <td> </td>    
+</tr>
+</table>
+<table class="simpletable">
+<tr>
+     <td></td>       <th>coef</th>     <th>std err</th>      <th>z</th>      <th>P>|z|</th>  <th>[0.025</th>    <th>0.975]</th>  
+</tr>
+<tr>
+  <th>ma.L1</th>  <td>   -0.5494</td> <td>    0.034</td> <td>  -16.363</td> <td> 0.000</td> <td>   -0.615</td> <td>   -0.484</td>
+</tr>
+<tr>
+  <th>sigma2</th> <td>    0.0010</td> <td> 6.71e-05</td> <td>   15.260</td> <td> 0.000</td> <td>    0.001</td> <td>    0.001</td>
+</tr>
+</table>
+<table class="simpletable">
+<tr>
+  <th>Ljung-Box (L1) (Q):</th>     <td>0.25</td> <th>  Jarque-Bera (JB):  </th> <td>0.68</td>
+</tr>
+<tr>
+  <th>Prob(Q):</th>                <td>0.62</td> <th>  Prob(JB):          </th> <td>0.71</td>
+</tr>
+<tr>
+  <th>Heteroskedasticity (H):</th> <td>1.48</td> <th>  Skew:              </th> <td>0.05</td>
+</tr>
+<tr>
+  <th>Prob(H) (two-sided):</th>    <td>0.02</td> <th>  Kurtosis:          </th> <td>3.16</td>
+</tr>
+</table><br/><br/>Warnings:<br/>[1] Covariance matrix calculated using the outer product of gradients (complex-step).</div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot_forecast</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">arima_011_nc</span><span class="o">.</span><span class="n">forecast</span><span class="p">(</span><span class="mi">24</span><span class="p">))</span>
+<span class="c1"># plt.savefig(&#39;./images/datatrends06_ARIMA011_nconstant_forecast.png&#39;)</span>
+<span class="c1"># plt.close();</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">();</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/SARIMA_modeling_29_0.png" src="../_images/SARIMA_modeling_29_0.png" />
+</div>
+</div>
+</section>
+<section id="seasonal">
+<h3>Seasonal<a class="headerlink" href="#seasonal" title="Permalink to this headline">#</a></h3>
+<p>We finally show how to fit models with seasonal dummies and using seasonal differencing.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s2">&quot;M25698&quot;</span><span class="p">])</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">y</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="kn">from</span> <span class="nn">statsmodels.graphics.tsaplots</span> <span class="kn">import</span> <span class="n">plot_acf</span>
+<span class="kn">from</span> <span class="nn">statsmodels.tsa.stattools</span> <span class="kn">import</span> <span class="n">acf</span>
+<span class="n">_</span> <span class="o">=</span> <span class="n">plot_acf</span><span class="p">(</span><span class="n">y</span><span class="o">.</span><span class="n">diff</span><span class="p">()</span><span class="o">.</span><span class="n">dropna</span><span class="p">(),</span> <span class="n">lags</span><span class="o">=</span><span class="mi">36</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+<span class="c1"># plt.savefig(&#39;./images/datatrends07_seasonal_diff.png&#39;)</span>
+<span class="c1"># plt.close();</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">();</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/SARIMA_modeling_31_0.png" src="../_images/SARIMA_modeling_31_0.png" />
+</div>
+</div>
+</section>
+<section id="constructing-seasonal-dummies">
+<h3>Constructing Seasonal Dummies<a class="headerlink" href="#constructing-seasonal-dummies" title="Permalink to this headline">#</a></h3>
+<p>Seasonal dummies are easy to build using <code class="docutils literal notranslate"><span class="pre">pd.get_dummies</span></code> and a <code class="docutils literal notranslate"><span class="pre">categorical</span></code> Series. The categorical series is used to store categorical data. We first construct the seasonal indicators using <span class="math notranslate nohighlight">\(\!\!\mod(t,12)\)</span> for each time period. It is easiest to construct the dummies for both the in-sample and the out-of-sample periods, which is why it is <code class="docutils literal notranslate"><span class="pre">y.shape[0]</span> <span class="pre">+</span> <span class="pre">24</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">seasonals</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">y</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="mi">24</span><span class="p">)</span>
+<span class="n">seasonals</span> <span class="o">=</span> <span class="n">seasonals</span> <span class="o">%</span> <span class="mi">12</span>
+<span class="n">seasonals</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([ 0,  1,  2,  3,  4,  5,  6,  7,  8,  9, 10, 11,  0,  1,  2,  3,  4,
+        5,  6,  7,  8,  9, 10, 11,  0,  1,  2,  3,  4,  5,  6,  7,  8,  9,
+       10, 11,  0,  1,  2,  3,  4,  5,  6,  7,  8,  9, 10, 11,  0,  1,  2,
+        3,  4,  5,  6,  7,  8,  9, 10, 11,  0,  1,  2,  3,  4,  5,  6,  7,
+        8,  9, 10, 11,  0,  1,  2,  3,  4,  5,  6,  7,  8,  9, 10, 11,  0,
+        1,  2,  3,  4,  5,  6,  7,  8,  9, 10, 11,  0,  1,  2,  3,  4,  5,
+        6,  7,  8,  9, 10, 11,  0,  1,  2,  3,  4,  5,  6,  7,  8,  9, 10,
+       11,  0,  1,  2,  3,  4,  5,  6,  7,  8,  9, 10, 11,  0,  1,  2,  3,
+        4,  5,  6,  7,  8,  9, 10, 11,  0,  1,  2,  3,  4,  5,  6,  7,  8,
+        9, 10, 11,  0,  1,  2,  3,  4,  5,  6,  7,  8,  9, 10, 11,  0,  1,
+        2,  3,  4,  5,  6,  7,  8,  9, 10, 11,  0,  1,  2,  3,  4,  5,  6,
+        7,  8,  9, 10, 11,  0,  1,  2,  3,  4,  5,  6,  7,  8,  9, 10, 11,
+        0,  1,  2,  3,  4,  5,  6,  7,  8,  9, 10, 11,  0,  1,  2,  3,  4,
+        5,  6,  7,  8,  9, 10, 11,  0,  1,  2,  3,  4,  5,  6,  7,  8,  9,
+       10, 11,  0,  1,  2,  3,  4,  5,  6,  7,  8,  9, 10, 11,  0,  1,  2,
+        3,  4,  5,  6,  7,  8,  9, 10, 11,  0,  1,  2,  3,  4,  5,  6,  7,
+        8,  9, 10, 11,  0,  1,  2,  3,  4,  5,  6,  7,  8,  9, 10, 11,  0,
+        1,  2,  3,  4,  5,  6,  7,  8,  9, 10, 11,  0,  1,  2,  3,  4,  5,
+        6,  7,  8,  9, 10, 11,  0,  1,  2,  3,  4,  5,  6,  7,  8,  9, 10,
+       11,  0,  1,  2,  3,  4,  5,  6,  7,  8,  9, 10, 11,  0,  1,  2,  3,
+        4,  5,  6,  7,  8,  9, 10, 11,  0,  1,  2,  3,  4,  5,  6,  7,  8,
+        9, 10, 11,  0,  1,  2,  3,  4,  5,  6,  7,  8,  9, 10, 11,  0,  1,
+        2,  3,  4,  5,  6,  7,  8,  9, 10, 11,  0,  1,  2,  3,  4,  5,  6,
+        7,  8,  9, 10, 11,  0,  1,  2,  3,  4,  5,  6,  7,  8,  9, 10, 11,
+        0,  1,  2,  3,  4,  5,  6,  7,  8,  9, 10, 11,  0,  1,  2,  3,  4,
+        5,  6,  7,  8,  9, 10, 11,  0,  1,  2,  3,  4,  5,  6,  7,  8,  9,
+       10, 11,  0,  1,  2,  3,  4,  5,  6,  7,  8,  9, 10, 11])
+</pre></div>
+</div>
+</div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">pd.get_dummies</span></code> takes the argument <code class="docutils literal notranslate"><span class="pre">drop_first</span></code> which lets us avoid the dummy variable trap.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pandas</span> <span class="kn">import</span> <span class="n">get_dummies</span>
+<span class="n">dummies</span> <span class="o">=</span> <span class="n">get_dummies</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">seasonals</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="s2">&quot;category&quot;</span><span class="p">),</span> <span class="n">drop_first</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">dummies</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="sa">f</span><span class="s2">&quot;s</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">&quot;</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">13</span><span class="p">)]</span> 
+<span class="n">dummies</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">14</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>s2</th>
+      <th>s3</th>
+      <th>s4</th>
+      <th>s5</th>
+      <th>s6</th>
+      <th>s7</th>
+      <th>s8</th>
+      <th>s9</th>
+      <th>s10</th>
+      <th>s11</th>
+      <th>s12</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>11</th>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>12</th>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>13</th>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+</section>
+<section id="arima-1-0-0-with-seasonal-dummies">
+<h3>ARIMA(1, 0, 0) with seasonal dummies<a class="headerlink" href="#arima-1-0-0-with-seasonal-dummies" title="Permalink to this headline">#</a></h3>
+<div class="math notranslate nohighlight">
+\[ Y_t = \delta_0 + \delta_1 t + \phi Y_{t-1} + \sum_{i=2}^{12} \gamma_i I_{S_i} + \epsilon_t \]</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ar1_seasonal_dummies</span> <span class="o">=</span> <span class="n">SARIMAX</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">exog</span><span class="o">=</span><span class="n">dummies</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:</span><span class="n">y</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]],</span> <span class="n">order</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span> <span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="n">trend</span><span class="o">=</span><span class="s2">&quot;c&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">maxiter</span><span class="o">=</span><span class="mi">250</span><span class="p">)</span>
+<span class="n">ar1_seasonal_dummies</span><span class="o">.</span><span class="n">summary</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> This problem is unconstrained.
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>RUNNING THE L-BFGS-B CODE
+
+           * * *
+
+Machine precision = 2.220D-16
+ N =           14     M =           10
+
+At X0         0 variables are exactly at the bounds
+
+At iterate    0    f=  2.07737D+00    |proj g|=  1.69168D-02
+
+At iterate    5    f=  1.83179D+00    |proj g|=  4.61423D-01
+
+At iterate   10    f=  1.42368D+00    |proj g|=  5.68917D-01
+
+At iterate   15    f=  9.82987D-01    |proj g|=  1.37736D-01
+
+At iterate   20    f=  8.03106D-01    |proj g|=  1.83614D-01
+
+At iterate   25    f=  7.43827D-01    |proj g|=  2.99305D-02
+
+At iterate   30    f=  7.33082D-01    |proj g|=  1.05074D-01
+
+At iterate   35    f=  7.20606D-01    |proj g|=  1.46521D-01
+
+At iterate   40    f=  6.88702D-01    |proj g|=  2.60584D-01
+
+At iterate   45    f=  6.18202D-01    |proj g|=  4.67291D-01
+
+At iterate   50    f=  5.52676D-01    |proj g|=  1.44479D-01
+
+At iterate   55    f=  5.04892D-01    |proj g|=  1.89259D-01
+
+At iterate   60    f=  4.50515D-01    |proj g|=  4.10629D-01
+
+At iterate   65    f=  4.25728D-01    |proj g|=  2.55528D-01
+
+At iterate   70    f=  4.05280D-01    |proj g|=  1.02224D+00
+
+At iterate   75    f=  3.66275D-01    |proj g|=  2.74882D-01
+
+At iterate   80    f=  3.08250D-01    |proj g|=  7.74362D-01
+
+At iterate   85    f=  2.74672D-01    |proj g|=  1.03381D-01
+
+At iterate   90    f=  2.53074D-01    |proj g|=  3.43828D-02
+
+At iterate   95    f=  2.48981D-01    |proj g|=  3.21290D-02
+
+At iterate  100    f=  2.48761D-01    |proj g|=  3.51773D-02
+
+At iterate  105    f=  2.48573D-01    |proj g|=  3.28654D-02
+
+At iterate  110    f=  2.48554D-01    |proj g|=  1.48492D-02
+
+At iterate  115    f=  2.48552D-01    |proj g|=  1.01261D-03
+
+           * * *
+
+Tit   = total number of iterations
+Tnf   = total number of function evaluations
+Tnint = total number of segments explored during Cauchy searches
+Skip  = number of BFGS updates skipped
+Nact  = number of active bounds at final generalized Cauchy point
+Projg = norm of the final projected gradient
+F     = final function value
+
+           * * *
+
+   N    Tit     Tnf  Tnint  Skip  Nact     Projg        F
+   14    118    154      1     0     0   1.753D-03   2.486D-01
+  F =  0.24855154455047077     
+
+CONVERGENCE: REL_REDUCTION_OF_F_&lt;=_FACTR*EPSMCH             
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> Warning:  more than 10 function and gradient
+   evaluations in the last line search.  Termination
+   may possibly be caused by a bad search direction.
+</pre></div>
+</div>
+<div class="output text_html"><table class="simpletable">
+<caption>SARIMAX Results</caption>
+<tr>
+  <th>Dep. Variable:</th>        <td>M25698</td>      <th>  No. Observations:  </th>    <td>432</td>  
+</tr>
+<tr>
+  <th>Model:</th>           <td>SARIMAX(1, 0, 0)</td> <th>  Log Likelihood     </th> <td>-107.374</td>
+</tr>
+<tr>
+  <th>Date:</th>            <td>Sat, 01 Oct 2022</td> <th>  AIC                </th>  <td>242.749</td>
+</tr>
+<tr>
+  <th>Time:</th>                <td>21:16:31</td>     <th>  BIC                </th>  <td>299.706</td>
+</tr>
+<tr>
+  <th>Sample:</th>                  <td>0</td>        <th>  HQIC               </th>  <td>265.235</td>
+</tr>
+<tr>
+  <th></th>                      <td> - 432</td>      <th>                     </th>     <td> </td>   
+</tr>
+<tr>
+  <th>Covariance Type:</th>        <td>opg</td>       <th>                     </th>     <td> </td>   
+</tr>
+</table>
+<table class="simpletable">
+<tr>
+      <td></td>         <th>coef</th>     <th>std err</th>      <th>z</th>      <th>P>|z|</th>  <th>[0.025</th>    <th>0.975]</th>  
+</tr>
+<tr>
+  <th>intercept</th> <td>    4.7938</td> <td>    0.303</td> <td>   15.824</td> <td> 0.000</td> <td>    4.200</td> <td>    5.388</td>
+</tr>
+<tr>
+  <th>s2</th>        <td>    0.2558</td> <td>    0.070</td> <td>    3.644</td> <td> 0.000</td> <td>    0.118</td> <td>    0.393</td>
+</tr>
+<tr>
+  <th>s3</th>        <td>    0.6806</td> <td>    0.056</td> <td>   12.070</td> <td> 0.000</td> <td>    0.570</td> <td>    0.791</td>
+</tr>
+<tr>
+  <th>s4</th>        <td>    0.1153</td> <td>    0.082</td> <td>    1.398</td> <td> 0.162</td> <td>   -0.046</td> <td>    0.277</td>
+</tr>
+<tr>
+  <th>s5</th>        <td>    0.4812</td> <td>    0.068</td> <td>    7.051</td> <td> 0.000</td> <td>    0.347</td> <td>    0.615</td>
+</tr>
+<tr>
+  <th>s6</th>        <td>   -0.1100</td> <td>    0.115</td> <td>   -0.960</td> <td> 0.337</td> <td>   -0.334</td> <td>    0.114</td>
+</tr>
+<tr>
+  <th>s7</th>        <td>   -0.0324</td> <td>    0.137</td> <td>   -0.237</td> <td> 0.813</td> <td>   -0.300</td> <td>    0.235</td>
+</tr>
+<tr>
+  <th>s8</th>        <td>   -0.1780</td> <td>    0.125</td> <td>   -1.419</td> <td> 0.156</td> <td>   -0.424</td> <td>    0.068</td>
+</tr>
+<tr>
+  <th>s9</th>        <td>    0.3662</td> <td>    0.102</td> <td>    3.584</td> <td> 0.000</td> <td>    0.166</td> <td>    0.566</td>
+</tr>
+<tr>
+  <th>s10</th>       <td>    0.1346</td> <td>    0.176</td> <td>    0.764</td> <td> 0.445</td> <td>   -0.211</td> <td>    0.480</td>
+</tr>
+<tr>
+  <th>s11</th>       <td>   -0.1602</td> <td>    0.112</td> <td>   -1.434</td> <td> 0.152</td> <td>   -0.379</td> <td>    0.059</td>
+</tr>
+<tr>
+  <th>s12</th>       <td>    0.0496</td> <td>    0.056</td> <td>    0.884</td> <td> 0.377</td> <td>   -0.060</td> <td>    0.159</td>
+</tr>
+<tr>
+  <th>ar.L1</th>     <td>    0.3062</td> <td>    0.044</td> <td>    7.035</td> <td> 0.000</td> <td>    0.221</td> <td>    0.392</td>
+</tr>
+<tr>
+  <th>sigma2</th>    <td>    0.0962</td> <td>    0.005</td> <td>   17.547</td> <td> 0.000</td> <td>    0.085</td> <td>    0.107</td>
+</tr>
+</table>
+<table class="simpletable">
+<tr>
+  <th>Ljung-Box (L1) (Q):</th>     <td>0.12</td> <th>  Jarque-Bera (JB):  </th> <td>48.05</td>
+</tr>
+<tr>
+  <th>Prob(Q):</th>                <td>0.73</td> <th>  Prob(JB):          </th> <td>0.00</td> 
+</tr>
+<tr>
+  <th>Heteroskedasticity (H):</th> <td>0.53</td> <th>  Skew:              </th> <td>-0.10</td>
+</tr>
+<tr>
+  <th>Prob(H) (two-sided):</th>    <td>0.00</td> <th>  Kurtosis:          </th> <td>4.62</td> 
+</tr>
+</table><br/><br/>Warnings:<br/>[1] Covariance matrix calculated using the outer product of gradients (complex-step).</div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">forecast</span> <span class="o">=</span> <span class="n">ar1_seasonal_dummies</span><span class="o">.</span><span class="n">forecast</span><span class="p">(</span><span class="mi">24</span><span class="p">,</span> <span class="n">exog</span><span class="o">=</span><span class="n">dummies</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">y</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]:])</span>
+<span class="n">forecast</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>432    6.928095
+433    7.171353
+434    7.592225
+435    7.025758
+436    7.391316
+437    6.800052
+438    6.877592
+439    6.731928
+440    7.276105
+441    7.044570
+442    6.749713
+443    6.959526
+444    6.909953
+445    7.165797
+446    7.590524
+447    7.025237
+448    7.391157
+449    6.800003
+450    6.877577
+451    6.731924
+452    7.276104
+453    7.044569
+454    6.749713
+455    6.959526
+Name: predicted_mean, dtype: float64
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot_forecast</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">forecast</span><span class="p">,</span> <span class="mi">72</span><span class="p">)</span>
+<span class="c1"># plt.savefig(&#39;./images/datatrends08_ar1_forecast.png&#39;)</span>
+<span class="c1"># plt.close();</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">();</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/SARIMA_modeling_39_0.png" src="../_images/SARIMA_modeling_39_0.png" />
+</div>
+</div>
+</section>
+<section id="sarima-0-0-0-times-0-1-0-12">
+<h3>SARIMA<span class="math notranslate nohighlight">\((0,0,0)\times(0,1,0)_{12}\)</span><a class="headerlink" href="#sarima-0-0-0-times-0-1-0-12" title="Permalink to this headline">#</a></h3>
+<p>Finally we fit a SARIMA with a single difference.  Note that the only free parameter is the constant in the model.</p>
+<div class="math notranslate nohighlight">
+\[ \Delta_{12} Y_t = \delta_0 + \epsilon_t \]</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">arima_000_010</span> <span class="o">=</span> <span class="n">SARIMAX</span><span class="p">(</span><span class="n">y</span><span class="p">,</span><span class="n">order</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">),</span> <span class="n">seasonal_order</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span> <span class="mi">12</span><span class="p">),</span> <span class="n">trend</span><span class="o">=</span><span class="s2">&quot;c&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
+<span class="n">arima_000_010</span><span class="o">.</span><span class="n">summary</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> This problem is unconstrained.
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>RUNNING THE L-BFGS-B CODE
+
+           * * *
+
+Machine precision = 2.220D-16
+ N =            2     M =           10
+
+At X0         0 variables are exactly at the bounds
+
+At iterate    0    f=  4.87905D-01    |proj g|=  5.80985D-05
+
+           * * *
+
+Tit   = total number of iterations
+Tnf   = total number of function evaluations
+Tnint = total number of segments explored during Cauchy searches
+Skip  = number of BFGS updates skipped
+Nact  = number of active bounds at final generalized Cauchy point
+Projg = norm of the final projected gradient
+F     = final function value
+
+           * * *
+
+   N    Tit     Tnf  Tnint  Skip  Nact     Projg        F
+    2      1      9      1     0     0   5.903D-05   4.879D-01
+  F =  0.48790472738224799     
+
+CONVERGENCE: REL_REDUCTION_OF_F_&lt;=_FACTR*EPSMCH             
+</pre></div>
+</div>
+<div class="output text_html"><table class="simpletable">
+<caption>SARIMAX Results</caption>
+<tr>
+  <th>Dep. Variable:</th>          <td>M25698</td>        <th>  No. Observations:  </th>    <td>432</td>  
+</tr>
+<tr>
+  <th>Model:</th>           <td>SARIMAX(0, 1, 0, 12)</td> <th>  Log Likelihood     </th> <td>-210.775</td>
+</tr>
+<tr>
+  <th>Date:</th>              <td>Sat, 01 Oct 2022</td>   <th>  AIC                </th>  <td>425.550</td>
+</tr>
+<tr>
+  <th>Time:</th>                  <td>21:16:32</td>       <th>  BIC                </th>  <td>433.630</td>
+</tr>
+<tr>
+  <th>Sample:</th>                    <td>0</td>          <th>  HQIC               </th>  <td>428.743</td>
+</tr>
+<tr>
+  <th></th>                        <td> - 432</td>        <th>                     </th>     <td> </td>   
+</tr>
+<tr>
+  <th>Covariance Type:</th>          <td>opg</td>         <th>                     </th>     <td> </td>   
+</tr>
+</table>
+<table class="simpletable">
+<tr>
+      <td></td>         <th>coef</th>     <th>std err</th>      <th>z</th>      <th>P>|z|</th>  <th>[0.025</th>    <th>0.975]</th>  
+</tr>
+<tr>
+  <th>intercept</th> <td>    0.0152</td> <td>    0.020</td> <td>    0.780</td> <td> 0.436</td> <td>   -0.023</td> <td>    0.054</td>
+</tr>
+<tr>
+  <th>sigma2</th>    <td>    0.1597</td> <td>    0.005</td> <td>   30.443</td> <td> 0.000</td> <td>    0.149</td> <td>    0.170</td>
+</tr>
+</table>
+<table class="simpletable">
+<tr>
+  <th>Ljung-Box (L1) (Q):</th>     <td>1.46</td> <th>  Jarque-Bera (JB):  </th> <td>822.89</td>
+</tr>
+<tr>
+  <th>Prob(Q):</th>                <td>0.23</td> <th>  Prob(JB):          </th>  <td>0.00</td> 
+</tr>
+<tr>
+  <th>Heteroskedasticity (H):</th> <td>0.46</td> <th>  Skew:              </th>  <td>0.15</td> 
+</tr>
+<tr>
+  <th>Prob(H) (two-sided):</th>    <td>0.00</td> <th>  Kurtosis:          </th>  <td>9.85</td> 
+</tr>
+</table><br/><br/>Warnings:<br/>[1] Covariance matrix calculated using the outer product of gradients (complex-step).</div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">forecast</span> <span class="o">=</span> <span class="n">arima_000_010</span><span class="o">.</span><span class="n">forecast</span><span class="p">(</span><span class="mi">24</span><span class="p">)</span>
+<span class="n">forecast</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>432    7.150139
+433    7.617987
+434    8.058335
+435    7.128758
+436    7.960502
+437    7.122053
+438    7.221591
+439    7.091860
+440    7.770104
+441    7.312457
+442    7.128882
+443    7.033996
+444    7.165366
+445    7.633214
+446    8.073563
+447    7.143986
+448    7.975729
+449    7.137280
+450    7.236819
+451    7.107087
+452    7.785331
+453    7.327685
+454    7.144109
+455    7.049223
+Name: predicted_mean, dtype: float64
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot_forecast</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">forecast</span><span class="p">,</span> <span class="mi">72</span><span class="p">)</span>
+<span class="c1"># plt.savefig(&#39;./images/datatrends09_sarima_single_diff_forecast.png&#39;)</span>
+<span class="c1"># plt.close();</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">();</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/SARIMA_modeling_43_0.png" src="../_images/SARIMA_modeling_43_0.png" />
+</div>
+</div>
+</section>
+<section id="pmdarima">
+<h3>pmdarima<a class="headerlink" href="#pmdarima" title="Permalink to this headline">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="vm">__doc__</span><span class="p">)</span>
+
+<span class="c1"># Author: Taylor Smith &lt;taylor.smith@alkaline-ml.com&gt;</span>
+
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pmdarima</span> <span class="k">as</span> <span class="nn">pm</span>
+<span class="kn">from</span> <span class="nn">pmdarima</span> <span class="kn">import</span> <span class="n">pipeline</span>
+<span class="kn">from</span> <span class="nn">pmdarima</span> <span class="kn">import</span> <span class="n">model_selection</span>
+<span class="kn">from</span> <span class="nn">pmdarima</span> <span class="kn">import</span> <span class="n">preprocessing</span> <span class="k">as</span> <span class="n">ppc</span>
+<span class="kn">from</span> <span class="nn">pmdarima</span> <span class="kn">import</span> <span class="n">arima</span>
+<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;pmdarima version: </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">pm</span><span class="o">.</span><span class="n">__version__</span><span class="p">)</span>
+
+<span class="c1"># Load the data and split it into separate pieces</span>
+<span class="c1"># data = pm.datasets.load_wineind()</span>
+<span class="c1"># train, test = model_selection.train_test_split(data, train_size=150)</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">y</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<span class="n">train</span><span class="p">,</span> <span class="n">test</span> <span class="o">=</span> <span class="n">model_selection</span><span class="o">.</span><span class="n">train_test_split</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">train_size</span><span class="o">=</span><span class="mi">360</span><span class="p">)</span>
+
+<span class="c1"># Let&#39;s create a pipeline with multiple stages... the Wineind dataset is</span>
+<span class="c1"># seasonal, so we&#39;ll include a FourierFeaturizer so we can fit it without</span>
+<span class="c1"># seasonality</span>
+<span class="n">pipe</span> <span class="o">=</span> <span class="n">pipeline</span><span class="o">.</span><span class="n">Pipeline</span><span class="p">([</span>
+    <span class="p">(</span><span class="s2">&quot;fourier&quot;</span><span class="p">,</span> <span class="n">ppc</span><span class="o">.</span><span class="n">FourierFeaturizer</span><span class="p">(</span><span class="n">m</span><span class="o">=</span><span class="mi">12</span><span class="p">,</span> <span class="n">k</span><span class="o">=</span><span class="mi">4</span><span class="p">)),</span>
+    <span class="p">(</span><span class="s2">&quot;arima&quot;</span><span class="p">,</span> <span class="n">arima</span><span class="o">.</span><span class="n">AutoARIMA</span><span class="p">(</span><span class="n">stepwise</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">trace</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">error_action</span><span class="o">=</span><span class="s2">&quot;ignore&quot;</span><span class="p">,</span>
+                              <span class="n">seasonal</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>  <span class="c1"># because we use Fourier</span>
+                              <span class="n">suppress_warnings</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span>
+<span class="p">])</span>
+
+<span class="n">pipe</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">train</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Model fit:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">pipe</span><span class="p">)</span>
+
+<span class="c1"># We can compute predictions the same way we would on a normal ARIMA object:</span>
+<span class="c1"># preds, conf_int = pipe.predict(n_periods=10, return_conf_int=True)</span>
+<span class="n">preds</span><span class="p">,</span> <span class="n">conf_int</span> <span class="o">=</span> <span class="n">pipe</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">n_periods</span><span class="o">=</span><span class="mi">24</span><span class="p">,</span> <span class="n">return_conf_int</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Forecasts:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">preds</span><span class="p">)</span>
+
+<span class="c1"># Let&#39;s take a look at the actual vs. the predicted values:</span>
+<span class="c1"># fig, axes = plt.subplots(3, 1, figsize=(12, 8))</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+
+<span class="c1"># Visualize goodness of fit</span>
+<span class="n">in_sample_preds</span><span class="p">,</span> <span class="n">in_sample_confint</span> <span class="o">=</span> \
+    <span class="n">pipe</span><span class="o">.</span><span class="n">predict_in_sample</span><span class="p">(</span><span class="n">X</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">return_conf_int</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="n">n_train</span> <span class="o">=</span> <span class="n">train</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+
+<span class="n">x0</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">n_train</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x0</span><span class="p">,</span> <span class="n">train</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.75</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">x0</span><span class="p">,</span> <span class="n">in_sample_preds</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.4</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;x&#39;</span><span class="p">)</span>
+<span class="c1"># axes[0].fill_between(x0, in_sample_confint[:, 0], in_sample_confint[:, 1],</span>
+<span class="c1">#                      alpha=0.1, color=&#39;b&#39;)</span>
+<span class="c1"># axes[0].fill_between(x0, 5, 10,</span>
+<span class="c1">#                      alpha=0.1, color=&#39;b&#39;)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Actual train samples vs. in-sample predictions&#39;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">((</span><span class="mi">0</span><span class="p">,</span> <span class="n">x0</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span>
+
+<span class="c1"># Visualize actual + predicted</span>
+<span class="n">x1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">n_train</span> <span class="o">+</span> <span class="n">preds</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x1</span><span class="p">[:</span><span class="n">n_train</span><span class="p">],</span> <span class="n">train</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.75</span><span class="p">)</span>
+<span class="c1"># axes[1].scatter(x[n_train:], preds, alpha=0.4, marker=&#39;o&#39;)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">x1</span><span class="p">[</span><span class="n">n_train</span><span class="p">:],</span> <span class="n">test</span><span class="p">[:</span><span class="n">preds</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]],</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.4</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;x&#39;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">fill_between</span><span class="p">(</span><span class="n">x1</span><span class="p">[</span><span class="n">n_train</span><span class="p">:],</span> <span class="n">conf_int</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">conf_int</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span>
+                     <span class="n">alpha</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;b&#39;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Actual test samples vs. forecasts&#39;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">((</span><span class="mi">0</span><span class="p">,</span> <span class="n">data</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span>
+
+<span class="c1"># We can also call `update` directly on the pipeline object, which will update</span>
+<span class="c1"># the intermittent transformers, where necessary:</span>
+<span class="n">newly_observed</span><span class="p">,</span> <span class="n">still_test</span> <span class="o">=</span> <span class="n">test</span><span class="p">[:</span><span class="mi">15</span><span class="p">],</span> <span class="n">test</span><span class="p">[</span><span class="mi">15</span><span class="p">:]</span>
+<span class="n">pipe</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">newly_observed</span><span class="p">,</span> <span class="n">maxiter</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+
+<span class="c1"># Calling predict will now predict from newly observed values</span>
+<span class="n">new_preds</span> <span class="o">=</span> <span class="n">pipe</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">still_test</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">new_preds</span><span class="p">)</span>
+
+<span class="n">x2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="n">n_trained_on</span> <span class="o">=</span> <span class="n">n_train</span> <span class="o">+</span> <span class="n">newly_observed</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+
+<span class="n">axes</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x2</span><span class="p">[:</span><span class="n">n_train</span><span class="p">],</span> <span class="n">train</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.75</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x2</span><span class="p">[</span><span class="n">n_train</span><span class="p">:</span> <span class="n">n_trained_on</span><span class="p">],</span> <span class="n">newly_observed</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.75</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;orange&#39;</span><span class="p">)</span>
+<span class="c1"># axes[2].scatter(x2[n_trained_on:], new_preds, alpha=0.4, marker=&#39;o&#39;)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">x2</span><span class="p">[</span><span class="n">n_trained_on</span><span class="p">:],</span> <span class="n">still_test</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.4</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;x&#39;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Actual test samples vs. forecasts&#39;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">((</span><span class="mi">0</span><span class="p">,</span> <span class="n">data</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">();</span>
+<span class="c1"># plt.savefig(&#39;./images/datatrends10_pmdarima.png&#39;)</span>
+<span class="c1"># plt.close();</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Automatically created module for IPython interactive environment
+pmdarima version: 1.8.5
+Performing stepwise search to minimize aic
+ ARIMA(2,1,2)(0,0,0)[0] intercept   : AIC=261.587, Time=3.39 sec
+ ARIMA(0,1,0)(0,0,0)[0] intercept   : AIC=522.367, Time=0.27 sec
+ ARIMA(1,1,0)(0,0,0)[0] intercept   : AIC=401.618, Time=0.82 sec
+ ARIMA(0,1,1)(0,0,0)[0] intercept   : AIC=260.626, Time=1.87 sec
+ ARIMA(0,1,0)(0,0,0)[0]             : AIC=520.377, Time=0.91 sec
+ ARIMA(1,1,1)(0,0,0)[0] intercept   : AIC=257.600, Time=2.23 sec
+ ARIMA(2,1,1)(0,0,0)[0] intercept   : AIC=259.024, Time=2.77 sec
+ ARIMA(1,1,2)(0,0,0)[0] intercept   : AIC=260.318, Time=1.61 sec
+ ARIMA(0,1,2)(0,0,0)[0] intercept   : AIC=257.045, Time=2.73 sec
+ ARIMA(0,1,3)(0,0,0)[0] intercept   : AIC=258.163, Time=3.66 sec
+ ARIMA(1,1,3)(0,0,0)[0] intercept   : AIC=260.904, Time=3.77 sec
+ ARIMA(0,1,2)(0,0,0)[0]             : AIC=257.086, Time=1.28 sec
+
+Best model:  ARIMA(0,1,2)(0,0,0)[0] intercept
+Total fit time: 25.425 seconds
+Model fit:
+Pipeline(steps=[(&#39;fourier&#39;, FourierFeaturizer(k=4, m=12)),
+                (&#39;arima&#39;,
+                 AutoARIMA(error_action=&#39;ignore&#39;, seasonal=False, trace=1))])
+
+Forecasts:
+[7.21672048 7.47718895 7.70702211 7.50109376 7.39355039 7.28793713
+ 6.9482023  7.10384994 7.48193355 7.27584872 7.05523287 7.14032283
+ 7.20851927 7.49362725 7.72346026 7.51753185 7.40998855 7.30437519
+ 6.9646404  7.12028826 7.49837175 7.29228676 7.07167103 7.15676102]
+[7.43733959 7.39068654 7.27897048 6.93559394 7.09599306 7.47101792
+ 7.26720085 7.04661648 7.12045707 7.19253322 7.48399543 7.70290721
+ 7.50059684 7.40640341 7.29468726 6.95131075 7.11171009 7.48673483
+ 7.28291761 7.06233335 7.13617397 7.20825014 7.49971243 7.71862408
+ 7.51631363 7.42212029 7.31040403 6.96702756 7.12742711 7.50245174
+ 7.29863436 7.07805021 7.15189087 7.22396706 7.51542943 7.73434094
+ 7.53203043 7.43783716 7.3261208  6.98274436 7.14314414 7.51816865
+ 7.31435111 7.09376708 7.16760777 7.23968398 7.53114643 7.7500578
+ 7.54774722 7.45355404 7.34183757 6.99846117 7.15886117 7.53388556
+ 7.33006786 7.10948395 7.18332467]
+</pre></div>
+</div>
+<img alt="../_images/SARIMA_modeling_45_1.png" src="../_images/SARIMA_modeling_45_1.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pmdarima.utils</span> <span class="kn">import</span> <span class="n">tsdisplay</span>
+
+<span class="n">fig</span> <span class="o">=</span> <span class="n">tsdisplay</span><span class="p">(</span><span class="n">train</span><span class="p">,</span> <span class="n">lag_max</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">show</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="c1"># fig.savefig(&#39;./images/datatrends11_pmdarima_train_data.png&#39;)</span>
+<span class="c1"># plt.close();</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">();</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/SARIMA_modeling_46_0.png" src="../_images/SARIMA_modeling_46_0.png" />
+</div>
+</div>
+</section>
+</section>
+<section id="references">
+<h2>References<a class="headerlink" href="#references" title="Permalink to this headline">#</a></h2>
+<ul class="simple">
+<li><p>Kevin Sheppard - Advanced Financial Econometrics</p></li>
+<li><p><a class="reference external" href="https://timeseriesreasoning.com/">https://timeseriesreasoning.com/</a></p></li>
+<li><p><a class="reference external" href="https://online.stat.psu.edu/stat510/">https://online.stat.psu.edu/stat510/</a></p></li>
+</ul>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./econometrics"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="../maths/causal_inference_learning.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Causal Inference Learning</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="../ml_examples/intro.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">My ML Book</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By Chandra<br/>
+  
+      &copy; Copyright 2022.<br/>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>
