@@ -1,0 +1,1801 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Introduction ML for Graphs</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="prev" title="CS224W: Machine Learning with Graphs - by Jure Leskovev" href="intro.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../_static/mylogo.png" class="logo" alt="logo">
+      
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    Welcome
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  System Design
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../system_design/intro.html">
+   My System Design Book
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../system_design/design_patterns.html">
+     System Design Summary
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../system_design/software_engineering_concepts.html">
+     Software Engineering concepts
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../system_design/googlecloud_use_cases.html">
+     Google - Customer story
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../system_design/awscloud_financial_symposium_2022.html">
+     AWS - Financial Services Cloud Symposium - 2022
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../system_design/aws_usecases.html">
+     AWS - Customer story
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../system_design/design_general_use_cases.html">
+     Case study
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../system_design/netflix.html">
+     Netflix creativity
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../system_design/bk_AlexXu_SystemDesignInterview.html">
+     Book - System Design Interview - Alex Xu
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../system_design/design_patterns_python.html">
+     Design Pattern - Python
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Code
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../codes/intro.html">
+   My Code Book
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../codes/python_faqs.html">
+     Python FAQs
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../algos/all_algos.html">
+     Coding Challenges
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../codes/python_data_analytics.html">
+     Python Data Analytics - FAQs
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Database/Event
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../dbs/intro.html">
+   My DB Book
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+  <label for="toctree-checkbox-3">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../dbs/intro_kafka_ksqldb_stream_processing.html">
+     Introduction to Kafka/ksqldb/stream processing
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../dbs/neo4j_basics.html">
+     Building Neo4j Applications with Python
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../dbs/neo4j_graph_datascience.html">
+     Game of Thrones - Knowledge Graph analysis using Neo4j
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Math
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../maths/intro.html">
+   My Math Book
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+  <label for="toctree-checkbox-4">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../maths/probability_simulations.html">
+     Probability Games using Simulations
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../maths/linear_algebra.html">
+     Linear Algebra - FAQs
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../maths/probabilistic_programming.html">
+     Getting started with PyMC3
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../maths/causal_inference_learning.html">
+     Causal Inference Learning
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../econometrics/SARIMA_modeling.html">
+     SARIMA modeling
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Machine Learning
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../ml_examples/intro.html">
+   My ML Book
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
+  <label for="toctree-checkbox-5">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../ml_examples/ml_glossary.html">
+     ML Conceptual brief
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../ml_examples/Store_Sales_Forecasting_With_Tensorflow.html">
+     Store Sales Forecasting with TensorFlow
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../ml_examples/decision_tree_classification.html">
+     Decision Tree - classification
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../ml_examples/ml_design_patterns.html">
+     Machine Learning Design Patterns
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../dl_examples/intro.html">
+   My DL Book
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
+  <label for="toctree-checkbox-6">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../dl_examples/dl_glossary.html">
+     DL Conceptual brief
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../dl_examples/rp_AlexNet.html">
+     AlexNet Summary
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../dl_examples/rp_ResNet.html">
+     ResNet Summary
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../dl_examples/Anima_Anandkumar_Retrospective_Role_of_Tensors_in_Machine_Learning.html">
+     Anima Anandkumar - Retrospective Role of Tensors in ML
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../recommenders/intro.html">
+   My Recommenders Book
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/>
+  <label for="toctree-checkbox-7">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../recommenders/als_deep_dive.html">
+     Spark Collaborative Filtering (ALS) Deep Dive
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../rl_examples/intro.html">
+   My RL Book
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/>
+  <label for="toctree-checkbox-8">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../rl_examples/mab_ts_ab.html">
+     Multi-armed bandit problem
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Shell Scripting
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../unix/intro.html">
+   My Unix/Shell Book
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/>
+  <label for="toctree-checkbox-9">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../unix/unix_shell_script.html">
+     Unix/Shell FAQs
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../unix/my_zshrc.html">
+     My .zshrc script
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Lecture Notes
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../cs229_ml/intro.html">
+   CS229 ML - by Andrew Ng
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/>
+  <label for="toctree-checkbox-10">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../cs229_ml/lec02-LinearReg-GradientDescent.html">
+     Lec 02-Linear Regression - Gradient Descent
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../cs229_ml/lec03-LocallyWeighted-LogisticRegression.html">
+     Lec 03-Locally Weighted Regression - Logistic Regression
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../cs229_ml/lec04-Perceptron-GLM.html">
+     Lec 04-Perceptron - GLM
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../cs229_ml/lec05-GDA-NaiveBayes.html">
+     Lec 05-GDA - Naive Bayes
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../cs229_ml/lec06-NaiveBayes-SVM.html">
+     Lec 06-Naive Bayes - SVM
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../cs229_ml/lec07-Kernels-SVM.html">
+     Lec 07-Kernels - SVM
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../cs229_ml/lec08-DataSplits-Models-CrossValidation.html">
+     Lec 08-Data Splits - Models - Cross Validation
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../cs229_ml/lec09-Approx-EstimationError-ERM.html">
+     Lec 09-Estimation Error - ERM
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../cs229_ml/lec10-DecisionTrees-EnsembleMethods.html">
+     Lec 10-Decision Trees - Ensemble Methods
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../cs229_ml/lec11-Intro-NN.html">
+     Lec 11-Neural Networks
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../cs229_ml/lec12-Backpropagation-ImprovingNN.html">
+     Lec 12-Improving NN
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../cs229_ml/lec13-DebuggingMLModels-ErrorAnalysis.html">
+     Lec 13-Debugging ML Models-Error Analysis
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../cs229_ml/lec14-Expectation-MaximizationAlgo.html">
+     Lec 14-Expectation-Maximization Algo
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../cs229_ml/lec15-EMAlgo-FactorAnalysis.html">
+     Lec 15-EM Algo-Factor Analysis
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../cs229_ml/lec16-IndependentComponentAnalysis-RL.html">
+     Lec 16-Independent Component Analysis-RL
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../cs229_ml/lec17-MDPs-ValuePolicyIteration.html">
+     Lec 17-MDPs-Value Policy Iteration
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../cs229_ml/lec18-continuousMDPs-ModelSimulation.html">
+     Lec 18-Continuous MDPs-Model Simulation
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="intro.html">
+   CS224W: Machine Learning with Graphs - by Jure Leskovev
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/>
+  <label for="toctree-checkbox-11">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     Introduction ML for Graphs
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+    </div>
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<div class="menu-dropdown menu-dropdown-launch-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Launch interactive content">
+      <i class="fas fa-rocket"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://mybinder.org/v2/gh/chandrabsingh/learning/master?urlpath=tree/learning/cs224w_ml_graph/lec01_Introduction_MLforGraphs.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Binder"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="../_static/images/logo_binder.svg">
+  </span>
+<span class="headerbtn__text-container">Binder</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-repository-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Source repositories">
+      <i class="fab fa-github"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://github.com/chandrabsingh/learning"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Source repository"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="headerbtn__text-container">repository</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/chandrabsingh/learning/issues/new?title=Issue%20on%20page%20%2Fcs224w_ml_graph/lec01_Introduction_MLforGraphs.html&body=Your%20issue%20content%20here."
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Open an issue"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="headerbtn__text-container">open issue</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="../_sources/cs224w_ml_graph/lec01_Introduction_MLforGraphs.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.ipynb</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#links">
+   Links
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#introduction">
+   Introduction
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#types-of-networks-and-graphs">
+     Types of Networks and Graphs
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#graphs-and-relational-data">
+     Graphs and Relational Data
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#course-outline">
+     Course outline
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#syllabus">
+     Syllabus
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#applications-of-graph-ml">
+   Applications of Graph ML
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#different-types-of-task">
+     Different types of task
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#classic-graph-ml-tasks">
+     Classic Graph ML tasks
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#nodel-level-ml-problem">
+       Nodel level ML problem
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#edge-level-ml-tasks">
+       Edge level ML tasks
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#subgraph-level-ml-tasks">
+       Subgraph-level ML tasks
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#graph-level-ml-tasks">
+       Graph-level ML tasks
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#choice-of-graph-representation">
+   Choice of Graph Representation
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#components-of-network">
+     Components of network
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#how-to-build-define-a-graph">
+     How to build/define a graph
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#choice-of-proper-network-representation">
+       Choice of proper network representation
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#directed-vs-undirected-graphs">
+       Directed vs Undirected graphs
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#node-degrees">
+       Node degrees
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#bipartite-graph">
+       Bipartite graph
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#folded-projected-bipartite-graphs">
+       Folded/Projected Bipartite graphs
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#representing-graphs-adjacency-matrix">
+       Representing Graphs - Adjacency Matrix
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#adjacency-list">
+       Adjacency list
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#edge-list-and-adjacency-list">
+       Edge list and Adjacency list
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#node-and-edge-attributes">
+       Node and Edge attributes
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#more-types-of-graphs">
+       More types of graphs
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#connectivity-of-undirected-graph">
+       Connectivity of undirected graph
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#connectivity-of-directed-graph">
+       Connectivity of directed graph
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#summary">
+   Summary
+  </a>
+ </li>
+</ul>
+
+    </nav>
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Introduction ML for Graphs</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#links">
+   Links
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#introduction">
+   Introduction
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#types-of-networks-and-graphs">
+     Types of Networks and Graphs
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#graphs-and-relational-data">
+     Graphs and Relational Data
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#course-outline">
+     Course outline
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#syllabus">
+     Syllabus
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#applications-of-graph-ml">
+   Applications of Graph ML
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#different-types-of-task">
+     Different types of task
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#classic-graph-ml-tasks">
+     Classic Graph ML tasks
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#nodel-level-ml-problem">
+       Nodel level ML problem
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#edge-level-ml-tasks">
+       Edge level ML tasks
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#subgraph-level-ml-tasks">
+       Subgraph-level ML tasks
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#graph-level-ml-tasks">
+       Graph-level ML tasks
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#choice-of-graph-representation">
+   Choice of Graph Representation
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#components-of-network">
+     Components of network
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#how-to-build-define-a-graph">
+     How to build/define a graph
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#choice-of-proper-network-representation">
+       Choice of proper network representation
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#directed-vs-undirected-graphs">
+       Directed vs Undirected graphs
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#node-degrees">
+       Node degrees
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#bipartite-graph">
+       Bipartite graph
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#folded-projected-bipartite-graphs">
+       Folded/Projected Bipartite graphs
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#representing-graphs-adjacency-matrix">
+       Representing Graphs - Adjacency Matrix
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#adjacency-list">
+       Adjacency list
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#edge-list-and-adjacency-list">
+       Edge list and Adjacency list
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#node-and-edge-attributes">
+       Node and Edge attributes
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#more-types-of-graphs">
+       More types of graphs
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#connectivity-of-undirected-graph">
+       Connectivity of undirected graph
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#connectivity-of-directed-graph">
+       Connectivity of directed graph
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#summary">
+   Summary
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <section class="tex2jax_ignore mathjax_ignore" id="introduction-ml-for-graphs">
+<h1>Introduction ML for Graphs<a class="headerlink" href="#introduction-ml-for-graphs" title="Permalink to this headline">#</a></h1>
+<section id="links">
+<h2>Links<a class="headerlink" href="#links" title="Permalink to this headline">#</a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="http://snap.stanford.edu/class/cs224w-2020/">Stanford CS224W: Lectures Notes</a></p></li>
+<li><p><span class="xref myst">Stanford YouTube Online playlist</span></p></li>
+<li><p>Reference books</p>
+<ul>
+<li><p><a class="reference external" href="https://www.cs.mcgill.ca/~wlh/grl_book/files/GRL_Book.pdf">Graph Representation Learning - by William L. Hamilton</a></p></li>
+<li><p><a class="reference external" href="https://www.cs.cornell.edu/home/kleinber/networks-book/">Networks, Crowds, and Markets: Reasoning About a Highly Connected World - by David Easley and Jon Kleinberg</a></p></li>
+<li><p><a class="reference external" href="http://networksciencebook.com/">Network Science - by Albert-László Barabási</a></p></li>
+</ul>
+</li>
+<li><p>Graph ML tools</p>
+<ul>
+<li><p><a class="reference external" href="https://github.com/pyg-team/pytorch_geometric">PyTorch Geometric</a></p></li>
+<li><p><span class="xref myst">DeepSNAP</span></p></li>
+<li><p><span class="xref myst">GraphGym</span></p></li>
+<li><p><span class="xref myst">SNAP.PY</span></p></li>
+<li><p><span class="xref myst">NetworkX</span></p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">#</a></h2>
+<ul class="simple">
+<li><p>Graphs are a general language for describing and analyzing entities with relations/interactions</p></li>
+<li><p>we can think of graphs as network of relations between entities</p>
+<ul>
+<li><p>the entities are related to each other</p></li>
+<li><p>we need to model the underlying data which has a relationship among themselves</p></li>
+</ul>
+</li>
+<li><p>many types of data can be represented as graphs</p></li>
+<li><p>types of graphs</p>
+<ul>
+<li><p>event graphs</p></li>
+<li><p>computer networks</p></li>
+<li><p>disease pathways</p></li>
+<li><p>food webs</p></li>
+<li><p>particle networks</p></li>
+<li><p>undergroud networks</p></li>
+<li><p>social networks</p></li>
+<li><p>economic networks</p></li>
+<li><p>communication networks</p></li>
+<li><p>citation networks</p></li>
+<li><p>internet</p></li>
+<li><p>network of neurons</p></li>
+<li><p>knowledge of graphs</p></li>
+<li><p>regulatory networks</p></li>
+<li><p>scene graphs</p></li>
+<li><p>code graphs</p></li>
+<li><p>molecules</p></li>
+<li><p>3d-shapes</p></li>
+</ul>
+</li>
+<li><p>graph relational data</p></li>
+</ul>
+<section id="types-of-networks-and-graphs">
+<h3>Types of Networks and Graphs<a class="headerlink" href="#types-of-networks-and-graphs" title="Permalink to this headline">#</a></h3>
+<ul class="simple">
+<li><p>Networks or Natural graphs</p>
+<ul>
+<li><p><em>social networks</em> - society of 7+billion people</p></li>
+<li><p><em>communication and transactions</em> - in the form of phone calls or financial transactions</p></li>
+<li><p><em>biomedicine</em> - the interactions between genes/proteins</p></li>
+<li><p><em>brain connections</em> - in the form of neurons</p></li>
+</ul>
+</li>
+<li><p>Graphs</p>
+<ul>
+<li><p><em>information and knowledge</em> can be organized and linked together</p></li>
+<li><p><em>software</em> can be represented as graph</p></li>
+<li><p><em>similarity networks</em> connect similar data points</p></li>
+<li><p><em>relational structures</em> of molecules types or physics simulation</p></li>
+</ul>
+</li>
+<li><p>distinction between networks and graphs is blurred</p>
+<ul>
+<li><p>how to take advantage of relational structure for better predictions</p></li>
+<li><p>complex domains have rich relational structure which can be represented as <em>relational graph</em></p>
+<ul>
+<li><p>this leads to achieve better performance</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="graphs-and-relational-data">
+<h3>Graphs and Relational Data<a class="headerlink" href="#graphs-and-relational-data" title="Permalink to this headline">#</a></h3>
+<ul class="simple">
+<li><p>complex domains have rich relational structure - relational graph</p></li>
+<li><p>deep learning toolbox</p>
+<ul>
+<li><p>graphs are frontier of deep learning</p></li>
+</ul>
+</li>
+<li><p>graph has complex topology than images or text</p>
+<ul>
+<li><p>in text there is left and right words/characters</p></li>
+<li><p>in images there is top/bottom/right/left pixels, so they have reference points</p></li>
+<li><p>in graphs</p>
+<ul>
+<li><p>no notion of spatial locality like grids</p></li>
+<li><p>graphs are dynamic and multimodal nodes</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p align="center"><img src="./images/01_dl_in_graphs.png" width=500 height=300></p>
+<ul class="simple">
+<li><p>in this course, we will learn to build neural network</p>
+<ul>
+<li><p>as input, will have a graph</p></li>
+<li><p>as output, will have a prediction</p>
+<ul>
+<li><p>prediction can be at the</p>
+<ul>
+<li><p>level of nodes</p></li>
+<li><p>or pairs of nodes/links</p></li>
+<li><p>or a complex new graph</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>the question is how to build this neural structure that will allow us to make this predictions</p>
+<ul>
+<li><p>how to design neural network so that no human feature engineering ( feature engineering) is needed</p>
+<ul>
+<li><p>instead of feature engineering - <strong>representation learning</strong> is used</p>
+<ul>
+<li><p>feature engineering is the way of how to capture the data, so that machine learning models can take advantage of it</p></li>
+<li><p>representation learning</p>
+<ul>
+<li><p>automatically learn the features</p></li>
+<li><p>and predict the downstream tasks</p>
+<ul>
+<li><p>map nodes to d-dimensional embeddings/vectors, such that similar nodes in the network are embedded close together in the embedding space</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p align="center"><img src="./images/01_representation_learning.png" width=500 height=300></p>
+<ul class="simple">
+<li><p>the course will be to learn how to represent this embedding space</p></li>
+</ul>
+<p align="center"><img src="./images/01_map_embedding.png" width=500 height=300></p>
+</section>
+<section id="course-outline">
+<h3>Course outline<a class="headerlink" href="#course-outline" title="Permalink to this headline">#</a></h3>
+<ul class="simple">
+<li><p>Traditional methods: Graphlets, Graph Kernels</p></li>
+<li><p>Methods for node embeddings: DeepWalk, Node2Vec</p></li>
+<li><p>Graph Neural Networks: GCN, GraphSAGE, GAT, Theory of GNNs</p></li>
+<li><p>Heterogenous/Knowledge graphs and reasoning: TransE, BetaE</p></li>
+<li><p>Deep generative models for graphs</p></li>
+<li><p>Applications to Biomedicine, Science, Industry</p></li>
+</ul>
+</section>
+<section id="syllabus">
+<h3>Syllabus<a class="headerlink" href="#syllabus" title="Permalink to this headline">#</a></h3>
+<ul class="simple">
+<li><p>Introduction; Machine Learning for Graphs</p></li>
+<li><p>Traditional Methods for ML on Graphs</p></li>
+<li><p>Node Embeddings</p></li>
+<li><p>Link Analysis: PageRank</p></li>
+<li><p>Label Propagation for Node Classification</p></li>
+<li><p>Graph Neural Networks 1: GNN Model</p></li>
+<li><p>Graph Neural Networks 2: Design Space</p></li>
+<li><p>Applications of Graph Neural Networks</p></li>
+<li><p>Theory of Graph Neural Networks</p></li>
+<li><p>Knowledge Graph Embeddings</p></li>
+<li><p>Reasoning over Knowledge Graphs</p></li>
+<li><p>Frequent Subgraph Mining with GNNs</p></li>
+<li><p>Community Structure in Networks</p></li>
+<li><p>Traditional Generative Models for Graphs</p></li>
+<li><p>Deep Generative Models for Graphs</p></li>
+<li><p>Scaling Up GNNs</p></li>
+<li><p>Learning on Dynamic Graphs</p></li>
+<li><p>GNNs for Computational Biology</p></li>
+<li><p>GNNs for Science</p></li>
+<li><p>Industrial Applications of GNNs</p></li>
+</ul>
+</section>
+</section>
+<section id="applications-of-graph-ml">
+<h2>Applications of Graph ML<a class="headerlink" href="#applications-of-graph-ml" title="Permalink to this headline">#</a></h2>
+<section id="different-types-of-task">
+<h3>Different types of task<a class="headerlink" href="#different-types-of-task" title="Permalink to this headline">#</a></h3>
+<ul class="simple">
+<li><p>formulate tasks at different levels</p>
+<ul>
+<li><p>Node level</p></li>
+<li><p>Community (or subgraph) level</p></li>
+<li><p>Edge level</p></li>
+<li><p>Graph level prediction or Graph generation</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="classic-graph-ml-tasks">
+<h3>Classic Graph ML tasks<a class="headerlink" href="#classic-graph-ml-tasks" title="Permalink to this headline">#</a></h3>
+<ul class="simple">
+<li><p>Node classification</p>
+<ul>
+<li><p>predict property of node</p>
+<ul>
+<li><p>categorize online users/items</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Link prediction</p>
+<ul>
+<li><p>knowledge graph completion</p></li>
+</ul>
+</li>
+<li><p>Graph classification</p>
+<ul>
+<li><p>represent molecules and predict properttiies of molecules</p></li>
+</ul>
+</li>
+<li><p>Clustering</p>
+<ul>
+<li><p>community detection or sociial circle detection</p></li>
+</ul>
+</li>
+<li><p>Other</p>
+<ul>
+<li><p>Graph generation</p>
+<ul>
+<li><p>drug discovery</p></li>
+</ul>
+</li>
+<li><p>Graph evolution</p>
+<ul>
+<li><p>acurate simulations in physics</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<section id="nodel-level-ml-problem">
+<h4>Nodel level ML problem<a class="headerlink" href="#nodel-level-ml-problem" title="Permalink to this headline">#</a></h4>
+<ul class="simple">
+<li><p>Protein folding</p>
+<ul>
+<li><p>Medicine/drugs bind to proteins and then change behaviour/biological processes</p></li>
+<li><p>Proteins are made up of amino acids</p>
+<ul>
+<li><p>given a sequence of amino acids, can you predict the 3D structure of underlying protein</p></li>
+<li><p>Problem:</p>
+<ul>
+<li><p>how to computationally predict a protein’s 3D structure based solely on its amino acid sequence</p></li>
+<li><p>folding of protein is complex based on amino acid sequence</p></li>
+</ul>
+</li>
+<li><p>DeepMind’s AlphaMind is close to solve</p>
+<ul>
+<li><p><strong>Nodes:</strong> underlying amino acids were designed in the form of nodes of <strong>spatial graph</strong></p></li>
+<li><p><strong>Edges:</strong> proximity between amino acids</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="edge-level-ml-tasks">
+<h4>Edge level ML tasks<a class="headerlink" href="#edge-level-ml-tasks" title="Permalink to this headline">#</a></h4>
+<ul class="simple">
+<li><p>Link prediction</p>
+<ul>
+<li><p>relationship between different nodes</p></li>
+</ul>
+</li>
+<li><p>Recommender systems</p>
+<ul>
+<li><p>Watch movie</p></li>
+<li><p>listen to music</p>
+<ul>
+<li><p>make predictions using</p>
+<ul>
+<li><p>Graph representation learning</p></li>
+<li><p>GNN</p></li>
+</ul>
+</li>
+<li><p>used in</p>
+<ul>
+<li><p>Pinterest, LinkedIn, Facebook</p></li>
+</ul>
+</li>
+<li><p>learn about nodes that are related are closer than ones that are not related</p></li>
+<li><p>Predict</p>
+<ul>
+<li><p>use feature information/images and transform it across underlying graph to come up with robust embedding</p></li>
+<li><p>images + graph leads to much better recommendation than graphs itself</p></li>
+<li><p>understand relationship between pairs of nodes/images saying nodes that are related should be embedded closer together
+$<span class="math notranslate nohighlight">\(  d(z_{cake1}, z_{cake2}) \lt d(z_{cake1}, z_{sweater})  \)</span>$</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Drug side effects</p>
+<ul>
+<li><p>many patients simulataneously take 5 or more drugs</p></li>
+<li><p>these drugs interact with each other</p></li>
+<li><p>this leads to adverse side effect</p>
+<ul>
+<li><p>cannot test experimentally all combination of drugs to see what kind of side effects they lead to</p></li>
+<li><p>make a prediction engine that takes arbitrary pair of drugs and predict how these drugs are going to interact and cause adverse side effect</p></li>
+</ul>
+</li>
+<li><p>design 2 level of heterogenous network</p>
+<ul>
+<li><p>triangle - represent drugs</p></li>
+<li><p>circle - represent protein</p></li>
+<li><p>we have protein-protein interaction network</p></li>
+<li><p>there are lot of missing connection as how would medicine interact</p></li>
+<li><p>can we predict missing connections</p></li>
+<li><p>link predictions problem, given two drugs what can be the side effect</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="subgraph-level-ml-tasks">
+<h4>Subgraph-level ML tasks<a class="headerlink" href="#subgraph-level-ml-tasks" title="Permalink to this headline">#</a></h4>
+<ul class="simple">
+<li><p>Traffic prediction</p>
+<ul>
+<li><p>Google Maps tell us about the estimated time of arrival from point A to point B</p></li>
+<li><p>road represent node segment</p></li>
+<li><p>edges represent connectivity between road segments</p></li>
+<li><p>prediction using GNN (Graph Neural Network)</p>
+<ul>
+<li><p>based on the conditions and traffic patterns on each of the road, prediction is made regarding travel time</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="graph-level-ml-tasks">
+<h4>Graph-level ML tasks<a class="headerlink" href="#graph-level-ml-tasks" title="Permalink to this headline">#</a></h4>
+<ul class="simple">
+<li><p>Drug discovery</p>
+<ul>
+<li><p>Molecules can be represented as graphs</p>
+<ul>
+<li><p>Atoms as nodes</p></li>
+<li><p>Chemical bonds as edges</p></li>
+</ul>
+</li>
+<li><p>graph NN was used to classify different molecules</p></li>
+<li><p>which molecule can have theuraputic effect</p></li>
+<li><p>team at MIT used graph based DL for antibiotic discovery to classify different molecules and predict promising molecules from a pool of candidates</p></li>
+</ul>
+</li>
+<li><p>Novel/New Molecule generation</p>
+<ul>
+<li><p>generate molecules that are non-toxic</p></li>
+<li><p>generate molecules that have high solubility</p></li>
+<li><p>generate molecules that have high drug likeness</p></li>
+<li><p>optimize existing molecules to have targetable/desirable properties</p></li>
+</ul>
+</li>
+<li><p>Physics based simulation</p>
+<ul>
+<li><p>for different materials i.e., set of particles, how do the particles interact</p></li>
+<li><p>task for ML is to predict how the graph will evolve in future</p></li>
+<li><p>how will this material deform/reshape in future</p>
+<ul>
+<li><p>generate proximity graph</p></li>
+<li><p>how will the particles evolve to their new positions</p></li>
+<li><p>iterate over how the particles will move and based on this predict their future</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</section>
+</section>
+</section>
+<section id="choice-of-graph-representation">
+<h2>Choice of Graph Representation<a class="headerlink" href="#choice-of-graph-representation" title="Permalink to this headline">#</a></h2>
+<section id="components-of-network">
+<h3>Components of network<a class="headerlink" href="#components-of-network" title="Permalink to this headline">#</a></h3>
+<ul class="simple">
+<li><p>Objects - nodes, vertices - N</p></li>
+<li><p>Interactions - links, edges - E</p></li>
+<li><p>System - network, graph - G(N,E)</p></li>
+<li><p>Underlying infrastructure might be same</p></li>
+<li><p>choosing proper representation</p></li>
+</ul>
+</section>
+<section id="how-to-build-define-a-graph">
+<h3>How to build/define a graph<a class="headerlink" href="#how-to-build-define-a-graph" title="Permalink to this headline">#</a></h3>
+<ul class="simple">
+<li><p>what are nodes</p></li>
+<li><p>what are edges</p></li>
+</ul>
+<section id="choice-of-proper-network-representation">
+<h4>Choice of proper network representation<a class="headerlink" href="#choice-of-proper-network-representation" title="Permalink to this headline">#</a></h4>
+<ul class="simple">
+<li><p>connect individuals to form <em>professional network</em> based on their work relationship</p></li>
+<li><p>connect same individuals to form <em>sexual network</em> based on their sexual relationship</p></li>
+<li><p>connect same individuals to form <em>citation network</em> based on their scientific paper cites</p></li>
+</ul>
+</section>
+<section id="directed-vs-undirected-graphs">
+<h4>Directed vs Undirected graphs<a class="headerlink" href="#directed-vs-undirected-graphs" title="Permalink to this headline">#</a></h4>
+<ul class="simple">
+<li><p>Undirected graphs</p>
+<ul>
+<li><p>useful for modeling symmetrical or reciprocal relationship</p></li>
+<li><p>For example - collaboration, friendship, interaction between protein</p></li>
+</ul>
+</li>
+<li><p>Directed graphs</p>
+<ul>
+<li><p>every link has a direction/source and destination and is denoted by an arrow</p></li>
+<li><p>there is a source and destination</p></li>
+<li><p>For example - phone calls, financial transactions, following on Twitter</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="node-degrees">
+<h4>Node degrees<a class="headerlink" href="#node-degrees" title="Permalink to this headline">#</a></h4>
+<ul class="simple">
+<li><p>Undirected</p>
+<ul>
+<li><p>number of edges adjacent to a given node</p></li>
+<li><p>each edge gets counted twice</p></li>
+<li><p>having a self-edge/self-loop adds a degree of 2 to the node</p></li>
+</ul>
+</li>
+<li><p>Directed</p>
+<ul>
+<li><p>in-degree - number of edges pointing towards the node</p></li>
+<li><p>out-degree - number of edges pointing outwards from the node</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="bipartite-graph">
+<h4>Bipartite graph<a class="headerlink" href="#bipartite-graph" title="Permalink to this headline">#</a></h4>
+<ul class="simple">
+<li><p>type of graph whose nodes can be divided into 2 disjoint sets/partitions</p></li>
+<li><p>edges go only from left to right</p></li>
+<li><p>not inside the same partition</p></li>
+<li><p>the sets are independent</p></li>
+<li><p>examples</p>
+<ul>
+<li><p>Authors to papers (they authored)</p></li>
+<li><p>Authors to movies (they appeared in)</p></li>
+<li><p>Users to movies (they rated)</p></li>
+<li><p>Folded networks</p>
+<ul>
+<li><p>author collaboration networks</p></li>
+<li><p>Movie co-rating networks</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p align="center"><img src = 'images/01_bipartite.png' width=200 height=200></p>
+<p><span class="math notranslate nohighlight">\(\tiny{\text{YouTube-Stanford-CS224W-Jure Leskovec}}\)</span></p>
+</section>
+<section id="folded-projected-bipartite-graphs">
+<h4>Folded/Projected Bipartite graphs<a class="headerlink" href="#folded-projected-bipartite-graphs" title="Permalink to this headline">#</a></h4>
+<ul class="simple">
+<li><p>If we have a bipartite graph, we can project this bipartite graph to either left or right side</p></li>
+<li><p>use nodes from one side in my projection graph</p></li>
+<li><p>the way we connect the nodes</p>
+<ul>
+<li><p>create a connection between pair of nodes</p></li>
+<li><p>if they have one neighbor in common</p></li>
+<li><p>1,2,3 co-authored a paper</p></li>
+<li><p>3 and 4 did not co-author a paper</p></li>
+<li><p>2 and 5 co-authored a paper</p></li>
+</ul>
+</li>
+<li><p>create a projection on the right side</p></li>
+</ul>
+<img src = 'images/01_bipartite_projection.png' width=400 height=400>
+<p><span class="math notranslate nohighlight">\(\tiny{\text{YouTube-Stanford-CS224W-Jure Leskovec}}\)</span></p>
+</section>
+<section id="representing-graphs-adjacency-matrix">
+<h4>Representing Graphs - Adjacency Matrix<a class="headerlink" href="#representing-graphs-adjacency-matrix" title="Permalink to this headline">#</a></h4>
+<ul class="simple">
+<li><p>matrix will take entries of 0 and 1 (binary)</p></li>
+<li><p>value of matrix element <span class="math notranslate nohighlight">\(A_{ij}\)</span> will be set to 1, if nodes i and j are connected</p></li>
+<li><p>undirected graph</p>
+<ul>
+<li><p>the matrix are symmetric</p></li>
+</ul>
+</li>
+<li><p>directed graph</p>
+<ul>
+<li><p>the matrix are not symmetric</p></li>
+</ul>
+</li>
+<li><p>node degrees are different for directed and undirected graph</p></li>
+<li><p>adjacency matrices are sparse</p>
+<ul>
+<li><p>extremely sparse</p></li>
+</ul>
+</li>
+</ul>
+<p align="center"><img src = 'images/01_adjacencyMatrix.png' width=400 height=400> </p>
+<p><span class="math notranslate nohighlight">\(\tiny{\text{YouTube-Stanford-CS224W-Jure Leskovec}}\)</span></p>
+</section>
+<section id="adjacency-list">
+<h4>Adjacency list<a class="headerlink" href="#adjacency-list" title="Permalink to this headline">#</a></h4>
+<ul class="simple">
+<li><p>Adjacency list</p>
+<ul>
+<li><p>most real world networks are very sparse</p></li>
+<li><p>very easier to work with sparse matrix</p></li>
+<li><p>simply store the neighbors</p></li>
+<li><p>for undirected - simply store the neighbors</p></li>
+<li><p>for directed - store both in-going and out-going neighbors</p></li>
+<li><p>Example (store neighbors node information)</p>
+<ul>
+<li><p>1:</p></li>
+<li><p>2: 3,4</p></li>
+<li><p>3: 2,4</p></li>
+<li><p>4: 5</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="edge-list-and-adjacency-list">
+<h4>Edge list and Adjacency list<a class="headerlink" href="#edge-list-and-adjacency-list" title="Permalink to this headline">#</a></h4>
+<ul class="simple">
+<li><p>Edge list</p>
+<ul>
+<li><p>quite popular</p></li>
+<li><p>very hard to graph manuplation</p></li>
+<li><p>represent as two-dimensional matrix</p></li>
+<li><p>Example</p>
+<ul>
+<li><p>(2,3)</p></li>
+<li><p>(2,4)</p></li>
+<li><p>(3,2)</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="node-and-edge-attributes">
+<h4>Node and Edge attributes<a class="headerlink" href="#node-and-edge-attributes" title="Permalink to this headline">#</a></h4>
+<ul class="simple">
+<li><p>how to attach attributes and properties</p></li>
+<li><p>edge can have a weight, how strong is the friendship</p></li>
+<li><p>edge can have a rank, or type of friend</p></li>
+</ul>
+</section>
+<section id="more-types-of-graphs">
+<h4>More types of graphs<a class="headerlink" href="#more-types-of-graphs" title="Permalink to this headline">#</a></h4>
+<ul class="simple">
+<li><p>unweighted - undirected</p></li>
+<li><p>weighted - undirected (how strong is the relationship)</p></li>
+<li><p>self-edges (self-loops) - undirected (entries in diagonal)</p></li>
+<li><p>multigraph - undirected  (entries might have different properties)</p></li>
+</ul>
+<p align="center"><img src = 'images/01_weightedMatrix.png' width=400 height=400></p>
+<p align="center"><img src = 'images/01_selfedgeGraph.png' width=400 height=400></p>
+<p><span class="math notranslate nohighlight">\(\tiny{\text{YouTube-Stanford-CS224W-Jure Leskovec}}\)</span></p>
+</section>
+<section id="connectivity-of-undirected-graph">
+<h4>Connectivity of undirected graph<a class="headerlink" href="#connectivity-of-undirected-graph" title="Permalink to this headline">#</a></h4>
+<ul class="simple">
+<li><p>can be joined by path</p></li>
+<li><p>block matrices</p>
+<ul>
+<li><p>tell us if the graph is inter-connected or not</p></li>
+<li><p>isolated node</p></li>
+<li><p>block diagonal structure</p></li>
+</ul>
+</li>
+</ul>
+<img src = 'images/01_connectivityUnDirected.png' width=400 height=400>  
+$\tiny{\text{YouTube-Stanford-CS224W-Jure Leskovec}}$</section>
+<section id="connectivity-of-directed-graph">
+<h4>Connectivity of directed graph<a class="headerlink" href="#connectivity-of-directed-graph" title="Permalink to this headline">#</a></h4>
+<ul class="simple">
+<li><p>strongly or weakly connectivity</p></li>
+<li><p>strong</p>
+<ul>
+<li><p>has a directed path for every node</p></li>
+</ul>
+</li>
+<li><p>weakly</p>
+<ul>
+<li><p>disregard/ignore the edge directions</p></li>
+</ul>
+</li>
+</ul>
+</section>
+</section>
+</section>
+<section id="summary">
+<h2>Summary<a class="headerlink" href="#summary" title="Permalink to this headline">#</a></h2>
+<ul class="simple">
+<li><p>ML with graphs</p>
+<ul>
+<li><p>Applications and use cases</p></li>
+</ul>
+</li>
+<li><p>Different types of tasks</p>
+<ul>
+<li><p>Node level</p></li>
+<li><p>Edge level</p></li>
+<li><p>Graph level</p></li>
+</ul>
+</li>
+<li><p>Choice of graph representation</p>
+<ul>
+<li><p>Directed</p></li>
+<li><p>Undirected</p></li>
+<li><p>bipartite</p></li>
+<li><p>weighted</p></li>
+<li><p>adjacency matrix</p></li>
+</ul>
+</li>
+</ul>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./cs224w_ml_graph"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="intro.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">CS224W: Machine Learning with Graphs - by Jure Leskovev</p>
+        </div>
+    </a>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By Chandra<br/>
+  
+      &copy; Copyright 2022.<br/>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>

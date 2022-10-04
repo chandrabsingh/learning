@@ -261,7 +261,7 @@ const thebe_selector_output = ".output, .cell_output"
   <ul>
    <li class="toctree-l2">
     <a class="reference internal" href="../maths/probability_simulations.html">
-     Probability Simulations
+     Probability Games using Simulations
     </a>
    </li>
    <li class="toctree-l2">
@@ -325,13 +325,6 @@ const thebe_selector_output = ".output, .cell_output"
    </li>
   </ul>
  </li>
-</ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Deep Learning
- </span>
-</p>
-<ul class="nav bd-sidenav">
  <li class="toctree-l1 has-children">
   <a class="reference internal" href="../dl_examples/intro.html">
    My DL Book
@@ -364,6 +357,40 @@ const thebe_selector_output = ".output, .cell_output"
    </li>
   </ul>
  </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../recommenders/intro.html">
+   My Recommenders Book
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/>
+  <label for="toctree-checkbox-7">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../recommenders/als_deep_dive.html">
+     Spark Collaborative Filtering (ALS) Deep Dive
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../rl_examples/intro.html">
+   My RL Book
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/>
+  <label for="toctree-checkbox-8">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../rl_examples/mab_ts_ab.html">
+     Multi-armed bandit problem
+    </a>
+   </li>
+  </ul>
+ </li>
 </ul>
 <p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
@@ -375,8 +402,8 @@ const thebe_selector_output = ".output, .cell_output"
   <a class="reference internal" href="../unix/intro.html">
    My Unix/Shell Book
   </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/>
-  <label for="toctree-checkbox-7">
+  <input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/>
+  <label for="toctree-checkbox-9">
    <i class="fas fa-chevron-down">
    </i>
   </label>
@@ -404,8 +431,8 @@ const thebe_selector_output = ".output, .cell_output"
   <a class="reference internal" href="../cs229_ml/intro.html">
    CS229 ML - by Andrew Ng
   </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/>
-  <label for="toctree-checkbox-8">
+  <input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/>
+  <label for="toctree-checkbox-10">
    <i class="fas fa-chevron-down">
    </i>
   </label>
@@ -493,6 +520,23 @@ const thebe_selector_output = ".output, .cell_output"
    <li class="toctree-l2">
     <a class="reference internal" href="../cs229_ml/lec18-continuousMDPs-ModelSimulation.html">
      Lec 18-Continuous MDPs-Model Simulation
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../cs224w_ml_graph/intro.html">
+   CS224W: Machine Learning with Graphs - by Jure Leskovev
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/>
+  <label for="toctree-checkbox-11">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../cs224w_ml_graph/lec01_Introduction_MLforGraphs.html">
+     Introduction ML for Graphs
     </a>
    </li>
   </ul>
@@ -1817,7 +1861,9 @@ array([[1., 1., 1.],
 float64
 array([[1, 1, 1],
        [1, 1, 1]], dtype=int32)
-int32
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>int32
 </pre></div>
 </div>
 </div>
@@ -1867,9 +1913,7 @@ Mul=array([[2, 4],
        [6, 8]])
 Div=array([[0.5, 1. ],
        [1.5, 2. ]])
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Div and round to int=array([[0, 1],
+Div and round to int=array([[0, 1],
        [1, 2]])
 Pow2=array([[ 1,  4],
        [ 9, 16]])
@@ -1919,7 +1963,9 @@ array([[0.        , 1.        ],
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[ 3,  9],
        [27, 81]])
-array([[ 10.2,  16. ],
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[ 10.2,  16. ],
        [ 27. , 625. ]])
 </pre></div>
 </div>
@@ -1947,7 +1993,9 @@ array([[ 10.2,  16. ],
 [[ 5 10 10]
  [ 9 20 22]
  [13 30 34]]
-[[ 9 10]
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[ 9 10]
  [38 50]]
 </pre></div>
 </div>
@@ -1965,10 +2013,12 @@ array([[ 10.2,  16. ],
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1
-4
-[[-3 12]
- [ 9 -3]]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>3
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>5
+[[ 6 13]
+ [ 9  2]]
 </pre></div>
 </div>
 </div>
@@ -2378,9 +2428,7 @@ array([[False, False, False],
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array(False)
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(array([1, 3]),)
+(array([1, 3]),)
 (array([0, 0, 1, 2]), array([1, 2, 0, 0]))
 array([ 2,  3,  1, -3])
 </pre></div>
@@ -2403,9 +2451,7 @@ array([ 2,  3,  1, -3])
        [ 3, -8]])
 array([[ 1,  2],
        [-1,  4]])
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[ 1,  2],
+array([[ 1,  2],
        [-5,  4]])
 </pre></div>
 </div>
@@ -2514,14 +2560,14 @@ False
        [[12, 13, 14, 15],
         [16, 17, 18, 19],
         [20, 21, 22, 23]]])
-array([[12, 14, 16, 18],
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[12, 14, 16, 18],
        [20, 22, 24, 26],
        [28, 30, 32, 34]])
 array([[12, 15, 18, 21],
        [48, 51, 54, 57]])
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[ 6, 22, 38],
+array([[ 6, 22, 38],
        [54, 70, 86]])
 array([[ 6, 22, 38],
        [54, 70, 86]])
@@ -2591,7 +2637,9 @@ array([72,  3,  4])
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2.0
 977.3333333333334
-1.0
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1.0
 array([ 3.,  1., -2.])
 
 18
@@ -2732,7 +2780,7 @@ dtype: float32
 dtype: object
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/var/folders/kz/g_s979xs7pdbzdsbg21qhs240000gn/T/ipykernel_4969/306238363.py:3: FutureWarning: The default dtype for empty Series will be &#39;object&#39; instead of &#39;float64&#39; in a future version. Specify a dtype explicitly to silence this warning.
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/var/folders/kz/g_s979xs7pdbzdsbg21qhs240000gn/T/ipykernel_39231/306238363.py:3: FutureWarning: The default dtype for empty Series will be &#39;object&#39; instead of &#39;float64&#39; in a future version. Specify a dtype explicitly to silence this warning.
   series = pd.Series()
 </pre></div>
 </div>
@@ -3076,7 +3124,10 @@ dtype: object
 r3  0.0  0
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/var/folders/kz/g_s979xs7pdbzdsbg21qhs240000gn/T/ipykernel_4969/533385271.py:5: FutureWarning: The frame.append method is deprecated and will be removed from pandas in a future version. Use pandas.concat instead.
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/var/folders/kz/g_s979xs7pdbzdsbg21qhs240000gn/T/ipykernel_39231/533385271.py:5: FutureWarning: The frame.append method is deprecated and will be removed from pandas in a future version. Use pandas.concat instead.
   df_app = df.append(ser)
 </pre></div>
 </div>
@@ -3110,9 +3161,9 @@ r3  0.0  0
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/var/folders/kz/g_s979xs7pdbzdsbg21qhs240000gn/T/ipykernel_4969/3111016736.py:1: FutureWarning: The frame.append method is deprecated and will be removed from pandas in a future version. Use pandas.concat instead.
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/var/folders/kz/g_s979xs7pdbzdsbg21qhs240000gn/T/ipykernel_39231/3111016736.py:1: FutureWarning: The frame.append method is deprecated and will be removed from pandas in a future version. Use pandas.concat instead.
   df_app = df.append(ser, ignore_index=True)
-/var/folders/kz/g_s979xs7pdbzdsbg21qhs240000gn/T/ipykernel_4969/3111016736.py:5: FutureWarning: The frame.append method is deprecated and will be removed from pandas in a future version. Use pandas.concat instead.
+/var/folders/kz/g_s979xs7pdbzdsbg21qhs240000gn/T/ipykernel_39231/3111016736.py:5: FutureWarning: The frame.append method is deprecated and will be removed from pandas in a future version. Use pandas.concat instead.
   df_app = df.append(df2)
 </pre></div>
 </div>
@@ -3138,9 +3189,6 @@ r3  0.0  0
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>    c1  c2  c3
 r2   2   4   6
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
 </pre></div>
 </div>
 </div>
@@ -3280,8 +3328,9 @@ r2  2.0  4.0  NaN  NaN
 1   al smith   C  2004
 2  sam black   P  2008
 3   john doe  2B  2003
-
-       name  year  rbi
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>       name  year  rbi
 0  john doe  2000   80
 1  al smith  2004  100
 2  jack lee  2012   12
@@ -3327,6 +3376,9 @@ r1   3   5
 r2   4   6
 </pre></div>
 </div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
 </div>
 </div>
 </section>
@@ -3355,8 +3407,9 @@ r2   4   6
 r1   1   4   7
 r2   2   5   8
 r3   3   6   9
-
-    c1  c2  c3
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>    c1  c2  c3
 r1   1   4   7
 r2   2   5   8
 
@@ -3405,11 +3458,13 @@ Name: r2, dtype: int64
     c1  c2  c3
 r1   1   4   7
 r3   3   6   9
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>    c1  c2  c3
+
+    c1  c2  c3
 r2   2   5   8
 r3   3   6   9
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
 </pre></div>
 </div>
 </div>
@@ -3556,14 +3611,14 @@ MIL DataFrame:
 0      jj west  LF    15
 1  will thomas  CF    44
 2   alex stein  3B    12
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>         name   pos  HR
+
+         name   pos  HR
 0    abe hass  LF    32
 1    jim buck   C    17
 2  aaron dean  LF    58
-
-dict_keys([&#39;NYY&#39;, &#39;BOS&#39;, &#39;MIL&#39;])
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>dict_keys([&#39;NYY&#39;, &#39;BOS&#39;, &#39;MIL&#39;])
 </pre></div>
 </div>
 </div>
@@ -3734,9 +3789,8 @@ yearID
 1    2016  bettsmo01    BOS  214
 2    2016  bogaexa01    BOS  192
 4    2016  pedrodu01    BOS  201
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Year, Team: (2016, &#39;HOU&#39;)
+
+Year, Team: (2016, &#39;HOU&#39;)
    yearID   playerID teamID    H
 0    2016  altuvjo01    HOU  216
 3    2016  correca01    HOU  158
@@ -3751,9 +3805,8 @@ Year, Team: (2017, &#39;HOU&#39;)
    yearID   playerID teamID    H
 5    2017  altuvjo01    HOU  204
 8    2017  correca01    HOU  133
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>                 H
+
+                 H
 yearID teamID     
 2016   BOS     607
        HOU     374
@@ -3891,6 +3944,9 @@ dtype: float64
 0    385.0
 1    370.0
 dtype: float64
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
 </pre></div>
 </div>
 </div>

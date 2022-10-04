@@ -263,7 +263,7 @@ const thebe_selector_output = ".output, .cell_output"
   <ul>
    <li class="toctree-l2">
     <a class="reference internal" href="../maths/probability_simulations.html">
-     Probability Simulations
+     Probability Games using Simulations
     </a>
    </li>
    <li class="toctree-l2">
@@ -327,13 +327,6 @@ const thebe_selector_output = ".output, .cell_output"
    </li>
   </ul>
  </li>
-</ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Deep Learning
- </span>
-</p>
-<ul class="nav bd-sidenav">
  <li class="toctree-l1 has-children">
   <a class="reference internal" href="../dl_examples/intro.html">
    My DL Book
@@ -366,6 +359,40 @@ const thebe_selector_output = ".output, .cell_output"
    </li>
   </ul>
  </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../recommenders/intro.html">
+   My Recommenders Book
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/>
+  <label for="toctree-checkbox-7">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../recommenders/als_deep_dive.html">
+     Spark Collaborative Filtering (ALS) Deep Dive
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../rl_examples/intro.html">
+   My RL Book
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/>
+  <label for="toctree-checkbox-8">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../rl_examples/mab_ts_ab.html">
+     Multi-armed bandit problem
+    </a>
+   </li>
+  </ul>
+ </li>
 </ul>
 <p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
@@ -377,8 +404,8 @@ const thebe_selector_output = ".output, .cell_output"
   <a class="reference internal" href="../unix/intro.html">
    My Unix/Shell Book
   </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/>
-  <label for="toctree-checkbox-7">
+  <input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/>
+  <label for="toctree-checkbox-9">
    <i class="fas fa-chevron-down">
    </i>
   </label>
@@ -406,8 +433,8 @@ const thebe_selector_output = ".output, .cell_output"
   <a class="reference internal" href="../cs229_ml/intro.html">
    CS229 ML - by Andrew Ng
   </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/>
-  <label for="toctree-checkbox-8">
+  <input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/>
+  <label for="toctree-checkbox-10">
    <i class="fas fa-chevron-down">
    </i>
   </label>
@@ -495,6 +522,23 @@ const thebe_selector_output = ".output, .cell_output"
    <li class="toctree-l2">
     <a class="reference internal" href="../cs229_ml/lec18-continuousMDPs-ModelSimulation.html">
      Lec 18-Continuous MDPs-Model Simulation
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../cs224w_ml_graph/intro.html">
+   CS224W: Machine Learning with Graphs - by Jure Leskovev
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/>
+  <label for="toctree-checkbox-11">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../cs224w_ml_graph/lec01_Introduction_MLforGraphs.html">
+     Introduction ML for Graphs
     </a>
    </li>
   </ul>
@@ -1064,7 +1108,7 @@ title="Print to PDF"
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The binary tree structure has 13 nodes and has the following tree structure:
 
-node=0 is a split node: go to node 1 if X[:, 2] &lt;= 2.350000023841858 else to node 2.
+node=0 is a split node: go to node 1 if X[:, 3] &lt;= 0.800000011920929 else to node 2.
 	node=1 is a leaf node.
 	node=2 is a split node: go to node 3 if X[:, 2] &lt;= 4.950000047683716 else to node 8.
 		node=3 is a split node: go to node 4 if X[:, 3] &lt;= 1.6500000357627869 else to node 5.
@@ -1221,7 +1265,7 @@ weighted avg       0.98      0.97      0.97        38
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Rules used to predict sample 0:
 
-decision node 0 : (X_test[0, 2] = 5.1) &gt; 2.350000023841858)
+decision node 0 : (X_test[0, 3] = 2.4) &gt; 0.800000011920929)
 decision node 2 : (X_test[0, 2] = 5.1) &gt; 4.950000047683716)
 decision node 8 : (X_test[0, 3] = 2.4) &gt; 1.75)
 </pre></div>
@@ -1235,7 +1279,7 @@ decision node 8 : (X_test[0, 3] = 2.4) &gt; 1.75)
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[Text(0.4, 0.9, &#39;X[2] &lt;= 2.35\ngini = 0.665\nsamples = 112\nvalue = [37, 34, 41]&#39;),
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[Text(0.4, 0.9, &#39;X[3] &lt;= 0.8\ngini = 0.665\nsamples = 112\nvalue = [37, 34, 41]&#39;),
  Text(0.3, 0.7, &#39;gini = 0.0\nsamples = 37\nvalue = [37, 0, 0]&#39;),
  Text(0.5, 0.7, &#39;X[2] &lt;= 4.95\ngini = 0.496\nsamples = 75\nvalue = [0, 34, 41]&#39;),
  Text(0.2, 0.5, &#39;X[3] &lt;= 1.65\ngini = 0.153\nsamples = 36\nvalue = [0, 33, 3]&#39;),
