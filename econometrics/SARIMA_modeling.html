@@ -263,7 +263,7 @@ const thebe_selector_output = ".output, .cell_output"
   <ul class="current">
    <li class="toctree-l2">
     <a class="reference internal" href="../maths/probability_simulations.html">
-     Probability Simulations
+     Probability Games using Simulations
     </a>
    </li>
    <li class="toctree-l2">
@@ -1254,13 +1254,10 @@ title="Print to PDF"
 <h3>Extending ARMA Models - Time trends<a class="headerlink" href="#extending-arma-models-time-trends" title="Permalink to this headline">#</a></h3>
 <ul class="simple">
 <li><p>Interested in forecasting h step-ahead forecast(multiple horizon T+1, T+2, .. T+h) given information available at time T
-(<span class="math notranslate nohighlight">\(X_{T+h|T}\)</span>)</p></li>
-</ul>
-<div class="math notranslate nohighlight">
-\[
+(<span class="math notranslate nohighlight">\(X_{T+h|T}\)</span>)
+$<span class="math notranslate nohighlight">\(
 X_t = T_t + S_t + C_t + \epsilon_t
-\]</div>
-<ul class="simple">
+\)</span>$</p></li>
 <li><p><span class="math notranslate nohighlight">\(T_t\)</span> - Trend</p></li>
 <li><p><span class="math notranslate nohighlight">\(S_t\)</span> - Seasonal - deterministic</p></li>
 <li><p><span class="math notranslate nohighlight">\(C_t\)</span> - Cyclical - ARMA component</p></li>
@@ -1269,70 +1266,55 @@ X_t = T_t + S_t + C_t + \epsilon_t
 <section id="time-trends">
 <h4>Time trends<a class="headerlink" href="#time-trends" title="Permalink to this headline">#</a></h4>
 <ul class="simple">
-<li><p>A basic trend model</p></li>
-</ul>
-<div class="math notranslate nohighlight">
-\[
+<li><p>A basic trend model
+$<span class="math notranslate nohighlight">\(
 X_t + \beta_0 + \beta_1t + \epsilon_t
-\]</div>
-<ul class="simple">
-<li><p>A cross sectional regression model</p></li>
-</ul>
-<div class="math notranslate nohighlight">
-\[
+\)</span>$</p></li>
+<li><p>A cross sectional regression model
+$<span class="math notranslate nohighlight">\(
 X_t + \beta_0 + \beta_1t + \beta_2t^2 + \epsilon_t
-\]</div>
-<ul class="simple">
+\)</span>$</p>
+<ul>
 <li><p>quadratic or higher terms are rarely used</p></li>
 <li><p>or if used their impact is monitored carefully</p></li>
 <li><p>log terms are generally used instead of X itself</p></li>
+</ul>
+</li>
 </ul>
 </section>
 <section id="exponential-trends">
 <h4>Exponential trends<a class="headerlink" href="#exponential-trends" title="Permalink to this headline">#</a></h4>
 <ul class="simple">
-<li><p>Models estimated in logs have exponential trends</p></li>
-</ul>
-<div class="math notranslate nohighlight">
-\[
-\ln X_t + \beta_0 + \beta_1t + \epsilon_t
-\]</div>
-<ul class="simple">
-<li><p><span class="math notranslate nohighlight">\(\beta_1\)</span> is the growth rate of <span class="math notranslate nohighlight">\(X_t\)</span></p></li>
-</ul>
-<div class="math notranslate nohighlight">
-\[
-X_t = \beta_0 \exp(\beta_1t)\epsilon_t
-\]</div>
-<ul class="simple">
+<li><p>Models estimated in logs have exponential trends
+$<span class="math notranslate nohighlight">\(  
+\ln X_t + \beta_0 + \beta_1t + \epsilon_t  
+\)</span>$</p></li>
+<li><p><span class="math notranslate nohighlight">\(\beta_1\)</span> is the growth rate of <span class="math notranslate nohighlight">\(X_t\)</span>
+$<span class="math notranslate nohighlight">\(  
+X_t = \beta_0 \exp(\beta_1t)\epsilon_t  
+\)</span>$</p></li>
 <li><p>can use simple trend model using OLS</p></li>
 </ul>
 </section>
 <section id="forecasting">
 <h4>Forecasting<a class="headerlink" href="#forecasting" title="Permalink to this headline">#</a></h4>
 <ul class="simple">
-<li><p>Trend forecasting is simple</p></li>
-</ul>
-<div class="math notranslate nohighlight">
-\[
-X_t + \beta_0 + \beta_1t + \epsilon_t
-\]</div>
-<ul class="simple">
-<li><p>Forecast will be</p></li>
-</ul>
-<div class="math notranslate nohighlight">
-\[
+<li><p>Trend forecasting is simple
+$<span class="math notranslate nohighlight">\( 
+X_t + \beta_0 + \beta_1t + \epsilon_t 
+\)</span>$</p></li>
+<li><p>Forecast will be
+$<span class="math notranslate nohighlight">\(
 E_T[X_{T+h}] = \hat{X}_{T+h|T} = \beta_0 + \beta_1{(T+h)} 
-\]</div>
-<ul class="simple">
-<li><p>Generally interested in prediction intervals (eg 95%)</p></li>
-</ul>
-<div class="math notranslate nohighlight">
-\[ 
+\)</span>$</p></li>
+<li><p>Generally interested in prediction intervals (eg 95%)
+$<span class="math notranslate nohighlight">\( 
 PI = [\hat{X}_{T+h|T} - 1.96\sigma, \hat{X}_{T+h|T} + 1.96\sigma] 
-\]</div>
-<ul class="simple">
+\)</span>$</p>
+<ul>
 <li><p>assuming errors are normally distributed</p></li>
+</ul>
+</li>
 </ul>
 </section>
 <section id="forecasting-exponential-trends">
@@ -1344,13 +1326,10 @@ PI = [\hat{X}_{T+h|T} - 1.96\sigma, \hat{X}_{T+h|T} + 1.96\sigma]
 <li><p>forecast variable is log-normal</p></li>
 </ul>
 </li>
-<li><p>Mean</p></li>
-</ul>
-<div class="math notranslate nohighlight">
-\[
+<li><p>Mean
+$<span class="math notranslate nohighlight">\(
 \ln \hat{X}_{T+h|T} \sim N(\beta_0 + \beta_1{(T+h)}, \sigma^2) \implies \hat{X}_{T+h|T} \sim \text{LogNormal}(\beta_0 + \beta_1{(T+h)}, \sigma^2) 
-\]</div>
-<ul class="simple">
+\)</span>$</p></li>
 <li><p>2 ways of forecasting</p>
 <ul>
 <li><p>Median as it is normally distributed</p>
@@ -1373,7 +1352,7 @@ PI = [\hat{X}_{T+h|T} - 1.96\sigma, \hat{X}_{T+h|T} + 1.96\sigma]
 </ul>
 <div class="math notranslate nohighlight">
 \[ 
-PI = [\exp(\beta_0 + \beta_1{(T+h)} - 1.96\sigma), \exp(\beta_0 + \beta_1{(T+h)} + 1.96\sigma)] 
+  PI = [\exp(\beta_0 + \beta_1{(T+h)} - 1.96\sigma), \exp(\beta_0 + \beta_1{(T+h)} + 1.96\sigma)] 
 \]</div>
 <ul class="simple">
 <li><p>Symmetric in logs, asymetric in levels</p></li>
@@ -1950,13 +1929,6 @@ At X0         0 variables are exactly at the bounds
 At iterate    0    f= -1.91726D+00    |proj g|=  2.45479D+02
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> Line search cannot locate an adequate point after MAXLS
-  function and gradient evaluations.
-  Previous x, f and g restored.
- Possible causes: 1 error in function or gradient evaluation;
-                  2 rounding error dominate computation.
-</pre></div>
-</div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>           * * *
 
 Tit   = total number of iterations
@@ -1976,6 +1948,13 @@ F     = final function value
 ABNORMAL_TERMINATION_IN_LNSRCH                              
 </pre></div>
 </div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> Line search cannot locate an adequate point after MAXLS
+  function and gradient evaluations.
+  Previous x, f and g restored.
+ Possible causes: 1 error in function or gradient evaluation;
+                  2 rounding error dominate computation.
+</pre></div>
+</div>
 <div class="output text_html"><table class="simpletable">
 <caption>SARIMAX Results</caption>
 <tr>
@@ -1988,7 +1967,7 @@ ABNORMAL_TERMINATION_IN_LNSRCH
   <th>Date:</th>            <td>Mon, 03 Oct 2022</td> <th>  AIC                </th> <td>-1648.515</td>
 </tr>
 <tr>
-  <th>Time:</th>                <td>23:01:27</td>     <th>  BIC                </th> <td>-1632.242</td>
+  <th>Time:</th>                <td>23:37:08</td>     <th>  BIC                </th> <td>-1632.242</td>
 </tr>
 <tr>
   <th>Sample:</th>                  <td>0</td>        <th>  HQIC               </th> <td>-1642.091</td>
@@ -2046,6 +2025,9 @@ ABNORMAL_TERMINATION_IN_LNSRCH
 </div>
 </div>
 <div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> This problem is unconstrained.
+</pre></div>
+</div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>RUNNING THE L-BFGS-B CODE
 
            * * *
@@ -2056,9 +2038,6 @@ Machine precision = 2.220D-16
 At X0         0 variables are exactly at the bounds
 
 At iterate    0    f= -2.01805D+00    |proj g|=  1.55899D+03
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> This problem is unconstrained.
 </pre></div>
 </div>
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> Bad direction in the line search;
@@ -2103,7 +2082,7 @@ ABNORMAL_TERMINATION_IN_LNSRCH
   <th>Date:</th>            <td>Mon, 03 Oct 2022</td> <th>  AIC                </th> <td>-1733.637</td>
 </tr>
 <tr>
-  <th>Time:</th>                <td>23:01:32</td>     <th>  BIC                </th> <td>-1713.295</td>
+  <th>Time:</th>                <td>23:37:10</td>     <th>  BIC                </th> <td>-1713.295</td>
 </tr>
 <tr>
   <th>Sample:</th>                  <td>0</td>        <th>  HQIC               </th> <td>-1725.606</td>
@@ -2261,15 +2240,13 @@ At iterate    0    f= -2.01907D+00    |proj g|=  3.12568D+00
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>At iterate    5    f= -2.02078D+00    |proj g|=  1.18168D-01
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>At iterate   10    f= -2.02104D+00    |proj g|=  2.32010D-01
+
+At iterate   10    f= -2.02104D+00    |proj g|=  2.32010D-01
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>At iterate   15    f= -2.02105D+00    |proj g|=  3.35404D-02
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>At iterate   20    f= -2.02124D+00    |proj g|=  2.38342D-01
+
+At iterate   20    f= -2.02124D+00    |proj g|=  2.38342D-01
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>At iterate   25    f= -2.02130D+00    |proj g|=  1.91262D-03
@@ -2293,7 +2270,7 @@ F     = final function value
 CONVERGENCE: REL_REDUCTION_OF_F_&lt;=_FACTR*EPSMCH             
 </pre></div>
 </div>
-<img alt="../_images/SARIMA_modeling_24_7.png" src="../_images/SARIMA_modeling_24_7.png" />
+<img alt="../_images/SARIMA_modeling_24_5.png" src="../_images/SARIMA_modeling_24_5.png" />
 </div>
 </div>
 </section>
@@ -2329,9 +2306,8 @@ At iterate    0    f= -2.01784D+00    |proj g|=  5.09688D+00
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>At iterate    5    f= -2.02089D+00    |proj g|=  2.87909D-03
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>At iterate   10    f= -2.02089D+00    |proj g|=  7.25817D-02
+
+At iterate   10    f= -2.02089D+00    |proj g|=  7.25817D-02
 
            * * *
 
@@ -2352,7 +2328,7 @@ F     = final function value
 CONVERGENCE: REL_REDUCTION_OF_F_&lt;=_FACTR*EPSMCH             
 </pre></div>
 </div>
-<img alt="../_images/SARIMA_modeling_26_4.png" src="../_images/SARIMA_modeling_26_4.png" />
+<img alt="../_images/SARIMA_modeling_26_3.png" src="../_images/SARIMA_modeling_26_3.png" />
 </div>
 </div>
 </section>
@@ -2368,6 +2344,9 @@ CONVERGENCE: REL_REDUCTION_OF_F_&lt;=_FACTR*EPSMCH
 </div>
 </div>
 <div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> This problem is unconstrained.
+</pre></div>
+</div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>RUNNING THE L-BFGS-B CODE
 
            * * *
@@ -2378,9 +2357,6 @@ Machine precision = 2.220D-16
 At X0         0 variables are exactly at the bounds
 
 At iterate    0    f= -2.01791D+00    |proj g|=  1.05405D+00
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> This problem is unconstrained.
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>           * * *
@@ -2419,7 +2395,7 @@ CONVERGENCE: REL_REDUCTION_OF_F_&lt;=_FACTR*EPSMCH
   <th>Date:</th>            <td>Mon, 03 Oct 2022</td> <th>  AIC                </th> <td>-1739.729</td>
 </tr>
 <tr>
-  <th>Time:</th>                <td>23:01:37</td>     <th>  BIC                </th> <td>-1731.597</td>
+  <th>Time:</th>                <td>23:37:13</td>     <th>  BIC                </th> <td>-1731.597</td>
 </tr>
 <tr>
   <th>Sample:</th>                  <td>0</td>        <th>  HQIC               </th> <td>-1736.518</td>
@@ -2817,9 +2793,8 @@ At iterate    0    f=  2.07737D+00    |proj g|=  1.69168D-02
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>At iterate   20    f=  8.03106D-01    |proj g|=  1.83614D-01
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>At iterate   25    f=  7.43827D-01    |proj g|=  2.99315D-02
+
+At iterate   25    f=  7.43827D-01    |proj g|=  2.99315D-02
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>At iterate   30    f=  7.33083D-01    |proj g|=  1.05034D-01
@@ -2868,9 +2843,8 @@ At iterate    0    f=  2.07737D+00    |proj g|=  1.69168D-02
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>At iterate  105    f=  2.48582D-01    |proj g|=  9.50513D-03
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>At iterate  110    f=  2.48562D-01    |proj g|=  1.11384D-02
+
+At iterate  110    f=  2.48562D-01    |proj g|=  1.11384D-02
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>At iterate  115    f=  2.48555D-01    |proj g|=  9.44731D-03
@@ -2921,7 +2895,7 @@ CONVERGENCE: REL_REDUCTION_OF_F_&lt;=_FACTR*EPSMCH
   <th>Date:</th>            <td>Mon, 03 Oct 2022</td> <th>  AIC                </th>  <td>242.749</td>
 </tr>
 <tr>
-  <th>Time:</th>                <td>23:01:48</td>     <th>  BIC                </th>  <td>299.707</td>
+  <th>Time:</th>                <td>23:37:22</td>     <th>  BIC                </th>  <td>299.707</td>
 </tr>
 <tr>
   <th>Sample:</th>                  <td>0</td>        <th>  HQIC               </th>  <td>265.236</td>
@@ -3059,6 +3033,9 @@ Name: predicted_mean, dtype: float64
 </div>
 </div>
 <div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> This problem is unconstrained.
+</pre></div>
+</div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>RUNNING THE L-BFGS-B CODE
 
            * * *
@@ -3089,9 +3066,6 @@ F     = final function value
 CONVERGENCE: REL_REDUCTION_OF_F_&lt;=_FACTR*EPSMCH             
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> This problem is unconstrained.
-</pre></div>
-</div>
 <div class="output text_html"><table class="simpletable">
 <caption>SARIMAX Results</caption>
 <tr>
@@ -3104,7 +3078,7 @@ CONVERGENCE: REL_REDUCTION_OF_F_&lt;=_FACTR*EPSMCH
   <th>Date:</th>              <td>Mon, 03 Oct 2022</td>   <th>  AIC                </th>  <td>425.550</td>
 </tr>
 <tr>
-  <th>Time:</th>                  <td>23:01:48</td>       <th>  BIC                </th>  <td>433.630</td>
+  <th>Time:</th>                  <td>23:37:23</td>       <th>  BIC                </th>  <td>433.630</td>
 </tr>
 <tr>
   <th>Sample:</th>                    <td>0</td>          <th>  HQIC               </th>  <td>428.743</td>
@@ -3301,41 +3275,41 @@ Name: predicted_mean, dtype: float64
 Performing stepwise search to minimize aic
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> ARIMA(2,1,2)(0,0,0)[0] intercept   : AIC=261.586, Time=6.50 sec
- ARIMA(0,1,0)(0,0,0)[0] intercept   : AIC=522.367, Time=0.14 sec
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> ARIMA(2,1,2)(0,0,0)[0] intercept   : AIC=261.586, Time=5.61 sec
+ ARIMA(0,1,0)(0,0,0)[0] intercept   : AIC=522.367, Time=0.12 sec
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> ARIMA(1,1,0)(0,0,0)[0] intercept   : AIC=401.618, Time=0.56 sec
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> ARIMA(1,1,0)(0,0,0)[0] intercept   : AIC=401.618, Time=0.48 sec
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> ARIMA(0,1,1)(0,0,0)[0] intercept   : AIC=260.626, Time=3.36 sec
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> ARIMA(0,1,1)(0,0,0)[0] intercept   : AIC=260.626, Time=2.75 sec
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> ARIMA(0,1,0)(0,0,0)[0]             : AIC=520.377, Time=0.38 sec
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> ARIMA(0,1,0)(0,0,0)[0]             : AIC=520.377, Time=0.37 sec
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> ARIMA(1,1,1)(0,0,0)[0] intercept   : AIC=257.600, Time=4.59 sec
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> ARIMA(1,1,1)(0,0,0)[0] intercept   : AIC=257.600, Time=2.91 sec
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> ARIMA(2,1,1)(0,0,0)[0] intercept   : AIC=259.024, Time=3.93 sec
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> ARIMA(2,1,1)(0,0,0)[0] intercept   : AIC=259.024, Time=3.20 sec
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> ARIMA(1,1,2)(0,0,0)[0] intercept   : AIC=260.318, Time=3.92 sec
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> ARIMA(1,1,2)(0,0,0)[0] intercept   : AIC=260.318, Time=2.91 sec
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> ARIMA(0,1,2)(0,0,0)[0] intercept   : AIC=257.045, Time=8.50 sec
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> ARIMA(0,1,2)(0,0,0)[0] intercept   : AIC=257.045, Time=6.48 sec
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> ARIMA(0,1,3)(0,0,0)[0] intercept   : AIC=258.163, Time=7.59 sec
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> ARIMA(0,1,3)(0,0,0)[0] intercept   : AIC=258.163, Time=6.21 sec
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> ARIMA(1,1,3)(0,0,0)[0] intercept   : AIC=262.037, Time=7.11 sec
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> ARIMA(1,1,3)(0,0,0)[0] intercept   : AIC=262.037, Time=6.09 sec
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> ARIMA(0,1,2)(0,0,0)[0]             : AIC=257.086, Time=3.47 sec
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> ARIMA(0,1,2)(0,0,0)[0]             : AIC=257.086, Time=1.95 sec
 
 Best model:  ARIMA(0,1,2)(0,0,0)[0] intercept
-Total fit time: 50.063 seconds
+Total fit time: 39.121 seconds
 Model fit:
 Pipeline(steps=[(&#39;fourier&#39;, FourierFeaturizer(k=4, m=12)),
                 (&#39;arima&#39;,
