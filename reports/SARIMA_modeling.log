@@ -17,31 +17,110 @@ Traceback (most recent call last):
     raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
 nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
 ------------------
-import numpy as np
-import pandas as pd
-import matplotlib.pyplot as plt
-from statsmodels.tsa.statespace.sarimax import SARIMAX
-from scipy import stats
-import seaborn as sns
-sns.set_style("darkgrid")
-# These values are optimized for full-screen on a high-resolution monitor
-# plt.rc("figure", figsize=(32,12))
-# plt.rc("font", size=28)
-# plt.rc("lines", linewidth=4)
+print(__doc__)
 
-import warnings
-warnings.filterwarnings('ignore')
+# Author: Taylor Smith <taylor.smith@alkaline-ml.com>
+
+import numpy as np
+import pmdarima as pm
+from pmdarima import pipeline
+from pmdarima import model_selection
+from pmdarima import preprocessing as ppc
+from pmdarima import arima
+from matplotlib import pyplot as plt
+
+print("pmdarima version: %s" % pm.__version__)
+
+# Load the data and split it into separate pieces
+# data = pm.datasets.load_wineind()
+# train, test = model_selection.train_test_split(data, train_size=150)
+data = y.copy()
+train, test = model_selection.train_test_split(data, train_size=360)
+
+# Let's create a pipeline with multiple stages... the Wineind dataset is
+# seasonal, so we'll include a FourierFeaturizer so we can fit it without
+# seasonality
+pipe = pipeline.Pipeline([
+    ("fourier", ppc.FourierFeaturizer(m=12, k=4)),
+    ("arima", arima.AutoARIMA(stepwise=True, trace=1, error_action="ignore",
+                              seasonal=False,  # because we use Fourier
+                              suppress_warnings=True))
+])
+
+pipe.fit(train)
+print("Model fit:")
+print(pipe)
+
+# We can compute predictions the same way we would on a normal ARIMA object:
+# preds, conf_int = pipe.predict(n_periods=10, return_conf_int=True)
+preds, conf_int = pipe.predict(n_periods=24, return_conf_int=True)
+print("\nForecasts:")
+print(preds)
+
+# Let's take a look at the actual vs. the predicted values:
+# fig, axes = plt.subplots(3, 1, figsize=(12, 8))
+fig, axes = plt.subplots(3, 1)
+fig.tight_layout()
+
+# Visualize goodness of fit
+in_sample_preds, in_sample_confint = \
+    pipe.predict_in_sample(X=None, return_conf_int=True)
+
+n_train = train.shape[0]
+
+x0 = np.arange(n_train)
+axes[0].plot(x0, train, alpha=0.75)
+axes[0].scatter(x0, in_sample_preds, alpha=0.4, marker='x')
+# axes[0].fill_between(x0, in_sample_confint[:, 0], in_sample_confint[:, 1],
+#                      alpha=0.1, color='b')
+# axes[0].fill_between(x0, 5, 10,
+#                      alpha=0.1, color='b')
+axes[0].set_title('Actual train samples vs. in-sample predictions')
+axes[0].set_xlim((0, x0.shape[0]))
+
+# Visualize actual + predicted
+x1 = np.arange(n_train + preds.shape[0])
+axes[1].plot(x1[:n_train], train, alpha=0.75)
+# axes[1].scatter(x[n_train:], preds, alpha=0.4, marker='o')
+axes[1].scatter(x1[n_train:], test[:preds.shape[0]], alpha=0.4, marker='x')
+axes[1].fill_between(x1[n_train:], conf_int[:, 0], conf_int[:, 1],
+                     alpha=0.1, color='b')
+axes[1].set_title('Actual test samples vs. forecasts')
+axes[1].set_xlim((0, data.shape[0]))
+
+# We can also call `update` directly on the pipeline object, which will update
+# the intermittent transformers, where necessary:
+newly_observed, still_test = test[:15], test[15:]
+pipe.update(newly_observed, maxiter=10)
+
+# Calling predict will now predict from newly observed values
+new_preds = pipe.predict(still_test.shape[0])
+print(new_preds)
+
+x2 = np.arange(data.shape[0])
+n_trained_on = n_train + newly_observed.shape[0]
+
+axes[2].plot(x2[:n_train], train, alpha=0.75)
+axes[2].plot(x2[n_train: n_trained_on], newly_observed, alpha=0.75, c='orange')
+# axes[2].scatter(x2[n_trained_on:], new_preds, alpha=0.4, marker='o')
+axes[2].scatter(x2[n_trained_on:], still_test, alpha=0.4, marker='x')
+axes[2].set_title('Actual test samples vs. forecasts')
+axes[2].set_xlim((0, data.shape[0]))
+
+plt.show();
+# plt.savefig('./images/datatrends10_pmdarima.png')
+# plt.close();
 ------------------
 
 [0;31m---------------------------------------------------------------------------[0m
 [0;31mModuleNotFoundError[0m                       Traceback (most recent call last)
-Input [0;32mIn [1][0m, in [0;36m<cell line: 4>[0;34m()[0m
-[1;32m      2[0m [38;5;28;01mimport[39;00m [38;5;21;01mpandas[39;00m [38;5;28;01mas[39;00m [38;5;21;01mpd[39;00m
-[1;32m      3[0m [38;5;28;01mimport[39;00m [38;5;21;01mmatplotlib[39;00m[38;5;21;01m.[39;00m[38;5;21;01mpyplot[39;00m [38;5;28;01mas[39;00m [38;5;21;01mplt[39;00m
-[0;32m----> 4[0m [38;5;28;01mfrom[39;00m [38;5;21;01mstatsmodels[39;00m[38;5;21;01m.[39;00m[38;5;21;01mtsa[39;00m[38;5;21;01m.[39;00m[38;5;21;01mstatespace[39;00m[38;5;21;01m.[39;00m[38;5;21;01msarimax[39;00m [38;5;28;01mimport[39;00m SARIMAX
-[1;32m      5[0m [38;5;28;01mfrom[39;00m [38;5;21;01mscipy[39;00m [38;5;28;01mimport[39;00m stats
-[1;32m      6[0m [38;5;28;01mimport[39;00m [38;5;21;01mseaborn[39;00m [38;5;28;01mas[39;00m [38;5;21;01msns[39;00m
+Input [0;32mIn [22][0m, in [0;36m<cell line: 6>[0;34m()[0m
+[1;32m      3[0m [38;5;66;03m# Author: Taylor Smith <taylor.smith@alkaline-ml.com>[39;00m
+[1;32m      5[0m [38;5;28;01mimport[39;00m [38;5;21;01mnumpy[39;00m [38;5;28;01mas[39;00m [38;5;21;01mnp[39;00m
+[0;32m----> 6[0m [38;5;28;01mimport[39;00m [38;5;21;01mpmdarima[39;00m [38;5;28;01mas[39;00m [38;5;21;01mpm[39;00m
+[1;32m      7[0m [38;5;28;01mfrom[39;00m [38;5;21;01mpmdarima[39;00m [38;5;28;01mimport[39;00m pipeline
+[1;32m      8[0m [38;5;28;01mfrom[39;00m [38;5;21;01mpmdarima[39;00m [38;5;28;01mimport[39;00m model_selection
 
-[0;31mModuleNotFoundError[0m: No module named 'statsmodels'
-ModuleNotFoundError: No module named 'statsmodels'
+[0;31mModuleNotFoundError[0m: No module named 'pmdarima'
+ModuleNotFoundError: No module named 'pmdarima'
 
