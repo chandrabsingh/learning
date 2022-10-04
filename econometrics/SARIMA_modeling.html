@@ -359,6 +359,40 @@ const thebe_selector_output = ".output, .cell_output"
    </li>
   </ul>
  </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../recommenders/intro.html">
+   My Recommenders Book
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/>
+  <label for="toctree-checkbox-7">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../recommenders/als_deep_dive.html">
+     Spark Collaborative Filtering (ALS) Deep Dive
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../rl_examples/intro.html">
+   My RL Book
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/>
+  <label for="toctree-checkbox-8">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../rl_examples/mab_ts_ab.html">
+     Multi-armed bandit problem
+    </a>
+   </li>
+  </ul>
+ </li>
 </ul>
 <p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
@@ -370,8 +404,8 @@ const thebe_selector_output = ".output, .cell_output"
   <a class="reference internal" href="../unix/intro.html">
    My Unix/Shell Book
   </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/>
-  <label for="toctree-checkbox-7">
+  <input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/>
+  <label for="toctree-checkbox-9">
    <i class="fas fa-chevron-down">
    </i>
   </label>
@@ -399,8 +433,8 @@ const thebe_selector_output = ".output, .cell_output"
   <a class="reference internal" href="../cs229_ml/intro.html">
    CS229 ML - by Andrew Ng
   </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/>
-  <label for="toctree-checkbox-8">
+  <input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/>
+  <label for="toctree-checkbox-10">
    <i class="fas fa-chevron-down">
    </i>
   </label>
@@ -1348,13 +1382,9 @@ $<span class="math notranslate nohighlight">\(
 </li>
 </ul>
 </li>
-<li><p>Prediction intervals (eg 95%) is simple</p></li>
-</ul>
-<div class="math notranslate nohighlight">
-\[ 
-  PI = [\exp(\beta_0 + \beta_1{(T+h)} - 1.96\sigma), \exp(\beta_0 + \beta_1{(T+h)} + 1.96\sigma)] 
-\]</div>
-<ul class="simple">
+<li><p>Prediction intervals (eg 95%) is simple
+$<span class="math notranslate nohighlight">\(  PI = [\exp(\beta_0 + \beta_1{(T+h)} - 1.96\sigma), \exp(\beta_0 + \beta_1{(T+h)} + 1.96\sigma)]  \)</span>$</p>
+<ul>
 <li><p>Symmetric in logs, asymetric in levels</p></li>
 <li><p>Forecasting logs is very common</p>
 <ul>
@@ -1363,18 +1393,15 @@ $<span class="math notranslate nohighlight">\(
 </ul>
 </li>
 </ul>
+</li>
+</ul>
 </section>
 </section>
 <section id="seasonality">
 <h3>Seasonality<a class="headerlink" href="#seasonality" title="Permalink to this headline">#</a></h3>
 <ul class="simple">
-<li><p>Pure seasonal model</p></li>
-</ul>
-<div class="math notranslate nohighlight">
-\[
-X_t = S_t + \epsilon_t
-\]</div>
-<ul class="simple">
+<li><p>Pure seasonal model
+$<span class="math notranslate nohighlight">\(  X_t = S_t + \epsilon_t  \)</span>$</p></li>
 <li><p>Seasonal pattern repeats every m observations</p></li>
 <li><p>different frequencies</p></li>
 <li><p>completely predictable</p></li>
@@ -1382,9 +1409,7 @@ X_t = S_t + \epsilon_t
 <section id="seasonal-dummies">
 <h4>Seasonal dummies<a class="headerlink" href="#seasonal-dummies" title="Permalink to this headline">#</a></h4>
 <div class="math notranslate nohighlight">
-\[
-X_t = \sum\limits_{i=1}^{m}\gamma_iI_{[S_m(t)=i]} + \epsilon_t
-\]</div>
+\[  X_t = \sum\limits_{i=1}^{m}\gamma_iI_{[S_m(t)=i]} + \epsilon_t  \]</div>
 <ul class="simple">
 <li><p>dummy variables for each season</p>
 <ul>
@@ -1402,43 +1427,26 @@ X_t = \sum\limits_{i=1}^{m}\gamma_iI_{[S_m(t)=i]} + \epsilon_t
 <li><p>m seasonal dummies</p></li>
 </ul>
 </li>
-<li><p>Multiplicative seasonalities using additive decomposition</p></li>
-</ul>
-<div class="math notranslate nohighlight">
-\[
-X_t = \sum\limits_{i=1}^{m_1}\gamma_iI_{[S_{m_{1}}(t)=i]} + \sum\limits_{j=2}^{m_2}\delta_jI_{[S_{m_{2}}(t)=j]} + \epsilon_t
-\]</div>
-<ul class="simple">
+<li><p>Multiplicative seasonalities using additive decomposition
+$<span class="math notranslate nohighlight">\(  X_t = \sum\limits_{i=1}^{m_1}\gamma_iI_{[S_{m_{1}}(t)=i]} + \sum\limits_{j=2}^{m_2}\delta_jI_{[S_{m_{2}}(t)=j]} + \epsilon_t  \)</span>$</p>
+<ul>
 <li><p><span class="math notranslate nohighlight">\(m_2 \gt m_1\)</span></p></li>
 <li><p><span class="math notranslate nohighlight">\(m_2\)</span> is not an integer multiple of <span class="math notranslate nohighlight">\(m_1\)</span></p></li>
 <li><p>must drop one dummy when using multiple seasons</p></li>
+</ul>
+</li>
 </ul>
 </section>
 <section id="estimation">
 <h4>Estimation<a class="headerlink" href="#estimation" title="Permalink to this headline">#</a></h4>
 <ul class="simple">
 <li><p>generally use OLS</p></li>
-<li><p>combine with time trends</p></li>
-</ul>
-<div class="math notranslate nohighlight">
-\[
-X_t = \beta_1t + \beta_2t^2 + \sum\limits_{i=1}^{m}\gamma_iI_{[S_m(t)=i]} + \epsilon_t
-\]</div>
-<ul class="simple">
-<li><p>Restricted</p></li>
-</ul>
-<div class="math notranslate nohighlight">
-\[
-X_t = \beta_0 + \epsilon_t
-\]</div>
-<ul class="simple">
-<li><p>Unrestricted</p></li>
-</ul>
-<div class="math notranslate nohighlight">
-\[
-X_t = \beta_0 + \sum\limits_{i=1}^{m-1}\gamma_iI_{[S_m(t)=i]} + \epsilon_t
-\]</div>
-<ul class="simple">
+<li><p>combine with time trends
+$<span class="math notranslate nohighlight">\(  X_t = \beta_1t + \beta_2t^2 + \sum\limits_{i=1}^{m}\gamma_iI_{[S_m(t)=i]} + \epsilon_t  \)</span>$</p></li>
+<li><p>Restricted
+$<span class="math notranslate nohighlight">\(  X_t = \beta_0 + \epsilon_t  \)</span>$</p></li>
+<li><p>Unrestricted
+$<span class="math notranslate nohighlight">\(  X_t = \beta_0 + \sum\limits_{i=1}^{m-1}\gamma_iI_{[S_m(t)=i]} + \epsilon_t  \)</span>$</p></li>
 <li><p>F-test only depends on the unrestricted R-squared</p>
 <ul>
 <li><p>in this case, as there is no time trends, restricted R-squared is zero</p></li>
@@ -1452,20 +1460,10 @@ X_t = \beta_0 + \sum\limits_{i=1}^{m-1}\gamma_iI_{[S_m(t)=i]} + \epsilon_t
 <section id="forecasting-and-prediction-intervals">
 <h4>Forecasting and Prediction Intervals<a class="headerlink" href="#forecasting-and-prediction-intervals" title="Permalink to this headline">#</a></h4>
 <ul class="simple">
-<li><p>Forecasts are simple</p></li>
-</ul>
-<div class="math notranslate nohighlight">
-\[
-\hat{X}_{T+h|T} = \beta_1t + \beta_2t^2 + \gamma S_m(T+h) 
-\]</div>
-<ul class="simple">
-<li><p>Prediction intervals (eg 95%) is standard</p></li>
-</ul>
-<div class="math notranslate nohighlight">
-\[
-PI = [\hat{X}_{T+h|T} - 1.96\sigma, \hat{X}_{T+h|T} + 1.96\sigma] 
-\]</div>
-<ul class="simple">
+<li><p>Forecasts are simple
+$<span class="math notranslate nohighlight">\(  \hat{X}_{T+h|T} = \beta_1t + \beta_2t^2 + \gamma S_m(T+h)  \)</span>$</p></li>
+<li><p>Prediction intervals (eg 95%) is standard
+$<span class="math notranslate nohighlight">\(  PI = [\hat{X}_{T+h|T} - 1.96\sigma, \hat{X}_{T+h|T} + 1.96\sigma]   \)</span>$</p></li>
 <li><p>If modeling <span class="math notranslate nohighlight">\(\ln X_t\)</span>, use mean or median forecast</p></li>
 </ul>
 </section>
@@ -1482,7 +1480,7 @@ PI = [\hat{X}_{T+h|T} - 1.96\sigma, \hat{X}_{T+h|T} + 1.96\sigma]
 <h4>MA models<a class="headerlink" href="#ma-models" title="Permalink to this headline">#</a></h4>
 <ul class="simple">
 <li><p>General MA(1) series
-$<span class="math notranslate nohighlight">\(X_t = (1+\theta_1L)\epsilon_t = \epsilon_t + \theta_1L\epsilon_t = \epsilon_t + \theta_1\epsilon_{t-1}\)</span>$</p></li>
+$<span class="math notranslate nohighlight">\(  X_t = (1+\theta_1L)\epsilon_t = \epsilon_t + \theta_1L\epsilon_t = \epsilon_t + \theta_1\epsilon_{t-1}  \)</span>$</p></li>
 <li><p>Seasonal MA(1)x(1) series
 $<span class="math notranslate nohighlight">\( \begin{equation} \\
 \begin{aligned}\\
@@ -1510,13 +1508,13 @@ X_t &amp;= (1+\theta_1L)(1+\theta_mL^m)\epsilon_t \\
 <h4>Prediction Interval in MA models<a class="headerlink" href="#prediction-interval-in-ma-models" title="Permalink to this headline">#</a></h4>
 <ul class="simple">
 <li><p>Prediction intervals for MA process
-$<span class="math notranslate nohighlight">\(X_t = \mu + \sum\limits_{i=1}^{Q} \theta_i \epsilon_{t-i} + \epsilon_{t} \)</span>$</p></li>
+$<span class="math notranslate nohighlight">\(  X_t = \mu + \sum\limits_{i=1}^{Q} \theta_i \epsilon_{t-i} + \epsilon_{t} \)</span>$</p></li>
 <li><p>h-step error
-$<span class="math notranslate nohighlight">\(X_{T+h} - \hat{X}_{T+h|T} = \epsilon_{T+h} + \sum\limits_{i=1}^{min(h-1, Q)} \theta_i \epsilon_{T+h-i} \)</span>$</p></li>
+$<span class="math notranslate nohighlight">\(  X_{T+h} - \hat{X}_{T+h|T} = \epsilon_{T+h} + \sum\limits_{i=1}^{min(h-1, Q)} \theta_i \epsilon_{T+h-i}  \)</span>$</p></li>
 <li><p>variance of forecast error
-$<span class="math notranslate nohighlight">\(\sigma^2_h = \sigma^2 \left( 1 + \sum\limits_{i=1}^{min(h-1, Q)} \theta^2_i \right) \)</span>$</p></li>
+$<span class="math notranslate nohighlight">\(  \sigma^2_h = \sigma^2 \left( 1 + \sum\limits_{i=1}^{min(h-1, Q)} \theta^2_i \right)  \)</span>$</p></li>
 <li><p>Prediction intervals
-$<span class="math notranslate nohighlight">\(\big[ \hat{X}_{T+h|T} \pm 1.96\sigma_h \big]\)</span>$</p>
+$<span class="math notranslate nohighlight">\(  \big[ \hat{X}_{T+h|T} \pm 1.96\sigma_h \big]  \)</span>$</p>
 <ul>
 <li><p><span class="math notranslate nohighlight">\(\sigma_h \)</span> ahead volatility</p></li>
 </ul>
@@ -1612,7 +1610,7 @@ X_t &amp;= \phi_0 + \phi_1X_{t-1} + \phi_mX_{t-m} - \phi_1\phi_mX_{t-m-1} + \eps
 <h4>Ignoring the restriction<a class="headerlink" href="#ignoring-the-restriction" title="Permalink to this headline">#</a></h4>
 <ul class="simple">
 <li><p>can also estimate Unrestricted model as
-$<span class="math notranslate nohighlight">\( X_t = \phi_0 + \phi_1X_{t-1} + \phi_mX_{t-m} + \phi_{m+1}X_{t-m-1} + \epsilon_t \)</span>$</p>
+$<span class="math notranslate nohighlight">\(  X_t = \phi_0 + \phi_1X_{t-1} + \phi_mX_{t-m} + \phi_{m+1}X_{t-m-1} + \epsilon_t  \)</span>$</p>
 <ul>
 <li><p>ignore the restriction term</p></li>
 <li><p>much easier as it can be estimated using OLS, because we can then include</p>
@@ -1649,19 +1647,19 @@ $<span class="math notranslate nohighlight">\( X_t = \phi_0 + \phi_1X_{t-1} + \p
 <h4>Random Walks with Seasonality<a class="headerlink" href="#random-walks-with-seasonality" title="Permalink to this headline">#</a></h4>
 <ul class="simple">
 <li><p>A seasonal random walk has unit root at seasonal frequency
-$<span class="math notranslate nohighlight">\((1-L^m)X_t = \epsilon_t\)</span>$</p>
+$<span class="math notranslate nohighlight">\(  (1-L^m)X_t = \epsilon_t  \)</span>$</p>
 <ul>
 <li><p>coefficient is 1 or unit root here</p></li>
 </ul>
 </li>
 <li><p>Add short run dynamics to make is plausible
-$<span class="math notranslate nohighlight">\((1-\phi_1L)(1-L^m)X_t = \epsilon_t\)</span>$</p>
+$<span class="math notranslate nohighlight">\(  (1-\phi_1L)(1-L^m)X_t = \epsilon_t  \)</span>$</p>
 <ul>
 <li><p>short run dynamics is combined with seasonal unit root</p></li>
 </ul>
 </li>
 <li><p>Seasonal unit roots need <code class="docutils literal notranslate"><span class="pre">seasonal</span> <span class="pre">differencing</span></code>
-$<span class="math notranslate nohighlight">\(\Delta_mX_t = X_t - X_{t-m}\)</span>$</p>
+$<span class="math notranslate nohighlight">\(  \Delta_mX_t = X_t - X_{t-m}  \)</span>$</p>
 <ul>
 <li><p>interested in seasonal growth rather than short run growth</p></li>
 </ul>
@@ -1679,7 +1677,7 @@ $<span class="math notranslate nohighlight">\(\begin{aligned}
 <h4>Seasonal Differencing<a class="headerlink" href="#seasonal-differencing" title="Permalink to this headline">#</a></h4>
 <ul class="simple">
 <li><p>Seasonal difference removes seasonal unit root
-$<span class="math notranslate nohighlight">\(\Delta_mX_t = X_t - X_{t-m} = (1-L^m)X_t \)</span>$</p></li>
+$<span class="math notranslate nohighlight">\(  \Delta_mX_t = X_t - X_{t-m} = (1-L^m)X_t  \)</span>$</p></li>
 <li><p>Applying seasonal differencing term, we get
 $<span class="math notranslate nohighlight">\(\begin{aligned}
 (1-\phi_1L)(1-L^m)X_t &amp;= \epsilon_t \\
@@ -1711,14 +1709,14 @@ $<span class="math notranslate nohighlight">\(\begin{aligned}
 </ul>
 </li>
 <li><p>Seasonal ARMA<span class="math notranslate nohighlight">\((1,1)\text{x}(1,1)\)</span>
-$<span class="math notranslate nohighlight">\((1-\phi_1L)(1-\phi_mL^m)X_t = (1+\theta_1L)(1+\theta_mL^m)\epsilon_t\)</span>$</p></li>
+$<span class="math notranslate nohighlight">\(  (1-\phi_1L)(1-\phi_mL^m)X_t = (1+\theta_1L)(1+\theta_mL^m)\epsilon_t  \)</span>$</p></li>
 </ul>
 </section>
 <section id="incorporate-the-differencing-parameter">
 <h4>Incorporate the differencing parameter<a class="headerlink" href="#incorporate-the-differencing-parameter" title="Permalink to this headline">#</a></h4>
 <ul class="simple">
 <li><p>SARIMA - Seasonal Autoregression Integrated Moving Average
-$<span class="math notranslate nohighlight">\((P,D,Q)\text{x}(P_s,D_s,Q_s)\)</span>$</p>
+$<span class="math notranslate nohighlight">\(  (P,D,Q)\text{x}(P_s,D_s,Q_s)  \)</span>$</p>
 <ul>
 <li><p><span class="math notranslate nohighlight">\(D\)</span> - standard differencing operator</p>
 <ul>
@@ -1745,12 +1743,12 @@ $<span class="math notranslate nohighlight">\((P,D,Q)\text{x}(P_s,D_s,Q_s)\)</sp
 <ul class="simple">
 <li><p>order of integration matters for forecasting and prediction intervals</p></li>
 <li><p>for non-seasonal differenced series
-$<span class="math notranslate nohighlight">\(\hat{X}_{T+h|T} = X_T + \sum\limits_{i=1}^{h}E_T\left[\Delta X_{T+i} \right]\)</span>$</p></li>
+$<span class="math notranslate nohighlight">\(  \hat{X}_{T+h|T} = X_T + \sum\limits_{i=1}^{h}E_T\left[\Delta X_{T+i} \right]  \)</span>$</p></li>
 <li><p>Prediction intervals have the form
-$<span class="math notranslate nohighlight">\(PI = \left[ \hat{X}_{T+h|T} \pm 1.96 \tilde{\sigma}_h \right]\)</span>$</p>
+$<span class="math notranslate nohighlight">\(  PI = \left[ \hat{X}_{T+h|T} \pm 1.96 \tilde{\sigma}_h \right]  \)</span>$</p>
 <ul>
 <li><p>where
-$<span class="math notranslate nohighlight">\(\tilde{\sigma}^2_{h} = \sigma^2_{h} \sum\limits_{i=1}^{h}\left( 1 + \sum\limits_{j=1}^{i} \xi_j \right)^2\)</span>$</p></li>
+$<span class="math notranslate nohighlight">\(  \tilde{\sigma}^2_{h} = \sigma^2_{h} \sum\limits_{i=1}^{h}\left( 1 + \sum\limits_{j=1}^{i} \xi_j \right)^2  \)</span>$</p></li>
 </ul>
 </li>
 </ul>
@@ -1771,7 +1769,7 @@ E\left[X_{T+1}\right] &amp;= X_{T+1-m} + E_T\left[\Delta_m X_{T+1}\right] \\
 </ul>
 </li>
 <li><p>Generally,
-$<span class="math notranslate nohighlight">\(\hat{X}_{T+h|T} = X_{T+1-m} + \sum\limits_{i=1}^{h}E_T \left[ \Delta_m X_{T+h|T} \right]\)</span>$</p></li>
+$<span class="math notranslate nohighlight">\(  \hat{X}_{T+h|T} = X_{T+1-m} + \sum\limits_{i=1}^{h}E_T \left[ \Delta_m X_{T+h|T} \right]  \)</span>$</p></li>
 </ul>
 </section>
 <section id="complete-model">
@@ -1914,9 +1912,6 @@ Y_t &amp;= \text{Constant} \\
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> This problem is unconstrained.
-</pre></div>
-</div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>RUNNING THE L-BFGS-B CODE
 
            * * *
@@ -1927,6 +1922,9 @@ Machine precision = 2.220D-16
 At X0         0 variables are exactly at the bounds
 
 At iterate    0    f= -1.91726D+00    |proj g|=  2.45479D+02
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> This problem is unconstrained.
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>           * * *
@@ -1964,10 +1962,10 @@ ABNORMAL_TERMINATION_IN_LNSRCH
   <th>Model:</th>           <td>SARIMAX(1, 0, 0)</td> <th>  Log Likelihood     </th>  <td>828.258</td> 
 </tr>
 <tr>
-  <th>Date:</th>            <td>Mon, 03 Oct 2022</td> <th>  AIC                </th> <td>-1648.515</td>
+  <th>Date:</th>            <td>Tue, 04 Oct 2022</td> <th>  AIC                </th> <td>-1648.515</td>
 </tr>
 <tr>
-  <th>Time:</th>                <td>23:37:08</td>     <th>  BIC                </th> <td>-1632.242</td>
+  <th>Time:</th>                <td>00:29:56</td>     <th>  BIC                </th> <td>-1632.242</td>
 </tr>
 <tr>
   <th>Sample:</th>                  <td>0</td>        <th>  HQIC               </th> <td>-1642.091</td>
@@ -2079,10 +2077,10 @@ ABNORMAL_TERMINATION_IN_LNSRCH
   <th>Model:</th>           <td>SARIMAX(1, 0, 1)</td> <th>  Log Likelihood     </th>  <td>871.818</td> 
 </tr>
 <tr>
-  <th>Date:</th>            <td>Mon, 03 Oct 2022</td> <th>  AIC                </th> <td>-1733.637</td>
+  <th>Date:</th>            <td>Tue, 04 Oct 2022</td> <th>  AIC                </th> <td>-1733.637</td>
 </tr>
 <tr>
-  <th>Time:</th>                <td>23:37:10</td>     <th>  BIC                </th> <td>-1713.295</td>
+  <th>Time:</th>                <td>00:29:58</td>     <th>  BIC                </th> <td>-1713.295</td>
 </tr>
 <tr>
   <th>Sample:</th>                  <td>0</td>        <th>  HQIC               </th> <td>-1725.606</td>
@@ -2224,9 +2222,6 @@ ABNORMAL_TERMINATION_IN_LNSRCH
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> This problem is unconstrained.
-</pre></div>
-</div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>RUNNING THE L-BFGS-B CODE
 
            * * *
@@ -2239,14 +2234,18 @@ At X0         0 variables are exactly at the bounds
 At iterate    0    f= -2.01907D+00    |proj g|=  3.12568D+00
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>At iterate    5    f= -2.02078D+00    |proj g|=  1.18168D-01
-
-At iterate   10    f= -2.02104D+00    |proj g|=  2.32010D-01
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> This problem is unconstrained.
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>At iterate   15    f= -2.02105D+00    |proj g|=  3.35404D-02
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>At iterate    5    f= -2.02078D+00    |proj g|=  1.18168D-01
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>At iterate   10    f= -2.02104D+00    |proj g|=  2.32010D-01
 
-At iterate   20    f= -2.02124D+00    |proj g|=  2.38342D-01
+At iterate   15    f= -2.02105D+00    |proj g|=  3.35404D-02
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>At iterate   20    f= -2.02124D+00    |proj g|=  2.38342D-01
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>At iterate   25    f= -2.02130D+00    |proj g|=  1.91262D-03
@@ -2270,7 +2269,7 @@ F     = final function value
 CONVERGENCE: REL_REDUCTION_OF_F_&lt;=_FACTR*EPSMCH             
 </pre></div>
 </div>
-<img alt="../_images/SARIMA_modeling_24_5.png" src="../_images/SARIMA_modeling_24_5.png" />
+<img alt="../_images/SARIMA_modeling_24_6.png" src="../_images/SARIMA_modeling_24_6.png" />
 </div>
 </div>
 </section>
@@ -2290,6 +2289,9 @@ CONVERGENCE: REL_REDUCTION_OF_F_&lt;=_FACTR*EPSMCH
 </div>
 </div>
 <div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> This problem is unconstrained.
+</pre></div>
+</div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>RUNNING THE L-BFGS-B CODE
 
            * * *
@@ -2302,14 +2304,12 @@ At X0         0 variables are exactly at the bounds
 At iterate    0    f= -2.01784D+00    |proj g|=  5.09688D+00
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> This problem is unconstrained.
-</pre></div>
-</div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>At iterate    5    f= -2.02089D+00    |proj g|=  2.87909D-03
 
 At iterate   10    f= -2.02089D+00    |proj g|=  7.25817D-02
-
-           * * *
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>           * * *
 
 Tit   = total number of iterations
 Tnf   = total number of function evaluations
@@ -2328,7 +2328,7 @@ F     = final function value
 CONVERGENCE: REL_REDUCTION_OF_F_&lt;=_FACTR*EPSMCH             
 </pre></div>
 </div>
-<img alt="../_images/SARIMA_modeling_26_3.png" src="../_images/SARIMA_modeling_26_3.png" />
+<img alt="../_images/SARIMA_modeling_26_4.png" src="../_images/SARIMA_modeling_26_4.png" />
 </div>
 </div>
 </section>
@@ -2344,9 +2344,6 @@ CONVERGENCE: REL_REDUCTION_OF_F_&lt;=_FACTR*EPSMCH
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> This problem is unconstrained.
-</pre></div>
-</div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>RUNNING THE L-BFGS-B CODE
 
            * * *
@@ -2357,6 +2354,9 @@ Machine precision = 2.220D-16
 At X0         0 variables are exactly at the bounds
 
 At iterate    0    f= -2.01791D+00    |proj g|=  1.05405D+00
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> This problem is unconstrained.
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>           * * *
@@ -2392,10 +2392,10 @@ CONVERGENCE: REL_REDUCTION_OF_F_&lt;=_FACTR*EPSMCH
   <th>Model:</th>           <td>SARIMAX(0, 1, 1)</td> <th>  Log Likelihood     </th>  <td>871.865</td> 
 </tr>
 <tr>
-  <th>Date:</th>            <td>Mon, 03 Oct 2022</td> <th>  AIC                </th> <td>-1739.729</td>
+  <th>Date:</th>            <td>Tue, 04 Oct 2022</td> <th>  AIC                </th> <td>-1739.729</td>
 </tr>
 <tr>
-  <th>Time:</th>                <td>23:37:13</td>     <th>  BIC                </th> <td>-1731.597</td>
+  <th>Time:</th>                <td>00:30:02</td>     <th>  BIC                </th> <td>-1731.597</td>
 </tr>
 <tr>
   <th>Sample:</th>                  <td>0</td>        <th>  HQIC               </th> <td>-1736.518</td>
@@ -2768,6 +2768,9 @@ CONVERGENCE: REL_REDUCTION_OF_F_&lt;=_FACTR*EPSMCH
 </div>
 </div>
 <div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> This problem is unconstrained.
+</pre></div>
+</div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>RUNNING THE L-BFGS-B CODE
 
            * * *
@@ -2780,9 +2783,6 @@ At X0         0 variables are exactly at the bounds
 At iterate    0    f=  2.07737D+00    |proj g|=  1.69168D-02
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> This problem is unconstrained.
-</pre></div>
-</div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>At iterate    5    f=  1.83179D+00    |proj g|=  4.61423D-01
 </pre></div>
 </div>
@@ -2793,8 +2793,9 @@ At iterate    0    f=  2.07737D+00    |proj g|=  1.69168D-02
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>At iterate   20    f=  8.03106D-01    |proj g|=  1.83614D-01
-
-At iterate   25    f=  7.43827D-01    |proj g|=  2.99315D-02
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>At iterate   25    f=  7.43827D-01    |proj g|=  2.99315D-02
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>At iterate   30    f=  7.33083D-01    |proj g|=  1.05034D-01
@@ -2843,8 +2844,9 @@ At iterate   25    f=  7.43827D-01    |proj g|=  2.99315D-02
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>At iterate  105    f=  2.48582D-01    |proj g|=  9.50513D-03
-
-At iterate  110    f=  2.48562D-01    |proj g|=  1.11384D-02
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>At iterate  110    f=  2.48562D-01    |proj g|=  1.11384D-02
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>At iterate  115    f=  2.48555D-01    |proj g|=  9.44731D-03
@@ -2892,10 +2894,10 @@ CONVERGENCE: REL_REDUCTION_OF_F_&lt;=_FACTR*EPSMCH
   <th>Model:</th>           <td>SARIMAX(1, 0, 0)</td> <th>  Log Likelihood     </th> <td>-107.374</td>
 </tr>
 <tr>
-  <th>Date:</th>            <td>Mon, 03 Oct 2022</td> <th>  AIC                </th>  <td>242.749</td>
+  <th>Date:</th>            <td>Tue, 04 Oct 2022</td> <th>  AIC                </th>  <td>242.749</td>
 </tr>
 <tr>
-  <th>Time:</th>                <td>23:37:22</td>     <th>  BIC                </th>  <td>299.707</td>
+  <th>Time:</th>                <td>00:30:13</td>     <th>  BIC                </th>  <td>299.707</td>
 </tr>
 <tr>
   <th>Sample:</th>                  <td>0</td>        <th>  HQIC               </th>  <td>265.236</td>
@@ -3075,10 +3077,10 @@ CONVERGENCE: REL_REDUCTION_OF_F_&lt;=_FACTR*EPSMCH
   <th>Model:</th>           <td>SARIMAX(0, 1, 0, 12)</td> <th>  Log Likelihood     </th> <td>-210.775</td>
 </tr>
 <tr>
-  <th>Date:</th>              <td>Mon, 03 Oct 2022</td>   <th>  AIC                </th>  <td>425.550</td>
+  <th>Date:</th>              <td>Tue, 04 Oct 2022</td>   <th>  AIC                </th>  <td>425.550</td>
 </tr>
 <tr>
-  <th>Time:</th>                  <td>23:37:23</td>       <th>  BIC                </th>  <td>433.630</td>
+  <th>Time:</th>                  <td>00:30:14</td>       <th>  BIC                </th>  <td>433.630</td>
 </tr>
 <tr>
   <th>Sample:</th>                    <td>0</td>          <th>  HQIC               </th>  <td>428.743</td>
@@ -3275,41 +3277,41 @@ Name: predicted_mean, dtype: float64
 Performing stepwise search to minimize aic
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> ARIMA(2,1,2)(0,0,0)[0] intercept   : AIC=261.586, Time=5.61 sec
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> ARIMA(2,1,2)(0,0,0)[0] intercept   : AIC=261.586, Time=5.92 sec
  ARIMA(0,1,0)(0,0,0)[0] intercept   : AIC=522.367, Time=0.12 sec
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> ARIMA(1,1,0)(0,0,0)[0] intercept   : AIC=401.618, Time=0.48 sec
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> ARIMA(1,1,0)(0,0,0)[0] intercept   : AIC=401.618, Time=0.53 sec
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> ARIMA(0,1,1)(0,0,0)[0] intercept   : AIC=260.626, Time=2.75 sec
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> ARIMA(0,1,1)(0,0,0)[0] intercept   : AIC=260.626, Time=2.86 sec
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> ARIMA(0,1,0)(0,0,0)[0]             : AIC=520.377, Time=0.37 sec
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> ARIMA(0,1,0)(0,0,0)[0]             : AIC=520.377, Time=0.41 sec
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> ARIMA(1,1,1)(0,0,0)[0] intercept   : AIC=257.600, Time=2.91 sec
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> ARIMA(1,1,1)(0,0,0)[0] intercept   : AIC=257.600, Time=3.20 sec
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> ARIMA(2,1,1)(0,0,0)[0] intercept   : AIC=259.024, Time=3.20 sec
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> ARIMA(2,1,1)(0,0,0)[0] intercept   : AIC=259.024, Time=3.18 sec
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> ARIMA(1,1,2)(0,0,0)[0] intercept   : AIC=260.318, Time=2.91 sec
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> ARIMA(1,1,2)(0,0,0)[0] intercept   : AIC=260.318, Time=3.06 sec
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> ARIMA(0,1,2)(0,0,0)[0] intercept   : AIC=257.045, Time=6.48 sec
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> ARIMA(0,1,2)(0,0,0)[0] intercept   : AIC=257.045, Time=7.42 sec
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> ARIMA(0,1,3)(0,0,0)[0] intercept   : AIC=258.163, Time=6.21 sec
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> ARIMA(0,1,3)(0,0,0)[0] intercept   : AIC=258.163, Time=7.10 sec
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> ARIMA(1,1,3)(0,0,0)[0] intercept   : AIC=262.037, Time=6.09 sec
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> ARIMA(1,1,3)(0,0,0)[0] intercept   : AIC=262.037, Time=6.20 sec
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> ARIMA(0,1,2)(0,0,0)[0]             : AIC=257.086, Time=1.95 sec
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> ARIMA(0,1,2)(0,0,0)[0]             : AIC=257.086, Time=2.39 sec
 
 Best model:  ARIMA(0,1,2)(0,0,0)[0] intercept
-Total fit time: 39.121 seconds
+Total fit time: 42.441 seconds
 Model fit:
 Pipeline(steps=[(&#39;fourier&#39;, FourierFeaturizer(k=4, m=12)),
                 (&#39;arima&#39;,

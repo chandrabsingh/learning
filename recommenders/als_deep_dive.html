@@ -1,0 +1,3032 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Spark Collaborative Filtering (ALS) Deep Dive</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="My RL Book" href="../rl_examples/intro.html" />
+    <link rel="prev" title="My Recommenders Book" href="intro.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../_static/mylogo.png" class="logo" alt="logo">
+      
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    Welcome
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  System Design
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../system_design/intro.html">
+   My System Design Book
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../system_design/design_patterns.html">
+     System Design Summary
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../system_design/software_engineering_concepts.html">
+     Software Engineering concepts
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../system_design/googlecloud_use_cases.html">
+     Google - Customer story
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../system_design/awscloud_financial_symposium_2022.html">
+     AWS - Financial Services Cloud Symposium - 2022
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../system_design/aws_usecases.html">
+     AWS - Customer story
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../system_design/design_general_use_cases.html">
+     Case study
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../system_design/netflix.html">
+     Netflix creativity
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../system_design/bk_AlexXu_SystemDesignInterview.html">
+     Book - System Design Interview - Alex Xu
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../system_design/design_patterns_python.html">
+     Design Pattern - Python
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Code
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../codes/intro.html">
+   My Code Book
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../codes/python_faqs.html">
+     Python FAQs
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../algos/all_algos.html">
+     Coding Challenges
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../codes/python_data_analytics.html">
+     Python Data Analytics - FAQs
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Database/Event
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../dbs/intro.html">
+   My DB Book
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+  <label for="toctree-checkbox-3">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../dbs/intro_kafka_ksqldb_stream_processing.html">
+     Introduction to Kafka/ksqldb/stream processing
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../dbs/neo4j_basics.html">
+     Building Neo4j Applications with Python
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../dbs/neo4j_graph_datascience.html">
+     Game of Thrones - Knowledge Graph analysis using Neo4j
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Math
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../maths/intro.html">
+   My Math Book
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+  <label for="toctree-checkbox-4">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../maths/probability_simulations.html">
+     Probability Games using Simulations
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../maths/linear_algebra.html">
+     Linear Algebra - FAQs
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../maths/probabilistic_programming.html">
+     Getting started with PyMC3
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../maths/causal_inference_learning.html">
+     Causal Inference Learning
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../econometrics/SARIMA_modeling.html">
+     SARIMA modeling
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Machine Learning
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../ml_examples/intro.html">
+   My ML Book
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
+  <label for="toctree-checkbox-5">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../ml_examples/ml_glossary.html">
+     ML Conceptual brief
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../ml_examples/Store_Sales_Forecasting_With_Tensorflow.html">
+     Store Sales Forecasting with TensorFlow
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../ml_examples/decision_tree_classification.html">
+     Decision Tree - classification
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../ml_examples/ml_design_patterns.html">
+     Machine Learning Design Patterns
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../dl_examples/intro.html">
+   My DL Book
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
+  <label for="toctree-checkbox-6">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../dl_examples/dl_glossary.html">
+     DL Conceptual brief
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../dl_examples/rp_AlexNet.html">
+     AlexNet Summary
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../dl_examples/rp_ResNet.html">
+     ResNet Summary
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../dl_examples/Anima_Anandkumar_Retrospective_Role_of_Tensors_in_Machine_Learning.html">
+     Anima Anandkumar - Retrospective Role of Tensors in ML
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="intro.html">
+   My Recommenders Book
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/>
+  <label for="toctree-checkbox-7">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     Spark Collaborative Filtering (ALS) Deep Dive
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../rl_examples/intro.html">
+   My RL Book
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/>
+  <label for="toctree-checkbox-8">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../rl_examples/mab_ts_ab.html">
+     Multi-armed bandit problem
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Shell Scripting
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../unix/intro.html">
+   My Unix/Shell Book
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/>
+  <label for="toctree-checkbox-9">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../unix/unix_shell_script.html">
+     Unix/Shell FAQs
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../unix/my_zshrc.html">
+     My .zshrc script
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Lecture Notes
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../cs229_ml/intro.html">
+   CS229 ML - by Andrew Ng
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/>
+  <label for="toctree-checkbox-10">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../cs229_ml/lec02-LinearReg-GradientDescent.html">
+     Lec 02-Linear Regression - Gradient Descent
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../cs229_ml/lec03-LocallyWeighted-LogisticRegression.html">
+     Lec 03-Locally Weighted Regression - Logistic Regression
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../cs229_ml/lec04-Perceptron-GLM.html">
+     Lec 04-Perceptron - GLM
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../cs229_ml/lec05-GDA-NaiveBayes.html">
+     Lec 05-GDA - Naive Bayes
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../cs229_ml/lec06-NaiveBayes-SVM.html">
+     Lec 06-Naive Bayes - SVM
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../cs229_ml/lec07-Kernels-SVM.html">
+     Lec 07-Kernels - SVM
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../cs229_ml/lec08-DataSplits-Models-CrossValidation.html">
+     Lec 08-Data Splits - Models - Cross Validation
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../cs229_ml/lec09-Approx-EstimationError-ERM.html">
+     Lec 09-Estimation Error - ERM
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../cs229_ml/lec10-DecisionTrees-EnsembleMethods.html">
+     Lec 10-Decision Trees - Ensemble Methods
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../cs229_ml/lec11-Intro-NN.html">
+     Lec 11-Neural Networks
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../cs229_ml/lec12-Backpropagation-ImprovingNN.html">
+     Lec 12-Improving NN
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../cs229_ml/lec13-DebuggingMLModels-ErrorAnalysis.html">
+     Lec 13-Debugging ML Models-Error Analysis
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../cs229_ml/lec14-Expectation-MaximizationAlgo.html">
+     Lec 14-Expectation-Maximization Algo
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../cs229_ml/lec15-EMAlgo-FactorAnalysis.html">
+     Lec 15-EM Algo-Factor Analysis
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../cs229_ml/lec16-IndependentComponentAnalysis-RL.html">
+     Lec 16-Independent Component Analysis-RL
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../cs229_ml/lec17-MDPs-ValuePolicyIteration.html">
+     Lec 17-MDPs-Value Policy Iteration
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../cs229_ml/lec18-continuousMDPs-ModelSimulation.html">
+     Lec 18-Continuous MDPs-Model Simulation
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+    </div>
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<div class="menu-dropdown menu-dropdown-launch-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Launch interactive content">
+      <i class="fas fa-rocket"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://mybinder.org/v2/gh/chandrabsingh/learning/master?urlpath=tree/learning/recommenders/als_deep_dive.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Binder"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="../_static/images/logo_binder.svg">
+  </span>
+<span class="headerbtn__text-container">Binder</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-repository-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Source repositories">
+      <i class="fab fa-github"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://github.com/chandrabsingh/learning"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Source repository"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="headerbtn__text-container">repository</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/chandrabsingh/learning/issues/new?title=Issue%20on%20page%20%2Frecommenders/als_deep_dive.html&body=Your%20issue%20content%20here."
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Open an issue"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="headerbtn__text-container">open issue</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="../_sources/recommenders/als_deep_dive.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.ipynb</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#goals">
+   Goals
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#theoretical-aspects">
+   Theoretical Aspects
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#matrix-factorization-algorithm">
+     Matrix factorization algorithm
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#matrix-factorization-for-collaborative-filtering-problem">
+       Matrix factorization for collaborative filtering problem
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#alternating-least-square-als">
+       Alternating Least Square (ALS)
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#spark-mllib-implementation">
+     Spark Mllib implementation
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#spark-als-based-movielens-recommender">
+     Spark ALS based MovieLens recommender
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#load-and-prepare-data">
+       Load and prepare data
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#train-a-movielens-model">
+       Train a movielens model
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#prediction-with-the-model">
+       Prediction with the model
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#fine-tune-the-model">
+       Fine tune the model
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#top-k-recommendation">
+       Top K recommendation
+      </a>
+      <ul class="nav section-nav flex-column">
+       <li class="toc-h5 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#top-k-for-all-users-items">
+         Top k for all users (items)
+        </a>
+       </li>
+       <li class="toc-h5 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#top-k-for-a-selected-set-of-users-items">
+         Top k for a selected set of users (items)
+        </a>
+       </li>
+       <li class="toc-h5 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#run-time-considerations-for-top-k-recommendations">
+         Run-time considerations for top-k recommendations
+        </a>
+       </li>
+      </ul>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#references">
+     References
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#practical-aspects">
+   Practical Aspects
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#setup-environment">
+     Setup Environment
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#collaborative-filtering">
+     Collaborative Filtering
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#goals-of-recommender-systems">
+       Goals of Recommender Systems
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#types-of-collaborative-filtering">
+       Types of collaborative filtering
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#als-algorithm">
+     ALS algorithm
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#low-rank-approximation">
+       Low-rank approximation
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#unconstrained-matrix-factorization">
+       Unconstrained Matrix Factorization
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#regularization">
+       Regularization
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#implicit-feedback">
+       Implicit Feedback
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#other-factorization-algorithms">
+     Other factorization algorithms
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#svd">
+       SVD
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id1">
+       SVD++
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#nmf">
+       NMF
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#pmf">
+       PMF
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#sparsity">
+     Sparsity
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#distributed-als">
+     Distributed ALS
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#spark">
+     Spark
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#spark-internals">
+       Spark internals
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#spark-application">
+       Spark Application
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#transformation-actions-and-lazy-evaluation">
+       Transformation, Actions and Lazy Evaluation
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#narrow-transformation">
+       Narrow transformation
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#wide-transformation">
+       Wide transformation
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#spark-ui">
+       Spark UI
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#resilient-distributed-dataset-rdd">
+       Resilient Distributed Dataset(RDD)
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#project-tungsten">
+       Project Tungsten
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#how-to-launch-spark">
+       How to launch Spark
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#pyspark">
+     PySpark
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#pysparksql">
+       PySparkSQL
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#mllib">
+       MLLib
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#spark-joins">
+     Spark Joins
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#broadcast-hash-join">
+       Broadcast Hash Join
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#shuffle-hash-join">
+       Shuffle hash join
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#shuffle-sort-merge-join">
+       Shuffle sort-merge join
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#spark-mllib">
+     Spark MLlib
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#hyperparameters">
+     Hyperparameters
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id2">
+     References
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+    </nav>
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Spark Collaborative Filtering (ALS) Deep Dive</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#goals">
+   Goals
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#theoretical-aspects">
+   Theoretical Aspects
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#matrix-factorization-algorithm">
+     Matrix factorization algorithm
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#matrix-factorization-for-collaborative-filtering-problem">
+       Matrix factorization for collaborative filtering problem
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#alternating-least-square-als">
+       Alternating Least Square (ALS)
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#spark-mllib-implementation">
+     Spark Mllib implementation
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#spark-als-based-movielens-recommender">
+     Spark ALS based MovieLens recommender
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#load-and-prepare-data">
+       Load and prepare data
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#train-a-movielens-model">
+       Train a movielens model
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#prediction-with-the-model">
+       Prediction with the model
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#fine-tune-the-model">
+       Fine tune the model
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#top-k-recommendation">
+       Top K recommendation
+      </a>
+      <ul class="nav section-nav flex-column">
+       <li class="toc-h5 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#top-k-for-all-users-items">
+         Top k for all users (items)
+        </a>
+       </li>
+       <li class="toc-h5 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#top-k-for-a-selected-set-of-users-items">
+         Top k for a selected set of users (items)
+        </a>
+       </li>
+       <li class="toc-h5 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#run-time-considerations-for-top-k-recommendations">
+         Run-time considerations for top-k recommendations
+        </a>
+       </li>
+      </ul>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#references">
+     References
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#practical-aspects">
+   Practical Aspects
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#setup-environment">
+     Setup Environment
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#collaborative-filtering">
+     Collaborative Filtering
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#goals-of-recommender-systems">
+       Goals of Recommender Systems
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#types-of-collaborative-filtering">
+       Types of collaborative filtering
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#als-algorithm">
+     ALS algorithm
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#low-rank-approximation">
+       Low-rank approximation
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#unconstrained-matrix-factorization">
+       Unconstrained Matrix Factorization
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#regularization">
+       Regularization
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#implicit-feedback">
+       Implicit Feedback
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#other-factorization-algorithms">
+     Other factorization algorithms
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#svd">
+       SVD
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id1">
+       SVD++
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#nmf">
+       NMF
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#pmf">
+       PMF
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#sparsity">
+     Sparsity
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#distributed-als">
+     Distributed ALS
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#spark">
+     Spark
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#spark-internals">
+       Spark internals
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#spark-application">
+       Spark Application
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#transformation-actions-and-lazy-evaluation">
+       Transformation, Actions and Lazy Evaluation
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#narrow-transformation">
+       Narrow transformation
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#wide-transformation">
+       Wide transformation
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#spark-ui">
+       Spark UI
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#resilient-distributed-dataset-rdd">
+       Resilient Distributed Dataset(RDD)
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#project-tungsten">
+       Project Tungsten
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#how-to-launch-spark">
+       How to launch Spark
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#pyspark">
+     PySpark
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#pysparksql">
+       PySparkSQL
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#mllib">
+       MLLib
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#spark-joins">
+     Spark Joins
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#broadcast-hash-join">
+       Broadcast Hash Join
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#shuffle-hash-join">
+       Shuffle hash join
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#shuffle-sort-merge-join">
+       Shuffle sort-merge join
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#spark-mllib">
+     Spark MLlib
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#hyperparameters">
+     Hyperparameters
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id2">
+     References
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <section class="tex2jax_ignore mathjax_ignore" id="spark-collaborative-filtering-als-deep-dive">
+<h1>Spark Collaborative Filtering (ALS) Deep Dive<a class="headerlink" href="#spark-collaborative-filtering-als-deep-dive" title="Permalink to this headline">#</a></h1>
+<section id="goals">
+<h2>Goals<a class="headerlink" href="#goals" title="Permalink to this headline">#</a></h2>
+<p>Spark MLlib provides a collaborative filtering algorithm that can be used for training a matrix factorization model, which predicts explicit or implicit ratings of users on items for recommendations.</p>
+<p>This notebook presents a deep dive into the Spark collaborative filtering algorithm.</p>
+</section>
+<section id="theoretical-aspects">
+<h2>Theoretical Aspects<a class="headerlink" href="#theoretical-aspects" title="Permalink to this headline">#</a></h2>
+<section id="matrix-factorization-algorithm">
+<h3>Matrix factorization algorithm<a class="headerlink" href="#matrix-factorization-algorithm" title="Permalink to this headline">#</a></h3>
+<section id="matrix-factorization-for-collaborative-filtering-problem">
+<h4>Matrix factorization for collaborative filtering problem<a class="headerlink" href="#matrix-factorization-for-collaborative-filtering-problem" title="Permalink to this headline">#</a></h4>
+<p>Matrix factorization is a common technique used in recommendation tasks. Basically, a matrix factorization algorithm tries to find latent factors that represent intrinsic user and item attributes in a lower dimension. That is,</p>
+<div class="math notranslate nohighlight">
+\[\hat r_{u,i} = q_{i}^{T}p_{u}\]</div>
+<p>where <span class="math notranslate nohighlight">\(\hat r_{u,i}\)</span> is the predicted ratings for user <span class="math notranslate nohighlight">\(u\)</span> and item <span class="math notranslate nohighlight">\(i\)</span>, and <span class="math notranslate nohighlight">\(q_{i}^{T}\)</span> and <span class="math notranslate nohighlight">\(p_{u}\)</span> are latent factors for item and user, respectively. The challenge to the matrix factorization problem is to find <span class="math notranslate nohighlight">\(q_{i}^{T}\)</span> and <span class="math notranslate nohighlight">\(p_{u}\)</span>. This is achieved by methods such as matrix decomposition. A learning approach is therefore developed to converge the decomposition results close to the observed ratings as much as possible. Furthermore, to avoid overfitting issue, the learning process is regularized. For example, a basic form of such matrix factorization algorithm is represented as below.</p>
+<div class="math notranslate nohighlight">
+\[\min\sum(r_{u,i} - q_{i}^{T}p_{u})^2 + \lambda(||q_{i}||^2 + ||p_{u}||^2)\]</div>
+<p>where <span class="math notranslate nohighlight">\(\lambda\)</span> is a the regularization parameter.</p>
+<p>In case explict ratings are not available, implicit ratings which are usually derived from users’ historical interactions with the items (e.g., clicks, views, purchases, etc.). To account for such implicit ratings, the original matrix factorization algorithm can be formulated as</p>
+<div class="math notranslate nohighlight">
+\[\min\sum c_{u,i}(p_{u,i} - q_{i}^{T}p_{u})^2 + \lambda(||q_{i}||^2 + ||p_{u}||^2)\]</div>
+<p>where <span class="math notranslate nohighlight">\(c_{u,i}=1+\alpha r_{u,i}\)</span> and <span class="math notranslate nohighlight">\(p_{u,i}=1\)</span> if <span class="math notranslate nohighlight">\(r_{u,i}&gt;0\)</span> and <span class="math notranslate nohighlight">\(p_{u,i}=0\)</span> if <span class="math notranslate nohighlight">\(r_{u,i}=0\)</span>. <span class="math notranslate nohighlight">\(r_{u,i}\)</span> is a numerical representation of users’ preferences (e.g., number of clicks, etc.).</p>
+</section>
+<section id="alternating-least-square-als">
+<h4>Alternating Least Square (ALS)<a class="headerlink" href="#alternating-least-square-als" title="Permalink to this headline">#</a></h4>
+<p>Owing to the term of <span class="math notranslate nohighlight">\(q_{i}^{T}p_{u}\)</span> the loss function is non-convex. Gradient descent method can be applied but this will incur expensive computations. An Alternating Least Square (ALS) algorithm was therefore developed to overcome this issue.</p>
+<p>The basic idea of ALS is to learn one of <span class="math notranslate nohighlight">\(q\)</span> and <span class="math notranslate nohighlight">\(p\)</span> at a time for optimization while keeping the other as constant. This makes the objective at each iteration convex and solvable. The alternating between <span class="math notranslate nohighlight">\(q\)</span> and <span class="math notranslate nohighlight">\(p\)</span> stops when there is convergence to the optimal. It is worth noting that this iterative computation can be parallelised and/or distributed, which makes the algorithm desirable for use cases where the dataset is large and thus the user-item rating matrix is super sparse (as is typical in recommendation scenarios). A comprehensive discussion of ALS and its distributed computation can be found <a class="reference external" href="http://stanford.edu/~rezab/classes/cme323/S15/notes/lec14.pdf">here</a>.</p>
+</section>
+</section>
+<section id="spark-mllib-implementation">
+<h3>Spark Mllib implementation<a class="headerlink" href="#spark-mllib-implementation" title="Permalink to this headline">#</a></h3>
+<p>The matrix factorization algorithm is available as <code class="docutils literal notranslate"><span class="pre">ALS</span></code> module in <a class="reference external" href="https://spark.apache.org/docs/latest/ml-collaborative-filtering.html">Spark <code class="docutils literal notranslate"><span class="pre">ml</span></code></a> for DataFrame or <a class="reference external" href="https://spark.apache.org/docs/latest/mllib-collaborative-filtering.html">Spark <code class="docutils literal notranslate"><span class="pre">mllib</span></code></a> for RDD.</p>
+<ul class="simple">
+<li><p>The uniqueness of ALS implementation is that it distributes the matrix factorization model training by using “Alternating Least Square” method.</p></li>
+<li><p>In the training method, there are parameters that can be selected to control the model performance.</p></li>
+<li><p>Both explicit and implicit ratings are supported by Spark ALS model.</p></li>
+</ul>
+</section>
+<section id="spark-als-based-movielens-recommender">
+<h3>Spark ALS based MovieLens recommender<a class="headerlink" href="#spark-als-based-movielens-recommender" title="Permalink to this headline">#</a></h3>
+<p>In the following code, the MovieLens-100K dataset is used to illustrate the ALS algorithm in Spark.</p>
+<p><strong>Note</strong>: This notebook requires a PySpark environment to run properly. Please follow the steps in <a class="reference external" href="https://github.com/Microsoft/Recommenders/blob/master/SETUP.md#dependencies-setup">SETUP.md</a> to install the PySpark environment.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># set the environment path to find Recommenders</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+
+<span class="kn">import</span> <span class="nn">pyspark</span>
+<span class="kn">from</span> <span class="nn">pyspark.sql</span> <span class="kn">import</span> <span class="n">SparkSession</span>
+<span class="kn">from</span> <span class="nn">pyspark.ml.recommendation</span> <span class="kn">import</span> <span class="n">ALS</span>
+<span class="kn">import</span> <span class="nn">pyspark.sql.functions</span> <span class="k">as</span> <span class="nn">F</span>
+<span class="kn">from</span> <span class="nn">pyspark.sql.functions</span> <span class="kn">import</span> <span class="n">col</span>
+<span class="kn">from</span> <span class="nn">pyspark.ml.tuning</span> <span class="kn">import</span> <span class="n">CrossValidator</span>
+<span class="kn">from</span> <span class="nn">pyspark.sql.types</span> <span class="kn">import</span> <span class="n">StructType</span><span class="p">,</span> <span class="n">StructField</span>
+<span class="kn">from</span> <span class="nn">pyspark.sql.types</span> <span class="kn">import</span> <span class="n">FloatType</span><span class="p">,</span> <span class="n">IntegerType</span><span class="p">,</span> <span class="n">LongType</span>
+
+<span class="kn">from</span> <span class="nn">recommenders.datasets</span> <span class="kn">import</span> <span class="n">movielens</span>
+<span class="kn">from</span> <span class="nn">recommenders.utils.spark_utils</span> <span class="kn">import</span> <span class="n">start_or_get_spark</span>
+<span class="kn">from</span> <span class="nn">recommenders.evaluation.spark_evaluation</span> <span class="kn">import</span> <span class="n">SparkRankingEvaluation</span><span class="p">,</span> <span class="n">SparkRatingEvaluation</span>
+<span class="kn">from</span> <span class="nn">recommenders.tuning.parameter_sweep</span> <span class="kn">import</span> <span class="n">generate_param_grid</span>
+<span class="kn">from</span> <span class="nn">recommenders.datasets.spark_splitters</span> <span class="kn">import</span> <span class="n">spark_random_split</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;System version: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">version</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Pandas version: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">__version__</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;PySpark version: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">pyspark</span><span class="o">.</span><span class="n">__version__</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>System version: 3.8.8 (default, Apr 13 2021, 12:59:45) 
+[Clang 10.0.0 ]
+Pandas version: 1.4.1
+PySpark version: 3.2.1
+</pre></div>
+</div>
+</div>
+</div>
+<p>Data column names</p>
+<div class="cell tag_parameters docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">MOVIELENS_DATA_SIZE</span> <span class="o">=</span> <span class="s2">&quot;100k&quot;</span>
+
+<span class="n">COL_USER</span> <span class="o">=</span> <span class="s2">&quot;UserId&quot;</span>
+<span class="n">COL_ITEM</span> <span class="o">=</span> <span class="s2">&quot;MovieId&quot;</span>
+<span class="n">COL_RATING</span> <span class="o">=</span> <span class="s2">&quot;Rating&quot;</span>
+<span class="n">COL_PREDICTION</span> <span class="o">=</span> <span class="s2">&quot;prediction&quot;</span>
+<span class="n">COL_TIMESTAMP</span> <span class="o">=</span> <span class="s2">&quot;Timestamp&quot;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">schema</span> <span class="o">=</span> <span class="n">StructType</span><span class="p">(</span>
+    <span class="p">(</span>
+        <span class="n">StructField</span><span class="p">(</span><span class="n">COL_USER</span><span class="p">,</span> <span class="n">IntegerType</span><span class="p">()),</span>
+        <span class="n">StructField</span><span class="p">(</span><span class="n">COL_ITEM</span><span class="p">,</span> <span class="n">IntegerType</span><span class="p">()),</span>
+        <span class="n">StructField</span><span class="p">(</span><span class="n">COL_RATING</span><span class="p">,</span> <span class="n">FloatType</span><span class="p">()),</span>
+        <span class="n">StructField</span><span class="p">(</span><span class="n">COL_TIMESTAMP</span><span class="p">,</span> <span class="n">LongType</span><span class="p">()),</span>
+    <span class="p">)</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Model hyper parameters - these parameters are selected with reference to the benchmarking results <a class="reference external" href="http://mymedialite.net/examples/datasets.html">here</a>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">RANK</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="n">MAX_ITER</span> <span class="o">=</span> <span class="mi">15</span>
+<span class="n">REG_PARAM</span> <span class="o">=</span> <span class="mf">0.05</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Number of recommended items</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">K</span> <span class="o">=</span> <span class="mi">10</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Initialize a Spark session.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">spark</span> <span class="o">=</span> <span class="n">start_or_get_spark</span><span class="p">(</span><span class="s2">&quot;ALS Deep Dive&quot;</span><span class="p">,</span> <span class="n">memory</span><span class="o">=</span><span class="s2">&quot;16g&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Using Spark&#39;s default log4j profile: org/apache/spark/log4j-defaults.properties
+Setting default log level to &quot;WARN&quot;.
+To adjust logging level use sc.setLogLevel(newLevel). For SparkR, use setLogLevel(newLevel).
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>22/10/04 00:50:52 WARN NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+</pre></div>
+</div>
+</div>
+</div>
+<section id="load-and-prepare-data">
+<h4>Load and prepare data<a class="headerlink" href="#load-and-prepare-data" title="Permalink to this headline">#</a></h4>
+<p>Data is read from csv into a Spark DataFrame.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dfs</span> <span class="o">=</span> <span class="n">movielens</span><span class="o">.</span><span class="n">load_spark_df</span><span class="p">(</span><span class="n">spark</span><span class="o">=</span><span class="n">spark</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="n">MOVIELENS_DATA_SIZE</span><span class="p">,</span> <span class="n">schema</span><span class="o">=</span><span class="n">schema</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  0%|                                                                                                                                           | 0.00/4.81k [00:00&lt;?, ?KB/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  2%|██▋                                                                                                                                  | 99.0/4.81k [00:00&lt;00:05, 852KB/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  9%|████████████▍                                                                                                                       | 454/4.81k [00:00&lt;00:01, 2.34kKB/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 23%|█████████████████████████████▊                                                                                                    | 1.10k/4.81k [00:00&lt;00:00, 4.15kKB/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 32%|█████████████████████████████████████████▎                                                                                        | 1.53k/4.81k [00:00&lt;00:00, 3.65kKB/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 44%|████████████████████████████████████████████████████████▉                                                                         | 2.10k/4.81k [00:00&lt;00:00, 4.33kKB/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 53%|█████████████████████████████████████████████████████████████████████                                                             | 2.55k/4.81k [00:00&lt;00:00, 4.38kKB/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 63%|██████████████████████████████████████████████████████████████████████████████████▏                                               | 3.04k/4.81k [00:00&lt;00:00, 4.50kKB/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 75%|█████████████████████████████████████████████████████████████████████████████████████████████████▉                                | 3.62k/4.81k [00:00&lt;00:00, 4.80kKB/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 85%|███████████████████████████████████████████████████████████████████████████████████████████████████████████████                   | 4.11k/4.81k [00:00&lt;00:00, 4.76kKB/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 95%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████      | 4.59k/4.81k [00:01&lt;00:00, 4.57kKB/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>100%|██████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 4.81k/4.81k [00:01&lt;00:00, 4.25kKB/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[Stage 0:&gt;                                                          (0 + 1) / 1]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>                                                                                
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dfs</span><span class="o">.</span><span class="n">show</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>+------+-------+------+---------+
+|UserId|MovieId|Rating|Timestamp|
++------+-------+------+---------+
+|   196|    242|   3.0|881250949|
+|   186|    302|   3.0|891717742|
+|    22|    377|   1.0|878887116|
+|   244|     51|   2.0|880606923|
+|   166|    346|   1.0|886397596|
++------+-------+------+---------+
+only showing top 5 rows
+</pre></div>
+</div>
+</div>
+</div>
+<p>Data is then randomly split by 80-20 ratio for training and testing.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dfs_train</span><span class="p">,</span> <span class="n">dfs_test</span> <span class="o">=</span> <span class="n">spark_random_split</span><span class="p">(</span><span class="n">dfs</span><span class="p">,</span> <span class="n">ratio</span><span class="o">=</span><span class="mf">0.75</span><span class="p">,</span> <span class="n">seed</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">type</span><span class="p">(</span><span class="n">dfs_train</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>pyspark.sql.dataframe.DataFrame
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dfs_train</span><span class="p">[</span><span class="n">COL_RATING</span><span class="p">]</span>
+<span class="n">dfs_train</span><span class="o">.</span><span class="n">printSchema</span><span class="p">()</span>
+<span class="n">dfs_train</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="n">COL_RATING</span><span class="p">)</span><span class="o">.</span><span class="n">show</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+<span class="n">dfs_train</span><span class="o">.</span><span class="n">toPandas</span><span class="p">()</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>root
+ |-- UserId: integer (nullable = true)
+ |-- MovieId: integer (nullable = true)
+ |-- Rating: float (nullable = true)
+ |-- Timestamp: long (nullable = true)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>+------+
+|Rating|
++------+
+|   5.0|
+|   3.0|
+|   3.0|
+|   3.0|
+|   5.0|
++------+
+only showing top 5 rows
+</pre></div>
+</div>
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>UserId</th>
+      <th>MovieId</th>
+      <th>Rating</th>
+      <th>Timestamp</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1</td>
+      <td>1</td>
+      <td>5.0</td>
+      <td>874965758</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>1</td>
+      <td>2</td>
+      <td>3.0</td>
+      <td>876893171</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>1</td>
+      <td>4</td>
+      <td>3.0</td>
+      <td>876893119</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>1</td>
+      <td>5</td>
+      <td>3.0</td>
+      <td>889751712</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>1</td>
+      <td>6</td>
+      <td>5.0</td>
+      <td>887431973</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+</section>
+<section id="train-a-movielens-model">
+<h4>Train a movielens model<a class="headerlink" href="#train-a-movielens-model" title="Permalink to this headline">#</a></h4>
+<p>It is worth noting that Spark ALS model allows dropping cold users to favor a robust evaluation with the testing data. In case there are cold users, Spark ALS implementation allows users to drop cold users in order to make sure evaluations on the prediction results are sound.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">als</span> <span class="o">=</span> <span class="n">ALS</span><span class="p">(</span>
+    <span class="n">maxIter</span><span class="o">=</span><span class="n">MAX_ITER</span><span class="p">,</span> 
+    <span class="n">rank</span><span class="o">=</span><span class="n">RANK</span><span class="p">,</span>
+    <span class="n">regParam</span><span class="o">=</span><span class="n">REG_PARAM</span><span class="p">,</span> 
+    <span class="n">userCol</span><span class="o">=</span><span class="n">COL_USER</span><span class="p">,</span> 
+    <span class="n">itemCol</span><span class="o">=</span><span class="n">COL_ITEM</span><span class="p">,</span> 
+    <span class="n">ratingCol</span><span class="o">=</span><span class="n">COL_RATING</span><span class="p">,</span> 
+    <span class="n">coldStartStrategy</span><span class="o">=</span><span class="s2">&quot;drop&quot;</span>
+<span class="p">)</span>
+
+<span class="n">model</span> <span class="o">=</span> <span class="n">als</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">dfs_train</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>22/10/04 00:51:18 WARN InstanceBuilder$NativeBLAS: Failed to load implementation from:dev.ludovic.netlib.blas.JNIBLAS
+22/10/04 00:51:18 WARN InstanceBuilder$NativeBLAS: Failed to load implementation from:dev.ludovic.netlib.blas.ForeignLinkerBLAS
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>22/10/04 00:51:18 WARN InstanceBuilder$NativeLAPACK: Failed to load implementation from:dev.ludovic.netlib.lapack.JNILAPACK
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[Stage 17:&gt;                                                       (0 + 10) / 10]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>                                                                                
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="prediction-with-the-model">
+<h4>Prediction with the model<a class="headerlink" href="#prediction-with-the-model" title="Permalink to this headline">#</a></h4>
+<p>The trained model can be used to predict ratings with a given test data.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dfs_pred</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">dfs_test</span><span class="p">)</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">COL_RATING</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>With the prediction results, the model performance can be evaluated.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">evaluations</span> <span class="o">=</span> <span class="n">SparkRatingEvaluation</span><span class="p">(</span>
+    <span class="n">dfs_test</span><span class="p">,</span> 
+    <span class="n">dfs_pred</span><span class="p">,</span>
+    <span class="n">col_user</span><span class="o">=</span><span class="n">COL_USER</span><span class="p">,</span>
+    <span class="n">col_item</span><span class="o">=</span><span class="n">COL_ITEM</span><span class="p">,</span>
+    <span class="n">col_rating</span><span class="o">=</span><span class="n">COL_RATING</span><span class="p">,</span>
+    <span class="n">col_prediction</span><span class="o">=</span><span class="n">COL_PREDICTION</span>
+<span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span>
+    <span class="s2">&quot;RMSE score = </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">evaluations</span><span class="o">.</span><span class="n">rmse</span><span class="p">()),</span>
+    <span class="s2">&quot;MAE score = </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">evaluations</span><span class="o">.</span><span class="n">mae</span><span class="p">()),</span>
+    <span class="s2">&quot;R2 score = </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">evaluations</span><span class="o">.</span><span class="n">rsquared</span><span class="p">()),</span>
+    <span class="s2">&quot;Explained variance score = </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">evaluations</span><span class="o">.</span><span class="n">exp_var</span><span class="p">()),</span>
+    <span class="n">sep</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[Stage 83:&gt;                                                         (0 + 1) / 1]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[Stage 83:&gt;                 (0 + 1) / 1][Stage 118:======&gt;         (4 + 6) / 10]
+
+                                                                                
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[Stage 161:&gt;                (0 + 1) / 1][Stage 162:&gt;                (0 + 1) / 1]
+
+                                                                                
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/chandrasingh/opt/anaconda3/envs/reco/lib/python3.8/site-packages/pyspark/sql/context.py:125: FutureWarning: Deprecated in 3.0.0. Use SparkSession.builder.getOrCreate() instead.
+  warnings.warn(
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[Stage 236:&gt;                                                        (0 + 1) / 1]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>                                                                                
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[Stage 238:&gt;                                                        (0 + 1) / 1]
+
+                                                                                
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[Stage 239:&gt;                (0 + 1) / 1][Stage 274:&gt;                (0 + 1) / 1]
+
+                                                                                
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>RMSE score = 0.9613180489365277
+MAE score = 0.7479647295639119
+R2 score = 0.2697383815888674
+Explained variance score = 0.2744404575472956
+</pre></div>
+</div>
+</div>
+</div>
+<p>Oftentimes ranking metrics are also of interest to data scientists. Note usually ranking metrics apply to the scenario of recommending a list of items. In our case, the recommended items should be different from those that have been rated by the users.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Get the cross join of all user-item pairs and score them.</span>
+<span class="n">users</span> <span class="o">=</span> <span class="n">dfs_train</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="n">COL_USER</span><span class="p">)</span><span class="o">.</span><span class="n">distinct</span><span class="p">()</span>
+<span class="n">items</span> <span class="o">=</span> <span class="n">dfs_train</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="n">COL_ITEM</span><span class="p">)</span><span class="o">.</span><span class="n">distinct</span><span class="p">()</span>
+<span class="n">user_item</span> <span class="o">=</span> <span class="n">users</span><span class="o">.</span><span class="n">crossJoin</span><span class="p">(</span><span class="n">items</span><span class="p">)</span>
+<span class="n">dfs_pred</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">user_item</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Fix the ambiguous col exception</span>
+<span class="n">dfs1</span> <span class="o">=</span> <span class="n">dfs_pred</span><span class="o">.</span><span class="n">alias</span><span class="p">(</span><span class="s2">&quot;pred&quot;</span><span class="p">)</span>
+<span class="n">dfs2</span> <span class="o">=</span> <span class="n">dfs_train</span><span class="o">.</span><span class="n">alias</span><span class="p">(</span><span class="s2">&quot;train&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Remove seen items.</span>
+<span class="c1"># dfs_pred_exclude_train = dfs_pred.alias(&quot;pred&quot;).join(</span>
+<span class="c1">#     dfs_train.alias(&quot;train&quot;),</span>
+<span class="c1">#     (dfs_pred[COL_USER] == dfs_train[COL_USER]) &amp; (dfs_pred[COL_ITEM] == dfs_train[COL_ITEM]),</span>
+<span class="c1">#     how=&#39;outer&#39;</span>
+<span class="c1"># )</span>
+<span class="n">dfs_pred_exclude_train</span> <span class="o">=</span> <span class="n">dfs1</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">dfs2</span><span class="p">,</span>
+    <span class="p">(</span><span class="n">dfs1</span><span class="p">[</span><span class="n">COL_USER</span><span class="p">]</span> <span class="o">==</span> <span class="n">dfs2</span><span class="p">[</span><span class="n">COL_USER</span><span class="p">])</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">dfs1</span><span class="p">[</span><span class="n">COL_ITEM</span><span class="p">]</span> <span class="o">==</span> <span class="n">dfs2</span><span class="p">[</span><span class="n">COL_ITEM</span><span class="p">]),</span>
+    <span class="n">how</span><span class="o">=</span><span class="s1">&#39;outer&#39;</span>
+<span class="p">)</span>
+
+<span class="n">dfs_pred_final</span> <span class="o">=</span> <span class="n">dfs_pred_exclude_train</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">dfs_pred_exclude_train</span><span class="p">[</span><span class="s2">&quot;train.Rating&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">isNull</span><span class="p">())</span> \
+    <span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="s1">&#39;pred.&#39;</span> <span class="o">+</span> <span class="n">COL_USER</span><span class="p">,</span> <span class="s1">&#39;pred.&#39;</span> <span class="o">+</span> <span class="n">COL_ITEM</span><span class="p">,</span> <span class="s1">&#39;pred.&#39;</span> <span class="o">+</span> <span class="s2">&quot;prediction&quot;</span><span class="p">)</span>
+
+<span class="n">dfs_pred_final</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[Stage 397:&gt;                (0 + 1) / 1][Stage 398:&gt;                (0 + 1) / 1]
+
+                                                                                
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[Stage 397:&gt;  (0 + 1) / 1][Stage 398:&gt;  (0 + 1) / 1][Stage 434:&gt;  (0 + 1) / 1]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[Stage 434:&gt;                                                        (0 + 1) / 1]
+
+                                                                                
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[Stage 475:&gt;                                                        (0 + 1) / 1]
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>+------+-------+-----------+
+|UserId|MovieId| prediction|
++------+-------+-----------+
+|     1|     46|  3.7882175|
+|     1|    255|   2.738476|
+|     1|    284|   2.968949|
+|     1|    285|  4.0145288|
+|     1|    318|   4.562084|
+|     1|    329|  3.6388113|
+|     1|    335|  2.1541371|
+|     1|    353|  3.4848208|
+|     1|    371|  3.3402472|
+|     1|    372|   4.582937|
+|     1|    381|   3.557222|
+|     1|    391|  2.5069427|
+|     1|    409|   2.626905|
+|     1|    413|  3.1538475|
+|     1|    417|  2.3162253|
+|     1|    440|0.117007874|
+|     1|    449|  3.5935192|
+|     1|    463|  4.4056406|
+|     1|    480|  4.2798247|
+|     1|    488|  3.2969754|
++------+-------+-----------+
+only showing top 20 rows
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[Stage 479:&gt;                                                        (0 + 1) / 1]
+
+                                                                                
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">evaluations</span> <span class="o">=</span> <span class="n">SparkRankingEvaluation</span><span class="p">(</span>
+    <span class="n">dfs_test</span><span class="p">,</span> 
+    <span class="n">dfs_pred_final</span><span class="p">,</span>
+    <span class="n">col_user</span><span class="o">=</span><span class="n">COL_USER</span><span class="p">,</span>
+    <span class="n">col_item</span><span class="o">=</span><span class="n">COL_ITEM</span><span class="p">,</span>
+    <span class="n">col_rating</span><span class="o">=</span><span class="n">COL_RATING</span><span class="p">,</span>
+    <span class="n">col_prediction</span><span class="o">=</span><span class="n">COL_PREDICTION</span><span class="p">,</span>
+    <span class="n">k</span><span class="o">=</span><span class="n">K</span>
+<span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span>
+    <span class="s2">&quot;Precision@k = </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">evaluations</span><span class="o">.</span><span class="n">precision_at_k</span><span class="p">()),</span>
+    <span class="s2">&quot;Recall@k = </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">evaluations</span><span class="o">.</span><span class="n">recall_at_k</span><span class="p">()),</span>
+    <span class="s2">&quot;NDCG@k = </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">evaluations</span><span class="o">.</span><span class="n">ndcg_at_k</span><span class="p">()),</span>
+    <span class="s2">&quot;Mean average precision = </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">evaluations</span><span class="o">.</span><span class="n">map_at_k</span><span class="p">()),</span>
+    <span class="n">sep</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[Stage 480:&gt;  (0 + 1) / 1][Stage 481:&gt;  (0 + 1) / 1][Stage 516:&gt; (1 + 9) / 10]
+
+                                                                                
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[Stage 518:&gt;                                                        (0 + 1) / 1]
+
+[Stage 559:&gt;                                                        (0 + 1) / 1]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>                                                                                
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[Stage 559:&gt;                                                        (0 + 1) / 1]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[Stage 565:&gt;                                                      (0 + 12) / 12]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[Stage 565:=========&gt;                                             (2 + 10) / 12]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[Stage 565:=====================================&gt;                  (8 + 4) / 12]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[Stage 570:&gt;                                                        (0 + 1) / 1]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>                                                                                
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[Stage 575:&gt;                                                      (0 + 12) / 12]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>                                                                                
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[Stage 580:=============================================&gt;         (10 + 2) / 12]
+
+                                                                                
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[Stage 585:==================================================&gt;    (11 + 1) / 12]
+
+                                                                                
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[Stage 590:====&gt;                                                  (1 + 11) / 12]
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Precision@k = 0.04517497348886533
+Recall@k = 0.01487805035762342
+NDCG@k = 0.04146113206644339
+Mean average precision = 0.004067912386081063
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[Stage 590:==================================================&gt;    (11 + 1) / 12]
+
+                                                                                
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="fine-tune-the-model">
+<h4>Fine tune the model<a class="headerlink" href="#fine-tune-the-model" title="Permalink to this headline">#</a></h4>
+<p>Prediction performance of a Spark ALS model is often affected by the parameters</p>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Parameter</p></th>
+<th class="head"><p>Description</p></th>
+<th class="head"><p>Default value</p></th>
+<th class="head"><p>Notes</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">rank</span></code></p></td>
+<td><p>Number of latent factors</p></td>
+<td><p>10</p></td>
+<td><p>The larger the more intrinsic factors considered in the factorization modeling.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">regParam</span></code></p></td>
+<td><p>Regularization parameter</p></td>
+<td><p>1.0</p></td>
+<td><p>The value needs to be selected empirically to avoid overfitting.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">maxIters</span></code></p></td>
+<td><p>Maximum number of iterations</p></td>
+<td><p>10</p></td>
+<td><p>The more iterations the better the model converges to the optimal point.</p></td>
+</tr>
+</tbody>
+</table>
+<p>It is always a good practice to start model building with default parameter values and then sweep the parameter in a range to find the optimal combination of parameters. The following parameter set is used for training ALS models for comparison study purposes.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">param_dict</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;rank&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">10</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span> <span class="mi">20</span><span class="p">],</span>
+    <span class="s2">&quot;regParam&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mf">0.001</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">]</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Generate a dictionary for each parameter combination which can then be fed into model training.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">param_grid</span> <span class="o">=</span> <span class="n">generate_param_grid</span><span class="p">(</span><span class="n">param_dict</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Train models with parameters specified in the parameter grid. Evaluate the model with, for example, the RMSE metric, and then record the metrics for visualization.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">rmse_score</span> <span class="o">=</span> <span class="p">[]</span>
+
+<span class="k">for</span> <span class="n">g</span> <span class="ow">in</span> <span class="n">param_grid</span><span class="p">:</span>
+    <span class="n">als</span> <span class="o">=</span> <span class="n">ALS</span><span class="p">(</span>        
+        <span class="n">userCol</span><span class="o">=</span><span class="n">COL_USER</span><span class="p">,</span> 
+        <span class="n">itemCol</span><span class="o">=</span><span class="n">COL_ITEM</span><span class="p">,</span> 
+        <span class="n">ratingCol</span><span class="o">=</span><span class="n">COL_RATING</span><span class="p">,</span> 
+        <span class="n">coldStartStrategy</span><span class="o">=</span><span class="s2">&quot;drop&quot;</span><span class="p">,</span>
+        <span class="o">**</span><span class="n">g</span>
+    <span class="p">)</span>
+    
+    <span class="n">model</span> <span class="o">=</span> <span class="n">als</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">dfs_train</span><span class="p">)</span>
+    
+    <span class="n">dfs_pred</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">dfs_test</span><span class="p">)</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">COL_RATING</span><span class="p">)</span>
+    
+    <span class="n">evaluations</span> <span class="o">=</span> <span class="n">SparkRatingEvaluation</span><span class="p">(</span>
+        <span class="n">dfs_test</span><span class="p">,</span> 
+        <span class="n">dfs_pred</span><span class="p">,</span>
+        <span class="n">col_user</span><span class="o">=</span><span class="n">COL_USER</span><span class="p">,</span>
+        <span class="n">col_item</span><span class="o">=</span><span class="n">COL_ITEM</span><span class="p">,</span>
+        <span class="n">col_rating</span><span class="o">=</span><span class="n">COL_RATING</span><span class="p">,</span>
+        <span class="n">col_prediction</span><span class="o">=</span><span class="n">COL_PREDICTION</span>
+    <span class="p">)</span>
+
+    <span class="n">rmse_score</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">evaluations</span><span class="o">.</span><span class="n">rmse</span><span class="p">())</span>
+    
+<span class="n">rmse_score</span> <span class="o">=</span> <span class="p">[</span><span class="nb">float</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">%.4f</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">x</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">rmse_score</span><span class="p">]</span>
+<span class="n">rmse_score_array</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">rmse_score</span><span class="p">,</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">param_dict</span><span class="p">[</span><span class="s2">&quot;rank&quot;</span><span class="p">]),</span> <span class="nb">len</span><span class="p">(</span><span class="n">param_dict</span><span class="p">[</span><span class="s2">&quot;regParam&quot;</span><span class="p">])))</span> 
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[Stage 763:&gt;                                                        (0 + 1) / 1]
+
+                                                                                
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[Stage 936:&gt;                                                        (0 + 1) / 1]
+
+                                                                                
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[Stage 1628:&gt;                                                       (0 + 1) / 1]
+
+                                                                                
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[Stage 1974:&gt;                                                       (0 + 1) / 1]
+
+                                                                                
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">rmse_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">rmse_score_array</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">Index</span><span class="p">(</span><span class="n">param_dict</span><span class="p">[</span><span class="s2">&quot;rank&quot;</span><span class="p">],</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;rank&quot;</span><span class="p">),</span> 
+                       <span class="n">columns</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">Index</span><span class="p">(</span><span class="n">param_dict</span><span class="p">[</span><span class="s2">&quot;regParam&quot;</span><span class="p">],</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;reg. parameter&quot;</span><span class="p">))</span>
+<span class="n">rmse_df</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th>reg. parameter</th>
+      <th>0.001</th>
+      <th>0.100</th>
+      <th>1.000</th>
+    </tr>
+    <tr>
+      <th>rank</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>10</th>
+      <td>1.3421</td>
+      <td>0.9240</td>
+      <td>1.3693</td>
+    </tr>
+    <tr>
+      <th>15</th>
+      <td>1.4731</td>
+      <td>0.9283</td>
+      <td>1.3693</td>
+    </tr>
+    <tr>
+      <th>20</th>
+      <td>1.5513</td>
+      <td>0.9293</td>
+      <td>1.3693</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">heatmap</span><span class="p">(</span><span class="n">rmse_df</span><span class="p">,</span> <span class="n">cbar</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">annot</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">fmt</span><span class="o">=</span><span class="s2">&quot;.4g&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;AxesSubplot:xlabel=&#39;reg. parameter&#39;, ylabel=&#39;rank&#39;&gt;
+</pre></div>
+</div>
+<img alt="../_images/als_deep_dive_42_1.png" src="../_images/als_deep_dive_42_1.png" />
+</div>
+</div>
+<p>The calculated RMSE scores can be visualized to comparatively study how model performance is affected by different parameters.</p>
+<p>It can be seen from this visualization that RMSE first decreases and then increases as rank increases, due to overfitting. When the rank equals 20 and the regularization parameter equals 0.1, the model achieves the lowest RMSE score.</p>
+</section>
+<section id="top-k-recommendation">
+<h4>Top K recommendation<a class="headerlink" href="#top-k-recommendation" title="Permalink to this headline">#</a></h4>
+<section id="top-k-for-all-users-items">
+<h5>Top k for all users (items)<a class="headerlink" href="#top-k-for-all-users-items" title="Permalink to this headline">#</a></h5>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dfs_rec</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">recommendForAllUsers</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/chandrasingh/opt/anaconda3/envs/reco/lib/python3.8/site-packages/pyspark/sql/context.py:125: FutureWarning: Deprecated in 3.0.0. Use SparkSession.builder.getOrCreate() instead.
+  warnings.warn(
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dfs_rec</span><span class="o">.</span><span class="n">show</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[Stage 2171:&gt;                                                    (0 + 12) / 100]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[Stage 2171:======&gt;                                             (12 + 12) / 100]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[Stage 2171:===========&gt;                                        (22 + 12) / 100]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[Stage 2171:============&gt;                                       (24 + 12) / 100]
+
+[Stage 2171:================&gt;                                   (32 + 13) / 100]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[Stage 2171:==================&gt;                                 (36 + 12) / 100]
+
+[Stage 2171:=====================&gt;                              (42 + 12) / 100]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[Stage 2171:========================&gt;                           (48 + 12) / 100]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[Stage 2171:==============================&gt;                     (58 + 12) / 100]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[Stage 2171:=================================&gt;                  (64 + 12) / 100]
+
+[Stage 2171:=====================================&gt;              (72 + 12) / 100]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[Stage 2171:===========================================&gt;        (84 + 12) / 100]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[Stage 2171:==================================================&gt;  (96 + 4) / 100]
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>+------+--------------------+
+|UserId|     recommendations|
++------+--------------------+
+|     1|[{1536, 3.8911986...|
+|     3|[{1536, 3.1063826...|
+|     6|[{1536, 3.7354302...|
+|    12|[{1536, 4.4471884...|
+|    13|[{1536, 3.3997412...|
+|    16|[{1536, 4.5658064...|
+|    20|[{1536, 3.3140028...|
+|    22|[{1536, 3.7392447...|
+|    26|[{1536, 3.172991}...|
+|    27|[{1536, 3.4825757...|
++------+--------------------+
+only showing top 10 rows
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>                                                                                
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="top-k-for-a-selected-set-of-users-items">
+<h5>Top k for a selected set of users (items)<a class="headerlink" href="#top-k-for-a-selected-set-of-users-items" title="Permalink to this headline">#</a></h5>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">users</span> <span class="o">=</span> <span class="n">dfs_train</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="n">als</span><span class="o">.</span><span class="n">getUserCol</span><span class="p">())</span><span class="o">.</span><span class="n">distinct</span><span class="p">()</span><span class="o">.</span><span class="n">limit</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+
+<span class="n">dfs_rec_subset</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">recommendForUserSubset</span><span class="p">(</span><span class="n">users</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dfs_rec_subset</span><span class="o">.</span><span class="n">show</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>+------+--------------------+
+|UserId|     recommendations|
++------+--------------------+
+|   471|[{1536, 3.3287528...|
+|   463|[{1536, 3.1125832...|
+|   148|[{1536, 3.907573}...|
++------+--------------------+
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[Stage 2226:====================================================&gt;(99 + 1) / 100]
+
+                                                                                
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="run-time-considerations-for-top-k-recommendations">
+<h5>Run-time considerations for top-k recommendations<a class="headerlink" href="#run-time-considerations-for-top-k-recommendations" title="Permalink to this headline">#</a></h5>
+<p>It is worth noting that usually computing the top-k recommendations for all users is the bottleneck of the whole pipeline (model training and scoring) of an ALS based recommendation system. This is because</p>
+<ul class="simple">
+<li><p>Getting the top k from all user-item pairs requires a cross join which is usually very computationally expensive.</p></li>
+<li><p>Inner products of user-item pairs are calculated individually instead of leveraging matrix block multiplication features which are available in certain contemporary computing acceleration libraries (e.g., BLAS).</p></li>
+</ul>
+<p>More details about possible optimizations of the top k recommendations in Spark can be found <a class="reference external" href="https://engineeringblog.yelp.com/2018/05/scaling-collaborative-filtering-with-pyspark.html">here</a>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># cleanup spark instance</span>
+<span class="n">spark</span><span class="o">.</span><span class="n">stop</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+</section>
+<section id="references">
+<h3>References<a class="headerlink" href="#references" title="Permalink to this headline">#</a></h3>
+<ol class="simple">
+<li><p>Yehuda Koren, Robert Bell, and Chris Volinsky, “Matrix Factorization Techniques for Recommender Systems
+“, ACM Computer, Vol. 42, Issue 8, pp 30-37, Aug., 2009.</p></li>
+<li><p>Yifan Hu, Yehuda Koren, and Chris Volinsky, “Collaborative Filtering for Implicit Feedback Datasets
+“, Proc. IEEE ICDM, 2008, Dec, Pisa, Italy.</p></li>
+<li><p>Apache Spark. url: <a class="reference external" href="https://spark.apache.org/docs/latest/ml-collaborative-filtering.html">https://spark.apache.org/docs/latest/ml-collaborative-filtering.html</a></p></li>
+<li><p>Seaborn. url: <a class="reference external" href="https://seaborn.pydata.org/">https://seaborn.pydata.org/</a></p></li>
+<li><p>Scaling collaborative filtering with PySpark. url: <a class="reference external" href="https://engineeringblog.yelp.com/2018/05/scaling-collaborative-filtering-with-pyspark.html">https://engineeringblog.yelp.com/2018/05/scaling-collaborative-filtering-with-pyspark.html</a></p></li>
+<li><p>Matrix Completion via Alternating Least Square (ALS). url: <a class="reference external" href="http://stanford.edu/~rezab/classes/cme323/S15/notes/lec14.pdf">http://stanford.edu/~rezab/classes/cme323/S15/notes/lec14.pdf</a></p></li>
+</ol>
+</section>
+</section>
+<section id="practical-aspects">
+<h2>Practical Aspects<a class="headerlink" href="#practical-aspects" title="Permalink to this headline">#</a></h2>
+<section id="setup-environment">
+<h3>Setup Environment<a class="headerlink" href="#setup-environment" title="Permalink to this headline">#</a></h3>
+<ul class="simple">
+<li><p>Before starting to learn, working environment needs to be setup on local mac laptop</p>
+<ol class="simple">
+<li><p>Create virtual environment for setting up kernel for interactive computing using Anaconda Jupyter and not pollute existing environment</p></li>
+<li><p>Setup ability to choose from multiple Java version</p></li>
+<li><p>Setup PySpark</p></li>
+<li><p>Register environment variables with virtual environment and its associated ipykernel</p></li>
+<li><p>Setup git recommenders locally and build using the local git copy</p></li>
+</ol>
+</li>
+</ul>
+<ul>
+<li><div class="alert alert-warning"> Check the active sh - bash or zsh, accordingly update ~/.bash_profile or ~/.zshrc</div>  
+</li>
+</ul>
+<blockquote>
+<div><p><code class="docutils literal notranslate"><span class="pre">$SHELL</span> <span class="pre">--version</span></code></p>
+</div></blockquote>
+<p>zsh 5.8 (x86_64-apple-darwin21.0)</p>
+<ul class="simple">
+<li><p>Renamed config.json to be able to switch to different venv without authentication hassle</p></li>
+</ul>
+<blockquote>
+<div><p><code class="docutils literal notranslate"><span class="pre">cd</span> <span class="pre">~/.jupyter/</span></code><br />
+<code class="docutils literal notranslate"><span class="pre">mv</span> <span class="pre">jupyter_notebook_config.json</span> <span class="pre">jupyter_notebook_config.json.bkp</span></code></p>
+</div></blockquote>
+<ul class="simple">
+<li><p>Create new venv</p></li>
+</ul>
+<blockquote>
+<div><p><code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">--version</span></code>
+3.8.8<br />
+<code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">create</span> <span class="pre">--name</span> <span class="pre">reco</span> <span class="pre">python=3.8.8</span></code><br />
+<code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">activate</span> <span class="pre">reco</span></code></p>
+</div></blockquote>
+<ul class="simple">
+<li><p>As a pre-requisite to installing the dependencies, if using Conda, make sure that Anaconda and the package manager Conda are both up to date</p></li>
+</ul>
+<blockquote>
+<div><p><code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">update</span> <span class="pre">conda</span> <span class="pre">-n</span> <span class="pre">root</span></code><br />
+<code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">install</span> <span class="pre">anaconda</span></code> since it is a new venv, otherwise <code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">update</span> <span class="pre">anaconda</span></code><br />
+<code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">pyspark</span></code></p>
+</div></blockquote>
+<p>Successfully installed py4j-0.10.9.3 pyspark-3.2.1</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://stackoverflow.com/questions/24342886/how-to-install-java-8-on-mac">How to install java on mac</a></p></li>
+</ul>
+<blockquote>
+<div><p><code class="docutils literal notranslate"><span class="pre">brew</span> <span class="pre">tap</span> <span class="pre">adoptopenjdk/openjdk</span></code><br />
+<code class="docutils literal notranslate"><span class="pre">brew</span> <span class="pre">install</span> <span class="pre">--cask</span> <span class="pre">adoptopenjdk8</span></code></p>
+</div></blockquote>
+<ul class="simple">
+<li><p>NOTE Spark requires Java version 8 or 11. We support Spark versions 3.0 and 3.1, but versions 2.4+ with Java version 8 may also work.</p></li>
+</ul>
+<blockquote>
+<div><p><code class="docutils literal notranslate"><span class="pre">brew</span> <span class="pre">install</span> <span class="pre">--cask</span> <span class="pre">adoptopenjdk11</span></code></p>
+</div></blockquote>
+<ul class="simple">
+<li><p>If you want to install/manage multiple version then you can use ‘jenv’:</p></li>
+</ul>
+<blockquote>
+<div><p><code class="docutils literal notranslate"><span class="pre">echo</span> <span class="pre">'export</span> <span class="pre">PATH=&quot;$HOME/.jenv/bin:$PATH&quot;'</span> <span class="pre">&gt;&gt;</span> <span class="pre">~/.bash_profile</span></code><br />
+<code class="docutils literal notranslate"><span class="pre">echo</span> <span class="pre">'eval</span> <span class="pre">&quot;$(jenv</span> <span class="pre">init</span> <span class="pre">-)&quot;'</span> <span class="pre">&gt;&gt;</span> <span class="pre">~/.bash_profile</span></code><br />
+<code class="docutils literal notranslate"><span class="pre">source</span> <span class="pre">~/.bash_profile</span></code></p>
+</div></blockquote>
+<ul class="simple">
+<li><p>This will change the venv to base. Switch/Activate the environment</p></li>
+</ul>
+<blockquote>
+<div><p><code class="docutils literal notranslate"><span class="pre">jenv</span> <span class="pre">doctor</span></code><br />
+No JAVA_HOME set</p>
+</div></blockquote>
+<ul class="simple">
+<li><p>Add the installed java to jenv</p></li>
+</ul>
+<blockquote>
+<div><p><code class="docutils literal notranslate"><span class="pre">jenv</span> <span class="pre">add</span> <span class="pre">/Library/Java/JavaVirtualMachines/adoptopenjdk-8.jdk/Contents/Home</span></code><br />
+<code class="docutils literal notranslate"><span class="pre">jenv</span> <span class="pre">add</span> <span class="pre">/Library/Java/JavaVirtualMachines/adoptopenjdk-11.jdk/Contents/Home</span></code><br />
+<code class="docutils literal notranslate"><span class="pre">jenv</span> <span class="pre">versions</span></code></p>
+</div></blockquote>
+<ul class="simple">
+<li><p>Configure the java version which you want to use:</p></li>
+</ul>
+<blockquote>
+<div><p><code class="docutils literal notranslate"><span class="pre">jenv</span> <span class="pre">global</span> <span class="pre">11</span></code><br />
+<code class="docutils literal notranslate"><span class="pre">jenv</span> <span class="pre">versions</span></code></p>
+</div></blockquote>
+<ul class="simple">
+<li><p>For v11</p></li>
+</ul>
+<blockquote>
+<div><p><code class="docutils literal notranslate"><span class="pre">echo</span> <span class="pre">'export</span> <span class="pre">JAVA_HOME=$(/usr/libexec/java_home</span> <span class="pre">-v11)'</span> <span class="pre">&gt;&gt;</span> <span class="pre">~/.bash_profile</span></code></p>
+</div></blockquote>
+<ul class="simple">
+<li><p>or for v1.8</p></li>
+</ul>
+<blockquote>
+<div><p><code class="docutils literal notranslate"><span class="pre">echo</span> <span class="pre">'export</span> <span class="pre">JAVA_HOME=$(/usr/libexec/java_home</span> <span class="pre">-v1.8)'</span> <span class="pre">&gt;&gt;</span> <span class="pre">~/.bash_profile</span></code></p>
+</div></blockquote>
+<ul class="simple">
+<li><p>If <code class="docutils literal notranslate"><span class="pre">jenv</span> <span class="pre">doctor</span></code> not set, use</p></li>
+</ul>
+<blockquote>
+<div><p><code class="docutils literal notranslate"><span class="pre">echo</span> <span class="pre">'eval</span> <span class="pre">&quot;$(jenv</span> <span class="pre">init</span> <span class="pre">-)&quot;'</span> <span class="pre">&gt;&gt;</span> <span class="pre">~/.zshrc</span></code></p>
+</div></blockquote>
+<ul class="simple">
+<li><p>Test <code class="docutils literal notranslate"><span class="pre">java</span> <span class="pre">--version</span></code> or <code class="docutils literal notranslate"><span class="pre">which</span> <span class="pre">java</span></code></p></li>
+<li><p>Setup PySpark</p></li>
+</ul>
+<blockquote>
+<div><p><code class="docutils literal notranslate"><span class="pre">RECO_ENV=$(conda</span> <span class="pre">env</span> <span class="pre">list</span> <span class="pre">|</span> <span class="pre">grep</span> <span class="pre">reco</span> <span class="pre">|</span> <span class="pre">awk</span> <span class="pre">'{print</span> <span class="pre">$NF}')</span></code><br />
+<code class="docutils literal notranslate"><span class="pre">mkdir</span> <span class="pre">-p</span> <span class="pre">$RECO_ENV/etc/conda/activate.d</span></code><br />
+<code class="docutils literal notranslate"><span class="pre">mkdir</span> <span class="pre">-p</span> <span class="pre">$RECO_ENV/etc/conda/deactivate.d</span></code></p>
+</div></blockquote>
+<ul class="simple">
+<li><p>Then, create the file <code class="docutils literal notranslate"><span class="pre">\$RECO_ENV/etc/conda/activate.d/env_vars.sh</span></code> and add:</p></li>
+</ul>
+<blockquote>
+<div><p><code class="docutils literal notranslate"><span class="pre">#!/bin/sh</span></code><br />
+<code class="docutils literal notranslate"><span class="pre">RECO_ENV=$(conda</span> <span class="pre">env</span> <span class="pre">list</span> <span class="pre">|</span> <span class="pre">grep</span> <span class="pre">reco</span> <span class="pre">|</span> <span class="pre">awk</span> <span class="pre">'{print</span> <span class="pre">$NF}')</span></code><br />
+<code class="docutils literal notranslate"><span class="pre">export</span> <span class="pre">PYSPARK_PYTHON=$RECO_ENV/bin/python</span></code><br />
+<code class="docutils literal notranslate"><span class="pre">export</span> <span class="pre">PYSPARK_DRIVER_PYTHON=$RECO_ENV/bin/python</span></code><br />
+<code class="docutils literal notranslate"><span class="pre">unset</span> <span class="pre">SPARK_HOME</span></code></p>
+</div></blockquote>
+<ul class="simple">
+<li><p>This will export the variables every time we do <code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">activate</span> <span class="pre">reco</span></code>. To unset these variables when we deactivate the environment, create the file <code class="docutils literal notranslate"><span class="pre">$RECO_ENV/etc/conda/deactivate.d/env_vars.sh</span></code> and add:</p></li>
+</ul>
+<blockquote>
+<div><p><code class="docutils literal notranslate"><span class="pre">#!/bin/sh</span></code><br />
+<code class="docutils literal notranslate"><span class="pre">unset</span> <span class="pre">PYSPARK_PYTHON</span></code><br />
+<code class="docutils literal notranslate"><span class="pre">unset</span> <span class="pre">PYSPARK_DRIVER_PYTHON</span></code></p>
+</div></blockquote>
+<ul class="simple">
+<li><p>Register environment as kernel in Jupyter</p></li>
+</ul>
+<blockquote>
+<div><p><code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">-m</span> <span class="pre">ipykernel</span> <span class="pre">install</span> <span class="pre">--name</span> <span class="pre">reco</span> <span class="pre">--display-name</span> <span class="pre">&quot;Python</span> <span class="pre">(reco)&quot;</span></code></p>
+</div></blockquote>
+<ul class="simple">
+<li><p>Clone recommenders repo</p></li>
+</ul>
+<blockquote>
+<div><p><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">clone</span> <span class="pre">https://github.com/microsoft/recommenders</span></code></p>
+</div></blockquote>
+<ul class="simple">
+<li><p>Change root directory of recommenders git folder where <code class="docutils literal notranslate"><span class="pre">setup.py</span></code> sits</p></li>
+<li><p>Install recommenders and additional package setups</p></li>
+</ul>
+<blockquote>
+<div><p><code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">-e</span> <span class="pre">.</span></code></p>
+</div></blockquote>
+<ul class="simple">
+<li><p>To roll back to older java version</p></li>
+</ul>
+<blockquote>
+<div><p><code class="docutils literal notranslate"><span class="pre">jenv</span> <span class="pre">local</span> <span class="pre">1.8</span></code></p>
+</div></blockquote>
+<ul class="simple">
+<li><p>Reinstate JAVA_HOME environment and relaunch kernel</p></li>
+</ul>
+</section>
+<section id="collaborative-filtering">
+<h3>Collaborative Filtering<a class="headerlink" href="#collaborative-filtering" title="Permalink to this headline">#</a></h3>
+<ul class="simple">
+<li><p>CF looks for similar users to recommend items</p></li>
+<li><p>CBF looks for similar contents to recommend items</p></li>
+<li><p>CF aggregates past behaviour of all users and recommends items to user as per other users likes or dislikes</p></li>
+</ul>
+<section id="goals-of-recommender-systems">
+<h4>Goals of Recommender Systems<a class="headerlink" href="#goals-of-recommender-systems" title="Permalink to this headline">#</a></h4>
+<ul class="simple">
+<li><p>Two primary type of models</p>
+<ul>
+<li><p>Prediction type of problem</p>
+<ul>
+<li><p>missing (or unobserved) values are predicted using this trained model</p></li>
+<li><p>this is also referred as matrix completion problem</p></li>
+</ul>
+</li>
+<li><p>Ranking type of problem</p>
+<ul>
+<li><p>recommend the top-k items for a particular user</p></li>
+<li><p>determine the top-k users to target for a particular item</p></li>
+<li><p>this is also referred as top-k recommendation problem</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="types-of-collaborative-filtering">
+<h4>Types of collaborative filtering<a class="headerlink" href="#types-of-collaborative-filtering" title="Permalink to this headline">#</a></h4>
+<ul class="simple">
+<li><p>There are two types of methods that are commonly used</p>
+<ul>
+<li><p>memory-based methods (neighborhood-based CF algorithms)</p>
+<ul>
+<li><p>ratings of user-item combinations are predicted on the basis of their neighborhoods</p>
+<ul>
+<li><p>User-based CF or User-User CF</p>
+<ul>
+<li><p>determine users who are similar to target user</p></li>
+<li><p>recommend ratings for the unobserved ratings of target user</p></li>
+<li><p>compute weighted averages of the ratings of this peer group</p></li>
+</ul>
+</li>
+<li><p>Item-based CF or Item-Item CF</p>
+<ul>
+<li><p>determine set of items most similar to target item</p></li>
+<li><p>predict rating for target item based on selected similar items</p></li>
+<li><p>weighted average of ratings is computed to predict rating of the item</p></li>
+<li><p>Item based similarity measures are the Cosine and the Pearson</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>model-based methods (latent factor model)</p>
+<ul>
+<li><p>assumption is significant portions of the rows and columns of data matrices are highly correlated</p></li>
+<li><p>can be well approximated using a low-rank matrix</p></li>
+<li><p>other alternative is using expectation-maximization (EM) technique with dimensionality reduction</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<img src="https://miro.medium.com/max/1400/1*EIBIiW2YiakP1ftxwPF8LA.png">
+</section>
+</section>
+<section id="als-algorithm">
+<h3>ALS algorithm<a class="headerlink" href="#als-algorithm" title="Permalink to this headline">#</a></h3>
+<section id="low-rank-approximation">
+<h4>Low-rank approximation<a class="headerlink" href="#low-rank-approximation" title="Permalink to this headline">#</a></h4>
+<ul class="simple">
+<li><p>low rank approximation is used for data compression in images</p></li>
+<li><p>As image is an array of pixels, we can write it as a matrix</p></li>
+<li><p>find <span class="math notranslate nohighlight">\(B \approx AX\)</span></p></li>
+</ul>
+<img src="../maths/images/low_rank_appr11.png" width=400 height=200>  
+$\tiny{\text{YouTube - Advanced LAFF - ulaff.net}}$   
+<ul class="simple">
+<li><p>column <span class="math notranslate nohighlight">\(b_{j}\)</span> can be represented as a linear combination of columns that we picked for A</p></li>
+<li><p>column <span class="math notranslate nohighlight">\(b_{j}\)</span> is approximately sum of some constant <span class="math notranslate nohighlight">\(\chi_{0}a_{0}\)</span>, <span class="math notranslate nohighlight">\(\chi_{1}a_{1}\)</span>, …,</p></li>
+<li><p>we want to pick the best set of <span class="math notranslate nohighlight">\(\chi_{j}\)</span> for this</p></li>
+<li><p>minimize that over all possible choices of x, which is known as linear least squares problem
+<img src="../maths/images/low_rank_appr2.png" width=400 height=400><br />
+<span class="math notranslate nohighlight">\(\tiny{\text{YouTube - Advanced LAFF - ulaff.net}}\)</span></p></li>
+<li><p>if A has linearly independent columns, then the best such solution is given by <span class="math notranslate nohighlight">\(x_{j} = A^{-1}b_{j}\)</span></p></li>
+<li><p>but because A has more rows than columns, we can’t do that</p></li>
+<li><p>instead we can use <strong>pseudo-inverse</strong>, which is <span class="math notranslate nohighlight">\(x_{j} = (A^{T}A)^{-1}A^{T}b_{j}\)</span></p></li>
+<li><p>this gives us <span class="math notranslate nohighlight">\(b_{j} \approx Ax_{j} = A(A^{T}A)^{-1}A^{T}b_{j} \)</span>
+<img src="../maths/images/low_rank_appr3.png" width=200 height=200><br />
+<span class="math notranslate nohighlight">\(\tiny{\text{YouTube - Advanced LAFF - ulaff.net}}\)</span></p></li>
+<li><p>To apply low-rank approximation in recommender system, assuming all entries in ratings matrix M are observed</p></li>
+<li><p>the matrix R is <span class="math notranslate nohighlight">\((m x n)\)</span> of rank <span class="math notranslate nohighlight">\(k \ll \min{\{m,n\}} \)</span></p></li>
+</ul>
+<blockquote>
+<div><p><span class="math notranslate nohighlight">\(M = LR^{T}\)</span></p>
+</div></blockquote>
+<ul class="simple">
+<li><p>where L is <span class="math notranslate nohighlight">\(m x k\)</span> matrix and R is <span class="math notranslate nohighlight">\(n x k\)</span> matrix, i.e., both L and R are rank-k factors</p></li>
+<li><p>using one of below factorization methods we can approximately express the product of rank-k factors as</p></li>
+</ul>
+<blockquote>
+<div><p><span class="math notranslate nohighlight">\(\hat{M} \approx L_{k}R_{k}^{T}\)</span></p>
+</div></blockquote>
+<ul class="simple">
+<li><p>The error of this approximation represents the noise in the underlying ratings matrix that cannot be modeled</p></li>
+</ul>
+<blockquote>
+<div><p><span class="math notranslate nohighlight">\(\| (M-LR^{T})\|^{2}\)</span></p>
+</div></blockquote>
+<img src="https://dustinstansbury.github.io/theclevermachine/assets/images/svd-data-compression/low-rank-approximation.png" width=300 height=300>  
+$\tiny{\text{Low rank matrix decomposition - https://dustinstansbury.github.io/}}$   
+</section>
+<section id="unconstrained-matrix-factorization">
+<h4>Unconstrained Matrix Factorization<a class="headerlink" href="#unconstrained-matrix-factorization" title="Permalink to this headline">#</a></h4>
+<ul class="simple">
+<li><p>How can one determine factors U and V, so that the specified matrix R matches closely with <span class="math notranslate nohighlight">\(UV^{T}\)</span></p></li>
+</ul>
+<blockquote>
+<div><p><span class="math notranslate nohighlight">\(R = UV^{T}\)</span></p>
+</div></blockquote>
+<ul class="simple">
+<li><p>This can be formulated as an optimization problem wrt matrices U and V</p></li>
+</ul>
+<blockquote>
+<div><p>Minimize <span class="math notranslate nohighlight">\(J = \frac{1}{2}\| R - UV^{T}\|^{2}\)</span></p>
+</div></blockquote>
+<ul class="simple">
+<li><p>subject to no constraints on U and V.</p></li>
+<li><p>The smaller the objective function is, better will be the quality of factorization</p></li>
+<li><p>This is a quadratic loss function</p></li>
+<li><p>This can be achieved by any of gradient descent methods</p></li>
+<li><p>However, in this matrix there are missing entries, so the objective function is not well defined</p></li>
+<li><p>Let the set of user-item pair (i,j) which are observed in R, be denoted by S</p></li>
+</ul>
+<blockquote>
+<div><p><span class="math notranslate nohighlight">\(S = \{(i,j) : r_{ij}\text{ is observed}\}\)</span></p>
+</div></blockquote>
+<ul class="simple">
+<li><p>The predicted matrix R is</p></li>
+</ul>
+<blockquote>
+<div><p><span class="math notranslate nohighlight">\(\hat{r}_{ij} = \sum\limits_{s=1}^{k}u_{is}v_{js}\)</span></p>
+</div></blockquote>
+<ul class="simple">
+<li><p>The difference between observed and predicted entries will be</p></li>
+</ul>
+<blockquote>
+<div><p><span class="math notranslate nohighlight">\(e_{ij} = (r_{ij} - \hat{r}_{ij}) = (r_{ij} - \sum_{s=1}^{k}u_{is}v_{js})\)</span></p>
+</div></blockquote>
+<ul class="simple">
+<li><p>The modified objective function that works over observed entries in S only is</p></li>
+</ul>
+<blockquote>
+<div><p>Minimize <span class="math notranslate nohighlight">\(J = \frac{1}{2}\sum\limits_{(i,j \in S)}e_{ij}^{2} = \frac{1}{2}\sum\limits_{(i,j \in S)}(r_{ij} - \sum\limits_{s=1}^{k}u_{is}v_{js})^{2} \)</span></p>
+</div></blockquote>
+<ul class="simple">
+<li><p>This can be achieved simply with gradient descent methods</p></li>
+</ul>
+</section>
+<section id="regularization">
+<h4>Regularization<a class="headerlink" href="#regularization" title="Permalink to this headline">#</a></h4>
+<ul class="simple">
+<li><p>Regularization reduces the tendency of model to overfit at the expense of introducing a bias in the model</p></li>
+<li><p>It discourages large values of the coefficients in U and V in order to encourage stability.</p></li>
+<li><p>So, a regularization term <span class="math notranslate nohighlight">\(\frac{\lambda}{2}(\|U\|^{2} + \|U\|^{2})\)</span> is added to the objective function, where λ &gt; 0 is the regularization parameter</p></li>
+</ul>
+<blockquote>
+<div><p>Minimize <span class="math notranslate nohighlight">\(\begin{equation}\\
+\begin{aligned}\\
+J &amp;= \frac{1}{2}\sum\limits_{(i,j \in S )}e_{ij}^{2} + \frac{\lambda}{2}\sum\limits_{i=1}^{m} \sum\limits_{s=1}^{k} u_{is}^{2} + \frac{\lambda}{2}\sum\limits_{j=1}^{n} \sum\limits_{s=1}^{k} v_{js}^{2} \\  
+ &amp;= \frac{1}{2}\sum\limits_{(i,j \in S)} \left(r_{ij} - \sum\limits_{s=1}^{k}u_{is}v_{js} \right)^{2} + \frac{\lambda}{2}\sum\limits_{i=1}^{m} \sum\limits_{s=1}^{k} u_{is}^{2} + \frac{\lambda}{2}\sum\limits_{j=1}^{n} \sum\limits_{s=1}^{k} v_{js}^{2} \\
+ \end{aligned}\\
+ \end{equation} \)</span></p>
+</div></blockquote>
+</section>
+<section id="implicit-feedback">
+<h4>Implicit Feedback<a class="headerlink" href="#implicit-feedback" title="Permalink to this headline">#</a></h4>
+<ul class="simple">
+<li><p>Implicit feedback data sets such as web click-streams can help in recommendations about future activity</p></li>
+<li><p>In explicit feedback matrices, ratings correspond to (highly discriminated) preferences, whereas in implicit feedback matrices, ratings correspond to (less discriminated) confidences</p></li>
+<li><p>Implicit feedbacks are one that are inferred rather than direct as in explicit feedback matrices</p></li>
+<li><p>Such feedbacks are easier to obtain</p></li>
+</ul>
+</section>
+</section>
+<section id="other-factorization-algorithms">
+<h3>Other factorization algorithms<a class="headerlink" href="#other-factorization-algorithms" title="Permalink to this headline">#</a></h3>
+<p>The surprise library provides good collection of recommender system matrix factorization algorithms like SVD, SVD++, Non-negative Matrix Factorization(NMF), Probabilistic Matrix Factorization(PMF)</p>
+<section id="svd">
+<h4>SVD<a class="headerlink" href="#svd" title="Permalink to this headline">#</a></h4>
+<p>The method usually referred to as “SVD” used in the context of recommendations is not strictly the mathematical Singular Value Decomposition of a matrix but rather an approximate way to compute the <a class="reference external" href="#Low-rank-approximation">low-rank approximation</a> of the matrix by minimizing the squared error loss. A more accurate, albeit more generic, way to call this would be Matrix Factorization.  The initial version of this approach in the context of the Netflix Prize was presented by Simon Funk in his famous <a class="reference external" href="https://sifter.org/~simon/journal/20061211.html">Try This at Home</a> blogpost</p>
+</section>
+<section id="id1">
+<h4>SVD++<a class="headerlink" href="#id1" title="Permalink to this headline">#</a></h4>
+</section>
+<section id="nmf">
+<h4>NMF<a class="headerlink" href="#nmf" title="Permalink to this headline">#</a></h4>
+</section>
+<section id="pmf">
+<h4>PMF<a class="headerlink" href="#pmf" title="Permalink to this headline">#</a></h4>
+</section>
+</section>
+<section id="sparsity">
+<h3>Sparsity<a class="headerlink" href="#sparsity" title="Permalink to this headline">#</a></h3>
+</section>
+<section id="distributed-als">
+<h3>Distributed ALS<a class="headerlink" href="#distributed-als" title="Permalink to this headline">#</a></h3>
+</section>
+<section id="spark">
+<h3>Spark<a class="headerlink" href="#spark" title="Permalink to this headline">#</a></h3>
+<section id="spark-internals">
+<h4>Spark internals<a class="headerlink" href="#spark-internals" title="Permalink to this headline">#</a></h4>
+</section>
+<section id="spark-application">
+<h4>Spark Application<a class="headerlink" href="#spark-application" title="Permalink to this headline">#</a></h4>
+<ul class="simple">
+<li><p>At the core of every Spark application is the SparkDriver program</p>
+<ul>
+<li><p>this creates SparkSession object</p>
+<ul>
+<li><p>this provides functionality to interact with Spark API</p></li>
+</ul>
+</li>
+<li><p>the SparkDriver converts your Spark application into one or more Spark jobs.</p>
+<ul>
+<li><p>It transforms each job into a DAG. This is Spark’s execution plan where each node within a DAG could be a single or multiple Spark stages</p></li>
+</ul>
+</li>
+<li><p>A Spark user program consists of driver program and executors on cluster</p></li>
+</ul>
+</li>
+<li><p>Job</p>
+<ul>
+<li><p>A parallel computation gets spawned for Spark action (save(), collect())</p></li>
+</ul>
+</li>
+<li><p>Stage</p>
+<ul>
+<li><p>Each job gets divided into smaller sets of tasks called stages that depend on each other</p></li>
+</ul>
+</li>
+<li><p>Task</p>
+<ul>
+<li><p>it is a single unit of work or execution sent to Spark executor</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="transformation-actions-and-lazy-evaluation">
+<h4>Transformation, Actions and Lazy Evaluation<a class="headerlink" href="#transformation-actions-and-lazy-evaluation" title="Permalink to this headline">#</a></h4>
+<ul class="simple">
+<li><p>Transformations transform a Spark DataFrame into a new DataFrame without altering the original data(immutable datastores)</p></li>
+<li><p>Operation such as select() or filter() will not change the original DataFrame; instead, will return the transformed results of the operation as a new DataFrame</p></li>
+<li><p>All transformations are evaluated lazily, they are recorded and remembered as a lineage</p></li>
+<li><p>A recorded lineage allows Spark, at a later time in its execution plan, to rearrange certain transformations, coalesce them, or optimize transformations into stages for more efficient execution. Lazy evaluation is Spark’s strategy for delaying execution until an action is invoked or data is touched</p></li>
+<li><p>Nothing in a query plan is executed until an action is invoked</p></li>
+</ul>
+</section>
+<section id="narrow-transformation">
+<h4>Narrow transformation<a class="headerlink" href="#narrow-transformation" title="Permalink to this headline">#</a></h4>
+<ul class="simple">
+<li><p>filter() and contains() represent narrow transformations because they can operate on a single partition and produce the resulting output partition without any exchange of data.</p></li>
+</ul>
+</section>
+<section id="wide-transformation">
+<h4>Wide transformation<a class="headerlink" href="#wide-transformation" title="Permalink to this headline">#</a></h4>
+<ul class="simple">
+<li><p>data from other partitions are read in, combined, and written to disk. groupBy() will shuffle data across executor’s partitions across cluster and then orderBy() will require output from other partitions to compute the final aggregation</p></li>
+</ul>
+</section>
+<section id="spark-ui">
+<h4>Spark UI<a class="headerlink" href="#spark-ui" title="Permalink to this headline">#</a></h4>
+<ul class="simple">
+<li><p>GUI for monitoring the various jobs, stages and tasks, information on its execution detail</p></li>
+</ul>
+</section>
+<section id="resilient-distributed-dataset-rdd">
+<h4>Resilient Distributed Dataset(RDD)<a class="headerlink" href="#resilient-distributed-dataset-rdd" title="Permalink to this headline">#</a></h4>
+<ul class="simple">
+<li><p>The main abstraction Spark provides is RDD, it is a collection of elements partitioned across the nodes of the cluster that can be operated on in parallel</p></li>
+<li><p>Spark can persist an RDD in memory allowing it to be reused efficiently across parallel operations</p></li>
+<li><p>RDDs automatically recover from node failures</p></li>
+<li><p>two ways to create RDDs:</p>
+<ul>
+<li><p>parallelizing an existing collection in the driver program</p></li>
+<li><p>referencing a dataset in an external storage system, such as a shared filesystem, HDFS, HBase, or any data source offering a Hadoop InputFormat</p></li>
+</ul>
+</li>
+<li><p>Another abstraction Spark provides is it has shared variables that can be used in parallel operations</p>
+<ul>
+<li><p>two types of shared variables:</p>
+<ul>
+<li><p>broadcast variables, which can be used to cache a value in memory on all nodes</p></li>
+<li><p>accumulators, which are variables that are only “added” to, such as counters and sums</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="project-tungsten">
+<h4>Project Tungsten<a class="headerlink" href="#project-tungsten" title="Permalink to this headline">#</a></h4>
+<ul class="simple">
+<li><p>focuses on substantially improving the efficiency of memory and CPU for Spark applications, to push performance closer to the limits of modern hardware</p></li>
+<li><p>eliminates overhead of JVM object model and garbage collection</p></li>
+</ul>
+</section>
+<section id="how-to-launch-spark">
+<h4>How to launch Spark<a class="headerlink" href="#how-to-launch-spark" title="Permalink to this headline">#</a></h4>
+<ul class="simple">
+<li><p>four way of using Spark interpreters:</p>
+<ul>
+<li><p>pyspark api</p></li>
+<li><p>spark-shell</p></li>
+<li><p>spark-sql</p></li>
+<li><p>sparkR</p></li>
+</ul>
+</li>
+</ul>
+</section>
+</section>
+<section id="pyspark">
+<h3>PySpark<a class="headerlink" href="#pyspark" title="Permalink to this headline">#</a></h3>
+<ul class="simple">
+<li><p>Apache Spark is written in Scala and is integrated with Python using PySpark. It provides interface with RDD using Py4j library</p></li>
+</ul>
+<section id="pysparksql">
+<h4>PySparkSQL<a class="headerlink" href="#pysparksql" title="Permalink to this headline">#</a></h4>
+<ul class="simple">
+<li><p>PySparkSQL is a PySpark library to apply SQL-like analysis on a huge amount of structured or semi-structured data</p>
+<ul>
+<li><p>this can also connect to Apache Hive</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="mllib">
+<h4>MLLib<a class="headerlink" href="#mllib" title="Permalink to this headline">#</a></h4>
+<ul class="simple">
+<li><p>MLlib is a wrapper over the PySpark and it is Spark’s machine learning (ML) library. This library uses the data parallelism technique to store and work with data. MLlib supports many machine-learning algorithms for classification, regression, clustering, collaborative filtering, dimensionality reduction, and underlying optimization primitives.</p></li>
+</ul>
+</section>
+</section>
+<section id="spark-joins">
+<h3>Spark Joins<a class="headerlink" href="#spark-joins" title="Permalink to this headline">#</a></h3>
+<p>ToRead: <a class="reference external" href="https://towardsdatascience.com/strategies-of-spark-join-c0e7b4572bcf">https://towardsdatascience.com/strategies-of-spark-join-c0e7b4572bcf</a></p>
+<section id="broadcast-hash-join">
+<h4>Broadcast Hash Join<a class="headerlink" href="#broadcast-hash-join" title="Permalink to this headline">#</a></h4>
+<p align="center"><img src="https://miro.medium.com/max/282/1*pd-YlCGD9v3W4Lk1tfN72Q.jpeg"></p>
+<p><span class="math notranslate nohighlight">\(\tiny{\text{towardsdatascience.com - Jyoti Dhiman - Hash Join}}\)</span></p>
+<p align="center"><img src="https://miro.medium.com/max/1400/1*pO_40cT0UhaiSP0fdT-sWw.jpeg"></p>
+<p><span class="math notranslate nohighlight">\(\tiny{\text{towardsdatascience.com - Jyoti Dhiman - Broadcast Hash Join}}\)</span></p>
+</section>
+<section id="shuffle-hash-join">
+<h4>Shuffle hash join<a class="headerlink" href="#shuffle-hash-join" title="Permalink to this headline">#</a></h4>
+<p align="center"><img src="https://miro.medium.com/max/1400/1*Yjw7V8mh7FipB09ngnBn6A.jpeg"></p>
+</section>
+<section id="shuffle-sort-merge-join">
+<h4>Shuffle sort-merge join<a class="headerlink" href="#shuffle-sort-merge-join" title="Permalink to this headline">#</a></h4>
+<p align="center"><img src="https://miro.medium.com/max/1282/1*03nmwDCmVaSDWVHMZTcFjA.jpeg"></p>
+<p><span class="math notranslate nohighlight">\(\tiny{\text{towardsdatascience.com - Jyoti Dhiman - Sort Merge Join}}\)</span></p>
+<p align="center"><img src="https://miro.medium.com/max/1400/1*6RA2wnol2zhH4Ps2UNJoxQ.jpeg"></p>
+<p><span class="math notranslate nohighlight">\(\tiny{\text{towardsdatascience.com - Jyoti Dhiman - Shuffle sort-merge join}}\)</span></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;System version: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">version</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Pandas version: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">__version__</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;PySpark version: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">pyspark</span><span class="o">.</span><span class="n">__version__</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>System version: 3.8.8 (default, Apr 13 2021, 12:59:45) 
+[Clang 10.0.0 ]
+Pandas version: 1.4.1
+PySpark version: 3.2.1
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># help(pyspark)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="spark-mllib">
+<h3>Spark MLlib<a class="headerlink" href="#spark-mllib" title="Permalink to this headline">#</a></h3>
+</section>
+<section id="hyperparameters">
+<h3>Hyperparameters<a class="headerlink" href="#hyperparameters" title="Permalink to this headline">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">param_dict</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;rank&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">25</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="mi">35</span><span class="p">,</span> <span class="mi">40</span><span class="p">,</span> <span class="mi">45</span><span class="p">,</span> <span class="mi">50</span><span class="p">],</span>
+    <span class="s2">&quot;regParam&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mf">0.001</span><span class="p">,</span> <span class="mf">0.05</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">,</span> <span class="mf">0.4</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.6</span><span class="p">,</span> <span class="mf">0.7</span><span class="p">,</span> <span class="mf">0.8</span><span class="p">,</span> <span class="mf">0.9</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">]</span>
+<span class="p">}</span>
+<span class="k">def</span> <span class="nf">testModelPerformance</span><span class="p">(</span><span class="n">param_dict</span><span class="p">):</span>
+    <span class="n">param_grid</span> <span class="o">=</span> <span class="n">generate_param_grid</span><span class="p">(</span><span class="n">param_dict</span><span class="p">)</span>
+
+    <span class="n">rmse_score</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="k">for</span> <span class="n">g</span> <span class="ow">in</span> <span class="n">param_grid</span><span class="p">:</span>
+        <span class="n">als</span> <span class="o">=</span> <span class="n">ALS</span><span class="p">(</span>        
+            <span class="n">userCol</span><span class="o">=</span><span class="n">COL_USER</span><span class="p">,</span> 
+            <span class="n">itemCol</span><span class="o">=</span><span class="n">COL_ITEM</span><span class="p">,</span> 
+            <span class="n">ratingCol</span><span class="o">=</span><span class="n">COL_RATING</span><span class="p">,</span> 
+            <span class="n">coldStartStrategy</span><span class="o">=</span><span class="s2">&quot;drop&quot;</span><span class="p">,</span>
+            <span class="o">**</span><span class="n">g</span>
+        <span class="p">)</span>
+
+        <span class="n">model</span> <span class="o">=</span> <span class="n">als</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">dfs_train</span><span class="p">)</span>
+
+        <span class="n">dfs_pred</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">dfs_test</span><span class="p">)</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">COL_RATING</span><span class="p">)</span>
+
+        <span class="n">evaluations</span> <span class="o">=</span> <span class="n">SparkRatingEvaluation</span><span class="p">(</span>
+            <span class="n">dfs_test</span><span class="p">,</span> 
+            <span class="n">dfs_pred</span><span class="p">,</span>
+            <span class="n">col_user</span><span class="o">=</span><span class="n">COL_USER</span><span class="p">,</span>
+            <span class="n">col_item</span><span class="o">=</span><span class="n">COL_ITEM</span><span class="p">,</span>
+            <span class="n">col_rating</span><span class="o">=</span><span class="n">COL_RATING</span><span class="p">,</span>
+            <span class="n">col_prediction</span><span class="o">=</span><span class="n">COL_PREDICTION</span>
+        <span class="p">)</span>
+
+        <span class="n">rmse_score</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">evaluations</span><span class="o">.</span><span class="n">rmse</span><span class="p">())</span>
+
+    <span class="n">rmse_score</span> <span class="o">=</span> <span class="p">[</span><span class="nb">float</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">%.4f</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">x</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">rmse_score</span><span class="p">]</span>
+    <span class="n">mae_score</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">evaluations</span><span class="o">.</span><span class="n">mae</span><span class="p">())</span>
+    <span class="n">rsquared_score</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">evaluations</span><span class="o">.</span><span class="n">rsquared</span><span class="p">())</span>
+    <span class="n">exp_var_score</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">evaluations</span><span class="o">.</span><span class="n">exp_var</span><span class="p">())</span>
+    
+    <span class="n">rmse_score_array</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">rmse_score</span><span class="p">,</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">param_dict</span><span class="p">[</span><span class="s2">&quot;rank&quot;</span><span class="p">]),</span> <span class="nb">len</span><span class="p">(</span><span class="n">param_dict</span><span class="p">[</span><span class="s2">&quot;regParam&quot;</span><span class="p">])))</span> 
+    <span class="n">mae_score_array</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">mae_score</span><span class="p">,</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">param_dict</span><span class="p">[</span><span class="s2">&quot;rank&quot;</span><span class="p">]),</span> <span class="nb">len</span><span class="p">(</span><span class="n">param_dict</span><span class="p">[</span><span class="s2">&quot;regParam&quot;</span><span class="p">])))</span> 
+    <span class="n">rsquared_score_array</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">rsquared_score</span><span class="p">,</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">param_dict</span><span class="p">[</span><span class="s2">&quot;rank&quot;</span><span class="p">]),</span> <span class="nb">len</span><span class="p">(</span><span class="n">param_dict</span><span class="p">[</span><span class="s2">&quot;regParam&quot;</span><span class="p">])))</span> 
+    <span class="n">exp_var_score_array</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">exp_var_score</span><span class="p">,</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">param_dict</span><span class="p">[</span><span class="s2">&quot;rank&quot;</span><span class="p">]),</span> <span class="nb">len</span><span class="p">(</span><span class="n">param_dict</span><span class="p">[</span><span class="s2">&quot;regParam&quot;</span><span class="p">])))</span> 
+
+    <span class="n">rmse_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">rmse_score_array</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">Index</span><span class="p">(</span><span class="n">param_dict</span><span class="p">[</span><span class="s2">&quot;rank&quot;</span><span class="p">],</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;rank&quot;</span><span class="p">),</span> 
+                           <span class="n">columns</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">Index</span><span class="p">(</span><span class="n">param_dict</span><span class="p">[</span><span class="s2">&quot;regParam&quot;</span><span class="p">],</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;reg. parameter&quot;</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">rmse_df</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">heatmap</span><span class="p">(</span><span class="n">rmse_df</span><span class="p">,</span> <span class="n">fmt</span><span class="o">=</span><span class="s2">&quot;.4g&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;AxesSubplot:xlabel=&#39;reg. parameter&#39;, ylabel=&#39;rank&#39;&gt;
+</pre></div>
+</div>
+<img alt="../_images/als_deep_dive_71_1.png" src="../_images/als_deep_dive_71_1.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># print(dir(pyspark))</span>
+<span class="c1"># help(SparkSession)</span>
+<span class="c1"># help(CrossValidator)</span>
+<span class="c1"># help(StructType)</span>
+<span class="c1"># help(IntegerType)</span>
+<span class="c1"># help(movielens)</span>
+<span class="c1"># help(start_or_get_spark)</span>
+<span class="c1"># help(SparkRankingEvaluation)</span>
+<span class="c1"># help(SparkRatingEvaluation)</span>
+<span class="c1"># help(ALS)</span>
+
+<span class="c1"># help(model.transform)</span>
+<span class="c1"># dir(pyspark.ml.recommendation)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="id2">
+<h3>References<a class="headerlink" href="#id2" title="Permalink to this headline">#</a></h3>
+<ol class="simple">
+<li><p>Recommender Systems by Charu C. Aggarwal</p></li>
+<li><p>Learning Spark 2.0 by Jules S. Damji, Brooke Wenig, Tathagata Das &amp; Denny Lee</p></li>
+<li><p>Collaborative Filtering for Implicit Feedback Datasets, by Yifan Hu, Yehuda Koren, Chris Volinsky</p></li>
+<li><p><a class="reference external" href="https://github.com/gpfvic/IRR/blob/master/Factorization%20meets%20the%20neighborhood-%20a%20multifaceted%20collaborative%20filtering%20model.pdf">Factorization Meets the Neighborhood: a Multifaceted Collaborative Filtering Model by Yehuda Koren</a></p></li>
+<li><p><a class="reference external" href="https://spark.apache.org/docs/latest/rdd-programming-guide.html">Spark Programming Guide &#64; spark.apache.org</a></p></li>
+<li><p><a class="reference external" href="https://towardsdatascience.com/strategies-of-spark-join-c0e7b4572bcf">Spark Join Strategies &#64; towardsdatascience.com</a></p></li>
+<li><p><a class="reference external" href="https://towardsdatascience.com/build-recommendation-system-with-pyspark-using-alternating-least-squares-als-matrix-factorisation-ebe1ad2e7679">Collaborative Filtering &#64; towardsdatascience.com</a></p></li>
+</ol>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "reco"
+        },
+        kernelOptions: {
+            kernelName: "reco",
+            path: "./recommenders"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'reco'</script>
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="intro.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">My Recommenders Book</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="../rl_examples/intro.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">My RL Book</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By Chandra<br/>
+  
+      &copy; Copyright 2022.<br/>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>
