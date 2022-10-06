@@ -536,7 +536,12 @@ const thebe_selector_output = ".output, .cell_output"
   <ul>
    <li class="toctree-l2">
     <a class="reference internal" href="../cs224w_ml_graph/lec01_Introduction_MLforGraphs.html">
-     Introduction ML for Graphs
+     L01: Introduction ML for Graphs
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../cs224w_ml_graph/lec02-TraditionalMethods.html">
+     L02: Traditional Methods for ML in Graphs
     </a>
    </li>
   </ul>
@@ -1932,10 +1937,10 @@ abcdefg
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Path=(&#39;a&#39;, &#39;b&#39;, &#39;c&#39;, &#39;d&#39;, &#39;e&#39;, &#39;f&#39;), Weight=(5, 7, 4, 6, 3), Sum=25
-Path=(&#39;a&#39;, &#39;b&#39;, &#39;c&#39;, &#39;e&#39;, &#39;d&#39;, &#39;f&#39;), Weight=(5, 7, 8, 6, 4), Sum=30
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Path=(&#39;a&#39;, &#39;c&#39;, &#39;b&#39;, &#39;d&#39;, &#39;e&#39;, &#39;f&#39;), Weight=(2, 7, 8, 6, 3), Sum=26
 Path=(&#39;a&#39;, &#39;b&#39;, &#39;d&#39;, &#39;c&#39;, &#39;e&#39;, &#39;f&#39;), Weight=(5, 8, 4, 8, 3), Sum=28
-Path=(&#39;a&#39;, &#39;c&#39;, &#39;b&#39;, &#39;d&#39;, &#39;e&#39;, &#39;f&#39;), Weight=(2, 7, 8, 6, 3), Sum=26
+Path=(&#39;a&#39;, &#39;b&#39;, &#39;c&#39;, &#39;d&#39;, &#39;e&#39;, &#39;f&#39;), Weight=(5, 7, 4, 6, 3), Sum=25
+Path=(&#39;a&#39;, &#39;b&#39;, &#39;c&#39;, &#39;e&#39;, &#39;d&#39;, &#39;f&#39;), Weight=(5, 7, 8, 6, 4), Sum=30
 </pre></div>
 </div>
 </div>
@@ -2373,10 +2378,7 @@ Height[1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
 N1:1, N2:2, Arr:[0, 1, 1, 3, 4, 5, 6, 7, 8, 9], Height:[1, 2, 1, 1, 1, 1, 1, 1, 1, 1]
 1 5
 N1:2, N2:5, Arr:[0, 1, 1, 3, 4, 1, 6, 7, 8, 9], Height:[1, 2, 1, 1, 1, 3, 1, 1, 1, 1]
-1 
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>6
+1 6
 N1:5, N2:6, Arr:[0, 1, 1, 3, 4, 1, 1, 7, 8, 9], Height:[1, 2, 1, 1, 1, 3, 3, 1, 1, 1]
 1 7
 N1:6, N2:7, Arr:[0, 1, 1, 3, 4, 1, 1, 1, 8, 9], Height:[1, 2, 1, 1, 1, 3, 3, 3, 1, 1]
@@ -2979,25 +2981,27 @@ nodes=8, edges=[[0, 1], [0, 3], [1, 2], [4, 5], [6, 7]], isValidTree=False
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>fib0 - Using recursion only
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>6.67 ms ± 477 µs per loop (mean ± std. dev. of 7 runs, 1,000 loops each)
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>5.71 ms ± 423 µs per loop (mean ± std. dev. of 7 runs, 1,000 loops each)
 -------
 fib1 - Using recursion + local dictionary memoization
-372 ns ± 164 ns per loop (mean ± std. dev. of 7 runs, 1,000 loops each)
+The slowest run took 13.82 times longer than the fastest. This could mean that an intermediate result is being cached.
+842 ns ± 1.06 µs per loop (mean ± std. dev. of 7 runs, 1,000 loops each)
 -------
 fib2 - Using loop + memoization
-8.31 µs ± 1.75 µs per loop (mean ± std. dev. of 7 runs, 1,000 loops each)
+The slowest run took 4.29 times longer than the fastest. This could mean that an intermediate result is being cached.
+12.5 µs ± 5.68 µs per loop (mean ± std. dev. of 7 runs, 1,000 loops each)
 -------
 fib3 - Using recursion + decorator dictionary memoization
-716 ns ± 219 ns per loop (mean ± std. dev. of 7 runs, 1,000 loops each)
+521 ns ± 50.4 ns per loop (mean ± std. dev. of 7 runs, 1,000 loops each)
 -------
 fib4 - Using lru cache
-244 ns ± 143 ns per loop (mean ± std. dev. of 7 runs, 1,000 loops each)
+144 ns ± 10.5 ns per loop (mean ± std. dev. of 7 runs, 1,000 loops each)
 CacheInfo(hits=7017, misses=21, maxsize=None, currsize=21)
 -------
 fib5 - Using matrix multiplication
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>8.1 ms ± 194 µs per loop (mean ± std. dev. of 7 runs, 1,000 loops each)
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>7.1 ms ± 225 µs per loop (mean ± std. dev. of 7 runs, 1,000 loops each)
 </pre></div>
 </div>
 </div>

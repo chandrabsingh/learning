@@ -1,0 +1,1763 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>L02: Traditional Methods for ML in Graphs</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="prev" title="L01: Introduction ML for Graphs" href="lec01_Introduction_MLforGraphs.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../_static/mylogo.png" class="logo" alt="logo">
+      
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    Welcome
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  System Design
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../system_design/intro.html">
+   My System Design Book
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../system_design/design_patterns.html">
+     System Design Summary
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../system_design/software_engineering_concepts.html">
+     Software Engineering concepts
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../system_design/googlecloud_use_cases.html">
+     Google - Customer story
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../system_design/awscloud_financial_symposium_2022.html">
+     AWS - Financial Services Cloud Symposium - 2022
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../system_design/aws_usecases.html">
+     AWS - Customer story
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../system_design/design_general_use_cases.html">
+     Case study
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../system_design/netflix.html">
+     Netflix creativity
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../system_design/bk_AlexXu_SystemDesignInterview.html">
+     Book - System Design Interview - Alex Xu
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../system_design/design_patterns_python.html">
+     Design Pattern - Python
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Code
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../codes/intro.html">
+   My Code Book
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../codes/python_faqs.html">
+     Python FAQs
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../algos/all_algos.html">
+     Coding Challenges
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../codes/python_data_analytics.html">
+     Python Data Analytics - FAQs
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Database/Event
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../dbs/intro.html">
+   My DB Book
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+  <label for="toctree-checkbox-3">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../dbs/intro_kafka_ksqldb_stream_processing.html">
+     Introduction to Kafka/ksqldb/stream processing
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../dbs/neo4j_basics.html">
+     Building Neo4j Applications with Python
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../dbs/neo4j_graph_datascience.html">
+     Game of Thrones - Knowledge Graph analysis using Neo4j
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Math
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../maths/intro.html">
+   My Math Book
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+  <label for="toctree-checkbox-4">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../maths/probability_simulations.html">
+     Probability Games using Simulations
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../maths/linear_algebra.html">
+     Linear Algebra - FAQs
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../maths/probabilistic_programming.html">
+     Getting started with PyMC3
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../maths/causal_inference_learning.html">
+     Causal Inference Learning
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../econometrics/SARIMA_modeling.html">
+     SARIMA modeling
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Machine Learning
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../ml_examples/intro.html">
+   My ML Book
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
+  <label for="toctree-checkbox-5">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../ml_examples/ml_glossary.html">
+     ML Conceptual brief
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../ml_examples/Store_Sales_Forecasting_With_Tensorflow.html">
+     Store Sales Forecasting with TensorFlow
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../ml_examples/decision_tree_classification.html">
+     Decision Tree - classification
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../ml_examples/ml_design_patterns.html">
+     Machine Learning Design Patterns
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../dl_examples/intro.html">
+   My DL Book
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
+  <label for="toctree-checkbox-6">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../dl_examples/dl_glossary.html">
+     DL Conceptual brief
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../dl_examples/rp_AlexNet.html">
+     AlexNet Summary
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../dl_examples/rp_ResNet.html">
+     ResNet Summary
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../dl_examples/Anima_Anandkumar_Retrospective_Role_of_Tensors_in_Machine_Learning.html">
+     Anima Anandkumar - Retrospective Role of Tensors in ML
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../recommenders/intro.html">
+   My Recommenders Book
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/>
+  <label for="toctree-checkbox-7">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../recommenders/als_deep_dive.html">
+     Spark Collaborative Filtering (ALS) Deep Dive
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../rl_examples/intro.html">
+   My RL Book
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/>
+  <label for="toctree-checkbox-8">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../rl_examples/mab_ts_ab.html">
+     Multi-armed bandit problem
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Shell Scripting
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../unix/intro.html">
+   My Unix/Shell Book
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/>
+  <label for="toctree-checkbox-9">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../unix/unix_shell_script.html">
+     Unix/Shell FAQs
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../unix/my_zshrc.html">
+     My .zshrc script
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Lecture Notes
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../cs229_ml/intro.html">
+   CS229 ML - by Andrew Ng
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/>
+  <label for="toctree-checkbox-10">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../cs229_ml/lec02-LinearReg-GradientDescent.html">
+     Lec 02-Linear Regression - Gradient Descent
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../cs229_ml/lec03-LocallyWeighted-LogisticRegression.html">
+     Lec 03-Locally Weighted Regression - Logistic Regression
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../cs229_ml/lec04-Perceptron-GLM.html">
+     Lec 04-Perceptron - GLM
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../cs229_ml/lec05-GDA-NaiveBayes.html">
+     Lec 05-GDA - Naive Bayes
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../cs229_ml/lec06-NaiveBayes-SVM.html">
+     Lec 06-Naive Bayes - SVM
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../cs229_ml/lec07-Kernels-SVM.html">
+     Lec 07-Kernels - SVM
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../cs229_ml/lec08-DataSplits-Models-CrossValidation.html">
+     Lec 08-Data Splits - Models - Cross Validation
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../cs229_ml/lec09-Approx-EstimationError-ERM.html">
+     Lec 09-Estimation Error - ERM
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../cs229_ml/lec10-DecisionTrees-EnsembleMethods.html">
+     Lec 10-Decision Trees - Ensemble Methods
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../cs229_ml/lec11-Intro-NN.html">
+     Lec 11-Neural Networks
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../cs229_ml/lec12-Backpropagation-ImprovingNN.html">
+     Lec 12-Improving NN
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../cs229_ml/lec13-DebuggingMLModels-ErrorAnalysis.html">
+     Lec 13-Debugging ML Models-Error Analysis
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../cs229_ml/lec14-Expectation-MaximizationAlgo.html">
+     Lec 14-Expectation-Maximization Algo
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../cs229_ml/lec15-EMAlgo-FactorAnalysis.html">
+     Lec 15-EM Algo-Factor Analysis
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../cs229_ml/lec16-IndependentComponentAnalysis-RL.html">
+     Lec 16-Independent Component Analysis-RL
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../cs229_ml/lec17-MDPs-ValuePolicyIteration.html">
+     Lec 17-MDPs-Value Policy Iteration
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../cs229_ml/lec18-continuousMDPs-ModelSimulation.html">
+     Lec 18-Continuous MDPs-Model Simulation
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="intro.html">
+   CS224W: Machine Learning with Graphs - by Jure Leskovev
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/>
+  <label for="toctree-checkbox-11">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2">
+    <a class="reference internal" href="lec01_Introduction_MLforGraphs.html">
+     L01: Introduction ML for Graphs
+    </a>
+   </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     L02: Traditional Methods for ML in Graphs
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+    </div>
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<div class="menu-dropdown menu-dropdown-launch-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Launch interactive content">
+      <i class="fas fa-rocket"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://mybinder.org/v2/gh/chandrabsingh/learning/master?urlpath=tree/learning/cs224w_ml_graph/lec02-TraditionalMethods.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Binder"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="../_static/images/logo_binder.svg">
+  </span>
+<span class="headerbtn__text-container">Binder</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-repository-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Source repositories">
+      <i class="fab fa-github"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://github.com/chandrabsingh/learning"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Source repository"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="headerbtn__text-container">repository</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/chandrabsingh/learning/issues/new?title=Issue%20on%20page%20%2Fcs224w_ml_graph/lec02-TraditionalMethods.html&body=Your%20issue%20content%20here."
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Open an issue"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="headerbtn__text-container">open issue</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="../_sources/cs224w_ml_graph/lec02-TraditionalMethods.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.ipynb</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#introduction">
+   Introduction
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#traditional-ml-pipeline">
+   Traditional ML Pipeline
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#ml-in-graphs">
+   ML in graphs
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#node-level-features">
+   Node-level features
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#node-degree">
+     Node Degree
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#node-centrality">
+     Node centrality
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#eigenvector-centrality">
+       Eigenvector centrality
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#betweenness-centrality">
+       Betweenness centrality
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#closeness-centrality">
+       Closeness centrality
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#clustering-coefficient">
+     Clustering coefficient
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#graphlets">
+     Graphlets
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#summary-node-level-feature">
+     Summary - Node level feature
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#link-prediction-task-and-features">
+   Link prediction task and features
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#link-level-features">
+     Link level features
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#distance-based-feature">
+       Distance based feature
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#local-neighborhood-overlap">
+       Local Neighborhood overlap
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#global-neighborhood-overlap">
+       Global Neighborhood overlap
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#graph-level-features-and-graph-kernels">
+   Graph-Level features and Graph Kernels
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#kernel-method">
+     Kernel method
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#graph-kernels">
+     Graph kernels
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#key-idea">
+       Key Idea
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#graphlet-features">
+       Graphlet features
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#graphlet-kernel">
+       Graphlet kernel
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#weisfeiler-lehman-wl-kernel">
+       Weisfeiler-Lehman(WL) Kernel
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+    </nav>
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>L02: Traditional Methods for ML in Graphs</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#introduction">
+   Introduction
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#traditional-ml-pipeline">
+   Traditional ML Pipeline
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#ml-in-graphs">
+   ML in graphs
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#node-level-features">
+   Node-level features
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#node-degree">
+     Node Degree
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#node-centrality">
+     Node centrality
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#eigenvector-centrality">
+       Eigenvector centrality
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#betweenness-centrality">
+       Betweenness centrality
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#closeness-centrality">
+       Closeness centrality
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#clustering-coefficient">
+     Clustering coefficient
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#graphlets">
+     Graphlets
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#summary-node-level-feature">
+     Summary - Node level feature
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#link-prediction-task-and-features">
+   Link prediction task and features
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#link-level-features">
+     Link level features
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#distance-based-feature">
+       Distance based feature
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#local-neighborhood-overlap">
+       Local Neighborhood overlap
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#global-neighborhood-overlap">
+       Global Neighborhood overlap
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#graph-level-features-and-graph-kernels">
+   Graph-Level features and Graph Kernels
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#kernel-method">
+     Kernel method
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#graph-kernels">
+     Graph kernels
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#key-idea">
+       Key Idea
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#graphlet-features">
+       Graphlet features
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#graphlet-kernel">
+       Graphlet kernel
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#weisfeiler-lehman-wl-kernel">
+       Weisfeiler-Lehman(WL) Kernel
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <section class="tex2jax_ignore mathjax_ignore" id="l02-traditional-methods-for-ml-in-graphs">
+<h1>L02: Traditional Methods for ML in Graphs<a class="headerlink" href="#l02-traditional-methods-for-ml-in-graphs" title="Permalink to this headline">#</a></h1>
+<section id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">#</a></h2>
+<ul class="simple">
+<li><p>Node level prediction</p>
+<ul>
+<li><p>Example - user level prediction</p></li>
+</ul>
+</li>
+<li><p>Link/Edge level prediction</p>
+<ul>
+<li><p>Example - pair is connected or not</p></li>
+</ul>
+</li>
+<li><p>Graph level prediction</p>
+<ul>
+<li><p>Example - for an entire molecule</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="traditional-ml-pipeline">
+<h2>Traditional ML Pipeline<a class="headerlink" href="#traditional-ml-pipeline" title="Permalink to this headline">#</a></h2>
+<ul class="simple">
+<li><p>We design features for nodes/links/graphs which have dimension <span class="math notranslate nohighlight">\(\in \mathbb R^{D}\)</span></p></li>
+<li><p>design 2 types of features</p>
+<ul>
+<li><p>assume nodes have some types of attributes attached to the node</p></li>
+<li><p>create additional local network topology</p></li>
+</ul>
+</li>
+<li><p>goal is to design</p>
+<ul>
+<li><p>structural features and</p></li>
+<li><p>features describing attributes and properties</p></li>
+</ul>
+</li>
+<li><p>Focus on structural features</p>
+<ul>
+<li><p>that describes surrounding of links</p></li>
+<li><p>as well as structure of entire graph</p></li>
+</ul>
+</li>
+<li><p>In traditional ML pipeline:</p>
+<ul>
+<li><p>step one</p>
+<ul>
+<li><p>take data points nodes, links and entire graphs</p></li>
+<li><p>represent with vector of features</p></li>
+<li><p>train using ML model</p></li>
+<li><p>in future, apply this model given a new node/link/graph and make prediction</p></li>
+</ul>
+</li>
+<li><p>we train ML model (hand-designed features)</p>
+<ul>
+<li><p>by applying Random Forest, SVM, NN</p></li>
+</ul>
+</li>
+<li><p>and then apply model to make predictions</p></li>
+</ul>
+</li>
+<li><p>In this lecture/here (use undirected graphs for simplicity):</p>
+<ul>
+<li><p>Node level prediction</p></li>
+<li><p>Link level prediction</p></li>
+<li><p>Graph level prediction</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="ml-in-graphs">
+<h2>ML in graphs<a class="headerlink" href="#ml-in-graphs" title="Permalink to this headline">#</a></h2>
+<ul class="simple">
+<li><p>Goal: Make predictions for set of objects</p></li>
+<li><p>Design choices:</p>
+<ul>
+<li><p>Features: d-dimensional vector</p></li>
+<li><p>Objects: nodes, edges, sets of nodes, entire graphs</p></li>
+<li><p>Objective function:</p></li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<div><p>Given: <span class="math notranslate nohighlight">\(G = (V, E)\)</span><br />
+Learn: <span class="math notranslate nohighlight">\(f: V \rightarrow \mathbb R\)</span></p>
+</div></blockquote>
+<ul class="simple">
+<li><p>How do we learn the function.</p></li>
+</ul>
+</section>
+<section id="node-level-features">
+<h2>Node-level features<a class="headerlink" href="#node-level-features" title="Permalink to this headline">#</a></h2>
+<ul class="simple">
+<li><p>Node classification</p>
+<ul>
+<li><p>Identify missing node colors, given other node colors</p></li>
+</ul>
+</li>
+<li><p>Goal: Characterize structure and position of node in network</p>
+<ul>
+<li><p>Node degree</p></li>
+<li><p>Node centrality</p></li>
+<li><p>Clustering coefficient</p></li>
+<li><p>Graphlets</p></li>
+</ul>
+</li>
+</ul>
+<section id="node-degree">
+<h3>Node Degree<a class="headerlink" href="#node-degree" title="Permalink to this headline">#</a></h3>
+<ul class="simple">
+<li><p>Degree</p>
+<ul>
+<li><p>number of edges a node has</p></li>
+<li><p>neighboring nodes</p></li>
+<li><p>treat all neighboring nodes equally</p></li>
+<li><p>does not capture importance</p></li>
+</ul>
+</li>
+</ul>
+<p align="center"><img src="./images/02_nodeDegree.png" width=400 height=400>  </p>
+<p><span class="math notranslate nohighlight">\(\tiny{\text{YouTube-Stanford-CS224W-Jure Leskovec}}\)</span></p>
+</section>
+<section id="node-centrality">
+<h3>Node centrality<a class="headerlink" href="#node-centrality" title="Permalink to this headline">#</a></h3>
+<ul class="simple">
+<li><p>captures the node importance in a graph</p></li>
+</ul>
+<section id="eigenvector-centrality">
+<h4>Eigenvector centrality<a class="headerlink" href="#eigenvector-centrality" title="Permalink to this headline">#</a></h4>
+<ul class="simple">
+<li><p>node is imp if it has more important neighboring nodes</p></li>
+<li><p>sum of centrality of neighboring nodes</p></li>
+<li><p>recursive problem
+$<span class="math notranslate nohighlight">\(  c_{\nu} = \frac{1}{\lambda}\sum\limits_{u \in N(\nu)}c_{u} \Leftrightarrow \lambda c = A c  \)</span>$</p>
+<ul>
+<li><p>where A is the adjacency matrix</p></li>
+<li><p>c is the centrality vector</p></li>
+<li><p><span class="math notranslate nohighlight">\(\lambda\)</span> is positive constant</p></li>
+</ul>
+</li>
+<li><p>centrality is the eigenvector</p></li>
+<li><p>largest eigenvalue is always positive (Perron-Frobenius theorem)</p></li>
+<li><p>leading eigenvector <span class="math notranslate nohighlight">\(c_{max}\)</span> is used for centrality</p></li>
+<li><p>it is not about how many connections you have, but who these connections point to and how important are those connections</p></li>
+</ul>
+</section>
+<section id="betweenness-centrality">
+<h4>Betweenness centrality<a class="headerlink" href="#betweenness-centrality" title="Permalink to this headline">#</a></h4>
+<ul class="simple">
+<li><p>node is imp if it lies on many shortest paths between other nodes</p>
+<ul>
+<li><p>the more short nodes a node appears on, the more important it is</p></li>
+<li><p>how many paths pass through C here</p></li>
+</ul>
+</li>
+</ul>
+<p align="center"><img src="./images/02_nodeCentralityBetweenness.png" width=400 height=400> </p>
+<p><span class="math notranslate nohighlight">\(\tiny{\text{YouTube-Stanford-CS224W-Jure Leskovec}}\)</span></p>
+</section>
+<section id="closeness-centrality">
+<h4>Closeness centrality<a class="headerlink" href="#closeness-centrality" title="Permalink to this headline">#</a></h4>
+<ul class="simple">
+<li><p>node is imp if it has small shortest path lengths to all other nodes</p>
+<ul>
+<li><p>the more in the center you are, the smaller will be the sum</p></li>
+<li><p>D lies more in the center of the network compared to A</p></li>
+</ul>
+</li>
+</ul>
+<p align="center"><img src="./images/02_nodeCentralityCloseness.png" width=400 height=400></p>
+<p><span class="math notranslate nohighlight">\(\tiny{\text{YouTube-Stanford-CS224W-Jure Leskovec}}\)</span></p>
+</section>
+</section>
+<section id="clustering-coefficient">
+<h3>Clustering coefficient<a class="headerlink" href="#clustering-coefficient" title="Permalink to this headline">#</a></h3>
+<ul class="simple">
+<li><p>how connected nodes are corresponding to its neighboring nodes</p></li>
+<li><p>denominator</p>
+<ul>
+<li><p>how many potential nodes are there in neighborhood</p></li>
+</ul>
+</li>
+<li><p>numerator</p>
+<ul>
+<li><p>how many edges actually occur</p></li>
+</ul>
+</li>
+<li><p>range is 0 to 1</p>
+<ul>
+<li><p>0 means none of your friend know each other and are not connected to each other</p></li>
+<li><p>1 means each of your friend know each other and are all connected to each other</p></li>
+</ul>
+</li>
+<li><p>no of triangles is used to calculate coefficient</p></li>
+<li><p>in the middle example below, there are 6 triangle possible(4c2), out of which the v node forms 3 connection triangle to all, so the coeff is 0.5</p>
+<ul>
+<li><p>3 triangles out of 6 node triplets</p></li>
+<li><p>important in social network</p>
+<ul>
+<li><p>friend of my friend, is my friend</p></li>
+<li><p>triangle closing</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p align="center"><img src="./images/02_nodeCentralityClusteringCoeff.png" width=400 height=400></p>
+<p><span class="math notranslate nohighlight">\(\tiny{\text{YouTube-Stanford-CS224W-Jure Leskovec}}\)</span></p>
+</section>
+<section id="graphlets">
+<h3>Graphlets<a class="headerlink" href="#graphlets" title="Permalink to this headline">#</a></h3>
+<ul class="simple">
+<li><p>this is an extension of clustering coeff</p></li>
+<li><p>instead of counting triangles, this counts the pre-specified subgraphs - graphlets</p></li>
+<li><p>topology of node’s neighborhood</p></li>
+<li><p>gives a measure of topological similarity compared to node degrees or clustering coefficient</p></li>
+<li><p>Graphlets are rooted connected non-isomorphic subgraphs</p>
+<ul>
+<li><p>in 3-node graphlets</p>
+<ul>
+<li><p>either it is a chain of 3 nodes with two on edge and one not on edge <span class="math notranslate nohighlight">\(G_1\)</span></p></li>
+<li><p>or it is a triangle formed using 3 nodes <span class="math notranslate nohighlight">\(G_2\)</span></p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p align="center"><img src="./images/02_nodeGraphlets.png" width=400 height=400></p>
+<p><span class="math notranslate nohighlight">\(\tiny{\text{YouTube-Stanford-CS224W-Jure Leskovec}}\)</span></p>
+<ul class="simple">
+<li><p>Graphlet Degree Vector (GDV)</p>
+<ul>
+<li><p>graphlet based features for nodes</p></li>
+<li><p>Degree</p>
+<ul>
+<li><p>count of edges that a node touches</p></li>
+</ul>
+</li>
+<li><p>Clustering Coefficient</p>
+<ul>
+<li><p>count of triangles that a node touches</p></li>
+</ul>
+</li>
+<li><p>GDV</p>
+<ul>
+<li><p>count of graphlets that a node touches/participates in</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>in example below: GDV of node <span class="math notranslate nohighlight">\(\nu\)</span> is <span class="math notranslate nohighlight">\([2,1,0,2] \)</span></p>
+<ul>
+<li><p>this characterizes local neighborhood structure around given node of interest based on the frequency of graphlets this node participates in</p></li>
+</ul>
+</li>
+</ul>
+<p align="center"><img src="./images/02_graphlets_gdv.png" width=400 height=400></p>
+<ul class="simple">
+<li><p>a graphlet of 5 nodes will have</p>
+<ul>
+<li><p>vector of 73 coordinates that describes the topology of node’s neighborhood</p></li>
+<li><p>captures its inter-connectivity within distance of 4 hops</p></li>
+<li><p>provides a detailed representation of local topological similarity/structure compared to other node features</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="summary-node-level-feature">
+<h3>Summary - Node level feature<a class="headerlink" href="#summary-node-level-feature" title="Permalink to this headline">#</a></h3>
+<ul class="simple">
+<li><p><strong>Importance based features</strong></p>
+<ul>
+<li><p>Node degree</p>
+<ul>
+<li><p>count neighboring nodes</p></li>
+</ul>
+</li>
+<li><p>Node centrality</p>
+<ul>
+<li><p>based on choice of centrality measure</p></li>
+</ul>
+</li>
+<li><p>Example</p>
+<ul>
+<li><p>predict celebrity users in social network</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>Structure based features</strong></p>
+<ul>
+<li><p>capture topological properties of local neighborhood around node</p></li>
+<li><p>Node degree</p></li>
+<li><p>clustering coeff</p></li>
+<li><p>Graphlet degree vector(GDV)</p></li>
+<li><p>Example</p>
+<ul>
+<li><p>used in protein-protein interaction</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>node features help distinguish nodes</p></li>
+<li><p>but donot allow distinguish node labels</p></li>
+</ul>
+</section>
+</section>
+<section id="link-prediction-task-and-features">
+<h2>Link prediction task and features<a class="headerlink" href="#link-prediction-task-and-features" title="Permalink to this headline">#</a></h2>
+<ul class="simple">
+<li><p>predict new links based on existing links</p></li>
+<li><p>initially at test time,</p>
+<ul>
+<li><p>all node pairs (including ones not linked) are ranked and</p></li>
+<li><p>top K node pairs are predicted</p></li>
+</ul>
+</li>
+<li><p>this link prediction can be done in 2 ways</p>
+<ul>
+<li><p>links missing at random</p></li>
+<li><p>links over time</p></li>
+</ul>
+</li>
+<li><p>goal: design features for a pair of nodes</p>
+<ul>
+<li><p>concatenate nodes and train models</p></li>
+</ul>
+</li>
+</ul>
+<p align="center"><img src="./images/02_linkLevelPredictionTask.png" width=400 height=400></p>
+<ul class="simple">
+<li><p>links missing at random</p>
+<ul>
+<li><p>remove random sets of links</p></li>
+<li><p>aim to predict them using training algorithm</p></li>
+</ul>
+</li>
+<li><p>links over time</p>
+<ul>
+<li><p>predict evolution of networks for example citation network or social network</p></li>
+<li><p>observe patterns between time <span class="math notranslate nohighlight">\((t_0, t_0^{'})\)</span> and</p></li>
+<li><p>then predict based on this pattern for future time <span class="math notranslate nohighlight">\((t_1, t_1^{'})\)</span></p></li>
+</ul>
+</li>
+<li><p>Methodology - Proximity score</p>
+<ul>
+<li><p>how to decide on the feature descriptor for any given node</p>
+<ul>
+<li><p>compute score <span class="math notranslate nohighlight">\(c(x,y)\)</span> for each node pair <span class="math notranslate nohighlight">\((x,y)\)</span></p>
+<ul>
+<li><p>score can be of common neighbors between x and y</p></li>
+</ul>
+</li>
+<li><p>sort pairs <span class="math notranslate nohighlight">\((x,y)\)</span> by decreasing score <span class="math notranslate nohighlight">\(c(x,y)\)</span></p></li>
+<li><p>predict top n pairs as new pairs</p></li>
+<li><p>compare the predicted to actual and see how good the prediction was</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<section id="link-level-features">
+<h3>Link level features<a class="headerlink" href="#link-level-features" title="Permalink to this headline">#</a></h3>
+<ul class="simple">
+<li><p>goal: describe the relationship so as to predict and learn if there exists link between them</p></li>
+<li><p>types:</p>
+<ul>
+<li><p>Distance based feature</p>
+<ul>
+<li><p>uses shortest path between two nodes</p></li>
+<li><p>but does not capture neighborhood overlaps</p></li>
+</ul>
+</li>
+<li><p>Local neighborhood overlap</p>
+<ul>
+<li><p>how many nodes does a pair have in common</p></li>
+<li><p>but nodes that have no nodes in common(are more than 2 hops apart), metric will return value 0</p></li>
+</ul>
+</li>
+<li><p>Overlap/Global neighborhood overlap</p>
+<ul>
+<li><p>uses global graph structure to give score for pair of nodes</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<section id="distance-based-feature">
+<h4>Distance based feature<a class="headerlink" href="#distance-based-feature" title="Permalink to this headline">#</a></h4>
+<ul class="simple">
+<li><p>shortest path distance between two nodes</p></li>
+<li><p>does not capture degree of neighborhood overlap or strength of connection</p>
+<ul>
+<li><p><span class="math notranslate nohighlight">\((B,H)\)</span> have 2 friends in common<span class="math notranslate nohighlight">\((B,C,H), (B,D,H)\)</span>, so is stronger connection</p></li>
+<li><p><span class="math notranslate nohighlight">\((D,F)\)</span> have 1 friend in common<span class="math notranslate nohighlight">\((D,E,F)\)</span>, so is relatively weaker connection</p></li>
+</ul>
+</li>
+</ul>
+<p align="center"><img src="./images/02_linkPredictionShortestPath.png" width=400 height=400> </p> 
+<p><span class="math notranslate nohighlight">\(\tiny{\text{YouTube-Stanford-CS224W-Jure Leskovec}}\)</span></p>
+</section>
+<section id="local-neighborhood-overlap">
+<h4>Local Neighborhood overlap<a class="headerlink" href="#local-neighborhood-overlap" title="Permalink to this headline">#</a></h4>
+<ul class="simple">
+<li><p>number of neighborhood shared between 2 nodes</p></li>
+<li><p>common neighbors</p>
+<ul>
+<li><p>pros: nodes that have higher degree are more likely to have neighbors with others</p></li>
+</ul>
+</li>
+<li><p>jaccard coefficient</p>
+<ul>
+<li><p>pros: normalize effect</p></li>
+</ul>
+</li>
+</ul>
+<p align="center"><img src="./images/02_linkPredictionLocalNe.png" width=400 height=400></p>
+<p><span class="math notranslate nohighlight">\(\tiny{\text{YouTube-Stanford-CS224W-Jure Leskovec}}\)</span></p>
+</section>
+<section id="global-neighborhood-overlap">
+<h4>Global Neighborhood overlap<a class="headerlink" href="#global-neighborhood-overlap" title="Permalink to this headline">#</a></h4>
+<ul class="simple">
+<li><p>Katz index - number of paths of all length between pair of nodes</p></li>
+<li><p>to compute paths between 2 nodes</p>
+<ul>
+<li><p>use powers of adjacency matrix</p></li>
+<li><p>can compute path between path of any given length l between u and v node - <span class="math notranslate nohighlight">\(A_{uv}^{l}\)</span></p></li>
+</ul>
+</li>
+</ul>
+<p align="center"><img src="./images/02_linkPredictionAdjacencyMatrix1.png" width=400 height=400></p>  
+<hr class="docutils" />
+<p align="center"><img src="./images/02_linkPredictionAdjacencyMatrix2.png" width=400 height=400> </p> 
+<hr class="docutils" />
+<p align="center"><img src="./images/02_linkPredictionAdjacencyMatrix3.png" width=400 height=400></p>
+<p><span class="math notranslate nohighlight">\(\tiny{\text{YouTube-Stanford-CS224W-Jure Leskovec}}\)</span></p>
+</section>
+</section>
+</section>
+<section id="graph-level-features-and-graph-kernels">
+<h2>Graph-Level features and Graph Kernels<a class="headerlink" href="#graph-level-features-and-graph-kernels" title="Permalink to this headline">#</a></h2>
+<ul class="simple">
+<li><p>How to design graph level features</p>
+<ul>
+<li><p>that characterizes structure of entire graph</p></li>
+<li><p>Types</p>
+<ul>
+<li><p>Kernel methods - measures similarity b/w data</p></li>
+<li><p>Graph Kernels - measure similarity b/w graphs</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<section id="kernel-method">
+<h3>Kernel method<a class="headerlink" href="#kernel-method" title="Permalink to this headline">#</a></h3>
+<ul class="simple">
+<li><p>widely used in ML for graph level prediction</p>
+<ul>
+<li><p>key idea: design kernels instead of feature vectors</p></li>
+</ul>
+</li>
+<li><p>key idea</p>
+<ul>
+<li><p>Kernel matrix K(G, G’)</p>
+<ul>
+<li><p>positive semidefinite (i.e., positive eigen values)</p></li>
+<li><p>symmetric matrix</p></li>
+<li><p>represent kernel as a dot product of feature representation <span class="math notranslate nohighlight">\(\phi(.)\)</span> of each graphs <span class="math notranslate nohighlight">\(K(G, G') = \phi(G)^{T}\phi(G')\)</span></p></li>
+<li><p>once the kernel is defined, existing kernel methods such as kernel SVM can be used to make predictions</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="graph-kernels">
+<h3>Graph kernels<a class="headerlink" href="#graph-kernels" title="Permalink to this headline">#</a></h3>
+<ul class="simple">
+<li><p>measure similarity between two graphs</p></li>
+<li><p>Graphlet Kernel</p>
+<ul>
+<li><p>represented as Bag-of-graphlets</p></li>
+<li><p>computationally expensive</p></li>
+</ul>
+</li>
+<li><p>Weisfeiler-Lehman (WL) Kernel</p>
+<ul>
+<li><p>color enrichment hash</p></li>
+<li><p>represented as Bag-of-colors</p></li>
+<li><p>computationally efficient</p></li>
+<li><p>closely related to GNN</p></li>
+</ul>
+</li>
+<li><p>others</p>
+<ul>
+<li><p>random-walk kernel</p></li>
+<li><p>shortest path graph kernel</p></li>
+</ul>
+</li>
+<li><p>key idea:</p>
+<ul>
+<li><p>find/design a graph feature vector <span class="math notranslate nohighlight">\(\phi(G)\)</span></p></li>
+</ul>
+</li>
+</ul>
+<section id="key-idea">
+<h4>Key Idea<a class="headerlink" href="#key-idea" title="Permalink to this headline">#</a></h4>
+<ul class="simple">
+<li><p>Bag-of-Words (BoW) for a graph</p>
+<ul>
+<li><p>use word count as features for documents</p></li>
+<li><p>for every word, keep a count of how often it appears in document</p>
+<ul>
+<li><p>order does not matter</p></li>
+<li><p>consider nodes as words</p></li>
+</ul>
+</li>
+<li><p>problem is</p>
+<ul>
+<li><p>for same number of nodes/words - graphs can have different structures</p>
+<ul>
+<li><p>feature representation for two very different graph will be the same</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>following will have the same feature vector</p></li>
+</ul>
+</li>
+</ul>
+<p align="center"><img src="./images/02_graphFeatureBoW.png" width=100 height=100></p>
+<p><span class="math notranslate nohighlight">\(\tiny{\text{YouTube-Stanford-CS224W-Jure Leskovec}}\)</span></p>
+<ul class="simple">
+<li><p>what if Bag of node degree is used?</p>
+<ul>
+<li><p>different feature representation for different graphs</p></li>
+</ul>
+</li>
+</ul>
+<p align="center"><img src="./images/02_graphFeatureBoNode.png" width=200 height=200></p>
+<p><span class="math notranslate nohighlight">\(\tiny{\text{YouTube-Stanford-CS224W-Jure Leskovec}}\)</span></p>
+<ul class="simple">
+<li><p>both Graphlet and Weisfeiler-Lehman (WL) Kernel uses sophisticated ways of representing this “bag”</p></li>
+</ul>
+</section>
+<section id="graphlet-features">
+<h4>Graphlet features<a class="headerlink" href="#graphlet-features" title="Permalink to this headline">#</a></h4>
+<ul>
+<li><p>count the number of different graphlets</p></li>
+<li><p>Graph graphlet is different from node-level graphlet features</p>
+<ul>
+<li><p>list of graphlets of size k are calculated</p></li>
+<li><p>in graph level</p>
+<ul class="simple">
+<li><p>they dont need to be connected</p></li>
+<li><p>isolated nodes are allowed</p></li>
+</ul>
+<blockquote>
+<div><p><span class="math notranslate nohighlight">\(G_{k} = (g_{1}, g_{2}, ..., g_{n_{k}})\)</span></p>
+</div></blockquote>
+</li>
+<li><p>the graphlet count vector is calculated as</p>
+<blockquote>
+<div><p><span class="math notranslate nohighlight">\((f_{G})_{i} = \#(g_{i} \subseteq G)\)</span></p>
+<ul class="simple">
+<li><p>for i = 1,2,..<span class="math notranslate nohighlight">\(n_{k}\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(f_{G} \in \mathbb R^{n_{k}}\)</span></p></li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+</li>
+</ul>
+<p align="center"><img src="./images/02_graphFeatureGraphlet.png" width=200 height=200></p>
+<p><span class="math notranslate nohighlight">\(\tiny{\text{YouTube-Stanford-CS224W-Jure Leskovec}}\)</span></p>
+</section>
+<section id="graphlet-kernel">
+<h4>Graphlet kernel<a class="headerlink" href="#graphlet-kernel" title="Permalink to this headline">#</a></h4>
+<ul class="simple">
+<li><p>dot product of graphlet count of two vector graphs
+$<span class="math notranslate nohighlight">\(  K(G, G') = f_{G}^{T}f_{G'}  \)</span>$</p></li>
+<li><p>problem:</p>
+<ul>
+<li><p>but this results in skewed value due to different size of G and G’</p></li>
+</ul>
+</li>
+<li><p>solution:</p>
+<ul>
+<li><p>so normalize each feature vector</p>
+<ul>
+<li><p>this normalizes size and density of underlying graph
+$<span class="math notranslate nohighlight">\(  h_{G} = \frac{f_{G}}{sum(f_{G})}  = \frac{\text{number of individual graphlets}}{\text{total number of graphlets in graph}}\)</span><span class="math notranslate nohighlight">\(  
+\)</span><span class="math notranslate nohighlight">\(  K(G, G') = h_{G}^{T}h_{G'}  \)</span>$</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>limitations:</p>
+<ul>
+<li><p>Counting graphlets is expensive</p></li>
+<li><p>counting size k graphlets for graph of size n by enumeration has complexity of <span class="math notranslate nohighlight">\(n^{k}\)</span></p></li>
+<li><p>NP-hard in worst-case</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="weisfeiler-lehman-wl-kernel">
+<h4>Weisfeiler-Lehman(WL) Kernel<a class="headerlink" href="#weisfeiler-lehman-wl-kernel" title="Permalink to this headline">#</a></h4>
+<ul class="simple">
+<li><p>goal:</p>
+<ul>
+<li><p>design efficient graph feature descriptor compared to Graphlet kernel</p></li>
+</ul>
+</li>
+<li><p>idea:</p>
+<ul>
+<li><p>use neighborhood structure to iteratively enrich node vocabulary</p></li>
+<li><p>generalize from one-hop neighborhood information to multi-hop neighborhood information</p></li>
+<li><p>generalized version of Bag of node degrees</p></li>
+</ul>
+</li>
+<li><p>algorithm:</p>
+<ul>
+<li><p><em>Weisfeiler-Lehman graph isomorphism test (color refinement test)</em></p></li>
+<li><p>iteratively refine node colors using hash with different colors to different inputs
+$<span class="math notranslate nohighlight">\(  c^{(k+1)}(\nu) = hash(\{c^{(k)}(\nu),\{c^{(k)}(u)\}_{u \in N(\nu)}\})  \)</span>$</p></li>
+<li><p>steps:</p>
+<ul>
+<li><p>assign initial color <span class="math notranslate nohighlight">\(c^{(0)}(\nu)\)</span> to each node</p></li>
+<li><p>iteratively hash colors from neighbors to invent new colors</p></li>
+<li><p>new color of given node <span class="math notranslate nohighlight">\(c^{(k+1)}(\nu)\)</span> will be hashed value of</p>
+<ul>
+<li><p>its own color <span class="math notranslate nohighlight">\(c^{(k)}(\nu)\)</span> from previous step</p></li>
+<li><p>concatenated with colors from the neighbors <span class="math notranslate nohighlight">\(\{c^{(k)}(u)\}_{u \in N(\nu)}\}\)</span></p></li>
+</ul>
+</li>
+<li><p>after k steps of color refinement, <span class="math notranslate nohighlight">\(c^{(k)}(\nu)\)</span> summarizes structure of k-hop neighborhood</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>WL kernel value is computed by the inner product of color count vectors</p>
+<ul>
+<li><p>computationally efficient</p></li>
+<li><p>linear time complexity</p></li>
+</ul>
+</li>
+</ul>
+</section>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./cs224w_ml_graph"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="lec01_Introduction_MLforGraphs.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">L01: Introduction ML for Graphs</p>
+        </div>
+    </a>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By Chandra<br/>
+  
+      &copy; Copyright 2022.<br/>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>

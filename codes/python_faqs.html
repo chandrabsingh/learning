@@ -538,7 +538,12 @@ const thebe_selector_output = ".output, .cell_output"
   <ul>
    <li class="toctree-l2">
     <a class="reference internal" href="../cs224w_ml_graph/lec01_Introduction_MLforGraphs.html">
-     Introduction ML for Graphs
+     L01: Introduction ML for Graphs
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../cs224w_ml_graph/lec02-TraditionalMethods.html">
+     L02: Traditional Methods for ML in Graphs
     </a>
    </li>
   </ul>
@@ -2429,9 +2434,7 @@ Chandra
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(&lt;class &#39;object&#39;&gt;,)
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(&lt;class &#39;object&#39;&gt;,)
+(&lt;class &#39;object&#39;&gt;,)
 </pre></div>
 </div>
 </div>
@@ -2453,10 +2456,10 @@ Chandra
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;class &#39;tuple&#39;&gt;
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>3.21 ms ± 315 µs per loop (mean ± std. dev. of 7 runs, 100 loops each)
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2.86 ms ± 275 µs per loop (mean ± std. dev. of 7 runs, 100 loops each)
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>3.35 ms ± 306 µs per loop (mean ± std. dev. of 7 runs, 100 loops each)
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2.96 ms ± 205 µs per loop (mean ± std. dev. of 7 runs, 100 loops each)
 </pre></div>
 </div>
 </div>
@@ -2689,11 +2692,11 @@ False
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Called method_one
 Called method_two
-&lt;function Test.method_one at 0x7fec3a57f700&gt;
-&lt;function Test.method_two at 0x7fec3a57f670&gt;
-&lt;bound method Test.method_one of &lt;__main__.Test object at 0x7fec3a55ce20&gt;&gt;
-&lt;function Test.method_two at 0x7fec3a57f670&gt;
-&lt;function Test.method_one at 0x7fec3a57f700&gt;
+&lt;function Test.method_one at 0x7fbf2257f040&gt;
+&lt;function Test.method_two at 0x7fbf2257f0d0&gt;
+&lt;bound method Test.method_one of &lt;__main__.Test object at 0x7fbf22573d60&gt;&gt;
+&lt;function Test.method_two at 0x7fbf2257f0d0&gt;
+&lt;function Test.method_one at 0x7fbf2257f040&gt;
 </pre></div>
 </div>
 </div>
@@ -2951,6 +2954,9 @@ global pi variable
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>3.141592653589793
 </pre></div>
 </div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
 </div>
 </div>
 </section>
@@ -3019,7 +3025,9 @@ for the lambda function and let python’s scope resolution behaviour do that fo
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>16
-16
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>16
 16
 16
 16
@@ -3126,7 +3134,7 @@ power3(3)(2)(1) =  9
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2
-T2 =  &lt;generator object &lt;genexpr&gt; at 0x7fec3a584cf0&gt;
+T2 =  &lt;generator object &lt;genexpr&gt; at 0x7fbf22590ba0&gt;
 </pre></div>
 </div>
 </div>
@@ -3161,7 +3169,7 @@ T2 =  &lt;generator object &lt;genexpr&gt; at 0x7fec3a584cf0&gt;
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>l2 =  &lt;filter object at 0x7fec3a588fa0&gt;
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>l2 =  &lt;filter object at 0x7fbf22504af0&gt;
 l3 =  [15, 11, 20, 17]
 (2, 3, 5, 7, 11, 13, 17, 19)
 </pre></div>
@@ -3239,9 +3247,7 @@ reduce(...)
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>24
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>24
+24
 </pre></div>
 </div>
 </div>
@@ -3334,8 +3340,8 @@ reduce(...)
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>obj.method() -  (&#39;instance method called&#39;, &lt;__main__.MyClass object at 0x7fec3a588a60&gt;)
-MyClass.method(obj) -  (&#39;instance method called&#39;, &lt;__main__.MyClass object at 0x7fec3a588a60&gt;)
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>obj.method() -  (&#39;instance method called&#39;, &lt;__main__.MyClass object at 0x7fbf22573880&gt;)
+MyClass.method(obj) -  (&#39;instance method called&#39;, &lt;__main__.MyClass object at 0x7fbf22573880&gt;)
 obj.classmethod() -  (&#39;class method called&#39;, &lt;class &#39;__main__.MyClass&#39;&gt;)
 MyClass.classmethod() -  (&#39;class method called&#39;, &lt;class &#39;__main__.MyClass&#39;&gt;)
 obj.staticmethod() -  static method called
@@ -3525,8 +3531,8 @@ Printing from the first_child() function
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;function parent.&lt;locals&gt;.first_child at 0x7fec3a51c8b0&gt;
-&lt;function parent.&lt;locals&gt;.second_child at 0x7fec3a57fc10&gt;
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;function parent.&lt;locals&gt;.first_child at 0x7fbf225a5280&gt;
+&lt;function parent.&lt;locals&gt;.second_child at 0x7fbf225a51f0&gt;
 Hi, I am Emma
 Call me Liam
 </pre></div>
@@ -3706,9 +3712,7 @@ None
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Creating greeting
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Creating greeting
+Creating greeting
 Hi Adam
 </pre></div>
 </div>
@@ -3883,10 +3887,10 @@ say_whee()
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Finished &#39;waste_some_time&#39; in 0.0086 secs
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Finished &#39;waste_some_time&#39; in 0.0064 secs
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Finished &#39;waste_some_time&#39; in 13.6011 secs
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Finished &#39;waste_some_time&#39; in 10.5197 secs
 </pre></div>
 </div>
 </div>
@@ -4000,6 +4004,7 @@ Calling factorial(3)
 &#39;factorial&#39; returned 6
 Calling factorial(4)
 &#39;factorial&#39; returned 24
+die
 </pre></div>
 </div>
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2.708333333333333
@@ -4024,11 +4029,6 @@ Calling factorial(4)
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>die
-</pre></div>
-</div>
-</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -4039,9 +4039,9 @@ Calling factorial(4)
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[(&#39;__eq__&#39;, &lt;function __create_fn__.&lt;locals&gt;.__eq__ at 0x7fec3a7550d0&gt;),
- (&#39;__init__&#39;, &lt;function __create_fn__.&lt;locals&gt;.__init__ at 0x7fec3a755040&gt;),
- (&#39;__repr__&#39;, &lt;function __create_fn__.&lt;locals&gt;.__repr__ at 0x7fec3a754f70&gt;)]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[(&#39;__eq__&#39;, &lt;function __create_fn__.&lt;locals&gt;.__eq__ at 0x7fbf2274eee0&gt;),
+ (&#39;__init__&#39;, &lt;function __create_fn__.&lt;locals&gt;.__init__ at 0x7fbf2274ee50&gt;),
+ (&#39;__repr__&#39;, &lt;function __create_fn__.&lt;locals&gt;.__repr__ at 0x7fbf2274edc0&gt;)]
 </pre></div>
 </div>
 </div>
@@ -4145,9 +4145,6 @@ Calling factorial(4)
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Point(x=10, y=20)
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
-</pre></div>
-</div>
 </div>
 </div>
 </section>
@@ -4181,7 +4178,7 @@ False
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>datetime.datetime(2022, 10, 4, 15, 34, 54, 73094)
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>datetime.datetime(2022, 10, 5, 19, 22, 27, 454043)
 </pre></div>
 </div>
 </div>
@@ -4193,7 +4190,7 @@ False
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2022-10-04 15:34:54.086287
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2022-10-05 19:22:27.470873
 </pre></div>
 </div>
 </div>
@@ -4227,10 +4224,8 @@ False
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>str: &lt;__main__.Test object at 0x7fec3a757670&gt;
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>repr: &lt;__main__.Test object at 0x7fec3a53bb50&gt;
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>str: &lt;__main__.Test object at 0x7fbf227544c0&gt;
+repr: &lt;__main__.Test object at 0x7fbf22754370&gt;
 </pre></div>
 </div>
 </div>
@@ -4264,9 +4259,7 @@ repr: test1
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>str: test2
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>repr: &lt;__main__.Test2 object at 0x7fec3a570af0&gt;
+repr: &lt;__main__.Test2 object at 0x7fbf22754fa0&gt;
 </pre></div>
 </div>
 </div>
@@ -4354,7 +4347,9 @@ Hello World
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>6
-45
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>45
 </pre></div>
 </div>
 </div>
@@ -4426,6 +4421,9 @@ Hello World
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1, 2, 3, 4, 5, 6, 7, 8, 9]
 </pre></div>
 </div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
 </div>
 </div>
 <div class="cell docutils container">
@@ -4483,7 +4481,9 @@ Hello World
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>n
-&lt;class &#39;str&#39;&gt;
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;class &#39;str&#39;&gt;
 [&#39;R&#39;, &#39;e&#39;, &#39;a&#39;, &#39;l&#39;, &#39;P&#39;, &#39;y&#39;, &#39;t&#39;, &#39;h&#39;, &#39;o&#39;]
 &lt;class &#39;list&#39;&gt;
 </pre></div>
@@ -4588,9 +4588,6 @@ range(0, 5)
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;one&#39;: 1, &#39;two&#39;: 2, &#39;three&#39;: 3, &#39;a&#39;: &#39;A&#39;, &#39;b&#39;: &#39;B&#39;, &#39;c&#39;: &#39;C&#39;}
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
-</pre></div>
-</div>
 </div>
 </div>
 </section>
@@ -4620,7 +4617,10 @@ range(0, 5)
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>String: 1
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>String:
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 1
 List: 1
 Generators 0
 Keys: one
@@ -4702,7 +4702,7 @@ Welcome to...
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>4322236896
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>4464572896
 </pre></div>
 </div>
 </div>
@@ -4715,7 +4715,10 @@ Welcome to...
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>4322236928
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>4464572928
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
 </pre></div>
 </div>
 </div>
@@ -4727,7 +4730,10 @@ Welcome to...
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;class &#39;builtin_function_or_method&#39;&gt; with id: 140652436690800
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;class &#39;builtin_function_or_method&#39;&gt; with id: 140458752120688
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
 </pre></div>
 </div>
 </div>
@@ -4752,14 +4758,15 @@ Welcome to...
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Hello 140652567837424
-Hello 140652567837424
-True
-True
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Hello
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Hello 140652567837424
-Helloo 140652569676848
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 140458893623600
+Hello 140458893623600
+True
+True
+Hello 140458893623600
+Helloo 140458893627056
 False
 False
 </pre></div>
@@ -4779,10 +4786,10 @@ False
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Hello 140652567837424
-Hello 140652567837424
-Hello 140652567837424
-Helloo 140652569689136
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Hello 140458893623600
+Hello 140458893623600
+Hello 140458893623600
+Helloo 140458893722096
 </pre></div>
 </div>
 </div>
@@ -4818,9 +4825,9 @@ Helloo 140652569689136
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;method-wrapper &#39;__repr__&#39; of list object at 0x7fec3a596880&gt;
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;method-wrapper &#39;__repr__&#39; of list object at 0x7fbf2276fd40&gt;
 [&#39;hello new&#39;]
-&lt;method-wrapper &#39;__repr__&#39; of list object at 0x7fec3a596880&gt;
+&lt;method-wrapper &#39;__repr__&#39; of list object at 0x7fbf2276fd40&gt;
 </pre></div>
 </div>
 </div>
@@ -5000,7 +5007,9 @@ __exit__ method
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Entering the context...
-Hello, World!
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Hello, World!
 Leaving the context...
 None
 None
@@ -5047,7 +5056,7 @@ None
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.5000545239999994
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.5018138100000016
 </pre></div>
 </div>
 </div>
@@ -5102,7 +5111,7 @@ None
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1-&gt; &lt;generator object f123 at 0x7fec3aaf5ba0&gt;
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1-&gt; &lt;generator object f123 at 0x7fbf22af4ba0&gt;
 2-&gt; &lt;class &#39;generator&#39;&gt;
 3-&gt; 1
 Loop starts
@@ -5394,19 +5403,19 @@ lname Singh
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>fibonacciWithMemAndClassDecorator: 5.288699999894675e-05
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>fibonacciWithMemAndClassDecorator: 5.98990000000299e-05
 </pre></div>
 </div>
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>75025
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>fibonacciWithMem: 0.0697775759999999
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>fibonacciWithMem: 0.0665170200000027
 </pre></div>
 </div>
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>75025
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>fibonacci: 0.04097402900000091
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>fibonacci: 0.03743511700000113
 </pre></div>
 </div>
 </div>
@@ -5572,7 +5581,7 @@ Foo!
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(&lt;cell at 0x7fec3ab03eb0: str object at 0x7fec3ab2a730&gt;,)
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(&lt;cell at 0x7fbf22b038e0: str object at 0x7fbf22b287f0&gt;,)
 True
 foooo
 </pre></div>
@@ -5623,8 +5632,8 @@ True
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>8
 12
-&lt;function multiplier.&lt;locals&gt;.&lt;lambda&gt; at 0x7fec3ab17af0&gt;
-&lt;function multiplier.&lt;locals&gt;.&lt;lambda&gt; at 0x7fec3ab17d30&gt;
+&lt;function multiplier.&lt;locals&gt;.&lt;lambda&gt; at 0x7fbf22b1a670&gt;
+&lt;function multiplier.&lt;locals&gt;.&lt;lambda&gt; at 0x7fbf22b1a700&gt;
 </pre></div>
 </div>
 </div>
@@ -5834,7 +5843,9 @@ class map(object)
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[2, 1, 0, 1, 2]
-[-2.0, -1.0, 0.0, 1.0, 2.0]
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[-2.0, -1.0, 0.0, 1.0, 2.0]
 [7, 2, 4, 6]
 </pre></div>
 </div>
@@ -5853,9 +5864,6 @@ class map(object)
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1, 4, 9, 16, 25]
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
 </pre></div>
 </div>
 </div>
@@ -5880,7 +5888,9 @@ class map(object)
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Python
-[&#39;Some&#39;, &#39;people&#39;, &#39;when&#39;, &#39;confronted&#39;, &#39;with&#39;, &#39;a&#39;, &#39;problem&#39;, &#39;think&#39;, &#39;I&#39;, &#39;know&#39;, &quot;I&#39;ll&quot;, &#39;use&#39;, &#39;regular&#39;, &#39;expressions&#39;, &#39;Now&#39;, &#39;they&#39;, &#39;have&#39;, &#39;two&#39;, &#39;problems&#39;, &#39;Jamie&#39;, &#39;Zawinski&#39;]
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;Some&#39;, &#39;people&#39;, &#39;when&#39;, &#39;confronted&#39;, &#39;with&#39;, &#39;a&#39;, &#39;problem&#39;, &#39;think&#39;, &#39;I&#39;, &#39;know&#39;, &quot;I&#39;ll&quot;, &#39;use&#39;, &#39;regular&#39;, &#39;expressions&#39;, &#39;Now&#39;, &#39;they&#39;, &#39;have&#39;, &#39;two&#39;, &#39;problems&#39;, &#39;Jamie&#39;, &#39;Zawinski&#39;]
 </pre></div>
 </div>
 </div>
@@ -6147,13 +6157,13 @@ callable(obj, /)
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>id(a)=140652573772544
-id(a[0])=140652573770688
-id(a[1])=140652573770688
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>id(a)=140458897668736
+id(a[0])=140458897626048
+id(a[1])=140458897626048
 
-id(b)=140652573770752
-id(b[0])=140652573685760
-id(b[1])=140652573686144
+id(b)=140458897598080
+id(b[0])=140458897617664
+id(b[1])=140458897598976
 
 a=[[1], [1], [1]]
 b=[[1], [], []]
@@ -6220,12 +6230,12 @@ b=[[1], [], []]
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>61.6 µs ± 8.17 µs per loop (mean ± std. dev. of 7 runs, 105 loops each)
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>88.3 µs ± 19.6 µs per loop (mean ± std. dev. of 7 runs, 105 loops each)
  
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The slowest run took 33.23 times longer than the fastest. This could mean that an intermediate result is being cached.
-489 µs ± 679 µs per loop (mean ± std. dev. of 7 runs, 105 loops each)
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The slowest run took 27.18 times longer than the fastest. This could mean that an intermediate result is being cached.
+395 µs ± 539 µs per loop (mean ± std. dev. of 7 runs, 105 loops each)
 </pre></div>
 </div>
 </div>
@@ -6251,11 +6261,11 @@ b=[[1], [], []]
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-1
-defaultdict(&lt;function &lt;lambda&gt; at 0x7fec3ab2f1f0&gt;, {&#39;foo&#39;: 123, &#39;bar&#39;: 456, &#39;baz&#39;: -1})
+defaultdict(&lt;function &lt;lambda&gt; at 0x7fbf22b2e670&gt;, {&#39;foo&#39;: 123, &#39;bar&#39;: 456, &#39;baz&#39;: -1})
 -1
-defaultdict(&lt;function &lt;lambda&gt; at 0x7fec3ab2f1f0&gt;, {&#39;foo&#39;: 123, &#39;bar&#39;: 456, &#39;baz&#39;: -1, &#39;tease&#39;: -1})
+defaultdict(&lt;function &lt;lambda&gt; at 0x7fbf22b2e670&gt;, {&#39;foo&#39;: 123, &#39;bar&#39;: 456, &#39;baz&#39;: -1, &#39;tease&#39;: -1})
 342
-defaultdict(&lt;function &lt;lambda&gt; at 0x7fec3ab2f1f0&gt;, {&#39;foo&#39;: 123, &#39;bar&#39;: 456, &#39;baz&#39;: 342, &#39;tease&#39;: -1})
+defaultdict(&lt;function &lt;lambda&gt; at 0x7fbf22b2e670&gt;, {&#39;foo&#39;: 123, &#39;bar&#39;: 456, &#39;baz&#39;: 342, &#39;tease&#39;: -1})
 </pre></div>
 </div>
 </div>
@@ -6516,7 +6526,7 @@ next printed this :  9
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;range_iterator at 0x7fec3a757870&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;range_iterator at 0x7fbf22b246c0&gt;
 </pre></div>
 </div>
 </div>

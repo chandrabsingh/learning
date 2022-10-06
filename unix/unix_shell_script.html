@@ -536,7 +536,12 @@ const thebe_selector_output = ".output, .cell_output"
   <ul>
    <li class="toctree-l2">
     <a class="reference internal" href="../cs224w_ml_graph/lec01_Introduction_MLforGraphs.html">
-     Introduction ML for Graphs
+     L01: Introduction ML for Graphs
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../cs224w_ml_graph/lec02-TraditionalMethods.html">
+     L02: Traditional Methods for ML in Graphs
     </a>
    </li>
   </ul>
@@ -936,6 +941,13 @@ title="Print to PDF"
   <a class="reference internal nav-link" href="#pip">
    pip
   </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#python-packages-conflict">
+     python packages conflict
+    </a>
+   </li>
+  </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#mac-services">
@@ -960,6 +972,11 @@ title="Print to PDF"
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#install-ms-sql-using-docker">
      Install MS-SQL using Docker
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#install-iccube">
+     Install icCube
     </a>
    </li>
   </ul>
@@ -1187,6 +1204,13 @@ title="Print to PDF"
   <a class="reference internal nav-link" href="#pip">
    pip
   </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#python-packages-conflict">
+     python packages conflict
+    </a>
+   </li>
+  </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#mac-services">
@@ -1211,6 +1235,11 @@ title="Print to PDF"
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#install-ms-sql-using-docker">
      Install MS-SQL using Docker
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#install-iccube">
+     Install icCube
     </a>
    </li>
   </ul>
@@ -1504,6 +1533,12 @@ find . -type f &gt; somefile.txt
 <li><p>find text in all files in current folder recursively, only file names, only unique names, only cpp files</p></li>
 </ul>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>grep --include<span class="o">=</span><span class="s2">&quot;*.cpp&quot;</span> -rle <span class="s1">&#39;vector&#39;</span> .
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>find location of executable</p></li>
+</ul>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>which jupyter
 </pre></div>
 </div>
 </section>
@@ -2321,6 +2356,24 @@ ls = log –graph –abbrev-commit –decorate –color=always –date=relative 
 <blockquote>
 <div><p><code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">-r</span> <span class="pre">requirements.txt</span></code></p>
 </div></blockquote>
+<section id="python-packages-conflict">
+<h3>python packages conflict<a class="headerlink" href="#python-packages-conflict" title="Permalink to this headline">#</a></h3>
+<ul class="simple">
+<li><p>networkx requires scipy-1.9.1</p>
+<ul>
+<li><p>pymc3 3.11.5 requires scipy&lt;1.8.0,&gt;=1.7.3</p>
+<ul>
+<li><p>scipy-1.7.3</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>pip install <span class="nv">networkx</span><span class="o">==</span><span class="m">2</span>.6.3
+pip install <span class="nv">scipy</span><span class="o">==</span><span class="m">1</span>.9.1
+</pre></div>
+</div>
+</section>
 </section>
 <section id="mac-services">
 <h2>Mac Services<a class="headerlink" href="#mac-services" title="Permalink to this headline">#</a></h2>
@@ -2575,14 +2628,17 @@ ls = log –graph –abbrev-commit –decorate –color=always –date=relative 
 </div>
 <ul class="simple">
 <li><p>download and install Azure Data Studio. This tool is the Mac equivalent for SQL Server Management Studio (SSMS)</p></li>
+<li><p>download AdventureWorks2019.bak</p>
+<ul>
+<li><p>MSSQL does not come with Analysis Services for Mac</p></li>
+<li><p>use icCube</p></li>
 </ul>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>
-</pre></div>
-</div>
-<ul class="simple">
-<li><p>download AdventureWorks2019.bak</p></li>
-<li></li>
+</li>
 </ul>
+</section>
+<section id="install-iccube">
+<h3>Install icCube<a class="headerlink" href="#install-iccube" title="Permalink to this headline">#</a></h3>
+<p><a class="reference external" href="http://localhost:8484/icCube/console/mdx">http://localhost:8484/icCube/console/mdx</a></p>
 </section>
 </section>
 <section id="kakka-zookeeper">
