@@ -8,9 +8,8 @@
 
     <title>L02: Traditional Methods for ML in Graphs</title>
     
-  <!-- Loaded before other Sphinx assets -->
-  <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
-<link href="../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+  <link href="../_static/css/theme.css" rel="stylesheet">
+  <link href="../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
 
     
   <link rel="stylesheet"
@@ -20,16 +19,20 @@
   <link rel="preload" as="font" type="font/woff2" crossorigin
     href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
 
+    
+      
+
+    
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
     
-  <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+  <link rel="preload" as="script" href="../_static/js/index.be7d3bbb2ef33a8344ce.js">
 
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
@@ -37,13 +40,12 @@
     <script src="../_static/doctools.js"></script>
     <script src="../_static/clipboard.min.js"></script>
     <script src="../_static/copybutton.js"></script>
-    <script src="../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
     <script src="../_static/togglebutton.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="../_static/design-tabs.js"></script>
+    <script src="../_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
 const thebe_selector = ".thebe,.cell"
 const thebe_selector_input = "pre"
@@ -54,6 +56,7 @@ const thebe_selector_output = ".output, .cell_output"
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="HW0" href="CS224W_Colab_0.html" />
     <link rel="prev" title="L01: Introduction ML for Graphs" href="lec01_Introduction_MLforGraphs.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
@@ -62,21 +65,7 @@ const thebe_selector_output = ".output, .cell_output"
     <!-- Google Analytics -->
     
   </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
-<!-- Checkboxes to toggle the left sidebar -->
-<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
-<label class="overlay overlay-navbar" for="__navigation">
-    <div class="visually-hidden">Toggle navigation sidebar</div>
-</label>
-<!-- Checkboxes to toggle the in-page toc -->
-<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
-<label class="overlay overlay-pagetoc" for="__page-toc">
-    <div class="visually-hidden">Toggle in-page Table of Contents</div>
-</label>
-<!-- Headers at the top -->
-<div class="announcement header-item noprint"></div>
-<div class="header header-item noprint"></div>
-
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
     
     <div class="container-fluid" id="banner"></div>
 
@@ -85,10 +74,9 @@ const thebe_selector_output = ".output, .cell_output"
     <div class="container-xl">
       <div class="row">
           
-<!-- Sidebar -->
-<div class="bd-sidebar noprint" id="site-navigation">
-    <div class="bd-sidebar__content">
-        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
     <a class="navbar-brand text-wrap" href="../index.html">
       
         <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
@@ -104,15 +92,14 @@ const thebe_selector_output = ".output, .cell_output"
   <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
 </form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item active">
-        
-        <ul class="nav bd-sidenav bd-sidenav__home-link">
-            <li class="toctree-l1">
-                <a class="reference internal" href="../intro.html">
-                    Welcome
-                </a>
-            </li>
-        </ul>
-        <p aria-level="2" class="caption" role="heading">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../intro.html">
+   Welcome
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
   System Design
  </span>
@@ -562,22 +549,29 @@ const thebe_selector_output = ".output, .cell_output"
      L02: Traditional Methods for ML in Graphs
     </a>
    </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="CS224W_Colab_0.html">
+     <strong>
+      HW0
+     </strong>
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="CS224W_Colab_1.html">
+     HW1
+    </a>
+   </li>
   </ul>
  </li>
 </ul>
 
     </div>
-</nav></div>
-        <div class="bd-sidebar__bottom">
-             <!-- To handle the deprecated key -->
-            
-            <div class="navbar_extra_footer">
-            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
-            </div>
-            
-        </div>
-    </div>
-    <div id="rtd-footer-container"></div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
 </div>
 
 
@@ -585,191 +579,94 @@ const thebe_selector_output = ".output, .cell_output"
 
 
           
-<!-- A tiny helper pixel to detect if we've scrolled -->
-<div class="sbt-scroll-pixel-helper"></div>
-<!-- Main content -->
-<div class="col py-0 content-container">
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
     
-    <div class="header-article row sticky-top noprint">
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
         
-
-
-
-<div class="col py-1 d-flex header-article-main">
-    <div class="header-article__left">
-        
-        <label for="__navigation"
-  class="headerbtn"
-  data-toggle="tooltip"
-data-placement="right"
-title="Toggle navigation"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-bars"></i>
-  </span>
-
-</label>
-
-        
-    </div>
-    <div class="header-article__right">
-<div class="menu-dropdown menu-dropdown-launch-buttons">
-  <button class="headerbtn menu-dropdown__trigger"
-      aria-label="Launch interactive content">
-      <i class="fas fa-rocket"></i>
-  </button>
-  <div class="menu-dropdown__content">
-    <ul>
-      <li>
-        <a href="https://mybinder.org/v2/gh/chandrabsingh/learning/master?urlpath=tree/learning/cs224w_ml_graph/lec02-TraditionalMethods.ipynb"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Launch on Binder"
->
-  
-
-<span class="headerbtn__icon-container">
-  
-    <img src="../_static/images/logo_binder.svg">
-  </span>
-<span class="headerbtn__text-container">Binder</span>
-</a>
-
-      </li>
-      
-    </ul>
-  </div>
-</div>
-
-<button onclick="toggleFullScreen()"
-  class="headerbtn"
-  data-toggle="tooltip"
-data-placement="bottom"
-title="Fullscreen mode"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-expand"></i>
-  </span>
-
-</button>
-
-<div class="menu-dropdown menu-dropdown-repository-buttons">
-  <button class="headerbtn menu-dropdown__trigger"
-      aria-label="Source repositories">
-      <i class="fab fa-github"></i>
-  </button>
-  <div class="menu-dropdown__content">
-    <ul>
-      <li>
-        <a href="https://github.com/chandrabsingh/learning"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Source repository"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fab fa-github"></i>
-  </span>
-<span class="headerbtn__text-container">repository</span>
-</a>
-
-      </li>
-      
-      <li>
-        <a href="https://github.com/chandrabsingh/learning/issues/new?title=Issue%20on%20page%20%2Fcs224w_ml_graph/lec02-TraditionalMethods.html&body=Your%20issue%20content%20here."
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Open an issue"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-lightbulb"></i>
-  </span>
-<span class="headerbtn__text-container">open issue</span>
-</a>
-
-      </li>
-      
-    </ul>
-  </div>
-</div>
-
-<div class="menu-dropdown menu-dropdown-download-buttons">
-  <button class="headerbtn menu-dropdown__trigger"
-      aria-label="Download this page">
-      <i class="fas fa-download"></i>
-  </button>
-  <div class="menu-dropdown__content">
-    <ul>
-      <li>
-        <a href="../_sources/cs224w_ml_graph/lec02-TraditionalMethods.ipynb"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Download source file"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-file"></i>
-  </span>
-<span class="headerbtn__text-container">.ipynb</span>
-</a>
-
-      </li>
-      
-      <li>
-        
-<button onclick="printPdf(this)"
-  class="headerbtn"
-  data-toggle="tooltip"
-data-placement="left"
-title="Print to PDF"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-file-pdf"></i>
-  </span>
-<span class="headerbtn__text-container">.pdf</span>
-</button>
-
-      </li>
-      
-    </ul>
-  </div>
-</div>
-<label for="__page-toc"
-  class="headerbtn headerbtn-page-toc"
-  
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-list"></i>
-  </span>
-
-</label>
-
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/cs224w_ml_graph/lec02-TraditionalMethods.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
     </div>
 </div>
 
-<!-- Table of contents -->
-<div class="col-md-3 bd-toc show noprint">
-    <div class="tocsection onthispage pt-5 pb-3">
-        <i class="fas fa-list"></i> Contents
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/chandrabsingh/learning"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/chandrabsingh/learning/issues/new?title=Issue%20on%20page%20%2Fcs224w_ml_graph/lec02-TraditionalMethods.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        
     </div>
-    <nav id="bd-toc-nav" aria-label="Page">
-        <ul class="visible nav section-nav flex-column">
+</div>
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/chandrabsingh/learning/master?urlpath=tree/learning/cs224w_ml_graph/lec02-TraditionalMethods.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#introduction">
    Introduction
@@ -904,11 +801,12 @@ title="Print to PDF"
  </li>
 </ul>
 
-    </nav>
-</div>
+            </nav>
+        </div>
     </div>
-    <div class="article row">
-        <div class="col pl-md-3 pl-lg-5 content-container">
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
                 <h1>L02: Traditional Methods for ML in Graphs</h1>
@@ -1059,14 +957,13 @@ title="Print to PDF"
                     </div>
                 </div>
             </div>
-            <main id="main-content" role="main">
-                
+            
               <div>
                 
   <section class="tex2jax_ignore mathjax_ignore" id="l02-traditional-methods-for-ml-in-graphs">
-<h1>L02: Traditional Methods for ML in Graphs<a class="headerlink" href="#l02-traditional-methods-for-ml-in-graphs" title="Permalink to this headline">#</a></h1>
+<h1>L02: Traditional Methods for ML in Graphs<a class="headerlink" href="#l02-traditional-methods-for-ml-in-graphs" title="Permalink to this headline">¶</a></h1>
 <section id="introduction">
-<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">#</a></h2>
+<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li><p>Node level prediction</p>
 <ul>
@@ -1086,7 +983,7 @@ title="Print to PDF"
 </ul>
 </section>
 <section id="traditional-ml-pipeline">
-<h2>Traditional ML Pipeline<a class="headerlink" href="#traditional-ml-pipeline" title="Permalink to this headline">#</a></h2>
+<h2>Traditional ML Pipeline<a class="headerlink" href="#traditional-ml-pipeline" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li><p>We design features for nodes/links/graphs which have dimension <span class="math notranslate nohighlight">\(\in \mathbb R^{D}\)</span></p></li>
 <li><p>design 2 types of features</p>
@@ -1135,7 +1032,7 @@ title="Print to PDF"
 </ul>
 </section>
 <section id="ml-in-graphs">
-<h2>ML in graphs<a class="headerlink" href="#ml-in-graphs" title="Permalink to this headline">#</a></h2>
+<h2>ML in graphs<a class="headerlink" href="#ml-in-graphs" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li><p>Goal: Make predictions for set of objects</p></li>
 <li><p>Design choices:</p>
@@ -1155,7 +1052,7 @@ Learn: <span class="math notranslate nohighlight">\(f: V \rightarrow \mathbb R\)
 </ul>
 </section>
 <section id="node-level-features">
-<h2>Node-level features<a class="headerlink" href="#node-level-features" title="Permalink to this headline">#</a></h2>
+<h2>Node-level features<a class="headerlink" href="#node-level-features" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li><p>Node classification</p>
 <ul>
@@ -1172,7 +1069,7 @@ Learn: <span class="math notranslate nohighlight">\(f: V \rightarrow \mathbb R\)
 </li>
 </ul>
 <section id="node-degree">
-<h3>Node Degree<a class="headerlink" href="#node-degree" title="Permalink to this headline">#</a></h3>
+<h3>Node Degree<a class="headerlink" href="#node-degree" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p>Degree</p>
 <ul>
@@ -1187,12 +1084,12 @@ Learn: <span class="math notranslate nohighlight">\(f: V \rightarrow \mathbb R\)
 <p><span class="math notranslate nohighlight">\(\tiny{\text{YouTube-Stanford-CS224W-Jure Leskovec}}\)</span></p>
 </section>
 <section id="node-centrality">
-<h3>Node centrality<a class="headerlink" href="#node-centrality" title="Permalink to this headline">#</a></h3>
+<h3>Node centrality<a class="headerlink" href="#node-centrality" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p>captures the node importance in a graph</p></li>
 </ul>
 <section id="eigenvector-centrality">
-<h4>Eigenvector centrality<a class="headerlink" href="#eigenvector-centrality" title="Permalink to this headline">#</a></h4>
+<h4>Eigenvector centrality<a class="headerlink" href="#eigenvector-centrality" title="Permalink to this headline">¶</a></h4>
 <ul class="simple">
 <li><p>node is imp if it has more important neighboring nodes</p></li>
 <li><p>sum of centrality of neighboring nodes</p></li>
@@ -1211,7 +1108,7 @@ $<span class="math notranslate nohighlight">\(  c_{\nu} = \frac{1}{\lambda}\sum\
 </ul>
 </section>
 <section id="betweenness-centrality">
-<h4>Betweenness centrality<a class="headerlink" href="#betweenness-centrality" title="Permalink to this headline">#</a></h4>
+<h4>Betweenness centrality<a class="headerlink" href="#betweenness-centrality" title="Permalink to this headline">¶</a></h4>
 <ul class="simple">
 <li><p>node is imp if it lies on many shortest paths between other nodes</p>
 <ul>
@@ -1224,7 +1121,7 @@ $<span class="math notranslate nohighlight">\(  c_{\nu} = \frac{1}{\lambda}\sum\
 <p><span class="math notranslate nohighlight">\(\tiny{\text{YouTube-Stanford-CS224W-Jure Leskovec}}\)</span></p>
 </section>
 <section id="closeness-centrality">
-<h4>Closeness centrality<a class="headerlink" href="#closeness-centrality" title="Permalink to this headline">#</a></h4>
+<h4>Closeness centrality<a class="headerlink" href="#closeness-centrality" title="Permalink to this headline">¶</a></h4>
 <ul class="simple">
 <li><p>node is imp if it has small shortest path lengths to all other nodes</p>
 <ul>
@@ -1238,7 +1135,7 @@ $<span class="math notranslate nohighlight">\(  c_{\nu} = \frac{1}{\lambda}\sum\
 </section>
 </section>
 <section id="clustering-coefficient">
-<h3>Clustering coefficient<a class="headerlink" href="#clustering-coefficient" title="Permalink to this headline">#</a></h3>
+<h3>Clustering coefficient<a class="headerlink" href="#clustering-coefficient" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p>how connected nodes are corresponding to its neighboring nodes</p></li>
 <li><p>denominator</p>
@@ -1274,7 +1171,7 @@ $<span class="math notranslate nohighlight">\(  c_{\nu} = \frac{1}{\lambda}\sum\
 <p><span class="math notranslate nohighlight">\(\tiny{\text{YouTube-Stanford-CS224W-Jure Leskovec}}\)</span></p>
 </section>
 <section id="graphlets">
-<h3>Graphlets<a class="headerlink" href="#graphlets" title="Permalink to this headline">#</a></h3>
+<h3>Graphlets<a class="headerlink" href="#graphlets" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p>this is an extension of clustering coeff</p></li>
 <li><p>instead of counting triangles, this counts the pre-specified subgraphs - graphlets</p></li>
@@ -1332,7 +1229,7 @@ $<span class="math notranslate nohighlight">\(  c_{\nu} = \frac{1}{\lambda}\sum\
 </ul>
 </section>
 <section id="summary-node-level-feature">
-<h3>Summary - Node level feature<a class="headerlink" href="#summary-node-level-feature" title="Permalink to this headline">#</a></h3>
+<h3>Summary - Node level feature<a class="headerlink" href="#summary-node-level-feature" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p><strong>Importance based features</strong></p>
 <ul>
@@ -1372,7 +1269,7 @@ $<span class="math notranslate nohighlight">\(  c_{\nu} = \frac{1}{\lambda}\sum\
 </section>
 </section>
 <section id="link-prediction-task-and-features">
-<h2>Link prediction task and features<a class="headerlink" href="#link-prediction-task-and-features" title="Permalink to this headline">#</a></h2>
+<h2>Link prediction task and features<a class="headerlink" href="#link-prediction-task-and-features" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li><p>predict new links based on existing links</p></li>
 <li><p>initially at test time,</p>
@@ -1426,7 +1323,7 @@ $<span class="math notranslate nohighlight">\(  c_{\nu} = \frac{1}{\lambda}\sum\
 </li>
 </ul>
 <section id="link-level-features">
-<h3>Link level features<a class="headerlink" href="#link-level-features" title="Permalink to this headline">#</a></h3>
+<h3>Link level features<a class="headerlink" href="#link-level-features" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p>goal: describe the relationship so as to predict and learn if there exists link between them</p></li>
 <li><p>types:</p>
@@ -1452,7 +1349,7 @@ $<span class="math notranslate nohighlight">\(  c_{\nu} = \frac{1}{\lambda}\sum\
 </li>
 </ul>
 <section id="distance-based-feature">
-<h4>Distance based feature<a class="headerlink" href="#distance-based-feature" title="Permalink to this headline">#</a></h4>
+<h4>Distance based feature<a class="headerlink" href="#distance-based-feature" title="Permalink to this headline">¶</a></h4>
 <ul class="simple">
 <li><p>shortest path distance between two nodes</p></li>
 <li><p>does not capture degree of neighborhood overlap or strength of connection</p>
@@ -1466,7 +1363,7 @@ $<span class="math notranslate nohighlight">\(  c_{\nu} = \frac{1}{\lambda}\sum\
 <p><span class="math notranslate nohighlight">\(\tiny{\text{YouTube-Stanford-CS224W-Jure Leskovec}}\)</span></p>
 </section>
 <section id="local-neighborhood-overlap">
-<h4>Local Neighborhood overlap<a class="headerlink" href="#local-neighborhood-overlap" title="Permalink to this headline">#</a></h4>
+<h4>Local Neighborhood overlap<a class="headerlink" href="#local-neighborhood-overlap" title="Permalink to this headline">¶</a></h4>
 <ul class="simple">
 <li><p>number of neighborhood shared between 2 nodes</p></li>
 <li><p>common neighbors</p>
@@ -1484,7 +1381,7 @@ $<span class="math notranslate nohighlight">\(  c_{\nu} = \frac{1}{\lambda}\sum\
 <p><span class="math notranslate nohighlight">\(\tiny{\text{YouTube-Stanford-CS224W-Jure Leskovec}}\)</span></p>
 </section>
 <section id="global-neighborhood-overlap">
-<h4>Global Neighborhood overlap<a class="headerlink" href="#global-neighborhood-overlap" title="Permalink to this headline">#</a></h4>
+<h4>Global Neighborhood overlap<a class="headerlink" href="#global-neighborhood-overlap" title="Permalink to this headline">¶</a></h4>
 <ul class="simple">
 <li><p>Katz index - number of paths of all length between pair of nodes</p></li>
 <li><p>to compute paths between 2 nodes</p>
@@ -1504,7 +1401,7 @@ $<span class="math notranslate nohighlight">\(  c_{\nu} = \frac{1}{\lambda}\sum\
 </section>
 </section>
 <section id="graph-level-features-and-graph-kernels">
-<h2>Graph-Level features and Graph Kernels<a class="headerlink" href="#graph-level-features-and-graph-kernels" title="Permalink to this headline">#</a></h2>
+<h2>Graph-Level features and Graph Kernels<a class="headerlink" href="#graph-level-features-and-graph-kernels" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li><p>How to design graph level features</p>
 <ul>
@@ -1519,7 +1416,7 @@ $<span class="math notranslate nohighlight">\(  c_{\nu} = \frac{1}{\lambda}\sum\
 </li>
 </ul>
 <section id="kernel-method">
-<h3>Kernel method<a class="headerlink" href="#kernel-method" title="Permalink to this headline">#</a></h3>
+<h3>Kernel method<a class="headerlink" href="#kernel-method" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p>widely used in ML for graph level prediction</p>
 <ul>
@@ -1541,7 +1438,7 @@ $<span class="math notranslate nohighlight">\(  c_{\nu} = \frac{1}{\lambda}\sum\
 </ul>
 </section>
 <section id="graph-kernels">
-<h3>Graph kernels<a class="headerlink" href="#graph-kernels" title="Permalink to this headline">#</a></h3>
+<h3>Graph kernels<a class="headerlink" href="#graph-kernels" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p>measure similarity between two graphs</p></li>
 <li><p>Graphlet Kernel</p>
@@ -1571,7 +1468,7 @@ $<span class="math notranslate nohighlight">\(  c_{\nu} = \frac{1}{\lambda}\sum\
 </li>
 </ul>
 <section id="key-idea">
-<h4>Key Idea<a class="headerlink" href="#key-idea" title="Permalink to this headline">#</a></h4>
+<h4>Key Idea<a class="headerlink" href="#key-idea" title="Permalink to this headline">¶</a></h4>
 <ul class="simple">
 <li><p>Bag-of-Words (BoW) for a graph</p>
 <ul>
@@ -1611,7 +1508,7 @@ $<span class="math notranslate nohighlight">\(  c_{\nu} = \frac{1}{\lambda}\sum\
 </ul>
 </section>
 <section id="graphlet-features">
-<h4>Graphlet features<a class="headerlink" href="#graphlet-features" title="Permalink to this headline">#</a></h4>
+<h4>Graphlet features<a class="headerlink" href="#graphlet-features" title="Permalink to this headline">¶</a></h4>
 <ul>
 <li><p>count the number of different graphlets</p></li>
 <li><p>Graph graphlet is different from node-level graphlet features</p>
@@ -1642,7 +1539,7 @@ $<span class="math notranslate nohighlight">\(  c_{\nu} = \frac{1}{\lambda}\sum\
 <p><span class="math notranslate nohighlight">\(\tiny{\text{YouTube-Stanford-CS224W-Jure Leskovec}}\)</span></p>
 </section>
 <section id="graphlet-kernel">
-<h4>Graphlet kernel<a class="headerlink" href="#graphlet-kernel" title="Permalink to this headline">#</a></h4>
+<h4>Graphlet kernel<a class="headerlink" href="#graphlet-kernel" title="Permalink to this headline">¶</a></h4>
 <ul class="simple">
 <li><p>dot product of graphlet count of two vector graphs
 $<span class="math notranslate nohighlight">\(  K(G, G') = f_{G}^{T}f_{G'}  \)</span>$</p></li>
@@ -1672,7 +1569,7 @@ $<span class="math notranslate nohighlight">\(  h_{G} = \frac{f_{G}}{sum(f_{G})}
 </ul>
 </section>
 <section id="weisfeiler-lehman-wl-kernel">
-<h4>Weisfeiler-Lehman(WL) Kernel<a class="headerlink" href="#weisfeiler-lehman-wl-kernel" title="Permalink to this headline">#</a></h4>
+<h4>Weisfeiler-Lehman(WL) Kernel<a class="headerlink" href="#weisfeiler-lehman-wl-kernel" title="Permalink to this headline">¶</a></h4>
 <ul class="simple">
 <li><p>goal:</p>
 <ul>
@@ -1740,11 +1637,9 @@ $<span class="math notranslate nohighlight">\(  c^{(k+1)}(\nu) = hash(\{c^{(k)}(
 
               </div>
               
-            </main>
-            <footer class="footer-article noprint">
-                
-    <!-- Previous / next buttons -->
-<div class='prev-next-area'>
+            
+                <!-- Previous / next buttons -->
+<div class='prev-next-area'> 
     <a class='left-prev' id="prev-link" href="lec01_Introduction_MLforGraphs.html" title="previous page">
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
@@ -1752,29 +1647,32 @@ $<span class="math notranslate nohighlight">\(  c^{(k+1)}(\nu) = hash(\{c^{(k)}(
             <p class="prev-next-title">L01: Introduction ML for Graphs</p>
         </div>
     </a>
+    <a class='right-next' id="next-link" href="CS224W_Colab_0.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><strong>HW0</strong></p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
 </div>
-            </footer>
+            
         </div>
     </div>
-    <div class="footer-content row">
-        <footer class="col footer"><p>
-  
-    By Chandra<br/>
-  
-      &copy; Copyright 2022.<br/>
-</p>
-        </footer>
-    </div>
+    <footer class="footer">
+  <p>
     
-</div>
+      By Chandra<br/>
+    
+        &copy; Copyright 2021.<br/>
+  </p>
+</footer>
+</main>
 
 
       </div>
     </div>
   
-  <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
-
+  <script src="../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
 
   </body>
 </html>

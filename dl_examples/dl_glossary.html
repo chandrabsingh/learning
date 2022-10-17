@@ -8,9 +8,8 @@
 
     <title>DL Conceptual brief</title>
     
-  <!-- Loaded before other Sphinx assets -->
-  <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
-<link href="../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+  <link href="../_static/css/theme.css" rel="stylesheet">
+  <link href="../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
 
     
   <link rel="stylesheet"
@@ -20,16 +19,20 @@
   <link rel="preload" as="font" type="font/woff2" crossorigin
     href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
 
+    
+      
+
+    
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
     
-  <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+  <link rel="preload" as="script" href="../_static/js/index.be7d3bbb2ef33a8344ce.js">
 
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
@@ -37,13 +40,12 @@
     <script src="../_static/doctools.js"></script>
     <script src="../_static/clipboard.min.js"></script>
     <script src="../_static/copybutton.js"></script>
-    <script src="../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
     <script src="../_static/togglebutton.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="../_static/design-tabs.js"></script>
+    <script src="../_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
 const thebe_selector = ".thebe,.cell"
 const thebe_selector_input = "pre"
@@ -63,21 +65,7 @@ const thebe_selector_output = ".output, .cell_output"
     <!-- Google Analytics -->
     
   </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
-<!-- Checkboxes to toggle the left sidebar -->
-<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
-<label class="overlay overlay-navbar" for="__navigation">
-    <div class="visually-hidden">Toggle navigation sidebar</div>
-</label>
-<!-- Checkboxes to toggle the in-page toc -->
-<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
-<label class="overlay overlay-pagetoc" for="__page-toc">
-    <div class="visually-hidden">Toggle in-page Table of Contents</div>
-</label>
-<!-- Headers at the top -->
-<div class="announcement header-item noprint"></div>
-<div class="header header-item noprint"></div>
-
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
     
     <div class="container-fluid" id="banner"></div>
 
@@ -86,10 +74,9 @@ const thebe_selector_output = ".output, .cell_output"
     <div class="container-xl">
       <div class="row">
           
-<!-- Sidebar -->
-<div class="bd-sidebar noprint" id="site-navigation">
-    <div class="bd-sidebar__content">
-        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
     <a class="navbar-brand text-wrap" href="../index.html">
       
         <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
@@ -105,15 +92,14 @@ const thebe_selector_output = ".output, .cell_output"
   <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
 </form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item active">
-        
-        <ul class="nav bd-sidenav bd-sidenav__home-link">
-            <li class="toctree-l1">
-                <a class="reference internal" href="../intro.html">
-                    Welcome
-                </a>
-            </li>
-        </ul>
-        <p aria-level="2" class="caption" role="heading">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../intro.html">
+   Welcome
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
   System Design
  </span>
@@ -563,22 +549,29 @@ const thebe_selector_output = ".output, .cell_output"
      L02: Traditional Methods for ML in Graphs
     </a>
    </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../cs224w_ml_graph/CS224W_Colab_0.html">
+     <strong>
+      HW0
+     </strong>
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../cs224w_ml_graph/CS224W_Colab_1.html">
+     HW1
+    </a>
+   </li>
   </ul>
  </li>
 </ul>
 
     </div>
-</nav></div>
-        <div class="bd-sidebar__bottom">
-             <!-- To handle the deprecated key -->
-            
-            <div class="navbar_extra_footer">
-            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
-            </div>
-            
-        </div>
-    </div>
-    <div id="rtd-footer-container"></div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
 </div>
 
 
@@ -586,191 +579,94 @@ const thebe_selector_output = ".output, .cell_output"
 
 
           
-<!-- A tiny helper pixel to detect if we've scrolled -->
-<div class="sbt-scroll-pixel-helper"></div>
-<!-- Main content -->
-<div class="col py-0 content-container">
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
     
-    <div class="header-article row sticky-top noprint">
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
         
-
-
-
-<div class="col py-1 d-flex header-article-main">
-    <div class="header-article__left">
-        
-        <label for="__navigation"
-  class="headerbtn"
-  data-toggle="tooltip"
-data-placement="right"
-title="Toggle navigation"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-bars"></i>
-  </span>
-
-</label>
-
-        
-    </div>
-    <div class="header-article__right">
-<div class="menu-dropdown menu-dropdown-launch-buttons">
-  <button class="headerbtn menu-dropdown__trigger"
-      aria-label="Launch interactive content">
-      <i class="fas fa-rocket"></i>
-  </button>
-  <div class="menu-dropdown__content">
-    <ul>
-      <li>
-        <a href="https://mybinder.org/v2/gh/chandrabsingh/learning/master?urlpath=tree/learning/dl_examples/dl_glossary.ipynb"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Launch on Binder"
->
-  
-
-<span class="headerbtn__icon-container">
-  
-    <img src="../_static/images/logo_binder.svg">
-  </span>
-<span class="headerbtn__text-container">Binder</span>
-</a>
-
-      </li>
-      
-    </ul>
-  </div>
-</div>
-
-<button onclick="toggleFullScreen()"
-  class="headerbtn"
-  data-toggle="tooltip"
-data-placement="bottom"
-title="Fullscreen mode"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-expand"></i>
-  </span>
-
-</button>
-
-<div class="menu-dropdown menu-dropdown-repository-buttons">
-  <button class="headerbtn menu-dropdown__trigger"
-      aria-label="Source repositories">
-      <i class="fab fa-github"></i>
-  </button>
-  <div class="menu-dropdown__content">
-    <ul>
-      <li>
-        <a href="https://github.com/chandrabsingh/learning"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Source repository"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fab fa-github"></i>
-  </span>
-<span class="headerbtn__text-container">repository</span>
-</a>
-
-      </li>
-      
-      <li>
-        <a href="https://github.com/chandrabsingh/learning/issues/new?title=Issue%20on%20page%20%2Fdl_examples/dl_glossary.html&body=Your%20issue%20content%20here."
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Open an issue"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-lightbulb"></i>
-  </span>
-<span class="headerbtn__text-container">open issue</span>
-</a>
-
-      </li>
-      
-    </ul>
-  </div>
-</div>
-
-<div class="menu-dropdown menu-dropdown-download-buttons">
-  <button class="headerbtn menu-dropdown__trigger"
-      aria-label="Download this page">
-      <i class="fas fa-download"></i>
-  </button>
-  <div class="menu-dropdown__content">
-    <ul>
-      <li>
-        <a href="../_sources/dl_examples/dl_glossary.ipynb"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Download source file"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-file"></i>
-  </span>
-<span class="headerbtn__text-container">.ipynb</span>
-</a>
-
-      </li>
-      
-      <li>
-        
-<button onclick="printPdf(this)"
-  class="headerbtn"
-  data-toggle="tooltip"
-data-placement="left"
-title="Print to PDF"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-file-pdf"></i>
-  </span>
-<span class="headerbtn__text-container">.pdf</span>
-</button>
-
-      </li>
-      
-    </ul>
-  </div>
-</div>
-<label for="__page-toc"
-  class="headerbtn headerbtn-page-toc"
-  
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-list"></i>
-  </span>
-
-</label>
-
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/dl_examples/dl_glossary.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
     </div>
 </div>
 
-<!-- Table of contents -->
-<div class="col-md-3 bd-toc show noprint">
-    <div class="tocsection onthispage pt-5 pb-3">
-        <i class="fas fa-list"></i> Contents
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/chandrabsingh/learning"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/chandrabsingh/learning/issues/new?title=Issue%20on%20page%20%2Fdl_examples/dl_glossary.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        
     </div>
-    <nav id="bd-toc-nav" aria-label="Page">
-        <ul class="visible nav section-nav flex-column">
+</div>
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/chandrabsingh/learning/master?urlpath=tree/learning/dl_examples/dl_glossary.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#libraries">
    Libraries
@@ -1477,11 +1373,12 @@ title="Print to PDF"
  </li>
 </ul>
 
-    </nav>
-</div>
+            </nav>
+        </div>
     </div>
-    <div class="article row">
-        <div class="col pl-md-3 pl-lg-5 content-container">
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
                 <h1>DL Conceptual brief</h1>
@@ -2204,16 +2101,15 @@ title="Print to PDF"
                     </div>
                 </div>
             </div>
-            <main id="main-content" role="main">
-                
+            
               <div>
                 
   <section class="tex2jax_ignore mathjax_ignore" id="dl-conceptual-brief">
-<h1>DL Conceptual brief<a class="headerlink" href="#dl-conceptual-brief" title="Permalink to this headline">#</a></h1>
+<h1>DL Conceptual brief<a class="headerlink" href="#dl-conceptual-brief" title="Permalink to this headline">¶</a></h1>
 <section id="libraries">
-<h2>Libraries<a class="headerlink" href="#libraries" title="Permalink to this headline">#</a></h2>
+<h2>Libraries<a class="headerlink" href="#libraries" title="Permalink to this headline">¶</a></h2>
 <section id="tensorflow">
-<h3>TensorFlow<a class="headerlink" href="#tensorflow" title="Permalink to this headline">#</a></h3>
+<h3>TensorFlow<a class="headerlink" href="#tensorflow" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p>Google calls it <strong>“an open source software library for machine intelligence”</strong></p></li>
 <li><p>other deep learning libraries</p>
@@ -2225,7 +2121,7 @@ title="Print to PDF"
 </li>
 </ul>
 <section id="features">
-<h4>Features<a class="headerlink" href="#features" title="Permalink to this headline">#</a></h4>
+<h4>Features<a class="headerlink" href="#features" title="Permalink to this headline">¶</a></h4>
 <ul class="simple">
 <li><p>have <strong>auto-differentiation</strong>,</p></li>
 <li><p>support for CPU/GPU option,</p></li>
@@ -2238,10 +2134,10 @@ title="Print to PDF"
 </section>
 </section>
 <section id="pytorch">
-<h3>PyTorch<a class="headerlink" href="#pytorch" title="Permalink to this headline">#</a></h3>
+<h3>PyTorch<a class="headerlink" href="#pytorch" title="Permalink to this headline">¶</a></h3>
 </section>
 <section id="keras">
-<h3>Keras<a class="headerlink" href="#keras" title="Permalink to this headline">#</a></h3>
+<h3>Keras<a class="headerlink" href="#keras" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p>The core layers in Keras includes dense layers, activation layers, and dropout layers. There are other layers that are more complex, including convolutional layers and pooling layers</p></li>
 <li><p>A dense layer is also known as a fully-connected layer. It is fully-connected because it uses all of its input (as opposed to a subset of the input) for the mathematical function that it implements.</p></li>
@@ -2262,15 +2158,15 @@ title="Print to PDF"
 </section>
 </section>
 <section id="general-concepts">
-<h2>General concepts<a class="headerlink" href="#general-concepts" title="Permalink to this headline">#</a></h2>
+<h2>General concepts<a class="headerlink" href="#general-concepts" title="Permalink to this headline">¶</a></h2>
 <section id="perceptron-algorithm">
-<h3>Perceptron algorithm<a class="headerlink" href="#perceptron-algorithm" title="Permalink to this headline">#</a></h3>
+<h3>Perceptron algorithm<a class="headerlink" href="#perceptron-algorithm" title="Permalink to this headline">¶</a></h3>
 </section>
 <section id="softmax-algorithm">
-<h3>Softmax algorithm<a class="headerlink" href="#softmax-algorithm" title="Permalink to this headline">#</a></h3>
+<h3>Softmax algorithm<a class="headerlink" href="#softmax-algorithm" title="Permalink to this headline">¶</a></h3>
 </section>
 <section id="transfer-learning">
-<h3>Transfer Learning<a class="headerlink" href="#transfer-learning" title="Permalink to this headline">#</a></h3>
+<h3>Transfer Learning<a class="headerlink" href="#transfer-learning" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p>Transfer learning (TL) is a research problem in machine learning (ML) that focuses on storing knowledge gained while solving one problem and applying it to a different but related problem.</p></li>
 <li><p>How do you make an image classifier that can be trained in a few minutes on a CPU with very little data?</p>
@@ -2281,16 +2177,16 @@ title="Print to PDF"
 </ul>
 </section>
 <section id="representation-learning">
-<h3>Representation Learning<a class="headerlink" href="#representation-learning" title="Permalink to this headline">#</a></h3>
+<h3>Representation Learning<a class="headerlink" href="#representation-learning" title="Permalink to this headline">¶</a></h3>
 </section>
 <section id="activation-function">
-<h3>Activation function<a class="headerlink" href="#activation-function" title="Permalink to this headline">#</a></h3>
+<h3>Activation function<a class="headerlink" href="#activation-function" title="Permalink to this headline">¶</a></h3>
 </section>
 <section id="relu">
-<h3>ReLU<a class="headerlink" href="#relu" title="Permalink to this headline">#</a></h3>
+<h3>ReLU<a class="headerlink" href="#relu" title="Permalink to this headline">¶</a></h3>
 </section>
 <section id="back-propagation">
-<h3>Back propagation<a class="headerlink" href="#back-propagation" title="Permalink to this headline">#</a></h3>
+<h3>Back propagation<a class="headerlink" href="#back-propagation" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p>Gradients are important</p>
 <ul>
@@ -2323,12 +2219,12 @@ title="Print to PDF"
 </ul>
 </section>
 <section id="forward-propagation">
-<h3>Forward propagation<a class="headerlink" href="#forward-propagation" title="Permalink to this headline">#</a></h3>
+<h3>Forward propagation<a class="headerlink" href="#forward-propagation" title="Permalink to this headline">¶</a></h3>
 </section>
 <section id="training-neural-nets">
-<h3>Training Neural Nets<a class="headerlink" href="#training-neural-nets" title="Permalink to this headline">#</a></h3>
+<h3>Training Neural Nets<a class="headerlink" href="#training-neural-nets" title="Permalink to this headline">¶</a></h3>
 <section id="normalizing-feature-values">
-<h4>Normalizing Feature Values<a class="headerlink" href="#normalizing-feature-values" title="Permalink to this headline">#</a></h4>
+<h4>Normalizing Feature Values<a class="headerlink" href="#normalizing-feature-values" title="Permalink to this headline">¶</a></h4>
 <ul class="simple">
 <li><p>features must have reasonable scales</p>
 <ul>
@@ -2347,7 +2243,7 @@ title="Print to PDF"
 </ul>
 </section>
 <section id="dropout-regularization">
-<h4>Dropout Regularization<a class="headerlink" href="#dropout-regularization" title="Permalink to this headline">#</a></h4>
+<h4>Dropout Regularization<a class="headerlink" href="#dropout-regularization" title="Permalink to this headline">¶</a></h4>
 <ul class="simple">
 <li><p>Dropout: Another form of regularization, useful for NNs</p>
 <ul>
@@ -2369,30 +2265,30 @@ title="Print to PDF"
 </section>
 </section>
 <section id="cross-entropy">
-<h3>Cross Entropy<a class="headerlink" href="#cross-entropy" title="Permalink to this headline">#</a></h3>
+<h3>Cross Entropy<a class="headerlink" href="#cross-entropy" title="Permalink to this headline">¶</a></h3>
 </section>
 <section id="encoder-decoder">
-<h3>Encoder-Decoder<a class="headerlink" href="#encoder-decoder" title="Permalink to this headline">#</a></h3>
+<h3>Encoder-Decoder<a class="headerlink" href="#encoder-decoder" title="Permalink to this headline">¶</a></h3>
 </section>
 <section id="neural-style-transfer">
-<h3>Neural Style Transfer<a class="headerlink" href="#neural-style-transfer" title="Permalink to this headline">#</a></h3>
+<h3>Neural Style Transfer<a class="headerlink" href="#neural-style-transfer" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p>is the technique of blending style from one image into another image keeping its content intact. The only change is the style configurations of the image to give an artistic touch to your image.</p></li>
 </ul>
 </section>
 <section id="content-loss">
-<h3>Content Loss<a class="headerlink" href="#content-loss" title="Permalink to this headline">#</a></h3>
+<h3>Content Loss<a class="headerlink" href="#content-loss" title="Permalink to this headline">¶</a></h3>
 </section>
 <section id="style-loss">
-<h3>Style Loss<a class="headerlink" href="#style-loss" title="Permalink to this headline">#</a></h3>
+<h3>Style Loss<a class="headerlink" href="#style-loss" title="Permalink to this headline">¶</a></h3>
 </section>
 <section id="gram-matrices">
-<h3>Gram Matrices<a class="headerlink" href="#gram-matrices" title="Permalink to this headline">#</a></h3>
+<h3>Gram Matrices<a class="headerlink" href="#gram-matrices" title="Permalink to this headline">¶</a></h3>
 </section>
 <section id="multi-class-neural-nets">
-<h3>Multi-Class Neural Nets<a class="headerlink" href="#multi-class-neural-nets" title="Permalink to this headline">#</a></h3>
+<h3>Multi-Class Neural Nets<a class="headerlink" href="#multi-class-neural-nets" title="Permalink to this headline">¶</a></h3>
 <section id="one-vs-all-multi-class">
-<h4>One-Vs-All Multi-Class<a class="headerlink" href="#one-vs-all-multi-class" title="Permalink to this headline">#</a></h4>
+<h4>One-Vs-All Multi-Class<a class="headerlink" href="#one-vs-all-multi-class" title="Permalink to this headline">¶</a></h4>
 <ul class="simple">
 <li><p>SoftMax Multi-Class</p>
 <ul>
@@ -2405,7 +2301,7 @@ title="Print to PDF"
 </ul>
 </section>
 <section id="multi-class-single-label-classification">
-<h4>Multi-Class, Single-Label Classification:<a class="headerlink" href="#multi-class-single-label-classification" title="Permalink to this headline">#</a></h4>
+<h4>Multi-Class, Single-Label Classification:<a class="headerlink" href="#multi-class-single-label-classification" title="Permalink to this headline">¶</a></h4>
 <ul class="simple">
 <li><p>An example may be a <strong>member of only one class.</strong></p></li>
 <li><p>Constraint that classes are <strong>mutually exclusive</strong> is helpful structure.</p></li>
@@ -2414,7 +2310,7 @@ title="Print to PDF"
 </ul>
 </section>
 <section id="multi-class-multi-label-classification">
-<h4>Multi-Class, Multi-Label Classification:<a class="headerlink" href="#multi-class-multi-label-classification" title="Permalink to this headline">#</a></h4>
+<h4>Multi-Class, Multi-Label Classification:<a class="headerlink" href="#multi-class-multi-label-classification" title="Permalink to this headline">¶</a></h4>
 <ul class="simple">
 <li><p>An example may be a <strong>member of more than one class.</strong></p></li>
 <li><p>No additional constraints on class membership to exploit.</p></li>
@@ -2424,9 +2320,9 @@ title="Print to PDF"
 </section>
 </section>
 <section id="softmax-options">
-<h3>SoftMax Options<a class="headerlink" href="#softmax-options" title="Permalink to this headline">#</a></h3>
+<h3>SoftMax Options<a class="headerlink" href="#softmax-options" title="Permalink to this headline">¶</a></h3>
 <section id="full-softmax">
-<h4>Full SoftMax<a class="headerlink" href="#full-softmax" title="Permalink to this headline">#</a></h4>
+<h4>Full SoftMax<a class="headerlink" href="#full-softmax" title="Permalink to this headline">¶</a></h4>
 <ul class="simple">
 <li><p>For Multi-Class classification problems</p>
 <ul>
@@ -2442,7 +2338,7 @@ title="Print to PDF"
 </ul>
 </section>
 <section id="candidate-sampling">
-<h4>Candidate Sampling<a class="headerlink" href="#candidate-sampling" title="Permalink to this headline">#</a></h4>
+<h4>Candidate Sampling<a class="headerlink" href="#candidate-sampling" title="Permalink to this headline">¶</a></h4>
 <ul class="simple">
 <li><p>allows to be more efficient by differentiating between classes</p>
 <ul>
@@ -2458,17 +2354,17 @@ title="Print to PDF"
 </section>
 </section>
 <section id="local-response-normalization-vs-batch-normalization">
-<h3>Local Response Normalization vs Batch Normalization<a class="headerlink" href="#local-response-normalization-vs-batch-normalization" title="Permalink to this headline">#</a></h3>
+<h3>Local Response Normalization vs Batch Normalization<a class="headerlink" href="#local-response-normalization-vs-batch-normalization" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p><a class="reference external" href="https://towardsdatascience.com/difference-between-local-response-normalization-and-batch-normalization-272308c034ac">https://towardsdatascience.com/difference-between-local-response-normalization-and-batch-normalization-272308c034ac</a></p></li>
 </ul>
 </section>
 </section>
 <section id="most-popular-deep-learning-algorithms">
-<h2>10 most popular deep learning algorithms<a class="headerlink" href="#most-popular-deep-learning-algorithms" title="Permalink to this headline">#</a></h2>
+<h2>10 most popular deep learning algorithms<a class="headerlink" href="#most-popular-deep-learning-algorithms" title="Permalink to this headline">¶</a></h2>
 <p><a class="reference external" href="https://www.simplilearn.com/tutorials/deep-learning-tutorial/deep-learning-algorithm">Link</a></p>
 <section id="convolutional-neural-networks-cnns">
-<h3>Convolutional Neural Networks (CNNs)<a class="headerlink" href="#convolutional-neural-networks-cnns" title="Permalink to this headline">#</a></h3>
+<h3>Convolutional Neural Networks (CNNs)<a class="headerlink" href="#convolutional-neural-networks-cnns" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p>Computer Vision with Deep Learning has been constructed and perfected with time, primarily over one particular algorithm — a <strong>Convolutional Neural Network(ConvNet/CNN)</strong>.</p></li>
 <li><p>Neural networks came to prominence in <strong>2012</strong> as machine learning expert <strong>Alex Krizhevsky</strong> utilized them to get <strong>first prize in the ImageNet competition</strong>.</p></li>
@@ -2500,69 +2396,69 @@ title="Print to PDF"
 <li><p><a class="reference external" href="https://poloclub.github.io/cnn-explainer/">https://poloclub.github.io/cnn-explainer/</a></p></li>
 </ul>
 <section id="id1">
-<h4>General Concepts<a class="headerlink" href="#id1" title="Permalink to this headline">#</a></h4>
+<h4>General Concepts<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h4>
 <section id="convolution">
-<h5>Convolution<a class="headerlink" href="#convolution" title="Permalink to this headline">#</a></h5>
+<h5>Convolution<a class="headerlink" href="#convolution" title="Permalink to this headline">¶</a></h5>
 </section>
 <section id="max-pooling">
-<h5>Max Pooling<a class="headerlink" href="#max-pooling" title="Permalink to this headline">#</a></h5>
+<h5>Max Pooling<a class="headerlink" href="#max-pooling" title="Permalink to this headline">¶</a></h5>
 </section>
 <section id="average-pooling">
-<h5>Average Pooling<a class="headerlink" href="#average-pooling" title="Permalink to this headline">#</a></h5>
+<h5>Average Pooling<a class="headerlink" href="#average-pooling" title="Permalink to this headline">¶</a></h5>
 </section>
 <section id="fully-connected">
-<h5>Fully Connected<a class="headerlink" href="#fully-connected" title="Permalink to this headline">#</a></h5>
+<h5>Fully Connected<a class="headerlink" href="#fully-connected" title="Permalink to this headline">¶</a></h5>
 </section>
 <section id="sota-models">
-<h5>SOTA Models<a class="headerlink" href="#sota-models" title="Permalink to this headline">#</a></h5>
+<h5>SOTA Models<a class="headerlink" href="#sota-models" title="Permalink to this headline">¶</a></h5>
 </section>
 <section id="differential-learning-rate">
-<h5>Differential Learning Rate<a class="headerlink" href="#differential-learning-rate" title="Permalink to this headline">#</a></h5>
+<h5>Differential Learning Rate<a class="headerlink" href="#differential-learning-rate" title="Permalink to this headline">¶</a></h5>
 </section>
 <section id="feature-maps">
-<h5>Feature Maps<a class="headerlink" href="#feature-maps" title="Permalink to this headline">#</a></h5>
+<h5>Feature Maps<a class="headerlink" href="#feature-maps" title="Permalink to this headline">¶</a></h5>
 </section>
 <section id="kernel">
-<h5>Kernel<a class="headerlink" href="#kernel" title="Permalink to this headline">#</a></h5>
+<h5>Kernel<a class="headerlink" href="#kernel" title="Permalink to this headline">¶</a></h5>
 </section>
 <section id="filter">
-<h5>Filter<a class="headerlink" href="#filter" title="Permalink to this headline">#</a></h5>
+<h5>Filter<a class="headerlink" href="#filter" title="Permalink to this headline">¶</a></h5>
 </section>
 <section id="spatial-information">
-<h5>Spatial information<a class="headerlink" href="#spatial-information" title="Permalink to this headline">#</a></h5>
+<h5>Spatial information<a class="headerlink" href="#spatial-information" title="Permalink to this headline">¶</a></h5>
 </section>
 <section id="local-receptive-fields-shared-weights-and-pooling">
-<h5>local receptive fields, shared weights, and pooling<a class="headerlink" href="#local-receptive-fields-shared-weights-and-pooling" title="Permalink to this headline">#</a></h5>
+<h5>local receptive fields, shared weights, and pooling<a class="headerlink" href="#local-receptive-fields-shared-weights-and-pooling" title="Permalink to this headline">¶</a></h5>
 </section>
 <section id="strides">
-<h5>Strides<a class="headerlink" href="#strides" title="Permalink to this headline">#</a></h5>
+<h5>Strides<a class="headerlink" href="#strides" title="Permalink to this headline">¶</a></h5>
 </section>
 <section id="convolution2d-maxpooling2d">
-<h5>Convolution2D, MaxPooling2D<a class="headerlink" href="#convolution2d-maxpooling2d" title="Permalink to this headline">#</a></h5>
+<h5>Convolution2D, MaxPooling2D<a class="headerlink" href="#convolution2d-maxpooling2d" title="Permalink to this headline">¶</a></h5>
 </section>
 <section id="padding">
-<h5>Padding<a class="headerlink" href="#padding" title="Permalink to this headline">#</a></h5>
+<h5>Padding<a class="headerlink" href="#padding" title="Permalink to this headline">¶</a></h5>
 </section>
 <section id="flatten-layer">
-<h5>Flatten Layer<a class="headerlink" href="#flatten-layer" title="Permalink to this headline">#</a></h5>
+<h5>Flatten Layer<a class="headerlink" href="#flatten-layer" title="Permalink to this headline">¶</a></h5>
 </section>
 <section id="pooling-layers">
-<h5>Pooling layers<a class="headerlink" href="#pooling-layers" title="Permalink to this headline">#</a></h5>
+<h5>Pooling layers<a class="headerlink" href="#pooling-layers" title="Permalink to this headline">¶</a></h5>
 </section>
 <section id="convolutional-layer">
-<h5>Convolutional Layer<a class="headerlink" href="#convolutional-layer" title="Permalink to this headline">#</a></h5>
+<h5>Convolutional Layer<a class="headerlink" href="#convolutional-layer" title="Permalink to this headline">¶</a></h5>
 <img src="https://miro.medium.com/max/1400/1*qtinjiZct2w7Dr4XoFixnA.gif">
 </section>
 <section id="cnn-sequence-to-classify-handwritten-digits">
-<h5>CNN sequence to classify handwritten digits<a class="headerlink" href="#cnn-sequence-to-classify-handwritten-digits" title="Permalink to this headline">#</a></h5>
+<h5>CNN sequence to classify handwritten digits<a class="headerlink" href="#cnn-sequence-to-classify-handwritten-digits" title="Permalink to this headline">¶</a></h5>
 <img src="https://miro.medium.com/max/1400/1*uAeANQIOQPqWZnnuH-VEyw.jpeg">
 </section>
 <section id="flattened-3x3-image-matrix-1-dimension">
-<h5>Flattened 3x3 image matrix 1 dimension<a class="headerlink" href="#flattened-3x3-image-matrix-1-dimension" title="Permalink to this headline">#</a></h5>
+<h5>Flattened 3x3 image matrix 1 dimension<a class="headerlink" href="#flattened-3x3-image-matrix-1-dimension" title="Permalink to this headline">¶</a></h5>
 <img src="https://miro.medium.com/max/850/1*GLQjM9k0gZ14nYF0XmkRWQ.png" width=500 height=500>
 </section>
 <section id="id2">
-<h5>Kernel<a class="headerlink" href="#id2" title="Permalink to this headline">#</a></h5>
+<h5>Kernel<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h5>
 <ul class="simple">
 <li><p>Convoluting a 5x5x1 image(Green) with a 3x3x1 kernel(Yellow) to get a 3x3x1(Red) convolved feature</p></li>
 </ul>
@@ -2581,11 +2477,11 @@ title="Print to PDF"
 <img src="https://miro.medium.com/max/790/1*nYf_cUIHFEWU1JXGwnz-Ig.gif" width=500 height=500>
 </section>
 <section id="types-of-pooling">
-<h5>Types of Pooling<a class="headerlink" href="#types-of-pooling" title="Permalink to this headline">#</a></h5>
+<h5>Types of Pooling<a class="headerlink" href="#types-of-pooling" title="Permalink to this headline">¶</a></h5>
 <img src="https://miro.medium.com/max/1192/1*KQIEqhxzICU7thjaQBfPBQ.png" width=500 height=500>
 </section>
 <section id="fully-connected-layer-fc-layer">
-<h5>Fully Connected Layer (FC Layer)<a class="headerlink" href="#fully-connected-layer-fc-layer" title="Permalink to this headline">#</a></h5>
+<h5>Fully Connected Layer (FC Layer)<a class="headerlink" href="#fully-connected-layer-fc-layer" title="Permalink to this headline">¶</a></h5>
 <img src="https://miro.medium.com/max/1400/1*kToStLowjokojIQ7pY2ynQ.jpeg" width=500 height=500>
 <ul class="simple">
 <li><p><a class="reference external" href="https://towardsdatascience.com/a-comprehensive-guide-to-convolutional-neural-networks-the-eli5-way-3bd2b1164a53">https://towardsdatascience.com/a-comprehensive-guide-to-convolutional-neural-networks-the-eli5-way-3bd2b1164a53</a></p></li>
@@ -2595,104 +2491,104 @@ title="Print to PDF"
 </section>
 </section>
 <section id="cnn-research-papers">
-<h4>CNN Research Papers<a class="headerlink" href="#cnn-research-papers" title="Permalink to this headline">#</a></h4>
+<h4>CNN Research Papers<a class="headerlink" href="#cnn-research-papers" title="Permalink to this headline">¶</a></h4>
 <section id="resnet">
-<h5>ResNet<a class="headerlink" href="#resnet" title="Permalink to this headline">#</a></h5>
+<h5>ResNet<a class="headerlink" href="#resnet" title="Permalink to this headline">¶</a></h5>
 <ul class="simple">
 <li><p>Deep Residual Learning for Image Recognition</p></li>
 </ul>
 </section>
 <section id="vgg">
-<h5>VGG<a class="headerlink" href="#vgg" title="Permalink to this headline">#</a></h5>
+<h5>VGG<a class="headerlink" href="#vgg" title="Permalink to this headline">¶</a></h5>
 <ul class="simple">
 <li><p>Very Deep Convolutional Networks for Large-Scale Image Recognition</p></li>
 </ul>
 </section>
 <section id="densenet">
-<h5>DenseNet<a class="headerlink" href="#densenet" title="Permalink to this headline">#</a></h5>
+<h5>DenseNet<a class="headerlink" href="#densenet" title="Permalink to this headline">¶</a></h5>
 <ul class="simple">
 <li><p>Densely Connected Convolutional Networks</p></li>
 <li><p>A DenseNet is a type of convolutional neural network that utilises dense connections between layers, through Dense Blocks, where we connect all layers (with matching feature-map sizes) directly with each other. To preserve the feed-forward nature, each layer obtains additional inputs from all preceding layers and passes on its own feature-maps to all subsequent layers.</p></li>
 </ul>
 </section>
 <section id="alexnet">
-<h5>AlexNet<a class="headerlink" href="#alexnet" title="Permalink to this headline">#</a></h5>
+<h5>AlexNet<a class="headerlink" href="#alexnet" title="Permalink to this headline">¶</a></h5>
 <ul class="simple">
 <li><p>ImageNet Classification with Deep Convolutional Neural Networks</p></li>
 </ul>
 </section>
 <section id="vgg-16">
-<h5>VGG-16<a class="headerlink" href="#vgg-16" title="Permalink to this headline">#</a></h5>
+<h5>VGG-16<a class="headerlink" href="#vgg-16" title="Permalink to this headline">¶</a></h5>
 <ul class="simple">
 <li><p>Very Deep Convolutional Networks for Large-Scale Image Recognition</p></li>
 <li><p><a class="reference external" href="https://arxiv.org/pdf/1409.1556.pdf">https://arxiv.org/pdf/1409.1556.pdf</a></p></li>
 </ul>
 </section>
 <section id="mobilenetv2">
-<h5>MobileNetV2<a class="headerlink" href="#mobilenetv2" title="Permalink to this headline">#</a></h5>
+<h5>MobileNetV2<a class="headerlink" href="#mobilenetv2" title="Permalink to this headline">¶</a></h5>
 <ul class="simple">
 <li><p>MobileNetV2: Inverted Residuals and Linear Bottlenecks</p></li>
 </ul>
 </section>
 <section id="efficientnet">
-<h5>EfficientNet<a class="headerlink" href="#efficientnet" title="Permalink to this headline">#</a></h5>
+<h5>EfficientNet<a class="headerlink" href="#efficientnet" title="Permalink to this headline">¶</a></h5>
 <ul class="simple">
 <li><p>EfficientNet: Rethinking Model Scaling for Convolutional Neural Networks</p></li>
 </ul>
 </section>
 <section id="darknet-53">
-<h5>Darknet-53<a class="headerlink" href="#darknet-53" title="Permalink to this headline">#</a></h5>
+<h5>Darknet-53<a class="headerlink" href="#darknet-53" title="Permalink to this headline">¶</a></h5>
 <ul class="simple">
 <li><p>YOLOv3: An Incremental Improvement</p></li>
 </ul>
 </section>
 <section id="resnext">
-<h5>ResNeXt<a class="headerlink" href="#resnext" title="Permalink to this headline">#</a></h5>
+<h5>ResNeXt<a class="headerlink" href="#resnext" title="Permalink to this headline">¶</a></h5>
 <ul class="simple">
 <li><p>Aggregated Residual Transformations for Deep Neural Networks</p></li>
 </ul>
 </section>
 <section id="googlenet">
-<h5>GoogLeNet<a class="headerlink" href="#googlenet" title="Permalink to this headline">#</a></h5>
+<h5>GoogLeNet<a class="headerlink" href="#googlenet" title="Permalink to this headline">¶</a></h5>
 <ul class="simple">
 <li><p>Going Deeper with Convolutions</p></li>
 </ul>
 </section>
 <section id="xception">
-<h5>Xception<a class="headerlink" href="#xception" title="Permalink to this headline">#</a></h5>
+<h5>Xception<a class="headerlink" href="#xception" title="Permalink to this headline">¶</a></h5>
 <ul class="simple">
 <li><p>Xception: Deep Learning With Depthwise Separable Convolutions</p></li>
 </ul>
 </section>
 <section id="squeezenet">
-<h5>SqueezeNet<a class="headerlink" href="#squeezenet" title="Permalink to this headline">#</a></h5>
+<h5>SqueezeNet<a class="headerlink" href="#squeezenet" title="Permalink to this headline">¶</a></h5>
 <ul class="simple">
 <li><p>SqueezeNet: AlexNet-level accuracy with 50x fewer parameters and &lt;0.5MB model size</p></li>
 </ul>
 </section>
 <section id="inception-v3">
-<h5>Inception-v3<a class="headerlink" href="#inception-v3" title="Permalink to this headline">#</a></h5>
+<h5>Inception-v3<a class="headerlink" href="#inception-v3" title="Permalink to this headline">¶</a></h5>
 <ul class="simple">
 <li><p>Rethinking the Inception Architecture for Computer Vision</p></li>
 </ul>
 </section>
 <section id="cspdarknet53">
-<h5>CSPDarknet53<a class="headerlink" href="#cspdarknet53" title="Permalink to this headline">#</a></h5>
+<h5>CSPDarknet53<a class="headerlink" href="#cspdarknet53" title="Permalink to this headline">¶</a></h5>
 <ul class="simple">
 <li><p>YOLOv4: Optimal Speed and Accuracy of Object Detection</p></li>
 </ul>
 </section>
 </section>
 <section id="cnn-applications">
-<h4>CNN Applications<a class="headerlink" href="#cnn-applications" title="Permalink to this headline">#</a></h4>
+<h4>CNN Applications<a class="headerlink" href="#cnn-applications" title="Permalink to this headline">¶</a></h4>
 <section id="general-classification">
-<h5>General Classification<a class="headerlink" href="#general-classification" title="Permalink to this headline">#</a></h5>
+<h5>General Classification<a class="headerlink" href="#general-classification" title="Permalink to this headline">¶</a></h5>
 </section>
 <section id="image-classification">
-<h5>Image Classification<a class="headerlink" href="#image-classification" title="Permalink to this headline">#</a></h5>
+<h5>Image Classification<a class="headerlink" href="#image-classification" title="Permalink to this headline">¶</a></h5>
 </section>
 <section id="semantic-segmentation">
-<h5>Semantic Segmentation<a class="headerlink" href="#semantic-segmentation" title="Permalink to this headline">#</a></h5>
+<h5>Semantic Segmentation<a class="headerlink" href="#semantic-segmentation" title="Permalink to this headline">¶</a></h5>
 <ul class="simple">
 <li><p>Classify Each Pixel</p></li>
 <li><p>Fully-Convolutional Networks</p></li>
@@ -2701,30 +2597,30 @@ title="Print to PDF"
 </ul>
 </section>
 <section id="object-detection">
-<h5>Object Detection<a class="headerlink" href="#object-detection" title="Permalink to this headline">#</a></h5>
+<h5>Object Detection<a class="headerlink" href="#object-detection" title="Permalink to this headline">¶</a></h5>
 </section>
 <section id="quantization">
-<h5>Quantization<a class="headerlink" href="#quantization" title="Permalink to this headline">#</a></h5>
+<h5>Quantization<a class="headerlink" href="#quantization" title="Permalink to this headline">¶</a></h5>
 </section>
 <section id="computed-tomography-ct">
-<h5>Computed Tomography (CT)<a class="headerlink" href="#computed-tomography-ct" title="Permalink to this headline">#</a></h5>
+<h5>Computed Tomography (CT)<a class="headerlink" href="#computed-tomography-ct" title="Permalink to this headline">¶</a></h5>
 </section>
 <section id="domain-adaptation">
-<h5>Domain Adaptation<a class="headerlink" href="#domain-adaptation" title="Permalink to this headline">#</a></h5>
+<h5>Domain Adaptation<a class="headerlink" href="#domain-adaptation" title="Permalink to this headline">¶</a></h5>
 </section>
 <section id="out-of-distribution-detection">
-<h5>Out-of-Distribution Detection<a class="headerlink" href="#out-of-distribution-detection" title="Permalink to this headline">#</a></h5>
+<h5>Out-of-Distribution Detection<a class="headerlink" href="#out-of-distribution-detection" title="Permalink to this headline">¶</a></h5>
 </section>
 <section id="language-modelling">
-<h5>Language Modelling<a class="headerlink" href="#language-modelling" title="Permalink to this headline">#</a></h5>
+<h5>Language Modelling<a class="headerlink" href="#language-modelling" title="Permalink to this headline">¶</a></h5>
 </section>
 </section>
 </section>
 <section id="long-short-term-memory-networks-lstms">
-<h3>Long Short Term Memory Networks (LSTMs)<a class="headerlink" href="#long-short-term-memory-networks-lstms" title="Permalink to this headline">#</a></h3>
+<h3>Long Short Term Memory Networks (LSTMs)<a class="headerlink" href="#long-short-term-memory-networks-lstms" title="Permalink to this headline">¶</a></h3>
 </section>
 <section id="recurrent-neural-networks-rnns">
-<h3>Recurrent Neural Networks (RNNs)<a class="headerlink" href="#recurrent-neural-networks-rnns" title="Permalink to this headline">#</a></h3>
+<h3>Recurrent Neural Networks (RNNs)<a class="headerlink" href="#recurrent-neural-networks-rnns" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p><strong>Recurrent Neural Networks (RNNs)</strong> are widely used for data with some kind of <strong>sequential structure</strong>. For instance, <strong>time series data has an intrinsic ordering based on time</strong>. Sentences are also sequential, “I love dogs” has a different meaning than “Dogs I love.” Simply put, if the <strong>semantics of your data is altered by random permutation, you have a sequential dataset and RNNs may be used for your problem!</strong> To help solidify the types of problems RNNs can solve, here is a list of common applications :</p></li>
 <li><p><strong>Applications</strong></p>
@@ -2765,7 +2661,7 @@ title="Print to PDF"
 <li><p><a class="reference external" href="https://arxiv.org/pdf/1610.02583.pdf">A Gentle Tutorial of Recurrent Neural Network with Error Backpropagation</a></p></li>
 </ul>
 <section id="evolution-of-r-cnn">
-<h4>Evolution of R-CNN<a class="headerlink" href="#evolution-of-r-cnn" title="Permalink to this headline">#</a></h4>
+<h4>Evolution of R-CNN<a class="headerlink" href="#evolution-of-r-cnn" title="Permalink to this headline">¶</a></h4>
 <ul class="simple">
 <li><p>Region based CNN</p></li>
 <li><p>Fast R-CNN</p></li>
@@ -2773,10 +2669,10 @@ title="Print to PDF"
 </ul>
 </section>
 <section id="fully-convolutional-networks-fcn">
-<h4>Fully-Convolutional Networks (FCN)<a class="headerlink" href="#fully-convolutional-networks-fcn" title="Permalink to this headline">#</a></h4>
+<h4>Fully-Convolutional Networks (FCN)<a class="headerlink" href="#fully-convolutional-networks-fcn" title="Permalink to this headline">¶</a></h4>
 </section>
 <section id="rnn-vs-cnn">
-<h4>RNN vs CNN<a class="headerlink" href="#rnn-vs-cnn" title="Permalink to this headline">#</a></h4>
+<h4>RNN vs CNN<a class="headerlink" href="#rnn-vs-cnn" title="Permalink to this headline">¶</a></h4>
 <ul class="simple">
 <li><p>Type of Data</p>
 <ul>
@@ -2805,159 +2701,159 @@ title="Print to PDF"
 </ul>
 </section>
 <section id="u-net">
-<h4>U-NET<a class="headerlink" href="#u-net" title="Permalink to this headline">#</a></h4>
+<h4>U-NET<a class="headerlink" href="#u-net" title="Permalink to this headline">¶</a></h4>
 <ul class="simple">
 <li><p>Long Skip Connections</p></li>
 </ul>
 </section>
 <section id="model-compression">
-<h4>Model Compression<a class="headerlink" href="#model-compression" title="Permalink to this headline">#</a></h4>
+<h4>Model Compression<a class="headerlink" href="#model-compression" title="Permalink to this headline">¶</a></h4>
 <section id="knowledge-distillation">
-<h5>Knowledge distillation<a class="headerlink" href="#knowledge-distillation" title="Permalink to this headline">#</a></h5>
+<h5>Knowledge distillation<a class="headerlink" href="#knowledge-distillation" title="Permalink to this headline">¶</a></h5>
 </section>
 <section id="pruning">
-<h5>Pruning<a class="headerlink" href="#pruning" title="Permalink to this headline">#</a></h5>
+<h5>Pruning<a class="headerlink" href="#pruning" title="Permalink to this headline">¶</a></h5>
 </section>
 <section id="id3">
-<h5>Quantization<a class="headerlink" href="#id3" title="Permalink to this headline">#</a></h5>
+<h5>Quantization<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h5>
 </section>
 <section id="low-rank-approximation-and-sparsity">
-<h5>Low-rank approximation and sparsity<a class="headerlink" href="#low-rank-approximation-and-sparsity" title="Permalink to this headline">#</a></h5>
+<h5>Low-rank approximation and sparsity<a class="headerlink" href="#low-rank-approximation-and-sparsity" title="Permalink to this headline">¶</a></h5>
 </section>
 </section>
 </section>
 <section id="generative-adversarial-networks-gans">
-<h3>Generative Adversarial Networks (GANs)<a class="headerlink" href="#generative-adversarial-networks-gans" title="Permalink to this headline">#</a></h3>
+<h3>Generative Adversarial Networks (GANs)<a class="headerlink" href="#generative-adversarial-networks-gans" title="Permalink to this headline">¶</a></h3>
 </section>
 <section id="radial-basis-function-networks-rbfns">
-<h3>Radial Basis Function Networks (RBFNs)<a class="headerlink" href="#radial-basis-function-networks-rbfns" title="Permalink to this headline">#</a></h3>
+<h3>Radial Basis Function Networks (RBFNs)<a class="headerlink" href="#radial-basis-function-networks-rbfns" title="Permalink to this headline">¶</a></h3>
 </section>
 <section id="multilayer-perceptrons-mlps">
-<h3>Multilayer Perceptrons (MLPs)<a class="headerlink" href="#multilayer-perceptrons-mlps" title="Permalink to this headline">#</a></h3>
+<h3>Multilayer Perceptrons (MLPs)<a class="headerlink" href="#multilayer-perceptrons-mlps" title="Permalink to this headline">¶</a></h3>
 </section>
 <section id="self-organizing-maps-soms">
-<h3>Self Organizing Maps (SOMs)<a class="headerlink" href="#self-organizing-maps-soms" title="Permalink to this headline">#</a></h3>
+<h3>Self Organizing Maps (SOMs)<a class="headerlink" href="#self-organizing-maps-soms" title="Permalink to this headline">¶</a></h3>
 </section>
 <section id="deep-belief-networks-dbns">
-<h3>Deep Belief Networks (DBNs)<a class="headerlink" href="#deep-belief-networks-dbns" title="Permalink to this headline">#</a></h3>
+<h3>Deep Belief Networks (DBNs)<a class="headerlink" href="#deep-belief-networks-dbns" title="Permalink to this headline">¶</a></h3>
 </section>
 <section id="restricted-boltzmann-machines-rbms">
-<h3>Restricted Boltzmann Machines( RBMs)<a class="headerlink" href="#restricted-boltzmann-machines-rbms" title="Permalink to this headline">#</a></h3>
+<h3>Restricted Boltzmann Machines( RBMs)<a class="headerlink" href="#restricted-boltzmann-machines-rbms" title="Permalink to this headline">¶</a></h3>
 </section>
 <section id="autoencoders">
-<h3>Autoencoders<a class="headerlink" href="#autoencoders" title="Permalink to this headline">#</a></h3>
+<h3>Autoencoders<a class="headerlink" href="#autoencoders" title="Permalink to this headline">¶</a></h3>
 </section>
 </section>
 <section id="optimization-algorithms-deep-learning">
-<h2>Optimization algorithms - Deep Learning<a class="headerlink" href="#optimization-algorithms-deep-learning" title="Permalink to this headline">#</a></h2>
+<h2>Optimization algorithms - Deep Learning<a class="headerlink" href="#optimization-algorithms-deep-learning" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li><p><a class="reference external" href="https://ruder.io/optimizing-gradient-descent/">Optimizing GD</a></p></li>
 <li><p><a class="reference external" href="https://github.com/Jaewan-Yun/optimizer-visualization">Optimizer Visualization</a></p></li>
 </ul>
 <section id="asgd">
-<h3>ASGD<a class="headerlink" href="#asgd" title="Permalink to this headline">#</a></h3>
+<h3>ASGD<a class="headerlink" href="#asgd" title="Permalink to this headline">¶</a></h3>
 </section>
 <section id="adadelta">
-<h3>Adadelta<a class="headerlink" href="#adadelta" title="Permalink to this headline">#</a></h3>
+<h3>Adadelta<a class="headerlink" href="#adadelta" title="Permalink to this headline">¶</a></h3>
 </section>
 <section id="adagrad">
-<h3>Adagrad<a class="headerlink" href="#adagrad" title="Permalink to this headline">#</a></h3>
+<h3>Adagrad<a class="headerlink" href="#adagrad" title="Permalink to this headline">¶</a></h3>
 </section>
 <section id="adam">
-<h3>Adam<a class="headerlink" href="#adam" title="Permalink to this headline">#</a></h3>
+<h3>Adam<a class="headerlink" href="#adam" title="Permalink to this headline">¶</a></h3>
 </section>
 <section id="adamw">
-<h3>AdamW<a class="headerlink" href="#adamw" title="Permalink to this headline">#</a></h3>
+<h3>AdamW<a class="headerlink" href="#adamw" title="Permalink to this headline">¶</a></h3>
 </section>
 <section id="adamax">
-<h3>Adamax<a class="headerlink" href="#adamax" title="Permalink to this headline">#</a></h3>
+<h3>Adamax<a class="headerlink" href="#adamax" title="Permalink to this headline">¶</a></h3>
 </section>
 <section id="lbfgs">
-<h3>LBFGS<a class="headerlink" href="#lbfgs" title="Permalink to this headline">#</a></h3>
+<h3>LBFGS<a class="headerlink" href="#lbfgs" title="Permalink to this headline">¶</a></h3>
 </section>
 <section id="nadam">
-<h3>NAdam<a class="headerlink" href="#nadam" title="Permalink to this headline">#</a></h3>
+<h3>NAdam<a class="headerlink" href="#nadam" title="Permalink to this headline">¶</a></h3>
 </section>
 <section id="radam">
-<h3>RAdam<a class="headerlink" href="#radam" title="Permalink to this headline">#</a></h3>
+<h3>RAdam<a class="headerlink" href="#radam" title="Permalink to this headline">¶</a></h3>
 </section>
 <section id="rmsprop">
-<h3>RMSprop<a class="headerlink" href="#rmsprop" title="Permalink to this headline">#</a></h3>
+<h3>RMSprop<a class="headerlink" href="#rmsprop" title="Permalink to this headline">¶</a></h3>
 </section>
 <section id="rprop">
-<h3>Rprop<a class="headerlink" href="#rprop" title="Permalink to this headline">#</a></h3>
+<h3>Rprop<a class="headerlink" href="#rprop" title="Permalink to this headline">¶</a></h3>
 </section>
 <section id="sgd">
-<h3>SGD<a class="headerlink" href="#sgd" title="Permalink to this headline">#</a></h3>
+<h3>SGD<a class="headerlink" href="#sgd" title="Permalink to this headline">¶</a></h3>
 </section>
 <section id="sparseadam">
-<h3>SparseAdam<a class="headerlink" href="#sparseadam" title="Permalink to this headline">#</a></h3>
+<h3>SparseAdam<a class="headerlink" href="#sparseadam" title="Permalink to this headline">¶</a></h3>
 </section>
 </section>
 <section id="artificial-neural-network">
-<h2>Artificial neural network<a class="headerlink" href="#artificial-neural-network" title="Permalink to this headline">#</a></h2>
+<h2>Artificial neural network<a class="headerlink" href="#artificial-neural-network" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li><p><a class="reference external" href="https://towardsdatascience.com/neural-network-architectures-156e5bad51ba">https://towardsdatascience.com/neural-network-architectures-156e5bad51ba</a></p></li>
 </ul>
 <section id="autoencoder">
-<h3>Autoencoder<a class="headerlink" href="#autoencoder" title="Permalink to this headline">#</a></h3>
+<h3>Autoencoder<a class="headerlink" href="#autoencoder" title="Permalink to this headline">¶</a></h3>
 </section>
 <section id="cognitive-computing">
-<h3>Cognitive computing<a class="headerlink" href="#cognitive-computing" title="Permalink to this headline">#</a></h3>
+<h3>Cognitive computing<a class="headerlink" href="#cognitive-computing" title="Permalink to this headline">¶</a></h3>
 </section>
 <section id="deep-learning">
-<h3>Deep learning<a class="headerlink" href="#deep-learning" title="Permalink to this headline">#</a></h3>
+<h3>Deep learning<a class="headerlink" href="#deep-learning" title="Permalink to this headline">¶</a></h3>
 </section>
 <section id="deepdream">
-<h3>DeepDream<a class="headerlink" href="#deepdream" title="Permalink to this headline">#</a></h3>
+<h3>DeepDream<a class="headerlink" href="#deepdream" title="Permalink to this headline">¶</a></h3>
 </section>
 <section id="multilayer-perceptron">
-<h3>Multilayer perceptron<a class="headerlink" href="#multilayer-perceptron" title="Permalink to this headline">#</a></h3>
+<h3>Multilayer perceptron<a class="headerlink" href="#multilayer-perceptron" title="Permalink to this headline">¶</a></h3>
 <p>A <strong>perceptron</strong> was the name given to a model having one single linear layer and, if it has multiple layers, it is  called a <strong>multi-layer perceptron (MLP)</strong>. Note that the input and the output layers are visible from outside, while all the other layers in the middle are hidden – hence the name hidden layers. In this context, a single layer is simply a linear function and the MLP is therefore obtained by stacking multiple single layers one after the other:</p>
 <img src="https://www.researchgate.net/profile/Hassan-Afzaal/publication/338103191/figure/fig2/AS:838599264174093@1576949053675/The-multilayer-perceptron-MLP-model-for-various-input-variable-combinations.jpg" width=500 height=500>
 </section>
 <section id="rnn">
-<h3>RNN<a class="headerlink" href="#rnn" title="Permalink to this headline">#</a></h3>
+<h3>RNN<a class="headerlink" href="#rnn" title="Permalink to this headline">¶</a></h3>
 <section id="lstm">
-<h4>LSTM<a class="headerlink" href="#lstm" title="Permalink to this headline">#</a></h4>
+<h4>LSTM<a class="headerlink" href="#lstm" title="Permalink to this headline">¶</a></h4>
 </section>
 <section id="gru">
-<h4>GRU<a class="headerlink" href="#gru" title="Permalink to this headline">#</a></h4>
+<h4>GRU<a class="headerlink" href="#gru" title="Permalink to this headline">¶</a></h4>
 </section>
 <section id="esn">
-<h4>ESN<a class="headerlink" href="#esn" title="Permalink to this headline">#</a></h4>
+<h4>ESN<a class="headerlink" href="#esn" title="Permalink to this headline">¶</a></h4>
 </section>
 </section>
 <section id="restricted-boltzmann-machine">
-<h3>Restricted Boltzmann machine<a class="headerlink" href="#restricted-boltzmann-machine" title="Permalink to this headline">#</a></h3>
+<h3>Restricted Boltzmann machine<a class="headerlink" href="#restricted-boltzmann-machine" title="Permalink to this headline">¶</a></h3>
 </section>
 <section id="gan">
-<h3>GAN<a class="headerlink" href="#gan" title="Permalink to this headline">#</a></h3>
+<h3>GAN<a class="headerlink" href="#gan" title="Permalink to this headline">¶</a></h3>
 </section>
 <section id="som">
-<h3>SOM<a class="headerlink" href="#som" title="Permalink to this headline">#</a></h3>
+<h3>SOM<a class="headerlink" href="#som" title="Permalink to this headline">¶</a></h3>
 </section>
 <section id="convolutional-neural-network">
-<h3>Convolutional neural network<a class="headerlink" href="#convolutional-neural-network" title="Permalink to this headline">#</a></h3>
+<h3>Convolutional neural network<a class="headerlink" href="#convolutional-neural-network" title="Permalink to this headline">¶</a></h3>
 <section id="id4">
-<h4>U-Net<a class="headerlink" href="#id4" title="Permalink to this headline">#</a></h4>
+<h4>U-Net<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h4>
 </section>
 </section>
 <section id="transformer-vision">
-<h3>Transformer Vision<a class="headerlink" href="#transformer-vision" title="Permalink to this headline">#</a></h3>
+<h3>Transformer Vision<a class="headerlink" href="#transformer-vision" title="Permalink to this headline">¶</a></h3>
 </section>
 <section id="spiking-neural-network">
-<h3>Spiking neural network<a class="headerlink" href="#spiking-neural-network" title="Permalink to this headline">#</a></h3>
+<h3>Spiking neural network<a class="headerlink" href="#spiking-neural-network" title="Permalink to this headline">¶</a></h3>
 </section>
 <section id="memtransistor">
-<h3>Memtransistor<a class="headerlink" href="#memtransistor" title="Permalink to this headline">#</a></h3>
+<h3>Memtransistor<a class="headerlink" href="#memtransistor" title="Permalink to this headline">¶</a></h3>
 </section>
 <section id="electrochemical-ram-ecram">
-<h3>Electrochemical RAM (ECRAM)<a class="headerlink" href="#electrochemical-ram-ecram" title="Permalink to this headline">#</a></h3>
+<h3>Electrochemical RAM (ECRAM)<a class="headerlink" href="#electrochemical-ram-ecram" title="Permalink to this headline">¶</a></h3>
 </section>
 </section>
 <section id="computer-vision">
-<h2>Computer Vision<a class="headerlink" href="#computer-vision" title="Permalink to this headline">#</a></h2>
+<h2>Computer Vision<a class="headerlink" href="#computer-vision" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li><p>Background Subtraction</p></li>
 <li><p>Colorspace</p></li>
@@ -2983,7 +2879,7 @@ title="Print to PDF"
 </ul>
 </section>
 <section id="intro-to-deep-learning-lectures">
-<h2>Intro to Deep Learning - Lectures<a class="headerlink" href="#intro-to-deep-learning-lectures" title="Permalink to this headline">#</a></h2>
+<h2>Intro to Deep Learning - Lectures<a class="headerlink" href="#intro-to-deep-learning-lectures" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li><p>Lecture 1 - Intro to Deep Learning</p></li>
 <li><p>Lecture 2 - Deep Sequence Modeling</p></li>
@@ -3026,11 +2922,9 @@ title="Print to PDF"
 
               </div>
               
-            </main>
-            <footer class="footer-article noprint">
-                
-    <!-- Previous / next buttons -->
-<div class='prev-next-area'>
+            
+                <!-- Previous / next buttons -->
+<div class='prev-next-area'> 
     <a class='left-prev' id="prev-link" href="intro.html" title="previous page">
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
@@ -3046,28 +2940,24 @@ title="Print to PDF"
     <i class="fas fa-angle-right"></i>
     </a>
 </div>
-            </footer>
+            
         </div>
     </div>
-    <div class="footer-content row">
-        <footer class="col footer"><p>
-  
-    By Chandra<br/>
-  
-      &copy; Copyright 2022.<br/>
-</p>
-        </footer>
-    </div>
+    <footer class="footer">
+  <p>
     
-</div>
+      By Chandra<br/>
+    
+        &copy; Copyright 2021.<br/>
+  </p>
+</footer>
+</main>
 
 
       </div>
     </div>
   
-  <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
-
+  <script src="../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
 
   </body>
 </html>

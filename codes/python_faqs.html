@@ -8,9 +8,8 @@
 
     <title>Python FAQs</title>
     
-  <!-- Loaded before other Sphinx assets -->
-  <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
-<link href="../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+  <link href="../_static/css/theme.css" rel="stylesheet">
+  <link href="../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
 
     
   <link rel="stylesheet"
@@ -20,16 +19,20 @@
   <link rel="preload" as="font" type="font/woff2" crossorigin
     href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
 
+    
+      
+
+    
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
     
-  <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+  <link rel="preload" as="script" href="../_static/js/index.be7d3bbb2ef33a8344ce.js">
 
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
@@ -37,13 +40,12 @@
     <script src="../_static/doctools.js"></script>
     <script src="../_static/clipboard.min.js"></script>
     <script src="../_static/copybutton.js"></script>
-    <script src="../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
     <script src="../_static/togglebutton.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="../_static/design-tabs.js"></script>
+    <script src="../_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
 const thebe_selector = ".thebe,.cell"
 const thebe_selector_input = "pre"
@@ -63,21 +65,7 @@ const thebe_selector_output = ".output, .cell_output"
     <!-- Google Analytics -->
     
   </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
-<!-- Checkboxes to toggle the left sidebar -->
-<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
-<label class="overlay overlay-navbar" for="__navigation">
-    <div class="visually-hidden">Toggle navigation sidebar</div>
-</label>
-<!-- Checkboxes to toggle the in-page toc -->
-<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
-<label class="overlay overlay-pagetoc" for="__page-toc">
-    <div class="visually-hidden">Toggle in-page Table of Contents</div>
-</label>
-<!-- Headers at the top -->
-<div class="announcement header-item noprint"></div>
-<div class="header header-item noprint"></div>
-
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
     
     <div class="container-fluid" id="banner"></div>
 
@@ -86,10 +74,9 @@ const thebe_selector_output = ".output, .cell_output"
     <div class="container-xl">
       <div class="row">
           
-<!-- Sidebar -->
-<div class="bd-sidebar noprint" id="site-navigation">
-    <div class="bd-sidebar__content">
-        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
     <a class="navbar-brand text-wrap" href="../index.html">
       
         <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
@@ -105,15 +92,14 @@ const thebe_selector_output = ".output, .cell_output"
   <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
 </form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item active">
-        
-        <ul class="nav bd-sidenav bd-sidenav__home-link">
-            <li class="toctree-l1">
-                <a class="reference internal" href="../intro.html">
-                    Welcome
-                </a>
-            </li>
-        </ul>
-        <p aria-level="2" class="caption" role="heading">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../intro.html">
+   Welcome
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
   System Design
  </span>
@@ -563,22 +549,29 @@ const thebe_selector_output = ".output, .cell_output"
      L02: Traditional Methods for ML in Graphs
     </a>
    </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../cs224w_ml_graph/CS224W_Colab_0.html">
+     <strong>
+      HW0
+     </strong>
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../cs224w_ml_graph/CS224W_Colab_1.html">
+     HW1
+    </a>
+   </li>
   </ul>
  </li>
 </ul>
 
     </div>
-</nav></div>
-        <div class="bd-sidebar__bottom">
-             <!-- To handle the deprecated key -->
-            
-            <div class="navbar_extra_footer">
-            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
-            </div>
-            
-        </div>
-    </div>
-    <div id="rtd-footer-container"></div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
 </div>
 
 
@@ -586,191 +579,94 @@ const thebe_selector_output = ".output, .cell_output"
 
 
           
-<!-- A tiny helper pixel to detect if we've scrolled -->
-<div class="sbt-scroll-pixel-helper"></div>
-<!-- Main content -->
-<div class="col py-0 content-container">
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
     
-    <div class="header-article row sticky-top noprint">
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
         
-
-
-
-<div class="col py-1 d-flex header-article-main">
-    <div class="header-article__left">
-        
-        <label for="__navigation"
-  class="headerbtn"
-  data-toggle="tooltip"
-data-placement="right"
-title="Toggle navigation"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-bars"></i>
-  </span>
-
-</label>
-
-        
-    </div>
-    <div class="header-article__right">
-<div class="menu-dropdown menu-dropdown-launch-buttons">
-  <button class="headerbtn menu-dropdown__trigger"
-      aria-label="Launch interactive content">
-      <i class="fas fa-rocket"></i>
-  </button>
-  <div class="menu-dropdown__content">
-    <ul>
-      <li>
-        <a href="https://mybinder.org/v2/gh/chandrabsingh/learning/master?urlpath=tree/learning/codes/python_faqs.ipynb"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Launch on Binder"
->
-  
-
-<span class="headerbtn__icon-container">
-  
-    <img src="../_static/images/logo_binder.svg">
-  </span>
-<span class="headerbtn__text-container">Binder</span>
-</a>
-
-      </li>
-      
-    </ul>
-  </div>
-</div>
-
-<button onclick="toggleFullScreen()"
-  class="headerbtn"
-  data-toggle="tooltip"
-data-placement="bottom"
-title="Fullscreen mode"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-expand"></i>
-  </span>
-
-</button>
-
-<div class="menu-dropdown menu-dropdown-repository-buttons">
-  <button class="headerbtn menu-dropdown__trigger"
-      aria-label="Source repositories">
-      <i class="fab fa-github"></i>
-  </button>
-  <div class="menu-dropdown__content">
-    <ul>
-      <li>
-        <a href="https://github.com/chandrabsingh/learning"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Source repository"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fab fa-github"></i>
-  </span>
-<span class="headerbtn__text-container">repository</span>
-</a>
-
-      </li>
-      
-      <li>
-        <a href="https://github.com/chandrabsingh/learning/issues/new?title=Issue%20on%20page%20%2Fcodes/python_faqs.html&body=Your%20issue%20content%20here."
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Open an issue"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-lightbulb"></i>
-  </span>
-<span class="headerbtn__text-container">open issue</span>
-</a>
-
-      </li>
-      
-    </ul>
-  </div>
-</div>
-
-<div class="menu-dropdown menu-dropdown-download-buttons">
-  <button class="headerbtn menu-dropdown__trigger"
-      aria-label="Download this page">
-      <i class="fas fa-download"></i>
-  </button>
-  <div class="menu-dropdown__content">
-    <ul>
-      <li>
-        <a href="../_sources/codes/python_faqs.ipynb"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Download source file"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-file"></i>
-  </span>
-<span class="headerbtn__text-container">.ipynb</span>
-</a>
-
-      </li>
-      
-      <li>
-        
-<button onclick="printPdf(this)"
-  class="headerbtn"
-  data-toggle="tooltip"
-data-placement="left"
-title="Print to PDF"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-file-pdf"></i>
-  </span>
-<span class="headerbtn__text-container">.pdf</span>
-</button>
-
-      </li>
-      
-    </ul>
-  </div>
-</div>
-<label for="__page-toc"
-  class="headerbtn headerbtn-page-toc"
-  
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-list"></i>
-  </span>
-
-</label>
-
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/codes/python_faqs.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
     </div>
 </div>
 
-<!-- Table of contents -->
-<div class="col-md-3 bd-toc show noprint">
-    <div class="tocsection onthispage pt-5 pb-3">
-        <i class="fas fa-list"></i> Contents
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/chandrabsingh/learning"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/chandrabsingh/learning/issues/new?title=Issue%20on%20page%20%2Fcodes/python_faqs.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        
     </div>
-    <nav id="bd-toc-nav" aria-label="Page">
-        <ul class="visible nav section-nav flex-column">
+</div>
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/chandrabsingh/learning/master?urlpath=tree/learning/codes/python_faqs.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#print-all-interactive-output">
    Print all interactive output
@@ -1350,11 +1246,12 @@ title="Print to PDF"
  </li>
 </ul>
 
-    </nav>
-</div>
+            </nav>
+        </div>
     </div>
-    <div class="article row">
-        <div class="col pl-md-3 pl-lg-5 content-container">
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
                 <h1>Python FAQs</h1>
@@ -1950,14 +1847,13 @@ title="Print to PDF"
                     </div>
                 </div>
             </div>
-            <main id="main-content" role="main">
-                
+            
               <div>
                 
   <section class="tex2jax_ignore mathjax_ignore" id="python-faqs">
-<h1>Python FAQs<a class="headerlink" href="#python-faqs" title="Permalink to this headline">#</a></h1>
+<h1>Python FAQs<a class="headerlink" href="#python-faqs" title="Permalink to this headline">¶</a></h1>
 <section id="print-all-interactive-output">
-<h2>Print all interactive output<a class="headerlink" href="#print-all-interactive-output" title="Permalink to this headline">#</a></h2>
+<h2>Print all interactive output<a class="headerlink" href="#print-all-interactive-output" title="Permalink to this headline">¶</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">IPython.core.interactiveshell</span> <span class="kn">import</span> <span class="n">InteractiveShell</span>
@@ -1968,7 +1864,7 @@ title="Print to PDF"
 </div>
 </section>
 <section id="python-dynamic-typed-language">
-<h2>Python - dynamic typed language<a class="headerlink" href="#python-dynamic-typed-language" title="Permalink to this headline">#</a></h2>
+<h2>Python - dynamic typed language<a class="headerlink" href="#python-dynamic-typed-language" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li><p>Interpreter does type checking only when the code runs</p></li>
 <li><p>This is allowed as Python is dynamic typed language and data type of variable is not used during initialization</p></li>
@@ -1995,7 +1891,7 @@ title="Print to PDF"
 </div>
 </section>
 <section id="duck-typing">
-<h2>Duck typing<a class="headerlink" href="#duck-typing" title="Permalink to this headline">#</a></h2>
+<h2>Duck typing<a class="headerlink" href="#duck-typing" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li><p>When we call len() on any Python object it invokes a __len__() method</p></li>
 </ul>
@@ -2022,7 +1918,7 @@ title="Print to PDF"
 </div>
 </section>
 <section id="type-hints">
-<h2>Type hints<a class="headerlink" href="#type-hints" title="Permalink to this headline">#</a></h2>
+<h2>Type hints<a class="headerlink" href="#type-hints" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li><p>introduced in Python 3.5</p></li>
 <li><p>annotate arguments and the return value</p></li>
@@ -2086,7 +1982,7 @@ Python Type Checking
 </div>
 </section>
 <section id="function-annotations">
-<h2>Function Annotations<a class="headerlink" href="#function-annotations" title="Permalink to this headline">#</a></h2>
+<h2>Function Annotations<a class="headerlink" href="#function-annotations" title="Permalink to this headline">¶</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">math</span>
@@ -2105,7 +2001,7 @@ Python Type Checking
 </div>
 </section>
 <section id="variable-annotations">
-<h2>Variable Annotations<a class="headerlink" href="#variable-annotations" title="Permalink to this headline">#</a></h2>
+<h2>Variable Annotations<a class="headerlink" href="#variable-annotations" title="Permalink to this headline">¶</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pi</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">3.142</span>
@@ -2139,7 +2035,7 @@ Python Type Checking
 </div>
 </section>
 <section id="type-comments">
-<h2>Type comments<a class="headerlink" href="#type-comments" title="Permalink to this headline">#</a></h2>
+<h2>Type comments<a class="headerlink" href="#type-comments" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li><p>specially formatted comments that can be used to add type hints compatible with older code</p></li>
 <li><p>type comments <strong>will not be available in the __annotations__ dictionary</strong></p></li>
@@ -2177,7 +2073,7 @@ Python Type Checking
 </div>
 </section>
 <section id="list-print-memory-size-in-bytes">
-<h2>List - Print memory size in bytes<a class="headerlink" href="#list-print-memory-size-in-bytes" title="Permalink to this headline">#</a></h2>
+<h2>List - Print memory size in bytes<a class="headerlink" href="#list-print-memory-size-in-bytes" title="Permalink to this headline">¶</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">lst_lst</span> <span class="o">=</span> <span class="p">[[],</span> <span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="s1">&#39;1&#39;</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="s1">&#39;1&#39;</span><span class="p">,</span> <span class="s1">&#39;2&#39;</span><span class="p">]]</span>
@@ -2219,7 +2115,7 @@ getsizeof(...)
 </div>
 </section>
 <section id="list-print-growth-in-memory-size">
-<h2>List - Print growth in memory size<a class="headerlink" href="#list-print-growth-in-memory-size" title="Permalink to this headline">#</a></h2>
+<h2>List - Print growth in memory size<a class="headerlink" href="#list-print-growth-in-memory-size" title="Permalink to this headline">¶</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="p">[]</span>
@@ -2256,7 +2152,7 @@ Size of list length 19 in 256
 </div>
 </section>
 <section id="collections-namedtuple">
-<h2>collections - namedtuple<a class="headerlink" href="#collections-namedtuple" title="Permalink to this headline">#</a></h2>
+<h2>collections - namedtuple<a class="headerlink" href="#collections-namedtuple" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li><p>returns a new subclass of a tuple but with named fields</p></li>
 <li><p>no need to keep track of each item’s index as each item is named and accessed via a class property</p></li>
@@ -2394,7 +2290,7 @@ Chandra
 </div>
 </section>
 <section id="tuple-vs-int-assignment-differences">
-<h2>tuple vs int - assignment differences<a class="headerlink" href="#tuple-vs-int-assignment-differences" title="Permalink to this headline">#</a></h2>
+<h2>tuple vs int - assignment differences<a class="headerlink" href="#tuple-vs-int-assignment-differences" title="Permalink to this headline">¶</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="n">c</span> <span class="o">=</span> <span class="p">(),</span> <span class="p">(</span><span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="mi">1</span><span class="p">,)</span>
@@ -2412,7 +2308,7 @@ Chandra
 </div>
 </section>
 <section id="tuple-print-growth-in-memory-size">
-<h2>Tuple - Print growth in memory size<a class="headerlink" href="#tuple-print-growth-in-memory-size" title="Permalink to this headline">#</a></h2>
+<h2>Tuple - Print growth in memory size<a class="headerlink" href="#tuple-print-growth-in-memory-size" title="Permalink to this headline">¶</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">lst_tup</span> <span class="o">=</span> <span class="p">[(),</span> <span class="p">(</span><span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">),</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">),</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">)]</span>
@@ -2430,7 +2326,7 @@ Chandra
 </div>
 </section>
 <section id="base-class-as-object-vs-default-builtin">
-<h2>Base class as object vs default builtin<a class="headerlink" href="#base-class-as-object-vs-default-builtin" title="Permalink to this headline">#</a></h2>
+<h2>Base class as object vs default builtin<a class="headerlink" href="#base-class-as-object-vs-default-builtin" title="Permalink to this headline">¶</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">## experiment</span>
@@ -2458,7 +2354,7 @@ Chandra
 </div>
 </section>
 <section id="time-list-vs-tuple-iteration">
-<h2>Time list vs tuple iteration<a class="headerlink" href="#time-list-vs-tuple-iteration" title="Permalink to this headline">#</a></h2>
+<h2>Time list vs tuple iteration<a class="headerlink" href="#time-list-vs-tuple-iteration" title="Permalink to this headline">¶</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">*</span><span class="mi">100000</span>
@@ -2473,17 +2369,17 @@ Chandra
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;class &#39;tuple&#39;&gt;
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>3.26 ms ± 312 µs per loop (mean ± std. dev. of 7 runs, 100 loops each)
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>707 µs ± 9.61 µs per loop (mean ± std. dev. of 7 runs, 1,000 loops each)
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>3.14 ms ± 403 µs per loop (mean ± std. dev. of 7 runs, 100 loops each)
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>686 µs ± 3.59 µs per loop (mean ± std. dev. of 7 runs, 1,000 loops each)
 </pre></div>
 </div>
 </div>
 </div>
 </section>
 <section id="print-object-attributes">
-<h2>Print object attributes<a class="headerlink" href="#print-object-attributes" title="Permalink to this headline">#</a></h2>
+<h2>Print object attributes<a class="headerlink" href="#print-object-attributes" title="Permalink to this headline">¶</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="nb">dir</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span><span class="c1">#print all attributes</span>
@@ -2517,7 +2413,7 @@ False
 </div>
 </section>
 <section id="tuple-mixed-datatype">
-<h2>Tuple - mixed datatype<a class="headerlink" href="#tuple-mixed-datatype" title="Permalink to this headline">#</a></h2>
+<h2>Tuple - mixed datatype<a class="headerlink" href="#tuple-mixed-datatype" title="Permalink to this headline">¶</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">eg_tuple</span> <span class="o">=</span> <span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">],</span> <span class="s1">&#39;3&#39;</span><span class="p">,</span> <span class="s1">&#39;4&#39;</span><span class="p">)</span>
@@ -2535,7 +2431,7 @@ False
 </div>
 </section>
 <section id="object-attributes">
-<h2>Object attributes<a class="headerlink" href="#object-attributes" title="Permalink to this headline">#</a></h2>
+<h2>Object attributes<a class="headerlink" href="#object-attributes" title="Permalink to this headline">¶</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="s1">&#39;- What is the significance of </span><span class="si">{0}</span><span class="s1">?&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">n</span><span class="p">)</span> <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">dir</span><span class="p">(</span><span class="n">o</span><span class="p">)]</span>
@@ -2572,7 +2468,7 @@ False
 </div>
 </section>
 <section id="todo-builtins-package">
-<h2>TODO - builtins package<a class="headerlink" href="#todo-builtins-package" title="Permalink to this headline">#</a></h2>
+<h2>TODO - builtins package<a class="headerlink" href="#todo-builtins-package" title="Permalink to this headline">¶</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">builtins</span>
@@ -2583,7 +2479,7 @@ False
 </div>
 </section>
 <section id="difference-between-function-and-method">
-<h2>Difference between function and method<a class="headerlink" href="#difference-between-function-and-method" title="Permalink to this headline">#</a></h2>
+<h2>Difference between function and method<a class="headerlink" href="#difference-between-function-and-method" title="Permalink to this headline">¶</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">t1</span> <span class="o">=</span> <span class="n">TestClass</span><span class="p">()</span>
@@ -2614,7 +2510,7 @@ False
 </div>
 </section>
 <section id="attribute-vs-property">
-<h2>Attribute vs Property<a class="headerlink" href="#attribute-vs-property" title="Permalink to this headline">#</a></h2>
+<h2>Attribute vs Property<a class="headerlink" href="#attribute-vs-property" title="Permalink to this headline">¶</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">A</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
@@ -2682,7 +2578,7 @@ False
 </div>
 </section>
 <section id="static-vs-instance-method">
-<h2>Static vs instance method<a class="headerlink" href="#static-vs-instance-method" title="Permalink to this headline">#</a></h2>
+<h2>Static vs instance method<a class="headerlink" href="#static-vs-instance-method" title="Permalink to this headline">¶</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Test</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
@@ -2709,11 +2605,11 @@ False
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Called method_one
 Called method_two
-&lt;function Test.method_one at 0x7fceabd82a60&gt;
-&lt;function Test.method_two at 0x7fceabd82040&gt;
-&lt;bound method Test.method_one of &lt;__main__.Test object at 0x7fceabd78cd0&gt;&gt;
-&lt;function Test.method_two at 0x7fceabd82040&gt;
-&lt;function Test.method_one at 0x7fceabd82a60&gt;
+&lt;function Test.method_one at 0x7fad7b9ec160&gt;
+&lt;function Test.method_two at 0x7fad7b9ec1f0&gt;
+&lt;bound method Test.method_one of &lt;__main__.Test object at 0x7fad7b9ed5e0&gt;&gt;
+&lt;function Test.method_two at 0x7fad7b9ec1f0&gt;
+&lt;function Test.method_one at 0x7fad7b9ec160&gt;
 </pre></div>
 </div>
 </div>
@@ -2773,7 +2669,7 @@ Called instance method_three
 </div>
 </section>
 <section id="inner-function">
-<h2>Inner function<a class="headerlink" href="#inner-function" title="Permalink to this headline">#</a></h2>
+<h2>Inner function<a class="headerlink" href="#inner-function" title="Permalink to this headline">¶</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="mi">1</span>
@@ -2794,7 +2690,7 @@ Called instance method_three
 </div>
 </section>
 <section id="todo-break-it-how-does-mro-work-class-ordering">
-<h2>TODO - Break it!! How does MRO work - class ordering<a class="headerlink" href="#todo-break-it-how-does-mro-work-class-ordering" title="Permalink to this headline">#</a></h2>
+<h2>TODO - Break it!! How does MRO work - class ordering<a class="headerlink" href="#todo-break-it-how-does-mro-work-class-ordering" title="Permalink to this headline">¶</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Python program showing</span>
@@ -2910,9 +2806,7 @@ Called instance method_three
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;class &#39;__main__.OldStyleClass&#39;&gt;, &lt;class &#39;object&#39;&gt;]
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;class &#39;__main__.NewStyleClass&#39;&gt;, &lt;class &#39;object&#39;&gt;]
+[&lt;class &#39;__main__.NewStyleClass&#39;&gt;, &lt;class &#39;object&#39;&gt;]
 </pre></div>
 </div>
 </div>
@@ -2977,7 +2871,7 @@ global pi variable
 </div>
 </section>
 <section id="scope-resolution-when-function-is-defined">
-<h2>Scope resolution - When function is defined<a class="headerlink" href="#scope-resolution-when-function-is-defined" title="Permalink to this headline">#</a></h2>
+<h2>Scope resolution - When function is defined<a class="headerlink" href="#scope-resolution-when-function-is-defined" title="Permalink to this headline">¶</a></h2>
 <p>Python resolves the scope of the parameters of a function in two ways:</p>
 <ul class="simple">
 <li><p>When the function is defined</p></li>
@@ -3018,7 +2912,7 @@ the value of b to [1, 8, 11].</p>
 </div>
 </section>
 <section id="scope-resolution-when-the-function-is-called">
-<h2>Scope resolution - When the function is called<a class="headerlink" href="#scope-resolution-when-the-function-is-called" title="Permalink to this headline">#</a></h2>
+<h2>Scope resolution - When the function is called<a class="headerlink" href="#scope-resolution-when-the-function-is-called" title="Permalink to this headline">¶</a></h2>
 <p>It is because Python resolves the reference to names of non-default parameters in the scope
 of a function when it is called and not when it is defined. Here the parameter is i. When the
 loop terminates, the value of i is 4 and when we call any of the lambda functions stored in
@@ -3051,7 +2945,7 @@ for the lambda function and let python’s scope resolution behaviour do that fo
 </div>
 </section>
 <section id="using-default-arguments-in-lambda-expressions">
-<h2>Using default arguments in lambda expressions<a class="headerlink" href="#using-default-arguments-in-lambda-expressions" title="Permalink to this headline">#</a></h2>
+<h2>Using default arguments in lambda expressions<a class="headerlink" href="#using-default-arguments-in-lambda-expressions" title="Permalink to this headline">¶</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Lambda expression that takes 3 arguments by default</span>
@@ -3075,7 +2969,7 @@ summ(10, 20, 30) =  60
 </div>
 </section>
 <section id="using-lambda-expressions-containing-default-arguments">
-<h2>Using lambda expressions containing default arguments<a class="headerlink" href="#using-lambda-expressions-containing-default-arguments" title="Permalink to this headline">#</a></h2>
+<h2>Using lambda expressions containing default arguments<a class="headerlink" href="#using-lambda-expressions-containing-default-arguments" title="Permalink to this headline">¶</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Using default arguments in lambda expressions</span>
@@ -3104,7 +2998,7 @@ area1 =  3.141592653589793
 </div>
 </section>
 <section id="nested-lambda-expressions">
-<h2>Nested lambda expressions<a class="headerlink" href="#nested-lambda-expressions" title="Permalink to this headline">#</a></h2>
+<h2>Nested lambda expressions<a class="headerlink" href="#nested-lambda-expressions" title="Permalink to this headline">¶</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Calculate the power of two numbers</span>
@@ -3127,7 +3021,7 @@ power3(3)(2)(1) =  9
 </div>
 </section>
 <section id="using-lambda-expressions-to-process-sequences">
-<h2>Using lambda expressions to process sequences<a class="headerlink" href="#using-lambda-expressions-to-process-sequences" title="Permalink to this headline">#</a></h2>
+<h2>Using lambda expressions to process sequences<a class="headerlink" href="#using-lambda-expressions-to-process-sequences" title="Permalink to this headline">¶</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Using a lambda expression and map() function to a tuple</span>
@@ -3148,14 +3042,14 @@ power3(3)(2)(1) =  9
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2
-T2 =  &lt;generator object &lt;genexpr&gt; at 0x7fceabd86d60&gt;
+T2 =  &lt;generator object &lt;genexpr&gt; at 0x7fad7b9f0510&gt;
 </pre></div>
 </div>
 </div>
 </div>
 </section>
 <section id="using-lambda-and-filter-expressions-for-processing-sequences">
-<h2>Using lambda and filter expressions for processing sequences<a class="headerlink" href="#using-lambda-and-filter-expressions-for-processing-sequences" title="Permalink to this headline">#</a></h2>
+<h2>Using lambda and filter expressions for processing sequences<a class="headerlink" href="#using-lambda-and-filter-expressions-for-processing-sequences" title="Permalink to this headline">¶</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># The use of lambda expressions and function filter() for a list</span>
@@ -3183,7 +3077,7 @@ T2 =  &lt;generator object &lt;genexpr&gt; at 0x7fceabd86d60&gt;
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>l2 =  &lt;filter object at 0x7fceabd78580&gt;
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>l2 =  &lt;filter object at 0x7fad7b9f7c70&gt;
 l3 =  [15, 11, 20, 17]
 (2, 3, 5, 7, 11, 13, 17, 19)
 </pre></div>
@@ -3192,7 +3086,7 @@ l3 =  [15, 11, 20, 17]
 </div>
 </section>
 <section id="using-lambda-and-reduce-expressions-to-process-sequences">
-<h2>Using lambda and reduce expressions to process sequences<a class="headerlink" href="#using-lambda-and-reduce-expressions-to-process-sequences" title="Permalink to this headline">#</a></h2>
+<h2>Using lambda and reduce expressions to process sequences<a class="headerlink" href="#using-lambda-and-reduce-expressions-to-process-sequences" title="Permalink to this headline">¶</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">functools</span>
@@ -3268,7 +3162,7 @@ reduce(...)
 </div>
 </section>
 <section id="classmethod-vs-staticmethod-vs-instance-method">
-<h2>classmethod vs staticmethod vs instance method<a class="headerlink" href="#classmethod-vs-staticmethod-vs-instance-method" title="Permalink to this headline">#</a></h2>
+<h2>classmethod vs staticmethod vs instance method<a class="headerlink" href="#classmethod-vs-staticmethod-vs-instance-method" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li><p>instance method</p>
 <ul>
@@ -3354,8 +3248,8 @@ reduce(...)
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>obj.method() -  (&#39;instance method called&#39;, &lt;__main__.MyClass object at 0x7fceabd78160&gt;)
-MyClass.method(obj) -  (&#39;instance method called&#39;, &lt;__main__.MyClass object at 0x7fceabd78160&gt;)
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>obj.method() -  (&#39;instance method called&#39;, &lt;__main__.MyClass object at 0x7fad7b9ed8e0&gt;)
+MyClass.method(obj) -  (&#39;instance method called&#39;, &lt;__main__.MyClass object at 0x7fad7b9ed8e0&gt;)
 obj.classmethod() -  (&#39;class method called&#39;, &lt;class &#39;__main__.MyClass&#39;&gt;)
 MyClass.classmethod() -  (&#39;class method called&#39;, &lt;class &#39;__main__.MyClass&#39;&gt;)
 obj.staticmethod() -  static method called
@@ -3366,7 +3260,7 @@ MyClass.staticmethod() -  static method called
 </div>
 </section>
 <section id="todo-break-it">
-<h2>TODO - Break it!<a class="headerlink" href="#todo-break-it" title="Permalink to this headline">#</a></h2>
+<h2>TODO - Break it!<a class="headerlink" href="#todo-break-it" title="Permalink to this headline">¶</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Python program to demonstrate</span>
@@ -3545,8 +3439,8 @@ Printing from the first_child() function
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;function parent.&lt;locals&gt;.first_child at 0x7fceabda7790&gt;
-&lt;function parent.&lt;locals&gt;.second_child at 0x7fceabda7940&gt;
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;function parent.&lt;locals&gt;.first_child at 0x7fad7ba01670&gt;
+&lt;function parent.&lt;locals&gt;.second_child at 0x7fad7ba01310&gt;
 Hi, I am Emma
 Call me Liam
 </pre></div>
@@ -3605,7 +3499,10 @@ Something is happening after the function is called.
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>not now
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Whee2!
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
 </pre></div>
 </div>
 </div>
@@ -3823,7 +3720,7 @@ say_whee()
 </div>
 </section>
 <section id="todo-functools-package">
-<h2>TODO - functools package<a class="headerlink" href="#todo-functools-package" title="Permalink to this headline">#</a></h2>
+<h2>TODO - functools package<a class="headerlink" href="#todo-functools-package" title="Permalink to this headline">¶</a></h2>
 <p>help(functools.wraps)</p>
 <ul class="simple">
 <li><p>Learn functools a bit more!</p></li>
@@ -3901,10 +3798,13 @@ say_whee()
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Finished &#39;waste_some_time&#39; in 0.0066 secs
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Finished &#39;waste_some_time&#39; in 0.0028 secs
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Finished &#39;waste_some_time&#39; in 11.7591 secs
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Finished &#39;waste_some_time&#39; in 2.5182 secs
 </pre></div>
 </div>
 </div>
@@ -4057,9 +3957,9 @@ Calling factorial(4)
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[(&#39;__eq__&#39;, &lt;function __create_fn__.&lt;locals&gt;.__eq__ at 0x7fceabf580d0&gt;),
- (&#39;__init__&#39;, &lt;function __create_fn__.&lt;locals&gt;.__init__ at 0x7fceabf58040&gt;),
- (&#39;__repr__&#39;, &lt;function __create_fn__.&lt;locals&gt;.__repr__ at 0x7fceabf56f70&gt;)]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[(&#39;__eq__&#39;, &lt;function __create_fn__.&lt;locals&gt;.__eq__ at 0x7fad7bd06280&gt;),
+ (&#39;__init__&#39;, &lt;function __create_fn__.&lt;locals&gt;.__init__ at 0x7fad7bd061f0&gt;),
+ (&#39;__repr__&#39;, &lt;function __create_fn__.&lt;locals&gt;.__repr__ at 0x7fad7bd06160&gt;)]
 </pre></div>
 </div>
 </div>
@@ -4167,7 +4067,7 @@ Calling factorial(4)
 </div>
 </section>
 <section id="equality-for-tuples">
-<h2>Equality for tuples<a class="headerlink" href="#equality-for-tuples" title="Permalink to this headline">#</a></h2>
+<h2>Equality for tuples<a class="headerlink" href="#equality-for-tuples" title="Permalink to this headline">¶</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">t1</span> <span class="o">=</span> <span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="s1">&#39;asd&#39;</span><span class="p">,</span> <span class="mf">14.3</span><span class="p">)</span>
@@ -4187,7 +4087,7 @@ False
 </div>
 </section>
 <section id="str-vs-repr">
-<h2>str vs repr<a class="headerlink" href="#str-vs-repr" title="Permalink to this headline">#</a></h2>
+<h2>str vs repr<a class="headerlink" href="#str-vs-repr" title="Permalink to this headline">¶</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">datetime</span>
@@ -4196,7 +4096,7 @@ False
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>datetime.datetime(2022, 10, 6, 23, 52, 50, 267122)
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>datetime.datetime(2022, 10, 16, 18, 28, 4, 213028)
 </pre></div>
 </div>
 </div>
@@ -4208,7 +4108,7 @@ False
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2022-10-06 23:52:50.280110
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2022-10-16 18:28:04.217978
 </pre></div>
 </div>
 </div>
@@ -4242,8 +4142,8 @@ False
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>str: &lt;__main__.Test object at 0x7fceabd96df0&gt;
-repr: &lt;__main__.Test object at 0x7fceabd54dc0&gt;
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>str: &lt;__main__.Test object at 0x7fad7b9f7a00&gt;
+repr: &lt;__main__.Test object at 0x7fad7b9f73d0&gt;
 </pre></div>
 </div>
 </div>
@@ -4277,7 +4177,7 @@ repr: test1
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>str: test2
-repr: &lt;__main__.Test2 object at 0x7fceabd96070&gt;
+repr: &lt;__main__.Test2 object at 0x7fad7bd14070&gt;
 </pre></div>
 </div>
 </div>
@@ -4294,7 +4194,7 @@ repr: &lt;__main__.Test2 object at 0x7fceabd96070&gt;
 </ul>
 </section>
 <section id="decorators">
-<h2>Decorators<a class="headerlink" href="#decorators" title="Permalink to this headline">#</a></h2>
+<h2>Decorators<a class="headerlink" href="#decorators" title="Permalink to this headline">¶</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">repeat</span><span class="p">(</span><span class="n">num_times</span><span class="p">):</span>
@@ -4343,7 +4243,7 @@ Hello World
 </div>
 </section>
 <section id="packing-and-unpacking-iterables">
-<h2>Packing and Unpacking iterables<a class="headerlink" href="#packing-and-unpacking-iterables" title="Permalink to this headline">#</a></h2>
+<h2>Packing and Unpacking iterables<a class="headerlink" href="#packing-and-unpacking-iterables" title="Permalink to this headline">¶</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">my_sum</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">):</span>
@@ -4365,9 +4265,7 @@ Hello World
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>6
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>45
+45
 </pre></div>
 </div>
 </div>
@@ -4505,7 +4403,7 @@ Hello World
 </div>
 </section>
 <section id="packing-iterables">
-<h2>Packing iterables<a class="headerlink" href="#packing-iterables" title="Permalink to this headline">#</a></h2>
+<h2>Packing iterables<a class="headerlink" href="#packing-iterables" title="Permalink to this headline">¶</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">*</span><span class="n">a</span><span class="p">,</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span>
@@ -4534,7 +4432,7 @@ _ variable: [0, 0, 0, 0]
 </div>
 </section>
 <section id="merging-iterables-using-star-operator">
-<h2>Merging iterables using star operator<a class="headerlink" href="#merging-iterables-using-star-operator" title="Permalink to this headline">#</a></h2>
+<h2>Merging iterables using star operator<a class="headerlink" href="#merging-iterables-using-star-operator" title="Permalink to this headline">¶</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">my_tuple</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
@@ -4578,9 +4476,7 @@ _ variable: [0, 0, 0, 0]
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[0, 1, 2, 3, 4]
 &lt;class &#39;list&#39;&gt;
 range(0, 5)
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;class &#39;range&#39;&gt;
+&lt;class &#39;range&#39;&gt;
 [2, 3]
 [5, 6, 7]
 </pre></div>
@@ -4589,7 +4485,7 @@ range(0, 5)
 </div>
 </section>
 <section id="unpacking-dictionaries-with-the-operator">
-<h2>Unpacking Dictionaries With the ** Operator<a class="headerlink" href="#unpacking-dictionaries-with-the-operator" title="Permalink to this headline">#</a></h2>
+<h2>Unpacking Dictionaries With the ** Operator<a class="headerlink" href="#unpacking-dictionaries-with-the-operator" title="Permalink to this headline">¶</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">numbers</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;one&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;two&quot;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="s2">&quot;three&quot;</span><span class="p">:</span> <span class="mi">3</span><span class="p">}</span>
@@ -4607,7 +4503,7 @@ range(0, 5)
 </div>
 </section>
 <section id="iterable-unpacking">
-<h2>Iterable unpacking<a class="headerlink" href="#iterable-unpacking" title="Permalink to this headline">#</a></h2>
+<h2>Iterable unpacking<a class="headerlink" href="#iterable-unpacking" title="Permalink to this headline">¶</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Unpacking strings</span>
@@ -4644,7 +4540,7 @@ Pairs: (&#39;one&#39;, 1)
 </div>
 </section>
 <section id="defining-functions-with-and">
-<h2>Defining Functions With * and **<a class="headerlink" href="#defining-functions-with-and" title="Permalink to this headline">#</a></h2>
+<h2>Defining Functions With * and **<a class="headerlink" href="#defining-functions-with-and" title="Permalink to this headline">¶</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">func</span><span class="p">(</span><span class="n">required</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
@@ -4665,7 +4561,7 @@ Pairs: (&#39;one&#39;, 1)
 </div>
 </section>
 <section id="calling-functions-with-and">
-<h2>Calling Functions With * and **<a class="headerlink" href="#calling-functions-with-and" title="Permalink to this headline">#</a></h2>
+<h2>Calling Functions With * and **<a class="headerlink" href="#calling-functions-with-and" title="Permalink to this headline">¶</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">func</span><span class="p">(</span><span class="n">welcome</span><span class="p">,</span> <span class="n">to</span><span class="p">,</span> <span class="n">site</span><span class="p">):</span>
@@ -4705,7 +4601,7 @@ Welcome to...
 </div>
 </section>
 <section id="integer-identity">
-<h2>Integer identity<a class="headerlink" href="#integer-identity" title="Permalink to this headline">#</a></h2>
+<h2>Integer identity<a class="headerlink" href="#integer-identity" title="Permalink to this headline">¶</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="mi">5</span>
@@ -4714,7 +4610,7 @@ Welcome to...
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>4326078944
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>4429253088
 </pre></div>
 </div>
 </div>
@@ -4727,7 +4623,7 @@ Welcome to...
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>4326078976
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>4429253120
 </pre></div>
 </div>
 </div>
@@ -4739,14 +4635,14 @@ Welcome to...
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;class &#39;builtin_function_or_method&#39;&gt; with id: 140525483497328
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;class &#39;builtin_function_or_method&#39;&gt; with id: 140382986213232
 </pre></div>
 </div>
 </div>
 </div>
 </section>
 <section id="string-equality-using-identity">
-<h2>String equality using identity<a class="headerlink" href="#string-equality-using-identity" title="Permalink to this headline">#</a></h2>
+<h2>String equality using identity<a class="headerlink" href="#string-equality-using-identity" title="Permalink to this headline">¶</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">str1</span> <span class="o">=</span> <span class="s1">&#39;Hello&#39;</span>
@@ -4764,12 +4660,12 @@ Welcome to...
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Hello 140525622784368
-Hello 140525622784368
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Hello 140383075845360
+Hello 140383075845360
 True
 True
-Hello 140525622784368
-Helloo 140525623153520
+Hello 140383075845360
+Helloo 140383076172592
 False
 False
 </pre></div>
@@ -4789,17 +4685,17 @@ False
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Hello 140525622784368
-Hello 140525622784368
-Hello 140525622784368
-Helloo 140525622774576
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Hello 140383075845360
+Hello 140383075845360
+Hello 140383075845360
+Helloo 140383074874224
 </pre></div>
 </div>
 </div>
 </div>
 </section>
 <section id="immutable-string">
-<h2>Immutable string<a class="headerlink" href="#immutable-string" title="Permalink to this headline">#</a></h2>
+<h2>Immutable string<a class="headerlink" href="#immutable-string" title="Permalink to this headline">¶</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="s1">&#39;dog&#39;</span>
@@ -4816,7 +4712,7 @@ Helloo 140525622774576
 </div>
 </section>
 <section id="list-as-mutable-with-object-representation">
-<h2>List as mutable with object representation<a class="headerlink" href="#list-as-mutable-with-object-representation" title="Permalink to this headline">#</a></h2>
+<h2>List as mutable with object representation<a class="headerlink" href="#list-as-mutable-with-object-representation" title="Permalink to this headline">¶</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;hello&#39;</span><span class="p">]</span>
@@ -4828,16 +4724,16 @@ Helloo 140525622774576
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;method-wrapper &#39;__repr__&#39; of list object at 0x7fceabf4ab40&gt;
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;method-wrapper &#39;__repr__&#39; of list object at 0x7fad7b636340&gt;
 [&#39;hello new&#39;]
-&lt;method-wrapper &#39;__repr__&#39; of list object at 0x7fceabf4ab40&gt;
+&lt;method-wrapper &#39;__repr__&#39; of list object at 0x7fad7b636340&gt;
 </pre></div>
 </div>
 </div>
 </div>
 </section>
 <section id="disable-asserts">
-<h2>Disable asserts<a class="headerlink" href="#disable-asserts" title="Permalink to this headline">#</a></h2>
+<h2>Disable asserts<a class="headerlink" href="#disable-asserts" title="Permalink to this headline">¶</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># !python -Oc &quot;assert False&quot; # This is how we disable asserts</span>
@@ -4850,7 +4746,7 @@ Helloo 140525622774576
 </div>
 </section>
 <section id="assert-with-parenthesis">
-<h2>assert with parenthesis<a class="headerlink" href="#assert-with-parenthesis" title="Permalink to this headline">#</a></h2>
+<h2>assert with parenthesis<a class="headerlink" href="#assert-with-parenthesis" title="Permalink to this headline">¶</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># assert(1 == 2, &#39;This should fail&#39;) # An old feature that is no more relevant</span>
@@ -4862,7 +4758,7 @@ Helloo 140525622774576
 </div>
 </section>
 <section id="context-manager-order-of-events">
-<h2>Context manager order of events<a class="headerlink" href="#context-manager-order-of-events" title="Permalink to this headline">#</a></h2>
+<h2>Context manager order of events<a class="headerlink" href="#context-manager-order-of-events" title="Permalink to this headline">¶</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">TestClass</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
@@ -4885,7 +4781,9 @@ Helloo 140525622774576
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>__init__ method
-__enter__ method
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>__enter__ method
 144
 __exit__ method
 </pre></div>
@@ -4894,7 +4792,7 @@ __exit__ method
 </div>
 </section>
 <section id="todo-contextlib-package">
-<h2>TODO - contextlib package<a class="headerlink" href="#todo-contextlib-package" title="Permalink to this headline">#</a></h2>
+<h2>TODO - contextlib package<a class="headerlink" href="#todo-contextlib-package" title="Permalink to this headline">¶</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">contextlib</span>
@@ -4975,7 +4873,7 @@ __exit__ method
 </div>
 </section>
 <section id="context-manager-with-pytest">
-<h2>Context manager with pytest<a class="headerlink" href="#context-manager-with-pytest" title="Permalink to this headline">#</a></h2>
+<h2>Context manager with pytest<a class="headerlink" href="#context-manager-with-pytest" title="Permalink to this headline">¶</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pytest</span>
@@ -4988,7 +4886,7 @@ __exit__ method
 </div>
 </section>
 <section id="incorrect-context-manager">
-<h2>Incorrect context manager<a class="headerlink" href="#incorrect-context-manager" title="Permalink to this headline">#</a></h2>
+<h2>Incorrect context manager<a class="headerlink" href="#incorrect-context-manager" title="Permalink to this headline">¶</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">HelloContextManager</span><span class="p">:</span>
@@ -5021,7 +4919,7 @@ None
 </div>
 </section>
 <section id="use-of-contextmanager-and-lambda-functions">
-<h2>Use of contextmanager and lambda functions<a class="headerlink" href="#use-of-contextmanager-and-lambda-functions" title="Permalink to this headline">#</a></h2>
+<h2>Use of contextmanager and lambda functions<a class="headerlink" href="#use-of-contextmanager-and-lambda-functions" title="Permalink to this headline">¶</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">time</span> <span class="kn">import</span> <span class="n">perf_counter</span>
@@ -5057,7 +4955,7 @@ None
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.5000704789999979
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.5047433459999979
 </pre></div>
 </div>
 </div>
@@ -5071,7 +4969,7 @@ None
 </div>
 </section>
 <section id="iterables-iterators">
-<h2>Iterables/Iterators<a class="headerlink" href="#iterables-iterators" title="Permalink to this headline">#</a></h2>
+<h2>Iterables/Iterators<a class="headerlink" href="#iterables-iterators" title="Permalink to this headline">¶</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mygenerator</span> <span class="o">=</span> <span class="p">(</span><span class="n">x</span><span class="o">*</span><span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">))</span>
@@ -5092,7 +4990,7 @@ None
 </div>
 </section>
 <section id="using-yield-as-generator">
-<h2>Using yield as generator<a class="headerlink" href="#using-yield-as-generator" title="Permalink to this headline">#</a></h2>
+<h2>Using yield as generator<a class="headerlink" href="#using-yield-as-generator" title="Permalink to this headline">¶</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">f123</span><span class="p">():</span>
@@ -5112,7 +5010,7 @@ None
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1-&gt; &lt;generator object f123 at 0x7fceac2f0c10&gt;
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1-&gt; &lt;generator object f123 at 0x7fad7c02a2e0&gt;
 2-&gt; &lt;class &#39;generator&#39;&gt;
 3-&gt; 1
 Loop starts
@@ -5169,7 +5067,7 @@ Task 2 performed
 </div>
 </section>
 <section id="invoking-super">
-<h2>Invoking super<a class="headerlink" href="#invoking-super" title="Permalink to this headline">#</a></h2>
+<h2>Invoking super<a class="headerlink" href="#invoking-super" title="Permalink to this headline">¶</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">A</span><span class="p">:</span>
@@ -5191,7 +5089,7 @@ Task 2 performed
 </div>
 </section>
 <section id="formating-strings">
-<h2>Formating strings<a class="headerlink" href="#formating-strings" title="Permalink to this headline">#</a></h2>
+<h2>Formating strings<a class="headerlink" href="#formating-strings" title="Permalink to this headline">¶</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Old way of formating strings</span>
@@ -5241,7 +5139,7 @@ Eric Idle is 74. Surprise!
 </div>
 </section>
 <section id="named-arguments">
-<h2>Named arguments<a class="headerlink" href="#named-arguments" title="Permalink to this headline">#</a></h2>
+<h2>Named arguments<a class="headerlink" href="#named-arguments" title="Permalink to this headline">¶</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">analyzekwargs</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
@@ -5329,7 +5227,7 @@ lname Singh
 </div>
 </section>
 <section id="fibonacci-with-memoization-and-decorator">
-<h2>Fibonacci with memoization and decorator<a class="headerlink" href="#fibonacci-with-memoization-and-decorator" title="Permalink to this headline">#</a></h2>
+<h2>Fibonacci with memoization and decorator<a class="headerlink" href="#fibonacci-with-memoization-and-decorator" title="Permalink to this headline">¶</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">fibonacci</span><span class="p">(</span><span class="n">num</span><span class="p">):</span>
@@ -5404,19 +5302,19 @@ lname Singh
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>fibonacciWithMemAndClassDecorator: 5.2030999999175265e-05
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>fibonacciWithMemAndClassDecorator: 2.7945999999445803e-05
 </pre></div>
 </div>
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>75025
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>fibonacciWithMem: 0.06754909899999717
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>fibonacciWithMem: 0.03387518400000289
 </pre></div>
 </div>
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>75025
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>fibonacci: 0.03975683400000207
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>fibonacci: 0.01734552099999931
 </pre></div>
 </div>
 </div>
@@ -5432,7 +5330,7 @@ lname Singh
 </div>
 </section>
 <section id="closures">
-<h2>Closures<a class="headerlink" href="#closures" title="Permalink to this headline">#</a></h2>
+<h2>Closures<a class="headerlink" href="#closures" title="Permalink to this headline">¶</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">multiplier</span><span class="p">(</span><span class="n">num1</span><span class="p">):</span>
@@ -5453,9 +5351,7 @@ lname Singh
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>8
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>12
+12
 </pre></div>
 </div>
 </div>
@@ -5492,7 +5388,7 @@ Access denied: Age restriction
 </div>
 </section>
 <section id="closure-vs-nested-function">
-<h2><a class="reference external" href="https://stackoverflow.com/questions/4020419/why-arent-python-nested-functions-called-closures">Closure vs Nested function</a><a class="headerlink" href="#closure-vs-nested-function" title="Permalink to this headline">#</a></h2>
+<h2><a class="reference external" href="https://stackoverflow.com/questions/4020419/why-arent-python-nested-functions-called-closures">Closure vs Nested function</a><a class="headerlink" href="#closure-vs-nested-function" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li><p>Example 1 - Closure</p>
 <ul>
@@ -5544,7 +5440,7 @@ Foo!
 </div>
 </section>
 <section id="example-of-not-a-closure-attributes-as-no-content-inside-and-has-no-free-variable">
-<h2>Example of not-a-closure attributes as no content inside and has no free variable.<a class="headerlink" href="#example-of-not-a-closure-attributes-as-no-content-inside-and-has-no-free-variable" title="Permalink to this headline">#</a></h2>
+<h2>Example of not-a-closure attributes as no content inside and has no free variable.<a class="headerlink" href="#example-of-not-a-closure-attributes-as-no-content-inside-and-has-no-free-variable" title="Permalink to this headline">¶</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">foo</span><span class="p">():</span>
@@ -5567,7 +5463,7 @@ True
 </div>
 </section>
 <section id="example-of-closure-attributes-with-content-inside">
-<h2>Example of closure attributes with content inside<a class="headerlink" href="#example-of-closure-attributes-with-content-inside" title="Permalink to this headline">#</a></h2>
+<h2>Example of closure attributes with content inside<a class="headerlink" href="#example-of-closure-attributes-with-content-inside" title="Permalink to this headline">¶</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">foo</span><span class="p">(</span><span class="n">msg</span><span class="p">):</span>
@@ -5582,7 +5478,7 @@ True
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(&lt;cell at 0x7fceac315460: str object at 0x7fceac31b530&gt;,)
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(&lt;cell at 0x7fad7c04d160: str object at 0x7fad7b5871f0&gt;,)
 True
 foooo
 </pre></div>
@@ -5591,7 +5487,7 @@ foooo
 </div>
 </section>
 <section id="example-of-not-a-closure-attributes-as-access-variables-are-local-to-enclosing-scopes">
-<h2>Example of not-a-closure attributes as access variables are local to enclosing scopes<a class="headerlink" href="#example-of-not-a-closure-attributes-as-access-variables-are-local-to-enclosing-scopes" title="Permalink to this headline">#</a></h2>
+<h2>Example of not-a-closure attributes as access variables are local to enclosing scopes<a class="headerlink" href="#example-of-not-a-closure-attributes-as-access-variables-are-local-to-enclosing-scopes" title="Permalink to this headline">¶</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">foo</span><span class="p">(</span><span class="n">msg</span><span class="p">):</span>
@@ -5614,7 +5510,7 @@ True
 </div>
 </section>
 <section id="lambda">
-<h2>Lambda<a class="headerlink" href="#lambda" title="Permalink to this headline">#</a></h2>
+<h2>Lambda<a class="headerlink" href="#lambda" title="Permalink to this headline">¶</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">multiplier</span><span class="p">(</span><span class="n">num</span><span class="p">):</span>
@@ -5633,8 +5529,8 @@ True
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>8
 12
-&lt;function multiplier.&lt;locals&gt;.&lt;lambda&gt; at 0x7fceac317700&gt;
-&lt;function multiplier.&lt;locals&gt;.&lt;lambda&gt; at 0x7fceac317e50&gt;
+&lt;function multiplier.&lt;locals&gt;.&lt;lambda&gt; at 0x7fad7c03d040&gt;
+&lt;function multiplier.&lt;locals&gt;.&lt;lambda&gt; at 0x7fad7c03dd30&gt;
 </pre></div>
 </div>
 </div>
@@ -5678,7 +5574,7 @@ True
 </div>
 </section>
 <section id="using-maps">
-<h2>Using maps<a class="headerlink" href="#using-maps" title="Permalink to this headline">#</a></h2>
+<h2>Using maps<a class="headerlink" href="#using-maps" title="Permalink to this headline">¶</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 1st way - traditional way</span>
@@ -5763,7 +5659,7 @@ class map(object)
 </div>
 </section>
 <section id="using-list-comprehension-method-to-convert-a-map-object-to-list">
-<h2>Using list comprehension method to convert a map object to list<a class="headerlink" href="#using-list-comprehension-method-to-convert-a-map-object-to-list" title="Permalink to this headline">#</a></h2>
+<h2>Using list comprehension method to convert a map object to list<a class="headerlink" href="#using-list-comprehension-method-to-convert-a-map-object-to-list" title="Permalink to this headline">¶</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Using list comprehension</span>
@@ -5788,9 +5684,6 @@ class map(object)
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;F&#39;, &#39;2&#39;, &#39;\n&#39;, &#39;`&#39;]
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
-</pre></div>
-</div>
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;\nIn Python, the term unpacking can be defined as an operation whose primary purpose \nis to assign the iterable with all the values to a List or a Tuple, provided it’s \ndone in a single assignment statement.\n\nThe star * sign is used as the iterable unpacking operator. The iterable unpacking \noperator can work efficiently and excellently for both Tuples and List.\n&#39;
 </pre></div>
 </div>
@@ -5801,7 +5694,7 @@ class map(object)
 </div>
 </section>
 <section id="using-map-object-to-list">
-<h2>Using map object to list<a class="headerlink" href="#using-map-object-to-list" title="Permalink to this headline">#</a></h2>
+<h2>Using map object to list<a class="headerlink" href="#using-map-object-to-list" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li><p>Sets require their items to be hashable</p></li>
 <li><p>Out of types predefined by Python only the immutable ones, such as strings, numbers, and tuples, are hashable.</p></li>
@@ -5831,7 +5724,7 @@ class map(object)
 </div>
 </section>
 <section id="using-map-with-different-kinds-of-functions">
-<h2>Using map() with different kinds of functions<a class="headerlink" href="#using-map-with-different-kinds-of-functions" title="Permalink to this headline">#</a></h2>
+<h2>Using map() with different kinds of functions<a class="headerlink" href="#using-map-with-different-kinds-of-functions" title="Permalink to this headline">¶</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">numbers</span> <span class="o">=</span> <span class="p">[</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span>
@@ -5855,7 +5748,7 @@ class map(object)
 </div>
 </section>
 <section id="using-map-with-lambda">
-<h2>Using map with lambda<a class="headerlink" href="#using-map-with-lambda" title="Permalink to this headline">#</a></h2>
+<h2>Using map with lambda<a class="headerlink" href="#using-map-with-lambda" title="Permalink to this headline">¶</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">numbers</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">]</span>
@@ -5890,16 +5783,14 @@ class map(object)
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Python
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;Some&#39;, &#39;people&#39;, &#39;when&#39;, &#39;confronted&#39;, &#39;with&#39;, &#39;a&#39;, &#39;problem&#39;, &#39;think&#39;, &#39;I&#39;, &#39;know&#39;, &quot;I&#39;ll&quot;, &#39;use&#39;, &#39;regular&#39;, &#39;expressions&#39;, &#39;Now&#39;, &#39;they&#39;, &#39;have&#39;, &#39;two&#39;, &#39;problems&#39;, &#39;Jamie&#39;, &#39;Zawinski&#39;]
+[&#39;Some&#39;, &#39;people&#39;, &#39;when&#39;, &#39;confronted&#39;, &#39;with&#39;, &#39;a&#39;, &#39;problem&#39;, &#39;think&#39;, &#39;I&#39;, &#39;know&#39;, &quot;I&#39;ll&quot;, &#39;use&#39;, &#39;regular&#39;, &#39;expressions&#39;, &#39;Now&#39;, &#39;they&#39;, &#39;have&#39;, &#39;two&#39;, &#39;problems&#39;, &#39;Jamie&#39;, &#39;Zawinski&#39;]
 </pre></div>
 </div>
 </div>
 </div>
 </section>
 <section id="todo-using-itertools">
-<h2>TODO - Using itertools<a class="headerlink" href="#todo-using-itertools" title="Permalink to this headline">#</a></h2>
+<h2>TODO - Using itertools<a class="headerlink" href="#todo-using-itertools" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li><p><a class="reference external" href="https://docs.python.org/3/library/itertools.html">https://docs.python.org/3/library/itertools.html</a></p></li>
 </ul>
@@ -5960,38 +5851,38 @@ class map(object)
 </div>
 </section>
 <section id="classes-are-callable">
-<h2>Classes are callable<a class="headerlink" href="#classes-are-callable" title="Permalink to this headline">#</a></h2>
+<h2>Classes are callable<a class="headerlink" href="#classes-are-callable" title="Permalink to this headline">¶</a></h2>
 </section>
 <section id="asynchronous-generator-functions">
-<h2>Asynchronous generator functions<a class="headerlink" href="#asynchronous-generator-functions" title="Permalink to this headline">#</a></h2>
+<h2>Asynchronous generator functions<a class="headerlink" href="#asynchronous-generator-functions" title="Permalink to this headline">¶</a></h2>
 </section>
 <section id="coroutine-functions">
-<h2>Coroutine functions<a class="headerlink" href="#coroutine-functions" title="Permalink to this headline">#</a></h2>
+<h2>Coroutine functions<a class="headerlink" href="#coroutine-functions" title="Permalink to this headline">¶</a></h2>
 </section>
 <section id="id1">
-<h2>Variable annotations<a class="headerlink" href="#id1" title="Permalink to this headline">#</a></h2>
+<h2>Variable annotations<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
 </section>
 <section id="future-statement">
-<h2>future statement<a class="headerlink" href="#future-statement" title="Permalink to this headline">#</a></h2>
+<h2>future statement<a class="headerlink" href="#future-statement" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li><p>A future statement is a directive to the compiler that a particular module should be compiled using syntax or semantics that will be available in a specified future release of Python where the feature becomes standard.</p></li>
 </ul>
 </section>
 <section id="augmented-assignment-expression">
-<h2>augmented assignment expression<a class="headerlink" href="#augmented-assignment-expression" title="Permalink to this headline">#</a></h2>
+<h2>augmented assignment expression<a class="headerlink" href="#augmented-assignment-expression" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li><p>an augmented assignment expression like x += 1 can be rewritten as x = x + 1 to achieve a similar, but not exactly equal effect. In the augmented version, x is only evaluated once. Also, when possible, the actual operation is performed in-place, meaning that rather than creating a new object and assigning that to the target, the old object is modified instead.</p></li>
 <li><p>Unlike normal assignments, augmented assignments evaluate the left-hand side before evaluating the right-hand side. For example, a[i] += f(x) first looks-up a[i], then it evaluates f(x) and performs the addition, and lastly, it writes the result back to a[i].</p></li>
 </ul>
 </section>
 <section id="python-classes-are-objects-too">
-<h2>Python classes are objects too<a class="headerlink" href="#python-classes-are-objects-too" title="Permalink to this headline">#</a></h2>
+<h2>Python classes are objects too<a class="headerlink" href="#python-classes-are-objects-too" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li><p>Instance of type class</p></li>
 </ul>
 </section>
 <section id="everything-in-python-is-an-object-or-an-instance">
-<h2>Everything in Python is an object or an instance<a class="headerlink" href="#everything-in-python-is-an-object-or-an-instance" title="Permalink to this headline">#</a></h2>
+<h2>Everything in Python is an object or an instance<a class="headerlink" href="#everything-in-python-is-an-object-or-an-instance" title="Permalink to this headline">¶</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="mi">10</span>
@@ -6063,7 +5954,7 @@ class map(object)
 </div>
 </section>
 <section id="metaclass-in-python">
-<h2><a class="reference external" href="https://www.honeybadger.io/blog/python-instantiation-metaclass/">Metaclass in Python</a><a class="headerlink" href="#metaclass-in-python" title="Permalink to this headline">#</a></h2>
+<h2><a class="reference external" href="https://www.honeybadger.io/blog/python-instantiation-metaclass/">Metaclass in Python</a><a class="headerlink" href="#metaclass-in-python" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li><p>Using type - This “type” is a class and is different from the type function that returns type of object.</p></li>
 <li><p>Metaclass is a class from which classes are instantiated or metaclass is a class of a class.</p></li>
@@ -6103,10 +5994,10 @@ class map(object)
 </div>
 </section>
 <section id="what-is-the-difference-between-init-and-new-method">
-<h2><a class="reference external" href="https://www.honeybadger.io/blog/python-instantiation-metaclass/">What is the difference between __init__ and __new__ method?</a><a class="headerlink" href="#what-is-the-difference-between-init-and-new-method" title="Permalink to this headline">#</a></h2>
+<h2><a class="reference external" href="https://www.honeybadger.io/blog/python-instantiation-metaclass/">What is the difference between __init__ and __new__ method?</a><a class="headerlink" href="#what-is-the-difference-between-init-and-new-method" title="Permalink to this headline">¶</a></h2>
 </section>
 <section id="callable-objects">
-<h2><a class="reference external" href="https://www.honeybadger.io/blog/python-instantiation-metaclass/">callable objects</a><a class="headerlink" href="#callable-objects" title="Permalink to this headline">#</a></h2>
+<h2><a class="reference external" href="https://www.honeybadger.io/blog/python-instantiation-metaclass/">callable objects</a><a class="headerlink" href="#callable-objects" title="Permalink to this headline">¶</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">help</span><span class="p">(</span><span class="n">callable</span><span class="p">)</span>
@@ -6135,7 +6026,7 @@ callable(obj, /)
 </div>
 </section>
 <section id="multiplication-operator-cant-make-independent-objects">
-<h2>Multiplication operator cant make independent objects<a class="headerlink" href="#multiplication-operator-cant-make-independent-objects" title="Permalink to this headline">#</a></h2>
+<h2>Multiplication operator cant make independent objects<a class="headerlink" href="#multiplication-operator-cant-make-independent-objects" title="Permalink to this headline">¶</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="p">[[]]</span><span class="o">*</span><span class="mi">3</span>
@@ -6159,13 +6050,13 @@ callable(obj, /)
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>id(a)=140525628951360
-id(a[0])=140525629051520
-id(a[1])=140525629051520
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>id(a)=140383086862272
+id(a[0])=140383086861312
+id(a[1])=140383086861312
 
-id(b)=140525629053312
-id(b[0])=140525628961088
-id(b[1])=140525629022720
+id(b)=140383086860608
+id(b[0])=140383086860928
+id(b[1])=140383086861440
 
 a=[[1], [1], [1]]
 b=[[1], [], []]
@@ -6208,11 +6099,11 @@ b=[[1], [], []]
 </div>
 </section>
 <section id="dispatcher-mechanism">
-<h2>Dispatcher mechanism<a class="headerlink" href="#dispatcher-mechanism" title="Permalink to this headline">#</a></h2>
+<h2>Dispatcher mechanism<a class="headerlink" href="#dispatcher-mechanism" title="Permalink to this headline">¶</a></h2>
 <p><a class="reference external" href="http://hackwrite.com/posts/learn-about-python-decorators-by-writing-a-function-dispatcher/">http://hackwrite.com/posts/learn-about-python-decorators-by-writing-a-function-dispatcher/</a></p>
 </section>
 <section id="defaultdict-performance">
-<h2>defaultdict performance<a class="headerlink" href="#defaultdict-performance" title="Permalink to this headline">#</a></h2>
+<h2>defaultdict performance<a class="headerlink" href="#defaultdict-performance" title="Permalink to this headline">¶</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">defaultdict</span>
@@ -6232,19 +6123,19 @@ b=[[1], [], []]
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>51.6 µs ± 6.36 µs per loop (mean ± std. dev. of 7 runs, 105 loops each)
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>14.5 µs ± 3.27 µs per loop (mean ± std. dev. of 7 runs, 105 loops each)
  
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The slowest run took 29.33 times longer than the fastest. This could mean that an intermediate result is being cached.
-371 µs ± 502 µs per loop (mean ± std. dev. of 7 runs, 105 loops each)
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The slowest run took 57.45 times longer than the fastest. This could mean that an intermediate result is being cached.
+180 µs ± 258 µs per loop (mean ± std. dev. of 7 runs, 105 loops each)
 </pre></div>
 </div>
 </div>
 </div>
 </section>
 <section id="set-default-value-for-all-missing-keys-of-dictionary">
-<h2>Set default value for all missing keys of dictionary<a class="headerlink" href="#set-default-value-for-all-missing-keys-of-dictionary" title="Permalink to this headline">#</a></h2>
+<h2>Set default value for all missing keys of dictionary<a class="headerlink" href="#set-default-value-for-all-missing-keys-of-dictionary" title="Permalink to this headline">¶</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">defaultdict</span>
@@ -6263,18 +6154,18 @@ b=[[1], [], []]
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-1
-defaultdict(&lt;function &lt;lambda&gt; at 0x7fceac335160&gt;, {&#39;foo&#39;: 123, &#39;bar&#39;: 456, &#39;baz&#39;: -1})
+defaultdict(&lt;function &lt;lambda&gt; at 0x7fad7c03dee0&gt;, {&#39;foo&#39;: 123, &#39;bar&#39;: 456, &#39;baz&#39;: -1})
 -1
-defaultdict(&lt;function &lt;lambda&gt; at 0x7fceac335160&gt;, {&#39;foo&#39;: 123, &#39;bar&#39;: 456, &#39;baz&#39;: -1, &#39;tease&#39;: -1})
+defaultdict(&lt;function &lt;lambda&gt; at 0x7fad7c03dee0&gt;, {&#39;foo&#39;: 123, &#39;bar&#39;: 456, &#39;baz&#39;: -1, &#39;tease&#39;: -1})
 342
-defaultdict(&lt;function &lt;lambda&gt; at 0x7fceac335160&gt;, {&#39;foo&#39;: 123, &#39;bar&#39;: 456, &#39;baz&#39;: 342, &#39;tease&#39;: -1})
+defaultdict(&lt;function &lt;lambda&gt; at 0x7fad7c03dee0&gt;, {&#39;foo&#39;: 123, &#39;bar&#39;: 456, &#39;baz&#39;: 342, &#39;tease&#39;: -1})
 </pre></div>
 </div>
 </div>
 </div>
 </section>
 <section id="replicate-using">
-<h2>Replicate using *<a class="headerlink" href="#replicate-using" title="Permalink to this headline">#</a></h2>
+<h2>Replicate using *<a class="headerlink" href="#replicate-using" title="Permalink to this headline">¶</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="p">[[</span><span class="o">*</span><span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">)]</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">)]</span>
@@ -6289,7 +6180,7 @@ defaultdict(&lt;function &lt;lambda&gt; at 0x7fceac335160&gt;, {&#39;foo&#39;: 1
 </div>
 </section>
 <section id="partial-function">
-<h2>partial function<a class="headerlink" href="#partial-function" title="Permalink to this headline">#</a></h2>
+<h2>partial function<a class="headerlink" href="#partial-function" title="Permalink to this headline">¶</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">exp</span><span class="p">(</span><span class="n">base</span><span class="p">,</span> <span class="n">power</span><span class="p">):</span>
@@ -6332,9 +6223,9 @@ defaultdict(&lt;function &lt;lambda&gt; at 0x7fceac335160&gt;, {&#39;foo&#39;: 1
 </div>
 </section>
 <section id="magic-dunder-double-underscore-methods">
-<h2>Magic/dunder/double underscore methods<a class="headerlink" href="#magic-dunder-double-underscore-methods" title="Permalink to this headline">#</a></h2>
+<h2>Magic/dunder/double underscore methods<a class="headerlink" href="#magic-dunder-double-underscore-methods" title="Permalink to this headline">¶</a></h2>
 <section id="init">
-<h3>__init__<a class="headerlink" href="#init" title="Permalink to this headline">#</a></h3>
+<h3>__init__<a class="headerlink" href="#init" title="Permalink to this headline">¶</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">TestClass</span><span class="p">:</span>
@@ -6358,7 +6249,7 @@ defaultdict(&lt;function &lt;lambda&gt; at 0x7fceac335160&gt;, {&#39;foo&#39;: 1
 </div>
 </section>
 <section id="del">
-<h3>__del__<a class="headerlink" href="#del" title="Permalink to this headline">#</a></h3>
+<h3>__del__<a class="headerlink" href="#del" title="Permalink to this headline">¶</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">os</span>
@@ -6385,7 +6276,7 @@ defaultdict(&lt;function &lt;lambda&gt; at 0x7fceac335160&gt;, {&#39;foo&#39;: 1
 </div>
 </section>
 <section id="getattr">
-<h3>__getattr__<a class="headerlink" href="#getattr" title="Permalink to this headline">#</a></h3>
+<h3>__getattr__<a class="headerlink" href="#getattr" title="Permalink to this headline">¶</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">TestClass</span><span class="p">:</span>
@@ -6417,7 +6308,7 @@ Test
 </div>
 </section>
 <section id="getattribute">
-<h3>__getattribute__<a class="headerlink" href="#getattribute" title="Permalink to this headline">#</a></h3>
+<h3>__getattribute__<a class="headerlink" href="#getattribute" title="Permalink to this headline">¶</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">TestClass</span><span class="p">:</span>
@@ -6447,7 +6338,7 @@ Test
 </div>
 </section>
 <section id="getattr-vs-getattribute">
-<h3>__getattr__ vs __getattribute__<a class="headerlink" href="#getattr-vs-getattribute" title="Permalink to this headline">#</a></h3>
+<h3>__getattr__ vs __getattribute__<a class="headerlink" href="#getattr-vs-getattribute" title="Permalink to this headline">¶</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">TestClass</span><span class="p">:</span>
@@ -6492,7 +6383,7 @@ Test
 </section>
 </section>
 <section id="iter-vs-range">
-<h2>__iter__ vs range<a class="headerlink" href="#iter-vs-range" title="Permalink to this headline">#</a></h2>
+<h2>__iter__ vs range<a class="headerlink" href="#iter-vs-range" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li><p><a class="reference external" href="https://docs.python.org/3/glossary.html#term-iterator">https://docs.python.org/3/glossary.html#term-iterator</a></p></li>
 </ul>
@@ -6528,17 +6419,17 @@ next printed this :  9
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;range_iterator at 0x7fceabd78e10&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;range_iterator at 0x7fad7c030db0&gt;
 </pre></div>
 </div>
 </div>
 </div>
 </section>
 <section id="procedural-vs-object-oriented-vs-functional-programming">
-<h2>Procedural vs object-oriented vs functional programming<a class="headerlink" href="#procedural-vs-object-oriented-vs-functional-programming" title="Permalink to this headline">#</a></h2>
+<h2>Procedural vs object-oriented vs functional programming<a class="headerlink" href="#procedural-vs-object-oriented-vs-functional-programming" title="Permalink to this headline">¶</a></h2>
 </section>
 <section id="private-methods-property">
-<h2>Private methods/property<a class="headerlink" href="#private-methods-property" title="Permalink to this headline">#</a></h2>
+<h2>Private methods/property<a class="headerlink" href="#private-methods-property" title="Permalink to this headline">¶</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Employee</span><span class="p">:</span>
@@ -6590,7 +6481,7 @@ next printed this :  9
 </div>
 </section>
 <section id="parsing-argument">
-<h2>Parsing argument<a class="headerlink" href="#parsing-argument" title="Permalink to this headline">#</a></h2>
+<h2>Parsing argument<a class="headerlink" href="#parsing-argument" title="Permalink to this headline">¶</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># arg_demo2.py
@@ -6636,7 +6527,7 @@ SyntaxError: invalid syntax
 </div>
 </section>
 <section id="collections-chainmap">
-<h2>collections - ChainMap<a class="headerlink" href="#collections-chainmap" title="Permalink to this headline">#</a></h2>
+<h2>collections - ChainMap<a class="headerlink" href="#collections-chainmap" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li><p>ChainMap doesn’t merge its mappings together.</p>
 <ul>
@@ -6687,7 +6578,7 @@ ChainMap({&#39;cover&#39;: 100, &#39;hood_ornament&#39;: 150, &#39;seat_cover&#3
 </div>
 </section>
 <section id="collections-counter">
-<h2>collections - Counter<a class="headerlink" href="#collections-counter" title="Permalink to this headline">#</a></h2>
+<h2>collections - Counter<a class="headerlink" href="#collections-counter" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li><p>you can use the Counter against any iterable or mapping, so you don’t have to just use strings.</p></li>
 <li><p>You can also pass it tuples, dictionaries and lists! Give it a try on your own to see how it works with those other data types.</p></li>
@@ -6755,7 +6646,7 @@ Counter({&#39;u&#39;: 2, &#39;s&#39;: 1, &#39;f&#39;: 1, &#39;l&#39;: 1, &#39;o&
 </div>
 </section>
 <section id="collections-defaultdict">
-<h2>collections - defaultdict<a class="headerlink" href="#collections-defaultdict" title="Permalink to this headline">#</a></h2>
+<h2>collections - defaultdict<a class="headerlink" href="#collections-defaultdict" title="Permalink to this headline">¶</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sentence</span> <span class="o">=</span> <span class="s2">&quot;The red for jumped over the fence and ran to the zoo for food&quot;</span>
@@ -6873,10 +6764,10 @@ defaultdict(&lt;class &#39;str&#39;&gt;, {&#39;Sam&#39;: &#39;Tiger&#39;, &#39;N
 </div>
 </section>
 <section id="collections-deque">
-<h2>collections - deque<a class="headerlink" href="#collections-deque" title="Permalink to this headline">#</a></h2>
+<h2>collections - deque<a class="headerlink" href="#collections-deque" title="Permalink to this headline">¶</a></h2>
 </section>
 <section id="collections-ordereddict">
-<h2>collections - OrderedDict<a class="headerlink" href="#collections-ordereddict" title="Permalink to this headline">#</a></h2>
+<h2>collections - OrderedDict<a class="headerlink" href="#collections-ordereddict" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li><p>this dictionary keeps track of the order of the keys as they are added.</p>
 <ul>
@@ -6910,7 +6801,7 @@ pear 1
 </div>
 </section>
 <section id="sort-vs-sorted">
-<h2>sort vs sorted<a class="headerlink" href="#sort-vs-sorted" title="Permalink to this headline">#</a></h2>
+<h2>sort vs sorted<a class="headerlink" href="#sort-vs-sorted" title="Permalink to this headline">¶</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">l</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;abc&#39;</span><span class="p">,</span> <span class="s1">&#39;ABC&#39;</span><span class="p">,</span> <span class="s1">&#39;aBc&#39;</span><span class="p">]</span>
@@ -6942,33 +6833,33 @@ pear 1
 </div>
 </section>
 <section id="generators-vs-iterators">
-<h2>Generators vs Iterators<a class="headerlink" href="#generators-vs-iterators" title="Permalink to this headline">#</a></h2>
+<h2>Generators vs Iterators<a class="headerlink" href="#generators-vs-iterators" title="Permalink to this headline">¶</a></h2>
 <p><a class="reference external" href="https://stackoverflow.com/questions/2776829/difference-between-pythons-generators-and-iterators">https://stackoverflow.com/questions/2776829/difference-between-pythons-generators-and-iterators</a></p>
 </section>
 <section id="yield-statement">
-<h2>Yield statement<a class="headerlink" href="#yield-statement" title="Permalink to this headline">#</a></h2>
+<h2>Yield statement<a class="headerlink" href="#yield-statement" title="Permalink to this headline">¶</a></h2>
 <p><a class="reference external" href="https://stackoverflow.com/questions/231767/what-does-the-yield-keyword-do/31042491#31042491">https://stackoverflow.com/questions/231767/what-does-the-yield-keyword-do/31042491#31042491</a></p>
 </section>
 <section id="global-interpreter-lock">
-<h2>Global Interpreter Lock<a class="headerlink" href="#global-interpreter-lock" title="Permalink to this headline">#</a></h2>
+<h2>Global Interpreter Lock<a class="headerlink" href="#global-interpreter-lock" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li><p>an entity within the Python framework that allows a single thread to execute even in the presence of more than one idle CPUs</p></li>
 </ul>
 </section>
 <section id="python-interpreter-pvm">
-<h2>Python interpreter - PVM<a class="headerlink" href="#python-interpreter-pvm" title="Permalink to this headline">#</a></h2>
+<h2>Python interpreter - PVM<a class="headerlink" href="#python-interpreter-pvm" title="Permalink to this headline">¶</a></h2>
 </section>
 <section id="process-vs-threads">
-<h2>Process vs Threads<a class="headerlink" href="#process-vs-threads" title="Permalink to this headline">#</a></h2>
+<h2>Process vs Threads<a class="headerlink" href="#process-vs-threads" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li><p>Processes don’t share any resources amongst themselves whereas threads of a process can share the resources allocated to that particular process, including memory address space</p></li>
 </ul>
 </section>
 <section id="concurrency-vs-parallelism">
-<h2>Concurrency vs Parallelism<a class="headerlink" href="#concurrency-vs-parallelism" title="Permalink to this headline">#</a></h2>
+<h2>Concurrency vs Parallelism<a class="headerlink" href="#concurrency-vs-parallelism" title="Permalink to this headline">¶</a></h2>
 </section>
 <section id="cyclic-data-structure">
-<h2>Cyclic data structure<a class="headerlink" href="#cyclic-data-structure" title="Permalink to this headline">#</a></h2>
+<h2>Cyclic data structure<a class="headerlink" href="#cyclic-data-structure" title="Permalink to this headline">¶</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">l</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">]</span>
@@ -6985,7 +6876,7 @@ pear 1
 </div>
 </section>
 <section id="tuple-assignment">
-<h2>Tuple assignment<a class="headerlink" href="#tuple-assignment" title="Permalink to this headline">#</a></h2>
+<h2>Tuple assignment<a class="headerlink" href="#tuple-assignment" title="Permalink to this headline">¶</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X</span> <span class="o">=</span> <span class="s1">&#39;spam&#39;</span>
@@ -7007,7 +6898,7 @@ pear 1
 </div>
 </section>
 <section id="links">
-<h2>Links<a class="headerlink" href="#links" title="Permalink to this headline">#</a></h2>
+<h2>Links<a class="headerlink" href="#links" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li><p><a class="reference external" href="https://referenceguide.dev/cheatsheet/python3.html">https://referenceguide.dev/cheatsheet/python3.html</a></p></li>
 <li><p><a class="reference external" href="https://docs.python.org/3/faq/design.html">https://docs.python.org/3/faq/design.html</a></p></li>
@@ -7039,11 +6930,9 @@ pear 1
 
               </div>
               
-            </main>
-            <footer class="footer-article noprint">
-                
-    <!-- Previous / next buttons -->
-<div class='prev-next-area'>
+            
+                <!-- Previous / next buttons -->
+<div class='prev-next-area'> 
     <a class='left-prev' id="prev-link" href="intro.html" title="previous page">
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
@@ -7059,28 +6948,24 @@ pear 1
     <i class="fas fa-angle-right"></i>
     </a>
 </div>
-            </footer>
+            
         </div>
     </div>
-    <div class="footer-content row">
-        <footer class="col footer"><p>
-  
-    By Chandra<br/>
-  
-      &copy; Copyright 2022.<br/>
-</p>
-        </footer>
-    </div>
+    <footer class="footer">
+  <p>
     
-</div>
+      By Chandra<br/>
+    
+        &copy; Copyright 2021.<br/>
+  </p>
+</footer>
+</main>
 
 
       </div>
     </div>
   
-  <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
-
+  <script src="../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
 
   </body>
 </html>

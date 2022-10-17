@@ -8,9 +8,8 @@
 
     <title>AWS - Financial Services Cloud Symposium - 2022</title>
     
-  <!-- Loaded before other Sphinx assets -->
-  <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
-<link href="../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+  <link href="../_static/css/theme.css" rel="stylesheet">
+  <link href="../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
 
     
   <link rel="stylesheet"
@@ -20,16 +19,20 @@
   <link rel="preload" as="font" type="font/woff2" crossorigin
     href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
 
+    
+      
+
+    
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
     
-  <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+  <link rel="preload" as="script" href="../_static/js/index.be7d3bbb2ef33a8344ce.js">
 
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
@@ -37,13 +40,12 @@
     <script src="../_static/doctools.js"></script>
     <script src="../_static/clipboard.min.js"></script>
     <script src="../_static/copybutton.js"></script>
-    <script src="../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
     <script src="../_static/togglebutton.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="../_static/design-tabs.js"></script>
+    <script src="../_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
 const thebe_selector = ".thebe,.cell"
 const thebe_selector_input = "pre"
@@ -63,21 +65,7 @@ const thebe_selector_output = ".output, .cell_output"
     <!-- Google Analytics -->
     
   </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
-<!-- Checkboxes to toggle the left sidebar -->
-<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
-<label class="overlay overlay-navbar" for="__navigation">
-    <div class="visually-hidden">Toggle navigation sidebar</div>
-</label>
-<!-- Checkboxes to toggle the in-page toc -->
-<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
-<label class="overlay overlay-pagetoc" for="__page-toc">
-    <div class="visually-hidden">Toggle in-page Table of Contents</div>
-</label>
-<!-- Headers at the top -->
-<div class="announcement header-item noprint"></div>
-<div class="header header-item noprint"></div>
-
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
     
     <div class="container-fluid" id="banner"></div>
 
@@ -86,10 +74,9 @@ const thebe_selector_output = ".output, .cell_output"
     <div class="container-xl">
       <div class="row">
           
-<!-- Sidebar -->
-<div class="bd-sidebar noprint" id="site-navigation">
-    <div class="bd-sidebar__content">
-        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
     <a class="navbar-brand text-wrap" href="../index.html">
       
         <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
@@ -105,15 +92,14 @@ const thebe_selector_output = ".output, .cell_output"
   <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
 </form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item active">
-        
-        <ul class="nav bd-sidenav bd-sidenav__home-link">
-            <li class="toctree-l1">
-                <a class="reference internal" href="../intro.html">
-                    Welcome
-                </a>
-            </li>
-        </ul>
-        <p aria-level="2" class="caption" role="heading">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../intro.html">
+   Welcome
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
   System Design
  </span>
@@ -563,22 +549,29 @@ const thebe_selector_output = ".output, .cell_output"
      L02: Traditional Methods for ML in Graphs
     </a>
    </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../cs224w_ml_graph/CS224W_Colab_0.html">
+     <strong>
+      HW0
+     </strong>
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../cs224w_ml_graph/CS224W_Colab_1.html">
+     HW1
+    </a>
+   </li>
   </ul>
  </li>
 </ul>
 
     </div>
-</nav></div>
-        <div class="bd-sidebar__bottom">
-             <!-- To handle the deprecated key -->
-            
-            <div class="navbar_extra_footer">
-            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
-            </div>
-            
-        </div>
-    </div>
-    <div id="rtd-footer-container"></div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
 </div>
 
 
@@ -586,191 +579,94 @@ const thebe_selector_output = ".output, .cell_output"
 
 
           
-<!-- A tiny helper pixel to detect if we've scrolled -->
-<div class="sbt-scroll-pixel-helper"></div>
-<!-- Main content -->
-<div class="col py-0 content-container">
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
     
-    <div class="header-article row sticky-top noprint">
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
         
-
-
-
-<div class="col py-1 d-flex header-article-main">
-    <div class="header-article__left">
-        
-        <label for="__navigation"
-  class="headerbtn"
-  data-toggle="tooltip"
-data-placement="right"
-title="Toggle navigation"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-bars"></i>
-  </span>
-
-</label>
-
-        
-    </div>
-    <div class="header-article__right">
-<div class="menu-dropdown menu-dropdown-launch-buttons">
-  <button class="headerbtn menu-dropdown__trigger"
-      aria-label="Launch interactive content">
-      <i class="fas fa-rocket"></i>
-  </button>
-  <div class="menu-dropdown__content">
-    <ul>
-      <li>
-        <a href="https://mybinder.org/v2/gh/chandrabsingh/learning/master?urlpath=tree/learning/system_design/awscloud_financial_symposium_2022.ipynb"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Launch on Binder"
->
-  
-
-<span class="headerbtn__icon-container">
-  
-    <img src="../_static/images/logo_binder.svg">
-  </span>
-<span class="headerbtn__text-container">Binder</span>
-</a>
-
-      </li>
-      
-    </ul>
-  </div>
-</div>
-
-<button onclick="toggleFullScreen()"
-  class="headerbtn"
-  data-toggle="tooltip"
-data-placement="bottom"
-title="Fullscreen mode"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-expand"></i>
-  </span>
-
-</button>
-
-<div class="menu-dropdown menu-dropdown-repository-buttons">
-  <button class="headerbtn menu-dropdown__trigger"
-      aria-label="Source repositories">
-      <i class="fab fa-github"></i>
-  </button>
-  <div class="menu-dropdown__content">
-    <ul>
-      <li>
-        <a href="https://github.com/chandrabsingh/learning"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Source repository"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fab fa-github"></i>
-  </span>
-<span class="headerbtn__text-container">repository</span>
-</a>
-
-      </li>
-      
-      <li>
-        <a href="https://github.com/chandrabsingh/learning/issues/new?title=Issue%20on%20page%20%2Fsystem_design/awscloud_financial_symposium_2022.html&body=Your%20issue%20content%20here."
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Open an issue"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-lightbulb"></i>
-  </span>
-<span class="headerbtn__text-container">open issue</span>
-</a>
-
-      </li>
-      
-    </ul>
-  </div>
-</div>
-
-<div class="menu-dropdown menu-dropdown-download-buttons">
-  <button class="headerbtn menu-dropdown__trigger"
-      aria-label="Download this page">
-      <i class="fas fa-download"></i>
-  </button>
-  <div class="menu-dropdown__content">
-    <ul>
-      <li>
-        <a href="../_sources/system_design/awscloud_financial_symposium_2022.ipynb"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Download source file"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-file"></i>
-  </span>
-<span class="headerbtn__text-container">.ipynb</span>
-</a>
-
-      </li>
-      
-      <li>
-        
-<button onclick="printPdf(this)"
-  class="headerbtn"
-  data-toggle="tooltip"
-data-placement="left"
-title="Print to PDF"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-file-pdf"></i>
-  </span>
-<span class="headerbtn__text-container">.pdf</span>
-</button>
-
-      </li>
-      
-    </ul>
-  </div>
-</div>
-<label for="__page-toc"
-  class="headerbtn headerbtn-page-toc"
-  
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-list"></i>
-  </span>
-
-</label>
-
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/system_design/awscloud_financial_symposium_2022.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
     </div>
 </div>
 
-<!-- Table of contents -->
-<div class="col-md-3 bd-toc show noprint">
-    <div class="tocsection onthispage pt-5 pb-3">
-        <i class="fas fa-list"></i> Contents
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/chandrabsingh/learning"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/chandrabsingh/learning/issues/new?title=Issue%20on%20page%20%2Fsystem_design/awscloud_financial_symposium_2022.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        
     </div>
-    <nav id="bd-toc-nav" aria-label="Page">
-        <ul class="visible nav section-nav flex-column">
+</div>
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/chandrabsingh/learning/master?urlpath=tree/learning/system_design/awscloud_financial_symposium_2022.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#how-nomura-built-a-next-generation-time-series-metrics-as-a-service">
    How Nomura built a next-generation time series Metrics-as-a-Service
@@ -1162,11 +1058,12 @@ title="Print to PDF"
  </li>
 </ul>
 
-    </nav>
-</div>
+            </nav>
+        </div>
     </div>
-    <div class="article row">
-        <div class="col pl-md-3 pl-lg-5 content-container">
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
                 <h1>AWS - Financial Services Cloud Symposium - 2022</h1>
@@ -1574,20 +1471,19 @@ title="Print to PDF"
                     </div>
                 </div>
             </div>
-            <main id="main-content" role="main">
-                
+            
               <div>
                 
   <section class="tex2jax_ignore mathjax_ignore" id="aws-financial-services-cloud-symposium-2022">
-<h1>AWS - Financial Services Cloud Symposium - 2022<a class="headerlink" href="#aws-financial-services-cloud-symposium-2022" title="Permalink to this headline">#</a></h1>
+<h1>AWS - Financial Services Cloud Symposium - 2022<a class="headerlink" href="#aws-financial-services-cloud-symposium-2022" title="Permalink to this headline">¶</a></h1>
 <section id="how-nomura-built-a-next-generation-time-series-metrics-as-a-service">
-<h2>How Nomura built a next-generation time series Metrics-as-a-Service<a class="headerlink" href="#how-nomura-built-a-next-generation-time-series-metrics-as-a-service" title="Permalink to this headline">#</a></h2>
+<h2>How Nomura built a next-generation time series Metrics-as-a-Service<a class="headerlink" href="#how-nomura-built-a-next-generation-time-series-metrics-as-a-service" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li><p>Andy Coates - Executive Director, Global Head of Infrastructure Development, Nomura</p></li>
 <li><p>Arnav Khare - Principal Solutions Architect, Global Financial Services, AWS</p></li>
 </ul>
 <section id="serverless-analytics-on-aws">
-<h3>Serverless analytics on AWS<a class="headerlink" href="#serverless-analytics-on-aws" title="Permalink to this headline">#</a></h3>
+<h3>Serverless analytics on AWS<a class="headerlink" href="#serverless-analytics-on-aws" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p>pillars for AWS analytics</p></li>
 <li><p>scalable data lakes</p>
@@ -1619,7 +1515,7 @@ title="Print to PDF"
 </li>
 </ul>
 <section id="aws-serverless-options-for-data-analytics">
-<h4>AWS Serverless options for data analytics<a class="headerlink" href="#aws-serverless-options-for-data-analytics" title="Permalink to this headline">#</a></h4>
+<h4>AWS Serverless options for data analytics<a class="headerlink" href="#aws-serverless-options-for-data-analytics" title="Permalink to this headline">¶</a></h4>
 <ul class="simple">
 <li><p>AWS Glue</p>
 <ul>
@@ -1648,7 +1544,7 @@ title="Print to PDF"
 <p><span class="math notranslate nohighlight">\(\tiny{\text{AWS Symposium 2022 - Nomura}}\)</span></p>
 </section>
 <section id="serverless-analytics-pipeline-using-glue-and-athena">
-<h4>Serverless analytics pipeline using Glue and Athena<a class="headerlink" href="#serverless-analytics-pipeline-using-glue-and-athena" title="Permalink to this headline">#</a></h4>
+<h4>Serverless analytics pipeline using Glue and Athena<a class="headerlink" href="#serverless-analytics-pipeline-using-glue-and-athena" title="Permalink to this headline">¶</a></h4>
 <ul class="simple">
 <li><p>use Glue to connect to on-prem datasources and query using JDBC/ODBC</p></li>
 <li><p>inject files using Glue and transfer using AWS DataSync</p></li>
@@ -1663,12 +1559,12 @@ title="Print to PDF"
 </section>
 </section>
 <section id="vision-for-infrastructure-platform-at-nomura">
-<h3>Vision for infrastructure platform at Nomura<a class="headerlink" href="#vision-for-infrastructure-platform-at-nomura" title="Permalink to this headline">#</a></h3>
+<h3>Vision for infrastructure platform at Nomura<a class="headerlink" href="#vision-for-infrastructure-platform-at-nomura" title="Permalink to this headline">¶</a></h3>
 <section id="introduction-to-nomura">
-<h4>Introduction to Nomura<a class="headerlink" href="#introduction-to-nomura" title="Permalink to this headline">#</a></h4>
+<h4>Introduction to Nomura<a class="headerlink" href="#introduction-to-nomura" title="Permalink to this headline">¶</a></h4>
 </section>
 <section id="in-2010-vision-for-the-platform">
-<h4>In 2010, Vision for the platform<a class="headerlink" href="#in-2010-vision-for-the-platform" title="Permalink to this headline">#</a></h4>
+<h4>In 2010, Vision for the platform<a class="headerlink" href="#in-2010-vision-for-the-platform" title="Permalink to this headline">¶</a></h4>
 <ul class="simple">
 <li><p>measuring/checks but threw the data away</p></li>
 <li><p>identify hot-spots in the infrastructure and assist with root-cause analysis</p></li>
@@ -1677,9 +1573,9 @@ title="Print to PDF"
 </section>
 </section>
 <section id="journey-and-lessons-learned">
-<h3>Journey and lessons learned<a class="headerlink" href="#journey-and-lessons-learned" title="Permalink to this headline">#</a></h3>
+<h3>Journey and lessons learned<a class="headerlink" href="#journey-and-lessons-learned" title="Permalink to this headline">¶</a></h3>
 <section id="overview-of-platform-design">
-<h4>Overview of platform design<a class="headerlink" href="#overview-of-platform-design" title="Permalink to this headline">#</a></h4>
+<h4>Overview of platform design<a class="headerlink" href="#overview-of-platform-design" title="Permalink to this headline">¶</a></h4>
 <ul class="simple">
 <li><p>Data collection</p>
 <ul>
@@ -1702,7 +1598,7 @@ title="Print to PDF"
 </ul>
 </section>
 <section id="evolving-with-infrastructure-estate">
-<h4>Evolving with infrastructure estate<a class="headerlink" href="#evolving-with-infrastructure-estate" title="Permalink to this headline">#</a></h4>
+<h4>Evolving with infrastructure estate<a class="headerlink" href="#evolving-with-infrastructure-estate" title="Permalink to this headline">¶</a></h4>
 <ul class="simple">
 <li><p>In 2010</p>
 <ul>
@@ -1721,7 +1617,7 @@ title="Print to PDF"
 <p><span class="math notranslate nohighlight">\(\tiny{\text{AWS Symposium 2022 - Nomura}}\)</span></p>
 </section>
 <section id="phase-1-initial-launch-of-the-platform-2010">
-<h4>Phase 1 - Initial launch of the platform - 2010<a class="headerlink" href="#phase-1-initial-launch-of-the-platform-2010" title="Permalink to this headline">#</a></h4>
+<h4>Phase 1 - Initial launch of the platform - 2010<a class="headerlink" href="#phase-1-initial-launch-of-the-platform-2010" title="Permalink to this headline">¶</a></h4>
 <ul class="simple">
 <li><p>load of Java batch job for ETL and processing</p></li>
 <li><p>SQL to query it, Spring MVC application</p></li>
@@ -1732,7 +1628,7 @@ title="Print to PDF"
 <p><span class="math notranslate nohighlight">\(\tiny{\text{AWS Symposium 2022 - Nomura}}\)</span></p>
 </section>
 <section id="phase-2-evolving-to-big-data-2015">
-<h4>Phase 2 - Evolving to big data - 2015<a class="headerlink" href="#phase-2-evolving-to-big-data-2015" title="Permalink to this headline">#</a></h4>
+<h4>Phase 2 - Evolving to big data - 2015<a class="headerlink" href="#phase-2-evolving-to-big-data-2015" title="Permalink to this headline">¶</a></h4>
 <ul class="simple">
 <li><p>batch processes were vertically scaling</p></li>
 <li><p>number of regional jobs were taking more than 8 products</p></li>
@@ -1753,9 +1649,9 @@ title="Print to PDF"
 </section>
 </section>
 <section id="current-architecture-on-aws">
-<h3>Current architecture on AWS<a class="headerlink" href="#current-architecture-on-aws" title="Permalink to this headline">#</a></h3>
+<h3>Current architecture on AWS<a class="headerlink" href="#current-architecture-on-aws" title="Permalink to this headline">¶</a></h3>
 <section id="goals-for-cloud-transformation">
-<h4>Goals for cloud transformation<a class="headerlink" href="#goals-for-cloud-transformation" title="Permalink to this headline">#</a></h4>
+<h4>Goals for cloud transformation<a class="headerlink" href="#goals-for-cloud-transformation" title="Permalink to this headline">¶</a></h4>
 <ul class="simple">
 <li><p>Hadoop ecosystem were cumbersome to manage</p></li>
 <li><p>move towards serverless architecture</p></li>
@@ -1769,7 +1665,7 @@ title="Print to PDF"
 </ul>
 </section>
 <section id="transforming-to-public-cloud-2022">
-<h4>Transforming to public cloud - 2022<a class="headerlink" href="#transforming-to-public-cloud-2022" title="Permalink to this headline">#</a></h4>
+<h4>Transforming to public cloud - 2022<a class="headerlink" href="#transforming-to-public-cloud-2022" title="Permalink to this headline">¶</a></h4>
 <ul class="simple">
 <li><p>changes were at the 3 middle layers</p></li>
 <li><p>moved ETL to Lambda/Python</p></li>
@@ -1780,12 +1676,12 @@ title="Print to PDF"
 <p><span class="math notranslate nohighlight">\(\tiny{\text{AWS Symposium 2022 - Nomura}}\)</span></p>
 </section>
 <section id="high-level-logical-architecture">
-<h4>High level logical architecture<a class="headerlink" href="#high-level-logical-architecture" title="Permalink to this headline">#</a></h4>
+<h4>High level logical architecture<a class="headerlink" href="#high-level-logical-architecture" title="Permalink to this headline">¶</a></h4>
 <p align="center"><img src="./images/nomura_infrastructure_high-level-arch.png"></p>
 <p><span class="math notranslate nohighlight">\(\tiny{\text{AWS Symposium 2022 - Nomura}}\)</span></p>
 </section>
 <section id="detailed-logical-pipeline-view">
-<h4>Detailed logical pipeline view<a class="headerlink" href="#detailed-logical-pipeline-view" title="Permalink to this headline">#</a></h4>
+<h4>Detailed logical pipeline view<a class="headerlink" href="#detailed-logical-pipeline-view" title="Permalink to this headline">¶</a></h4>
 <ul class="simple">
 <li><p>In the ETL pipeline</p>
 <ul>
@@ -1814,7 +1710,7 @@ title="Print to PDF"
 <p><span class="math notranslate nohighlight">\(\tiny{\text{AWS Symposium 2022 - Nomura}}\)</span></p>
 </section>
 <section id="thinking-differently-in-cloud">
-<h4>Thinking differently in cloud<a class="headerlink" href="#thinking-differently-in-cloud" title="Permalink to this headline">#</a></h4>
+<h4>Thinking differently in cloud<a class="headerlink" href="#thinking-differently-in-cloud" title="Permalink to this headline">¶</a></h4>
 <ul class="simple">
 <li><p>started the journey while migrating to Hadoop</p>
 <ul>
@@ -1832,7 +1728,7 @@ title="Print to PDF"
 </section>
 </section>
 <section id="future-plans">
-<h3>Future plans<a class="headerlink" href="#future-plans" title="Permalink to this headline">#</a></h3>
+<h3>Future plans<a class="headerlink" href="#future-plans" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p>data collection has not changed</p>
 <ul>
@@ -1849,7 +1745,7 @@ title="Print to PDF"
 </ul>
 </section>
 <section id="q-a">
-<h3>Q&amp;A<a class="headerlink" href="#q-a" title="Permalink to this headline">#</a></h3>
+<h3>Q&amp;A<a class="headerlink" href="#q-a" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p>Why are there 3 lambdas in ETL</p>
 <ul>
@@ -1929,7 +1825,7 @@ title="Print to PDF"
 </section>
 </section>
 <section id="how-three-fintechs-are-transforming-financial-services-with-aws">
-<h2>How three Fintechs are transforming Financial Services with AWS<a class="headerlink" href="#how-three-fintechs-are-transforming-financial-services-with-aws" title="Permalink to this headline">#</a></h2>
+<h2>How three Fintechs are transforming Financial Services with AWS<a class="headerlink" href="#how-three-fintechs-are-transforming-financial-services-with-aws" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li><p>Moderated by Kathryn Van Nuys, Global Head, Fintech Business Development, Startups and Venture Capital, AWS</p>
 <ul>
@@ -1961,7 +1857,7 @@ title="Print to PDF"
 <li><p>these company use data or cloud based technology to solve customer needs</p></li>
 </ul>
 <section id="chris-clarity-ai">
-<h3>Chris/Clarity AI<a class="headerlink" href="#chris-clarity-ai" title="Permalink to this headline">#</a></h3>
+<h3>Chris/Clarity AI<a class="headerlink" href="#chris-clarity-ai" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p>first</p>
 <ul>
@@ -1986,7 +1882,7 @@ title="Print to PDF"
 </ul>
 </section>
 <section id="adma-blockfi">
-<h3>Adma/Blockfi<a class="headerlink" href="#adma-blockfi" title="Permalink to this headline">#</a></h3>
+<h3>Adma/Blockfi<a class="headerlink" href="#adma-blockfi" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p>how to provide retail/institutional clients better access to crypto clients in a packaged manner</p></li>
 <li><p>hedge fund or family office</p></li>
@@ -2004,7 +1900,7 @@ title="Print to PDF"
 </ul>
 </section>
 <section id="ali-petal">
-<h3>Ali/Petal<a class="headerlink" href="#ali-petal" title="Permalink to this headline">#</a></h3>
+<h3>Ali/Petal<a class="headerlink" href="#ali-petal" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p>founded 7 yrs ago by an immigrant</p></li>
 <li><p>couldn’t get Credit card</p></li>
@@ -2023,16 +1919,16 @@ title="Print to PDF"
 </ul>
 </section>
 <section id="how-do-you-solve-the-problems-using-aws-cloud">
-<h3>How do you solve the problems using AWS Cloud<a class="headerlink" href="#how-do-you-solve-the-problems-using-aws-cloud" title="Permalink to this headline">#</a></h3>
+<h3>How do you solve the problems using AWS Cloud<a class="headerlink" href="#how-do-you-solve-the-problems-using-aws-cloud" title="Permalink to this headline">¶</a></h3>
 <section id="how-do-you-solve-historically-underserved-market-petal">
-<h4>How do you solve historically underserved market/Petal<a class="headerlink" href="#how-do-you-solve-historically-underserved-market-petal" title="Permalink to this headline">#</a></h4>
+<h4>How do you solve historically underserved market/Petal<a class="headerlink" href="#how-do-you-solve-historically-underserved-market-petal" title="Permalink to this headline">¶</a></h4>
 <ul class="simple">
 <li><p>first - teach folks how to responsively take care of credit/lack of financial education</p></li>
 <li><p>second - models which data scientist work using RedShift, Postgre, SageMaker, Python notebooks ingesting data from bank transaction and other sources to predict clients with good credit score</p></li>
 </ul>
 </section>
 <section id="blockfi">
-<h4>BlockFi<a class="headerlink" href="#blockfi" title="Permalink to this headline">#</a></h4>
+<h4>BlockFi<a class="headerlink" href="#blockfi" title="Permalink to this headline">¶</a></h4>
 <ul class="simple">
 <li><p>100% users of AWS services using EC2, SageMaker, Lambda,</p></li>
 <li><p>started ML/DS to understand operational needs, forecast and security needs</p></li>
@@ -2052,7 +1948,7 @@ title="Print to PDF"
 </ul>
 </section>
 <section id="clarity-ai-esg-sustainability-and-challenges">
-<h4>Clarity AI/ESG/Sustainability and challenges<a class="headerlink" href="#clarity-ai-esg-sustainability-and-challenges" title="Permalink to this headline">#</a></h4>
+<h4>Clarity AI/ESG/Sustainability and challenges<a class="headerlink" href="#clarity-ai-esg-sustainability-and-challenges" title="Permalink to this headline">¶</a></h4>
 <ul class="simple">
 <li><p>scaling</p></li>
 <li><p>customization capability at user level</p>
@@ -2065,9 +1961,9 @@ title="Print to PDF"
 </section>
 </section>
 <section id="different-regulatory-requirements-how-to-approach">
-<h3>Different regulatory requirements, how to approach<a class="headerlink" href="#different-regulatory-requirements-how-to-approach" title="Permalink to this headline">#</a></h3>
+<h3>Different regulatory requirements, how to approach<a class="headerlink" href="#different-regulatory-requirements-how-to-approach" title="Permalink to this headline">¶</a></h3>
 <section id="blockfi-petal">
-<h4>BlockFi/Petal<a class="headerlink" href="#blockfi-petal" title="Permalink to this headline">#</a></h4>
+<h4>BlockFi/Petal<a class="headerlink" href="#blockfi-petal" title="Permalink to this headline">¶</a></h4>
 <ul class="simple">
 <li><p>financial services company and not security company</p></li>
 <li><p>needs to be aligned with regulatory</p></li>
@@ -2076,7 +1972,7 @@ title="Print to PDF"
 </ul>
 </section>
 <section id="clarity-ai">
-<h4>Clarity AI<a class="headerlink" href="#clarity-ai" title="Permalink to this headline">#</a></h4>
+<h4>Clarity AI<a class="headerlink" href="#clarity-ai" title="Permalink to this headline">¶</a></h4>
 <ul class="simple">
 <li><p>monitor controversies company level at worldwide</p></li>
 <li><p>use NLP to read 100K news sources, to calibrate high/low/medium level of risk</p></li>
@@ -2086,9 +1982,9 @@ title="Print to PDF"
 </section>
 </section>
 <section id="unlock-innovations">
-<h3>Unlock innovations<a class="headerlink" href="#unlock-innovations" title="Permalink to this headline">#</a></h3>
+<h3>Unlock innovations<a class="headerlink" href="#unlock-innovations" title="Permalink to this headline">¶</a></h3>
 <section id="petal">
-<h4>Petal<a class="headerlink" href="#petal" title="Permalink to this headline">#</a></h4>
+<h4>Petal<a class="headerlink" href="#petal" title="Permalink to this headline">¶</a></h4>
 <ul class="simple">
 <li><p>people with sub-prime score have better financial future</p></li>
 <li><p>how to do that</p>
@@ -2100,7 +1996,7 @@ title="Print to PDF"
 </ul>
 </section>
 <section id="id1">
-<h4>BlockFi<a class="headerlink" href="#id1" title="Permalink to this headline">#</a></h4>
+<h4>BlockFi<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h4>
 <ul class="simple">
 <li><p>BlackChain tech, Protocol tech</p></li>
 <li><p>DeFi - rapidly emerging space</p></li>
@@ -2112,7 +2008,7 @@ title="Print to PDF"
 </section>
 </section>
 <section id="how-the-options-clearing-corporation-modernized-its-clearing-technology-with-ness">
-<h2>How the Options Clearing Corporation modernized its clearing technology with Ness<a class="headerlink" href="#how-the-options-clearing-corporation-modernized-its-clearing-technology-with-ness" title="Permalink to this headline">#</a></h2>
+<h2>How the Options Clearing Corporation modernized its clearing technology with Ness<a class="headerlink" href="#how-the-options-clearing-corporation-modernized-its-clearing-technology-with-ness" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li><p>Paul Meulbroek - Head of Cloud and Data, Ness Digital Engineering</p></li>
 <li><p>Amy McCormick - Chief Information Officer, OCC</p></li>
@@ -2121,14 +2017,14 @@ title="Print to PDF"
 <li><p>preserve integrity of each contract</p></li>
 </ul>
 <section id="ness">
-<h3>Ness<a class="headerlink" href="#ness" title="Permalink to this headline">#</a></h3>
+<h3>Ness<a class="headerlink" href="#ness" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p>help companies go through cloud transformations, rearchitecting, refactoring, adapting modern data practices and handons in transformation</p></li>
 <li><p>replacing clearing and risk management technology</p></li>
 </ul>
 </section>
 <section id="motivations-of-transformation">
-<h3>Motivations of transformation<a class="headerlink" href="#motivations-of-transformation" title="Permalink to this headline">#</a></h3>
+<h3>Motivations of transformation<a class="headerlink" href="#motivations-of-transformation" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p>modernizing technology, getting modular that makes system flexible and reliable and scalability</p></li>
 <li><p>tremendous growth happening - data should be available to analyst to get insight about the patterns</p></li>
@@ -2140,20 +2036,20 @@ title="Print to PDF"
 </section>
 </section>
 <section id="how-hyland-helped-finra-to-securely-manage-their-most-critical-applications">
-<h2>How Hyland helped Finra to securely manage their most critical applications<a class="headerlink" href="#how-hyland-helped-finra-to-securely-manage-their-most-critical-applications" title="Permalink to this headline">#</a></h2>
+<h2>How Hyland helped Finra to securely manage their most critical applications<a class="headerlink" href="#how-hyland-helped-finra-to-securely-manage-their-most-critical-applications" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li><p>Steve Comer, AVP - Financial Services and Insurance, Hyland</p></li>
 <li><p>Mike Bonomo, Senior Account Executive</p></li>
 </ul>
 <section id="hyland">
-<h3>Hyland<a class="headerlink" href="#hyland" title="Permalink to this headline">#</a></h3>
+<h3>Hyland<a class="headerlink" href="#hyland" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p>FINRA is a customer</p></li>
 <li><p>leader in content services landscape</p></li>
 </ul>
 </section>
 <section id="finra">
-<h3>FINRA<a class="headerlink" href="#finra" title="Permalink to this headline">#</a></h3>
+<h3>FINRA<a class="headerlink" href="#finra" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p>Financial Industry Regulatory Authority</p></li>
 <li><p>deter, detect and discipline transactions in financial space</p></li>
@@ -2161,14 +2057,14 @@ title="Print to PDF"
 </ul>
 </section>
 <section id="the-problems">
-<h3>The Problems<a class="headerlink" href="#the-problems" title="Permalink to this headline">#</a></h3>
+<h3>The Problems<a class="headerlink" href="#the-problems" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p>Scalability and Legacy Applications</p></li>
 <li><p>information were missed</p></li>
 </ul>
 </section>
 <section id="why-alfresco">
-<h3>Why Alfresco<a class="headerlink" href="#why-alfresco" title="Permalink to this headline">#</a></h3>
+<h3>Why Alfresco<a class="headerlink" href="#why-alfresco" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p>Documentum - frustrated</p></li>
 <li><p>Alfresco/Hyland - open source and open API company - DNA of company</p></li>
@@ -2179,60 +2075,60 @@ title="Print to PDF"
 <p><span class="math notranslate nohighlight">\(\tiny{\text{AWS Symposium 2022 - FINRA - Alfresco Process Services}}\)</span></p>
 </section>
 <section id="finra-s-next-steps-and-future-state">
-<h3>FINRA’s next steps and future state<a class="headerlink" href="#finra-s-next-steps-and-future-state" title="Permalink to this headline">#</a></h3>
+<h3>FINRA’s next steps and future state<a class="headerlink" href="#finra-s-next-steps-and-future-state" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p>adopt AWS open search</p></li>
 </ul>
 </section>
 </section>
 <section id="building-climate-resiliency-and-sustainability-into-your-it-infrastructure">
-<h2>Building climate resiliency and sustainability into your IT infrastructure<a class="headerlink" href="#building-climate-resiliency-and-sustainability-into-your-it-infrastructure" title="Permalink to this headline">#</a></h2>
+<h2>Building climate resiliency and sustainability into your IT infrastructure<a class="headerlink" href="#building-climate-resiliency-and-sustainability-into-your-it-infrastructure" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li><p>Elias Ghanem, Global Head of Capgemini Research Institute for Financial Services, Capgemini</p></li>
 <li><p>Ravi Khokhar, Executive Vice President &amp; Head of Cloud at Capgemini Financial Services, Capgemini</p></li>
 </ul>
 </section>
 <section id="the-goldman-sachs-cloud-fast-track-secure-cloud-deployments-at-scale">
-<h2>The Goldman Sachs Cloud Fast Track: Secure Cloud Deployments at Scale<a class="headerlink" href="#the-goldman-sachs-cloud-fast-track-secure-cloud-deployments-at-scale" title="Permalink to this headline">#</a></h2>
+<h2>The Goldman Sachs Cloud Fast Track: Secure Cloud Deployments at Scale<a class="headerlink" href="#the-goldman-sachs-cloud-fast-track-secure-cloud-deployments-at-scale" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li><p>Ryan McDonough, Vice President, Cloud Enablement, Goldman Sachs</p></li>
 <li><p>Shubham Shukla, Vice President, Cloud Enablement, Goldman Sachs</p></li>
 </ul>
 </section>
 <section id="santander-s-journey-to-achieving-security-at-scale-on-aws">
-<h2>Santander’s journey to achieving security at-scale on AWS<a class="headerlink" href="#santander-s-journey-to-achieving-security-at-scale-on-aws" title="Permalink to this headline">#</a></h2>
+<h2>Santander’s journey to achieving security at-scale on AWS<a class="headerlink" href="#santander-s-journey-to-achieving-security-at-scale-on-aws" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li><p>Jorge Álvarez Fernández, Global Head of Public Cloud Architecture, Santander</p></li>
 <li><p>Luis Enríquez, Group VP, CTO for Cloud, Infrastructure &amp; Automation, Santander</p></li>
 </ul>
 </section>
 <section id="how-usaa-built-a-paved-road-with-guardrails">
-<h2>How USAA built a paved road with guardrails<a class="headerlink" href="#how-usaa-built-a-paved-road-with-guardrails" title="Permalink to this headline">#</a></h2>
+<h2>How USAA built a paved road with guardrails<a class="headerlink" href="#how-usaa-built-a-paved-road-with-guardrails" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li><p>Gerum Haile, VP, Chief Architect and Technical Fellow, USAA</p></li>
 </ul>
 </section>
 <section id="shift-record-retention-from-obligation-to-advantage-with-aws">
-<h2>Shift record retention from obligation to advantage with AWS<a class="headerlink" href="#shift-record-retention-from-obligation-to-advantage-with-aws" title="Permalink to this headline">#</a></h2>
+<h2>Shift record retention from obligation to advantage with AWS<a class="headerlink" href="#shift-record-retention-from-obligation-to-advantage-with-aws" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li><p>Russell Lewis, Financial Services Compliance Specialist, AWS</p></li>
 <li><p>Alket Memushaj, Principal Solutions Architect, Capital Markets, AWS</p></li>
 </ul>
 </section>
 <section id="transform-cross-border-payments-compliance-with-aws">
-<h2>Transform cross-border payments compliance with AWS<a class="headerlink" href="#transform-cross-border-payments-compliance-with-aws" title="Permalink to this headline">#</a></h2>
+<h2>Transform cross-border payments compliance with AWS<a class="headerlink" href="#transform-cross-border-payments-compliance-with-aws" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li><p>Gloria Vargas, Account Manager, Global Financial Services, AWS</p></li>
 </ul>
 </section>
 <section id="how-fidelity-asset-managements-equity-trading-platform-migrated-all-in-to-aws">
-<h2>How Fidelity asset management’s equity trading platform migrated all-in to AWS<a class="headerlink" href="#how-fidelity-asset-managements-equity-trading-platform-migrated-all-in-to-aws" title="Permalink to this headline">#</a></h2>
+<h2>How Fidelity asset management’s equity trading platform migrated all-in to AWS<a class="headerlink" href="#how-fidelity-asset-managements-equity-trading-platform-migrated-all-in-to-aws" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li><p>John Kerin, Head of Engineering, Asset Management - Equity Technology, Fidelity</p></li>
 <li><p>Girish Maraliga, SVP, Head of Architecture &amp; Platforms, Fidelity</p></li>
 </ul>
 <section id="fidelity-asset-management">
-<h3>Fidelity Asset Management<a class="headerlink" href="#fidelity-asset-management" title="Permalink to this headline">#</a></h3>
+<h3>Fidelity Asset Management<a class="headerlink" href="#fidelity-asset-management" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p>migration of equity trading business into cloud</p></li>
 </ul>
@@ -2240,27 +2136,27 @@ title="Print to PDF"
 <p><span class="math notranslate nohighlight">\(\tiny{\text{AWS Symposium 2022 - Fidelity Asset Management}}\)</span></p>
 </section>
 <section id="asset-management-where-are-we-now">
-<h3>Asset Management - Where are we now<a class="headerlink" href="#asset-management-where-are-we-now" title="Permalink to this headline">#</a></h3>
+<h3>Asset Management - Where are we now<a class="headerlink" href="#asset-management-where-are-we-now" title="Permalink to this headline">¶</a></h3>
 <p align="center"><img src="./images/fidelity_where_r_we_now.png"></p>
 <p><span class="math notranslate nohighlight">\(\tiny{\text{AWS Symposium 2022 - Fidelity Asset Management - Where are we now}}\)</span></p>
 </section>
 <section id="asset-management-migration-progress">
-<h3>Asset Management - Migration Progress<a class="headerlink" href="#asset-management-migration-progress" title="Permalink to this headline">#</a></h3>
+<h3>Asset Management - Migration Progress<a class="headerlink" href="#asset-management-migration-progress" title="Permalink to this headline">¶</a></h3>
 <p align="center"><img src="./images/fidelity_migration_progress.png"></p>
 <p><span class="math notranslate nohighlight">\(\tiny{\text{AWS Symposium 2022 - Fidelity Asset Management - Migration Progress}}\)</span></p>
 </section>
 <section id="equity-trading-business-context">
-<h3>Equity Trading Business Context<a class="headerlink" href="#equity-trading-business-context" title="Permalink to this headline">#</a></h3>
+<h3>Equity Trading Business Context<a class="headerlink" href="#equity-trading-business-context" title="Permalink to this headline">¶</a></h3>
 <p align="center"><img src="./images/fidelity_equity_trading_business_context.png"></p>
 <p><span class="math notranslate nohighlight">\(\tiny{\text{AWS Symposium 2022 - Fidelity Equity Trading Business Context}}\)</span></p>
 </section>
 <section id="equity-trading-footprint">
-<h3>Equity Trading Footprint<a class="headerlink" href="#equity-trading-footprint" title="Permalink to this headline">#</a></h3>
+<h3>Equity Trading Footprint<a class="headerlink" href="#equity-trading-footprint" title="Permalink to this headline">¶</a></h3>
 <p align="center"><img src="./images/fidelity_equity_trading_footprint.png"></p>
 <p><span class="math notranslate nohighlight">\(\tiny{\text{AWS Symposium 2022 - Fidelity Equity Trading Footprint}}\)</span></p>
 </section>
 <section id="equity-trading-cloud-architecture">
-<h3>Equity Trading Cloud Architecture<a class="headerlink" href="#equity-trading-cloud-architecture" title="Permalink to this headline">#</a></h3>
+<h3>Equity Trading Cloud Architecture<a class="headerlink" href="#equity-trading-cloud-architecture" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p>on traders desktop, there are series of applications that commands down to the trading system</p></li>
 <li><p>overall command-query pattern is used overall</p></li>
@@ -2287,7 +2183,7 @@ title="Print to PDF"
 <p><span class="math notranslate nohighlight">\(\tiny{\text{AWS Symposium 2022 - Fidelity Equity Trading Cloud Architecture}}\)</span></p>
 </section>
 <section id="equity-trading-fix-protocol">
-<h3>Equity Trading - FIX protocol<a class="headerlink" href="#equity-trading-fix-protocol" title="Permalink to this headline">#</a></h3>
+<h3>Equity Trading - FIX protocol<a class="headerlink" href="#equity-trading-fix-protocol" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p>protocol to communicate with external broker-dealer</p></li>
 <li><p>variety of different vendor market dealers are engaged</p></li>
@@ -2299,7 +2195,7 @@ title="Print to PDF"
 <p><span class="math notranslate nohighlight">\(\tiny{\text{AWS Symposium 2022 - Fidelity Equity Trading - Networking use case of FIX Protocol}}\)</span></p>
 </section>
 <section id="equity-trading-resiliency-use-case-kafka">
-<h3>Equity Trading - Resiliency use case: Kafka<a class="headerlink" href="#equity-trading-resiliency-use-case-kafka" title="Permalink to this headline">#</a></h3>
+<h3>Equity Trading - Resiliency use case: Kafka<a class="headerlink" href="#equity-trading-resiliency-use-case-kafka" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p>use case 1</p></li>
 <li><p>run using a hot-warm pattern because there are SLAs that are hard to achieve which is to get real time messages that needs to reach traders</p></li>
@@ -2316,7 +2212,7 @@ title="Print to PDF"
 <p><span class="math notranslate nohighlight">\(\tiny{\text{AWS Symposium 2022 - Fidelity Equity Trading - Resiliency use case: Kafka}}\)</span></p>
 </section>
 <section id="equity-trading-scaling-with-automation-use-case">
-<h3>Equity Trading - Scaling with automation use case<a class="headerlink" href="#equity-trading-scaling-with-automation-use-case" title="Permalink to this headline">#</a></h3>
+<h3>Equity Trading - Scaling with automation use case<a class="headerlink" href="#equity-trading-scaling-with-automation-use-case" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p>equity trading has around 250 applications</p></li>
 <li><p>unique tech stack</p></li>
@@ -2330,7 +2226,7 @@ title="Print to PDF"
 <p><span class="math notranslate nohighlight">\(\tiny{\text{AWS Symposium 2022 - Fidelity Equity Trading - Scaling with automation use case}}\)</span></p>
 </section>
 <section id="reflections-on-cloud-migration-journey-success-factors">
-<h3>Reflections on cloud migration journey - success factors<a class="headerlink" href="#reflections-on-cloud-migration-journey-success-factors" title="Permalink to this headline">#</a></h3>
+<h3>Reflections on cloud migration journey - success factors<a class="headerlink" href="#reflections-on-cloud-migration-journey-success-factors" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p>equity trading was one product out of 80 products that fidelity has across 20 diff product-line</p></li>
 <li><p>understand what the portfolio of applications looks like</p></li>
@@ -2346,7 +2242,7 @@ title="Print to PDF"
 </section>
 </section>
 <section id="how-fannie-mae-is-modernizing-its-technology-people-and-processes-with-aws">
-<h2>How Fannie Mae is modernizing its technology, people, and processes with AWS<a class="headerlink" href="#how-fannie-mae-is-modernizing-its-technology-people-and-processes-with-aws" title="Permalink to this headline">#</a></h2>
+<h2>How Fannie Mae is modernizing its technology, people, and processes with AWS<a class="headerlink" href="#how-fannie-mae-is-modernizing-its-technology-people-and-processes-with-aws" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li><p>Arif Sattar, Senior Director, Enterprise Cloud Migration, Fannie Mae</p></li>
 <li><p>Fannie Mae does not originate loans but purchase loans from vendors</p></li>
@@ -2361,77 +2257,77 @@ title="Print to PDF"
 </ul>
 </section>
 <section id="mastercards-journey-from-on-premises-to-an-ml-enables-saas-solution-for-fraud-detection">
-<h2>Mastercard’s journey from on premises to an ML-enables SaaS solution for fraud detection<a class="headerlink" href="#mastercards-journey-from-on-premises-to-an-ml-enables-saas-solution-for-fraud-detection" title="Permalink to this headline">#</a></h2>
+<h2>Mastercard’s journey from on premises to an ML-enables SaaS solution for fraud detection<a class="headerlink" href="#mastercards-journey-from-on-premises-to-an-ml-enables-saas-solution-for-fraud-detection" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li><p>Manu Thapar, CTO, Mastercard, AI, Security and Fraud Products</p></li>
 </ul>
 </section>
 <section id="how-business-transformation-is-driving-mainframe-modernization-in-financial-services">
-<h2>How business transformation is driving mainframe modernization in Financial Services<a class="headerlink" href="#how-business-transformation-is-driving-mainframe-modernization-in-financial-services" title="Permalink to this headline">#</a></h2>
+<h2>How business transformation is driving mainframe modernization in Financial Services<a class="headerlink" href="#how-business-transformation-is-driving-mainframe-modernization-in-financial-services" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li><p>Steve Steuart, Global Head of Mainframe Migration and Modernization, AWS</p></li>
 </ul>
 </section>
 <section id="unlock-business-value-with-document-processing-ml-pipelines">
-<h2>Unlock business value with document processing ML pipelines<a class="headerlink" href="#unlock-business-value-with-document-processing-ml-pipelines" title="Permalink to this headline">#</a></h2>
+<h2>Unlock business value with document processing ML pipelines<a class="headerlink" href="#unlock-business-value-with-document-processing-ml-pipelines" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li><p>Mojgan Ahmadi, Principal Solutions Architect - Financial Services, AWS</p></li>
 <li><p>David Kheyman, Senior Solutions Architect - Financial Services, AWS</p></li>
 </ul>
 </section>
 <section id="truist-digital-straddle-a-customer-first-approach-to-merger-integration">
-<h2>Truist digital straddle: A customer-first approach to merger integration<a class="headerlink" href="#truist-digital-straddle-a-customer-first-approach-to-merger-integration" title="Permalink to this headline">#</a></h2>
+<h2>Truist digital straddle: A customer-first approach to merger integration<a class="headerlink" href="#truist-digital-straddle-a-customer-first-approach-to-merger-integration" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li><p>Ken Meyer, EVP &amp; CIO, Experience and Innovation, Truist</p></li>
 </ul>
 </section>
 <section id="how-prudentials-data-platform-drives-inclusive-innovation-at-scale">
-<h2>How Prudential’s data platform drives inclusive innovation at scale<a class="headerlink" href="#how-prudentials-data-platform-drives-inclusive-innovation-at-scale" title="Permalink to this headline">#</a></h2>
+<h2>How Prudential’s data platform drives inclusive innovation at scale<a class="headerlink" href="#how-prudentials-data-platform-drives-inclusive-innovation-at-scale" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li><p>Shihas Vamanjoor, Vice President, Enterprise Data Platforms, Prudential</p></li>
 <li><p>Prasanna Sridharan, Senior Data &amp; Analytics Architect, AWS</p></li>
 </ul>
 </section>
 <section id="how-liberty-mutual-empowers-developers-to-drive-innovation">
-<h2>How Liberty Mutual empowers developers to drive Innovation<a class="headerlink" href="#how-liberty-mutual-empowers-developers-to-drive-innovation" title="Permalink to this headline">#</a></h2>
+<h2>How Liberty Mutual empowers developers to drive Innovation<a class="headerlink" href="#how-liberty-mutual-empowers-developers-to-drive-innovation" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li><p>Matt Coulter, Senior Architect, Liberty Mutual</p></li>
 </ul>
 </section>
 <section id="how-the-clearing-house-creates-frictionless-experiences-for-their-bank-customers">
-<h2>How The Clearing House creates frictionless experiences for their bank customers<a class="headerlink" href="#how-the-clearing-house-creates-frictionless-experiences-for-their-bank-customers" title="Permalink to this headline">#</a></h2>
+<h2>How The Clearing House creates frictionless experiences for their bank customers<a class="headerlink" href="#how-the-clearing-house-creates-frictionless-experiences-for-their-bank-customers" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li><p>Elena Whisler, VP, Relationship Management and Sales, The Clearing House</p></li>
 </ul>
 </section>
 <section id="leveraging-aws-ai-ml-to-support-the-customer-experience-for-financial-institutions">
-<h2>Leveraging AWS AI/ML to support the customer experience for financial institutions<a class="headerlink" href="#leveraging-aws-ai-ml-to-support-the-customer-experience-for-financial-institutions" title="Permalink to this headline">#</a></h2>
+<h2>Leveraging AWS AI/ML to support the customer experience for financial institutions<a class="headerlink" href="#leveraging-aws-ai-ml-to-support-the-customer-experience-for-financial-institutions" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li><p>Alvin Huang, Business Development, AWS</p></li>
 </ul>
 </section>
 <section id="how-global-payments-accelerates-innovation-on-aws">
-<h2>How Global Payments accelerates innovation on AWS<a class="headerlink" href="#how-global-payments-accelerates-innovation-on-aws" title="Permalink to this headline">#</a></h2>
+<h2>How Global Payments accelerates innovation on AWS<a class="headerlink" href="#how-global-payments-accelerates-innovation-on-aws" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li><p>Scott Carter, CTO, Global Payments</p></li>
 <li><p>Raghu Ram Bongula, SVP Engineering, Global Payments</p></li>
 </ul>
 </section>
 <section id="how-jpmc-modernized-its-hedging-and-risk-management-platform">
-<h2>How JPMC modernized its hedging and risk management platform<a class="headerlink" href="#how-jpmc-modernized-its-hedging-and-risk-management-platform" title="Permalink to this headline">#</a></h2>
+<h2>How JPMC modernized its hedging and risk management platform<a class="headerlink" href="#how-jpmc-modernized-its-hedging-and-risk-management-platform" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li><p>Paul Bauerschmidt, Managing Director, JPMorgan Chase</p></li>
 </ul>
 </section>
 <section id="how-vanguard-sped-up-its-internal-approval-process-for-using-aws-services">
-<h2>How Vanguard sped up its internal approval process for using AWS services<a class="headerlink" href="#how-vanguard-sped-up-its-internal-approval-process-for-using-aws-services" title="Permalink to this headline">#</a></h2>
+<h2>How Vanguard sped up its internal approval process for using AWS services<a class="headerlink" href="#how-vanguard-sped-up-its-internal-approval-process-for-using-aws-services" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li><p>Michael Bakay, IT Project Manager, Vanguard Cloud Platforms, Vanguard</p></li>
 <li><p>Rebecca Sundheim, Head of Developer Experience, Vanguard Cloud Enablement, Vanguard</p></li>
 </ul>
 </section>
 <section id="how-munich-re-built-an-insurance-focused-iot-solution-on-aws">
-<h2>How Munich Re built an insurance-focused IoT solution on AWS<a class="headerlink" href="#how-munich-re-built-an-insurance-focused-iot-solution-on-aws" title="Permalink to this headline">#</a></h2>
+<h2>How Munich Re built an insurance-focused IoT solution on AWS<a class="headerlink" href="#how-munich-re-built-an-insurance-focused-iot-solution-on-aws" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li><p>Lewis Wight, CTO, Meshify HSB (Munich Re Group)</p></li>
 </ul>
@@ -2460,11 +2356,9 @@ title="Print to PDF"
 
               </div>
               
-            </main>
-            <footer class="footer-article noprint">
-                
-    <!-- Previous / next buttons -->
-<div class='prev-next-area'>
+            
+                <!-- Previous / next buttons -->
+<div class='prev-next-area'> 
     <a class='left-prev' id="prev-link" href="googlecloud_use_cases.html" title="previous page">
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
@@ -2480,28 +2374,24 @@ title="Print to PDF"
     <i class="fas fa-angle-right"></i>
     </a>
 </div>
-            </footer>
+            
         </div>
     </div>
-    <div class="footer-content row">
-        <footer class="col footer"><p>
-  
-    By Chandra<br/>
-  
-      &copy; Copyright 2022.<br/>
-</p>
-        </footer>
-    </div>
+    <footer class="footer">
+  <p>
     
-</div>
+      By Chandra<br/>
+    
+        &copy; Copyright 2021.<br/>
+  </p>
+</footer>
+</main>
 
 
       </div>
     </div>
   
-  <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
-
+  <script src="../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
 
   </body>
 </html>

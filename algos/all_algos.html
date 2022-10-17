@@ -8,9 +8,8 @@
 
     <title>Coding Challenges</title>
     
-  <!-- Loaded before other Sphinx assets -->
-  <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
-<link href="../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+  <link href="../_static/css/theme.css" rel="stylesheet">
+  <link href="../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
 
     
   <link rel="stylesheet"
@@ -20,16 +19,20 @@
   <link rel="preload" as="font" type="font/woff2" crossorigin
     href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
 
+    
+      
+
+    
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
     
-  <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+  <link rel="preload" as="script" href="../_static/js/index.be7d3bbb2ef33a8344ce.js">
 
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
@@ -37,13 +40,12 @@
     <script src="../_static/doctools.js"></script>
     <script src="../_static/clipboard.min.js"></script>
     <script src="../_static/copybutton.js"></script>
-    <script src="../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
     <script src="../_static/togglebutton.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="../_static/design-tabs.js"></script>
+    <script src="../_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
 const thebe_selector = ".thebe,.cell"
 const thebe_selector_input = "pre"
@@ -61,21 +63,7 @@ const thebe_selector_output = ".output, .cell_output"
     <!-- Google Analytics -->
     
   </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
-<!-- Checkboxes to toggle the left sidebar -->
-<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
-<label class="overlay overlay-navbar" for="__navigation">
-    <div class="visually-hidden">Toggle navigation sidebar</div>
-</label>
-<!-- Checkboxes to toggle the in-page toc -->
-<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
-<label class="overlay overlay-pagetoc" for="__page-toc">
-    <div class="visually-hidden">Toggle in-page Table of Contents</div>
-</label>
-<!-- Headers at the top -->
-<div class="announcement header-item noprint"></div>
-<div class="header header-item noprint"></div>
-
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
     
     <div class="container-fluid" id="banner"></div>
 
@@ -84,10 +72,9 @@ const thebe_selector_output = ".output, .cell_output"
     <div class="container-xl">
       <div class="row">
           
-<!-- Sidebar -->
-<div class="bd-sidebar noprint" id="site-navigation">
-    <div class="bd-sidebar__content">
-        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
     <a class="navbar-brand text-wrap" href="../index.html">
       
         <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
@@ -103,15 +90,14 @@ const thebe_selector_output = ".output, .cell_output"
   <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
 </form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item active">
-        
-        <ul class="nav bd-sidenav bd-sidenav__home-link">
-            <li class="toctree-l1">
-                <a class="reference internal" href="../intro.html">
-                    Welcome
-                </a>
-            </li>
-        </ul>
-        <p aria-level="2" class="caption" role="heading">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../intro.html">
+   Welcome
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
   System Design
  </span>
@@ -561,22 +547,29 @@ const thebe_selector_output = ".output, .cell_output"
      L02: Traditional Methods for ML in Graphs
     </a>
    </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../cs224w_ml_graph/CS224W_Colab_0.html">
+     <strong>
+      HW0
+     </strong>
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../cs224w_ml_graph/CS224W_Colab_1.html">
+     HW1
+    </a>
+   </li>
   </ul>
  </li>
 </ul>
 
     </div>
-</nav></div>
-        <div class="bd-sidebar__bottom">
-             <!-- To handle the deprecated key -->
-            
-            <div class="navbar_extra_footer">
-            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
-            </div>
-            
-        </div>
-    </div>
-    <div id="rtd-footer-container"></div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
 </div>
 
 
@@ -584,191 +577,94 @@ const thebe_selector_output = ".output, .cell_output"
 
 
           
-<!-- A tiny helper pixel to detect if we've scrolled -->
-<div class="sbt-scroll-pixel-helper"></div>
-<!-- Main content -->
-<div class="col py-0 content-container">
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
     
-    <div class="header-article row sticky-top noprint">
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
         
-
-
-
-<div class="col py-1 d-flex header-article-main">
-    <div class="header-article__left">
-        
-        <label for="__navigation"
-  class="headerbtn"
-  data-toggle="tooltip"
-data-placement="right"
-title="Toggle navigation"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-bars"></i>
-  </span>
-
-</label>
-
-        
-    </div>
-    <div class="header-article__right">
-<div class="menu-dropdown menu-dropdown-launch-buttons">
-  <button class="headerbtn menu-dropdown__trigger"
-      aria-label="Launch interactive content">
-      <i class="fas fa-rocket"></i>
-  </button>
-  <div class="menu-dropdown__content">
-    <ul>
-      <li>
-        <a href="https://mybinder.org/v2/gh/chandrabsingh/learning/master?urlpath=tree/learning/algos/all_algos.ipynb"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Launch on Binder"
->
-  
-
-<span class="headerbtn__icon-container">
-  
-    <img src="../_static/images/logo_binder.svg">
-  </span>
-<span class="headerbtn__text-container">Binder</span>
-</a>
-
-      </li>
-      
-    </ul>
-  </div>
-</div>
-
-<button onclick="toggleFullScreen()"
-  class="headerbtn"
-  data-toggle="tooltip"
-data-placement="bottom"
-title="Fullscreen mode"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-expand"></i>
-  </span>
-
-</button>
-
-<div class="menu-dropdown menu-dropdown-repository-buttons">
-  <button class="headerbtn menu-dropdown__trigger"
-      aria-label="Source repositories">
-      <i class="fab fa-github"></i>
-  </button>
-  <div class="menu-dropdown__content">
-    <ul>
-      <li>
-        <a href="https://github.com/chandrabsingh/learning"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Source repository"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fab fa-github"></i>
-  </span>
-<span class="headerbtn__text-container">repository</span>
-</a>
-
-      </li>
-      
-      <li>
-        <a href="https://github.com/chandrabsingh/learning/issues/new?title=Issue%20on%20page%20%2Falgos/all_algos.html&body=Your%20issue%20content%20here."
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Open an issue"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-lightbulb"></i>
-  </span>
-<span class="headerbtn__text-container">open issue</span>
-</a>
-
-      </li>
-      
-    </ul>
-  </div>
-</div>
-
-<div class="menu-dropdown menu-dropdown-download-buttons">
-  <button class="headerbtn menu-dropdown__trigger"
-      aria-label="Download this page">
-      <i class="fas fa-download"></i>
-  </button>
-  <div class="menu-dropdown__content">
-    <ul>
-      <li>
-        <a href="../_sources/algos/all_algos.ipynb"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Download source file"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-file"></i>
-  </span>
-<span class="headerbtn__text-container">.ipynb</span>
-</a>
-
-      </li>
-      
-      <li>
-        
-<button onclick="printPdf(this)"
-  class="headerbtn"
-  data-toggle="tooltip"
-data-placement="left"
-title="Print to PDF"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-file-pdf"></i>
-  </span>
-<span class="headerbtn__text-container">.pdf</span>
-</button>
-
-      </li>
-      
-    </ul>
-  </div>
-</div>
-<label for="__page-toc"
-  class="headerbtn headerbtn-page-toc"
-  
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-list"></i>
-  </span>
-
-</label>
-
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/algos/all_algos.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
     </div>
 </div>
 
-<!-- Table of contents -->
-<div class="col-md-3 bd-toc show noprint">
-    <div class="tocsection onthispage pt-5 pb-3">
-        <i class="fas fa-list"></i> Contents
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/chandrabsingh/learning"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/chandrabsingh/learning/issues/new?title=Issue%20on%20page%20%2Falgos/all_algos.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        
     </div>
-    <nav id="bd-toc-nav" aria-label="Page">
-        <ul class="visible nav section-nav flex-column">
+</div>
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/chandrabsingh/learning/master?urlpath=tree/learning/algos/all_algos.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#number-of-solved-problems">
    Number of solved problems
@@ -929,6 +825,18 @@ title="Print to PDF"
      </li>
     </ul>
    </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#general">
+     General
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#power-set">
+       Power set
+      </a>
+     </li>
+    </ul>
+   </li>
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
@@ -1044,11 +952,12 @@ title="Print to PDF"
  </li>
 </ul>
 
-    </nav>
-</div>
+            </nav>
+        </div>
     </div>
-    <div class="article row">
-        <div class="col pl-md-3 pl-lg-5 content-container">
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
                 <h1>Coding Challenges</h1>
@@ -1221,6 +1130,18 @@ title="Print to PDF"
      </li>
     </ul>
    </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#general">
+     General
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#power-set">
+       Power set
+      </a>
+     </li>
+    </ul>
+   </li>
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
@@ -1340,14 +1261,13 @@ title="Print to PDF"
                     </div>
                 </div>
             </div>
-            <main id="main-content" role="main">
-                
+            
               <div>
                 
   <section class="tex2jax_ignore mathjax_ignore" id="coding-challenges">
-<h1>Coding Challenges<a class="headerlink" href="#coding-challenges" title="Permalink to this headline">#</a></h1>
+<h1>Coding Challenges<a class="headerlink" href="#coding-challenges" title="Permalink to this headline">¶</a></h1>
 <section id="number-of-solved-problems">
-<h2>Number of solved problems<a class="headerlink" href="#number-of-solved-problems" title="Permalink to this headline">#</a></h2>
+<h2>Number of solved problems<a class="headerlink" href="#number-of-solved-problems" title="Permalink to this headline">¶</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>grep -o <span class="s1">&#39;%load&#39;</span> all_algos.ipynb <span class="p">|</span> wc -l
@@ -1355,18 +1275,18 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>      32
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>      33
 </pre></div>
 </div>
 </div>
 </div>
 </section>
 <section id="python">
-<h2>Python<a class="headerlink" href="#python" title="Permalink to this headline">#</a></h2>
+<h2>Python<a class="headerlink" href="#python" title="Permalink to this headline">¶</a></h2>
 <section id="arrays">
-<h3>Arrays<a class="headerlink" href="#arrays" title="Permalink to this headline">#</a></h3>
+<h3>Arrays<a class="headerlink" href="#arrays" title="Permalink to this headline">¶</a></h3>
 <section id="two-sum">
-<h4>Two sum<a class="headerlink" href="#two-sum" title="Permalink to this headline">#</a></h4>
+<h4>Two sum<a class="headerlink" href="#two-sum" title="Permalink to this headline">¶</a></h4>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># %load ./pycharm/arrays/two_sum.py</span>
@@ -1413,7 +1333,7 @@ None
 </div>
 </section>
 <section id="three-sum">
-<h4>Three sum<a class="headerlink" href="#three-sum" title="Permalink to this headline">#</a></h4>
+<h4>Three sum<a class="headerlink" href="#three-sum" title="Permalink to this headline">¶</a></h4>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># %load ./pycharm/arrays/three_sum.py</span>
@@ -1454,7 +1374,7 @@ None
 </div>
 </section>
 <section id="longest-substring-without-repeating-characters">
-<h4>Longest substring without repeating characters<a class="headerlink" href="#longest-substring-without-repeating-characters" title="Permalink to this headline">#</a></h4>
+<h4>Longest substring without repeating characters<a class="headerlink" href="#longest-substring-without-repeating-characters" title="Permalink to this headline">¶</a></h4>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># %load ./pycharm/arrays/longest_substring_wo_repeat.py</span>
@@ -1523,7 +1443,7 @@ abcdefg
 </div>
 </section>
 <section id="median-of-two-sorted-arrays">
-<h4>Median of Two Sorted Arrays<a class="headerlink" href="#median-of-two-sorted-arrays" title="Permalink to this headline">#</a></h4>
+<h4>Median of Two Sorted Arrays<a class="headerlink" href="#median-of-two-sorted-arrays" title="Permalink to this headline">¶</a></h4>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># %load ./pycharm/arrays/median_sorted_array.py</span>
@@ -1601,7 +1521,7 @@ abcdefg
 </div>
 </section>
 <section id="container-with-most-water">
-<h4>Container with most water<a class="headerlink" href="#container-with-most-water" title="Permalink to this headline">#</a></h4>
+<h4>Container with most water<a class="headerlink" href="#container-with-most-water" title="Permalink to this headline">¶</a></h4>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># %load ./pycharm/arrays/container_with_most_water.py</span>
@@ -1657,7 +1577,7 @@ abcdefg
 </div>
 </section>
 <section id="three-sum-closet">
-<h4>Three sum closet<a class="headerlink" href="#three-sum-closet" title="Permalink to this headline">#</a></h4>
+<h4>Three sum closet<a class="headerlink" href="#three-sum-closet" title="Permalink to this headline">¶</a></h4>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># %load ./pycharm/arrays/three_sum_closet.py</span>
@@ -1733,7 +1653,7 @@ abcdefg
 </div>
 </section>
 <section id="next-permutation">
-<h4>Next Permutation<a class="headerlink" href="#next-permutation" title="Permalink to this headline">#</a></h4>
+<h4>Next Permutation<a class="headerlink" href="#next-permutation" title="Permalink to this headline">¶</a></h4>
 <p align="center"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1c/Orderings%3B_6_choose_3.svg/680px-Orderings%3B_6_choose_3.svg.png" width=300 height=400></p><div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># %load ./pycharm/arrays/next_permutation.py</span>
@@ -1822,9 +1742,9 @@ abcdefg
 </section>
 </section>
 <section id="graph">
-<h3>Graph<a class="headerlink" href="#graph" title="Permalink to this headline">#</a></h3>
+<h3>Graph<a class="headerlink" href="#graph" title="Permalink to this headline">¶</a></h3>
 <section id="adjacency-list">
-<h4>Adjacency list<a class="headerlink" href="#adjacency-list" title="Permalink to this headline">#</a></h4>
+<h4>Adjacency list<a class="headerlink" href="#adjacency-list" title="Permalink to this headline">¶</a></h4>
 <ul class="simple">
 <li><p>useful in sparsely connected graphs</p></li>
 <li><p>space complexity O(V+E)</p></li>
@@ -1954,17 +1874,17 @@ abcdefg
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Path=(&#39;a&#39;, &#39;c&#39;, &#39;b&#39;, &#39;d&#39;, &#39;e&#39;, &#39;f&#39;), Weight=(2, 7, 8, 6, 3), Sum=26
-Path=(&#39;a&#39;, &#39;b&#39;, &#39;c&#39;, &#39;d&#39;, &#39;e&#39;, &#39;f&#39;), Weight=(5, 7, 4, 6, 3), Sum=25
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Path=(&#39;a&#39;, &#39;b&#39;, &#39;d&#39;, &#39;c&#39;, &#39;e&#39;, &#39;f&#39;), Weight=(5, 8, 4, 8, 3), Sum=28
 Path=(&#39;a&#39;, &#39;b&#39;, &#39;c&#39;, &#39;e&#39;, &#39;d&#39;, &#39;f&#39;), Weight=(5, 7, 8, 6, 4), Sum=30
-Path=(&#39;a&#39;, &#39;b&#39;, &#39;d&#39;, &#39;c&#39;, &#39;e&#39;, &#39;f&#39;), Weight=(5, 8, 4, 8, 3), Sum=28
+Path=(&#39;a&#39;, &#39;c&#39;, &#39;b&#39;, &#39;d&#39;, &#39;e&#39;, &#39;f&#39;), Weight=(2, 7, 8, 6, 3), Sum=26
+Path=(&#39;a&#39;, &#39;b&#39;, &#39;c&#39;, &#39;d&#39;, &#39;e&#39;, &#39;f&#39;), Weight=(5, 7, 4, 6, 3), Sum=25
 </pre></div>
 </div>
 </div>
 </div>
 </section>
 <section id="disjoint-sets-quick-find">
-<h4>Disjoint sets - Quick find<a class="headerlink" href="#disjoint-sets-quick-find" title="Permalink to this headline">#</a></h4>
+<h4>Disjoint sets - Quick find<a class="headerlink" href="#disjoint-sets-quick-find" title="Permalink to this headline">¶</a></h4>
 <ul class="simple">
 <li><p>find and union are the important pieces of its implementation</p></li>
 <li><p>find method finds the root node of vertex. Time complexity O(1)</p></li>
@@ -2069,7 +1989,7 @@ False
 </div>
 </section>
 <section id="disjoint-sets-quick-union">
-<h4>Disjoint sets - Quick union<a class="headerlink" href="#disjoint-sets-quick-union" title="Permalink to this headline">#</a></h4>
+<h4>Disjoint sets - Quick union<a class="headerlink" href="#disjoint-sets-quick-union" title="Permalink to this headline">¶</a></h4>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># %load ./pycharm/graphs/disjoint_set_02_quick_union.py</span>
@@ -2171,7 +2091,7 @@ False
 </div>
 </section>
 <section id="disjoint-sets-union-by-rank">
-<h4>Disjoint sets - Union by rank<a class="headerlink" href="#disjoint-sets-union-by-rank" title="Permalink to this headline">#</a></h4>
+<h4>Disjoint sets - Union by rank<a class="headerlink" href="#disjoint-sets-union-by-rank" title="Permalink to this headline">¶</a></h4>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># %load ./pycharm/graphs/disjoint_set_03_union_by_rank.py</span>
@@ -2267,9 +2187,7 @@ False
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Arr[0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Height[1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
+Height[1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
 1 2
 N1:1, N2:2, Arr:[0, 1, 1, 3, 4, 5, 6, 7, 8, 9], Height:[1, 2, 1, 1, 1, 1, 1, 1, 1, 1]
 1 5
@@ -2297,7 +2215,7 @@ N1:4, N2:9, IsConnected:True
 </div>
 </section>
 <section id="disjoint-sets-path-compression-optimization">
-<h4>Disjoint Sets - Path Compression Optimization<a class="headerlink" href="#disjoint-sets-path-compression-optimization" title="Permalink to this headline">#</a></h4>
+<h4>Disjoint Sets - Path Compression Optimization<a class="headerlink" href="#disjoint-sets-path-compression-optimization" title="Permalink to this headline">¶</a></h4>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># %load ./pycharm/graphs/disjoint_set_04_path_compression.py</span>
@@ -2563,7 +2481,7 @@ N1:2, N2:2, Arr:[0, 1, 2], Height:[1, 1, 1]
 </div>
 </section>
 <section id="valid-graph-tree">
-<h4>Valid Graph Tree<a class="headerlink" href="#valid-graph-tree" title="Permalink to this headline">#</a></h4>
+<h4>Valid Graph Tree<a class="headerlink" href="#valid-graph-tree" title="Permalink to this headline">¶</a></h4>
 <p>G is a tree iff:</p>
 <ul class="simple">
 <li><p>G is fully connected, that is, for every pair of nodes in G, there is a path between them</p></li>
@@ -2628,16 +2546,14 @@ N1:2, N2:2, Arr:[0, 1, 2], Height:[1, 1, 1]
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>nodes=5, edges=[[0, 1], [0, 2], [0, 3], [1, 4]], isValidTree=True
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>nodes=8, edges=[[0, 1], [0, 3], [1, 2], [4, 5], [6, 7]], isValidTree=False
+nodes=8, edges=[[0, 1], [0, 3], [1, 2], [4, 5], [6, 7]], isValidTree=False
 </pre></div>
 </div>
 </div>
 </div>
 </section>
 <section id="dfs-depth-first-search">
-<h4>DFS - Depth-first search<a class="headerlink" href="#dfs-depth-first-search" title="Permalink to this headline">#</a></h4>
+<h4>DFS - Depth-first search<a class="headerlink" href="#dfs-depth-first-search" title="Permalink to this headline">¶</a></h4>
 <ul class="simple">
 <li><p>Given a graph, how can we find all of its vertices, and how can we find all paths between two vertices?</p></li>
 <li><p>DFS is generally used to:</p>
@@ -2673,7 +2589,7 @@ N1:2, N2:2, Arr:[0, 1, 2], Height:[1, 1, 1]
 </li>
 </ul>
 <section id="dfs-iterative-depth-first-search">
-<h5>DFS - Iterative depth-first search<a class="headerlink" href="#dfs-iterative-depth-first-search" title="Permalink to this headline">#</a></h5>
+<h5>DFS - Iterative depth-first search<a class="headerlink" href="#dfs-iterative-depth-first-search" title="Permalink to this headline">¶</a></h5>
 <ul class="simple">
 <li><p>Undirected graph</p>
 <ul>
@@ -2689,7 +2605,7 @@ N1:2, N2:2, Arr:[0, 1, 2], Height:[1, 1, 1]
 </section>
 </section>
 <section id="dfs-find-if-path-exists-in-graph">
-<h4>DFS - Find if path exists in graph<a class="headerlink" href="#dfs-find-if-path-exists-in-graph" title="Permalink to this headline">#</a></h4>
+<h4>DFS - Find if path exists in graph<a class="headerlink" href="#dfs-find-if-path-exists-in-graph" title="Permalink to this headline">¶</a></h4>
 <p align="center"><img src="images/pathExists.png" width=400 height=400> </p> <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># %load ./pycharm/graphs/path_exists.py</span>
@@ -2749,7 +2665,7 @@ N1:2, N2:2, Arr:[0, 1, 2], Height:[1, 1, 1]
 </div>
 </section>
 <section id="dfs-possible-paths-in-dag">
-<h4>DFS - Possible paths in DAG<a class="headerlink" href="#dfs-possible-paths-in-dag" title="Permalink to this headline">#</a></h4>
+<h4>DFS - Possible paths in DAG<a class="headerlink" href="#dfs-possible-paths-in-dag" title="Permalink to this headline">¶</a></h4>
 <p align="center"><img src="images/possibleDAGpathUsingDFS.png" width=400 height=400> </p> <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># %load ./pycharm/graphs/possible_dag_path_using_dfs.py</span>
@@ -2793,14 +2709,14 @@ N1:2, N2:2, Arr:[0, 1, 2], Height:[1, 1, 1]
 </div>
 </section>
 <section id="bfs-breadth-first-search">
-<h4>BFS - Breadth-first search<a class="headerlink" href="#bfs-breadth-first-search" title="Permalink to this headline">#</a></h4>
+<h4>BFS - Breadth-first search<a class="headerlink" href="#bfs-breadth-first-search" title="Permalink to this headline">¶</a></h4>
 <ul class="simple">
 <li><p>search layer by layer instead of going in depth</p></li>
 </ul>
 <p align="center"><img src="images/bfs_shortestPath.png" width=400 height=400></p>  </section>
 </section>
 <section id="dp">
-<h3>DP<a class="headerlink" href="#dp" title="Permalink to this headline">#</a></h3>
+<h3>DP<a class="headerlink" href="#dp" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p>the problem asks for optimal(max or min) value or the number of ways of doing something</p></li>
 <li><p>future decisions depend on earlier decisions</p></li>
@@ -2808,7 +2724,7 @@ N1:2, N2:2, Arr:[0, 1, 2], Height:[1, 1, 1]
 <li><p>Recursion and Memoization - Top-down</p></li>
 </ul>
 <section id="longest-common-subsequence">
-<h4>Longest Common Subsequence<a class="headerlink" href="#longest-common-subsequence" title="Permalink to this headline">#</a></h4>
+<h4>Longest Common Subsequence<a class="headerlink" href="#longest-common-subsequence" title="Permalink to this headline">¶</a></h4>
 <ul class="simple">
 <li><p>String1: <strong>abc</strong>da<strong>f</strong></p></li>
 <li><p>String2: <strong>a</strong>c<strong>bcf</strong></p></li>
@@ -2893,7 +2809,7 @@ N1:2, N2:2, Arr:[0, 1, 2], Height:[1, 1, 1]
 </div>
 </section>
 <section id="fibonacci-number-6-ways">
-<h4>Fibonacci number - 6 ways<a class="headerlink" href="#fibonacci-number-6-ways" title="Permalink to this headline">#</a></h4>
+<h4>Fibonacci number - 6 ways<a class="headerlink" href="#fibonacci-number-6-ways" title="Permalink to this headline">¶</a></h4>
 <ul class="simple">
 <li><p>6 different ways of solving
 0. Using recursion only</p>
@@ -3002,34 +2918,32 @@ N1:2, N2:2, Arr:[0, 1, 2], Height:[1, 1, 1]
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>fib0 - Using recursion only
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>6.26 ms ± 197 µs per loop (mean ± std. dev. of 7 runs, 1,000 loops each)
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1.28 ms ± 7.66 µs per loop (mean ± std. dev. of 7 runs, 1,000 loops each)
 -------
 fib1 - Using recursion + local dictionary memoization
-The slowest run took 5.51 times longer than the fastest. This could mean that an intermediate result is being cached.
-550 ns ± 346 ns per loop (mean ± std. dev. of 7 runs, 1,000 loops each)
+93.1 ns ± 5.72 ns per loop (mean ± std. dev. of 7 runs, 1,000 loops each)
 -------
 fib2 - Using loop + memoization
-The slowest run took 4.42 times longer than the fastest. This could mean that an intermediate result is being cached.
-10.8 µs ± 5.67 µs per loop (mean ± std. dev. of 7 runs, 1,000 loops each)
+2.33 µs ± 189 ns per loop (mean ± std. dev. of 7 runs, 1,000 loops each)
 -------
 fib3 - Using recursion + decorator dictionary memoization
-532 ns ± 24.1 ns per loop (mean ± std. dev. of 7 runs, 1,000 loops each)
+455 ns ± 57.7 ns per loop (mean ± std. dev. of 7 runs, 1,000 loops each)
 -------
 fib4 - Using lru cache
-147 ns ± 4.76 ns per loop (mean ± std. dev. of 7 runs, 1,000 loops each)
+92.7 ns ± 3.68 ns per loop (mean ± std. dev. of 7 runs, 1,000 loops each)
 CacheInfo(hits=7017, misses=21, maxsize=None, currsize=21)
 -------
 fib5 - Using matrix multiplication
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>7.82 ms ± 348 µs per loop (mean ± std. dev. of 7 runs, 1,000 loops each)
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1.41 ms ± 148 µs per loop (mean ± std. dev. of 7 runs, 1,000 loops each)
 </pre></div>
 </div>
 </div>
 </div>
 </section>
 <section id="climbing-stairs-basic-scenario">
-<h4>Climbing stairs - Basic scenario<a class="headerlink" href="#climbing-stairs-basic-scenario" title="Permalink to this headline">#</a></h4>
+<h4>Climbing stairs - Basic scenario<a class="headerlink" href="#climbing-stairs-basic-scenario" title="Permalink to this headline">¶</a></h4>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># %load ./pycharm/dp/climbing_stairs_01_basic.py</span>
@@ -3103,7 +3017,7 @@ fib5 - Using matrix multiplication
 </div>
 </section>
 <section id="climbing-stairs-minimum">
-<h4>Climbing stairs - minimum<a class="headerlink" href="#climbing-stairs-minimum" title="Permalink to this headline">#</a></h4>
+<h4>Climbing stairs - minimum<a class="headerlink" href="#climbing-stairs-minimum" title="Permalink to this headline">¶</a></h4>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># %load ./pycharm/dp/climbing_stairs_02_min.py</span>
@@ -3191,9 +3105,9 @@ fib5 - Using matrix multiplication
 </section>
 </section>
 <section id="codechef-codeforces">
-<h3>CodeChef/CodeForces<a class="headerlink" href="#codechef-codeforces" title="Permalink to this headline">#</a></h3>
+<h3>CodeChef/CodeForces<a class="headerlink" href="#codechef-codeforces" title="Permalink to this headline">¶</a></h3>
 <section id="good-pairs">
-<h4>Good Pairs<a class="headerlink" href="#good-pairs" title="Permalink to this headline">#</a></h4>
+<h4>Good Pairs<a class="headerlink" href="#good-pairs" title="Permalink to this headline">¶</a></h4>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># %load ./pycharm/general/GoodPair.py</span>
@@ -3317,7 +3231,7 @@ P3:i=3:ans=0:map={&#39;5 1&#39;: 1, &#39;6 2&#39;: 1, &#39;6 3&#39;: 1, &#39;7 4
 </div>
 </section>
 <section id="most-similar-words">
-<h4>Most Similar Words<a class="headerlink" href="#most-similar-words" title="Permalink to this headline">#</a></h4>
+<h4>Most Similar Words<a class="headerlink" href="#most-similar-words" title="Permalink to this headline">¶</a></h4>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># %load ./pycharm/general/MostSimilarWords.py</span>
@@ -3426,13 +3340,72 @@ P3:i=3:ans=0:map={&#39;5 1&#39;: 1, &#39;6 2&#39;: 1, &#39;6 3&#39;: 1, &#39;7 4
 </div>
 </section>
 </section>
+<section id="general">
+<h3>General<a class="headerlink" href="#general" title="Permalink to this headline">¶</a></h3>
+<section id="power-set">
+<h4>Power set<a class="headerlink" href="#power-set" title="Permalink to this headline">¶</a></h4>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># %load ./pycharm/general/powerset.py</span>
+<span class="k">class</span> <span class="nc">Solution</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    The power set of a set is the set of all its subsets. Write a function that, given a set, generates its power set.</span>
+
+<span class="sd">    For example, given the set {1, 2, 3}, it should return {{}, {1}, {2}, {3}, {1, 2}, {1, 3}, {2, 3}, {1, 2, 3}}.</span>
+
+<span class="sd">    You may also use a list or array to represent a set.</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="k">def</span> <span class="nf">powerset</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">l</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        :type l: list of numbers</span>
+<span class="sd">        :rtype: list[list]</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">output</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">ll</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">l</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span> <span class="o">&lt;&lt;</span> <span class="n">ll</span><span class="p">):</span>
+            <span class="n">l2</span> <span class="o">=</span> <span class="p">[]</span>
+            <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">ll</span><span class="p">):</span>
+                <span class="n">cal</span> <span class="o">=</span> <span class="n">i</span> <span class="o">&amp;</span> <span class="p">(</span><span class="mi">2</span><span class="o">**</span><span class="n">j</span><span class="p">)</span>
+                <span class="k">if</span> <span class="n">cal</span><span class="p">:</span>
+                    <span class="n">l2</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">l</span><span class="p">[</span><span class="n">j</span><span class="p">])</span>
+            <span class="n">output</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">l2</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">output</span>
+<span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">l = [1,2,3]</span>
+<span class="sd">0-&gt;000-&gt;[ , , ]</span>
+<span class="sd">1-&gt;001-&gt;[ , ,3]</span>
+<span class="sd">2-&gt;010-&gt;[ ,2, ]</span>
+<span class="sd">3-&gt;011-&gt;[ ,2,3]</span>
+<span class="sd">4-&gt;100-&gt;[1, , ]</span>
+<span class="sd">5-&gt;101-&gt;[1, ,3]</span>
+<span class="sd">6-&gt;110-&gt;[1,2, ]</span>
+<span class="sd">7-&gt;111-&gt;[1,2,3]</span>
+<span class="sd">&#39;&#39;&#39;</span>
+
+<span class="n">s</span> <span class="o">=</span> <span class="n">Solution</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="n">powerset</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">]))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="n">powerset</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">]))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="n">powerset</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">]))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[], [1], [2], [1, 2], [3], [1, 3], [2, 3], [1, 2, 3]]
+[[], [1], [2], [1, 2]]
+[[], [1], [2], [1, 2], [3], [1, 3], [2, 3], [1, 2, 3], [4], [1, 4], [2, 4], [1, 2, 4], [3, 4], [1, 3, 4], [2, 3, 4], [1, 2, 3, 4]]
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
 </section>
 <section id="c">
-<h2>C++<a class="headerlink" href="#c" title="Permalink to this headline">#</a></h2>
+<h2>C++<a class="headerlink" href="#c" title="Permalink to this headline">¶</a></h2>
 <section id="sliding-window">
-<h3>Sliding Window<a class="headerlink" href="#sliding-window" title="Permalink to this headline">#</a></h3>
+<h3>Sliding Window<a class="headerlink" href="#sliding-window" title="Permalink to this headline">¶</a></h3>
 <section id="average-of-subarray-of-m-elements-brute-force">
-<h4>Average of subarray of m elements (Brute force)<a class="headerlink" href="#average-of-subarray-of-m-elements-brute-force" title="Permalink to this headline">#</a></h4>
+<h4>Average of subarray of m elements (Brute force)<a class="headerlink" href="#average-of-subarray-of-m-elements-brute-force" title="Permalink to this headline">¶</a></h4>
 <ul class="simple">
 <li><p>Time complexity is O(nxm) where n is the number of elements and m is the number of subarray elements</p></li>
 </ul>
@@ -3483,7 +3456,7 @@ P3:i=3:ans=0:map={&#39;5 1&#39;: 1, &#39;6 2&#39;: 1, &#39;6 3&#39;: 1, &#39;7 4
 </div>
 </section>
 <section id="average-of-subarray-of-m-elements-sliding-window">
-<h4>Average of subarray of m elements (Sliding Window)<a class="headerlink" href="#average-of-subarray-of-m-elements-sliding-window" title="Permalink to this headline">#</a></h4>
+<h4>Average of subarray of m elements (Sliding Window)<a class="headerlink" href="#average-of-subarray-of-m-elements-sliding-window" title="Permalink to this headline">¶</a></h4>
 <ul class="simple">
 <li><p>Time complexity is O(n) where n is the number of elements and m is the number of subarray elements</p></li>
 </ul>
@@ -3538,7 +3511,7 @@ P3:i=3:ans=0:map={&#39;5 1&#39;: 1, &#39;6 2&#39;: 1, &#39;6 3&#39;: 1, &#39;7 4
 </div>
 </section>
 <section id="longest-substring-with-k-distinct-characters">
-<h4>Longest substring with k distinct characters<a class="headerlink" href="#longest-substring-with-k-distinct-characters" title="Permalink to this headline">#</a></h4>
+<h4>Longest substring with k distinct characters<a class="headerlink" href="#longest-substring-with-k-distinct-characters" title="Permalink to this headline">¶</a></h4>
 <ul class="simple">
 <li><p>Time complexity is O(n+n) asymptotically equivalent to O(n) where n is the number of elements</p></li>
 </ul>
@@ -3676,9 +3649,9 @@ Longest substring of length 2 distinct char in abcccdde is cccdd of length 5
 </section>
 </section>
 <section id="two-pointers">
-<h3>Two pointers<a class="headerlink" href="#two-pointers" title="Permalink to this headline">#</a></h3>
+<h3>Two pointers<a class="headerlink" href="#two-pointers" title="Permalink to this headline">¶</a></h3>
 <section id="remove-duplicates">
-<h4>Remove duplicates<a class="headerlink" href="#remove-duplicates" title="Permalink to this headline">#</a></h4>
+<h4>Remove duplicates<a class="headerlink" href="#remove-duplicates" title="Permalink to this headline">¶</a></h4>
 <p><strong># %load ./cpp/twoPointers/removeAllDuplicates.cpp</strong></p>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="cpf">&lt;iostream&gt;</span><span class="cp"></span>
 <span class="cp">#include</span><span class="cpf">&lt;vector&gt;</span><span class="cp"></span>
@@ -3743,7 +3716,7 @@ Longest substring of length 2 distinct char in abcccdde is cccdd of length 5
 </div>
 </section>
 <section id="square-sorted-array">
-<h4>Square sorted array<a class="headerlink" href="#square-sorted-array" title="Permalink to this headline">#</a></h4>
+<h4>Square sorted array<a class="headerlink" href="#square-sorted-array" title="Permalink to this headline">¶</a></h4>
 <p>`# %load ./cpp/twoPointers/squareSortedArray.cpp</p>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span><span class="cp"></span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;vector&gt;</span><span class="cp"></span>
@@ -3817,9 +3790,9 @@ Squared Array: 1 1 4 4
 </section>
 </section>
 <section id="fast-and-slow-pointers">
-<h3>Fast and Slow Pointers<a class="headerlink" href="#fast-and-slow-pointers" title="Permalink to this headline">#</a></h3>
+<h3>Fast and Slow Pointers<a class="headerlink" href="#fast-and-slow-pointers" title="Permalink to this headline">¶</a></h3>
 <section id="linked-list-cycle">
-<h4>Linked List Cycle<a class="headerlink" href="#linked-list-cycle" title="Permalink to this headline">#</a></h4>
+<h4>Linked List Cycle<a class="headerlink" href="#linked-list-cycle" title="Permalink to this headline">¶</a></h4>
 <p>`# %load ./cpp/fastSlowPointers/linkedListCycle.cpp</p>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="cpf">&lt;iostream&gt;</span><span class="cp"></span>
 <span class="k">using</span><span class="w"> </span><span class="k">namespace</span><span class="w"> </span><span class="nn">std</span><span class="p">;</span><span class="w"></span>
@@ -3888,7 +3861,7 @@ LL2 has cycle: 1
 </div>
 </section>
 <section id="head-of-the-linked-list-cycle">
-<h4>Head of the linked list cycle<a class="headerlink" href="#head-of-the-linked-list-cycle" title="Permalink to this headline">#</a></h4>
+<h4>Head of the linked list cycle<a class="headerlink" href="#head-of-the-linked-list-cycle" title="Permalink to this headline">¶</a></h4>
 <p>`# %load ./cpp/fastSlowPointers/linkedListCycleHead.cpp</p>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="cpf">&lt;iostream&gt;</span><span class="cp"></span>
 
@@ -3989,9 +3962,9 @@ LL3 node: 3
 </section>
 </section>
 <section id="merge-intervals">
-<h3>Merge Intervals<a class="headerlink" href="#merge-intervals" title="Permalink to this headline">#</a></h3>
+<h3>Merge Intervals<a class="headerlink" href="#merge-intervals" title="Permalink to this headline">¶</a></h3>
 <section id="id1">
-<h4>Merge Intervals<a class="headerlink" href="#id1" title="Permalink to this headline">#</a></h4>
+<h4>Merge Intervals<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h4>
 <p>`# %load ./cpp/mergeIntervals/mergeIntervals.cpp</p>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="cpf">&lt;iostream&gt;</span><span class="cp"></span>
 <span class="cp">#include</span><span class="cpf">&lt;vector&gt;</span><span class="cp"></span>
@@ -4088,7 +4061,7 @@ LL3 node: 3
 </section>
 </section>
 <section id="todo">
-<h3>TODO<a class="headerlink" href="#todo" title="Permalink to this headline">#</a></h3>
+<h3>TODO<a class="headerlink" href="#todo" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p>Cyclic Sort</p></li>
 <li><p>In-place Reversal of LinkedList</p></li>
@@ -4105,18 +4078,18 @@ LL3 node: 3
 </ul>
 </section>
 <section id="codeforces">
-<h3>CodeForces<a class="headerlink" href="#codeforces" title="Permalink to this headline">#</a></h3>
+<h3>CodeForces<a class="headerlink" href="#codeforces" title="Permalink to this headline">¶</a></h3>
 <section id="id2">
-<h4>Most Similar Words<a class="headerlink" href="#id2" title="Permalink to this headline">#</a></h4>
+<h4>Most Similar Words<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h4>
 </section>
 </section>
 </section>
 <section id="java">
-<h2>Java<a class="headerlink" href="#java" title="Permalink to this headline">#</a></h2>
+<h2>Java<a class="headerlink" href="#java" title="Permalink to this headline">¶</a></h2>
 <section id="codechef">
-<h3>CodeChef<a class="headerlink" href="#codechef" title="Permalink to this headline">#</a></h3>
+<h3>CodeChef<a class="headerlink" href="#codechef" title="Permalink to this headline">¶</a></h3>
 <section id="goodpairs">
-<h4>GoodPairs<a class="headerlink" href="#goodpairs" title="Permalink to this headline">#</a></h4>
+<h4>GoodPairs<a class="headerlink" href="#goodpairs" title="Permalink to this headline">¶</a></h4>
 <p>`# %load javaCodes/GoodPairs.java</p>
 <div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kn">package</span> <span class="nn">javaCodes</span><span class="p">;</span>
 
@@ -4310,11 +4283,9 @@ P2:i=5:ans=7:map=[{1-1=4, 8-4=1, 4-8=1}]
 
               </div>
               
-            </main>
-            <footer class="footer-article noprint">
-                
-    <!-- Previous / next buttons -->
-<div class='prev-next-area'>
+            
+                <!-- Previous / next buttons -->
+<div class='prev-next-area'> 
     <a class='left-prev' id="prev-link" href="../codes/python_faqs.html" title="previous page">
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
@@ -4330,28 +4301,24 @@ P2:i=5:ans=7:map=[{1-1=4, 8-4=1, 4-8=1}]
     <i class="fas fa-angle-right"></i>
     </a>
 </div>
-            </footer>
+            
         </div>
     </div>
-    <div class="footer-content row">
-        <footer class="col footer"><p>
-  
-    By Chandra<br/>
-  
-      &copy; Copyright 2022.<br/>
-</p>
-        </footer>
-    </div>
+    <footer class="footer">
+  <p>
     
-</div>
+      By Chandra<br/>
+    
+        &copy; Copyright 2021.<br/>
+  </p>
+</footer>
+</main>
 
 
       </div>
     </div>
   
-  <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
-
+  <script src="../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
 
   </body>
 </html>

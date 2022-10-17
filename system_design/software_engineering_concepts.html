@@ -8,9 +8,8 @@
 
     <title>Software Engineering concepts</title>
     
-  <!-- Loaded before other Sphinx assets -->
-  <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
-<link href="../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+  <link href="../_static/css/theme.css" rel="stylesheet">
+  <link href="../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
 
     
   <link rel="stylesheet"
@@ -20,16 +19,20 @@
   <link rel="preload" as="font" type="font/woff2" crossorigin
     href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
 
+    
+      
+
+    
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
     
-  <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+  <link rel="preload" as="script" href="../_static/js/index.be7d3bbb2ef33a8344ce.js">
 
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
@@ -37,13 +40,12 @@
     <script src="../_static/doctools.js"></script>
     <script src="../_static/clipboard.min.js"></script>
     <script src="../_static/copybutton.js"></script>
-    <script src="../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
     <script src="../_static/togglebutton.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="../_static/design-tabs.js"></script>
+    <script src="../_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
 const thebe_selector = ".thebe,.cell"
 const thebe_selector_input = "pre"
@@ -63,21 +65,7 @@ const thebe_selector_output = ".output, .cell_output"
     <!-- Google Analytics -->
     
   </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
-<!-- Checkboxes to toggle the left sidebar -->
-<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
-<label class="overlay overlay-navbar" for="__navigation">
-    <div class="visually-hidden">Toggle navigation sidebar</div>
-</label>
-<!-- Checkboxes to toggle the in-page toc -->
-<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
-<label class="overlay overlay-pagetoc" for="__page-toc">
-    <div class="visually-hidden">Toggle in-page Table of Contents</div>
-</label>
-<!-- Headers at the top -->
-<div class="announcement header-item noprint"></div>
-<div class="header header-item noprint"></div>
-
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
     
     <div class="container-fluid" id="banner"></div>
 
@@ -86,10 +74,9 @@ const thebe_selector_output = ".output, .cell_output"
     <div class="container-xl">
       <div class="row">
           
-<!-- Sidebar -->
-<div class="bd-sidebar noprint" id="site-navigation">
-    <div class="bd-sidebar__content">
-        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
     <a class="navbar-brand text-wrap" href="../index.html">
       
         <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
@@ -105,15 +92,14 @@ const thebe_selector_output = ".output, .cell_output"
   <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
 </form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item active">
-        
-        <ul class="nav bd-sidenav bd-sidenav__home-link">
-            <li class="toctree-l1">
-                <a class="reference internal" href="../intro.html">
-                    Welcome
-                </a>
-            </li>
-        </ul>
-        <p aria-level="2" class="caption" role="heading">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../intro.html">
+   Welcome
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
   System Design
  </span>
@@ -563,22 +549,29 @@ const thebe_selector_output = ".output, .cell_output"
      L02: Traditional Methods for ML in Graphs
     </a>
    </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../cs224w_ml_graph/CS224W_Colab_0.html">
+     <strong>
+      HW0
+     </strong>
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../cs224w_ml_graph/CS224W_Colab_1.html">
+     HW1
+    </a>
+   </li>
   </ul>
  </li>
 </ul>
 
     </div>
-</nav></div>
-        <div class="bd-sidebar__bottom">
-             <!-- To handle the deprecated key -->
-            
-            <div class="navbar_extra_footer">
-            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
-            </div>
-            
-        </div>
-    </div>
-    <div id="rtd-footer-container"></div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
 </div>
 
 
@@ -586,191 +579,94 @@ const thebe_selector_output = ".output, .cell_output"
 
 
           
-<!-- A tiny helper pixel to detect if we've scrolled -->
-<div class="sbt-scroll-pixel-helper"></div>
-<!-- Main content -->
-<div class="col py-0 content-container">
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
     
-    <div class="header-article row sticky-top noprint">
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
         
-
-
-
-<div class="col py-1 d-flex header-article-main">
-    <div class="header-article__left">
-        
-        <label for="__navigation"
-  class="headerbtn"
-  data-toggle="tooltip"
-data-placement="right"
-title="Toggle navigation"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-bars"></i>
-  </span>
-
-</label>
-
-        
-    </div>
-    <div class="header-article__right">
-<div class="menu-dropdown menu-dropdown-launch-buttons">
-  <button class="headerbtn menu-dropdown__trigger"
-      aria-label="Launch interactive content">
-      <i class="fas fa-rocket"></i>
-  </button>
-  <div class="menu-dropdown__content">
-    <ul>
-      <li>
-        <a href="https://mybinder.org/v2/gh/chandrabsingh/learning/master?urlpath=tree/learning/system_design/software_engineering_concepts.ipynb"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Launch on Binder"
->
-  
-
-<span class="headerbtn__icon-container">
-  
-    <img src="../_static/images/logo_binder.svg">
-  </span>
-<span class="headerbtn__text-container">Binder</span>
-</a>
-
-      </li>
-      
-    </ul>
-  </div>
-</div>
-
-<button onclick="toggleFullScreen()"
-  class="headerbtn"
-  data-toggle="tooltip"
-data-placement="bottom"
-title="Fullscreen mode"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-expand"></i>
-  </span>
-
-</button>
-
-<div class="menu-dropdown menu-dropdown-repository-buttons">
-  <button class="headerbtn menu-dropdown__trigger"
-      aria-label="Source repositories">
-      <i class="fab fa-github"></i>
-  </button>
-  <div class="menu-dropdown__content">
-    <ul>
-      <li>
-        <a href="https://github.com/chandrabsingh/learning"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Source repository"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fab fa-github"></i>
-  </span>
-<span class="headerbtn__text-container">repository</span>
-</a>
-
-      </li>
-      
-      <li>
-        <a href="https://github.com/chandrabsingh/learning/issues/new?title=Issue%20on%20page%20%2Fsystem_design/software_engineering_concepts.html&body=Your%20issue%20content%20here."
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Open an issue"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-lightbulb"></i>
-  </span>
-<span class="headerbtn__text-container">open issue</span>
-</a>
-
-      </li>
-      
-    </ul>
-  </div>
-</div>
-
-<div class="menu-dropdown menu-dropdown-download-buttons">
-  <button class="headerbtn menu-dropdown__trigger"
-      aria-label="Download this page">
-      <i class="fas fa-download"></i>
-  </button>
-  <div class="menu-dropdown__content">
-    <ul>
-      <li>
-        <a href="../_sources/system_design/software_engineering_concepts.ipynb"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Download source file"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-file"></i>
-  </span>
-<span class="headerbtn__text-container">.ipynb</span>
-</a>
-
-      </li>
-      
-      <li>
-        
-<button onclick="printPdf(this)"
-  class="headerbtn"
-  data-toggle="tooltip"
-data-placement="left"
-title="Print to PDF"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-file-pdf"></i>
-  </span>
-<span class="headerbtn__text-container">.pdf</span>
-</button>
-
-      </li>
-      
-    </ul>
-  </div>
-</div>
-<label for="__page-toc"
-  class="headerbtn headerbtn-page-toc"
-  
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-list"></i>
-  </span>
-
-</label>
-
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/system_design/software_engineering_concepts.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
     </div>
 </div>
 
-<!-- Table of contents -->
-<div class="col-md-3 bd-toc show noprint">
-    <div class="tocsection onthispage pt-5 pb-3">
-        <i class="fas fa-list"></i> Contents
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/chandrabsingh/learning"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/chandrabsingh/learning/issues/new?title=Issue%20on%20page%20%2Fsystem_design/software_engineering_concepts.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        
     </div>
-    <nav id="bd-toc-nav" aria-label="Page">
-        <ul class="visible nav section-nav flex-column">
+</div>
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/chandrabsingh/learning/master?urlpath=tree/learning/system_design/software_engineering_concepts.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#database-design">
    Database design
@@ -1610,11 +1506,12 @@ title="Print to PDF"
  </li>
 </ul>
 
-    </nav>
-</div>
+            </nav>
+        </div>
     </div>
-    <div class="article row">
-        <div class="col pl-md-3 pl-lg-5 content-container">
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
                 <h1>Software Engineering concepts</h1>
@@ -2470,16 +2367,15 @@ title="Print to PDF"
                     </div>
                 </div>
             </div>
-            <main id="main-content" role="main">
-                
+            
               <div>
                 
   <section class="tex2jax_ignore mathjax_ignore" id="software-engineering-concepts">
-<h1>Software Engineering concepts<a class="headerlink" href="#software-engineering-concepts" title="Permalink to this headline">#</a></h1>
+<h1>Software Engineering concepts<a class="headerlink" href="#software-engineering-concepts" title="Permalink to this headline">¶</a></h1>
 <section id="database-design">
-<h2>Database design<a class="headerlink" href="#database-design" title="Permalink to this headline">#</a></h2>
+<h2>Database design<a class="headerlink" href="#database-design" title="Permalink to this headline">¶</a></h2>
 <section id="db-stack">
-<h3>DB stack<a class="headerlink" href="#db-stack" title="Permalink to this headline">#</a></h3>
+<h3>DB stack<a class="headerlink" href="#db-stack" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p>SQL vs NoSQL</p></li>
 <li><p>RDBMS</p></li>
@@ -2499,7 +2395,7 @@ title="Print to PDF"
 </ul>
 </section>
 <section id="types-of-database">
-<h3>Types of database<a class="headerlink" href="#types-of-database" title="Permalink to this headline">#</a></h3>
+<h3>Types of database<a class="headerlink" href="#types-of-database" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p>Structured</p>
 <ul>
@@ -2527,7 +2423,7 @@ title="Print to PDF"
 </ul>
 </section>
 <section id="relational">
-<h3>Relational<a class="headerlink" href="#relational" title="Permalink to this headline">#</a></h3>
+<h3>Relational<a class="headerlink" href="#relational" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p>Forms</p>
 <ul>
@@ -2583,7 +2479,7 @@ title="Print to PDF"
 </ul>
 </section>
 <section id="nosql">
-<h3>NoSQL<a class="headerlink" href="#nosql" title="Permalink to this headline">#</a></h3>
+<h3>NoSQL<a class="headerlink" href="#nosql" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p>they are more like JSON-based databases</p></li>
 <li><p>built for high-frequency read writes</p></li>
@@ -2617,29 +2513,29 @@ title="Print to PDF"
 <p><span class="math notranslate nohighlight">\(\tiny{\text{Priyanka Vergadia}}\)</span></p>
 </section>
 <section id="datalake">
-<h3>DataLake<a class="headerlink" href="#datalake" title="Permalink to this headline">#</a></h3>
+<h3>DataLake<a class="headerlink" href="#datalake" title="Permalink to this headline">¶</a></h3>
 </section>
 <section id="bigquery-data-warehouse">
-<h3>BigQuery - data warehouse<a class="headerlink" href="#bigquery-data-warehouse" title="Permalink to this headline">#</a></h3>
+<h3>BigQuery - data warehouse<a class="headerlink" href="#bigquery-data-warehouse" title="Permalink to this headline">¶</a></h3>
 </section>
 <section id="why-postgres">
-<h3>Why Postgres<a class="headerlink" href="#why-postgres" title="Permalink to this headline">#</a></h3>
+<h3>Why Postgres<a class="headerlink" href="#why-postgres" title="Permalink to this headline">¶</a></h3>
 </section>
 <section id="why-mysql">
-<h3>Why MySQL<a class="headerlink" href="#why-mysql" title="Permalink to this headline">#</a></h3>
+<h3>Why MySQL<a class="headerlink" href="#why-mysql" title="Permalink to this headline">¶</a></h3>
 </section>
 <section id="graph-database">
-<h3>Graph database<a class="headerlink" href="#graph-database" title="Permalink to this headline">#</a></h3>
+<h3>Graph database<a class="headerlink" href="#graph-database" title="Permalink to this headline">¶</a></h3>
 </section>
 <section id="document-oriented-database">
-<h3>Document-oriented database<a class="headerlink" href="#document-oriented-database" title="Permalink to this headline">#</a></h3>
+<h3>Document-oriented database<a class="headerlink" href="#document-oriented-database" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p>data is generally semi-structured and stored in a JSON-like format</p></li>
 <li><p>optimal for use cases that require flexibility and fast, continual development</p></li>
 <li><p>MongoDB, CouchDB, Elasticsearch, Google Cloud Datastore, and Amazon DocumentDB</p></li>
 </ul>
 <section id="mongodb-document">
-<h4>MongoDB - Document<a class="headerlink" href="#mongodb-document" title="Permalink to this headline">#</a></h4>
+<h4>MongoDB - Document<a class="headerlink" href="#mongodb-document" title="Permalink to this headline">¶</a></h4>
 <ul class="simple">
 <li><p>A <strong>document is a record in a document database</strong>.</p></li>
 <li><p>A document typically stores information about one object and any of its related metadata.</p></li>
@@ -2680,7 +2576,7 @@ title="Print to PDF"
 </section>
 </section>
 <section id="key-value-database">
-<h3>Key-Value database<a class="headerlink" href="#key-value-database" title="Permalink to this headline">#</a></h3>
+<h3>Key-Value database<a class="headerlink" href="#key-value-database" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p>dictionary data structure</p></li>
 <li><p>key has to be unique</p></li>
@@ -2689,13 +2585,13 @@ title="Print to PDF"
 </ul>
 </section>
 <section id="time-series-database">
-<h3>Time Series database<a class="headerlink" href="#time-series-database" title="Permalink to this headline">#</a></h3>
+<h3>Time Series database<a class="headerlink" href="#time-series-database" title="Permalink to this headline">¶</a></h3>
 </section>
 <section id="wide-column-database">
-<h3>Wide-Column database<a class="headerlink" href="#wide-column-database" title="Permalink to this headline">#</a></h3>
+<h3>Wide-Column database<a class="headerlink" href="#wide-column-database" title="Permalink to this headline">¶</a></h3>
 </section>
 <section id="eventual-vs-strong-consistency">
-<h3>Eventual vs Strong Consistency<a class="headerlink" href="#eventual-vs-strong-consistency" title="Permalink to this headline">#</a></h3>
+<h3>Eventual vs Strong Consistency<a class="headerlink" href="#eventual-vs-strong-consistency" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p>Eventual consistency</p>
 <ul>
@@ -2715,14 +2611,14 @@ title="Print to PDF"
 </ul>
 </section>
 <section id="polyglot-persistence">
-<h3>Polyglot persistence<a class="headerlink" href="#polyglot-persistence" title="Permalink to this headline">#</a></h3>
+<h3>Polyglot persistence<a class="headerlink" href="#polyglot-persistence" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li></li>
 </ul>
 <p align="center"><img src="https://www.abhishek-tiwari.com/assets/images/Polyglot-persistence-pattern-for-an-ecommerce-application.png"></p>
 </section>
 <section id="cap-theorem">
-<h3>CAP theorem<a class="headerlink" href="#cap-theorem" title="Permalink to this headline">#</a></h3>
+<h3>CAP theorem<a class="headerlink" href="#cap-theorem" title="Permalink to this headline">¶</a></h3>
 <ul>
 <li><p>consistency, availability, partition tolerance(fault tolerance)</p>
 <ul class="simple">
@@ -2757,7 +2653,7 @@ title="Print to PDF"
 </ul>
 </section>
 <section id="base-semantics">
-<h3>BASE semantics<a class="headerlink" href="#base-semantics" title="Permalink to this headline">#</a></h3>
+<h3>BASE semantics<a class="headerlink" href="#base-semantics" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p>basically-available, soft-state, eventual consistency</p></li>
 <li><p>Eventually consistent services has only liveness guarantee - updates will be observed eventually</p>
@@ -2770,7 +2666,7 @@ title="Print to PDF"
 </ul>
 </section>
 <section id="multi-model-database">
-<h3>Multi-model database<a class="headerlink" href="#multi-model-database" title="Permalink to this headline">#</a></h3>
+<h3>Multi-model database<a class="headerlink" href="#multi-model-database" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p>ArangoDB, CosmosDB, OrientDB, Couchbase, etc</p></li>
 <li><p>support multiple data models like the graph, document-oriented, relational, etc.</p></li>
@@ -2779,50 +2675,50 @@ title="Print to PDF"
 </ul>
 </section>
 <section id="cassandra">
-<h3>Cassandra<a class="headerlink" href="#cassandra" title="Permalink to this headline">#</a></h3>
+<h3>Cassandra<a class="headerlink" href="#cassandra" title="Permalink to this headline">¶</a></h3>
 </section>
 <section id="memcached">
-<h3>Memcached<a class="headerlink" href="#memcached" title="Permalink to this headline">#</a></h3>
+<h3>Memcached<a class="headerlink" href="#memcached" title="Permalink to this headline">¶</a></h3>
 </section>
 <section id="hbase">
-<h3>HBase<a class="headerlink" href="#hbase" title="Permalink to this headline">#</a></h3>
+<h3>HBase<a class="headerlink" href="#hbase" title="Permalink to this headline">¶</a></h3>
 </section>
 <section id="neo4j">
-<h3>Neo4j<a class="headerlink" href="#neo4j" title="Permalink to this headline">#</a></h3>
+<h3>Neo4j<a class="headerlink" href="#neo4j" title="Permalink to this headline">¶</a></h3>
 </section>
 <section id="mongodb">
-<h3>MongoDB<a class="headerlink" href="#mongodb" title="Permalink to this headline">#</a></h3>
+<h3>MongoDB<a class="headerlink" href="#mongodb" title="Permalink to this headline">¶</a></h3>
 </section>
 <section id="mapreduce">
-<h3>MapReduce<a class="headerlink" href="#mapreduce" title="Permalink to this headline">#</a></h3>
+<h3>MapReduce<a class="headerlink" href="#mapreduce" title="Permalink to this headline">¶</a></h3>
 </section>
 <section id="elasticsearch">
-<h3>Elasticsearch<a class="headerlink" href="#elasticsearch" title="Permalink to this headline">#</a></h3>
+<h3>Elasticsearch<a class="headerlink" href="#elasticsearch" title="Permalink to this headline">¶</a></h3>
 </section>
 <section id="redis">
-<h3>Redis<a class="headerlink" href="#redis" title="Permalink to this headline">#</a></h3>
+<h3>Redis<a class="headerlink" href="#redis" title="Permalink to this headline">¶</a></h3>
 </section>
 <section id="google-cloud-datastore">
-<h3>Google Cloud Datastore<a class="headerlink" href="#google-cloud-datastore" title="Permalink to this headline">#</a></h3>
+<h3>Google Cloud Datastore<a class="headerlink" href="#google-cloud-datastore" title="Permalink to this headline">¶</a></h3>
 </section>
 <section id="redis-vs-memcached">
-<h3>Redis vs Memcached<a class="headerlink" href="#redis-vs-memcached" title="Permalink to this headline">#</a></h3>
+<h3>Redis vs Memcached<a class="headerlink" href="#redis-vs-memcached" title="Permalink to this headline">¶</a></h3>
 </section>
 <section id="oracle-vs-mysql">
-<h3>Oracle vs MySQL<a class="headerlink" href="#oracle-vs-mysql" title="Permalink to this headline">#</a></h3>
+<h3>Oracle vs MySQL<a class="headerlink" href="#oracle-vs-mysql" title="Permalink to this headline">¶</a></h3>
 </section>
 </section>
 <section id="cloud-design">
-<h2>Cloud design<a class="headerlink" href="#cloud-design" title="Permalink to this headline">#</a></h2>
+<h2>Cloud design<a class="headerlink" href="#cloud-design" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li><p><span class="xref myst">Cloud design considerations</span></p></li>
 </ul>
 </section>
 <section id="aws-vs-azure-vs-google-cloud">
-<h2>AWS vs Azure vs Google Cloud<a class="headerlink" href="#aws-vs-azure-vs-google-cloud" title="Permalink to this headline">#</a></h2>
+<h2>AWS vs Azure vs Google Cloud<a class="headerlink" href="#aws-vs-azure-vs-google-cloud" title="Permalink to this headline">¶</a></h2>
 </section>
 <section id="amazon-web-services-aws">
-<h2>Amazon Web Services (AWS)<a class="headerlink" href="#amazon-web-services-aws" title="Permalink to this headline">#</a></h2>
+<h2>Amazon Web Services (AWS)<a class="headerlink" href="#amazon-web-services-aws" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li><p>Infrastructure as a service</p>
 <ul>
@@ -2930,7 +2826,7 @@ title="Print to PDF"
 </ul>
 </section>
 <section id="chaos-engineering">
-<h2>Chaos Engineering<a class="headerlink" href="#chaos-engineering" title="Permalink to this headline">#</a></h2>
+<h2>Chaos Engineering<a class="headerlink" href="#chaos-engineering" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li><p>discipline of experimenting distributed system in production to build system capability</p></li>
 <li><p>designed by Netflix</p></li>
@@ -3012,7 +2908,7 @@ title="Print to PDF"
 </ul>
 </section>
 <section id="scalability">
-<h2>Scalability<a class="headerlink" href="#scalability" title="Permalink to this headline">#</a></h2>
+<h2>Scalability<a class="headerlink" href="#scalability" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li><p>Applications’s ability to handle increased workload without impacting performance</p></li>
 <li><p>If application was able to respond to a user request in x seconds, it should take same x seconds to respond, when concurrent user base increases</p></li>
@@ -3039,10 +2935,10 @@ title="Print to PDF"
 <p>The scalability of application should be tested using load and stress tests by simulating concurrent traffic</p>
 </section>
 <section id="scale-trade-offs">
-<h2>Scale trade-offs<a class="headerlink" href="#scale-trade-offs" title="Permalink to this headline">#</a></h2>
+<h2>Scale trade-offs<a class="headerlink" href="#scale-trade-offs" title="Permalink to this headline">¶</a></h2>
 </section>
 <section id="autoscaling">
-<h2>AutoScaling<a class="headerlink" href="#autoscaling" title="Permalink to this headline">#</a></h2>
+<h2>AutoScaling<a class="headerlink" href="#autoscaling" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li><p>Autoscaling is a cloud computing feature that enables organizations to scale cloud services such as server capacities or virtual machines up or down automatically, based on defined situations such as traffic utilization levels. Cloud computing providers, such as Amazon Web Services (AWS), Microsoft Azure, and Google Cloud Platform (GCP), offer autoscaling tools.</p></li>
 <li><p>Overall benefit of autoscaling is that it eliminates the need to respond manually in real-time to traffic spikes that merit new resources and instances by automatically changing the active number of servers</p></li>
@@ -3051,7 +2947,7 @@ title="Print to PDF"
 </ul>
 </section>
 <section id="latency">
-<h2>Latency<a class="headerlink" href="#latency" title="Permalink to this headline">#</a></h2>
+<h2>Latency<a class="headerlink" href="#latency" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li><p>Network latency</p></li>
 <li><p>Application latency</p>
@@ -3062,14 +2958,14 @@ title="Print to PDF"
 </ul>
 </section>
 <section id="cost-considerations">
-<h2>Cost considerations<a class="headerlink" href="#cost-considerations" title="Permalink to this headline">#</a></h2>
+<h2>Cost considerations<a class="headerlink" href="#cost-considerations" title="Permalink to this headline">¶</a></h2>
 </section>
 <section id="high-availability">
-<h2>High availability<a class="headerlink" href="#high-availability" title="Permalink to this headline">#</a></h2>
+<h2>High availability<a class="headerlink" href="#high-availability" title="Permalink to this headline">¶</a></h2>
 <p>The ability of system to stay online despite failures at infrastructural level in real-time. The hosting time SLA of cloud platforms should be 99.99999% available. The distributed system must be designed to fault-tolerant and redundant.</p>
 <p>To achieve high availability at application level, the entire service is architecturally broken down into granular loosely coupled services called <strong><em>microservices</em></strong>.</p>
 <section id="redundancy">
-<h3>Redundancy<a class="headerlink" href="#redundancy" title="Permalink to this headline">#</a></h3>
+<h3>Redundancy<a class="headerlink" href="#redundancy" title="Permalink to this headline">¶</a></h3>
 <p>Redundancy is the process of duplicating the server instances and keeping them on standby incase any of the active server instances goes down. It is the fail-safe backup mechanism.</p>
 <p>This helps:</p>
 <ul class="simple">
@@ -3079,13 +2975,13 @@ title="Print to PDF"
 <p>Tools like <strong><em>Kubernetes</em></strong> are intelligent enough to add or remove instances on the fly as per requirement, thereby reducing human error.</p>
 </section>
 <section id="replication">
-<h3>Replication<a class="headerlink" href="#replication" title="Permalink to this headline">#</a></h3>
+<h3>Replication<a class="headerlink" href="#replication" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p>running a <strong><em>similar/duplicate node</em></strong>, so that when a few nodes go down, other nodes bear the load. Its a <strong><em>fail-safe backup mechanism</em></strong>.</p></li>
 </ul>
 </section>
 <section id="high-available-cluster">
-<h3>High available cluster<a class="headerlink" href="#high-available-cluster" title="Permalink to this headline">#</a></h3>
+<h3>High available cluster<a class="headerlink" href="#high-available-cluster" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p>Fail-over cluster, contains a set of nodes running in conjunction with each other that ensures high availability of service</p></li>
 </ul>
@@ -3094,11 +2990,11 @@ title="Print to PDF"
 </section>
 </section>
 <section id="load-balancing">
-<h2>Load balancing<a class="headerlink" href="#load-balancing" title="Permalink to this headline">#</a></h2>
+<h2>Load balancing<a class="headerlink" href="#load-balancing" title="Permalink to this headline">¶</a></h2>
 <p>Load balancing enables services to scale well when the traffic load increases. The component that facilitates this are called <em><strong>load balancers</strong></em>. It distributes load across servers in cluster using different algorithms, thereby safe-guarding overloads and spikes in latency.</p>
 <p>Load balancers are <em><strong>single point of contact for client requests</strong></em>. They can be setup to <strong><em>manage traffic</em></strong> at application component level, database component level, message queue level or at backend server level. They regularly perform <strong><em>health checks</em></strong> on the machines in the cluster. They keep track of <em><strong>in service</strong></em> and <strong><em>out of service</em></strong> instances.</p>
 <section id="load-balancers-methods">
-<h3>Load balancers methods<a class="headerlink" href="#load-balancers-methods" title="Permalink to this headline">#</a></h3>
+<h3>Load balancers methods<a class="headerlink" href="#load-balancers-methods" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p>DNS load balancing</p></li>
 <li><p>Hardware based load balancing</p>
@@ -3119,7 +3015,7 @@ title="Print to PDF"
 </ul>
 </section>
 <section id="load-balancing-algorithms">
-<h3>Load balancing algorithms<a class="headerlink" href="#load-balancing-algorithms" title="Permalink to this headline">#</a></h3>
+<h3>Load balancing algorithms<a class="headerlink" href="#load-balancing-algorithms" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p>Round Robin</p></li>
 <li><p>Weighted Round Robin</p></li>
@@ -3134,17 +3030,17 @@ title="Print to PDF"
 </section>
 </section>
 <section id="fault-isolation">
-<h2>Fault isolation<a class="headerlink" href="#fault-isolation" title="Permalink to this headline">#</a></h2>
+<h2>Fault isolation<a class="headerlink" href="#fault-isolation" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li><p>Microservice architecture enables isolate faults, debug and fix issues</p></li>
 </ul>
 </section>
 <section id="fault-tolerance">
-<h2>Fault tolerance<a class="headerlink" href="#fault-tolerance" title="Permalink to this headline">#</a></h2>
+<h2>Fault tolerance<a class="headerlink" href="#fault-tolerance" title="Permalink to this headline">¶</a></h2>
 <p>Fault tolerance is the system’s ability to stay up and running despite taking hits and faults. The instances/nodes may go offline/down but they come back up, which is called <strong><em>fail soft</em></strong>.</p>
 </section>
 <section id="distributed-system">
-<h2>Distributed system<a class="headerlink" href="#distributed-system" title="Permalink to this headline">#</a></h2>
+<h2>Distributed system<a class="headerlink" href="#distributed-system" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li><p>There are four capabilities that are involved in a resilient, scalable, distributed system:</p>
 <ul>
@@ -3158,28 +3054,28 @@ title="Print to PDF"
 </ul>
 </section>
 <section id="caching">
-<h2>Caching<a class="headerlink" href="#caching" title="Permalink to this headline">#</a></h2>
+<h2>Caching<a class="headerlink" href="#caching" title="Permalink to this headline">¶</a></h2>
 </section>
 <section id="distributed-caching">
-<h2>Distributed Caching<a class="headerlink" href="#distributed-caching" title="Permalink to this headline">#</a></h2>
+<h2>Distributed Caching<a class="headerlink" href="#distributed-caching" title="Permalink to this headline">¶</a></h2>
 </section>
 <section id="distributed-transactions">
-<h2>Distributed Transactions<a class="headerlink" href="#distributed-transactions" title="Permalink to this headline">#</a></h2>
+<h2>Distributed Transactions<a class="headerlink" href="#distributed-transactions" title="Permalink to this headline">¶</a></h2>
 </section>
 <section id="distributed-file-system">
-<h2>Distributed File System<a class="headerlink" href="#distributed-file-system" title="Permalink to this headline">#</a></h2>
+<h2>Distributed File System<a class="headerlink" href="#distributed-file-system" title="Permalink to this headline">¶</a></h2>
 </section>
 <section id="distributed-datastore">
-<h2>Distributed Datastore<a class="headerlink" href="#distributed-datastore" title="Permalink to this headline">#</a></h2>
+<h2>Distributed Datastore<a class="headerlink" href="#distributed-datastore" title="Permalink to this headline">¶</a></h2>
 </section>
 <section id="locks">
-<h2>Locks<a class="headerlink" href="#locks" title="Permalink to this headline">#</a></h2>
+<h2>Locks<a class="headerlink" href="#locks" title="Permalink to this headline">¶</a></h2>
 </section>
 <section id="distributed-locks">
-<h2>Distributed Locks<a class="headerlink" href="#distributed-locks" title="Permalink to this headline">#</a></h2>
+<h2>Distributed Locks<a class="headerlink" href="#distributed-locks" title="Permalink to this headline">¶</a></h2>
 </section>
 <section id="development-practices">
-<h2>Development practices<a class="headerlink" href="#development-practices" title="Permalink to this headline">#</a></h2>
+<h2>Development practices<a class="headerlink" href="#development-practices" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li><p>Continuous integration</p>
 <ul>
@@ -3233,10 +3129,10 @@ title="Print to PDF"
 </ul>
 </section>
 <section id="intelligent-automation">
-<h2>Intelligent Automation<a class="headerlink" href="#intelligent-automation" title="Permalink to this headline">#</a></h2>
+<h2>Intelligent Automation<a class="headerlink" href="#intelligent-automation" title="Permalink to this headline">¶</a></h2>
 </section>
 <section id="project-management">
-<h2>Project Management<a class="headerlink" href="#project-management" title="Permalink to this headline">#</a></h2>
+<h2>Project Management<a class="headerlink" href="#project-management" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li><p>Agile</p>
 <ul>
@@ -3259,7 +3155,7 @@ title="Print to PDF"
 </ul>
 </section>
 <section id="tools">
-<h2>Tools<a class="headerlink" href="#tools" title="Permalink to this headline">#</a></h2>
+<h2>Tools<a class="headerlink" href="#tools" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li><p>Kubernetes</p>
 <ul>
@@ -3274,32 +3170,32 @@ title="Print to PDF"
 </ul>
 </section>
 <section id="containers-vs-virtual-machines">
-<h2>Containers vs Virtual Machines<a class="headerlink" href="#containers-vs-virtual-machines" title="Permalink to this headline">#</a></h2>
+<h2>Containers vs Virtual Machines<a class="headerlink" href="#containers-vs-virtual-machines" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li><p><a class="reference external" href="https://www.docker.com/resources/what-container">Containers vs VM</a></p></li>
 </ul>
 </section>
 <section id="clusters">
-<h2>Clusters<a class="headerlink" href="#clusters" title="Permalink to this headline">#</a></h2>
+<h2>Clusters<a class="headerlink" href="#clusters" title="Permalink to this headline">¶</a></h2>
 </section>
 <section id="pipelines">
-<h2>Pipelines<a class="headerlink" href="#pipelines" title="Permalink to this headline">#</a></h2>
+<h2>Pipelines<a class="headerlink" href="#pipelines" title="Permalink to this headline">¶</a></h2>
 </section>
 <section id="google-compute-engine">
-<h2>Google Compute Engine<a class="headerlink" href="#google-compute-engine" title="Permalink to this headline">#</a></h2>
+<h2>Google Compute Engine<a class="headerlink" href="#google-compute-engine" title="Permalink to this headline">¶</a></h2>
 </section>
 <section id="microsoft-azure">
-<h2>Microsoft Azure<a class="headerlink" href="#microsoft-azure" title="Permalink to this headline">#</a></h2>
+<h2>Microsoft Azure<a class="headerlink" href="#microsoft-azure" title="Permalink to this headline">¶</a></h2>
 </section>
 <section id="microservice">
-<h2>Microservice<a class="headerlink" href="#microservice" title="Permalink to this headline">#</a></h2>
+<h2>Microservice<a class="headerlink" href="#microservice" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li><p><a class="reference external" href="https://martinfowler.com/articles/microservices.html">Architecture</a></p></li>
 </ul>
 <p><em>“In short, the microservice architectural style is an approach to developing a single application as a suite of small services, each running in its own process and communicating with lightweight mechanisms, often an HTTP resource API. These services are built around business capabilities and independently deployable by fully automated deployment machinery. There is a bare minimum of centralized management of these services, which may be written in different programming languages and use different data storage technologies.”</em><br />
 <span class="math notranslate nohighlight">\(\tiny{\text{martinfowler.com - Microservices Guide}}\)</span></p>
 <section id="monolithic-architecture">
-<h3>Monolithic Architecture<a class="headerlink" href="#monolithic-architecture" title="Permalink to this headline">#</a></h3>
+<h3>Monolithic Architecture<a class="headerlink" href="#monolithic-architecture" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p>self-contained as a single codebase</p></li>
 <li><p>tightly coupled application</p></li>
@@ -3310,7 +3206,7 @@ title="Print to PDF"
 </ul>
 </section>
 <section id="microservice-architecture">
-<h3>Microservice Architecture<a class="headerlink" href="#microservice-architecture" title="Permalink to this headline">#</a></h3>
+<h3>Microservice Architecture<a class="headerlink" href="#microservice-architecture" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p>Loosely coupled services deployed and working in conjunction to form large distributed service as a whole</p></li>
 <li><p>This architecture is designed to scale, which is relatively easy than in monolithic</p></li>
@@ -3322,20 +3218,20 @@ title="Print to PDF"
 </ul>
 </section>
 <section id="micro-frontends">
-<h3>Micro frontends<a class="headerlink" href="#micro-frontends" title="Permalink to this headline">#</a></h3>
+<h3>Micro frontends<a class="headerlink" href="#micro-frontends" title="Permalink to this headline">¶</a></h3>
 <img src="https://devblogs.microsoft.com/dotnet/wp-content/uploads/sites/10/2017/08/eShopOnContainers_Architecture_Diagram.png">
 </section>
 </section>
 <section id="sharded-services">
-<h2>Sharded services<a class="headerlink" href="#sharded-services" title="Permalink to this headline">#</a></h2>
+<h2>Sharded services<a class="headerlink" href="#sharded-services" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li><p>Do we have sharding of services, or is it applicable only in database management?</p></li>
 </ul>
 </section>
 <section id="sharding-database">
-<h2>Sharding database<a class="headerlink" href="#sharding-database" title="Permalink to this headline">#</a></h2>
+<h2>Sharding database<a class="headerlink" href="#sharding-database" title="Permalink to this headline">¶</a></h2>
 <section id="types-of-partitioning">
-<h3>Types of partitioning<a class="headerlink" href="#types-of-partitioning" title="Permalink to this headline">#</a></h3>
+<h3>Types of partitioning<a class="headerlink" href="#types-of-partitioning" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p>Horizontal partitioning(sharding)</p>
 <ul>
@@ -3350,7 +3246,7 @@ title="Print to PDF"
 </ul>
 </section>
 <section id="what-is-sharding">
-<h3>What is Sharding<a class="headerlink" href="#what-is-sharding" title="Permalink to this headline">#</a></h3>
+<h3>What is Sharding<a class="headerlink" href="#what-is-sharding" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p>breaking data into logical shards</p></li>
 <li><p>distribute these logical shards into separate database nodes or into physical shards</p></li>
@@ -3359,7 +3255,7 @@ title="Print to PDF"
 </ul>
 </section>
 <section id="benefits-of-sharding">
-<h3>Benefits of sharding<a class="headerlink" href="#benefits-of-sharding" title="Permalink to this headline">#</a></h3>
+<h3>Benefits of sharding<a class="headerlink" href="#benefits-of-sharding" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p>horizontal scaling or scaling out</p>
 <ul>
@@ -3374,7 +3270,7 @@ title="Print to PDF"
 </ul>
 </section>
 <section id="sharding-architectures">
-<h3>Sharding architectures<a class="headerlink" href="#sharding-architectures" title="Permalink to this headline">#</a></h3>
+<h3>Sharding architectures<a class="headerlink" href="#sharding-architectures" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p>Key based sharding</p>
 <ul>
@@ -3398,14 +3294,14 @@ title="Print to PDF"
 </section>
 </section>
 <section id="hashing">
-<h2>Hashing<a class="headerlink" href="#hashing" title="Permalink to this headline">#</a></h2>
+<h2>Hashing<a class="headerlink" href="#hashing" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li><p>bucket</p></li>
 <li><p>hash collison</p></li>
 <li><p>consistent hashing</p></li>
 </ul>
 <section id="consistent-hashing">
-<h3>Consistent Hashing<a class="headerlink" href="#consistent-hashing" title="Permalink to this headline">#</a></h3>
+<h3>Consistent Hashing<a class="headerlink" href="#consistent-hashing" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p>is a special kind of hashing technique such that when a hash table is resized, only n/m keys need to be remapped on average where n is the number of keys and m is the number of slots. In contrast, in most traditional hash tables, a change in the number of array slots causes nearly all keys to be remapped because the mapping between the keys and the slots is defined by a modular operation.</p></li>
 <li><p>it allows requests to be mapped into hash buckets while allowing the system to add and remove nodes flexibly so as to maintain a good load factor on each machine</p></li>
@@ -3433,9 +3329,9 @@ title="Print to PDF"
 </section>
 </section>
 <section id="http-messaging">
-<h2>HTTP Messaging<a class="headerlink" href="#http-messaging" title="Permalink to this headline">#</a></h2>
+<h2>HTTP Messaging<a class="headerlink" href="#http-messaging" title="Permalink to this headline">¶</a></h2>
 <section id="http-get-vs-post-message">
-<h3>HTTP GET vs POST Message<a class="headerlink" href="#http-get-vs-post-message" title="Permalink to this headline">#</a></h3>
+<h3>HTTP GET vs POST Message<a class="headerlink" href="#http-get-vs-post-message" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p>GET is used for viewing something, without changing it</p>
 <ul>
@@ -3453,13 +3349,13 @@ title="Print to PDF"
 </ul>
 </section>
 <section id="http-codes">
-<h3>HTTP codes<a class="headerlink" href="#http-codes" title="Permalink to this headline">#</a></h3>
+<h3>HTTP codes<a class="headerlink" href="#http-codes" title="Permalink to this headline">¶</a></h3>
 <p align="center"><img src="images/http_codes.png" width=600 height=600></p>  
 <p><span class="math notranslate nohighlight">\(\tiny{\text{https://datatracker.ietf.org/}}\)</span></p>
 </section>
 </section>
 <section id="http-1-0-vs-2-0-vs-3-0">
-<h2>HTTP 1.0 vs 2.0 vs 3.0<a class="headerlink" href="#http-1-0-vs-2-0-vs-3-0" title="Permalink to this headline">#</a></h2>
+<h2>HTTP 1.0 vs 2.0 vs 3.0<a class="headerlink" href="#http-1-0-vs-2-0-vs-3-0" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li><p><a class="reference external" href="https://cheapsslsecurity.com/p/http2-vs-http1/">https://cheapsslsecurity.com/p/http2-vs-http1/</a></p></li>
 <li><p><a class="reference external" href="https://ably.com/topic/http-2-vs-http-3">https://ably.com/topic/http-2-vs-http-3</a></p></li>
@@ -3468,9 +3364,9 @@ title="Print to PDF"
 <p><span class="math notranslate nohighlight">\(\tiny{\text{https://ably.com/}}\)</span></p>
 </section>
 <section id="messaging">
-<h2>Messaging<a class="headerlink" href="#messaging" title="Permalink to this headline">#</a></h2>
+<h2>Messaging<a class="headerlink" href="#messaging" title="Permalink to this headline">¶</a></h2>
 <section id="messaging-patterns">
-<h3>Messaging patterns<a class="headerlink" href="#messaging-patterns" title="Permalink to this headline">#</a></h3>
+<h3>Messaging patterns<a class="headerlink" href="#messaging-patterns" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p>Client-Server</p></li>
 <li><p>Publish-Subscribe</p>
@@ -3499,13 +3395,13 @@ title="Print to PDF"
 </section>
 </section>
 <section id="components-vs-services">
-<h2>Components vs Services<a class="headerlink" href="#components-vs-services" title="Permalink to this headline">#</a></h2>
+<h2>Components vs Services<a class="headerlink" href="#components-vs-services" title="Permalink to this headline">¶</a></h2>
 </section>
 <section id="stateless-architecture">
-<h2>Stateless architecture<a class="headerlink" href="#stateless-architecture" title="Permalink to this headline">#</a></h2>
+<h2>Stateless architecture<a class="headerlink" href="#stateless-architecture" title="Permalink to this headline">¶</a></h2>
 </section>
 <section id="transport-protocols">
-<h2>Transport Protocols<a class="headerlink" href="#transport-protocols" title="Permalink to this headline">#</a></h2>
+<h2>Transport Protocols<a class="headerlink" href="#transport-protocols" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li><p>TCP</p></li>
 <li><p>UDP</p></li>
@@ -3518,21 +3414,21 @@ title="Print to PDF"
 </ul>
 </section>
 <section id="grpc">
-<h2>gRPC<a class="headerlink" href="#grpc" title="Permalink to this headline">#</a></h2>
+<h2>gRPC<a class="headerlink" href="#grpc" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li><p>gRPC</p></li>
 <li><p>Protocol buffers</p></li>
 </ul>
 </section>
 <section id="payload">
-<h2>Payload<a class="headerlink" href="#payload" title="Permalink to this headline">#</a></h2>
+<h2>Payload<a class="headerlink" href="#payload" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li><p>Request payload</p></li>
 <li><p>API payload</p></li>
 </ul>
 </section>
 <section id="sockets">
-<h2>Sockets<a class="headerlink" href="#sockets" title="Permalink to this headline">#</a></h2>
+<h2>Sockets<a class="headerlink" href="#sockets" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li><p>TCP sockets</p></li>
 <li><p>SSL sockets</p></li>
@@ -3540,20 +3436,20 @@ title="Print to PDF"
 </ul>
 </section>
 <section id="connection-pools">
-<h2>Connection Pools<a class="headerlink" href="#connection-pools" title="Permalink to this headline">#</a></h2>
+<h2>Connection Pools<a class="headerlink" href="#connection-pools" title="Permalink to this headline">¶</a></h2>
 </section>
 <section id="connection-proxy">
-<h2>Connection Proxy<a class="headerlink" href="#connection-proxy" title="Permalink to this headline">#</a></h2>
+<h2>Connection Proxy<a class="headerlink" href="#connection-proxy" title="Permalink to this headline">¶</a></h2>
 </section>
 <section id="posix-message-queue">
-<h2>POSIX message queue<a class="headerlink" href="#posix-message-queue" title="Permalink to this headline">#</a></h2>
+<h2>POSIX message queue<a class="headerlink" href="#posix-message-queue" title="Permalink to this headline">¶</a></h2>
 </section>
 <section id="windows-message-queues">
-<h2>Windows message queues<a class="headerlink" href="#windows-message-queues" title="Permalink to this headline">#</a></h2>
+<h2>Windows message queues<a class="headerlink" href="#windows-message-queues" title="Permalink to this headline">¶</a></h2>
 <p><a class="reference external" href="https://web.archive.org/web/20120317065349/http://msdn.microsoft.com/en-us/library/ms644927(VS.85).aspx">Windows Message Queue</a></p>
 </section>
 <section id="distributed-system-or-n-tier-application">
-<h2>Distributed system or N-tier application<a class="headerlink" href="#distributed-system-or-n-tier-application" title="Permalink to this headline">#</a></h2>
+<h2>Distributed system or N-tier application<a class="headerlink" href="#distributed-system-or-n-tier-application" title="Permalink to this headline">¶</a></h2>
 <p>An n-tier application has more than 3 components</p>
 <ul class="simple">
 <li><p>user interface</p></li>
@@ -3571,7 +3467,7 @@ title="Print to PDF"
 </ul>
 </section>
 <section id="layers-vs-tiers">
-<h2>Layers vs Tiers<a class="headerlink" href="#layers-vs-tiers" title="Permalink to this headline">#</a></h2>
+<h2>Layers vs Tiers<a class="headerlink" href="#layers-vs-tiers" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li><p>Layers are at code level, it represent conceptual organization of code. In application, it means the logical separation at code level, for example business layer, service layer and data access layer</p></li>
 <li><p>Tiers is at physical layer of components, where layers are deployed and where layers are run</p></li>
@@ -3585,14 +3481,14 @@ title="Print to PDF"
 <p><span class="math notranslate nohighlight">\(\tiny{\text{Rockford Lhotka, Should all apps be n-tier?}}\)</span></p>
 </section>
 <section id="posix-thread-model">
-<h2>POSIX thread model<a class="headerlink" href="#posix-thread-model" title="Permalink to this headline">#</a></h2>
+<h2>POSIX thread model<a class="headerlink" href="#posix-thread-model" title="Permalink to this headline">¶</a></h2>
 </section>
 <section id="static-and-dynamic-dispatch">
-<h2>Static and Dynamic Dispatch<a class="headerlink" href="#static-and-dynamic-dispatch" title="Permalink to this headline">#</a></h2>
+<h2>Static and Dynamic Dispatch<a class="headerlink" href="#static-and-dynamic-dispatch" title="Permalink to this headline">¶</a></h2>
 <p><a class="reference external" href="https://medium.com/ingeniouslysimple/static-and-dynamic-dispatch-324d3dc890a3">https://medium.com/ingeniouslysimple/static-and-dynamic-dispatch-324d3dc890a3</a></p>
 </section>
 <section id="static-vs-dynamic-typing">
-<h2>Static vs Dynamic typing<a class="headerlink" href="#static-vs-dynamic-typing" title="Permalink to this headline">#</a></h2>
+<h2>Static vs Dynamic typing<a class="headerlink" href="#static-vs-dynamic-typing" title="Permalink to this headline">¶</a></h2>
 <p><a class="reference external" href="http://en.wikipedia.org/wiki/Type_system">http://en.wikipedia.org/wiki/Type_system</a></p>
 <blockquote>
 <div><p><strong>Static typing</strong></p>
@@ -3627,9 +3523,9 @@ will be rejected as ill-typed, because a static analysis cannot determine that t
 </div></blockquote>
 </section>
 <section id="name-binding">
-<h2>Name binding<a class="headerlink" href="#name-binding" title="Permalink to this headline">#</a></h2>
+<h2>Name binding<a class="headerlink" href="#name-binding" title="Permalink to this headline">¶</a></h2>
 <section id="static-binding-vs-dynamic-binding">
-<h3>Static binding vs Dynamic binding<a class="headerlink" href="#static-binding-vs-dynamic-binding" title="Permalink to this headline">#</a></h3>
+<h3>Static binding vs Dynamic binding<a class="headerlink" href="#static-binding-vs-dynamic-binding" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p>Static binding</p>
 <ul>
@@ -3654,7 +3550,7 @@ will be rejected as ill-typed, because a static analysis cannot determine that t
 </section>
 </section>
 <section id="typing">
-<h2>Typing<a class="headerlink" href="#typing" title="Permalink to this headline">#</a></h2>
+<h2>Typing<a class="headerlink" href="#typing" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li><p>Typing refers to changes in program structure that are due to the differences between data values: integers, characters, floating point numbers, strings, objects and so on. These differences can have many effects, for example:</p>
 <ul>
@@ -3665,14 +3561,14 @@ will be rejected as ill-typed, because a static analysis cannot determine that t
 </li>
 </ul>
 <section id="static-typing-vs-dynamic-typing">
-<h3>Static typing vs Dynamic typing<a class="headerlink" href="#static-typing-vs-dynamic-typing" title="Permalink to this headline">#</a></h3>
+<h3>Static typing vs Dynamic typing<a class="headerlink" href="#static-typing-vs-dynamic-typing" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p>Static typing means that the executable form of a program generated at build time will vary depending upon the types of data values found in the program.</p></li>
 <li><p>Dynamic typing means that the generated code will always be the same, irrespective of type – any differences in execution will be determined at run-time.</p></li>
 </ul>
 </section>
 <section id="dynamic-typing-vs-dynamic-binding">
-<h3>Dynamic typing vs Dynamic binding<a class="headerlink" href="#dynamic-typing-vs-dynamic-binding" title="Permalink to this headline">#</a></h3>
+<h3>Dynamic typing vs Dynamic binding<a class="headerlink" href="#dynamic-typing-vs-dynamic-binding" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p>Dynamic typing defers the determination of the class that an object belongs to until the program is executing</p></li>
 <li><p>Dynamic binding defers the determination of the actual method to invoke on an object until program execution time</p></li>
@@ -3680,7 +3576,7 @@ will be rejected as ill-typed, because a static analysis cannot determine that t
 </section>
 </section>
 <section id="weak-vs-strong-typing">
-<h2>Weak vs Strong typing<a class="headerlink" href="#weak-vs-strong-typing" title="Permalink to this headline">#</a></h2>
+<h2>Weak vs Strong typing<a class="headerlink" href="#weak-vs-strong-typing" title="Permalink to this headline">¶</a></h2>
 <p>Check out this JavaScript code:</p>
 <div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="mf">4</span> <span class="o">+</span> <span class="s1">&#39;7&#39;</span><span class="p">;</span>      <span class="c1">// &#39;47&#39;</span>
 <span class="mf">4</span> <span class="o">*</span> <span class="s1">&#39;7&#39;</span><span class="p">;</span>      <span class="c1">// 28</span>
@@ -3704,7 +3600,7 @@ will be rejected as ill-typed, because a static analysis cannot determine that t
 </ul>
 </section>
 <section id="single-vs-multiple-dispatch">
-<h2>Single vs Multiple Dispatch<a class="headerlink" href="#single-vs-multiple-dispatch" title="Permalink to this headline">#</a></h2>
+<h2>Single vs Multiple Dispatch<a class="headerlink" href="#single-vs-multiple-dispatch" title="Permalink to this headline">¶</a></h2>
 <p><a class="reference external" href="https://en.wikipedia.org/wiki/Dynamic_dispatch#Single_and_multiple_dispatch">https://en.wikipedia.org/wiki/Dynamic_dispatch#Single_and_multiple_dispatch</a></p>
 <blockquote>
 <div><p>The choice of <strong>which version of a method to call</strong> may be based either on <strong>a single object</strong>, or <strong>on a combination of objects</strong>. The former is called <strong>single dispatch</strong> and is directly supported by common object-oriented languages such as Smalltalk, C++, Java, C#, Objective-C, Swift, JavaScript, and Python. In these and similar languages, one may call a method for division with syntax that resembles</p>
@@ -3722,7 +3618,7 @@ will be rejected as ill-typed, because a static analysis cannot determine that t
 </div></blockquote>
 </section>
 <section id="dynamic-dispatch-mechanisms">
-<h2>Dynamic Dispatch mechanisms<a class="headerlink" href="#dynamic-dispatch-mechanisms" title="Permalink to this headline">#</a></h2>
+<h2>Dynamic Dispatch mechanisms<a class="headerlink" href="#dynamic-dispatch-mechanisms" title="Permalink to this headline">¶</a></h2>
 <p>A language may be implemented with different dynamic dispatch mechanisms. The choices of the dynamic dispatch mechanism offered by a language to a large extent alter the programming paradigms that are available or are most natural to use within a given language.</p>
 <p>Normally, in a typed language, the dispatch mechanism will be performed based on the type of the arguments (most commonly based on the type of the receiver of a message). <strong>Languages with weak or no typing systems often carry a dispatch table as part of the object data for each object. This allows instance behaviour as each instance may map a given message to a separate method.</strong></p>
 <p>Some languages offer a hybrid approach.</p>
@@ -3795,7 +3691,7 @@ will be rejected as ill-typed, because a static analysis cannot determine that t
 </div>
 </section>
 <section id="virtual-method-table">
-<h2>Virtual Method Table<a class="headerlink" href="#virtual-method-table" title="Permalink to this headline">#</a></h2>
+<h2>Virtual Method Table<a class="headerlink" href="#virtual-method-table" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li><p><a class="reference external" href="https://legacy.python.org/workshops/1998-11/proceedings/papers/lowis/lowis.html">https://legacy.python.org/workshops/1998-11/proceedings/papers/lowis/lowis.html</a></p></li>
 <li><p><a class="reference external" href="https://programs.wiki/wiki/detailed-parsing-of-c-virtual-functions-with-examples.html">https://programs.wiki/wiki/detailed-parsing-of-c-virtual-functions-with-examples.html</a></p></li>
@@ -3824,10 +3720,10 @@ will be rejected as ill-typed, because a static analysis cannot determine that t
 </ul>
 </section>
 <section id="bottlenecks">
-<h2>Bottlenecks<a class="headerlink" href="#bottlenecks" title="Permalink to this headline">#</a></h2>
+<h2>Bottlenecks<a class="headerlink" href="#bottlenecks" title="Permalink to this headline">¶</a></h2>
 </section>
 <section id="cdn-content-delivery-network">
-<h2>CDN - Content delivery network<a class="headerlink" href="#cdn-content-delivery-network" title="Permalink to this headline">#</a></h2>
+<h2>CDN - Content delivery network<a class="headerlink" href="#cdn-content-delivery-network" title="Permalink to this headline">¶</a></h2>
 <blockquote>
 <div><p>A content delivery network (CDN) refers to a geographically distributed group of servers which work together to provide fast delivery of Internet content.</p>
 </div></blockquote>
@@ -3850,13 +3746,13 @@ will be rejected as ill-typed, because a static analysis cannot determine that t
 <p><span class="math notranslate nohighlight">\(\tiny{\text{cloudflare.com}}\)</span></p>
 </section>
 <section id="point-of-presence-pop">
-<h2>Point of Presence(PoP)<a class="headerlink" href="#point-of-presence-pop" title="Permalink to this headline">#</a></h2>
+<h2>Point of Presence(PoP)<a class="headerlink" href="#point-of-presence-pop" title="Permalink to this headline">¶</a></h2>
 <p>A point of presence (PoP) is a demarcation point, access point, or physical location at which two or more networks or communication devices share a connection.</p>
 <p>The routers, switches, servers, and other devices necessary for traffic to cross over networks are all present at PoPs. Internet service providers and edge networks like StackPath typically have multiple points of presence located near large Internet exchange points (IXPs) at which they have peering agreements. The proximity of points of presence and Internet exchange points is one very important factor in how quickly traffic is able to traverse the Internet.</p>
 <p><span class="math notranslate nohighlight">\(\tiny{\text{https://blog.stackpath.com/}}\)</span></p>
 </section>
 <section id="domain-name-service-dns">
-<h2>Domain Name Service (DNS)<a class="headerlink" href="#domain-name-service-dns" title="Permalink to this headline">#</a></h2>
+<h2>Domain Name Service (DNS)<a class="headerlink" href="#domain-name-service-dns" title="Permalink to this headline">¶</a></h2>
 <p>This query service maps long IP addresses to domain names such as <a class="reference external" href="http://google.com">google.com</a>. There are four key components:</p>
 <ul class="simple">
 <li><p>DNS Resolver</p></li>
@@ -3869,7 +3765,7 @@ will be rejected as ill-typed, because a static analysis cannot determine that t
 <p><span class="math notranslate nohighlight">\(\tiny{\text{https://foxutech.com}}\)</span></p>
 </section>
 <section id="system-design-problems">
-<h2>System Design Problems<a class="headerlink" href="#system-design-problems" title="Permalink to this headline">#</a></h2>
+<h2>System Design Problems<a class="headerlink" href="#system-design-problems" title="Permalink to this headline">¶</a></h2>
 <ul>
 <li><ol class="simple">
 <li><p>Requirements clarifications</p></li>
@@ -3946,7 +3842,7 @@ will be rejected as ill-typed, because a static analysis cannot determine that t
 </li>
 </ul>
 <section id="design-url-shortening-system-like-bit-ly-or-tinyurl">
-<h3>Design URL shortening system like <a class="reference external" href="http://bit.ly">bit.ly</a> or tinyurl<a class="headerlink" href="#design-url-shortening-system-like-bit-ly-or-tinyurl" title="Permalink to this headline">#</a></h3>
+<h3>Design URL shortening system like <a class="reference external" href="http://bit.ly">bit.ly</a> or tinyurl<a class="headerlink" href="#design-url-shortening-system-like-bit-ly-or-tinyurl" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p>What is the need?</p>
 <ul>
@@ -3976,26 +3872,26 @@ will be rejected as ill-typed, because a static analysis cannot determine that t
 </ul>
 </section>
 <section id="how-hotstar-scaled-10-3-million-concurrent-users">
-<h3>How hotstar scaled 10.3 million concurrent users<a class="headerlink" href="#how-hotstar-scaled-10-3-million-concurrent-users" title="Permalink to this headline">#</a></h3>
+<h3>How hotstar scaled 10.3 million concurrent users<a class="headerlink" href="#how-hotstar-scaled-10-3-million-concurrent-users" title="Permalink to this headline">¶</a></h3>
 <p><a class="reference external" href="https://www.scaleyourapp.com/how-hotstar-scaled-with-10-3-million-concurrent-users-an-architectural-insight/">https://www.scaleyourapp.com/how-hotstar-scaled-with-10-3-million-concurrent-users-an-architectural-insight/</a></p>
 </section>
 <section id="how-facebook-support-global-events">
-<h3>How facebook support global events<a class="headerlink" href="#how-facebook-support-global-events" title="Permalink to this headline">#</a></h3>
+<h3>How facebook support global events<a class="headerlink" href="#how-facebook-support-global-events" title="Permalink to this headline">¶</a></h3>
 <p><a class="reference external" href="https://engineering.fb.com/2018/02/12/production-engineering/how-production-engineers-support-global-events-on-facebook/">https://engineering.fb.com/2018/02/12/production-engineering/how-production-engineers-support-global-events-on-facebook/</a></p>
 </section>
 </section>
 <section id="application-server-features">
-<h2>Application server features<a class="headerlink" href="#application-server-features" title="Permalink to this headline">#</a></h2>
+<h2>Application server features<a class="headerlink" href="#application-server-features" title="Permalink to this headline">¶</a></h2>
 </section>
 <section id="web-server-features">
-<h2>Web server features<a class="headerlink" href="#web-server-features" title="Permalink to this headline">#</a></h2>
+<h2>Web server features<a class="headerlink" href="#web-server-features" title="Permalink to this headline">¶</a></h2>
 </section>
 <section id="api">
-<h2>API<a class="headerlink" href="#api" title="Permalink to this headline">#</a></h2>
+<h2>API<a class="headerlink" href="#api" title="Permalink to this headline">¶</a></h2>
 <p>Application Protocol Interface</p>
 </section>
 <section id="proxy-server">
-<h2>Proxy Server<a class="headerlink" href="#proxy-server" title="Permalink to this headline">#</a></h2>
+<h2>Proxy Server<a class="headerlink" href="#proxy-server" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li><p>Proxy acts as a firewall</p></li>
 <li><p>Multiple clients can talk to the same proxy and can interact on our behalf with the outside world</p></li>
@@ -4005,7 +3901,7 @@ will be rejected as ill-typed, because a static analysis cannot determine that t
 </ul>
 </section>
 <section id="reverse-proxy-server">
-<h2>Reverse Proxy Server<a class="headerlink" href="#reverse-proxy-server" title="Permalink to this headline">#</a></h2>
+<h2>Reverse Proxy Server<a class="headerlink" href="#reverse-proxy-server" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li><p>instead of protecting the client, it protects the server</p></li>
 <li><p>outside world can interact with reverse proxy server instead of interacting with server directly</p></li>
@@ -4015,7 +3911,7 @@ will be rejected as ill-typed, because a static analysis cannot determine that t
 </ul>
 </section>
 <section id="oauth-2-0">
-<h2>OAuth 2.0<a class="headerlink" href="#oauth-2-0" title="Permalink to this headline">#</a></h2>
+<h2>OAuth 2.0<a class="headerlink" href="#oauth-2-0" title="Permalink to this headline">¶</a></h2>
 <p>When we launch Spotify to listen to some music, we may choose into login using Facebook. Spotify logins using Facebook API.</p>
 <ul class="simple">
 <li><p>We may think, Spotify uses Facebook username and password to login. Wrong. <strong><em>It does not</em></strong></p></li>
@@ -4036,10 +3932,10 @@ will be rejected as ill-typed, because a static analysis cannot determine that t
 <p><span class="math notranslate nohighlight">\(\tiny{\text{YouTube - InterSystems Learning Services}}\)</span></p>
 </section>
 <section id="master-slave-model">
-<h2>Master Slave Model<a class="headerlink" href="#master-slave-model" title="Permalink to this headline">#</a></h2>
+<h2>Master Slave Model<a class="headerlink" href="#master-slave-model" title="Permalink to this headline">¶</a></h2>
 </section>
 <section id="api-gateway">
-<h2>API Gateway<a class="headerlink" href="#api-gateway" title="Permalink to this headline">#</a></h2>
+<h2>API Gateway<a class="headerlink" href="#api-gateway" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li><p>APIs are the interfaces which applications use to communicate and the gateway is the control point for routing, shaping, and securing that traffic</p></li>
 <li><p>Incoming traffic is filtered and routed to the appropriate services.</p></li>
@@ -4052,20 +3948,20 @@ will be rejected as ill-typed, because a static analysis cannot determine that t
 <p><span class="math notranslate nohighlight">\(\tiny{\text{https://docs.microsoft.com}}\)</span></p>
 </section>
 <section id="worker-pool">
-<h2>Worker Pool<a class="headerlink" href="#worker-pool" title="Permalink to this headline">#</a></h2>
+<h2>Worker Pool<a class="headerlink" href="#worker-pool" title="Permalink to this headline">¶</a></h2>
 </section>
 <section id="data-lake">
-<h2>Data Lake<a class="headerlink" href="#data-lake" title="Permalink to this headline">#</a></h2>
+<h2>Data Lake<a class="headerlink" href="#data-lake" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li><p><a class="reference external" href="https://www.snaplogic.com/glossary/data-lake">https://www.snaplogic.com/glossary/data-lake</a></p></li>
 <li><p><a class="reference external" href="https://www.snaplogic.com/glossary/hadoop-data-lake">https://www.snaplogic.com/glossary/hadoop-data-lake</a></p></li>
 </ul>
 </section>
 <section id="message-queue">
-<h2>Message Queue<a class="headerlink" href="#message-queue" title="Permalink to this headline">#</a></h2>
+<h2>Message Queue<a class="headerlink" href="#message-queue" title="Permalink to this headline">¶</a></h2>
 <p>A message queue is a data structure, or a container - a way to hold messages for eventual consumption</p>
 <section id="message-broker">
-<h3>Message Broker<a class="headerlink" href="#message-broker" title="Permalink to this headline">#</a></h3>
+<h3>Message Broker<a class="headerlink" href="#message-broker" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p>A message broker is a <strong>separate component that manages queues</strong></p></li>
 <li><p>It is also known as a <strong>service bus</strong> which is a piece of middleware responsible with persisting and routing of message while allowing you to decouple your system into smaller parts.</p>
@@ -4077,7 +3973,7 @@ will be rejected as ill-typed, because a static analysis cannot determine that t
 </section>
 </section>
 <section id="web-components">
-<h2>Web components<a class="headerlink" href="#web-components" title="Permalink to this headline">#</a></h2>
+<h2>Web components<a class="headerlink" href="#web-components" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li><p>low level browser APIs</p></li>
 <li><p>gives a standard component interface</p></li>
@@ -4085,14 +3981,14 @@ will be rejected as ill-typed, because a static analysis cannot determine that t
 <li><p>web components simply tell broser <strong>“When and Where to create components, but not how”</strong></p></li>
 </ul>
 <section id="amp-component">
-<h3>AMP component<a class="headerlink" href="#amp-component" title="Permalink to this headline">#</a></h3>
+<h3>AMP component<a class="headerlink" href="#amp-component" title="Permalink to this headline">¶</a></h3>
 </section>
 </section>
 <section id="web-2-0">
-<h2>Web 2.0<a class="headerlink" href="#web-2-0" title="Permalink to this headline">#</a></h2>
+<h2>Web 2.0<a class="headerlink" href="#web-2-0" title="Permalink to this headline">¶</a></h2>
 </section>
 <section id="costs-of-operation">
-<h2>Costs of operation<a class="headerlink" href="#costs-of-operation" title="Permalink to this headline">#</a></h2>
+<h2>Costs of operation<a class="headerlink" href="#costs-of-operation" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li><p>Read from disk</p></li>
 <li><p>Read from memory</p></li>
@@ -4101,7 +3997,7 @@ will be rejected as ill-typed, because a static analysis cannot determine that t
 </ul>
 </section>
 <section id="solution-patterns">
-<h2>Solution Patterns<a class="headerlink" href="#solution-patterns" title="Permalink to this headline">#</a></h2>
+<h2>Solution Patterns<a class="headerlink" href="#solution-patterns" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li><p>Sharding Data</p></li>
 <li><p>Replication Types</p></li>
@@ -4111,7 +4007,7 @@ will be rejected as ill-typed, because a static analysis cannot determine that t
 </ul>
 </section>
 <section id="trade-offs-and-compromise">
-<h2>Trade-Offs and Compromise<a class="headerlink" href="#trade-offs-and-compromise" title="Permalink to this headline">#</a></h2>
+<h2>Trade-Offs and Compromise<a class="headerlink" href="#trade-offs-and-compromise" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li><p>Rotating disk and pay for latency</p></li>
 <li><p>Flash drive and pay more money</p></li>
@@ -4119,7 +4015,7 @@ will be rejected as ill-typed, because a static analysis cannot determine that t
 </ul>
 </section>
 <section id="better-practices">
-<h2>Better Practices<a class="headerlink" href="#better-practices" title="Permalink to this headline">#</a></h2>
+<h2>Better Practices<a class="headerlink" href="#better-practices" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li><p>how you think - how you solve problems</p></li>
 <li><p>most questions will be open ended</p>
@@ -4136,62 +4032,62 @@ will be rejected as ill-typed, because a static analysis cannot determine that t
 </ul>
 </section>
 <section id="hardware">
-<h2>Hardware<a class="headerlink" href="#hardware" title="Permalink to this headline">#</a></h2>
+<h2>Hardware<a class="headerlink" href="#hardware" title="Permalink to this headline">¶</a></h2>
 </section>
 <section id="stack-vs-heap">
-<h2>Stack vs Heap<a class="headerlink" href="#stack-vs-heap" title="Permalink to this headline">#</a></h2>
+<h2>Stack vs Heap<a class="headerlink" href="#stack-vs-heap" title="Permalink to this headline">¶</a></h2>
 </section>
 <section id="functional-programming-vs-oop">
-<h2>Functional programming vs OOP<a class="headerlink" href="#functional-programming-vs-oop" title="Permalink to this headline">#</a></h2>
+<h2>Functional programming vs OOP<a class="headerlink" href="#functional-programming-vs-oop" title="Permalink to this headline">¶</a></h2>
 </section>
 <section id="advantages-of-physical-layer-vs-logical-layer-separation">
-<h2>Advantages of Physical layer vs Logical layer separation<a class="headerlink" href="#advantages-of-physical-layer-vs-logical-layer-separation" title="Permalink to this headline">#</a></h2>
+<h2>Advantages of Physical layer vs Logical layer separation<a class="headerlink" href="#advantages-of-physical-layer-vs-logical-layer-separation" title="Permalink to this headline">¶</a></h2>
 </section>
 <section id="service-providers">
-<h2>Service Providers<a class="headerlink" href="#service-providers" title="Permalink to this headline">#</a></h2>
+<h2>Service Providers<a class="headerlink" href="#service-providers" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li><p>What are the type of features that service providers offer like Gmail, Microsoft or IMAP</p></li>
 </ul>
 </section>
 <section id="calculate-capacity-of-shard-services">
-<h2>Calculate capacity of shard services<a class="headerlink" href="#calculate-capacity-of-shard-services" title="Permalink to this headline">#</a></h2>
+<h2>Calculate capacity of shard services<a class="headerlink" href="#calculate-capacity-of-shard-services" title="Permalink to this headline">¶</a></h2>
 </section>
 <section id="calculate-acceptable-latency">
-<h2>Calculate acceptable latency<a class="headerlink" href="#calculate-acceptable-latency" title="Permalink to this headline">#</a></h2>
+<h2>Calculate acceptable latency<a class="headerlink" href="#calculate-acceptable-latency" title="Permalink to this headline">¶</a></h2>
 </section>
 <section id="calculate-hardware-capability">
-<h2>Calculate hardware capability<a class="headerlink" href="#calculate-hardware-capability" title="Permalink to this headline">#</a></h2>
+<h2>Calculate hardware capability<a class="headerlink" href="#calculate-hardware-capability" title="Permalink to this headline">¶</a></h2>
 </section>
 <section id="calculate-scalability-requirements">
-<h2>Calculate scalability requirements<a class="headerlink" href="#calculate-scalability-requirements" title="Permalink to this headline">#</a></h2>
+<h2>Calculate scalability requirements<a class="headerlink" href="#calculate-scalability-requirements" title="Permalink to this headline">¶</a></h2>
 </section>
 <section id="elasticity-of-cloud">
-<h2>Elasticity of cloud<a class="headerlink" href="#elasticity-of-cloud" title="Permalink to this headline">#</a></h2>
+<h2>Elasticity of cloud<a class="headerlink" href="#elasticity-of-cloud" title="Permalink to this headline">¶</a></h2>
 </section>
 <section id="features-that-cloud-provides">
-<h2>Features that cloud provides<a class="headerlink" href="#features-that-cloud-provides" title="Permalink to this headline">#</a></h2>
+<h2>Features that cloud provides<a class="headerlink" href="#features-that-cloud-provides" title="Permalink to this headline">¶</a></h2>
 </section>
 <section id="user-session">
-<h2>User Session<a class="headerlink" href="#user-session" title="Permalink to this headline">#</a></h2>
+<h2>User Session<a class="headerlink" href="#user-session" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li><p>When a website stores user state, the next time the user logs in they can continue from where they left off</p></li>
 <li><p>It would not feel like that one is starting fresh &amp; all the previous activity is lost</p></li>
 </ul>
 </section>
 <section id="algorithms">
-<h2>Algorithms<a class="headerlink" href="#algorithms" title="Permalink to this headline">#</a></h2>
+<h2>Algorithms<a class="headerlink" href="#algorithms" title="Permalink to this headline">¶</a></h2>
 <section id="completeness">
-<h3>Completeness<a class="headerlink" href="#completeness" title="Permalink to this headline">#</a></h3>
+<h3>Completeness<a class="headerlink" href="#completeness" title="Permalink to this headline">¶</a></h3>
 </section>
 <section id="time-complexity">
-<h3>Time complexity<a class="headerlink" href="#time-complexity" title="Permalink to this headline">#</a></h3>
+<h3>Time complexity<a class="headerlink" href="#time-complexity" title="Permalink to this headline">¶</a></h3>
 </section>
 <section id="space-complexity">
-<h3>Space complexity<a class="headerlink" href="#space-complexity" title="Permalink to this headline">#</a></h3>
+<h3>Space complexity<a class="headerlink" href="#space-complexity" title="Permalink to this headline">¶</a></h3>
 </section>
 </section>
 <section id="hypervisor">
-<h2>Hypervisor<a class="headerlink" href="#hypervisor" title="Permalink to this headline">#</a></h2>
+<h2>Hypervisor<a class="headerlink" href="#hypervisor" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li><p>Hypervisor makes virtualization possible.</p></li>
 <li><p>It is also called virtual machine monitor.</p></li>
@@ -4213,16 +4109,16 @@ will be rejected as ill-typed, because a static analysis cannot determine that t
 </ul>
 </section>
 <section id="virtualization">
-<h2>Virtualization<a class="headerlink" href="#virtualization" title="Permalink to this headline">#</a></h2>
+<h2>Virtualization<a class="headerlink" href="#virtualization" title="Permalink to this headline">¶</a></h2>
 </section>
 <section id="containerization">
-<h2>Containerization<a class="headerlink" href="#containerization" title="Permalink to this headline">#</a></h2>
+<h2>Containerization<a class="headerlink" href="#containerization" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li><p>An application that is developed and deployed is bundled and wrapped together with all its configuration files and dependencies. This is <strong>containerization</strong> and the bundle is called <strong>container</strong>. Examples of containerization environments are Docker and Kubernetes.</p></li>
 </ul>
 </section>
 <section id="virtualization-vs-containerization">
-<h2>Virtualization vs Containerization<a class="headerlink" href="#virtualization-vs-containerization" title="Permalink to this headline">#</a></h2>
+<h2>Virtualization vs Containerization<a class="headerlink" href="#virtualization-vs-containerization" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li><p>Container provide an isolated environment for running the application</p></li>
 <li><p>the entire user space is explicitly dedicated to application</p></li>
@@ -4234,28 +4130,28 @@ will be rejected as ill-typed, because a static analysis cannot determine that t
 </ul>
 </section>
 <section id="bare-metal-deployment">
-<h2>Bare metal deployment<a class="headerlink" href="#bare-metal-deployment" title="Permalink to this headline">#</a></h2>
+<h2>Bare metal deployment<a class="headerlink" href="#bare-metal-deployment" title="Permalink to this headline">¶</a></h2>
 <section id="bare-metal-vs-virtual-machine-deployments">
-<h3>Bare Metal vs. Virtual Machine Deployments<a class="headerlink" href="#bare-metal-vs-virtual-machine-deployments" title="Permalink to this headline">#</a></h3>
+<h3>Bare Metal vs. Virtual Machine Deployments<a class="headerlink" href="#bare-metal-vs-virtual-machine-deployments" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p><a class="reference external" href="https://www.containiq.com/post/deploying-kubernetes-on-bare-metal">https://www.containiq.com/post/deploying-kubernetes-on-bare-metal</a></p></li>
 </ul>
 </section>
 </section>
 <section id="ttl">
-<h2>TTL<a class="headerlink" href="#ttl" title="Permalink to this headline">#</a></h2>
+<h2>TTL<a class="headerlink" href="#ttl" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li><p>Time to live</p></li>
 </ul>
 </section>
 <section id="tls-ssl">
-<h2>TLS/SSL<a class="headerlink" href="#tls-ssl" title="Permalink to this headline">#</a></h2>
+<h2>TLS/SSL<a class="headerlink" href="#tls-ssl" title="Permalink to this headline">¶</a></h2>
 </section>
 <section id="ca-certificate">
-<h2>CA certificate<a class="headerlink" href="#ca-certificate" title="Permalink to this headline">#</a></h2>
+<h2>CA certificate<a class="headerlink" href="#ca-certificate" title="Permalink to this headline">¶</a></h2>
 </section>
 <section id="public-private-key">
-<h2>Public-Private Key<a class="headerlink" href="#public-private-key" title="Permalink to this headline">#</a></h2>
+<h2>Public-Private Key<a class="headerlink" href="#public-private-key" title="Permalink to this headline">¶</a></h2>
 </section>
 </section>
 
@@ -4281,11 +4177,9 @@ will be rejected as ill-typed, because a static analysis cannot determine that t
 
               </div>
               
-            </main>
-            <footer class="footer-article noprint">
-                
-    <!-- Previous / next buttons -->
-<div class='prev-next-area'>
+            
+                <!-- Previous / next buttons -->
+<div class='prev-next-area'> 
     <a class='left-prev' id="prev-link" href="design_patterns.html" title="previous page">
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
@@ -4301,28 +4195,24 @@ will be rejected as ill-typed, because a static analysis cannot determine that t
     <i class="fas fa-angle-right"></i>
     </a>
 </div>
-            </footer>
+            
         </div>
     </div>
-    <div class="footer-content row">
-        <footer class="col footer"><p>
-  
-    By Chandra<br/>
-  
-      &copy; Copyright 2022.<br/>
-</p>
-        </footer>
-    </div>
+    <footer class="footer">
+  <p>
     
-</div>
+      By Chandra<br/>
+    
+        &copy; Copyright 2021.<br/>
+  </p>
+</footer>
+</main>
 
 
       </div>
     </div>
   
-  <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
-
+  <script src="../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
 
   </body>
 </html>

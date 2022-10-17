@@ -8,9 +8,8 @@
 
     <title>System Design Summary</title>
     
-  <!-- Loaded before other Sphinx assets -->
-  <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
-<link href="../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+  <link href="../_static/css/theme.css" rel="stylesheet">
+  <link href="../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
 
     
   <link rel="stylesheet"
@@ -20,16 +19,20 @@
   <link rel="preload" as="font" type="font/woff2" crossorigin
     href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
 
+    
+      
+
+    
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
     
-  <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+  <link rel="preload" as="script" href="../_static/js/index.be7d3bbb2ef33a8344ce.js">
 
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
@@ -37,13 +40,12 @@
     <script src="../_static/doctools.js"></script>
     <script src="../_static/clipboard.min.js"></script>
     <script src="../_static/copybutton.js"></script>
-    <script src="../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
     <script src="../_static/togglebutton.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="../_static/design-tabs.js"></script>
+    <script src="../_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
 const thebe_selector = ".thebe,.cell"
 const thebe_selector_input = "pre"
@@ -63,21 +65,7 @@ const thebe_selector_output = ".output, .cell_output"
     <!-- Google Analytics -->
     
   </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
-<!-- Checkboxes to toggle the left sidebar -->
-<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
-<label class="overlay overlay-navbar" for="__navigation">
-    <div class="visually-hidden">Toggle navigation sidebar</div>
-</label>
-<!-- Checkboxes to toggle the in-page toc -->
-<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
-<label class="overlay overlay-pagetoc" for="__page-toc">
-    <div class="visually-hidden">Toggle in-page Table of Contents</div>
-</label>
-<!-- Headers at the top -->
-<div class="announcement header-item noprint"></div>
-<div class="header header-item noprint"></div>
-
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
     
     <div class="container-fluid" id="banner"></div>
 
@@ -86,10 +74,9 @@ const thebe_selector_output = ".output, .cell_output"
     <div class="container-xl">
       <div class="row">
           
-<!-- Sidebar -->
-<div class="bd-sidebar noprint" id="site-navigation">
-    <div class="bd-sidebar__content">
-        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
     <a class="navbar-brand text-wrap" href="../index.html">
       
         <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
@@ -105,15 +92,14 @@ const thebe_selector_output = ".output, .cell_output"
   <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
 </form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item active">
-        
-        <ul class="nav bd-sidenav bd-sidenav__home-link">
-            <li class="toctree-l1">
-                <a class="reference internal" href="../intro.html">
-                    Welcome
-                </a>
-            </li>
-        </ul>
-        <p aria-level="2" class="caption" role="heading">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../intro.html">
+   Welcome
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
   System Design
  </span>
@@ -563,22 +549,29 @@ const thebe_selector_output = ".output, .cell_output"
      L02: Traditional Methods for ML in Graphs
     </a>
    </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../cs224w_ml_graph/CS224W_Colab_0.html">
+     <strong>
+      HW0
+     </strong>
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../cs224w_ml_graph/CS224W_Colab_1.html">
+     HW1
+    </a>
+   </li>
   </ul>
  </li>
 </ul>
 
     </div>
-</nav></div>
-        <div class="bd-sidebar__bottom">
-             <!-- To handle the deprecated key -->
-            
-            <div class="navbar_extra_footer">
-            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
-            </div>
-            
-        </div>
-    </div>
-    <div id="rtd-footer-container"></div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
 </div>
 
 
@@ -586,191 +579,94 @@ const thebe_selector_output = ".output, .cell_output"
 
 
           
-<!-- A tiny helper pixel to detect if we've scrolled -->
-<div class="sbt-scroll-pixel-helper"></div>
-<!-- Main content -->
-<div class="col py-0 content-container">
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
     
-    <div class="header-article row sticky-top noprint">
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
         
-
-
-
-<div class="col py-1 d-flex header-article-main">
-    <div class="header-article__left">
-        
-        <label for="__navigation"
-  class="headerbtn"
-  data-toggle="tooltip"
-data-placement="right"
-title="Toggle navigation"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-bars"></i>
-  </span>
-
-</label>
-
-        
-    </div>
-    <div class="header-article__right">
-<div class="menu-dropdown menu-dropdown-launch-buttons">
-  <button class="headerbtn menu-dropdown__trigger"
-      aria-label="Launch interactive content">
-      <i class="fas fa-rocket"></i>
-  </button>
-  <div class="menu-dropdown__content">
-    <ul>
-      <li>
-        <a href="https://mybinder.org/v2/gh/chandrabsingh/learning/master?urlpath=tree/learning/system_design/design_patterns.ipynb"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Launch on Binder"
->
-  
-
-<span class="headerbtn__icon-container">
-  
-    <img src="../_static/images/logo_binder.svg">
-  </span>
-<span class="headerbtn__text-container">Binder</span>
-</a>
-
-      </li>
-      
-    </ul>
-  </div>
-</div>
-
-<button onclick="toggleFullScreen()"
-  class="headerbtn"
-  data-toggle="tooltip"
-data-placement="bottom"
-title="Fullscreen mode"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-expand"></i>
-  </span>
-
-</button>
-
-<div class="menu-dropdown menu-dropdown-repository-buttons">
-  <button class="headerbtn menu-dropdown__trigger"
-      aria-label="Source repositories">
-      <i class="fab fa-github"></i>
-  </button>
-  <div class="menu-dropdown__content">
-    <ul>
-      <li>
-        <a href="https://github.com/chandrabsingh/learning"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Source repository"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fab fa-github"></i>
-  </span>
-<span class="headerbtn__text-container">repository</span>
-</a>
-
-      </li>
-      
-      <li>
-        <a href="https://github.com/chandrabsingh/learning/issues/new?title=Issue%20on%20page%20%2Fsystem_design/design_patterns.html&body=Your%20issue%20content%20here."
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Open an issue"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-lightbulb"></i>
-  </span>
-<span class="headerbtn__text-container">open issue</span>
-</a>
-
-      </li>
-      
-    </ul>
-  </div>
-</div>
-
-<div class="menu-dropdown menu-dropdown-download-buttons">
-  <button class="headerbtn menu-dropdown__trigger"
-      aria-label="Download this page">
-      <i class="fas fa-download"></i>
-  </button>
-  <div class="menu-dropdown__content">
-    <ul>
-      <li>
-        <a href="../_sources/system_design/design_patterns.ipynb"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Download source file"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-file"></i>
-  </span>
-<span class="headerbtn__text-container">.ipynb</span>
-</a>
-
-      </li>
-      
-      <li>
-        
-<button onclick="printPdf(this)"
-  class="headerbtn"
-  data-toggle="tooltip"
-data-placement="left"
-title="Print to PDF"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-file-pdf"></i>
-  </span>
-<span class="headerbtn__text-container">.pdf</span>
-</button>
-
-      </li>
-      
-    </ul>
-  </div>
-</div>
-<label for="__page-toc"
-  class="headerbtn headerbtn-page-toc"
-  
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-list"></i>
-  </span>
-
-</label>
-
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/system_design/design_patterns.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
     </div>
 </div>
 
-<!-- Table of contents -->
-<div class="col-md-3 bd-toc show noprint">
-    <div class="tocsection onthispage pt-5 pb-3">
-        <i class="fas fa-list"></i> Contents
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/chandrabsingh/learning"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/chandrabsingh/learning/issues/new?title=Issue%20on%20page%20%2Fsystem_design/design_patterns.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        
     </div>
-    <nav id="bd-toc-nav" aria-label="Page">
-        <ul class="visible nav section-nav flex-column">
+</div>
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/chandrabsingh/learning/master?urlpath=tree/learning/system_design/design_patterns.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#asynchronous-request-reply">
    Asynchronous request reply
@@ -1132,11 +1028,12 @@ title="Print to PDF"
  </li>
 </ul>
 
-    </nav>
-</div>
+            </nav>
+        </div>
     </div>
-    <div class="article row">
-        <div class="col pl-md-3 pl-lg-5 content-container">
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
                 <h1>System Design Summary</h1>
@@ -1514,14 +1411,13 @@ title="Print to PDF"
                     </div>
                 </div>
             </div>
-            <main id="main-content" role="main">
-                
+            
               <div>
                 
   <section class="tex2jax_ignore mathjax_ignore" id="system-design-summary">
-<h1>System Design Summary<a class="headerlink" href="#system-design-summary" title="Permalink to this headline">#</a></h1>
+<h1>System Design Summary<a class="headerlink" href="#system-design-summary" title="Permalink to this headline">¶</a></h1>
 <section id="asynchronous-request-reply">
-<h2>Asynchronous request reply<a class="headerlink" href="#asynchronous-request-reply" title="Permalink to this headline">#</a></h2>
+<h2>Asynchronous request reply<a class="headerlink" href="#asynchronous-request-reply" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li><p>Client sends POST request and gets HTTP 202 accepted message</p></li>
 <li><p>Client again sends GET request to status endpoint and gets pending HTTP 202 accepted message</p></li>
@@ -1532,9 +1428,9 @@ title="Print to PDF"
 <p><span class="math notranslate nohighlight">\(\text{https://docs.microsoft.com/}\)</span></p>
 </section>
 <section id="sharding-database">
-<h2>Sharding database<a class="headerlink" href="#sharding-database" title="Permalink to this headline">#</a></h2>
+<h2>Sharding database<a class="headerlink" href="#sharding-database" title="Permalink to this headline">¶</a></h2>
 <section id="types-of-partitioning">
-<h3>Types of partitioning<a class="headerlink" href="#types-of-partitioning" title="Permalink to this headline">#</a></h3>
+<h3>Types of partitioning<a class="headerlink" href="#types-of-partitioning" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p>Horizontal partitioning(sharding)</p>
 <ul>
@@ -1549,7 +1445,7 @@ title="Print to PDF"
 </ul>
 </section>
 <section id="what-is-sharding">
-<h3>What is Sharding<a class="headerlink" href="#what-is-sharding" title="Permalink to this headline">#</a></h3>
+<h3>What is Sharding<a class="headerlink" href="#what-is-sharding" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p>breaking data into logical shards</p></li>
 <li><p>distribute these logical shards into separate database nodes or into physical shards</p></li>
@@ -1558,7 +1454,7 @@ title="Print to PDF"
 </ul>
 </section>
 <section id="benefits-of-sharding">
-<h3>Benefits of sharding<a class="headerlink" href="#benefits-of-sharding" title="Permalink to this headline">#</a></h3>
+<h3>Benefits of sharding<a class="headerlink" href="#benefits-of-sharding" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p>horizontal scaling or scaling out</p>
 <ul>
@@ -1573,7 +1469,7 @@ title="Print to PDF"
 </ul>
 </section>
 <section id="sharding-architectures">
-<h3>Sharding architectures<a class="headerlink" href="#sharding-architectures" title="Permalink to this headline">#</a></h3>
+<h3>Sharding architectures<a class="headerlink" href="#sharding-architectures" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p>Key based sharding</p>
 <ul>
@@ -1599,7 +1495,7 @@ title="Print to PDF"
 </section>
 </section>
 <section id="stateful-vs-stateless">
-<h2>Stateful vs Stateless<a class="headerlink" href="#stateful-vs-stateless" title="Permalink to this headline">#</a></h2>
+<h2>Stateful vs Stateless<a class="headerlink" href="#stateful-vs-stateless" title="Permalink to this headline">¶</a></h2>
 <img src="images/stateful_stateless.png" width=400 height=400>  
 <p><span class="math notranslate nohighlight">\(\text{Stateful vs Stateless - https://virtasant.com/}\)</span></p>
 <ul class="simple">
@@ -1614,7 +1510,7 @@ title="Print to PDF"
 <p><span class="math notranslate nohighlight">\(\text{Stateless Transaction - https://virtasant.com/}\)</span></p>
 </section>
 <section id="orchestration">
-<h2>Orchestration<a class="headerlink" href="#orchestration" title="Permalink to this headline">#</a></h2>
+<h2>Orchestration<a class="headerlink" href="#orchestration" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li><p>Run multiple container instances in each node.</p></li>
 <li><p>Load balance traffic between the instances.</p></li>
@@ -1636,57 +1532,57 @@ title="Print to PDF"
 <p><span class="math notranslate nohighlight">\(\text{Multi-container Cluster orchestrator - https://docs.microsoft.com/}\)</span></p>
 </section>
 <section id="loose-coupling">
-<h2>Loose coupling<a class="headerlink" href="#loose-coupling" title="Permalink to this headline">#</a></h2>
+<h2>Loose coupling<a class="headerlink" href="#loose-coupling" title="Permalink to this headline">¶</a></h2>
 </section>
 <section id="software-design-patterns">
-<h2>Software Design Patterns<a class="headerlink" href="#software-design-patterns" title="Permalink to this headline">#</a></h2>
+<h2>Software Design Patterns<a class="headerlink" href="#software-design-patterns" title="Permalink to this headline">¶</a></h2>
 <section id="creational-patterns">
-<h3>Creational patterns<a class="headerlink" href="#creational-patterns" title="Permalink to this headline">#</a></h3>
+<h3>Creational patterns<a class="headerlink" href="#creational-patterns" title="Permalink to this headline">¶</a></h3>
 </section>
 <section id="structural-patterns">
-<h3>Structural patterns<a class="headerlink" href="#structural-patterns" title="Permalink to this headline">#</a></h3>
+<h3>Structural patterns<a class="headerlink" href="#structural-patterns" title="Permalink to this headline">¶</a></h3>
 </section>
 <section id="behavioral-patterns">
-<h3>Behavioral patterns<a class="headerlink" href="#behavioral-patterns" title="Permalink to this headline">#</a></h3>
+<h3>Behavioral patterns<a class="headerlink" href="#behavioral-patterns" title="Permalink to this headline">¶</a></h3>
 </section>
 <section id="concurrency-patterns">
-<h3>Concurrency patterns<a class="headerlink" href="#concurrency-patterns" title="Permalink to this headline">#</a></h3>
+<h3>Concurrency patterns<a class="headerlink" href="#concurrency-patterns" title="Permalink to this headline">¶</a></h3>
 </section>
 </section>
 <section id="other-design-patterns">
-<h2>Other design patterns<a class="headerlink" href="#other-design-patterns" title="Permalink to this headline">#</a></h2>
+<h2>Other design patterns<a class="headerlink" href="#other-design-patterns" title="Permalink to this headline">¶</a></h2>
 <section id="inversion-of-control">
-<h3>Inversion of Control<a class="headerlink" href="#inversion-of-control" title="Permalink to this headline">#</a></h3>
+<h3>Inversion of Control<a class="headerlink" href="#inversion-of-control" title="Permalink to this headline">¶</a></h3>
 </section>
 <section id="dispatcher">
-<h3>Dispatcher<a class="headerlink" href="#dispatcher" title="Permalink to this headline">#</a></h3>
+<h3>Dispatcher<a class="headerlink" href="#dispatcher" title="Permalink to this headline">¶</a></h3>
 </section>
 <section id="dependency-inversion-principle">
-<h3>Dependency Inversion principle<a class="headerlink" href="#dependency-inversion-principle" title="Permalink to this headline">#</a></h3>
+<h3>Dependency Inversion principle<a class="headerlink" href="#dependency-inversion-principle" title="Permalink to this headline">¶</a></h3>
 <section id="callbacks">
-<h4>Callbacks<a class="headerlink" href="#callbacks" title="Permalink to this headline">#</a></h4>
+<h4>Callbacks<a class="headerlink" href="#callbacks" title="Permalink to this headline">¶</a></h4>
 </section>
 <section id="schedulers">
-<h4>Schedulers<a class="headerlink" href="#schedulers" title="Permalink to this headline">#</a></h4>
+<h4>Schedulers<a class="headerlink" href="#schedulers" title="Permalink to this headline">¶</a></h4>
 </section>
 <section id="event-loops">
-<h4>Event Loops<a class="headerlink" href="#event-loops" title="Permalink to this headline">#</a></h4>
+<h4>Event Loops<a class="headerlink" href="#event-loops" title="Permalink to this headline">¶</a></h4>
 </section>
 <section id="dependency-injection">
-<h4>Dependency Injection<a class="headerlink" href="#dependency-injection" title="Permalink to this headline">#</a></h4>
+<h4>Dependency Injection<a class="headerlink" href="#dependency-injection" title="Permalink to this headline">¶</a></h4>
 </section>
 <section id="template-method">
-<h4>Template Method<a class="headerlink" href="#template-method" title="Permalink to this headline">#</a></h4>
+<h4>Template Method<a class="headerlink" href="#template-method" title="Permalink to this headline">¶</a></h4>
 </section>
 </section>
 <section id="decorator-vs-wrapper-pattern">
-<h3>Decorator vs Wrapper pattern<a class="headerlink" href="#decorator-vs-wrapper-pattern" title="Permalink to this headline">#</a></h3>
+<h3>Decorator vs Wrapper pattern<a class="headerlink" href="#decorator-vs-wrapper-pattern" title="Permalink to this headline">¶</a></h3>
 </section>
 <section id="fan-out-pattern">
-<h3>Fan-out pattern<a class="headerlink" href="#fan-out-pattern" title="Permalink to this headline">#</a></h3>
+<h3>Fan-out pattern<a class="headerlink" href="#fan-out-pattern" title="Permalink to this headline">¶</a></h3>
 </section>
 <section id="fan-in-fan-out-pattern">
-<h3>Fan-in/Fan-out pattern<a class="headerlink" href="#fan-in-fan-out-pattern" title="Permalink to this headline">#</a></h3>
+<h3>Fan-in/Fan-out pattern<a class="headerlink" href="#fan-in-fan-out-pattern" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p><strong>Low fan-in, low fan-out</strong>: a module with little dependencies in either direction. All good.</p></li>
 <li><p><strong>High fan-in, low fan-out</strong>: a module that’s highly depended upon, but itself doesn’t depend on much. Like a low-level utility library.</p></li>
@@ -1695,14 +1591,14 @@ title="Print to PDF"
 </ul>
 </section>
 <section id="mixin-pattern">
-<h3>Mixin pattern<a class="headerlink" href="#mixin-pattern" title="Permalink to this headline">#</a></h3>
+<h3>Mixin pattern<a class="headerlink" href="#mixin-pattern" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p>What is the difference between mixin and multiple inheritance</p></li>
 </ul>
 </section>
 </section>
 <section id="solid-design-principles">
-<h2>SOLID design principles<a class="headerlink" href="#solid-design-principles" title="Permalink to this headline">#</a></h2>
+<h2>SOLID design principles<a class="headerlink" href="#solid-design-principles" title="Permalink to this headline">¶</a></h2>
 <p>The SOLID ideas were introduced by Robert C Martin in his paper:</p>
 <ul class="simple">
 <li><p>Single-responsibility principle: “There should never be more than one reason for a class to change.” In other words, every class should have only one responsibility</p></li>
@@ -1712,7 +1608,7 @@ title="Print to PDF"
 <li><p>Dependency inversion principle: “Depend upon abstractions, not concretions.”</p></li>
 </ul>
 <section id="single-responsibility-pattern">
-<h3>Single responsibility pattern<a class="headerlink" href="#single-responsibility-pattern" title="Permalink to this headline">#</a></h3>
+<h3>Single responsibility pattern<a class="headerlink" href="#single-responsibility-pattern" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p>Each component has one responsibility only within a system</p></li>
 <li><p>With this pattern, the components are loosely coupled and it doesnot impact functionality of other components</p></li>
@@ -1720,58 +1616,58 @@ title="Print to PDF"
 </ul>
 </section>
 <section id="separation-of-concerns">
-<h3>Separation of Concerns<a class="headerlink" href="#separation-of-concerns" title="Permalink to this headline">#</a></h3>
+<h3>Separation of Concerns<a class="headerlink" href="#separation-of-concerns" title="Permalink to this headline">¶</a></h3>
 </section>
 </section>
 <section id="antipatterns">
-<h2>Antipatterns<a class="headerlink" href="#antipatterns" title="Permalink to this headline">#</a></h2>
+<h2>Antipatterns<a class="headerlink" href="#antipatterns" title="Permalink to this headline">¶</a></h2>
 </section>
 <section id="event-driven-architecture">
-<h2>Event driven architecture<a class="headerlink" href="#event-driven-architecture" title="Permalink to this headline">#</a></h2>
+<h2>Event driven architecture<a class="headerlink" href="#event-driven-architecture" title="Permalink to this headline">¶</a></h2>
 <section id="publish-subscribe-pattern">
-<h3>Publish-Subscribe pattern<a class="headerlink" href="#publish-subscribe-pattern" title="Permalink to this headline">#</a></h3>
+<h3>Publish-Subscribe pattern<a class="headerlink" href="#publish-subscribe-pattern" title="Permalink to this headline">¶</a></h3>
 </section>
 <section id="request-reply">
-<h3>Request-Reply<a class="headerlink" href="#request-reply" title="Permalink to this headline">#</a></h3>
+<h3>Request-Reply<a class="headerlink" href="#request-reply" title="Permalink to this headline">¶</a></h3>
 </section>
 <section id="sockets">
-<h3>Sockets<a class="headerlink" href="#sockets" title="Permalink to this headline">#</a></h3>
+<h3>Sockets<a class="headerlink" href="#sockets" title="Permalink to this headline">¶</a></h3>
 </section>
 <section id="unix-sockets">
-<h3>Unix Sockets<a class="headerlink" href="#unix-sockets" title="Permalink to this headline">#</a></h3>
+<h3>Unix Sockets<a class="headerlink" href="#unix-sockets" title="Permalink to this headline">¶</a></h3>
 </section>
 <section id="message-queue">
-<h3>Message Queue<a class="headerlink" href="#message-queue" title="Permalink to this headline">#</a></h3>
+<h3>Message Queue<a class="headerlink" href="#message-queue" title="Permalink to this headline">¶</a></h3>
 </section>
 <section id="producer-consumer-queue">
-<h3>Producer Consumer Queue<a class="headerlink" href="#producer-consumer-queue" title="Permalink to this headline">#</a></h3>
+<h3>Producer Consumer Queue<a class="headerlink" href="#producer-consumer-queue" title="Permalink to this headline">¶</a></h3>
 </section>
 <section id="soap">
-<h3>SOAP<a class="headerlink" href="#soap" title="Permalink to this headline">#</a></h3>
+<h3>SOAP<a class="headerlink" href="#soap" title="Permalink to this headline">¶</a></h3>
 </section>
 <section id="rest">
-<h3>REST<a class="headerlink" href="#rest" title="Permalink to this headline">#</a></h3>
+<h3>REST<a class="headerlink" href="#rest" title="Permalink to this headline">¶</a></h3>
 </section>
 <section id="event-channels">
-<h3>Event channels<a class="headerlink" href="#event-channels" title="Permalink to this headline">#</a></h3>
+<h3>Event channels<a class="headerlink" href="#event-channels" title="Permalink to this headline">¶</a></h3>
 </section>
 <section id="http-endpoint">
-<h3>HTTP endpoint<a class="headerlink" href="#http-endpoint" title="Permalink to this headline">#</a></h3>
+<h3>HTTP endpoint<a class="headerlink" href="#http-endpoint" title="Permalink to this headline">¶</a></h3>
 </section>
 </section>
 <section id="web-service">
-<h2>Web service<a class="headerlink" href="#web-service" title="Permalink to this headline">#</a></h2>
+<h2>Web service<a class="headerlink" href="#web-service" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li><p><a class="reference external" href="https://en.wikipedia.org/wiki/Web_service">https://en.wikipedia.org/wiki/Web_service</a></p></li>
 </ul>
 </section>
 <section id="api-design">
-<h2>API design<a class="headerlink" href="#api-design" title="Permalink to this headline">#</a></h2>
+<h2>API design<a class="headerlink" href="#api-design" title="Permalink to this headline">¶</a></h2>
 <section id="rpc-vs-rest-vs-graphql">
-<h3>RPC vs REST vs GraphQL<a class="headerlink" href="#rpc-vs-rest-vs-graphql" title="Permalink to this headline">#</a></h3>
+<h3>RPC vs REST vs GraphQL<a class="headerlink" href="#rpc-vs-rest-vs-graphql" title="Permalink to this headline">¶</a></h3>
 </section>
 <section id="rpc-remote-procedure-call">
-<h3>RPC - Remote Procedure Call<a class="headerlink" href="#rpc-remote-procedure-call" title="Permalink to this headline">#</a></h3>
+<h3>RPC - Remote Procedure Call<a class="headerlink" href="#rpc-remote-procedure-call" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p>call function in remote server</p></li>
 <li><p>wrap a function over transport and have an endpoint attached to it, and we get RPC</p>
@@ -1784,7 +1680,7 @@ title="Print to PDF"
 </ul>
 </section>
 <section id="id1">
-<h3>REST<a class="headerlink" href="#id1" title="Permalink to this headline">#</a></h3>
+<h3>REST<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p><a class="reference external" href="https://hub.packtpub.com/defining-rest-and-its-various-architectural-styles/">https://hub.packtpub.com/defining-rest-and-its-various-architectural-styles/</a></p></li>
 <li><p><a class="reference external" href="https://www.altexsoft.com/blog/rest-api-design/">https://www.altexsoft.com/blog/rest-api-design/</a></p></li>
@@ -1792,24 +1688,24 @@ title="Print to PDF"
 </ul>
 </section>
 <section id="graphql">
-<h3>GraphQL<a class="headerlink" href="#graphql" title="Permalink to this headline">#</a></h3>
+<h3>GraphQL<a class="headerlink" href="#graphql" title="Permalink to this headline">¶</a></h3>
 </section>
 <section id="webhook">
-<h3>Webhook<a class="headerlink" href="#webhook" title="Permalink to this headline">#</a></h3>
+<h3>Webhook<a class="headerlink" href="#webhook" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p><a class="reference external" href="https://sendgrid.com/blog/whats-webhook/">https://sendgrid.com/blog/whats-webhook/</a></p></li>
 </ul>
 </section>
 </section>
 <section id="functional-programming">
-<h2>Functional programming<a class="headerlink" href="#functional-programming" title="Permalink to this headline">#</a></h2>
+<h2>Functional programming<a class="headerlink" href="#functional-programming" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li><p>Functions dont retain any state</p></li>
 <li><p>this means they are stateless and helps in maintaining consistent application wide state</p></li>
 </ul>
 </section>
 <section id="acid-compliant">
-<h2>ACID compliant<a class="headerlink" href="#acid-compliant" title="Permalink to this headline">#</a></h2>
+<h2>ACID compliant<a class="headerlink" href="#acid-compliant" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li><p><strong>Atomicity</strong></p>
 <ul>
@@ -1838,7 +1734,7 @@ title="Print to PDF"
 </ul>
 </section>
 <section id="base-semantics">
-<h2>BASE semantics<a class="headerlink" href="#base-semantics" title="Permalink to this headline">#</a></h2>
+<h2>BASE semantics<a class="headerlink" href="#base-semantics" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li><p>basically-available, soft-state, eventual consistency</p></li>
 <li><p>Eventually consistent services has only liveness guarantee - updates will be observed eventually</p>
@@ -1851,19 +1747,19 @@ title="Print to PDF"
 </ul>
 </section>
 <section id="crud">
-<h2>CRUD<a class="headerlink" href="#crud" title="Permalink to this headline">#</a></h2>
+<h2>CRUD<a class="headerlink" href="#crud" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li><p>Create, Read, Update, Delete</p></li>
 </ul>
 </section>
 <section id="staged-event-driven-architecture-seda">
-<h2>Staged event-driven architecture (SEDA)<a class="headerlink" href="#staged-event-driven-architecture-seda" title="Permalink to this headline">#</a></h2>
+<h2>Staged event-driven architecture (SEDA)<a class="headerlink" href="#staged-event-driven-architecture-seda" title="Permalink to this headline">¶</a></h2>
 </section>
 <section id="ipaas">
-<h2>iPaaS<a class="headerlink" href="#ipaas" title="Permalink to this headline">#</a></h2>
+<h2>iPaaS<a class="headerlink" href="#ipaas" title="Permalink to this headline">¶</a></h2>
 </section>
 <section id="data-ingestion-pipeline-patterns">
-<h2>Data Ingestion Pipeline Patterns<a class="headerlink" href="#data-ingestion-pipeline-patterns" title="Permalink to this headline">#</a></h2>
+<h2>Data Ingestion Pipeline Patterns<a class="headerlink" href="#data-ingestion-pipeline-patterns" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li><p><a class="reference external" href="https://www.snaplogic.com/blog/big-data-ingestion-patterns">https://www.snaplogic.com/blog/big-data-ingestion-patterns</a></p></li>
 <li><p><a class="reference external" href="https://www.upsolver.com/blog/data-pipeline-architecture-building-blocks-diagrams-and-patterns">https://www.upsolver.com/blog/data-pipeline-architecture-building-blocks-diagrams-and-patterns</a></p></li>
@@ -1871,7 +1767,7 @@ title="Print to PDF"
 </ul>
 </section>
 <section id="data-modeling">
-<h2>Data Modeling<a class="headerlink" href="#data-modeling" title="Permalink to this headline">#</a></h2>
+<h2>Data Modeling<a class="headerlink" href="#data-modeling" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li><p>Relational data modeling</p></li>
 <li><p>Dimensional data modeling</p></li>
@@ -1880,7 +1776,7 @@ title="Print to PDF"
 </ul>
 </section>
 <section id="message-broker-models">
-<h2>Message Broker Models<a class="headerlink" href="#message-broker-models" title="Permalink to this headline">#</a></h2>
+<h2>Message Broker Models<a class="headerlink" href="#message-broker-models" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li><p>Point-to-point messaging</p></li>
 <li><p>Publish/subscribe messaging</p></li>
@@ -1888,7 +1784,7 @@ title="Print to PDF"
 </ul>
 </section>
 <section id="micro-frontends">
-<h2>Micro frontends<a class="headerlink" href="#micro-frontends" title="Permalink to this headline">#</a></h2>
+<h2>Micro frontends<a class="headerlink" href="#micro-frontends" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li><p>Micro-frontend architecture is a design approach in which a front-end app is decomposed into individual, semi-independent “microapps” working loosely together. The micro-frontend concept is vaguely inspired by, and named after, microservices.</p></li>
 <li><p>Micro-frontend architectures may be simpler, and thus easier to reason about and manage.</p></li>
@@ -1902,11 +1798,11 @@ title="Print to PDF"
 </ul>
 </section>
 <section id="service-mesh">
-<h2>Service Mesh<a class="headerlink" href="#service-mesh" title="Permalink to this headline">#</a></h2>
+<h2>Service Mesh<a class="headerlink" href="#service-mesh" title="Permalink to this headline">¶</a></h2>
 <p><a class="reference external" href="https://istio.io/latest/about/service-mesh/#what-is-a-service-mesh">https://istio.io/latest/about/service-mesh/#what-is-a-service-mesh</a></p>
 </section>
 <section id="restful-vs-restless">
-<h2>RESTful vs RESTless<a class="headerlink" href="#restful-vs-restless" title="Permalink to this headline">#</a></h2>
+<h2>RESTful vs RESTless<a class="headerlink" href="#restful-vs-restless" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li><p>Protocol</p>
 <ul>
@@ -1947,37 +1843,37 @@ title="Print to PDF"
 </ul>
 </section>
 <section id="service-oriented-architecture">
-<h2>Service Oriented Architecture<a class="headerlink" href="#service-oriented-architecture" title="Permalink to this headline">#</a></h2>
+<h2>Service Oriented Architecture<a class="headerlink" href="#service-oriented-architecture" title="Permalink to this headline">¶</a></h2>
 </section>
 <section id="programming-paradigm">
-<h2>Programming Paradigm<a class="headerlink" href="#programming-paradigm" title="Permalink to this headline">#</a></h2>
+<h2>Programming Paradigm<a class="headerlink" href="#programming-paradigm" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li><p><a class="reference external" href="https://en.wikipedia.org/wiki/Programming_paradigm">https://en.wikipedia.org/wiki/Programming_paradigm</a></p></li>
 </ul>
 </section>
 <section id="circuit-design-patttern">
-<h2>Circuit design patttern<a class="headerlink" href="#circuit-design-patttern" title="Permalink to this headline">#</a></h2>
+<h2>Circuit design patttern<a class="headerlink" href="#circuit-design-patttern" title="Permalink to this headline">¶</a></h2>
 </section>
 <section id="saas">
-<h2>SaaS<a class="headerlink" href="#saas" title="Permalink to this headline">#</a></h2>
+<h2>SaaS<a class="headerlink" href="#saas" title="Permalink to this headline">¶</a></h2>
 </section>
 <section id="paas">
-<h2>PaaS<a class="headerlink" href="#paas" title="Permalink to this headline">#</a></h2>
+<h2>PaaS<a class="headerlink" href="#paas" title="Permalink to this headline">¶</a></h2>
 </section>
 <section id="apns-apple-push-notification-service">
-<h2>APNS - Apple Push Notification Service<a class="headerlink" href="#apns-apple-push-notification-service" title="Permalink to this headline">#</a></h2>
+<h2>APNS - Apple Push Notification Service<a class="headerlink" href="#apns-apple-push-notification-service" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li><p><a class="reference external" href="https://developer.apple.com/go/?id=push-notifications">https://developer.apple.com/go/?id=push-notifications</a></p></li>
 </ul>
 </section>
 <section id="fcm-google-s-firebase-cloud-messaging">
-<h2>FCM - Google’s Firebase Cloud Messaging<a class="headerlink" href="#fcm-google-s-firebase-cloud-messaging" title="Permalink to this headline">#</a></h2>
+<h2>FCM - Google’s Firebase Cloud Messaging<a class="headerlink" href="#fcm-google-s-firebase-cloud-messaging" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li><p><a class="reference external" href="https://firebase.google.com/docs/cloud-messaging">https://firebase.google.com/docs/cloud-messaging</a></p></li>
 </ul>
 </section>
 <section id="references">
-<h2>References<a class="headerlink" href="#references" title="Permalink to this headline">#</a></h2>
+<h2>References<a class="headerlink" href="#references" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li><p><a class="reference external" href="https://docs.microsoft.com/en-us/azure/architecture/patterns/">Microsoft Azure - Cloud Design Patterns</a></p></li>
 <li><p><a class="reference external" href="https://docs.microsoft.com/en-us/azure/architecture/guide/architecture-styles/event-driven">Event driven architecture</a></p></li>
@@ -2011,11 +1907,9 @@ title="Print to PDF"
 
               </div>
               
-            </main>
-            <footer class="footer-article noprint">
-                
-    <!-- Previous / next buttons -->
-<div class='prev-next-area'>
+            
+                <!-- Previous / next buttons -->
+<div class='prev-next-area'> 
     <a class='left-prev' id="prev-link" href="intro.html" title="previous page">
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
@@ -2031,28 +1925,24 @@ title="Print to PDF"
     <i class="fas fa-angle-right"></i>
     </a>
 </div>
-            </footer>
+            
         </div>
     </div>
-    <div class="footer-content row">
-        <footer class="col footer"><p>
-  
-    By Chandra<br/>
-  
-      &copy; Copyright 2022.<br/>
-</p>
-        </footer>
-    </div>
+    <footer class="footer">
+  <p>
     
-</div>
+      By Chandra<br/>
+    
+        &copy; Copyright 2021.<br/>
+  </p>
+</footer>
+</main>
 
 
       </div>
     </div>
   
-  <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
-
+  <script src="../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
 
   </body>
 </html>

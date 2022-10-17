@@ -8,9 +8,8 @@
 
     <title>Getting started with PyMC3</title>
     
-  <!-- Loaded before other Sphinx assets -->
-  <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
-<link href="../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+  <link href="../_static/css/theme.css" rel="stylesheet">
+  <link href="../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
 
     
   <link rel="stylesheet"
@@ -20,16 +19,20 @@
   <link rel="preload" as="font" type="font/woff2" crossorigin
     href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
 
+    
+      
+
+    
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
     
-  <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+  <link rel="preload" as="script" href="../_static/js/index.be7d3bbb2ef33a8344ce.js">
 
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
@@ -37,13 +40,12 @@
     <script src="../_static/doctools.js"></script>
     <script src="../_static/clipboard.min.js"></script>
     <script src="../_static/copybutton.js"></script>
-    <script src="../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
     <script src="../_static/togglebutton.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="../_static/design-tabs.js"></script>
+    <script src="../_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
 const thebe_selector = ".thebe,.cell"
 const thebe_selector_input = "pre"
@@ -63,21 +65,7 @@ const thebe_selector_output = ".output, .cell_output"
     <!-- Google Analytics -->
     
   </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
-<!-- Checkboxes to toggle the left sidebar -->
-<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
-<label class="overlay overlay-navbar" for="__navigation">
-    <div class="visually-hidden">Toggle navigation sidebar</div>
-</label>
-<!-- Checkboxes to toggle the in-page toc -->
-<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
-<label class="overlay overlay-pagetoc" for="__page-toc">
-    <div class="visually-hidden">Toggle in-page Table of Contents</div>
-</label>
-<!-- Headers at the top -->
-<div class="announcement header-item noprint"></div>
-<div class="header header-item noprint"></div>
-
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
     
     <div class="container-fluid" id="banner"></div>
 
@@ -86,10 +74,9 @@ const thebe_selector_output = ".output, .cell_output"
     <div class="container-xl">
       <div class="row">
           
-<!-- Sidebar -->
-<div class="bd-sidebar noprint" id="site-navigation">
-    <div class="bd-sidebar__content">
-        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
     <a class="navbar-brand text-wrap" href="../index.html">
       
         <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
@@ -105,15 +92,14 @@ const thebe_selector_output = ".output, .cell_output"
   <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
 </form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item active">
-        
-        <ul class="nav bd-sidenav bd-sidenav__home-link">
-            <li class="toctree-l1">
-                <a class="reference internal" href="../intro.html">
-                    Welcome
-                </a>
-            </li>
-        </ul>
-        <p aria-level="2" class="caption" role="heading">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../intro.html">
+   Welcome
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
   System Design
  </span>
@@ -563,22 +549,29 @@ const thebe_selector_output = ".output, .cell_output"
      L02: Traditional Methods for ML in Graphs
     </a>
    </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../cs224w_ml_graph/CS224W_Colab_0.html">
+     <strong>
+      HW0
+     </strong>
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../cs224w_ml_graph/CS224W_Colab_1.html">
+     HW1
+    </a>
+   </li>
   </ul>
  </li>
 </ul>
 
     </div>
-</nav></div>
-        <div class="bd-sidebar__bottom">
-             <!-- To handle the deprecated key -->
-            
-            <div class="navbar_extra_footer">
-            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
-            </div>
-            
-        </div>
-    </div>
-    <div id="rtd-footer-container"></div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
 </div>
 
 
@@ -586,191 +579,94 @@ const thebe_selector_output = ".output, .cell_output"
 
 
           
-<!-- A tiny helper pixel to detect if we've scrolled -->
-<div class="sbt-scroll-pixel-helper"></div>
-<!-- Main content -->
-<div class="col py-0 content-container">
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
     
-    <div class="header-article row sticky-top noprint">
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
         
-
-
-
-<div class="col py-1 d-flex header-article-main">
-    <div class="header-article__left">
-        
-        <label for="__navigation"
-  class="headerbtn"
-  data-toggle="tooltip"
-data-placement="right"
-title="Toggle navigation"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-bars"></i>
-  </span>
-
-</label>
-
-        
-    </div>
-    <div class="header-article__right">
-<div class="menu-dropdown menu-dropdown-launch-buttons">
-  <button class="headerbtn menu-dropdown__trigger"
-      aria-label="Launch interactive content">
-      <i class="fas fa-rocket"></i>
-  </button>
-  <div class="menu-dropdown__content">
-    <ul>
-      <li>
-        <a href="https://mybinder.org/v2/gh/chandrabsingh/learning/master?urlpath=tree/learning/maths/probabilistic_programming.ipynb"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Launch on Binder"
->
-  
-
-<span class="headerbtn__icon-container">
-  
-    <img src="../_static/images/logo_binder.svg">
-  </span>
-<span class="headerbtn__text-container">Binder</span>
-</a>
-
-      </li>
-      
-    </ul>
-  </div>
-</div>
-
-<button onclick="toggleFullScreen()"
-  class="headerbtn"
-  data-toggle="tooltip"
-data-placement="bottom"
-title="Fullscreen mode"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-expand"></i>
-  </span>
-
-</button>
-
-<div class="menu-dropdown menu-dropdown-repository-buttons">
-  <button class="headerbtn menu-dropdown__trigger"
-      aria-label="Source repositories">
-      <i class="fab fa-github"></i>
-  </button>
-  <div class="menu-dropdown__content">
-    <ul>
-      <li>
-        <a href="https://github.com/chandrabsingh/learning"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Source repository"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fab fa-github"></i>
-  </span>
-<span class="headerbtn__text-container">repository</span>
-</a>
-
-      </li>
-      
-      <li>
-        <a href="https://github.com/chandrabsingh/learning/issues/new?title=Issue%20on%20page%20%2Fmaths/probabilistic_programming.html&body=Your%20issue%20content%20here."
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Open an issue"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-lightbulb"></i>
-  </span>
-<span class="headerbtn__text-container">open issue</span>
-</a>
-
-      </li>
-      
-    </ul>
-  </div>
-</div>
-
-<div class="menu-dropdown menu-dropdown-download-buttons">
-  <button class="headerbtn menu-dropdown__trigger"
-      aria-label="Download this page">
-      <i class="fas fa-download"></i>
-  </button>
-  <div class="menu-dropdown__content">
-    <ul>
-      <li>
-        <a href="../_sources/maths/probabilistic_programming.ipynb"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Download source file"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-file"></i>
-  </span>
-<span class="headerbtn__text-container">.ipynb</span>
-</a>
-
-      </li>
-      
-      <li>
-        
-<button onclick="printPdf(this)"
-  class="headerbtn"
-  data-toggle="tooltip"
-data-placement="left"
-title="Print to PDF"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-file-pdf"></i>
-  </span>
-<span class="headerbtn__text-container">.pdf</span>
-</button>
-
-      </li>
-      
-    </ul>
-  </div>
-</div>
-<label for="__page-toc"
-  class="headerbtn headerbtn-page-toc"
-  
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-list"></i>
-  </span>
-
-</label>
-
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/maths/probabilistic_programming.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
     </div>
 </div>
 
-<!-- Table of contents -->
-<div class="col-md-3 bd-toc show noprint">
-    <div class="tocsection onthispage pt-5 pb-3">
-        <i class="fas fa-list"></i> Contents
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/chandrabsingh/learning"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/chandrabsingh/learning/issues/new?title=Issue%20on%20page%20%2Fmaths/probabilistic_programming.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        
     </div>
-    <nav id="bd-toc-nav" aria-label="Page">
-        <ul class="visible nav section-nav flex-column">
+</div>
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/chandrabsingh/learning/master?urlpath=tree/learning/maths/probabilistic_programming.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#pymc3-primer-posterior">
    PyMC3 primer - posterior
@@ -911,11 +807,12 @@ title="Print to PDF"
  </li>
 </ul>
 
-    </nav>
-</div>
+            </nav>
+        </div>
     </div>
-    <div class="article row">
-        <div class="col pl-md-3 pl-lg-5 content-container">
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
                 <h1>Getting started with PyMC3</h1>
@@ -1072,14 +969,13 @@ title="Print to PDF"
                     </div>
                 </div>
             </div>
-            <main id="main-content" role="main">
-                
+            
               <div>
                 
   <section class="tex2jax_ignore mathjax_ignore" id="getting-started-with-pymc3">
-<h1>Getting started with PyMC3<a class="headerlink" href="#getting-started-with-pymc3" title="Permalink to this headline">#</a></h1>
+<h1>Getting started with PyMC3<a class="headerlink" href="#getting-started-with-pymc3" title="Permalink to this headline">¶</a></h1>
 <section id="pymc3-primer-posterior">
-<h2>PyMC3 primer - posterior<a class="headerlink" href="#pymc3-primer-posterior" title="Permalink to this headline">#</a></h2>
+<h2>PyMC3 primer - posterior<a class="headerlink" href="#pymc3-primer-posterior" title="Permalink to this headline">¶</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
@@ -1133,7 +1029,7 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/chandrasingh/opt/anaconda3/envs/fast/lib/python3.8/site-packages/deprecat/classic.py:215: FutureWarning: In v4.0, pm.sample will return an `arviz.InferenceData` object instead of a `MultiTrace` by default. You can pass return_inferencedata=True or return_inferencedata=False to be safe and silence this warning.
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/chandrasingh/opt/anaconda3/lib/python3.8/site-packages/deprecat/classic.py:215: FutureWarning: In v4.0, pm.sample will return an `arviz.InferenceData` object instead of a `MultiTrace` by default. You can pass return_inferencedata=True or return_inferencedata=False to be safe and silence this warning.
   return wrapped_(*args_, **kwargs_)
 Auto-assigning NUTS sampler...
 </pre></div>
@@ -1163,9 +1059,21 @@ Auto-assigning NUTS sampler...
 </div><div class="output text_html">
 <div>
   <progress value='8000' class='' max='8000' style='width:300px; height:20px; vertical-align: middle;'></progress>
-  100.00% [8000/8000 00:09<00:00 Sampling 4 chains, 0 divergences]
+  100.00% [8000/8000 00:02<00:00 Sampling 4 chains, 0 divergences]
 </div>
-</div><div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Sampling 4 chains for 1_000 tune and 1_000 draw iterations (4_000 + 4_000 draws total) took 53 seconds.
+</div><div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/chandrasingh/opt/anaconda3/lib/python3.8/site-packages/scipy/stats/_continuous_distns.py:624: RuntimeWarning: overflow encountered in _beta_ppf
+  return _boost._beta_ppf(q, a, b)
+/Users/chandrasingh/opt/anaconda3/lib/python3.8/site-packages/scipy/stats/_continuous_distns.py:624: RuntimeWarning: overflow encountered in _beta_ppf
+  return _boost._beta_ppf(q, a, b)
+/Users/chandrasingh/opt/anaconda3/lib/python3.8/site-packages/scipy/stats/_continuous_distns.py:624: RuntimeWarning: overflow encountered in _beta_ppf
+  return _boost._beta_ppf(q, a, b)
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/chandrasingh/opt/anaconda3/lib/python3.8/site-packages/scipy/stats/_continuous_distns.py:624: RuntimeWarning: overflow encountered in _beta_ppf
+  return _boost._beta_ppf(q, a, b)
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Sampling 4 chains for 1_000 tune and 1_000 draw iterations (4_000 + 4_000 draws total) took 34 seconds.
 </pre></div>
 </div>
 </div>
@@ -1356,7 +1264,7 @@ Auto-assigning NUTS sampler...
 </div>
 <img src='./images/01_choose_loss_func.png'></section>
 <section id="gaussian-inferences">
-<h2>Gaussian Inferences<a class="headerlink" href="#gaussian-inferences" title="Permalink to this headline">#</a></h2>
+<h2>Gaussian Inferences<a class="headerlink" href="#gaussian-inferences" title="Permalink to this headline">¶</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">loadtxt</span><span class="p">(</span><span class="s1">&#39;./data/chemical_shifts.csv&#39;</span><span class="p">)</span>
@@ -1388,7 +1296,7 @@ Auto-assigning NUTS sampler...
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/chandrasingh/opt/anaconda3/envs/fast/lib/python3.8/site-packages/deprecat/classic.py:215: FutureWarning: In v4.0, pm.sample will return an `arviz.InferenceData` object instead of a `MultiTrace` by default. You can pass return_inferencedata=True or return_inferencedata=False to be safe and silence this warning.
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/chandrasingh/opt/anaconda3/lib/python3.8/site-packages/deprecat/classic.py:215: FutureWarning: In v4.0, pm.sample will return an `arviz.InferenceData` object instead of a `MultiTrace` by default. You can pass return_inferencedata=True or return_inferencedata=False to be safe and silence this warning.
   return wrapped_(*args_, **kwargs_)
 Auto-assigning NUTS sampler...
 </pre></div>
@@ -1418,9 +1326,21 @@ Auto-assigning NUTS sampler...
 </div><div class="output text_html">
 <div>
   <progress value='8000' class='' max='8000' style='width:300px; height:20px; vertical-align: middle;'></progress>
-  100.00% [8000/8000 00:10<00:00 Sampling 4 chains, 0 divergences]
+  100.00% [8000/8000 00:02<00:00 Sampling 4 chains, 0 divergences]
 </div>
-</div><div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Sampling 4 chains for 1_000 tune and 1_000 draw iterations (4_000 + 4_000 draws total) took 50 seconds.
+</div><div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/chandrasingh/opt/anaconda3/lib/python3.8/site-packages/scipy/stats/_continuous_distns.py:624: RuntimeWarning: overflow encountered in _beta_ppf
+  return _boost._beta_ppf(q, a, b)
+/Users/chandrasingh/opt/anaconda3/lib/python3.8/site-packages/scipy/stats/_continuous_distns.py:624: RuntimeWarning: overflow encountered in _beta_ppf
+  return _boost._beta_ppf(q, a, b)
+/Users/chandrasingh/opt/anaconda3/lib/python3.8/site-packages/scipy/stats/_continuous_distns.py:624: RuntimeWarning: overflow encountered in _beta_ppf
+  return _boost._beta_ppf(q, a, b)
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/chandrasingh/opt/anaconda3/lib/python3.8/site-packages/scipy/stats/_continuous_distns.py:624: RuntimeWarning: overflow encountered in _beta_ppf
+  return _boost._beta_ppf(q, a, b)
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Sampling 4 chains for 1_000 tune and 1_000 draw iterations (4_000 + 4_000 draws total) took 30 seconds.
 </pre></div>
 </div>
 </div>
@@ -1598,7 +1518,7 @@ Auto-assigning NUTS sampler...
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/chandrasingh/opt/anaconda3/envs/fast/lib/python3.8/site-packages/pymc3/sampling.py:1708: UserWarning: samples parameter is smaller than nchains times ndraws, some draws and/or chains may not be represented in the returned posterior predictive sample
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/chandrasingh/opt/anaconda3/lib/python3.8/site-packages/pymc3/sampling.py:1708: UserWarning: samples parameter is smaller than nchains times ndraws, some draws and/or chains may not be represented in the returned posterior predictive sample
   warnings.warn(
 </pre></div>
 </div>
@@ -1618,7 +1538,7 @@ Auto-assigning NUTS sampler...
 </div><div class="output text_html">
 <div>
   <progress value='100' class='' max='100' style='width:300px; height:20px; vertical-align: middle;'></progress>
-  100.00% [100/100 00:00<00:00]
+  100.00% [100/100 00:01<00:00]
 </div>
 </div><div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>posterior predictive variable y&#39;s shape not compatible with number of chains and draws. This can mean that some draws or even whole chains are not represented.
 </pre></div>
@@ -1644,7 +1564,7 @@ Auto-assigning NUTS sampler...
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/chandrasingh/opt/anaconda3/envs/fast/lib/python3.8/site-packages/pymc3/sampling.py:1708: UserWarning: samples parameter is smaller than nchains times ndraws, some draws and/or chains may not be represented in the returned posterior predictive sample
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/chandrasingh/opt/anaconda3/lib/python3.8/site-packages/pymc3/sampling.py:1708: UserWarning: samples parameter is smaller than nchains times ndraws, some draws and/or chains may not be represented in the returned posterior predictive sample
   warnings.warn(
 </pre></div>
 </div>
@@ -1745,7 +1665,7 @@ Auto-assigning NUTS sampler...
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/chandrasingh/opt/anaconda3/envs/fast/lib/python3.8/site-packages/deprecat/classic.py:215: FutureWarning: In v4.0, pm.sample will return an `arviz.InferenceData` object instead of a `MultiTrace` by default. You can pass return_inferencedata=True or return_inferencedata=False to be safe and silence this warning.
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/chandrasingh/opt/anaconda3/lib/python3.8/site-packages/deprecat/classic.py:215: FutureWarning: In v4.0, pm.sample will return an `arviz.InferenceData` object instead of a `MultiTrace` by default. You can pass return_inferencedata=True or return_inferencedata=False to be safe and silence this warning.
   return wrapped_(*args_, **kwargs_)
 Auto-assigning NUTS sampler...
 </pre></div>
@@ -1775,9 +1695,18 @@ Auto-assigning NUTS sampler...
 </div><div class="output text_html">
 <div>
   <progress value='8000' class='' max='8000' style='width:300px; height:20px; vertical-align: middle;'></progress>
-  100.00% [8000/8000 00:14<00:00 Sampling 4 chains, 0 divergences]
+  100.00% [8000/8000 00:04<00:00 Sampling 4 chains, 1 divergences]
 </div>
-</div><div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Sampling 4 chains for 1_000 tune and 1_000 draw iterations (4_000 + 4_000 draws total) took 55 seconds.
+</div><div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/chandrasingh/opt/anaconda3/lib/python3.8/site-packages/scipy/stats/_continuous_distns.py:624: RuntimeWarning: overflow encountered in _beta_ppf
+  return _boost._beta_ppf(q, a, b)
+/Users/chandrasingh/opt/anaconda3/lib/python3.8/site-packages/scipy/stats/_continuous_distns.py:624: RuntimeWarning: overflow encountered in _beta_ppf
+  return _boost._beta_ppf(q, a, b)
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Sampling 4 chains for 1_000 tune and 1_000 draw iterations (4_000 + 4_000 draws total) took 30 seconds.
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>There was 1 divergence after tuning. Increase `target_accept` or reparameterize.
 </pre></div>
 </div>
 </div>
@@ -1825,38 +1754,38 @@ Auto-assigning NUTS sampler...
   <tbody>
     <tr>
       <th>μ</th>
-      <td>53.021</td>
-      <td>0.388</td>
-      <td>52.276</td>
-      <td>53.732</td>
+      <td>53.013</td>
+      <td>0.389</td>
+      <td>52.304</td>
+      <td>53.751</td>
       <td>0.008</td>
       <td>0.006</td>
-      <td>2435.0</td>
-      <td>2358.0</td>
+      <td>2280.0</td>
+      <td>2088.0</td>
       <td>1.0</td>
     </tr>
     <tr>
       <th>σ</th>
-      <td>2.174</td>
-      <td>0.410</td>
-      <td>1.435</td>
-      <td>2.960</td>
+      <td>2.180</td>
+      <td>0.407</td>
+      <td>1.458</td>
+      <td>2.971</td>
       <td>0.010</td>
       <td>0.007</td>
-      <td>1699.0</td>
-      <td>1421.0</td>
+      <td>1708.0</td>
+      <td>1547.0</td>
       <td>1.0</td>
     </tr>
     <tr>
       <th>ν</th>
-      <td>4.559</td>
-      <td>4.086</td>
-      <td>1.048</td>
-      <td>9.130</td>
-      <td>0.121</td>
-      <td>0.085</td>
-      <td>1627.0</td>
-      <td>1583.0</td>
+      <td>4.538</td>
+      <td>3.507</td>
+      <td>1.140</td>
+      <td>9.513</td>
+      <td>0.083</td>
+      <td>0.059</td>
+      <td>1906.0</td>
+      <td>1915.0</td>
       <td>1.0</td>
     </tr>
   </tbody>
@@ -1934,7 +1863,7 @@ Auto-assigning NUTS sampler...
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/chandrasingh/opt/anaconda3/envs/fast/lib/python3.8/site-packages/pymc3/sampling.py:1708: UserWarning: samples parameter is smaller than nchains times ndraws, some draws and/or chains may not be represented in the returned posterior predictive sample
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/chandrasingh/opt/anaconda3/lib/python3.8/site-packages/pymc3/sampling.py:1708: UserWarning: samples parameter is smaller than nchains times ndraws, some draws and/or chains may not be represented in the returned posterior predictive sample
   warnings.warn(
 </pre></div>
 </div>
@@ -1963,7 +1892,7 @@ Auto-assigning NUTS sampler...
 </div>
 <img src='./images/02_plot_tdist_ppc.png'></section>
 <section id="group-comparison">
-<h2>Group Comparison<a class="headerlink" href="#group-comparison" title="Permalink to this headline">#</a></h2>
+<h2>Group Comparison<a class="headerlink" href="#group-comparison" title="Permalink to this headline">¶</a></h2>
 <p>Tools used are to compare posterior distribution of means between groups is:</p>
 <ul class="simple">
 <li><p>A posterior plot with a reference value</p></li>
@@ -1976,7 +1905,7 @@ Auto-assigning NUTS sampler...
 </ul>
 </section>
 <section id="tips-dataset">
-<h2>tips dataset<a class="headerlink" href="#tips-dataset" title="Permalink to this headline">#</a></h2>
+<h2>tips dataset<a class="headerlink" href="#tips-dataset" title="Permalink to this headline">¶</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tips</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;./data/tips.csv&#39;</span><span class="p">)</span>
@@ -2290,7 +2219,7 @@ Auto-assigning NUTS sampler...
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/chandrasingh/opt/anaconda3/envs/fast/lib/python3.8/site-packages/deprecat/classic.py:215: FutureWarning: In v4.0, pm.sample will return an `arviz.InferenceData` object instead of a `MultiTrace` by default. You can pass return_inferencedata=True or return_inferencedata=False to be safe and silence this warning.
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/chandrasingh/opt/anaconda3/lib/python3.8/site-packages/deprecat/classic.py:215: FutureWarning: In v4.0, pm.sample will return an `arviz.InferenceData` object instead of a `MultiTrace` by default. You can pass return_inferencedata=True or return_inferencedata=False to be safe and silence this warning.
   return wrapped_(*args_, **kwargs_)
 Auto-assigning NUTS sampler...
 </pre></div>
@@ -2320,12 +2249,20 @@ Auto-assigning NUTS sampler...
 </div><div class="output text_html">
 <div>
   <progress value='24000' class='' max='24000' style='width:300px; height:20px; vertical-align: middle;'></progress>
-  100.00% [24000/24000 00:37<00:00 Sampling 4 chains, 0 divergences]
+  100.00% [24000/24000 00:10<00:00 Sampling 4 chains, 0 divergences]
 </div>
-</div><div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Sampling 4 chains for 1_000 tune and 5_000 draw iterations (4_000 + 20_000 draws total) took 78 seconds.
+</div><div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/chandrasingh/opt/anaconda3/lib/python3.8/site-packages/scipy/stats/_continuous_distns.py:624: RuntimeWarning: overflow encountered in _beta_ppf
+  return _boost._beta_ppf(q, a, b)
 </pre></div>
 </div>
-<img alt="../_images/probabilistic_programming_50_7.png" src="../_images/probabilistic_programming_50_7.png" />
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/chandrasingh/opt/anaconda3/lib/python3.8/site-packages/scipy/stats/_continuous_distns.py:624: RuntimeWarning: overflow encountered in _beta_ppf
+  return _boost._beta_ppf(q, a, b)
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Sampling 4 chains for 1_000 tune and 5_000 draw iterations (4_000 + 20_000 draws total) took 36 seconds.
+</pre></div>
+</div>
+<img alt="../_images/probabilistic_programming_50_9.png" src="../_images/probabilistic_programming_50_9.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -2355,7 +2292,7 @@ Auto-assigning NUTS sampler...
 </div>
 </section>
 <section id="hierarchical-models">
-<h2>Hierarchical models<a class="headerlink" href="#hierarchical-models" title="Permalink to this headline">#</a></h2>
+<h2>Hierarchical models<a class="headerlink" href="#hierarchical-models" title="Permalink to this headline">¶</a></h2>
 <p><strong>Problem Statement</strong>: Analyze the quality of water in a city by taking samples, dividing the city into neighborhoods. There are two options to analyze this data:</p>
 <ul class="simple">
 <li><p>Study each neighborhood as a separate entity</p>
@@ -2430,7 +2367,7 @@ Auto-assigning NUTS sampler...
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/chandrasingh/opt/anaconda3/envs/fast/lib/python3.8/site-packages/deprecat/classic.py:215: FutureWarning: In v4.0, pm.sample will return an `arviz.InferenceData` object instead of a `MultiTrace` by default. You can pass return_inferencedata=True or return_inferencedata=False to be safe and silence this warning.
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/chandrasingh/opt/anaconda3/lib/python3.8/site-packages/deprecat/classic.py:215: FutureWarning: In v4.0, pm.sample will return an `arviz.InferenceData` object instead of a `MultiTrace` by default. You can pass return_inferencedata=True or return_inferencedata=False to be safe and silence this warning.
   return wrapped_(*args_, **kwargs_)
 Auto-assigning NUTS sampler...
 </pre></div>
@@ -2460,12 +2397,26 @@ Auto-assigning NUTS sampler...
 </div><div class="output text_html">
 <div>
   <progress value='12000' class='' max='12000' style='width:300px; height:20px; vertical-align: middle;'></progress>
-  100.00% [12000/12000 00:24<00:00 Sampling 4 chains, 0 divergences]
+  100.00% [12000/12000 00:08<00:00 Sampling 4 chains, 0 divergences]
 </div>
-</div><div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Sampling 4 chains for 1_000 tune and 2_000 draw iterations (4_000 + 8_000 draws total) took 65 seconds.
+</div><div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/chandrasingh/opt/anaconda3/lib/python3.8/site-packages/scipy/stats/_continuous_distns.py:624: RuntimeWarning: overflow encountered in _beta_ppf
+  return _boost._beta_ppf(q, a, b)
 </pre></div>
 </div>
-<img alt="../_images/probabilistic_programming_55_7.png" src="../_images/probabilistic_programming_55_7.png" />
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/chandrasingh/opt/anaconda3/lib/python3.8/site-packages/scipy/stats/_continuous_distns.py:624: RuntimeWarning: overflow encountered in _beta_ppf
+  return _boost._beta_ppf(q, a, b)
+/Users/chandrasingh/opt/anaconda3/lib/python3.8/site-packages/scipy/stats/_continuous_distns.py:624: RuntimeWarning: overflow encountered in _beta_ppf
+  return _boost._beta_ppf(q, a, b)
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/chandrasingh/opt/anaconda3/lib/python3.8/site-packages/scipy/stats/_continuous_distns.py:624: RuntimeWarning: overflow encountered in _beta_ppf
+  return _boost._beta_ppf(q, a, b)
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Sampling 4 chains for 1_000 tune and 2_000 draw iterations (4_000 + 8_000 draws total) took 37 seconds.
+</pre></div>
+</div>
+<img alt="../_images/probabilistic_programming_55_10.png" src="../_images/probabilistic_programming_55_10.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -2509,61 +2460,61 @@ Auto-assigning NUTS sampler...
     <tr>
       <th>μ</th>
       <td>0.583</td>
-      <td>0.095</td>
-      <td>0.401</td>
-      <td>0.756</td>
+      <td>0.098</td>
+      <td>0.398</td>
+      <td>0.767</td>
       <td>0.001</td>
       <td>0.001</td>
-      <td>5460.0</td>
-      <td>5272.0</td>
+      <td>5545.0</td>
+      <td>5133.0</td>
       <td>1.0</td>
     </tr>
     <tr>
       <th>κ</th>
-      <td>12.333</td>
-      <td>6.238</td>
-      <td>1.518</td>
-      <td>23.180</td>
-      <td>0.085</td>
-      <td>0.060</td>
-      <td>4903.0</td>
-      <td>4080.0</td>
+      <td>12.208</td>
+      <td>6.274</td>
+      <td>1.769</td>
+      <td>23.590</td>
+      <td>0.081</td>
+      <td>0.058</td>
+      <td>5210.0</td>
+      <td>4070.0</td>
       <td>1.0</td>
     </tr>
     <tr>
       <th>θ[0]</th>
-      <td>0.596</td>
-      <td>0.080</td>
+      <td>0.597</td>
+      <td>0.079</td>
       <td>0.448</td>
-      <td>0.748</td>
+      <td>0.745</td>
       <td>0.001</td>
       <td>0.001</td>
-      <td>6191.0</td>
-      <td>5864.0</td>
+      <td>6667.0</td>
+      <td>5925.0</td>
       <td>1.0</td>
     </tr>
     <tr>
       <th>θ[1]</th>
-      <td>0.595</td>
+      <td>0.596</td>
       <td>0.079</td>
-      <td>0.450</td>
-      <td>0.742</td>
+      <td>0.453</td>
+      <td>0.750</td>
       <td>0.001</td>
       <td>0.001</td>
-      <td>6898.0</td>
-      <td>5887.0</td>
+      <td>5953.0</td>
+      <td>5217.0</td>
       <td>1.0</td>
     </tr>
     <tr>
       <th>θ[2]</th>
-      <td>0.597</td>
+      <td>0.596</td>
       <td>0.080</td>
-      <td>0.444</td>
-      <td>0.741</td>
+      <td>0.445</td>
+      <td>0.742</td>
       <td>0.001</td>
       <td>0.001</td>
-      <td>5609.0</td>
-      <td>5889.0</td>
+      <td>6198.0</td>
+      <td>5775.0</td>
       <td>1.0</td>
     </tr>
   </tbody>
@@ -2571,7 +2522,7 @@ Auto-assigning NUTS sampler...
 </div></div></div>
 </div>
 <section id="shrinkage">
-<h3>Shrinkage<a class="headerlink" href="#shrinkage" title="Permalink to this headline">#</a></h3>
+<h3>Shrinkage<a class="headerlink" href="#shrinkage" title="Permalink to this headline">¶</a></h3>
 <p>Repeating the same experiment by changing the good samples G_samples to</p>
 <ul class="simple">
 <li><p>1st run(above) - all elements of G_samples set to 18</p></li>
@@ -2602,7 +2553,7 @@ Auto-assigning NUTS sampler...
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/chandrasingh/opt/anaconda3/envs/fast/lib/python3.8/site-packages/deprecat/classic.py:215: FutureWarning: In v4.0, pm.sample will return an `arviz.InferenceData` object instead of a `MultiTrace` by default. You can pass return_inferencedata=True or return_inferencedata=False to be safe and silence this warning.
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/chandrasingh/opt/anaconda3/lib/python3.8/site-packages/deprecat/classic.py:215: FutureWarning: In v4.0, pm.sample will return an `arviz.InferenceData` object instead of a `MultiTrace` by default. You can pass return_inferencedata=True or return_inferencedata=False to be safe and silence this warning.
   return wrapped_(*args_, **kwargs_)
 Auto-assigning NUTS sampler...
 </pre></div>
@@ -2632,12 +2583,22 @@ Auto-assigning NUTS sampler...
 </div><div class="output text_html">
 <div>
   <progress value='12000' class='' max='12000' style='width:300px; height:20px; vertical-align: middle;'></progress>
-  100.00% [12000/12000 00:25<00:00 Sampling 4 chains, 0 divergences]
+  100.00% [12000/12000 00:08<00:00 Sampling 4 chains, 0 divergences]
 </div>
-</div><div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Sampling 4 chains for 1_000 tune and 2_000 draw iterations (4_000 + 8_000 draws total) took 68 seconds.
+</div><div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/chandrasingh/opt/anaconda3/lib/python3.8/site-packages/scipy/stats/_continuous_distns.py:624: RuntimeWarning: overflow encountered in _beta_ppf
+  return _boost._beta_ppf(q, a, b)
+/Users/chandrasingh/opt/anaconda3/lib/python3.8/site-packages/scipy/stats/_continuous_distns.py:624: RuntimeWarning: overflow encountered in _beta_ppf
+  return _boost._beta_ppf(q, a, b)
 </pre></div>
 </div>
-<img alt="../_images/probabilistic_programming_58_7.png" src="../_images/probabilistic_programming_58_7.png" />
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/chandrasingh/opt/anaconda3/lib/python3.8/site-packages/scipy/stats/_continuous_distns.py:624: RuntimeWarning: overflow encountered in _beta_ppf
+  return _boost._beta_ppf(q, a, b)
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Sampling 4 chains for 1_000 tune and 2_000 draw iterations (4_000 + 8_000 draws total) took 37 seconds.
+</pre></div>
+</div>
+<img alt="../_images/probabilistic_programming_58_9.png" src="../_images/probabilistic_programming_58_9.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -2664,7 +2625,7 @@ Auto-assigning NUTS sampler...
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/chandrasingh/opt/anaconda3/envs/fast/lib/python3.8/site-packages/deprecat/classic.py:215: FutureWarning: In v4.0, pm.sample will return an `arviz.InferenceData` object instead of a `MultiTrace` by default. You can pass return_inferencedata=True or return_inferencedata=False to be safe and silence this warning.
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/chandrasingh/opt/anaconda3/lib/python3.8/site-packages/deprecat/classic.py:215: FutureWarning: In v4.0, pm.sample will return an `arviz.InferenceData` object instead of a `MultiTrace` by default. You can pass return_inferencedata=True or return_inferencedata=False to be safe and silence this warning.
   return wrapped_(*args_, **kwargs_)
 Auto-assigning NUTS sampler...
 </pre></div>
@@ -2694,12 +2655,20 @@ Auto-assigning NUTS sampler...
 </div><div class="output text_html">
 <div>
   <progress value='12000' class='' max='12000' style='width:300px; height:20px; vertical-align: middle;'></progress>
-  100.00% [12000/12000 00:25<00:00 Sampling 4 chains, 0 divergences]
+  100.00% [12000/12000 00:08<00:00 Sampling 4 chains, 0 divergences]
 </div>
-</div><div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Sampling 4 chains for 1_000 tune and 2_000 draw iterations (4_000 + 8_000 draws total) took 66 seconds.
+</div><div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/chandrasingh/opt/anaconda3/lib/python3.8/site-packages/scipy/stats/_continuous_distns.py:624: RuntimeWarning: overflow encountered in _beta_ppf
+  return _boost._beta_ppf(q, a, b)
+/Users/chandrasingh/opt/anaconda3/lib/python3.8/site-packages/scipy/stats/_continuous_distns.py:624: RuntimeWarning: overflow encountered in _beta_ppf
+  return _boost._beta_ppf(q, a, b)
+/Users/chandrasingh/opt/anaconda3/lib/python3.8/site-packages/scipy/stats/_continuous_distns.py:624: RuntimeWarning: overflow encountered in _beta_ppf
+  return _boost._beta_ppf(q, a, b)
 </pre></div>
 </div>
-<img alt="../_images/probabilistic_programming_59_7.png" src="../_images/probabilistic_programming_59_7.png" />
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Sampling 4 chains for 1_000 tune and 2_000 draw iterations (4_000 + 8_000 draws total) took 39 seconds.
+</pre></div>
+</div>
+<img alt="../_images/probabilistic_programming_59_8.png" src="../_images/probabilistic_programming_59_8.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -2748,61 +2717,61 @@ Auto-assigning NUTS sampler...
     <tr>
       <th>μ</th>
       <td>0.583</td>
-      <td>0.095</td>
-      <td>0.401</td>
-      <td>0.756</td>
+      <td>0.098</td>
+      <td>0.398</td>
+      <td>0.767</td>
       <td>0.001</td>
       <td>0.001</td>
-      <td>5460.0</td>
-      <td>5272.0</td>
+      <td>5545.0</td>
+      <td>5133.0</td>
       <td>1.0</td>
     </tr>
     <tr>
       <th>κ</th>
-      <td>12.333</td>
-      <td>6.238</td>
-      <td>1.518</td>
-      <td>23.180</td>
-      <td>0.085</td>
-      <td>0.060</td>
-      <td>4903.0</td>
-      <td>4080.0</td>
+      <td>12.208</td>
+      <td>6.274</td>
+      <td>1.769</td>
+      <td>23.590</td>
+      <td>0.081</td>
+      <td>0.058</td>
+      <td>5210.0</td>
+      <td>4070.0</td>
       <td>1.0</td>
     </tr>
     <tr>
       <th>θ[0]</th>
-      <td>0.596</td>
-      <td>0.080</td>
+      <td>0.597</td>
+      <td>0.079</td>
       <td>0.448</td>
-      <td>0.748</td>
+      <td>0.745</td>
       <td>0.001</td>
       <td>0.001</td>
-      <td>6191.0</td>
-      <td>5864.0</td>
+      <td>6667.0</td>
+      <td>5925.0</td>
       <td>1.0</td>
     </tr>
     <tr>
       <th>θ[1]</th>
-      <td>0.595</td>
+      <td>0.596</td>
       <td>0.079</td>
-      <td>0.450</td>
-      <td>0.742</td>
+      <td>0.453</td>
+      <td>0.750</td>
       <td>0.001</td>
       <td>0.001</td>
-      <td>6898.0</td>
-      <td>5887.0</td>
+      <td>5953.0</td>
+      <td>5217.0</td>
       <td>1.0</td>
     </tr>
     <tr>
       <th>θ[2]</th>
-      <td>0.597</td>
+      <td>0.596</td>
       <td>0.080</td>
-      <td>0.444</td>
-      <td>0.741</td>
+      <td>0.445</td>
+      <td>0.742</td>
       <td>0.001</td>
       <td>0.001</td>
-      <td>5609.0</td>
-      <td>5889.0</td>
+      <td>6198.0</td>
+      <td>5775.0</td>
       <td>1.0</td>
     </tr>
   </tbody>
@@ -2840,61 +2809,61 @@ Auto-assigning NUTS sampler...
     <tr>
       <th>μ</th>
       <td>0.162</td>
-      <td>0.074</td>
+      <td>0.076</td>
       <td>0.039</td>
-      <td>0.296</td>
+      <td>0.299</td>
       <td>0.001</td>
       <td>0.001</td>
-      <td>4356.0</td>
-      <td>4600.0</td>
+      <td>4525.0</td>
+      <td>4709.0</td>
       <td>1.0</td>
     </tr>
     <tr>
       <th>κ</th>
-      <td>11.759</td>
-      <td>6.140</td>
-      <td>1.295</td>
-      <td>22.481</td>
-      <td>0.079</td>
-      <td>0.056</td>
-      <td>5382.0</td>
-      <td>4544.0</td>
+      <td>11.778</td>
+      <td>6.315</td>
+      <td>1.353</td>
+      <td>23.321</td>
+      <td>0.086</td>
+      <td>0.061</td>
+      <td>4612.0</td>
+      <td>3891.0</td>
       <td>1.0</td>
     </tr>
     <tr>
       <th>θ[0]</th>
       <td>0.114</td>
       <td>0.052</td>
-      <td>0.027</td>
-      <td>0.209</td>
+      <td>0.030</td>
+      <td>0.212</td>
       <td>0.001</td>
       <td>0.000</td>
-      <td>6083.0</td>
-      <td>5208.0</td>
+      <td>5972.0</td>
+      <td>5066.0</td>
       <td>1.0</td>
     </tr>
     <tr>
       <th>θ[1]</th>
       <td>0.114</td>
       <td>0.052</td>
-      <td>0.027</td>
-      <td>0.210</td>
+      <td>0.025</td>
+      <td>0.208</td>
       <td>0.001</td>
       <td>0.000</td>
-      <td>5679.0</td>
-      <td>4435.0</td>
+      <td>5806.0</td>
+      <td>4413.0</td>
       <td>1.0</td>
     </tr>
     <tr>
       <th>θ[2]</th>
-      <td>0.113</td>
-      <td>0.051</td>
+      <td>0.114</td>
+      <td>0.052</td>
       <td>0.028</td>
-      <td>0.208</td>
+      <td>0.214</td>
       <td>0.001</td>
       <td>0.000</td>
-      <td>5313.0</td>
-      <td>4311.0</td>
+      <td>5799.0</td>
+      <td>4927.0</td>
       <td>1.0</td>
     </tr>
   </tbody>
@@ -2931,62 +2900,62 @@ Auto-assigning NUTS sampler...
   <tbody>
     <tr>
       <th>μ</th>
-      <td>0.301</td>
-      <td>0.115</td>
-      <td>0.099</td>
-      <td>0.509</td>
+      <td>0.300</td>
+      <td>0.117</td>
+      <td>0.097</td>
+      <td>0.528</td>
       <td>0.002</td>
       <td>0.001</td>
-      <td>5118.0</td>
-      <td>5153.0</td>
+      <td>5702.0</td>
+      <td>4908.0</td>
       <td>1.0</td>
     </tr>
     <tr>
       <th>κ</th>
-      <td>5.804</td>
-      <td>3.846</td>
-      <td>0.542</td>
-      <td>12.937</td>
-      <td>0.061</td>
-      <td>0.043</td>
-      <td>4023.0</td>
-      <td>4266.0</td>
+      <td>5.827</td>
+      <td>3.973</td>
+      <td>0.358</td>
+      <td>12.885</td>
+      <td>0.062</td>
+      <td>0.045</td>
+      <td>4143.0</td>
+      <td>3880.0</td>
       <td>1.0</td>
     </tr>
     <tr>
       <th>θ[0]</th>
-      <td>0.551</td>
+      <td>0.550</td>
       <td>0.089</td>
-      <td>0.388</td>
-      <td>0.717</td>
+      <td>0.380</td>
+      <td>0.711</td>
       <td>0.001</td>
       <td>0.001</td>
-      <td>5572.0</td>
-      <td>5390.0</td>
+      <td>5882.0</td>
+      <td>5149.0</td>
       <td>1.0</td>
     </tr>
     <tr>
       <th>θ[1]</th>
-      <td>0.128</td>
+      <td>0.127</td>
       <td>0.058</td>
       <td>0.028</td>
-      <td>0.236</td>
+      <td>0.233</td>
       <td>0.001</td>
       <td>0.001</td>
-      <td>5609.0</td>
-      <td>4483.0</td>
+      <td>5306.0</td>
+      <td>4087.0</td>
       <td>1.0</td>
     </tr>
     <tr>
       <th>θ[2]</th>
-      <td>0.128</td>
+      <td>0.129</td>
       <td>0.059</td>
-      <td>0.023</td>
-      <td>0.232</td>
+      <td>0.030</td>
+      <td>0.241</td>
       <td>0.001</td>
       <td>0.001</td>
-      <td>5902.0</td>
-      <td>4818.0</td>
+      <td>4882.0</td>
+      <td>4363.0</td>
       <td>1.0</td>
     </tr>
   </tbody>
@@ -3021,7 +2990,7 @@ Auto-assigning NUTS sampler...
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/var/folders/kz/g_s979xs7pdbzdsbg21qhs240000gn/T/ipykernel_12650/3850269264.py:20: UserWarning: This figure was using constrained_layout, but that is incompatible with subplots_adjust and/or tight_layout; disabling constrained_layout.
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/var/folders/kz/g_s979xs7pdbzdsbg21qhs240000gn/T/ipykernel_58864/3850269264.py:20: UserWarning: This figure was using constrained_layout, but that is incompatible with subplots_adjust and/or tight_layout; disabling constrained_layout.
   plt.tight_layout()
 </pre></div>
 </div>
@@ -3054,7 +3023,7 @@ Auto-assigning NUTS sampler...
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/var/folders/kz/g_s979xs7pdbzdsbg21qhs240000gn/T/ipykernel_12650/819160916.py:20: UserWarning: This figure was using constrained_layout, but that is incompatible with subplots_adjust and/or tight_layout; disabling constrained_layout.
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/var/folders/kz/g_s979xs7pdbzdsbg21qhs240000gn/T/ipykernel_58864/819160916.py:20: UserWarning: This figure was using constrained_layout, but that is incompatible with subplots_adjust and/or tight_layout; disabling constrained_layout.
   plt.tight_layout()
 </pre></div>
 </div>
@@ -3087,7 +3056,7 @@ Auto-assigning NUTS sampler...
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/var/folders/kz/g_s979xs7pdbzdsbg21qhs240000gn/T/ipykernel_12650/1874894004.py:20: UserWarning: This figure was using constrained_layout, but that is incompatible with subplots_adjust and/or tight_layout; disabling constrained_layout.
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/var/folders/kz/g_s979xs7pdbzdsbg21qhs240000gn/T/ipykernel_58864/1874894004.py:20: UserWarning: This figure was using constrained_layout, but that is incompatible with subplots_adjust and/or tight_layout; disabling constrained_layout.
   plt.tight_layout()
 </pre></div>
 </div>
@@ -3097,7 +3066,7 @@ Auto-assigning NUTS sampler...
 </section>
 </section>
 <section id="compare-groups">
-<h2>Compare groups<a class="headerlink" href="#compare-groups" title="Permalink to this headline">#</a></h2>
+<h2>Compare groups<a class="headerlink" href="#compare-groups" title="Permalink to this headline">¶</a></h2>
 <p>You will see four columns:</p>
 <ul class="simple">
 <li><p>the first column is the protein id</p></li>
@@ -3253,7 +3222,7 @@ Auto-assigning NUTS sampler...
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/chandrasingh/opt/anaconda3/envs/fast/lib/python3.8/site-packages/deprecat/classic.py:215: FutureWarning: In v4.0, pm.sample will return an `arviz.InferenceData` object instead of a `MultiTrace` by default. You can pass return_inferencedata=True or return_inferencedata=False to be safe and silence this warning.
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/chandrasingh/opt/anaconda3/lib/python3.8/site-packages/deprecat/classic.py:215: FutureWarning: In v4.0, pm.sample will return an `arviz.InferenceData` object instead of a `MultiTrace` by default. You can pass return_inferencedata=True or return_inferencedata=False to be safe and silence this warning.
   return wrapped_(*args_, **kwargs_)
 Auto-assigning NUTS sampler...
 </pre></div>
@@ -3283,12 +3252,28 @@ Auto-assigning NUTS sampler...
 </div><div class="output text_html">
 <div>
   <progress value='8000' class='' max='8000' style='width:300px; height:20px; vertical-align: middle;'></progress>
-  100.00% [8000/8000 00:23<00:00 Sampling 4 chains, 0 divergences]
+  100.00% [8000/8000 00:07<00:00 Sampling 4 chains, 0 divergences]
 </div>
-</div><div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Sampling 4 chains for 1_000 tune and 1_000 draw iterations (4_000 + 4_000 draws total) took 63 seconds.
+</div><div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/chandrasingh/opt/anaconda3/lib/python3.8/site-packages/scipy/stats/_continuous_distns.py:624: RuntimeWarning: overflow encountered in _beta_ppf
+  return _boost._beta_ppf(q, a, b)
 </pre></div>
 </div>
-<img alt="../_images/probabilistic_programming_68_7.png" src="../_images/probabilistic_programming_68_7.png" />
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/chandrasingh/opt/anaconda3/lib/python3.8/site-packages/scipy/stats/_continuous_distns.py:624: RuntimeWarning: overflow encountered in _beta_ppf
+  return _boost._beta_ppf(q, a, b)
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/chandrasingh/opt/anaconda3/lib/python3.8/site-packages/scipy/stats/_continuous_distns.py:624: RuntimeWarning: overflow encountered in _beta_ppf
+  return _boost._beta_ppf(q, a, b)
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/chandrasingh/opt/anaconda3/lib/python3.8/site-packages/scipy/stats/_continuous_distns.py:624: RuntimeWarning: overflow encountered in _beta_ppf
+  return _boost._beta_ppf(q, a, b)
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Sampling 4 chains for 1_000 tune and 1_000 draw iterations (4_000 + 4_000 draws total) took 37 seconds.
+</pre></div>
+</div>
+<img alt="../_images/probabilistic_programming_68_11.png" src="../_images/probabilistic_programming_68_11.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -3317,7 +3302,7 @@ Auto-assigning NUTS sampler...
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/chandrasingh/opt/anaconda3/envs/fast/lib/python3.8/site-packages/deprecat/classic.py:215: FutureWarning: In v4.0, pm.sample will return an `arviz.InferenceData` object instead of a `MultiTrace` by default. You can pass return_inferencedata=True or return_inferencedata=False to be safe and silence this warning.
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/chandrasingh/opt/anaconda3/lib/python3.8/site-packages/deprecat/classic.py:215: FutureWarning: In v4.0, pm.sample will return an `arviz.InferenceData` object instead of a `MultiTrace` by default. You can pass return_inferencedata=True or return_inferencedata=False to be safe and silence this warning.
   return wrapped_(*args_, **kwargs_)
 Auto-assigning NUTS sampler...
 </pre></div>
@@ -3347,12 +3332,22 @@ Auto-assigning NUTS sampler...
 </div><div class="output text_html">
 <div>
   <progress value='8000' class='' max='8000' style='width:300px; height:20px; vertical-align: middle;'></progress>
-  100.00% [8000/8000 00:27<00:00 Sampling 4 chains, 0 divergences]
+  100.00% [8000/8000 00:08<00:00 Sampling 4 chains, 0 divergences]
 </div>
-</div><div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Sampling 4 chains for 1_000 tune and 1_000 draw iterations (4_000 + 4_000 draws total) took 67 seconds.
+</div><div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/chandrasingh/opt/anaconda3/lib/python3.8/site-packages/scipy/stats/_continuous_distns.py:624: RuntimeWarning: overflow encountered in _beta_ppf
+  return _boost._beta_ppf(q, a, b)
+/Users/chandrasingh/opt/anaconda3/lib/python3.8/site-packages/scipy/stats/_continuous_distns.py:624: RuntimeWarning: overflow encountered in _beta_ppf
+  return _boost._beta_ppf(q, a, b)
 </pre></div>
 </div>
-<img alt="../_images/probabilistic_programming_69_7.png" src="../_images/probabilistic_programming_69_7.png" />
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/chandrasingh/opt/anaconda3/lib/python3.8/site-packages/scipy/stats/_continuous_distns.py:624: RuntimeWarning: overflow encountered in _beta_ppf
+  return _boost._beta_ppf(q, a, b)
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Sampling 4 chains for 1_000 tune and 1_000 draw iterations (4_000 + 4_000 draws total) took 36 seconds.
+</pre></div>
+</div>
+<img alt="../_images/probabilistic_programming_69_9.png" src="../_images/probabilistic_programming_69_9.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -3404,9 +3399,9 @@ Auto-assigning NUTS sampler...
 <p>Therefore, we get an intermediate situation between having a single group, all chemical shifts together, and having 19 separated groups, one per amino acid.</p>
 </section>
 <section id="modeling-with-linear-regression">
-<h2>Modeling with Linear Regression<a class="headerlink" href="#modeling-with-linear-regression" title="Permalink to this headline">#</a></h2>
+<h2>Modeling with Linear Regression<a class="headerlink" href="#modeling-with-linear-regression" title="Permalink to this headline">¶</a></h2>
 <section id="linear-regression">
-<h3>Linear Regression<a class="headerlink" href="#linear-regression" title="Permalink to this headline">#</a></h3>
+<h3>Linear Regression<a class="headerlink" href="#linear-regression" title="Permalink to this headline">¶</a></h3>
 <p>A linear regression model probabilistically can be expressed as:
 $<span class="math notranslate nohighlight">\(y \sim N(\mu = \alpha + x\beta, \epsilon)\)</span>$</p>
 <p>The prior distribution can be chosen as:</p>
@@ -3657,7 +3652,7 @@ $<span class="math notranslate nohighlight">\(x_{i} = x - \bar{x}\)</span>$</p>
 </div>
 </section>
 <section id="pearson-correlation-coefficient">
-<h3>Pearson correlation coefficient<a class="headerlink" href="#pearson-correlation-coefficient" title="Permalink to this headline">#</a></h3>
+<h3>Pearson correlation coefficient<a class="headerlink" href="#pearson-correlation-coefficient" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p>says nothing about non-linear correlations</p></li>
 </ul>
@@ -3683,7 +3678,7 @@ dtype: float64
 </div>
 </section>
 <section id="pearson-coefficient-for-multivariate-gaussian">
-<h3>Pearson coefficient for multivariate Gaussian<a class="headerlink" href="#pearson-coefficient-for-multivariate-gaussian" title="Permalink to this headline">#</a></h3>
+<h3>Pearson coefficient for multivariate Gaussian<a class="headerlink" href="#pearson-coefficient-for-multivariate-gaussian" title="Permalink to this headline">¶</a></h3>
 <div class="math notranslate nohighlight">
 \[\begin{split} \Sigma =
   \begin{bmatrix}
@@ -3858,7 +3853,7 @@ NUTS: [ρ, σ_2, σ_1, μ]
 </div>
 </section>
 <section id="applying-anscombe-s-quartet">
-<h3>Applying Anscombe’s Quartet<a class="headerlink" href="#applying-anscombe-s-quartet" title="Permalink to this headline">#</a></h3>
+<h3>Applying Anscombe’s Quartet<a class="headerlink" href="#applying-anscombe-s-quartet" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p>check robustness of Student’s T-distribution to a linear regression model using third data group from Anscombe’s Quartet</p></li>
 </ul>
@@ -4126,7 +4121,7 @@ The number of effective samples is smaller than 25% for some parameters.
 </section>
 </section>
 <section id="hierarchical-linear-regression">
-<h2>Hierarchical linear regression<a class="headerlink" href="#hierarchical-linear-regression" title="Permalink to this headline">#</a></h2>
+<h2>Hierarchical linear regression<a class="headerlink" href="#hierarchical-linear-regression" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li><p>such model deals with inferences at group and subgroup level using hyperpriors</p></li>
 <li><p>this <strong>allows information to be shared between groups</strong></p></li>
@@ -4242,7 +4237,7 @@ There were 7 divergences after tuning. Increase `target_accept` or reparameteriz
 </div>
 </section>
 <section id="hierarchical-linear-regression-with-hyperpriors">
-<h2>Hierarchical linear regression with hyperpriors<a class="headerlink" href="#hierarchical-linear-regression-with-hyperpriors" title="Permalink to this headline">#</a></h2>
+<h2>Hierarchical linear regression with hyperpriors<a class="headerlink" href="#hierarchical-linear-regression-with-hyperpriors" title="Permalink to this headline">¶</a></h2>
 <img src='./images/kruschke_dia_hierarchical_lin_reg.png'>
 <ul class="simple">
 <li><p>add hyperpriors</p></li>
@@ -4376,14 +4371,14 @@ The number of effective samples is smaller than 10% for some parameters.
 <li><p>the last group also inferred from other groups thereby adjusting to the group rather to a single point</p></li>
 </ul>
 <section id="causation">
-<h3>Causation<a class="headerlink" href="#causation" title="Permalink to this headline">#</a></h3>
+<h3>Causation<a class="headerlink" href="#causation" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p>Correlation does not imply causation</p></li>
 </ul>
 </section>
 </section>
 <section id="polynomial-regression">
-<h2>Polynomial regression<a class="headerlink" href="#polynomial-regression" title="Permalink to this headline">#</a></h2>
+<h2>Polynomial regression<a class="headerlink" href="#polynomial-regression" title="Permalink to this headline">¶</a></h2>
 <div class="math notranslate nohighlight">
 \[\mu = \beta_{0} + \beta_{1}x^1 + \beta_{2}x^2\]</div>
 <div class="cell docutils container">
@@ -4471,7 +4466,7 @@ There was 1 divergence after tuning. Increase `target_accept` or reparameterize.
 </div>
 </section>
 <section id="multiple-linear-regression">
-<h2>Multiple linear regression<a class="headerlink" href="#multiple-linear-regression" title="Permalink to this headline">#</a></h2>
+<h2>Multiple linear regression<a class="headerlink" href="#multiple-linear-regression" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li><p><strong>Multiple regression</strong> (aka multivariable regression) pertains to one dependent variable and multiple independent variables: <span class="math notranslate nohighlight">\(𝑦=𝑓(𝑥_1,𝑥_2,...,𝑥_n)\)</span>
 $<span class="math notranslate nohighlight">\(\mu = \alpha + X\beta\)</span><span class="math notranslate nohighlight">\(
@@ -4683,7 +4678,7 @@ NUTS: [ϵ, β, α_tmp]
 </div>
 </section>
 <section id="confounding-variables">
-<h2>Confounding variables<a class="headerlink" href="#confounding-variables" title="Permalink to this headline">#</a></h2>
+<h2>Confounding variables<a class="headerlink" href="#confounding-variables" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li><p>Not taking into account confounding variables in an analysis could lead us to spurious correlation</p></li>
 <li><p>for example, omitting variable z(confounding) from analysis and only including variable x and y</p></li>
@@ -5125,7 +5120,7 @@ NUTS: [ϵ, β2, α]
 </ul>
 </section>
 <section id="multicollinearity">
-<h2>Multicollinearity<a class="headerlink" href="#multicollinearity" title="Permalink to this headline">#</a></h2>
+<h2>Multicollinearity<a class="headerlink" href="#multicollinearity" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li><p>increase degree of correlation between <span class="math notranslate nohighlight">\(x_1\)</span> and <span class="math notranslate nohighlight">\(x_2\)</span> by reducing the amount of Gaussian noise we add to <span class="math notranslate nohighlight">\(x_1\)</span> to obtain <span class="math notranslate nohighlight">\(x_2\)</span></p></li>
 <li><p>this is done by using lower value of scale parameter</p></li>
@@ -5246,7 +5241,7 @@ $<span class="math notranslate nohighlight">\(\mu = \alpha + (\beta_1 + \beta_2)
 </ul>
 </section>
 <section id="masking-effect-variables">
-<h2>Masking effect variables<a class="headerlink" href="#masking-effect-variables" title="Permalink to this headline">#</a></h2>
+<h2>Masking effect variables<a class="headerlink" href="#masking-effect-variables" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li><p><span class="math notranslate nohighlight">\(x_1\)</span> and <span class="math notranslate nohighlight">\(x_2\)</span> are positively correlated</p></li>
 <li><p>(<span class="math notranslate nohighlight">\(x_1\)</span> and y) are positively correlated</p></li>
@@ -5667,7 +5662,7 @@ Got error No model on context stack. trying to find log_likelihood in translatio
 </ul>
 </section>
 <section id="interactions">
-<h2>Interactions<a class="headerlink" href="#interactions" title="Permalink to this headline">#</a></h2>
+<h2>Interactions<a class="headerlink" href="#interactions" title="Permalink to this headline">¶</a></h2>
 <div class="math notranslate nohighlight">
 \[\mu = \alpha + \beta_1x_1 + \beta_2x_2 + \beta_3x_1x_2\]</div>
 <div class="math notranslate nohighlight">
@@ -5680,7 +5675,7 @@ Got error No model on context stack. trying to find log_likelihood in translatio
 </ul>
 </section>
 <section id="todo-move-alogorithm-spiral">
-<h2>TODO-MOVE - Alogorithm - Spiral<a class="headerlink" href="#todo-move-alogorithm-spiral" title="Permalink to this headline">#</a></h2>
+<h2>TODO-MOVE - Alogorithm - Spiral<a class="headerlink" href="#todo-move-alogorithm-spiral" title="Permalink to this headline">¶</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">spiral</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">Y</span><span class="p">):</span>
@@ -5751,9 +5746,9 @@ Got error No model on context stack. trying to find log_likelihood in translatio
 </div>
 </section>
 <section id="model-comparison">
-<h2>Model Comparison<a class="headerlink" href="#model-comparison" title="Permalink to this headline">#</a></h2>
+<h2>Model Comparison<a class="headerlink" href="#model-comparison" title="Permalink to this headline">¶</a></h2>
 <section id="posterior-predictive-checks">
-<h3>Posterior predictive checks<a class="headerlink" href="#posterior-predictive-checks" title="Permalink to this headline">#</a></h3>
+<h3>Posterior predictive checks<a class="headerlink" href="#posterior-predictive-checks" title="Permalink to this headline">¶</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dummy_data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">loadtxt</span><span class="p">(</span><span class="s1">&#39;./data/dummy.csv&#39;</span><span class="p">)</span>
@@ -6008,7 +6003,7 @@ NUTS: [ϵ, β, α]
 \[\text{Bayesian p-value} \triangleq p(T_{sim} \ge T_{obs} | y)\]</div>
 </section>
 <section id="information-criteria">
-<h3>Information Criteria<a class="headerlink" href="#information-criteria" title="Permalink to this headline">#</a></h3>
+<h3>Information Criteria<a class="headerlink" href="#information-criteria" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p>mechanism of using different tools to learn about models</p>
 <ul>
@@ -6079,7 +6074,7 @@ Pareto k diagnostic values:
 </div>
 </section>
 <section id="references">
-<h3>References<a class="headerlink" href="#references" title="Permalink to this headline">#</a></h3>
+<h3>References<a class="headerlink" href="#references" title="Permalink to this headline">¶</a></h3>
 </section>
 </section>
 </section>
@@ -6106,11 +6101,9 @@ Pareto k diagnostic values:
 
               </div>
               
-            </main>
-            <footer class="footer-article noprint">
-                
-    <!-- Previous / next buttons -->
-<div class='prev-next-area'>
+            
+                <!-- Previous / next buttons -->
+<div class='prev-next-area'> 
     <a class='left-prev' id="prev-link" href="linear_algebra.html" title="previous page">
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
@@ -6126,28 +6119,24 @@ Pareto k diagnostic values:
     <i class="fas fa-angle-right"></i>
     </a>
 </div>
-            </footer>
+            
         </div>
     </div>
-    <div class="footer-content row">
-        <footer class="col footer"><p>
-  
-    By Chandra<br/>
-  
-      &copy; Copyright 2022.<br/>
-</p>
-        </footer>
-    </div>
+    <footer class="footer">
+  <p>
     
-</div>
+      By Chandra<br/>
+    
+        &copy; Copyright 2021.<br/>
+  </p>
+</footer>
+</main>
 
 
       </div>
     </div>
   
-  <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
-
+  <script src="../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
 
   </body>
 </html>

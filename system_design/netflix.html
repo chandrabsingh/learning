@@ -8,9 +8,8 @@
 
     <title>Netflix creativity</title>
     
-  <!-- Loaded before other Sphinx assets -->
-  <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
-<link href="../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+  <link href="../_static/css/theme.css" rel="stylesheet">
+  <link href="../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
 
     
   <link rel="stylesheet"
@@ -20,16 +19,20 @@
   <link rel="preload" as="font" type="font/woff2" crossorigin
     href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
 
+    
+      
+
+    
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
     
-  <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+  <link rel="preload" as="script" href="../_static/js/index.be7d3bbb2ef33a8344ce.js">
 
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
@@ -37,13 +40,12 @@
     <script src="../_static/doctools.js"></script>
     <script src="../_static/clipboard.min.js"></script>
     <script src="../_static/copybutton.js"></script>
-    <script src="../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
     <script src="../_static/togglebutton.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="../_static/design-tabs.js"></script>
+    <script src="../_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
 const thebe_selector = ".thebe,.cell"
 const thebe_selector_input = "pre"
@@ -63,21 +65,7 @@ const thebe_selector_output = ".output, .cell_output"
     <!-- Google Analytics -->
     
   </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
-<!-- Checkboxes to toggle the left sidebar -->
-<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
-<label class="overlay overlay-navbar" for="__navigation">
-    <div class="visually-hidden">Toggle navigation sidebar</div>
-</label>
-<!-- Checkboxes to toggle the in-page toc -->
-<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
-<label class="overlay overlay-pagetoc" for="__page-toc">
-    <div class="visually-hidden">Toggle in-page Table of Contents</div>
-</label>
-<!-- Headers at the top -->
-<div class="announcement header-item noprint"></div>
-<div class="header header-item noprint"></div>
-
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
     
     <div class="container-fluid" id="banner"></div>
 
@@ -86,10 +74,9 @@ const thebe_selector_output = ".output, .cell_output"
     <div class="container-xl">
       <div class="row">
           
-<!-- Sidebar -->
-<div class="bd-sidebar noprint" id="site-navigation">
-    <div class="bd-sidebar__content">
-        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
     <a class="navbar-brand text-wrap" href="../index.html">
       
         <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
@@ -105,15 +92,14 @@ const thebe_selector_output = ".output, .cell_output"
   <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
 </form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item active">
-        
-        <ul class="nav bd-sidenav bd-sidenav__home-link">
-            <li class="toctree-l1">
-                <a class="reference internal" href="../intro.html">
-                    Welcome
-                </a>
-            </li>
-        </ul>
-        <p aria-level="2" class="caption" role="heading">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../intro.html">
+   Welcome
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
   System Design
  </span>
@@ -563,22 +549,29 @@ const thebe_selector_output = ".output, .cell_output"
      L02: Traditional Methods for ML in Graphs
     </a>
    </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../cs224w_ml_graph/CS224W_Colab_0.html">
+     <strong>
+      HW0
+     </strong>
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../cs224w_ml_graph/CS224W_Colab_1.html">
+     HW1
+    </a>
+   </li>
   </ul>
  </li>
 </ul>
 
     </div>
-</nav></div>
-        <div class="bd-sidebar__bottom">
-             <!-- To handle the deprecated key -->
-            
-            <div class="navbar_extra_footer">
-            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
-            </div>
-            
-        </div>
-    </div>
-    <div id="rtd-footer-container"></div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
 </div>
 
 
@@ -586,191 +579,94 @@ const thebe_selector_output = ".output, .cell_output"
 
 
           
-<!-- A tiny helper pixel to detect if we've scrolled -->
-<div class="sbt-scroll-pixel-helper"></div>
-<!-- Main content -->
-<div class="col py-0 content-container">
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
     
-    <div class="header-article row sticky-top noprint">
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
         
-
-
-
-<div class="col py-1 d-flex header-article-main">
-    <div class="header-article__left">
-        
-        <label for="__navigation"
-  class="headerbtn"
-  data-toggle="tooltip"
-data-placement="right"
-title="Toggle navigation"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-bars"></i>
-  </span>
-
-</label>
-
-        
-    </div>
-    <div class="header-article__right">
-<div class="menu-dropdown menu-dropdown-launch-buttons">
-  <button class="headerbtn menu-dropdown__trigger"
-      aria-label="Launch interactive content">
-      <i class="fas fa-rocket"></i>
-  </button>
-  <div class="menu-dropdown__content">
-    <ul>
-      <li>
-        <a href="https://mybinder.org/v2/gh/chandrabsingh/learning/master?urlpath=tree/learning/system_design/netflix.ipynb"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Launch on Binder"
->
-  
-
-<span class="headerbtn__icon-container">
-  
-    <img src="../_static/images/logo_binder.svg">
-  </span>
-<span class="headerbtn__text-container">Binder</span>
-</a>
-
-      </li>
-      
-    </ul>
-  </div>
-</div>
-
-<button onclick="toggleFullScreen()"
-  class="headerbtn"
-  data-toggle="tooltip"
-data-placement="bottom"
-title="Fullscreen mode"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-expand"></i>
-  </span>
-
-</button>
-
-<div class="menu-dropdown menu-dropdown-repository-buttons">
-  <button class="headerbtn menu-dropdown__trigger"
-      aria-label="Source repositories">
-      <i class="fab fa-github"></i>
-  </button>
-  <div class="menu-dropdown__content">
-    <ul>
-      <li>
-        <a href="https://github.com/chandrabsingh/learning"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Source repository"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fab fa-github"></i>
-  </span>
-<span class="headerbtn__text-container">repository</span>
-</a>
-
-      </li>
-      
-      <li>
-        <a href="https://github.com/chandrabsingh/learning/issues/new?title=Issue%20on%20page%20%2Fsystem_design/netflix.html&body=Your%20issue%20content%20here."
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Open an issue"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-lightbulb"></i>
-  </span>
-<span class="headerbtn__text-container">open issue</span>
-</a>
-
-      </li>
-      
-    </ul>
-  </div>
-</div>
-
-<div class="menu-dropdown menu-dropdown-download-buttons">
-  <button class="headerbtn menu-dropdown__trigger"
-      aria-label="Download this page">
-      <i class="fas fa-download"></i>
-  </button>
-  <div class="menu-dropdown__content">
-    <ul>
-      <li>
-        <a href="../_sources/system_design/netflix.ipynb"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Download source file"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-file"></i>
-  </span>
-<span class="headerbtn__text-container">.ipynb</span>
-</a>
-
-      </li>
-      
-      <li>
-        
-<button onclick="printPdf(this)"
-  class="headerbtn"
-  data-toggle="tooltip"
-data-placement="left"
-title="Print to PDF"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-file-pdf"></i>
-  </span>
-<span class="headerbtn__text-container">.pdf</span>
-</button>
-
-      </li>
-      
-    </ul>
-  </div>
-</div>
-<label for="__page-toc"
-  class="headerbtn headerbtn-page-toc"
-  
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-list"></i>
-  </span>
-
-</label>
-
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/system_design/netflix.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
     </div>
 </div>
 
-<!-- Table of contents -->
-<div class="col-md-3 bd-toc show noprint">
-    <div class="tocsection onthispage pt-5 pb-3">
-        <i class="fas fa-list"></i> Contents
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/chandrabsingh/learning"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/chandrabsingh/learning/issues/new?title=Issue%20on%20page%20%2Fsystem_design/netflix.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        
     </div>
-    <nav id="bd-toc-nav" aria-label="Page">
-        <ul class="visible nav section-nav flex-column">
+</div>
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/chandrabsingh/learning/master?urlpath=tree/learning/system_design/netflix.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#system-architecture-for-personalization-and-recommendation">
    System Architecture for Personalization and Recommendation
@@ -944,11 +840,12 @@ title="Print to PDF"
  </li>
 </ul>
 
-    </nav>
-</div>
+            </nav>
+        </div>
     </div>
-    <div class="article row">
-        <div class="col pl-md-3 pl-lg-5 content-container">
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
                 <h1>Netflix creativity</h1>
@@ -1138,16 +1035,15 @@ title="Print to PDF"
                     </div>
                 </div>
             </div>
-            <main id="main-content" role="main">
-                
+            
               <div>
                 
   <section class="tex2jax_ignore mathjax_ignore" id="netflix-creativity">
-<h1>Netflix creativity<a class="headerlink" href="#netflix-creativity" title="Permalink to this headline">#</a></h1>
+<h1>Netflix creativity<a class="headerlink" href="#netflix-creativity" title="Permalink to this headline">¶</a></h1>
 <section id="system-architecture-for-personalization-and-recommendation">
-<h2><a class="reference external" href="https://netflixtechblog.com/system-architectures-for-personalization-and-recommendation-e081aa94b5d8">System Architecture for Personalization and Recommendation</a><a class="headerlink" href="#system-architecture-for-personalization-and-recommendation" title="Permalink to this headline">#</a></h2>
+<h2><a class="reference external" href="https://netflixtechblog.com/system-architectures-for-personalization-and-recommendation-e081aa94b5d8">System Architecture for Personalization and Recommendation</a><a class="headerlink" href="#system-architecture-for-personalization-and-recommendation" title="Permalink to this headline">¶</a></h2>
 <section id="online-computation">
-<h3>Online Computation<a class="headerlink" href="#online-computation" title="Permalink to this headline">#</a></h3>
+<h3>Online Computation<a class="headerlink" href="#online-computation" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p>subject to SLA with maximum latency to respond recommendation</p></li>
 <li><p>fallback mechanism of precomputed result is adopted in case of failures</p></li>
@@ -1155,7 +1051,7 @@ title="Print to PDF"
 </ul>
 </section>
 <section id="offline-computation">
-<h3>Offline computation<a class="headerlink" href="#offline-computation" title="Permalink to this headline">#</a></h3>
+<h3>Offline computation<a class="headerlink" href="#offline-computation" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p>less limitation on latency, providing more choices to complex algorithms</p></li>
 <li><p>aggregate stats periodically</p></li>
@@ -1164,7 +1060,7 @@ title="Print to PDF"
 </ul>
 </section>
 <section id="nearline-computation">
-<h3>Nearline computation<a class="headerlink" href="#nearline-computation" title="Permalink to this headline">#</a></h3>
+<h3>Nearline computation<a class="headerlink" href="#nearline-computation" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p>intermediate compromise between two modes</p></li>
 <li><p>allows system to be more responsive</p></li>
@@ -1173,7 +1069,7 @@ title="Print to PDF"
 <p align="center"><img src="https://miro.medium.com/max/1400/1*qqTSkHNOzukJ5r-b54-wJQ.png" title="" width=500 height=500></p>
 </section>
 <section id="ways-to-combine-these-3-approaches">
-<h3>ways to combine these 3 approaches<a class="headerlink" href="#ways-to-combine-these-3-approaches" title="Permalink to this headline">#</a></h3>
+<h3>ways to combine these 3 approaches<a class="headerlink" href="#ways-to-combine-these-3-approaches" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p>fallback</p></li>
 <li><p>partial precomputation in offline mode allowing less costly operation in online mode</p></li>
@@ -1196,7 +1092,7 @@ title="Print to PDF"
 </ul>
 </section>
 <section id="offline-jobs">
-<h3>Offline Jobs<a class="headerlink" href="#offline-jobs" title="Permalink to this headline">#</a></h3>
+<h3>Offline Jobs<a class="headerlink" href="#offline-jobs" title="Permalink to this headline">¶</a></h3>
 <p align="center"><img src="https://miro.medium.com/max/1400/1*cwfWTmdtk0Z6pOl9uVU0JA.png" width=500 height=500></p>
 <ul class="simple">
 <li><p>scheduled periodic jobs</p></li>
@@ -1228,7 +1124,7 @@ title="Print to PDF"
 </ul>
 </section>
 <section id="signals-and-models">
-<h3>Signals and Models<a class="headerlink" href="#signals-and-models" title="Permalink to this headline">#</a></h3>
+<h3>Signals and Models<a class="headerlink" href="#signals-and-models" title="Permalink to this headline">¶</a></h3>
 <p align="center"><img src="https://miro.medium.com/max/1400/1*8lw3s6XZxOUTGM0yVJLJxA.png" width=500 height=500></p>
 <ul class="simple">
 <li><p>In all modes either online or offline computation, three type of inputs are required - models, data, and signals</p>
@@ -1241,7 +1137,7 @@ title="Print to PDF"
 </ul>
 </section>
 <section id="event-and-data-distribution">
-<h3>Event and Data Distribution<a class="headerlink" href="#event-and-data-distribution" title="Permalink to this headline">#</a></h3>
+<h3>Event and Data Distribution<a class="headerlink" href="#event-and-data-distribution" title="Permalink to this headline">¶</a></h3>
 <p align="center"><img src="https://miro.medium.com/max/1400/1*dzpP6wfwejPQ-xKUDJlukg.png" width=500 height=500></p>
 <ul class="simple">
 <li><p>goal: translate interaction data into insights</p></li>
@@ -1262,7 +1158,7 @@ title="Print to PDF"
 </ul>
 </section>
 <section id="recommendation-results">
-<h3>Recommendation results<a class="headerlink" href="#recommendation-results" title="Permalink to this headline">#</a></h3>
+<h3>Recommendation results<a class="headerlink" href="#recommendation-results" title="Permalink to this headline">¶</a></h3>
 <p align="center"><img src="https://miro.medium.com/max/1400/1*Y1oZvmQnwc7lJTL07Q4eXg.png" width=500 height=500></p>
 <ul class="simple">
 <li><p>goal: personalized recommendations</p>
@@ -1292,7 +1188,7 @@ title="Print to PDF"
 </section>
 </section>
 <section id="rapid-event-notification-system-reno">
-<h2><a class="reference external" href="https://netflixtechblog.com/rapid-event-notification-system-at-netflix-6deb1d2b57d1">Rapid Event Notification System (RENO)</a><a class="headerlink" href="#rapid-event-notification-system-reno" title="Permalink to this headline">#</a></h2>
+<h2><a class="reference external" href="https://netflixtechblog.com/rapid-event-notification-system-at-netflix-6deb1d2b57d1">Rapid Event Notification System (RENO)</a><a class="headerlink" href="#rapid-event-notification-system-reno" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li><p>To maintain real time experience, RENO facilitates server initiated communication in scalable and extensible manner</p></li>
 <li><p>the system works asynchronously that supports both online and offline computation</p></li>
@@ -1372,7 +1268,7 @@ title="Print to PDF"
 <p align="center"><img src="https://miro.medium.com/max/1400/0*i6o12AqlvqZDMcAj" width=500 height=500></p>
 </section>
 <section id="netflix-recommendations">
-<h2>Netflix Recommendations<a class="headerlink" href="#netflix-recommendations" title="Permalink to this headline">#</a></h2>
+<h2>Netflix Recommendations<a class="headerlink" href="#netflix-recommendations" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li><p>Netflix Prize - 2006 - improve accuracy by 10%, earlier was Cinematch</p></li>
 <li><p>beat existing Netflix RMSE of 0.9525 to 0.8572 or less</p></li>
@@ -1481,7 +1377,7 @@ title="Print to PDF"
 <p align="center"><img src="./images/netflixPrice.png" width=500 height=500></p> 
 </section>
 <section id="personalization-algorithms">
-<h2>Personalization algorithms<a class="headerlink" href="#personalization-algorithms" title="Permalink to this headline">#</a></h2>
+<h2>Personalization algorithms<a class="headerlink" href="#personalization-algorithms" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li><p>Different household members will have different tastes</p></li>
 <li><p>Optimize both accuracy and diversity</p></li>
@@ -1507,7 +1403,7 @@ title="Print to PDF"
 </ul>
 </section>
 <section id="caching-at-netflix">
-<h2>Caching at Netflix<a class="headerlink" href="#caching-at-netflix" title="Permalink to this headline">#</a></h2>
+<h2>Caching at Netflix<a class="headerlink" href="#caching-at-netflix" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li><p><a class="reference external" href="https://www.slideshare.net/ShashiShekarMadappa/evcache-at-netflix">https://www.slideshare.net/ShashiShekarMadappa/evcache-at-netflix</a></p></li>
 <li><p><a class="reference external" href="https://www.linkedin.com/in/shashishekar/#experience">https://www.linkedin.com/in/shashishekar/#experience</a></p></li>
@@ -1587,9 +1483,9 @@ title="Print to PDF"
 <p align="center"><img src="https://miro.medium.com/max/1400/0*4qVbkm-lCUT3V11p." width=500 height=500></p>
 </section>
 <section id="netflix-components">
-<h2>Netflix components<a class="headerlink" href="#netflix-components" title="Permalink to this headline">#</a></h2>
+<h2>Netflix components<a class="headerlink" href="#netflix-components" title="Permalink to this headline">¶</a></h2>
 <section id="netflix-on-cloud">
-<h3>Netflix on cloud<a class="headerlink" href="#netflix-on-cloud" title="Permalink to this headline">#</a></h3>
+<h3>Netflix on cloud<a class="headerlink" href="#netflix-on-cloud" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p>AWS</p>
 <ul>
@@ -1612,7 +1508,7 @@ title="Print to PDF"
 <p align="center"><img src="./images/netflix_system_design.png" width=500 height=500></p>  
 </section>
 <section id="how-does-netflix-support-different-clients">
-<h3>How does Netflix support different clients<a class="headerlink" href="#how-does-netflix-support-different-clients" title="Permalink to this headline">#</a></h3>
+<h3>How does Netflix support different clients<a class="headerlink" href="#how-does-netflix-support-different-clients" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p>all the apps are written using platform specific code</p></li>
 <li><p>Netflix web app is written using React.js</p></li>
@@ -1637,7 +1533,7 @@ title="Print to PDF"
 <p align="center"><img src="./images/netflixLoadBalancer.png" width=400 height=400></p>  
 </section>
 <section id="how-netflix-onboards-video">
-<h3>How Netflix onboards video<a class="headerlink" href="#how-netflix-onboards-video" title="Permalink to this headline">#</a></h3>
+<h3>How Netflix onboards video<a class="headerlink" href="#how-netflix-onboards-video" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p>lot of preprocessing</p>
 <ul>
@@ -1679,7 +1575,7 @@ title="Print to PDF"
 <p align="center"><img src="./images/netflixVideoStreaming.png" width=400 height=400></p>  
 </section>
 <section id="how-does-openconnect-work">
-<h3>How does OpenConnect work<a class="headerlink" href="#how-does-openconnect-work" title="Permalink to this headline">#</a></h3>
+<h3>How does OpenConnect work<a class="headerlink" href="#how-does-openconnect-work" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p>all the different formats are uploaded into OC</p></li>
 <li><p>when user makes request</p>
@@ -1739,7 +1635,7 @@ title="Print to PDF"
 </ul>
 <p align="center"><img src="https://miro.medium.com/max/1266/1*tCdB8E0X6zDJKAhpTLxNBA.png" width=200 height=200></p></section>
 <section id="why-zuul">
-<h3>Why Zuul<a class="headerlink" href="#why-zuul" title="Permalink to this headline">#</a></h3>
+<h3>Why Zuul<a class="headerlink" href="#why-zuul" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p>handles request from devices and websites to backend of streaming application</p></li>
 <li><p>supports dynamic routing to different backend clusters</p></li>
@@ -1783,7 +1679,7 @@ title="Print to PDF"
 </ul>
 </section>
 <section id="why-hystrix">
-<h3>Why Hystrix<a class="headerlink" href="#why-hystrix" title="Permalink to this headline">#</a></h3>
+<h3>Why Hystrix<a class="headerlink" href="#why-hystrix" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p>Netflix uses microservices architecture</p></li>
 <li><p>there is a dependency of quick throughput of these services to respond quickly</p></li>
@@ -1793,20 +1689,20 @@ title="Print to PDF"
 </ul>
 </section>
 <section id="why-evcache">
-<h3>Why EVCache<a class="headerlink" href="#why-evcache" title="Permalink to this headline">#</a></h3>
+<h3>Why EVCache<a class="headerlink" href="#why-evcache" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p><a class="reference external" href="#Caching-at-Netflix">Caching at Netflix (above)</a></p></li>
 </ul>
 </section>
 <section id="why-mantis">
-<h3>Why Mantis<a class="headerlink" href="#why-mantis" title="Permalink to this headline">#</a></h3>
+<h3>Why Mantis<a class="headerlink" href="#why-mantis" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p><a class="reference external" href="https://netflixtechblog.com/open-sourcing-mantis-a-platform-for-building-cost-effective-realtime-operations-focused-5b8ff387813a">https://netflixtechblog.com/open-sourcing-mantis-a-platform-for-building-cost-effective-realtime-operations-focused-5b8ff387813a</a></p></li>
 <li><p>track events in real time at device specific granularity</p></li>
 </ul>
 </section>
 <section id="why-big-data">
-<h3>Why Big Data<a class="headerlink" href="#why-big-data" title="Permalink to this headline">#</a></h3>
+<h3>Why Big Data<a class="headerlink" href="#why-big-data" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p>facilitates algorithms and analytics</p></li>
 <li><p>use Hadoop, Hive, Pig, Parquet, Presto, Spark</p></li>
@@ -1817,10 +1713,10 @@ title="Print to PDF"
 </ul>
 </section>
 <section id="manhattan">
-<h3>Manhattan<a class="headerlink" href="#manhattan" title="Permalink to this headline">#</a></h3>
+<h3>Manhattan<a class="headerlink" href="#manhattan" title="Permalink to this headline">¶</a></h3>
 </section>
 <section id="why-titus">
-<h3>Why Titus<a class="headerlink" href="#why-titus" title="Permalink to this headline">#</a></h3>
+<h3>Why Titus<a class="headerlink" href="#why-titus" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p>container management platform</p></li>
 <li><p>tight integration between Titus and both Amazon and Netflix infrastructure</p></li>
@@ -1836,7 +1732,7 @@ title="Print to PDF"
 <p align="center"><img src="https://netflix.github.io/titus/images/titus-arch.png" width=500 height=500></p>
 </section>
 <section id="why-papermill">
-<h3>Why Papermill<a class="headerlink" href="#why-papermill" title="Permalink to this headline">#</a></h3>
+<h3>Why Papermill<a class="headerlink" href="#why-papermill" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p>Schedule Notebooks at Netflix</p></li>
 <li><p>Which single tool can data scientist, data engineer, and machine learning engineer work on?</p>
@@ -1878,7 +1774,7 @@ title="Print to PDF"
 <p align="center"><img src="https://miro.medium.com/max/1400/1*WOEEJizYnO8ibtU2l9jWbA.jpeg" width=500 height=500></p></section>
 </section>
 <section id="data-at-a-glance-as-in-oct-2017">
-<h2>Data at a glance (as in Oct 2017)<a class="headerlink" href="#data-at-a-glance-as-in-oct-2017" title="Permalink to this headline">#</a></h2>
+<h2>Data at a glance (as in Oct 2017)<a class="headerlink" href="#data-at-a-glance-as-in-oct-2017" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li><p>launched in 1997</p></li>
 <li><p>125+ million hours watched every day</p>
@@ -1909,7 +1805,7 @@ title="Print to PDF"
 </ul>
 </section>
 <section id="a-b-testing">
-<h2>A/B Testing<a class="headerlink" href="#a-b-testing" title="Permalink to this headline">#</a></h2>
+<h2>A/B Testing<a class="headerlink" href="#a-b-testing" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li><p>“Making decisions is easy - what’s hard is making the right decisions”</p></li>
 <li><p>split sample into two groups</p>
@@ -1931,7 +1827,7 @@ title="Print to PDF"
 <li><p>With the Top 10 example, the hypothesis read: “Showing members the Top 10 experience will help them find something to watch, increasing member joy and satisfaction.”</p></li>
 </ul>
 <section id="interpreting-a-b-test-results-false-positives-and-statistical-significance">
-<h3>Interpreting A/B test results: false positives and statistical significance<a class="headerlink" href="#interpreting-a-b-test-results-false-positives-and-statistical-significance" title="Permalink to this headline">#</a></h3>
+<h3>Interpreting A/B test results: false positives and statistical significance<a class="headerlink" href="#interpreting-a-b-test-results-false-positives-and-statistical-significance" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p>If a test shows a statistically significant improvement in primary decision metric, the feature is a strong candidate for a roll out</p></li>
 <li><p>no approach to decision making can entirely eliminate uncertainty and the possibility of making mistakes</p></li>
@@ -1960,14 +1856,14 @@ title="Print to PDF"
 <p align="center"><img src="https://miro.medium.com/max/1400/1*8d7ysHOGOLop7xU4dBY_RQ.gif" width = 500 height= 500></p>
 </section>
 <section id="interpreting-a-b-test-results-false-negatives-and-power">
-<h3>Interpreting A/B test results: false negatives and power<a class="headerlink" href="#interpreting-a-b-test-results-false-negatives-and-power" title="Permalink to this headline">#</a></h3>
+<h3>Interpreting A/B test results: false negatives and power<a class="headerlink" href="#interpreting-a-b-test-results-false-negatives-and-power" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p>Label the photo of cat as “not cat”</p></li>
 <li><p>TODO more</p></li>
 </ul>
 </section>
 <section id="power-of-hypothesis-test">
-<h3>Power of hypothesis test<a class="headerlink" href="#power-of-hypothesis-test" title="Permalink to this headline">#</a></h3>
+<h3>Power of hypothesis test<a class="headerlink" href="#power-of-hypothesis-test" title="Permalink to this headline">¶</a></h3>
 <blockquote>
 <div><p>The statistical power of a binary hypothesis test is the probability that the test correctly rejects the null hypothesis (<span class="math notranslate nohighlight">\(H_{0}\)</span>) when a specific alternative hypothesis (<span class="math notranslate nohighlight">\(H_{1}\)</span>) is true. It is commonly denoted by <span class="math notranslate nohighlight">\((1-\beta)\)</span> , and represents the chances of a “true positive” detection conditional on the actual existence of an effect to detect. Statistical power ranges from 0 to 1, and as the power of a test increases, the probability <span class="math notranslate nohighlight">\(\beta\)</span>  of making a type II error by wrongly failing to reject the null hypothesis decreases.</p>
 <ul class="simple">
@@ -1980,13 +1876,13 @@ title="Print to PDF"
 <p align="center"><img src="./images/significance_level_power.png" height=300 width=300></p>
 </section>
 <section id="cloud-based-microservices-architecture">
-<h3>Cloud based Microservices architecture<a class="headerlink" href="#cloud-based-microservices-architecture" title="Permalink to this headline">#</a></h3>
+<h3>Cloud based Microservices architecture<a class="headerlink" href="#cloud-based-microservices-architecture" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p><a class="reference external" href="https://medium.com/swlh/a-design-analysis-of-cloud-based-microservices-architecture-at-netflix-98836b2da45f">https://medium.com/swlh/a-design-analysis-of-cloud-based-microservices-architecture-at-netflix-98836b2da45f</a></p></li>
 </ul>
 </section>
 <section id="references-toread">
-<h3>References (ToRead)<a class="headerlink" href="#references-toread" title="Permalink to this headline">#</a></h3>
+<h3>References (ToRead)<a class="headerlink" href="#references-toread" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p>Chukwa</p></li>
 <li><p><a class="reference external" href="https://github.com/Netflix">Netflix Github repository</a></p></li>
@@ -2028,11 +1924,9 @@ title="Print to PDF"
 
               </div>
               
-            </main>
-            <footer class="footer-article noprint">
-                
-    <!-- Previous / next buttons -->
-<div class='prev-next-area'>
+            
+                <!-- Previous / next buttons -->
+<div class='prev-next-area'> 
     <a class='left-prev' id="prev-link" href="design_general_use_cases.html" title="previous page">
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
@@ -2048,28 +1942,24 @@ title="Print to PDF"
     <i class="fas fa-angle-right"></i>
     </a>
 </div>
-            </footer>
+            
         </div>
     </div>
-    <div class="footer-content row">
-        <footer class="col footer"><p>
-  
-    By Chandra<br/>
-  
-      &copy; Copyright 2022.<br/>
-</p>
-        </footer>
-    </div>
+    <footer class="footer">
+  <p>
     
-</div>
+      By Chandra<br/>
+    
+        &copy; Copyright 2021.<br/>
+  </p>
+</footer>
+</main>
 
 
       </div>
     </div>
   
-  <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
-
+  <script src="../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
 
   </body>
 </html>

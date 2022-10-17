@@ -8,9 +8,8 @@
 
     <title>SARIMA modeling</title>
     
-  <!-- Loaded before other Sphinx assets -->
-  <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
-<link href="../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+  <link href="../_static/css/theme.css" rel="stylesheet">
+  <link href="../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
 
     
   <link rel="stylesheet"
@@ -20,16 +19,20 @@
   <link rel="preload" as="font" type="font/woff2" crossorigin
     href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
 
+    
+      
+
+    
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
     
-  <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+  <link rel="preload" as="script" href="../_static/js/index.be7d3bbb2ef33a8344ce.js">
 
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
@@ -37,13 +40,12 @@
     <script src="../_static/doctools.js"></script>
     <script src="../_static/clipboard.min.js"></script>
     <script src="../_static/copybutton.js"></script>
-    <script src="../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
     <script src="../_static/togglebutton.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="../_static/design-tabs.js"></script>
+    <script src="../_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
 const thebe_selector = ".thebe,.cell"
 const thebe_selector_input = "pre"
@@ -63,21 +65,7 @@ const thebe_selector_output = ".output, .cell_output"
     <!-- Google Analytics -->
     
   </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
-<!-- Checkboxes to toggle the left sidebar -->
-<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
-<label class="overlay overlay-navbar" for="__navigation">
-    <div class="visually-hidden">Toggle navigation sidebar</div>
-</label>
-<!-- Checkboxes to toggle the in-page toc -->
-<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
-<label class="overlay overlay-pagetoc" for="__page-toc">
-    <div class="visually-hidden">Toggle in-page Table of Contents</div>
-</label>
-<!-- Headers at the top -->
-<div class="announcement header-item noprint"></div>
-<div class="header header-item noprint"></div>
-
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
     
     <div class="container-fluid" id="banner"></div>
 
@@ -86,10 +74,9 @@ const thebe_selector_output = ".output, .cell_output"
     <div class="container-xl">
       <div class="row">
           
-<!-- Sidebar -->
-<div class="bd-sidebar noprint" id="site-navigation">
-    <div class="bd-sidebar__content">
-        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
     <a class="navbar-brand text-wrap" href="../index.html">
       
         <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
@@ -105,15 +92,14 @@ const thebe_selector_output = ".output, .cell_output"
   <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
 </form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item active">
-        
-        <ul class="nav bd-sidenav bd-sidenav__home-link">
-            <li class="toctree-l1">
-                <a class="reference internal" href="../intro.html">
-                    Welcome
-                </a>
-            </li>
-        </ul>
-        <p aria-level="2" class="caption" role="heading">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../intro.html">
+   Welcome
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
   System Design
  </span>
@@ -563,22 +549,29 @@ const thebe_selector_output = ".output, .cell_output"
      L02: Traditional Methods for ML in Graphs
     </a>
    </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../cs224w_ml_graph/CS224W_Colab_0.html">
+     <strong>
+      HW0
+     </strong>
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../cs224w_ml_graph/CS224W_Colab_1.html">
+     HW1
+    </a>
+   </li>
   </ul>
  </li>
 </ul>
 
     </div>
-</nav></div>
-        <div class="bd-sidebar__bottom">
-             <!-- To handle the deprecated key -->
-            
-            <div class="navbar_extra_footer">
-            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
-            </div>
-            
-        </div>
-    </div>
-    <div id="rtd-footer-container"></div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
 </div>
 
 
@@ -586,191 +579,94 @@ const thebe_selector_output = ".output, .cell_output"
 
 
           
-<!-- A tiny helper pixel to detect if we've scrolled -->
-<div class="sbt-scroll-pixel-helper"></div>
-<!-- Main content -->
-<div class="col py-0 content-container">
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
     
-    <div class="header-article row sticky-top noprint">
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
         
-
-
-
-<div class="col py-1 d-flex header-article-main">
-    <div class="header-article__left">
-        
-        <label for="__navigation"
-  class="headerbtn"
-  data-toggle="tooltip"
-data-placement="right"
-title="Toggle navigation"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-bars"></i>
-  </span>
-
-</label>
-
-        
-    </div>
-    <div class="header-article__right">
-<div class="menu-dropdown menu-dropdown-launch-buttons">
-  <button class="headerbtn menu-dropdown__trigger"
-      aria-label="Launch interactive content">
-      <i class="fas fa-rocket"></i>
-  </button>
-  <div class="menu-dropdown__content">
-    <ul>
-      <li>
-        <a href="https://mybinder.org/v2/gh/chandrabsingh/learning/master?urlpath=tree/learning/econometrics/SARIMA_modeling.ipynb"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Launch on Binder"
->
-  
-
-<span class="headerbtn__icon-container">
-  
-    <img src="../_static/images/logo_binder.svg">
-  </span>
-<span class="headerbtn__text-container">Binder</span>
-</a>
-
-      </li>
-      
-    </ul>
-  </div>
-</div>
-
-<button onclick="toggleFullScreen()"
-  class="headerbtn"
-  data-toggle="tooltip"
-data-placement="bottom"
-title="Fullscreen mode"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-expand"></i>
-  </span>
-
-</button>
-
-<div class="menu-dropdown menu-dropdown-repository-buttons">
-  <button class="headerbtn menu-dropdown__trigger"
-      aria-label="Source repositories">
-      <i class="fab fa-github"></i>
-  </button>
-  <div class="menu-dropdown__content">
-    <ul>
-      <li>
-        <a href="https://github.com/chandrabsingh/learning"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Source repository"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fab fa-github"></i>
-  </span>
-<span class="headerbtn__text-container">repository</span>
-</a>
-
-      </li>
-      
-      <li>
-        <a href="https://github.com/chandrabsingh/learning/issues/new?title=Issue%20on%20page%20%2Feconometrics/SARIMA_modeling.html&body=Your%20issue%20content%20here."
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Open an issue"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-lightbulb"></i>
-  </span>
-<span class="headerbtn__text-container">open issue</span>
-</a>
-
-      </li>
-      
-    </ul>
-  </div>
-</div>
-
-<div class="menu-dropdown menu-dropdown-download-buttons">
-  <button class="headerbtn menu-dropdown__trigger"
-      aria-label="Download this page">
-      <i class="fas fa-download"></i>
-  </button>
-  <div class="menu-dropdown__content">
-    <ul>
-      <li>
-        <a href="../_sources/econometrics/SARIMA_modeling.ipynb"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Download source file"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-file"></i>
-  </span>
-<span class="headerbtn__text-container">.ipynb</span>
-</a>
-
-      </li>
-      
-      <li>
-        
-<button onclick="printPdf(this)"
-  class="headerbtn"
-  data-toggle="tooltip"
-data-placement="left"
-title="Print to PDF"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-file-pdf"></i>
-  </span>
-<span class="headerbtn__text-container">.pdf</span>
-</button>
-
-      </li>
-      
-    </ul>
-  </div>
-</div>
-<label for="__page-toc"
-  class="headerbtn headerbtn-page-toc"
-  
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-list"></i>
-  </span>
-
-</label>
-
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/econometrics/SARIMA_modeling.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
     </div>
 </div>
 
-<!-- Table of contents -->
-<div class="col-md-3 bd-toc show noprint">
-    <div class="tocsection onthispage pt-5 pb-3">
-        <i class="fas fa-list"></i> Contents
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/chandrabsingh/learning"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/chandrabsingh/learning/issues/new?title=Issue%20on%20page%20%2Feconometrics/SARIMA_modeling.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        
     </div>
-    <nav id="bd-toc-nav" aria-label="Page">
-        <ul class="visible nav section-nav flex-column">
+</div>
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/chandrabsingh/learning/master?urlpath=tree/learning/econometrics/SARIMA_modeling.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#goals">
    Goals
@@ -1025,11 +921,12 @@ title="Print to PDF"
  </li>
 </ul>
 
-    </nav>
-</div>
+            </nav>
+        </div>
     </div>
-    <div class="article row">
-        <div class="col pl-md-3 pl-lg-5 content-container">
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
                 <h1>SARIMA modeling</h1>
@@ -1300,14 +1197,13 @@ title="Print to PDF"
                     </div>
                 </div>
             </div>
-            <main id="main-content" role="main">
-                
+            
               <div>
                 
   <section class="tex2jax_ignore mathjax_ignore" id="sarima-modeling">
-<h1>SARIMA modeling<a class="headerlink" href="#sarima-modeling" title="Permalink to this headline">#</a></h1>
+<h1>SARIMA modeling<a class="headerlink" href="#sarima-modeling" title="Permalink to this headline">¶</a></h1>
 <section id="goals">
-<h2>Goals<a class="headerlink" href="#goals" title="Permalink to this headline">#</a></h2>
+<h2>Goals<a class="headerlink" href="#goals" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li><p>Extend understanding from ARMA models to SARIMA (Seasonal AutoRegressive Integrated Moving Average) models</p>
 <ul>
@@ -1322,9 +1218,9 @@ title="Print to PDF"
 </ul>
 </section>
 <section id="theoretical-aspects">
-<h2>Theoretical Aspects<a class="headerlink" href="#theoretical-aspects" title="Permalink to this headline">#</a></h2>
+<h2>Theoretical Aspects<a class="headerlink" href="#theoretical-aspects" title="Permalink to this headline">¶</a></h2>
 <section id="extending-arma-models-time-trends">
-<h3>Extending ARMA Models - Time trends<a class="headerlink" href="#extending-arma-models-time-trends" title="Permalink to this headline">#</a></h3>
+<h3>Extending ARMA Models - Time trends<a class="headerlink" href="#extending-arma-models-time-trends" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p>Interested in forecasting h step-ahead forecast(multiple horizon T+1, T+2, .. T+h) given information available at time T
 (<span class="math notranslate nohighlight">\(X_{T+h|T}\)</span>)
@@ -1337,7 +1233,7 @@ X_t = T_t + S_t + C_t + \epsilon_t
 <li><p><span class="math notranslate nohighlight">\(\epsilon\)</span> - white noise</p></li>
 </ul>
 <section id="time-trends">
-<h4>Time trends<a class="headerlink" href="#time-trends" title="Permalink to this headline">#</a></h4>
+<h4>Time trends<a class="headerlink" href="#time-trends" title="Permalink to this headline">¶</a></h4>
 <ul class="simple">
 <li><p>A basic trend model
 $<span class="math notranslate nohighlight">\(
@@ -1356,7 +1252,7 @@ X_t + \beta_0 + \beta_1t + \beta_2t^2 + \epsilon_t
 </ul>
 </section>
 <section id="exponential-trends">
-<h4>Exponential trends<a class="headerlink" href="#exponential-trends" title="Permalink to this headline">#</a></h4>
+<h4>Exponential trends<a class="headerlink" href="#exponential-trends" title="Permalink to this headline">¶</a></h4>
 <ul class="simple">
 <li><p>Models estimated in logs have exponential trends
 $<span class="math notranslate nohighlight">\(  
@@ -1370,7 +1266,7 @@ X_t = \beta_0 \exp(\beta_1t)\epsilon_t
 </ul>
 </section>
 <section id="forecasting">
-<h4>Forecasting<a class="headerlink" href="#forecasting" title="Permalink to this headline">#</a></h4>
+<h4>Forecasting<a class="headerlink" href="#forecasting" title="Permalink to this headline">¶</a></h4>
 <ul class="simple">
 <li><p>Trend forecasting is simple
 $<span class="math notranslate nohighlight">\( 
@@ -1391,7 +1287,7 @@ PI = [\hat{X}_{T+h|T} - 1.96\sigma, \hat{X}_{T+h|T} + 1.96\sigma]
 </ul>
 </section>
 <section id="forecasting-exponential-trends">
-<h4>Forecasting exponential trends<a class="headerlink" href="#forecasting-exponential-trends" title="Permalink to this headline">#</a></h4>
+<h4>Forecasting exponential trends<a class="headerlink" href="#forecasting-exponential-trends" title="Permalink to this headline">¶</a></h4>
 <ul class="simple">
 <li><p>Assumption</p>
 <ul>
@@ -1437,7 +1333,7 @@ $<span class="math notranslate nohighlight">\(  PI = [\exp(\beta_0 + \beta_1{(T+
 </section>
 </section>
 <section id="seasonality">
-<h3>Seasonality<a class="headerlink" href="#seasonality" title="Permalink to this headline">#</a></h3>
+<h3>Seasonality<a class="headerlink" href="#seasonality" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p>Pure seasonal model
 $<span class="math notranslate nohighlight">\(  X_t = S_t + \epsilon_t  \)</span>$</p></li>
@@ -1446,7 +1342,7 @@ $<span class="math notranslate nohighlight">\(  X_t = S_t + \epsilon_t  \)</span
 <li><p>completely predictable</p></li>
 </ul>
 <section id="seasonal-dummies">
-<h4>Seasonal dummies<a class="headerlink" href="#seasonal-dummies" title="Permalink to this headline">#</a></h4>
+<h4>Seasonal dummies<a class="headerlink" href="#seasonal-dummies" title="Permalink to this headline">¶</a></h4>
 <div class="math notranslate nohighlight">
 \[  X_t = \sum\limits_{i=1}^{m}\gamma_iI_{[S_m(t)=i]} + \epsilon_t  \]</div>
 <ul class="simple">
@@ -1477,7 +1373,7 @@ $<span class="math notranslate nohighlight">\(  X_t = \sum\limits_{i=1}^{m_1}\ga
 </ul>
 </section>
 <section id="estimation">
-<h4>Estimation<a class="headerlink" href="#estimation" title="Permalink to this headline">#</a></h4>
+<h4>Estimation<a class="headerlink" href="#estimation" title="Permalink to this headline">¶</a></h4>
 <ul class="simple">
 <li><p>generally use OLS</p></li>
 <li><p>combine with time trends
@@ -1494,10 +1390,10 @@ $<span class="math notranslate nohighlight">\(  X_t = \beta_0 + \sum\limits_{i=1
 </ul>
 </section>
 <section id="restricted-unrestricted-seasonality-anova">
-<h4>?? Restricted/Unrestricted seasonality ANOVA<a class="headerlink" href="#restricted-unrestricted-seasonality-anova" title="Permalink to this headline">#</a></h4>
+<h4>?? Restricted/Unrestricted seasonality ANOVA<a class="headerlink" href="#restricted-unrestricted-seasonality-anova" title="Permalink to this headline">¶</a></h4>
 </section>
 <section id="forecasting-and-prediction-intervals">
-<h4>Forecasting and Prediction Intervals<a class="headerlink" href="#forecasting-and-prediction-intervals" title="Permalink to this headline">#</a></h4>
+<h4>Forecasting and Prediction Intervals<a class="headerlink" href="#forecasting-and-prediction-intervals" title="Permalink to this headline">¶</a></h4>
 <ul class="simple">
 <li><p>Forecasts are simple
 $<span class="math notranslate nohighlight">\(  \hat{X}_{T+h|T} = \beta_1t + \beta_2t^2 + \gamma S_m(T+h)  \)</span>$</p></li>
@@ -1507,16 +1403,16 @@ $<span class="math notranslate nohighlight">\(  PI = [\hat{X}_{T+h|T} - 1.96\sig
 </ul>
 </section>
 <section id="fourier-series-for-seasonality">
-<h4>?? Fourier Series for seasonality<a class="headerlink" href="#fourier-series-for-seasonality" title="Permalink to this headline">#</a></h4>
+<h4>?? Fourier Series for seasonality<a class="headerlink" href="#fourier-series-for-seasonality" title="Permalink to this headline">¶</a></h4>
 <ul class="simple">
 <li><p><a class="reference external" href="https://medium.com/intive-developers/forecasting-time-series-with-multiple-seasonalities-using-tbats-in-python-398a00ac0e8a">https://medium.com/intive-developers/forecasting-time-series-with-multiple-seasonalities-using-tbats-in-python-398a00ac0e8a</a></p></li>
 </ul>
 </section>
 </section>
 <section id="seasonal-ma">
-<h3>Seasonal MA<a class="headerlink" href="#seasonal-ma" title="Permalink to this headline">#</a></h3>
+<h3>Seasonal MA<a class="headerlink" href="#seasonal-ma" title="Permalink to this headline">¶</a></h3>
 <section id="ma-models">
-<h4>MA models<a class="headerlink" href="#ma-models" title="Permalink to this headline">#</a></h4>
+<h4>MA models<a class="headerlink" href="#ma-models" title="Permalink to this headline">¶</a></h4>
 <ul class="simple">
 <li><p>General MA(1) series
 $<span class="math notranslate nohighlight">\(  X_t = (1+\theta_1L)\epsilon_t = \epsilon_t + \theta_1L\epsilon_t = \epsilon_t + \theta_1\epsilon_{t-1}  \)</span>$</p></li>
@@ -1544,7 +1440,7 @@ X_t &amp;= (1+\theta_1L)(1+\theta_mL^m)\epsilon_t \\
 </ul>
 </section>
 <section id="prediction-interval-in-ma-models">
-<h4>Prediction Interval in MA models<a class="headerlink" href="#prediction-interval-in-ma-models" title="Permalink to this headline">#</a></h4>
+<h4>Prediction Interval in MA models<a class="headerlink" href="#prediction-interval-in-ma-models" title="Permalink to this headline">¶</a></h4>
 <ul class="simple">
 <li><p>Prediction intervals for MA process
 $<span class="math notranslate nohighlight">\(  X_t = \mu + \sum\limits_{i=1}^{Q} \theta_i \epsilon_{t-i} + \epsilon_{t} \)</span>$</p></li>
@@ -1561,10 +1457,10 @@ $<span class="math notranslate nohighlight">\(  \big[ \hat{X}_{T+h|T} \pm 1.96\s
 </ul>
 </section>
 <section id="ma-invertibility-and-prediction">
-<h4>MA Invertibility and Prediction<a class="headerlink" href="#ma-invertibility-and-prediction" title="Permalink to this headline">#</a></h4>
+<h4>MA Invertibility and Prediction<a class="headerlink" href="#ma-invertibility-and-prediction" title="Permalink to this headline">¶</a></h4>
 </section>
 <section id="summary">
-<h4>Summary<a class="headerlink" href="#summary" title="Permalink to this headline">#</a></h4>
+<h4>Summary<a class="headerlink" href="#summary" title="Permalink to this headline">¶</a></h4>
 <ul class="simple">
 <li><p>Optimal forecast in MA models only depends on observed data</p></li>
 <li><p>this happens by inverting MA into AR</p></li>
@@ -1573,9 +1469,9 @@ $<span class="math notranslate nohighlight">\(  \big[ \hat{X}_{T+h|T} \pm 1.96\s
 </section>
 </section>
 <section id="seasonal-autoregression">
-<h3>Seasonal Autoregression<a class="headerlink" href="#seasonal-autoregression" title="Permalink to this headline">#</a></h3>
+<h3>Seasonal Autoregression<a class="headerlink" href="#seasonal-autoregression" title="Permalink to this headline">¶</a></h3>
 <section id="lag-operator">
-<h4>Lag operator<a class="headerlink" href="#lag-operator" title="Permalink to this headline">#</a></h4>
+<h4>Lag operator<a class="headerlink" href="#lag-operator" title="Permalink to this headline">¶</a></h4>
 <ul class="simple">
 <li><p>Lag operator L is essential to understanding seasonal ARMAs</p></li>
 <li><p>Key properties</p></li>
@@ -1606,7 +1502,7 @@ X_t &amp;= \phi_0 + \phi_1X_{t-1} + \phi_2X_{t-2} + ... + \phi_pX_{t-p} + \epsil
 </ul>
 </section>
 <section id="seasonal-ar-models">
-<h4>Seasonal AR models<a class="headerlink" href="#seasonal-ar-models" title="Permalink to this headline">#</a></h4>
+<h4>Seasonal AR models<a class="headerlink" href="#seasonal-ar-models" title="Permalink to this headline">¶</a></h4>
 <ul class="simple">
 <li><p>Pure seasonal AR
 $<span class="math notranslate nohighlight">\(\begin{aligned}
@@ -1646,7 +1542,7 @@ X_t &amp;= \phi_0 + \phi_1X_{t-1} + \phi_mX_{t-m} - \phi_1\phi_mX_{t-m-1} + \eps
 </ul>
 </section>
 <section id="ignoring-the-restriction">
-<h4>Ignoring the restriction<a class="headerlink" href="#ignoring-the-restriction" title="Permalink to this headline">#</a></h4>
+<h4>Ignoring the restriction<a class="headerlink" href="#ignoring-the-restriction" title="Permalink to this headline">¶</a></h4>
 <ul class="simple">
 <li><p>can also estimate Unrestricted model as
 $<span class="math notranslate nohighlight">\(  X_t = \phi_0 + \phi_1X_{t-1} + \phi_mX_{t-m} + \phi_{m+1}X_{t-m-1} + \epsilon_t  \)</span>$</p>
@@ -1671,7 +1567,7 @@ $<span class="math notranslate nohighlight">\(  X_t = \phi_0 + \phi_1X_{t-1} + \
 </ul>
 </section>
 <section id="prediction-intervals">
-<h4>Prediction Intervals<a class="headerlink" href="#prediction-intervals" title="Permalink to this headline">#</a></h4>
+<h4>Prediction Intervals<a class="headerlink" href="#prediction-intervals" title="Permalink to this headline">¶</a></h4>
 <ul class="simple">
 <li><p>In SAR models prediction intervals are not constant</p></li>
 <li><p>In earlier models, the prediction intervals are constant for time trends or seasonality</p>
@@ -1683,7 +1579,7 @@ $<span class="math notranslate nohighlight">\(  X_t = \phi_0 + \phi_1X_{t-1} + \
 </ul>
 </section>
 <section id="random-walks-with-seasonality">
-<h4>Random Walks with Seasonality<a class="headerlink" href="#random-walks-with-seasonality" title="Permalink to this headline">#</a></h4>
+<h4>Random Walks with Seasonality<a class="headerlink" href="#random-walks-with-seasonality" title="Permalink to this headline">¶</a></h4>
 <ul class="simple">
 <li><p>A seasonal random walk has unit root at seasonal frequency
 $<span class="math notranslate nohighlight">\(  (1-L^m)X_t = \epsilon_t  \)</span>$</p>
@@ -1713,7 +1609,7 @@ $<span class="math notranslate nohighlight">\(\begin{aligned}
 </ul>
 </section>
 <section id="seasonal-differencing">
-<h4>Seasonal Differencing<a class="headerlink" href="#seasonal-differencing" title="Permalink to this headline">#</a></h4>
+<h4>Seasonal Differencing<a class="headerlink" href="#seasonal-differencing" title="Permalink to this headline">¶</a></h4>
 <ul class="simple">
 <li><p>Seasonal difference removes seasonal unit root
 $<span class="math notranslate nohighlight">\(  \Delta_mX_t = X_t - X_{t-m} = (1-L^m)X_t  \)</span>$</p></li>
@@ -1737,9 +1633,9 @@ $<span class="math notranslate nohighlight">\(\begin{aligned}
 </section>
 </section>
 <section id="sarima-models">
-<h3>SARIMA Models<a class="headerlink" href="#sarima-models" title="Permalink to this headline">#</a></h3>
+<h3>SARIMA Models<a class="headerlink" href="#sarima-models" title="Permalink to this headline">¶</a></h3>
 <section id="seasonal-arma">
-<h4>Seasonal ARMA<a class="headerlink" href="#seasonal-arma" title="Permalink to this headline">#</a></h4>
+<h4>Seasonal ARMA<a class="headerlink" href="#seasonal-arma" title="Permalink to this headline">¶</a></h4>
 <ul class="simple">
 <li><p>Seasonal ARMA<span class="math notranslate nohighlight">\((P,Q)\text{x}(P_s,Q_s)\)</span></p>
 <ul>
@@ -1752,7 +1648,7 @@ $<span class="math notranslate nohighlight">\(  (1-\phi_1L)(1-\phi_mL^m)X_t = (1
 </ul>
 </section>
 <section id="incorporate-the-differencing-parameter">
-<h4>Incorporate the differencing parameter<a class="headerlink" href="#incorporate-the-differencing-parameter" title="Permalink to this headline">#</a></h4>
+<h4>Incorporate the differencing parameter<a class="headerlink" href="#incorporate-the-differencing-parameter" title="Permalink to this headline">¶</a></h4>
 <ul class="simple">
 <li><p>SARIMA - Seasonal Autoregression Integrated Moving Average
 $<span class="math notranslate nohighlight">\(  (P,D,Q)\text{x}(P_s,D_s,Q_s)  \)</span>$</p>
@@ -1778,7 +1674,7 @@ $<span class="math notranslate nohighlight">\(  (P,D,Q)\text{x}(P_s,D_s,Q_s)  \)
 </ul>
 </section>
 <section id="id1">
-<h4>Forecasting<a class="headerlink" href="#id1" title="Permalink to this headline">#</a></h4>
+<h4>Forecasting<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h4>
 <ul class="simple">
 <li><p>order of integration matters for forecasting and prediction intervals</p></li>
 <li><p>for non-seasonal differenced series
@@ -1793,7 +1689,7 @@ $<span class="math notranslate nohighlight">\(  \tilde{\sigma}^2_{h} = \sigma^2_
 </ul>
 </section>
 <section id="forecasting-with-seasonal-differencing">
-<h4>Forecasting with Seasonal Differencing<a class="headerlink" href="#forecasting-with-seasonal-differencing" title="Permalink to this headline">#</a></h4>
+<h4>Forecasting with Seasonal Differencing<a class="headerlink" href="#forecasting-with-seasonal-differencing" title="Permalink to this headline">¶</a></h4>
 <ul class="simple">
 <li><p>we model <span class="math notranslate nohighlight">\(\Delta_mX_t\)</span>
 $<span class="math notranslate nohighlight">\(\begin{aligned} \\
@@ -1812,7 +1708,7 @@ $<span class="math notranslate nohighlight">\(  \hat{X}_{T+h|T} = X_{T+1-m} + \s
 </ul>
 </section>
 <section id="complete-model">
-<h4>Complete Model<a class="headerlink" href="#complete-model" title="Permalink to this headline">#</a></h4>
+<h4>Complete Model<a class="headerlink" href="#complete-model" title="Permalink to this headline">¶</a></h4>
 <ul class="simple">
 <li><p>Start by transforming <span class="math notranslate nohighlight">\(X_t\)</span></p>
 <ul>
@@ -1860,9 +1756,9 @@ Y_t &amp;= \text{Constant} \\
 </section>
 </section>
 <section id="practical-aspects">
-<h2>Practical Aspects<a class="headerlink" href="#practical-aspects" title="Permalink to this headline">#</a></h2>
+<h2>Practical Aspects<a class="headerlink" href="#practical-aspects" title="Permalink to this headline">¶</a></h2>
 <section id="import-packages">
-<h3>Import Packages<a class="headerlink" href="#import-packages" title="Permalink to this headline">#</a></h3>
+<h3>Import Packages<a class="headerlink" href="#import-packages" title="Permalink to this headline">¶</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
@@ -1882,10 +1778,18 @@ Y_t &amp;= \text{Constant} \\
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/chandrasingh/opt/anaconda3/lib/python3.8/site-packages/statsmodels/tsa/base/tsa_model.py:7: FutureWarning: pandas.Int64Index is deprecated and will be removed from pandas in a future version. Use pandas.Index with the appropriate dtype instead.
+  from pandas import (to_datetime, Int64Index, DatetimeIndex, Period,
+/Users/chandrasingh/opt/anaconda3/lib/python3.8/site-packages/statsmodels/tsa/base/tsa_model.py:7: FutureWarning: pandas.Float64Index is deprecated and will be removed from pandas in a future version. Use pandas.Index with the appropriate dtype instead.
+  from pandas import (to_datetime, Int64Index, DatetimeIndex, Period,
+</pre></div>
+</div>
+</div>
 </div>
 </section>
 <section id="load-data">
-<h3>Load Data<a class="headerlink" href="#load-data" title="Permalink to this headline">#</a></h3>
+<h3>Load Data<a class="headerlink" href="#load-data" title="Permalink to this headline">¶</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># df: pd.DataFrame = pd.read_hdf(&quot;./monthly-data.h5&quot;, f&quot;nobs_432&quot;)</span>
@@ -1910,7 +1814,7 @@ Y_t &amp;= \text{Constant} \\
 </div>
 </section>
 <section id="non-seasonal-modeling">
-<h3>Non-seasonal modeling<a class="headerlink" href="#non-seasonal-modeling" title="Permalink to this headline">#</a></h3>
+<h3>Non-seasonal modeling<a class="headerlink" href="#non-seasonal-modeling" title="Permalink to this headline">¶</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># len(y)</span>
@@ -1940,7 +1844,7 @@ Y_t &amp;= \text{Constant} \\
 </div>
 </section>
 <section id="time-trend-and-ar-1">
-<h3>Time Trend and AR(1)<a class="headerlink" href="#time-trend-and-ar-1" title="Permalink to this headline">#</a></h3>
+<h3>Time Trend and AR(1)<a class="headerlink" href="#time-trend-and-ar-1" title="Permalink to this headline">¶</a></h3>
 <div class="math notranslate nohighlight">
 \[ Y_t = \delta_0 + \delta_1 t + \phi Y_{t-1} + \epsilon_t \]</div>
 <div class="cell docutils container">
@@ -1951,9 +1855,6 @@ Y_t &amp;= \text{Constant} \\
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> This problem is unconstrained.
-</pre></div>
-</div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>RUNNING THE L-BFGS-B CODE
 
            * * *
@@ -1964,9 +1865,8 @@ Machine precision = 2.220D-16
 At X0         0 variables are exactly at the bounds
 
 At iterate    0    f= -1.91726D+00    |proj g|=  2.45479D+02
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>           * * *
+
+           * * *
 
 Tit   = total number of iterations
 Tnf   = total number of function evaluations
@@ -1980,12 +1880,14 @@ F     = final function value
 
    N    Tit     Tnf  Tnint  Skip  Nact     Projg        F
     4      1     21      1     0     0   2.455D+02  -1.917D+00
-  F =  -1.9172630741791066     
+  F =  -1.9172630741791070     
 
 ABNORMAL_TERMINATION_IN_LNSRCH                              
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> Line search cannot locate an adequate point after MAXLS
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> This problem is unconstrained.
+
+ Line search cannot locate an adequate point after MAXLS
   function and gradient evaluations.
   Previous x, f and g restored.
  Possible causes: 1 error in function or gradient evaluation;
@@ -2001,10 +1903,10 @@ ABNORMAL_TERMINATION_IN_LNSRCH
   <th>Model:</th>           <td>SARIMAX(1, 0, 0)</td> <th>  Log Likelihood     </th>  <td>828.258</td> 
 </tr>
 <tr>
-  <th>Date:</th>            <td>Thu, 06 Oct 2022</td> <th>  AIC                </th> <td>-1648.515</td>
+  <th>Date:</th>            <td>Sun, 16 Oct 2022</td> <th>  AIC                </th> <td>-1648.515</td>
 </tr>
 <tr>
-  <th>Time:</th>                <td>23:53:44</td>     <th>  BIC                </th> <td>-1632.242</td>
+  <th>Time:</th>                <td>18:28:24</td>     <th>  BIC                </th> <td>-1632.242</td>
 </tr>
 <tr>
   <th>Sample:</th>                  <td>0</td>        <th>  HQIC               </th> <td>-1642.091</td>
@@ -2050,7 +1952,7 @@ ABNORMAL_TERMINATION_IN_LNSRCH
 </div>
 </section>
 <section id="arma-1-1-with-a-trend">
-<h3>ARMA(1,1) with a Trend<a class="headerlink" href="#arma-1-1-with-a-trend" title="Permalink to this headline">#</a></h3>
+<h3>ARMA(1,1) with a Trend<a class="headerlink" href="#arma-1-1-with-a-trend" title="Permalink to this headline">¶</a></h3>
 <div class="math notranslate nohighlight">
 \[ Y_t = \delta_0 + \delta_1 t + \phi Y_{t-1} + \theta \epsilon_{t-1} + \epsilon_t \]</div>
 <div class="cell docutils container">
@@ -2062,6 +1964,12 @@ ABNORMAL_TERMINATION_IN_LNSRCH
 </div>
 </div>
 <div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> This problem is unconstrained.
+
+ Bad direction in the line search;
+   refresh the lbfgs memory and restart the iteration.
+</pre></div>
+</div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>RUNNING THE L-BFGS-B CODE
 
            * * *
@@ -2072,13 +1980,6 @@ Machine precision = 2.220D-16
 At X0         0 variables are exactly at the bounds
 
 At iterate    0    f= -2.01805D+00    |proj g|=  1.55899D+03
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> This problem is unconstrained.
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> Bad direction in the line search;
-   refresh the lbfgs memory and restart the iteration.
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>           * * *
@@ -2095,7 +1996,7 @@ F     = final function value
 
    N    Tit     Tnf  Tnint  Skip  Nact     Projg        F
     5      2     44      2     0     0   1.262D+03  -2.018D+00
-  F =  -2.0180983396934149     
+  F =  -2.0180983396934171     
 
 ABNORMAL_TERMINATION_IN_LNSRCH                              
 </pre></div>
@@ -2116,10 +2017,10 @@ ABNORMAL_TERMINATION_IN_LNSRCH
   <th>Model:</th>           <td>SARIMAX(1, 0, 1)</td> <th>  Log Likelihood     </th>  <td>871.818</td> 
 </tr>
 <tr>
-  <th>Date:</th>            <td>Thu, 06 Oct 2022</td> <th>  AIC                </th> <td>-1733.637</td>
+  <th>Date:</th>            <td>Sun, 16 Oct 2022</td> <th>  AIC                </th> <td>-1733.637</td>
 </tr>
 <tr>
-  <th>Time:</th>                <td>23:53:46</td>     <th>  BIC                </th> <td>-1713.295</td>
+  <th>Time:</th>                <td>18:28:24</td>     <th>  BIC                </th> <td>-1713.295</td>
 </tr>
 <tr>
   <th>Sample:</th>                  <td>0</td>        <th>  HQIC               </th> <td>-1725.606</td>
@@ -2168,7 +2069,7 @@ ABNORMAL_TERMINATION_IN_LNSRCH
 </div>
 </section>
 <section id="information-criteria-aic-bic-hqic">
-<h3>Information Criteria: AIC, BIC &amp; HQIC<a class="headerlink" href="#information-criteria-aic-bic-hqic" title="Permalink to this headline">#</a></h3>
+<h3>Information Criteria: AIC, BIC &amp; HQIC<a class="headerlink" href="#information-criteria-aic-bic-hqic" title="Permalink to this headline">¶</a></h3>
 <p>The ICs are designed so that lower values indicate a model that fits better, controlling for the number of parameters. We see that ARMA(1,1) has a much lower BIC than that AR(1).</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -2241,7 +2142,7 @@ ABNORMAL_TERMINATION_IN_LNSRCH
 </div>
 </section>
 <section id="arima-1-1-1">
-<h3>ARIMA(1, 1, 1)<a class="headerlink" href="#arima-1-1-1" title="Permalink to this headline">#</a></h3>
+<h3>ARIMA(1, 1, 1)<a class="headerlink" href="#arima-1-1-1" title="Permalink to this headline">¶</a></h3>
 <div class="math notranslate nohighlight">
 \[\begin{split} \begin{align*} 
 (1-\phi_1 L) (1-L) Y_t = &amp; \delta_0 \theta \epsilon_{t-1} + \epsilon_t \\
@@ -2261,9 +2162,6 @@ ABNORMAL_TERMINATION_IN_LNSRCH
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> This problem is unconstrained.
-</pre></div>
-</div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>RUNNING THE L-BFGS-B CODE
 
            * * *
@@ -2276,19 +2174,18 @@ At X0         0 variables are exactly at the bounds
 At iterate    0    f= -2.01907D+00    |proj g|=  3.12568D+00
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>At iterate    5    f= -2.02078D+00    |proj g|=  1.18168D-01
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> This problem is unconstrained.
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>At iterate   10    f= -2.02104D+00    |proj g|=  2.32010D-01
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>At iterate   15    f= -2.02105D+00    |proj g|=  3.35404D-02
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>At iterate   20    f= -2.02124D+00    |proj g|=  2.38342D-01
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>At iterate   25    f= -2.02130D+00    |proj g|=  1.91262D-03
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>At iterate    5    f= -2.02078D+00    |proj g|=  1.18442D-01
+
+At iterate   10    f= -2.02103D+00    |proj g|=  2.32532D-01
+
+At iterate   15    f= -2.02105D+00    |proj g|=  3.97098D-02
+
+At iterate   20    f= -2.02124D+00    |proj g|=  2.78793D-01
+
+At iterate   25    f= -2.02130D+00    |proj g|=  1.64644D-03
 
            * * *
 
@@ -2303,18 +2200,18 @@ F     = final function value
            * * *
 
    N    Tit     Tnf  Tnint  Skip  Nact     Projg        F
-    4     25     30      1     0     0   1.913D-03  -2.021D+00
-  F =  -2.0212971162208064     
+    4     25     32      1     0     0   1.646D-03  -2.021D+00
+  F =  -2.0212971280030851     
 
 CONVERGENCE: REL_REDUCTION_OF_F_&lt;=_FACTR*EPSMCH             
 </pre></div>
 </div>
-<img alt="../_images/SARIMA_modeling_24_7.png" src="../_images/SARIMA_modeling_24_7.png" />
+<img alt="../_images/SARIMA_modeling_24_3.png" src="../_images/SARIMA_modeling_24_3.png" />
 </div>
 </div>
 </section>
 <section id="arima-0-1-1">
-<h3>ARIMA(0, 1, 1)<a class="headerlink" href="#arima-0-1-1" title="Permalink to this headline">#</a></h3>
+<h3>ARIMA(0, 1, 1)<a class="headerlink" href="#arima-0-1-1" title="Permalink to this headline">¶</a></h3>
 <div class="math notranslate nohighlight">
 \[ \Delta Y_t = \delta_0 +  \theta \epsilon_{t-1} + \epsilon_t \]</div>
 <div class="cell docutils container">
@@ -2329,9 +2226,6 @@ CONVERGENCE: REL_REDUCTION_OF_F_&lt;=_FACTR*EPSMCH
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> This problem is unconstrained.
-</pre></div>
-</div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>RUNNING THE L-BFGS-B CODE
 
            * * *
@@ -2342,14 +2236,12 @@ Machine precision = 2.220D-16
 At X0         0 variables are exactly at the bounds
 
 At iterate    0    f= -2.01784D+00    |proj g|=  5.09688D+00
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>At iterate    5    f= -2.02089D+00    |proj g|=  2.87909D-03
 
-At iterate   10    f= -2.02089D+00    |proj g|=  7.25817D-02
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>           * * *
+At iterate    5    f= -2.02089D+00    |proj g|=  2.90026D-03
+
+At iterate   10    f= -2.02089D+00    |proj g|=  7.15942D-02
+
+           * * *
 
 Tit   = total number of iterations
 Tnf   = total number of function evaluations
@@ -2362,18 +2254,21 @@ F     = final function value
            * * *
 
    N    Tit     Tnf  Tnint  Skip  Nact     Projg        F
-    3     13     18      1     0     0   3.617D-03  -2.021D+00
-  F =  -2.0208950345591870     
+    3     13     18      1     0     0   3.526D-03  -2.021D+00
+  F =  -2.0208950364025480     
 
 CONVERGENCE: REL_REDUCTION_OF_F_&lt;=_FACTR*EPSMCH             
 </pre></div>
 </div>
-<img alt="../_images/SARIMA_modeling_26_4.png" src="../_images/SARIMA_modeling_26_4.png" />
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> This problem is unconstrained.
+</pre></div>
+</div>
+<img alt="../_images/SARIMA_modeling_26_2.png" src="../_images/SARIMA_modeling_26_2.png" />
 </div>
 </div>
 </section>
 <section id="arima-0-1-1-without-a-constant">
-<h3>ARIMA(0,1,1) without a constant<a class="headerlink" href="#arima-0-1-1-without-a-constant" title="Permalink to this headline">#</a></h3>
+<h3>ARIMA(0,1,1) without a constant<a class="headerlink" href="#arima-0-1-1-without-a-constant" title="Permalink to this headline">¶</a></h3>
 <div class="math notranslate nohighlight">
 \[ \Delta Y_t =  \theta \epsilon_{t-1} + \epsilon_t \]</div>
 <div class="cell docutils container">
@@ -2384,9 +2279,6 @@ CONVERGENCE: REL_REDUCTION_OF_F_&lt;=_FACTR*EPSMCH
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> This problem is unconstrained.
-</pre></div>
-</div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>RUNNING THE L-BFGS-B CODE
 
            * * *
@@ -2396,10 +2288,9 @@ Machine precision = 2.220D-16
 
 At X0         0 variables are exactly at the bounds
 
-At iterate    0    f= -2.01791D+00    |proj g|=  1.05405D+00
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>           * * *
+At iterate    0    f= -2.01791D+00    |proj g|=  1.05404D+00
+
+           * * *
 
 Tit   = total number of iterations
 Tnf   = total number of function evaluations
@@ -2412,15 +2303,13 @@ F     = final function value
            * * *
 
    N    Tit     Tnf  Tnint  Skip  Nact     Projg        F
-    2      4     18      1     0     0   8.448D-04  -2.018D+00
-  F =  -2.0182051807773327     
+    2      4     10      1     0     0   8.482D-04  -2.018D+00
+  F =  -2.0182051803877363     
 
 CONVERGENCE: REL_REDUCTION_OF_F_&lt;=_FACTR*EPSMCH             
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> Warning:  more than 10 function and gradient
-   evaluations in the last line search.  Termination
-   may possibly be caused by a bad search direction.
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> This problem is unconstrained.
 </pre></div>
 </div>
 <div class="output text_html"><table class="simpletable">
@@ -2432,10 +2321,10 @@ CONVERGENCE: REL_REDUCTION_OF_F_&lt;=_FACTR*EPSMCH
   <th>Model:</th>           <td>SARIMAX(0, 1, 1)</td> <th>  Log Likelihood     </th>  <td>871.865</td> 
 </tr>
 <tr>
-  <th>Date:</th>            <td>Thu, 06 Oct 2022</td> <th>  AIC                </th> <td>-1739.729</td>
+  <th>Date:</th>            <td>Sun, 16 Oct 2022</td> <th>  AIC                </th> <td>-1739.729</td>
 </tr>
 <tr>
-  <th>Time:</th>                <td>23:53:51</td>     <th>  BIC                </th> <td>-1731.597</td>
+  <th>Time:</th>                <td>18:28:25</td>     <th>  BIC                </th> <td>-1731.597</td>
 </tr>
 <tr>
   <th>Sample:</th>                  <td>0</td>        <th>  HQIC               </th> <td>-1736.518</td>
@@ -2488,7 +2377,7 @@ CONVERGENCE: REL_REDUCTION_OF_F_&lt;=_FACTR*EPSMCH
 </div>
 </section>
 <section id="seasonal">
-<h3>Seasonal<a class="headerlink" href="#seasonal" title="Permalink to this headline">#</a></h3>
+<h3>Seasonal<a class="headerlink" href="#seasonal" title="Permalink to this headline">¶</a></h3>
 <p>We finally show how to fit models with seasonal dummies and using seasonal differencing.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -2510,7 +2399,7 @@ CONVERGENCE: REL_REDUCTION_OF_F_&lt;=_FACTR*EPSMCH
 </div>
 </section>
 <section id="constructing-seasonal-dummies">
-<h3>Constructing Seasonal Dummies<a class="headerlink" href="#constructing-seasonal-dummies" title="Permalink to this headline">#</a></h3>
+<h3>Constructing Seasonal Dummies<a class="headerlink" href="#constructing-seasonal-dummies" title="Permalink to this headline">¶</a></h3>
 <p>Seasonal dummies are easy to build using <code class="docutils literal notranslate"><span class="pre">pd.get_dummies</span></code> and a <code class="docutils literal notranslate"><span class="pre">categorical</span></code> Series. The categorical series is used to store categorical data. We first construct the seasonal indicators using <span class="math notranslate nohighlight">\(\!\!\mod(t,12)\)</span> for each time period. It is easiest to construct the dummies for both the in-sample and the out-of-sample periods, which is why it is <code class="docutils literal notranslate"><span class="pre">y.shape[0]</span> <span class="pre">+</span> <span class="pre">24</span></code>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -2797,7 +2686,7 @@ CONVERGENCE: REL_REDUCTION_OF_F_&lt;=_FACTR*EPSMCH
 </div>
 </section>
 <section id="arima-1-0-0-with-seasonal-dummies">
-<h3>ARIMA(1, 0, 0) with seasonal dummies<a class="headerlink" href="#arima-1-0-0-with-seasonal-dummies" title="Permalink to this headline">#</a></h3>
+<h3>ARIMA(1, 0, 0) with seasonal dummies<a class="headerlink" href="#arima-1-0-0-with-seasonal-dummies" title="Permalink to this headline">¶</a></h3>
 <div class="math notranslate nohighlight">
 \[ Y_t = \delta_0 + \delta_1 t + \phi Y_{t-1} + \sum_{i=2}^{12} \gamma_i I_{S_i} + \epsilon_t \]</div>
 <div class="cell docutils container">
@@ -2821,85 +2710,60 @@ Machine precision = 2.220D-16
 At X0         0 variables are exactly at the bounds
 
 At iterate    0    f=  2.07737D+00    |proj g|=  1.69168D-02
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>At iterate    5    f=  1.83179D+00    |proj g|=  4.61423D-01
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>At iterate   10    f=  1.42368D+00    |proj g|=  5.68916D-01
+
+At iterate    5    f=  1.83179D+00    |proj g|=  4.61423D-01
+
+At iterate   10    f=  1.42368D+00    |proj g|=  5.68917D-01
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>At iterate   15    f=  9.82987D-01    |proj g|=  1.37736D-01
 
 At iterate   20    f=  8.03106D-01    |proj g|=  1.83614D-01
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>At iterate   25    f=  7.43827D-01    |proj g|=  2.99315D-02
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>At iterate   30    f=  7.33083D-01    |proj g|=  1.05034D-01
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>At iterate   35    f=  7.20604D-01    |proj g|=  1.46393D-01
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>At iterate   40    f=  6.87838D-01    |proj g|=  5.57390D-01
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>At iterate   45    f=  6.14800D-01    |proj g|=  9.51111D-01
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>At iterate   50    f=  5.59956D-01    |proj g|=  1.69731D-01
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>At iterate   55    f=  4.69019D-01    |proj g|=  5.60409D-01
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>At iterate   60    f=  4.21247D-01    |proj g|=  3.86020D-01
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>At iterate   65    f=  3.98695D-01    |proj g|=  1.07285D+00
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>At iterate   70    f=  3.19238D-01    |proj g|=  3.91306D-01
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>At iterate   75    f=  2.87950D-01    |proj g|=  1.63338D-01
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>At iterate   80    f=  2.63230D-01    |proj g|=  1.83690D-01
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>At iterate   85    f=  2.52674D-01    |proj g|=  1.56525D-01
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>At iterate   90    f=  2.49161D-01    |proj g|=  1.43715D-01
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>At iterate   95    f=  2.48691D-01    |proj g|=  4.60289D-02
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>At iterate  100    f=  2.48593D-01    |proj g|=  2.75547D-02
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>At iterate  105    f=  2.48582D-01    |proj g|=  9.50513D-03
 
-At iterate  110    f=  2.48562D-01    |proj g|=  1.11384D-02
+At iterate   25    f=  7.43827D-01    |proj g|=  2.99305D-02
+
+At iterate   30    f=  7.33082D-01    |proj g|=  1.05074D-01
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>At iterate  115    f=  2.48555D-01    |proj g|=  9.44731D-03
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>At iterate   35    f=  7.20606D-01    |proj g|=  1.46521D-01
+
+At iterate   40    f=  6.88702D-01    |proj g|=  2.60584D-01
+
+At iterate   45    f=  6.18202D-01    |proj g|=  4.67291D-01
+
+At iterate   50    f=  5.52676D-01    |proj g|=  1.44479D-01
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>At iterate  120    f=  2.48553D-01    |proj g|=  2.89084D-03
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>At iterate   55    f=  5.04892D-01    |proj g|=  1.89259D-01
+
+At iterate   60    f=  4.50515D-01    |proj g|=  4.10629D-01
+
+At iterate   65    f=  4.25728D-01    |proj g|=  2.55528D-01
+
+At iterate   70    f=  4.05280D-01    |proj g|=  1.02224D+00
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>At iterate  125    f=  2.48553D-01    |proj g|=  2.12577D-03
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>At iterate   75    f=  3.66275D-01    |proj g|=  2.74882D-01
+
+At iterate   80    f=  3.08250D-01    |proj g|=  7.74362D-01
+
+At iterate   85    f=  2.74672D-01    |proj g|=  1.03381D-01
+
+At iterate   90    f=  2.53074D-01    |proj g|=  3.43828D-02
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>At iterate  130    f=  2.48552D-01    |proj g|=  2.86023D-03
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>At iterate   95    f=  2.48981D-01    |proj g|=  3.21290D-02
+
+At iterate  100    f=  2.48761D-01    |proj g|=  3.51773D-02
+
+At iterate  105    f=  2.48573D-01    |proj g|=  3.28654D-02
+
+At iterate  110    f=  2.48554D-01    |proj g|=  1.48492D-02
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>           * * *
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>At iterate  115    f=  2.48552D-01    |proj g|=  1.01261D-03
+
+           * * *
 
 Tit   = total number of iterations
 Tnf   = total number of function evaluations
@@ -2912,8 +2776,8 @@ F     = final function value
            * * *
 
    N    Tit     Tnf  Tnint  Skip  Nact     Projg        F
-   14    133    191      1     0     0   4.602D-04   2.486D-01
-  F =  0.24855201568225357     
+   14    118    154      1     0     0   1.753D-03   2.486D-01
+  F =  0.24855154455047077     
 
 CONVERGENCE: REL_REDUCTION_OF_F_&lt;=_FACTR*EPSMCH             
 </pre></div>
@@ -2932,13 +2796,13 @@ CONVERGENCE: REL_REDUCTION_OF_F_&lt;=_FACTR*EPSMCH
   <th>Model:</th>           <td>SARIMAX(1, 0, 0)</td> <th>  Log Likelihood     </th> <td>-107.374</td>
 </tr>
 <tr>
-  <th>Date:</th>            <td>Thu, 06 Oct 2022</td> <th>  AIC                </th>  <td>242.749</td>
+  <th>Date:</th>            <td>Sun, 16 Oct 2022</td> <th>  AIC                </th>  <td>242.749</td>
 </tr>
 <tr>
-  <th>Time:</th>                <td>23:54:03</td>     <th>  BIC                </th>  <td>299.707</td>
+  <th>Time:</th>                <td>18:28:27</td>     <th>  BIC                </th>  <td>299.706</td>
 </tr>
 <tr>
-  <th>Sample:</th>                  <td>0</td>        <th>  HQIC               </th>  <td>265.236</td>
+  <th>Sample:</th>                  <td>0</td>        <th>  HQIC               </th>  <td>265.235</td>
 </tr>
 <tr>
   <th></th>                      <td> - 432</td>      <th>                     </th>     <td> </td>   
@@ -2952,51 +2816,51 @@ CONVERGENCE: REL_REDUCTION_OF_F_&lt;=_FACTR*EPSMCH
       <td></td>         <th>coef</th>     <th>std err</th>      <th>z</th>      <th>P>|z|</th>  <th>[0.025</th>    <th>0.975]</th>  
 </tr>
 <tr>
-  <th>intercept</th> <td>    4.7929</td> <td>    0.303</td> <td>   15.819</td> <td> 0.000</td> <td>    4.199</td> <td>    5.387</td>
+  <th>intercept</th> <td>    4.7938</td> <td>    0.303</td> <td>   15.824</td> <td> 0.000</td> <td>    4.200</td> <td>    5.388</td>
 </tr>
 <tr>
-  <th>s2</th>        <td>    0.2552</td> <td>    0.070</td> <td>    3.636</td> <td> 0.000</td> <td>    0.118</td> <td>    0.393</td>
+  <th>s2</th>        <td>    0.2558</td> <td>    0.070</td> <td>    3.644</td> <td> 0.000</td> <td>    0.118</td> <td>    0.393</td>
 </tr>
 <tr>
-  <th>s3</th>        <td>    0.6800</td> <td>    0.056</td> <td>   12.060</td> <td> 0.000</td> <td>    0.569</td> <td>    0.790</td>
+  <th>s3</th>        <td>    0.6806</td> <td>    0.056</td> <td>   12.070</td> <td> 0.000</td> <td>    0.570</td> <td>    0.791</td>
 </tr>
 <tr>
-  <th>s4</th>        <td>    0.1145</td> <td>    0.082</td> <td>    1.389</td> <td> 0.165</td> <td>   -0.047</td> <td>    0.276</td>
+  <th>s4</th>        <td>    0.1153</td> <td>    0.082</td> <td>    1.398</td> <td> 0.162</td> <td>   -0.046</td> <td>    0.277</td>
 </tr>
 <tr>
-  <th>s5</th>        <td>    0.4807</td> <td>    0.068</td> <td>    7.042</td> <td> 0.000</td> <td>    0.347</td> <td>    0.614</td>
+  <th>s5</th>        <td>    0.4812</td> <td>    0.068</td> <td>    7.051</td> <td> 0.000</td> <td>    0.347</td> <td>    0.615</td>
 </tr>
 <tr>
-  <th>s6</th>        <td>   -0.1103</td> <td>    0.115</td> <td>   -0.964</td> <td> 0.335</td> <td>   -0.335</td> <td>    0.114</td>
+  <th>s6</th>        <td>   -0.1100</td> <td>    0.115</td> <td>   -0.960</td> <td> 0.337</td> <td>   -0.334</td> <td>    0.114</td>
 </tr>
 <tr>
-  <th>s7</th>        <td>   -0.0326</td> <td>    0.137</td> <td>   -0.238</td> <td> 0.812</td> <td>   -0.300</td> <td>    0.235</td>
+  <th>s7</th>        <td>   -0.0324</td> <td>    0.137</td> <td>   -0.237</td> <td> 0.813</td> <td>   -0.300</td> <td>    0.235</td>
 </tr>
 <tr>
-  <th>s8</th>        <td>   -0.1783</td> <td>    0.126</td> <td>   -1.420</td> <td> 0.156</td> <td>   -0.424</td> <td>    0.068</td>
+  <th>s8</th>        <td>   -0.1780</td> <td>    0.125</td> <td>   -1.419</td> <td> 0.156</td> <td>   -0.424</td> <td>    0.068</td>
 </tr>
 <tr>
-  <th>s9</th>        <td>    0.3659</td> <td>    0.102</td> <td>    3.580</td> <td> 0.000</td> <td>    0.166</td> <td>    0.566</td>
+  <th>s9</th>        <td>    0.3662</td> <td>    0.102</td> <td>    3.584</td> <td> 0.000</td> <td>    0.166</td> <td>    0.566</td>
 </tr>
 <tr>
-  <th>s10</th>       <td>    0.1343</td> <td>    0.176</td> <td>    0.762</td> <td> 0.446</td> <td>   -0.211</td> <td>    0.480</td>
+  <th>s10</th>       <td>    0.1346</td> <td>    0.176</td> <td>    0.764</td> <td> 0.445</td> <td>   -0.211</td> <td>    0.480</td>
 </tr>
 <tr>
-  <th>s11</th>       <td>   -0.1606</td> <td>    0.112</td> <td>   -1.437</td> <td> 0.151</td> <td>   -0.380</td> <td>    0.058</td>
+  <th>s11</th>       <td>   -0.1602</td> <td>    0.112</td> <td>   -1.434</td> <td> 0.152</td> <td>   -0.379</td> <td>    0.059</td>
 </tr>
 <tr>
-  <th>s12</th>       <td>    0.0491</td> <td>    0.056</td> <td>    0.875</td> <td> 0.381</td> <td>   -0.061</td> <td>    0.159</td>
+  <th>s12</th>       <td>    0.0496</td> <td>    0.056</td> <td>    0.884</td> <td> 0.377</td> <td>   -0.060</td> <td>    0.159</td>
 </tr>
 <tr>
-  <th>ar.L1</th>     <td>    0.3064</td> <td>    0.044</td> <td>    7.039</td> <td> 0.000</td> <td>    0.221</td> <td>    0.392</td>
+  <th>ar.L1</th>     <td>    0.3062</td> <td>    0.044</td> <td>    7.035</td> <td> 0.000</td> <td>    0.221</td> <td>    0.392</td>
 </tr>
 <tr>
-  <th>sigma2</th>    <td>    0.0962</td> <td>    0.005</td> <td>   17.545</td> <td> 0.000</td> <td>    0.085</td> <td>    0.107</td>
+  <th>sigma2</th>    <td>    0.0962</td> <td>    0.005</td> <td>   17.547</td> <td> 0.000</td> <td>    0.085</td> <td>    0.107</td>
 </tr>
 </table>
 <table class="simpletable">
 <tr>
-  <th>Ljung-Box (L1) (Q):</th>     <td>0.12</td> <th>  Jarque-Bera (JB):  </th> <td>47.92</td>
+  <th>Ljung-Box (L1) (Q):</th>     <td>0.12</td> <th>  Jarque-Bera (JB):  </th> <td>48.05</td>
 </tr>
 <tr>
   <th>Prob(Q):</th>                <td>0.73</td> <th>  Prob(JB):          </th> <td>0.00</td> 
@@ -3017,30 +2881,30 @@ CONVERGENCE: REL_REDUCTION_OF_F_&lt;=_FACTR*EPSMCH
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>432    6.928560
-433    7.171144
-434    7.592067
-435    7.025392
-436    7.391223
-437    6.800097
-438    6.877849
-439    6.732129
-440    7.276274
-441    7.044689
-442    6.749759
-443    6.959471
-444    6.910390
-445    7.165576
-446    7.590361
-447    7.024869
-448    7.391062
-449    6.800048
-450    6.877834
-451    6.732125
-452    7.276273
-453    7.044689
-454    6.749759
-455    6.959471
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>432    6.928095
+433    7.171353
+434    7.592225
+435    7.025758
+436    7.391316
+437    6.800052
+438    6.877592
+439    6.731928
+440    7.276105
+441    7.044570
+442    6.749713
+443    6.959526
+444    6.909953
+445    7.165797
+446    7.590524
+447    7.025237
+448    7.391157
+449    6.800003
+450    6.877577
+451    6.731924
+452    7.276104
+453    7.044569
+454    6.749713
+455    6.959526
 Name: predicted_mean, dtype: float64
 </pre></div>
 </div>
@@ -3061,7 +2925,7 @@ Name: predicted_mean, dtype: float64
 </div>
 </section>
 <section id="sarima-0-0-0-times-0-1-0-12">
-<h3>SARIMA<span class="math notranslate nohighlight">\((0,0,0)\times(0,1,0)_{12}\)</span><a class="headerlink" href="#sarima-0-0-0-times-0-1-0-12" title="Permalink to this headline">#</a></h3>
+<h3>SARIMA<span class="math notranslate nohighlight">\((0,0,0)\times(0,1,0)_{12}\)</span><a class="headerlink" href="#sarima-0-0-0-times-0-1-0-12" title="Permalink to this headline">¶</a></h3>
 <p>Finally we fit a SARIMA with a single difference.  Note that the only free parameter is the constant in the model.</p>
 <div class="math notranslate nohighlight">
 \[ \Delta_{12} Y_t = \delta_0 + \epsilon_t \]</div>
@@ -3085,7 +2949,7 @@ Machine precision = 2.220D-16
 
 At X0         0 variables are exactly at the bounds
 
-At iterate    0    f=  4.87905D-01    |proj g|=  5.90715D-05
+At iterate    0    f=  4.87905D-01    |proj g|=  5.80985D-05
 
            * * *
 
@@ -3100,8 +2964,8 @@ F     = final function value
            * * *
 
    N    Tit     Tnf  Tnint  Skip  Nact     Projg        F
-    2      1      8      1     0     0   5.162D-05   4.879D-01
-  F =  0.48790472738045215     
+    2      1      9      1     0     0   5.903D-05   4.879D-01
+  F =  0.48790472738224799     
 
 CONVERGENCE: REL_REDUCTION_OF_F_&lt;=_FACTR*EPSMCH             
 </pre></div>
@@ -3115,10 +2979,10 @@ CONVERGENCE: REL_REDUCTION_OF_F_&lt;=_FACTR*EPSMCH
   <th>Model:</th>           <td>SARIMAX(0, 1, 0, 12)</td> <th>  Log Likelihood     </th> <td>-210.775</td>
 </tr>
 <tr>
-  <th>Date:</th>              <td>Thu, 06 Oct 2022</td>   <th>  AIC                </th>  <td>425.550</td>
+  <th>Date:</th>              <td>Sun, 16 Oct 2022</td>   <th>  AIC                </th>  <td>425.550</td>
 </tr>
 <tr>
-  <th>Time:</th>                  <td>23:54:04</td>       <th>  BIC                </th>  <td>433.630</td>
+  <th>Time:</th>                  <td>18:28:27</td>       <th>  BIC                </th>  <td>433.630</td>
 </tr>
 <tr>
   <th>Sample:</th>                    <td>0</td>          <th>  HQIC               </th>  <td>428.743</td>
@@ -3138,7 +3002,7 @@ CONVERGENCE: REL_REDUCTION_OF_F_&lt;=_FACTR*EPSMCH
   <th>intercept</th> <td>    0.0152</td> <td>    0.020</td> <td>    0.780</td> <td> 0.436</td> <td>   -0.023</td> <td>    0.054</td>
 </tr>
 <tr>
-  <th>sigma2</th>    <td>    0.1597</td> <td>    0.005</td> <td>   30.444</td> <td> 0.000</td> <td>    0.149</td> <td>    0.170</td>
+  <th>sigma2</th>    <td>    0.1597</td> <td>    0.005</td> <td>   30.443</td> <td> 0.000</td> <td>    0.149</td> <td>    0.170</td>
 </tr>
 </table>
 <table class="simpletable">
@@ -3165,27 +3029,27 @@ CONVERGENCE: REL_REDUCTION_OF_F_&lt;=_FACTR*EPSMCH
 </div>
 <div class="cell_output docutils container">
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>432    7.150139
-433    7.617986
+433    7.617987
 434    8.058335
 435    7.128758
-436    7.960501
-437    7.122052
+436    7.960502
+437    7.122053
 438    7.221591
-439    7.091859
-440    7.770103
+439    7.091860
+440    7.770104
 441    7.312457
-442    7.128881
-443    7.033995
+442    7.128882
+443    7.033996
 444    7.165366
 445    7.633214
-446    8.073562
-447    7.143985
-448    7.975728
+446    8.073563
+447    7.143986
+448    7.975729
 449    7.137280
-450    7.236818
-451    7.107086
+450    7.236819
+451    7.107087
 452    7.785331
-453    7.327684
+453    7.327685
 454    7.144109
 455    7.049223
 Name: predicted_mean, dtype: float64
@@ -3208,7 +3072,7 @@ Name: predicted_mean, dtype: float64
 </div>
 </section>
 <section id="pmdarima">
-<h3>pmdarima<a class="headerlink" href="#pmdarima" title="Permalink to this headline">#</a></h3>
+<h3>pmdarima<a class="headerlink" href="#pmdarima" title="Permalink to this headline">¶</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="vm">__doc__</span><span class="p">)</span>
@@ -3311,91 +3175,68 @@ Name: predicted_mean, dtype: float64
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Automatically created module for IPython interactive environment
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>pmdarima version: 2.0.1
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>pmdarima version: 1.8.5
 Performing stepwise search to minimize aic
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> ARIMA(2,1,2)(0,0,0)[0] intercept   : AIC=261.586, Time=7.44 sec
- ARIMA(0,1,0)(0,0,0)[0] intercept   : AIC=522.367, Time=0.13 sec
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> ARIMA(2,1,2)(0,0,0)[0] intercept   : AIC=261.587, Time=0.67 sec
+ ARIMA(0,1,0)(0,0,0)[0] intercept   : AIC=522.367, Time=0.06 sec
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> ARIMA(1,1,0)(0,0,0)[0] intercept   : AIC=401.618, Time=0.61 sec
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> ARIMA(1,1,0)(0,0,0)[0] intercept   : AIC=401.618, Time=0.15 sec
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> ARIMA(0,1,1)(0,0,0)[0] intercept   : AIC=260.626, Time=4.16 sec
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> ARIMA(0,1,1)(0,0,0)[0] intercept   : AIC=260.626, Time=0.32 sec
+ ARIMA(0,1,0)(0,0,0)[0]             : AIC=520.377, Time=0.14 sec
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> ARIMA(0,1,0)(0,0,0)[0]             : AIC=520.377, Time=0.48 sec
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> ARIMA(1,1,1)(0,0,0)[0] intercept   : AIC=257.600, Time=0.39 sec
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> ARIMA(1,1,1)(0,0,0)[0] intercept   : AIC=257.600, Time=4.94 sec
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> ARIMA(2,1,1)(0,0,0)[0] intercept   : AIC=259.024, Time=0.55 sec
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> ARIMA(2,1,1)(0,0,0)[0] intercept   : AIC=259.024, Time=5.83 sec
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> ARIMA(1,1,2)(0,0,0)[0] intercept   : AIC=260.318, Time=0.31 sec
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> ARIMA(1,1,2)(0,0,0)[0] intercept   : AIC=260.318, Time=4.97 sec
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> ARIMA(0,1,2)(0,0,0)[0] intercept   : AIC=257.045, Time=0.51 sec
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> ARIMA(0,1,2)(0,0,0)[0] intercept   : AIC=257.045, Time=8.89 sec
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> ARIMA(0,1,3)(0,0,0)[0] intercept   : AIC=258.163, Time=0.74 sec
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> ARIMA(0,1,3)(0,0,0)[0] intercept   : AIC=258.163, Time=8.95 sec
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> ARIMA(1,1,3)(0,0,0)[0] intercept   : AIC=260.904, Time=0.73 sec
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> ARIMA(1,1,3)(0,0,0)[0] intercept   : AIC=262.037, Time=7.44 sec
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> ARIMA(0,1,2)(0,0,0)[0]             : AIC=257.086, Time=2.17 sec
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> ARIMA(0,1,2)(0,0,0)[0]             : AIC=257.086, Time=0.23 sec
 
 Best model:  ARIMA(0,1,2)(0,0,0)[0] intercept
-Total fit time: 56.078 seconds
+Total fit time: 4.824 seconds
 Model fit:
 Pipeline(steps=[(&#39;fourier&#39;, FourierFeaturizer(k=4, m=12)),
                 (&#39;arima&#39;,
                  AutoARIMA(error_action=&#39;ignore&#39;, seasonal=False, trace=1))])
 
 Forecasts:
-360    7.216690
-361    7.477147
-362    7.707030
-363    7.501082
-364    7.393589
-365    7.287995
-366    6.948164
-367    7.103821
-368    7.481962
-369    7.275859
-370    7.055293
-371    7.140397
-372    7.208486
-373    7.493590
-374    7.723472
-375    7.517524
-376    7.410032
-377    7.304438
-378    6.964606
-379    7.120264
-380    7.498404
-381    7.292301
-382    7.071735
-383    7.156839
-dtype: float64
+[7.21672048 7.47718895 7.70702211 7.50109376 7.39355039 7.28793713
+ 6.9482023  7.10384994 7.48193355 7.27584872 7.05523287 7.14032283
+ 7.20851927 7.49362725 7.72346026 7.51753185 7.40998855 7.30437519
+ 6.9646404  7.12028826 7.49837175 7.29228676 7.07167103 7.15676102]
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[7.43723875 7.3906946  7.27890319 6.93549418 7.09594928 7.47093121
- 7.26712904 7.04657249 7.12032432 7.1924419  7.48397628 7.70277463
- 7.50046613 7.40637307 7.29458156 6.95117258 7.1116279  7.48660971
- 7.28280738 7.06225095 7.13600281 7.20812042 7.49965487 7.71845309
- 7.51614452 7.42205154 7.31025992 6.96685098 7.12730652 7.50228821
- 7.29848572 7.07792941 7.1516813  7.22379893 7.51533346 7.73413154
- 7.53182291 7.43773001 7.32593829 6.98252938 7.14298513 7.51796671
- 7.31416407 7.09360787 7.16735979 7.23947745 7.53101206 7.74981
- 7.54750129 7.45340848 7.34161665 6.99820777 7.15866375 7.53364521
- 7.32984241 7.10928633 7.18303829]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[7.43733959 7.39068654 7.27897048 6.93559394 7.09599306 7.47101792
+ 7.26720085 7.04661648 7.12045707 7.19253322 7.48399543 7.70290721
+ 7.50059684 7.40640341 7.29468726 6.95131075 7.11171009 7.48673483
+ 7.28291761 7.06233335 7.13617397 7.20825014 7.49971243 7.71862408
+ 7.51631363 7.42212029 7.31040403 6.96702756 7.12742711 7.50245174
+ 7.29863436 7.07805021 7.15189087 7.22396706 7.51542943 7.73434094
+ 7.53203043 7.43783716 7.3261208  6.98274436 7.14314414 7.51816865
+ 7.31435111 7.09376708 7.16760777 7.23968398 7.53114643 7.7500578
+ 7.54774722 7.45355404 7.34183757 6.99846117 7.15886117 7.53388556
+ 7.33006786 7.10948395 7.18332467]
 </pre></div>
 </div>
-<img alt="../_images/SARIMA_modeling_45_14.png" src="../_images/SARIMA_modeling_45_14.png" />
+<img alt="../_images/SARIMA_modeling_45_13.png" src="../_images/SARIMA_modeling_45_13.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -3416,7 +3257,7 @@ dtype: float64
 </section>
 </section>
 <section id="references">
-<h2>References<a class="headerlink" href="#references" title="Permalink to this headline">#</a></h2>
+<h2>References<a class="headerlink" href="#references" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li><p>Kevin Sheppard - Advanced Financial Econometrics</p></li>
 <li><p><a class="reference external" href="https://timeseriesreasoning.com/">https://timeseriesreasoning.com/</a></p></li>
@@ -3447,11 +3288,9 @@ dtype: float64
 
               </div>
               
-            </main>
-            <footer class="footer-article noprint">
-                
-    <!-- Previous / next buttons -->
-<div class='prev-next-area'>
+            
+                <!-- Previous / next buttons -->
+<div class='prev-next-area'> 
     <a class='left-prev' id="prev-link" href="../maths/causal_inference_learning.html" title="previous page">
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
@@ -3467,28 +3306,24 @@ dtype: float64
     <i class="fas fa-angle-right"></i>
     </a>
 </div>
-            </footer>
+            
         </div>
     </div>
-    <div class="footer-content row">
-        <footer class="col footer"><p>
-  
-    By Chandra<br/>
-  
-      &copy; Copyright 2022.<br/>
-</p>
-        </footer>
-    </div>
+    <footer class="footer">
+  <p>
     
-</div>
+      By Chandra<br/>
+    
+        &copy; Copyright 2021.<br/>
+  </p>
+</footer>
+</main>
 
 
       </div>
     </div>
   
-  <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
-
+  <script src="../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
 
   </body>
 </html>

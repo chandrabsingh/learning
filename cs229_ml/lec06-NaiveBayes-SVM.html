@@ -8,9 +8,8 @@
 
     <title>Lec 06-Naive Bayes - SVM</title>
     
-  <!-- Loaded before other Sphinx assets -->
-  <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
-<link href="../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+  <link href="../_static/css/theme.css" rel="stylesheet">
+  <link href="../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
 
     
   <link rel="stylesheet"
@@ -20,16 +19,20 @@
   <link rel="preload" as="font" type="font/woff2" crossorigin
     href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
 
+    
+      
+
+    
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
     
-  <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+  <link rel="preload" as="script" href="../_static/js/index.be7d3bbb2ef33a8344ce.js">
 
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
@@ -37,13 +40,12 @@
     <script src="../_static/doctools.js"></script>
     <script src="../_static/clipboard.min.js"></script>
     <script src="../_static/copybutton.js"></script>
-    <script src="../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
     <script src="../_static/togglebutton.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="../_static/design-tabs.js"></script>
+    <script src="../_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
 const thebe_selector = ".thebe,.cell"
 const thebe_selector_input = "pre"
@@ -63,21 +65,7 @@ const thebe_selector_output = ".output, .cell_output"
     <!-- Google Analytics -->
     
   </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
-<!-- Checkboxes to toggle the left sidebar -->
-<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
-<label class="overlay overlay-navbar" for="__navigation">
-    <div class="visually-hidden">Toggle navigation sidebar</div>
-</label>
-<!-- Checkboxes to toggle the in-page toc -->
-<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
-<label class="overlay overlay-pagetoc" for="__page-toc">
-    <div class="visually-hidden">Toggle in-page Table of Contents</div>
-</label>
-<!-- Headers at the top -->
-<div class="announcement header-item noprint"></div>
-<div class="header header-item noprint"></div>
-
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
     
     <div class="container-fluid" id="banner"></div>
 
@@ -86,10 +74,9 @@ const thebe_selector_output = ".output, .cell_output"
     <div class="container-xl">
       <div class="row">
           
-<!-- Sidebar -->
-<div class="bd-sidebar noprint" id="site-navigation">
-    <div class="bd-sidebar__content">
-        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
     <a class="navbar-brand text-wrap" href="../index.html">
       
         <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
@@ -105,15 +92,14 @@ const thebe_selector_output = ".output, .cell_output"
   <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
 </form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item active">
-        
-        <ul class="nav bd-sidenav bd-sidenav__home-link">
-            <li class="toctree-l1">
-                <a class="reference internal" href="../intro.html">
-                    Welcome
-                </a>
-            </li>
-        </ul>
-        <p aria-level="2" class="caption" role="heading">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../intro.html">
+   Welcome
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
   System Design
  </span>
@@ -563,22 +549,29 @@ const thebe_selector_output = ".output, .cell_output"
      L02: Traditional Methods for ML in Graphs
     </a>
    </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../cs224w_ml_graph/CS224W_Colab_0.html">
+     <strong>
+      HW0
+     </strong>
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../cs224w_ml_graph/CS224W_Colab_1.html">
+     HW1
+    </a>
+   </li>
   </ul>
  </li>
 </ul>
 
     </div>
-</nav></div>
-        <div class="bd-sidebar__bottom">
-             <!-- To handle the deprecated key -->
-            
-            <div class="navbar_extra_footer">
-            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
-            </div>
-            
-        </div>
-    </div>
-    <div id="rtd-footer-container"></div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
 </div>
 
 
@@ -586,191 +579,94 @@ const thebe_selector_output = ".output, .cell_output"
 
 
           
-<!-- A tiny helper pixel to detect if we've scrolled -->
-<div class="sbt-scroll-pixel-helper"></div>
-<!-- Main content -->
-<div class="col py-0 content-container">
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
     
-    <div class="header-article row sticky-top noprint">
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
         
-
-
-
-<div class="col py-1 d-flex header-article-main">
-    <div class="header-article__left">
-        
-        <label for="__navigation"
-  class="headerbtn"
-  data-toggle="tooltip"
-data-placement="right"
-title="Toggle navigation"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-bars"></i>
-  </span>
-
-</label>
-
-        
-    </div>
-    <div class="header-article__right">
-<div class="menu-dropdown menu-dropdown-launch-buttons">
-  <button class="headerbtn menu-dropdown__trigger"
-      aria-label="Launch interactive content">
-      <i class="fas fa-rocket"></i>
-  </button>
-  <div class="menu-dropdown__content">
-    <ul>
-      <li>
-        <a href="https://mybinder.org/v2/gh/chandrabsingh/learning/master?urlpath=tree/learning/cs229_ml/lec06-NaiveBayes-SVM.ipynb"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Launch on Binder"
->
-  
-
-<span class="headerbtn__icon-container">
-  
-    <img src="../_static/images/logo_binder.svg">
-  </span>
-<span class="headerbtn__text-container">Binder</span>
-</a>
-
-      </li>
-      
-    </ul>
-  </div>
-</div>
-
-<button onclick="toggleFullScreen()"
-  class="headerbtn"
-  data-toggle="tooltip"
-data-placement="bottom"
-title="Fullscreen mode"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-expand"></i>
-  </span>
-
-</button>
-
-<div class="menu-dropdown menu-dropdown-repository-buttons">
-  <button class="headerbtn menu-dropdown__trigger"
-      aria-label="Source repositories">
-      <i class="fab fa-github"></i>
-  </button>
-  <div class="menu-dropdown__content">
-    <ul>
-      <li>
-        <a href="https://github.com/chandrabsingh/learning"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Source repository"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fab fa-github"></i>
-  </span>
-<span class="headerbtn__text-container">repository</span>
-</a>
-
-      </li>
-      
-      <li>
-        <a href="https://github.com/chandrabsingh/learning/issues/new?title=Issue%20on%20page%20%2Fcs229_ml/lec06-NaiveBayes-SVM.html&body=Your%20issue%20content%20here."
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Open an issue"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-lightbulb"></i>
-  </span>
-<span class="headerbtn__text-container">open issue</span>
-</a>
-
-      </li>
-      
-    </ul>
-  </div>
-</div>
-
-<div class="menu-dropdown menu-dropdown-download-buttons">
-  <button class="headerbtn menu-dropdown__trigger"
-      aria-label="Download this page">
-      <i class="fas fa-download"></i>
-  </button>
-  <div class="menu-dropdown__content">
-    <ul>
-      <li>
-        <a href="../_sources/cs229_ml/lec06-NaiveBayes-SVM.ipynb"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Download source file"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-file"></i>
-  </span>
-<span class="headerbtn__text-container">.ipynb</span>
-</a>
-
-      </li>
-      
-      <li>
-        
-<button onclick="printPdf(this)"
-  class="headerbtn"
-  data-toggle="tooltip"
-data-placement="left"
-title="Print to PDF"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-file-pdf"></i>
-  </span>
-<span class="headerbtn__text-container">.pdf</span>
-</button>
-
-      </li>
-      
-    </ul>
-  </div>
-</div>
-<label for="__page-toc"
-  class="headerbtn headerbtn-page-toc"
-  
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-list"></i>
-  </span>
-
-</label>
-
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/cs229_ml/lec06-NaiveBayes-SVM.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
     </div>
 </div>
 
-<!-- Table of contents -->
-<div class="col-md-3 bd-toc show noprint">
-    <div class="tocsection onthispage pt-5 pb-3">
-        <i class="fas fa-list"></i> Contents
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/chandrabsingh/learning"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/chandrabsingh/learning/issues/new?title=Issue%20on%20page%20%2Fcs229_ml/lec06-NaiveBayes-SVM.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        
     </div>
-    <nav id="bd-toc-nav" aria-label="Page">
-        <ul class="visible nav section-nav flex-column">
+</div>
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/chandrabsingh/learning/master?urlpath=tree/learning/cs229_ml/lec06-NaiveBayes-SVM.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#outline">
    Outline
@@ -878,11 +774,12 @@ title="Print to PDF"
  </li>
 </ul>
 
-    </nav>
-</div>
+            </nav>
+        </div>
     </div>
-    <div class="article row">
-        <div class="col pl-md-3 pl-lg-5 content-container">
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
                 <h1>Lec 06-Naive Bayes - SVM</h1>
@@ -1006,14 +903,13 @@ title="Print to PDF"
                     </div>
                 </div>
             </div>
-            <main id="main-content" role="main">
-                
+            
               <div>
                 
   <section class="tex2jax_ignore mathjax_ignore" id="lec-06-naive-bayes-svm">
-<h1>Lec 06-Naive Bayes - SVM<a class="headerlink" href="#lec-06-naive-bayes-svm" title="Permalink to this headline">#</a></h1>
+<h1>Lec 06-Naive Bayes - SVM<a class="headerlink" href="#lec-06-naive-bayes-svm" title="Permalink to this headline">¶</a></h1>
 <section id="outline">
-<h2>Outline<a class="headerlink" href="#outline" title="Permalink to this headline">#</a></h2>
+<h2>Outline<a class="headerlink" href="#outline" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li><p>Naive Bayes</p>
 <ul>
@@ -1026,7 +922,7 @@ title="Print to PDF"
 </ul>
 </section>
 <section id="naive-bayes">
-<h2>Naive Bayes<a class="headerlink" href="#naive-bayes" title="Permalink to this headline">#</a></h2>
+<h2>Naive Bayes<a class="headerlink" href="#naive-bayes" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li><p>is a generative type of algorithm</p></li>
 <li><p>To build generative model, P(x|y) and P(y) needs to be modeled. Gaussian discriminative model uses Gaussian and Bernoulli respectively to model this. Naive Bayes uses a different model.</p></li>
@@ -1049,14 +945,14 @@ title="Print to PDF"
 </li>
 </ul>
 <section id="maximum-likelihood-estimate">
-<h3>Maximum likelihood estimate<a class="headerlink" href="#maximum-likelihood-estimate" title="Permalink to this headline">#</a></h3>
+<h3>Maximum likelihood estimate<a class="headerlink" href="#maximum-likelihood-estimate" title="Permalink to this headline">¶</a></h3>
 <blockquote>
 <div><p><span class="math notranslate nohighlight">\(\phi_{y} = \frac{\sum\limits_{i=1}^{m}\mathbb 1 \{y^{(i)}=1\}}{m}\)</span><br />
 <span class="math notranslate nohighlight">\(\phi_{j|y=0} = \frac{\sum\limits_{i=1}^{m}\mathbb 1 \{x_{j}^{(i)}=1, y^{(i)}=0\}}{\sum\limits_{i=1}^{m}\mathbb 1 \{y^{(i)}=0\}}\)</span></p>
 </div></blockquote>
 </section>
 <section id="laplace-smoothing">
-<h3>Laplace smoothing<a class="headerlink" href="#laplace-smoothing" title="Permalink to this headline">#</a></h3>
+<h3>Laplace smoothing<a class="headerlink" href="#laplace-smoothing" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p>ML conference papers - NIPS - Neural Information Processing Systems</p></li>
 <li><p><strong>NB breaks</strong> - because the probability of some event that you have not seen is trained as 0, which is statistically wrong</p></li>
@@ -1071,7 +967,7 @@ title="Print to PDF"
 </li>
 </ul>
 <section id="id1">
-<h4>Maximum likelihood estimate<a class="headerlink" href="#id1" title="Permalink to this headline">#</a></h4>
+<h4>Maximum likelihood estimate<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h4>
 <blockquote>
 <div><p><span class="math notranslate nohighlight">\(\phi_{x=i} = \frac{\sum\limits_{j=1}^{m}\mathbb 1 \{x^{(i)}=j\} + 1} {m + k}\)</span></p>
 </div></blockquote>
@@ -1085,7 +981,7 @@ title="Print to PDF"
 </section>
 </section>
 <section id="event-models-for-text-classification">
-<h2>Event models for text classification<a class="headerlink" href="#event-models-for-text-classification" title="Permalink to this headline">#</a></h2>
+<h2>Event models for text classification<a class="headerlink" href="#event-models-for-text-classification" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li><p>The functionality can be generalized from binary to multinomial features instead</p>
 <ul>
@@ -1103,7 +999,7 @@ title="Print to PDF"
 $\tiny{\text{YouTube-Stanford-CS229-Andrew Ng}}$  
 </section>
 <section id="nb-variation">
-<h2>NB variation<a class="headerlink" href="#nb-variation" title="Permalink to this headline">#</a></h2>
+<h2>NB variation<a class="headerlink" href="#nb-variation" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li><p>for text classification</p>
 <ul>
@@ -1128,7 +1024,7 @@ $\tiny{\text{YouTube-Stanford-CS229-Andrew Ng}}$
 </li>
 </ul>
 <section id="nb-advantage">
-<h3>NB advantage<a class="headerlink" href="#nb-advantage" title="Permalink to this headline">#</a></h3>
+<h3>NB advantage<a class="headerlink" href="#nb-advantage" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p>quick to implement</p></li>
 <li><p>computationally efficient</p></li>
@@ -1140,7 +1036,7 @@ $\tiny{\text{YouTube-Stanford-CS229-Andrew Ng}}$
 </section>
 </section>
 <section id="support-vector-machines-svm">
-<h2>Support Vector Machines (SVM)<a class="headerlink" href="#support-vector-machines-svm" title="Permalink to this headline">#</a></h2>
+<h2>Support Vector Machines (SVM)<a class="headerlink" href="#support-vector-machines-svm" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li><p>find classification in the form of non linear decision boundaries</p></li>
 <li><p>SVM does not have many parameters to fiddle with</p>
@@ -1158,7 +1054,7 @@ $\tiny{\text{YouTube-Stanford-CS229-Andrew Ng}}$
 <img src="images/06_svmBoundary.png" width=200 height=200>  
 $\tiny{\text{YouTube-Stanford-CS229-Andrew Ng}}$  
 <section id="outline-for-svm">
-<h3>Outline for SVM<a class="headerlink" href="#outline-for-svm" title="Permalink to this headline">#</a></h3>
+<h3>Outline for SVM<a class="headerlink" href="#outline-for-svm" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p>Optimal margin classifier (separable case)</p></li>
 <li><p>Kernel</p>
@@ -1171,12 +1067,12 @@ $\tiny{\text{YouTube-Stanford-CS229-Andrew Ng}}$
 </ul>
 </section>
 <section id="optimal-margin-classifier-separable-case">
-<h3>Optimal margin classifier (separable case)<a class="headerlink" href="#optimal-margin-classifier-separable-case" title="Permalink to this headline">#</a></h3>
+<h3>Optimal margin classifier (separable case)<a class="headerlink" href="#optimal-margin-classifier-separable-case" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p>Separable case means data is separable</p></li>
 </ul>
 <section id="functional-margin-of-classifier">
-<h4>Functional margin of classifier<a class="headerlink" href="#functional-margin-of-classifier" title="Permalink to this headline">#</a></h4>
+<h4>Functional margin of classifier<a class="headerlink" href="#functional-margin-of-classifier" title="Permalink to this headline">¶</a></h4>
 <ul class="simple">
 <li><p>How confidently and accurately do you classify an example</p></li>
 <li><p>Using binary classification and logistic regression</p></li>
@@ -1204,7 +1100,7 @@ $\tiny{\text{YouTube-Stanford-CS229-Andrew Ng}}$
 </ul>
 </section>
 <section id="geometric-margin">
-<h4>Geometric margin<a class="headerlink" href="#geometric-margin" title="Permalink to this headline">#</a></h4>
+<h4>Geometric margin<a class="headerlink" href="#geometric-margin" title="Permalink to this headline">¶</a></h4>
 <ul class="simple">
 <li><p>assuming data is linearly separable,</p></li>
 <li><p>and there are two lines that separates the true and false variables</p></li>
@@ -1214,7 +1110,7 @@ $\tiny{\text{YouTube-Stanford-CS229-Andrew Ng}}$
 </ul>
 </section>
 <section id="notation">
-<h4>Notation<a class="headerlink" href="#notation" title="Permalink to this headline">#</a></h4>
+<h4>Notation<a class="headerlink" href="#notation" title="Permalink to this headline">¶</a></h4>
 <ul class="simple">
 <li><p>Labels: <span class="math notranslate nohighlight">\(y \in \{-1, +1\} \)</span> to denote class labels</p></li>
 <li><p>SVM will generate hypothesis output value as {-1, +1} instead of probability as in logistic regression</p></li>
@@ -1260,7 +1156,7 @@ $\tiny{\text{YouTube-Stanford-CS229-Andrew Ng}}$
 </ul>
 </section>
 <section id="functional-margin-of-hyperplane-cont">
-<h4>Functional margin of hyperplane (cont)<a class="headerlink" href="#functional-margin-of-hyperplane-cont" title="Permalink to this headline">#</a></h4>
+<h4>Functional margin of hyperplane (cont)<a class="headerlink" href="#functional-margin-of-hyperplane-cont" title="Permalink to this headline">¶</a></h4>
 <ul>
 <li><p>Functional margin <strong>wrt single training example</strong></p>
 <ul class="simple">
@@ -1313,7 +1209,7 @@ $\tiny{\text{YouTube-Stanford-CS229-Andrew Ng}}$
 </ul>
 </section>
 <section id="geometric-margin-of-hyperplane-cont">
-<h4>Geometric margin of hyperplane (cont)<a class="headerlink" href="#geometric-margin-of-hyperplane-cont" title="Permalink to this headline">#</a></h4>
+<h4>Geometric margin of hyperplane (cont)<a class="headerlink" href="#geometric-margin-of-hyperplane-cont" title="Permalink to this headline">¶</a></h4>
 <ul>
 <li><p>Geometric margin <strong>wrt single training example</strong></p>
 <ul class="simple">
@@ -1338,14 +1234,14 @@ $\tiny{\text{YouTube-Stanford-CS229-Andrew Ng}}$
 $\tiny{\text{YouTube-Stanford-CS229-Andrew Ng}}$  
 </section>
 <section id="relationship-between-functional-and-geometric-margin">
-<h4>Relationship between functional and geometric margin<a class="headerlink" href="#relationship-between-functional-and-geometric-margin" title="Permalink to this headline">#</a></h4>
+<h4>Relationship between functional and geometric margin<a class="headerlink" href="#relationship-between-functional-and-geometric-margin" title="Permalink to this headline">¶</a></h4>
 <blockquote>
 <div><p><span class="math notranslate nohighlight">\(\gamma^{(i)} = \frac{\hat{\gamma}^{(i)}}{\Vert w \Vert}\)</span><br />
 i.e., <span class="math notranslate nohighlight">\(\text{Geometric Margin} = \frac{\text{Functional Margin}}{\text{Norm of w}}\)</span></p>
 </div></blockquote>
 </section>
 <section id="id2">
-<h4>Geometric margin of hyperplane (cont)<a class="headerlink" href="#id2" title="Permalink to this headline">#</a></h4>
+<h4>Geometric margin of hyperplane (cont)<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h4>
 <ul>
 <li><p>Geometric margin <strong>wrt entire training example</strong></p>
 <blockquote>
@@ -1355,7 +1251,7 @@ i.e., <span class="math notranslate nohighlight">\(\text{Geometric Margin} = \fr
 </ul>
 </section>
 <section id="optimal-margin-classifier-cont">
-<h4>Optimal margin classifier (cont)<a class="headerlink" href="#optimal-margin-classifier-cont" title="Permalink to this headline">#</a></h4>
+<h4>Optimal margin classifier (cont)<a class="headerlink" href="#optimal-margin-classifier-cont" title="Permalink to this headline">¶</a></h4>
 <ul class="simple">
 <li><p>what the optimal margin classifier does is to choose w,b to maximize <span class="math notranslate nohighlight">\(\gamma\)</span></p></li>
 </ul>
@@ -1408,11 +1304,9 @@ i.e., <span class="math notranslate nohighlight">\(\text{Geometric Margin} = \fr
 
               </div>
               
-            </main>
-            <footer class="footer-article noprint">
-                
-    <!-- Previous / next buttons -->
-<div class='prev-next-area'>
+            
+                <!-- Previous / next buttons -->
+<div class='prev-next-area'> 
     <a class='left-prev' id="prev-link" href="lec05-GDA-NaiveBayes.html" title="previous page">
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
@@ -1428,28 +1322,24 @@ i.e., <span class="math notranslate nohighlight">\(\text{Geometric Margin} = \fr
     <i class="fas fa-angle-right"></i>
     </a>
 </div>
-            </footer>
+            
         </div>
     </div>
-    <div class="footer-content row">
-        <footer class="col footer"><p>
-  
-    By Chandra<br/>
-  
-      &copy; Copyright 2022.<br/>
-</p>
-        </footer>
-    </div>
+    <footer class="footer">
+  <p>
     
-</div>
+      By Chandra<br/>
+    
+        &copy; Copyright 2021.<br/>
+  </p>
+</footer>
+</main>
 
 
       </div>
     </div>
   
-  <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
-
+  <script src="../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
 
   </body>
 </html>

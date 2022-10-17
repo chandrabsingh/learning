@@ -8,9 +8,8 @@
 
     <title>Game of Thrones - Knowledge Graph analysis using Neo4j</title>
     
-  <!-- Loaded before other Sphinx assets -->
-  <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
-<link href="../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+  <link href="../_static/css/theme.css" rel="stylesheet">
+  <link href="../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
 
     
   <link rel="stylesheet"
@@ -20,16 +19,20 @@
   <link rel="preload" as="font" type="font/woff2" crossorigin
     href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
 
+    
+      
+
+    
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
     
-  <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+  <link rel="preload" as="script" href="../_static/js/index.be7d3bbb2ef33a8344ce.js">
 
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
@@ -37,13 +40,12 @@
     <script src="../_static/doctools.js"></script>
     <script src="../_static/clipboard.min.js"></script>
     <script src="../_static/copybutton.js"></script>
-    <script src="../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
     <script src="../_static/togglebutton.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="../_static/design-tabs.js"></script>
+    <script src="../_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
 const thebe_selector = ".thebe,.cell"
 const thebe_selector_input = "pre"
@@ -63,21 +65,7 @@ const thebe_selector_output = ".output, .cell_output"
     <!-- Google Analytics -->
     
   </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
-<!-- Checkboxes to toggle the left sidebar -->
-<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
-<label class="overlay overlay-navbar" for="__navigation">
-    <div class="visually-hidden">Toggle navigation sidebar</div>
-</label>
-<!-- Checkboxes to toggle the in-page toc -->
-<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
-<label class="overlay overlay-pagetoc" for="__page-toc">
-    <div class="visually-hidden">Toggle in-page Table of Contents</div>
-</label>
-<!-- Headers at the top -->
-<div class="announcement header-item noprint"></div>
-<div class="header header-item noprint"></div>
-
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
     
     <div class="container-fluid" id="banner"></div>
 
@@ -86,10 +74,9 @@ const thebe_selector_output = ".output, .cell_output"
     <div class="container-xl">
       <div class="row">
           
-<!-- Sidebar -->
-<div class="bd-sidebar noprint" id="site-navigation">
-    <div class="bd-sidebar__content">
-        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
     <a class="navbar-brand text-wrap" href="../index.html">
       
         <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
@@ -105,15 +92,14 @@ const thebe_selector_output = ".output, .cell_output"
   <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
 </form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item active">
-        
-        <ul class="nav bd-sidenav bd-sidenav__home-link">
-            <li class="toctree-l1">
-                <a class="reference internal" href="../intro.html">
-                    Welcome
-                </a>
-            </li>
-        </ul>
-        <p aria-level="2" class="caption" role="heading">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../intro.html">
+   Welcome
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
   System Design
  </span>
@@ -563,22 +549,29 @@ const thebe_selector_output = ".output, .cell_output"
      L02: Traditional Methods for ML in Graphs
     </a>
    </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../cs224w_ml_graph/CS224W_Colab_0.html">
+     <strong>
+      HW0
+     </strong>
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../cs224w_ml_graph/CS224W_Colab_1.html">
+     HW1
+    </a>
+   </li>
   </ul>
  </li>
 </ul>
 
     </div>
-</nav></div>
-        <div class="bd-sidebar__bottom">
-             <!-- To handle the deprecated key -->
-            
-            <div class="navbar_extra_footer">
-            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
-            </div>
-            
-        </div>
-    </div>
-    <div id="rtd-footer-container"></div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
 </div>
 
 
@@ -586,191 +579,94 @@ const thebe_selector_output = ".output, .cell_output"
 
 
           
-<!-- A tiny helper pixel to detect if we've scrolled -->
-<div class="sbt-scroll-pixel-helper"></div>
-<!-- Main content -->
-<div class="col py-0 content-container">
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
     
-    <div class="header-article row sticky-top noprint">
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
         
-
-
-
-<div class="col py-1 d-flex header-article-main">
-    <div class="header-article__left">
-        
-        <label for="__navigation"
-  class="headerbtn"
-  data-toggle="tooltip"
-data-placement="right"
-title="Toggle navigation"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-bars"></i>
-  </span>
-
-</label>
-
-        
-    </div>
-    <div class="header-article__right">
-<div class="menu-dropdown menu-dropdown-launch-buttons">
-  <button class="headerbtn menu-dropdown__trigger"
-      aria-label="Launch interactive content">
-      <i class="fas fa-rocket"></i>
-  </button>
-  <div class="menu-dropdown__content">
-    <ul>
-      <li>
-        <a href="https://mybinder.org/v2/gh/chandrabsingh/learning/master?urlpath=tree/learning/dbs/neo4j_graph_datascience.ipynb"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Launch on Binder"
->
-  
-
-<span class="headerbtn__icon-container">
-  
-    <img src="../_static/images/logo_binder.svg">
-  </span>
-<span class="headerbtn__text-container">Binder</span>
-</a>
-
-      </li>
-      
-    </ul>
-  </div>
-</div>
-
-<button onclick="toggleFullScreen()"
-  class="headerbtn"
-  data-toggle="tooltip"
-data-placement="bottom"
-title="Fullscreen mode"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-expand"></i>
-  </span>
-
-</button>
-
-<div class="menu-dropdown menu-dropdown-repository-buttons">
-  <button class="headerbtn menu-dropdown__trigger"
-      aria-label="Source repositories">
-      <i class="fab fa-github"></i>
-  </button>
-  <div class="menu-dropdown__content">
-    <ul>
-      <li>
-        <a href="https://github.com/chandrabsingh/learning"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Source repository"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fab fa-github"></i>
-  </span>
-<span class="headerbtn__text-container">repository</span>
-</a>
-
-      </li>
-      
-      <li>
-        <a href="https://github.com/chandrabsingh/learning/issues/new?title=Issue%20on%20page%20%2Fdbs/neo4j_graph_datascience.html&body=Your%20issue%20content%20here."
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Open an issue"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-lightbulb"></i>
-  </span>
-<span class="headerbtn__text-container">open issue</span>
-</a>
-
-      </li>
-      
-    </ul>
-  </div>
-</div>
-
-<div class="menu-dropdown menu-dropdown-download-buttons">
-  <button class="headerbtn menu-dropdown__trigger"
-      aria-label="Download this page">
-      <i class="fas fa-download"></i>
-  </button>
-  <div class="menu-dropdown__content">
-    <ul>
-      <li>
-        <a href="../_sources/dbs/neo4j_graph_datascience.ipynb"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Download source file"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-file"></i>
-  </span>
-<span class="headerbtn__text-container">.ipynb</span>
-</a>
-
-      </li>
-      
-      <li>
-        
-<button onclick="printPdf(this)"
-  class="headerbtn"
-  data-toggle="tooltip"
-data-placement="left"
-title="Print to PDF"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-file-pdf"></i>
-  </span>
-<span class="headerbtn__text-container">.pdf</span>
-</button>
-
-      </li>
-      
-    </ul>
-  </div>
-</div>
-<label for="__page-toc"
-  class="headerbtn headerbtn-page-toc"
-  
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-list"></i>
-  </span>
-
-</label>
-
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/dbs/neo4j_graph_datascience.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
     </div>
 </div>
 
-<!-- Table of contents -->
-<div class="col-md-3 bd-toc show noprint">
-    <div class="tocsection onthispage pt-5 pb-3">
-        <i class="fas fa-list"></i> Contents
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/chandrabsingh/learning"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/chandrabsingh/learning/issues/new?title=Issue%20on%20page%20%2Fdbs/neo4j_graph_datascience.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        
     </div>
-    <nav id="bd-toc-nav" aria-label="Page">
-        <ul class="visible nav section-nav flex-column">
+</div>
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/chandrabsingh/learning/master?urlpath=tree/learning/dbs/neo4j_graph_datascience.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#example-dataset">
    Example Dataset
@@ -830,11 +726,12 @@ title="Print to PDF"
  </li>
 </ul>
 
-    </nav>
-</div>
+            </nav>
+        </div>
     </div>
-    <div class="article row">
-        <div class="col pl-md-3 pl-lg-5 content-container">
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
                 <h1>Game of Thrones - Knowledge Graph analysis using Neo4j</h1>
@@ -910,19 +807,18 @@ title="Print to PDF"
                     </div>
                 </div>
             </div>
-            <main id="main-content" role="main">
-                
+            
               <div>
                 
   <section class="tex2jax_ignore mathjax_ignore" id="game-of-thrones-knowledge-graph-analysis-using-neo4j">
-<h1>Game of Thrones - Knowledge Graph analysis using Neo4j<a class="headerlink" href="#game-of-thrones-knowledge-graph-analysis-using-neo4j" title="Permalink to this headline">#</a></h1>
+<h1>Game of Thrones - Knowledge Graph analysis using Neo4j<a class="headerlink" href="#game-of-thrones-knowledge-graph-analysis-using-neo4j" title="Permalink to this headline">¶</a></h1>
 <p>The Neo4j Graph Data Science (GDS) library contains a set of graph algorithms, exposed through Cypher procedures. Graph algorithms provide insights into the graph structure and elements, for example, by computing centrality and similarity scores, detecting communities and path finding algorithms.</p>
 <p>The goal of this study is to understand the workings of neo4j data science library algorithms.</p>
 <p><code class="docutils literal notranslate"><span class="pre">:play</span> <span class="pre">https://guides.neo4j.com/sandbox/graph-data-science/index.html</span></code></p>
 <p align="center"><img src="./images/db_schema_visualization.png" ></p>
 <p>Following is a walkthrough over the product tier algorithms with examples on: PageRank, Label Propagation, Weakly Connected Components, Louvain, Node Similarity and Betweenness Centrality.</p>
 <section id="example-dataset">
-<h2>Example Dataset<a class="headerlink" href="#example-dataset" title="Permalink to this headline">#</a></h2>
+<h2>Example Dataset<a class="headerlink" href="#example-dataset" title="Permalink to this headline">¶</a></h2>
 <p>The dataset comprises of <strong>Neo4j Graph Data Science library</strong> based on Game of Thrones fantasy saga, data collected from:</p>
 <ul class="simple">
 <li><p>Chris Albon’s collection of battles from “The War of the Five Kings” dataset</p></li>
@@ -1008,7 +904,7 @@ title="Print to PDF"
 </table>
 </section>
 <section id="graph-creation">
-<h2>Graph creation<a class="headerlink" href="#graph-creation" title="Permalink to this headline">#</a></h2>
+<h2>Graph creation<a class="headerlink" href="#graph-creation" title="Permalink to this headline">¶</a></h2>
 <p>To enable fast caching of the graph topology, containing only the relevant nodes, relationships, and weights, the GDS library operates on in-memory graphs that are created as projections of the Neo4j stored graph.</p>
 <p>These projections may change the nature of the graph elements by any of the following:</p>
 <ul class="simple">
@@ -1022,7 +918,7 @@ title="Print to PDF"
 <p>There are two ways of creating graphs – explicit and implicit.</p>
 </section>
 <section id="graph-algorithms">
-<h2>Graph Algorithms<a class="headerlink" href="#graph-algorithms" title="Permalink to this headline">#</a></h2>
+<h2>Graph Algorithms<a class="headerlink" href="#graph-algorithms" title="Permalink to this headline">¶</a></h2>
 <p>Centrality algorithms are used to determine the importance of distinct nodes in a network. The Neo4j GDS library includes the following centrality algorithms in production:</p>
 <ul class="simple">
 <li><p>Page Rank</p></li>
@@ -1034,7 +930,7 @@ title="Print to PDF"
 <li><p>Local Clustering Coefficient</p></li>
 </ul>
 <section id="page-rank">
-<h3>Page Rank<a class="headerlink" href="#page-rank" title="Permalink to this headline">#</a></h3>
+<h3>Page Rank<a class="headerlink" href="#page-rank" title="Permalink to this headline">¶</a></h3>
 <p>The PageRank algorithm <strong>measures the importance of each node within the graph</strong>, based on the number of incoming relationships and the importance of the corresponding source nodes. The underlying assumption is that a page is only as important as the pages that link to it.</p>
 <p>PageRank was introduced in the original Google paper as a function that solves the following equation:
 $<span class="math notranslate nohighlight">\(PR(A) = (1-d) + d\left(\frac{PR(T_{1})}{C(T_{1})} + ... + \frac{PR(T_{n})}{C(T_{n})}\right)\)</span>$
@@ -1181,7 +1077,7 @@ ORDER BY score DESC LIMIT 5
 </ul>
 </section>
 <section id="label-propagation">
-<h3>Label Propagation<a class="headerlink" href="#label-propagation" title="Permalink to this headline">#</a></h3>
+<h3>Label Propagation<a class="headerlink" href="#label-propagation" title="Permalink to this headline">¶</a></h3>
 <p>Label propagation is a <strong>semi-supervised machine learning algorithm</strong> that <strong>assigns labels to previously unlabeled data points</strong>. At the start of the algorithm, a small subset of the data points have labels or classifications. These <strong>labels are propagated to the unlabeled points</strong> throughout the course of the algorithm.</p>
 <p>The algorithm works as follows:</p>
 <ul class="simple">
@@ -1332,7 +1228,7 @@ LIMIT 5
 </table>
 </section>
 <section id="weakly-connected-components">
-<h3>Weakly Connected Components<a class="headerlink" href="#weakly-connected-components" title="Permalink to this headline">#</a></h3>
+<h3>Weakly Connected Components<a class="headerlink" href="#weakly-connected-components" title="Permalink to this headline">¶</a></h3>
 <p>The Weakly Connected Components algorithm or Union Find finds sets of connected nodes in an undirected graph, where each node is reachable from any other node in the same set. It is called weakly because it relies on the relationship between two nodes regardless of its direction, wherefore the graph is treated as undirected.
 This algorithm is useful for identifying disjoint subgraphs, when pre-processing graphs, or for disambiguation purposes.</p>
 <p>UseCase:</p>
@@ -1370,7 +1266,7 @@ This algorithm is useful for identifying disjoint subgraphs, when pre-processing
 <p>The result is components with different sizes.</p>
 </section>
 <section id="louvain">
-<h3>Louvain<a class="headerlink" href="#louvain" title="Permalink to this headline">#</a></h3>
+<h3>Louvain<a class="headerlink" href="#louvain" title="Permalink to this headline">¶</a></h3>
 <p>The Louvain algorithm is a community detection algorithm designed to identify clusters of nodes in a graph. It applies heuristic modularity to define the community structure by calculating how densely connected the nodes within a community. Louvain also reveals a hierarchy of communities at different scales, which enables you to zoom in on different levels of granularity and find sub-communities within sub-communities within sub-communities.</p>
 <p>The algorithm works as follows:</p>
 <ul class="simple">
@@ -1536,7 +1432,7 @@ LIMIT 5
 </ul>
 </section>
 <section id="node-similarity">
-<h3>Node Similarity<a class="headerlink" href="#node-similarity" title="Permalink to this headline">#</a></h3>
+<h3>Node Similarity<a class="headerlink" href="#node-similarity" title="Permalink to this headline">¶</a></h3>
 <p>The Node Similarity algorithm compares pairs of nodes in a graph based on their connections to other nodes. Two nodes are considered similar if they share many of the same neighbors.</p>
 <p>The node similarity is computed using pair-wise similarities based on either the Jaccard metric also known as Jaccard Similarity Score, or the Overlap coefficient also known as the Szymkiewicz–Simpson coefficient.</p>
 <p>Given two sets A and B, the <strong>Jaccard Similarity</strong> is computed using the following formula:</p>
@@ -1624,7 +1520,7 @@ ORDER BY similarity DESC
 </ul>
 </section>
 <section id="triangle-count">
-<h3>Triangle Count<a class="headerlink" href="#triangle-count" title="Permalink to this headline">#</a></h3>
+<h3>Triangle Count<a class="headerlink" href="#triangle-count" title="Permalink to this headline">¶</a></h3>
 <p>A triangle in a graph is a set of three nodes all connected to each other. The triangle count of a node is the number of triangles that node belongs to.</p>
 <p>In order to better understand the concept of triangle counting, let us visualize a part of the GoT graph. We will select two characters and only include relationships from the first book between them and their neighbours. First make sure to uncheck ‘Connect result nodes’ in the settings of Neo4j Browser.</p>
 <p>The Cypher query to detect triangles in the first book between these two names and their neighbors</p>
@@ -1670,7 +1566,7 @@ ORDER BY similarity DESC
 <p>This results in two triangles count for Tyrion and Robb and one triangle for Tywin and Yoren</p>
 </section>
 <section id="betweenness-centrality">
-<h3>Betweenness Centrality<a class="headerlink" href="#betweenness-centrality" title="Permalink to this headline">#</a></h3>
+<h3>Betweenness Centrality<a class="headerlink" href="#betweenness-centrality" title="Permalink to this headline">¶</a></h3>
 <p>Betweenness Centrality is a way of detecting the amount of influence a node has over the flow of information in a graph. It is often used to find nodes that serve as a bridge from one part of a graph to another.</p>
 <p>The betweenness centrality of a node <span class="math notranslate nohighlight">\({\displaystyle v}\)</span> is given by the expression:</p>
 <div class="math notranslate nohighlight">
@@ -1746,7 +1642,7 @@ ORDER BY similarity DESC
 </section>
 </section>
 <section id="references">
-<h2>References<a class="headerlink" href="#references" title="Permalink to this headline">#</a></h2>
+<h2>References<a class="headerlink" href="#references" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li><p>Neo4j Graph Data Science, URL: <a class="reference external" href="https://neo4j.com/docs/graph-data-science/current/">https://neo4j.com/docs/graph-data-science/current/</a></p></li>
 <li><p>Neo4j Sandbox, URL: <a class="reference external" href="https://sandbox.neo4j.com">https://sandbox.neo4j.com</a></p></li>
@@ -1776,11 +1672,9 @@ ORDER BY similarity DESC
 
               </div>
               
-            </main>
-            <footer class="footer-article noprint">
-                
-    <!-- Previous / next buttons -->
-<div class='prev-next-area'>
+            
+                <!-- Previous / next buttons -->
+<div class='prev-next-area'> 
     <a class='left-prev' id="prev-link" href="neo4j_basics.html" title="previous page">
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
@@ -1796,28 +1690,24 @@ ORDER BY similarity DESC
     <i class="fas fa-angle-right"></i>
     </a>
 </div>
-            </footer>
+            
         </div>
     </div>
-    <div class="footer-content row">
-        <footer class="col footer"><p>
-  
-    By Chandra<br/>
-  
-      &copy; Copyright 2022.<br/>
-</p>
-        </footer>
-    </div>
+    <footer class="footer">
+  <p>
     
-</div>
+      By Chandra<br/>
+    
+        &copy; Copyright 2021.<br/>
+  </p>
+</footer>
+</main>
 
 
       </div>
     </div>
   
-  <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
-
+  <script src="../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
 
   </body>
 </html>

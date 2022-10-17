@@ -8,9 +8,8 @@
 
     <title>Spark Collaborative Filtering (ALS) Deep Dive</title>
     
-  <!-- Loaded before other Sphinx assets -->
-  <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
-<link href="../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+  <link href="../_static/css/theme.css" rel="stylesheet">
+  <link href="../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
 
     
   <link rel="stylesheet"
@@ -20,16 +19,20 @@
   <link rel="preload" as="font" type="font/woff2" crossorigin
     href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
 
+    
+      
+
+    
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
     
-  <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+  <link rel="preload" as="script" href="../_static/js/index.be7d3bbb2ef33a8344ce.js">
 
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
@@ -37,13 +40,12 @@
     <script src="../_static/doctools.js"></script>
     <script src="../_static/clipboard.min.js"></script>
     <script src="../_static/copybutton.js"></script>
-    <script src="../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
     <script src="../_static/togglebutton.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="../_static/design-tabs.js"></script>
+    <script src="../_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
 const thebe_selector = ".thebe,.cell"
 const thebe_selector_input = "pre"
@@ -63,21 +65,7 @@ const thebe_selector_output = ".output, .cell_output"
     <!-- Google Analytics -->
     
   </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
-<!-- Checkboxes to toggle the left sidebar -->
-<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
-<label class="overlay overlay-navbar" for="__navigation">
-    <div class="visually-hidden">Toggle navigation sidebar</div>
-</label>
-<!-- Checkboxes to toggle the in-page toc -->
-<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
-<label class="overlay overlay-pagetoc" for="__page-toc">
-    <div class="visually-hidden">Toggle in-page Table of Contents</div>
-</label>
-<!-- Headers at the top -->
-<div class="announcement header-item noprint"></div>
-<div class="header header-item noprint"></div>
-
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
     
     <div class="container-fluid" id="banner"></div>
 
@@ -86,10 +74,9 @@ const thebe_selector_output = ".output, .cell_output"
     <div class="container-xl">
       <div class="row">
           
-<!-- Sidebar -->
-<div class="bd-sidebar noprint" id="site-navigation">
-    <div class="bd-sidebar__content">
-        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
     <a class="navbar-brand text-wrap" href="../index.html">
       
         <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
@@ -105,15 +92,14 @@ const thebe_selector_output = ".output, .cell_output"
   <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
 </form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item active">
-        
-        <ul class="nav bd-sidenav bd-sidenav__home-link">
-            <li class="toctree-l1">
-                <a class="reference internal" href="../intro.html">
-                    Welcome
-                </a>
-            </li>
-        </ul>
-        <p aria-level="2" class="caption" role="heading">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../intro.html">
+   Welcome
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
   System Design
  </span>
@@ -563,22 +549,29 @@ const thebe_selector_output = ".output, .cell_output"
      L02: Traditional Methods for ML in Graphs
     </a>
    </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../cs224w_ml_graph/CS224W_Colab_0.html">
+     <strong>
+      HW0
+     </strong>
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../cs224w_ml_graph/CS224W_Colab_1.html">
+     HW1
+    </a>
+   </li>
   </ul>
  </li>
 </ul>
 
     </div>
-</nav></div>
-        <div class="bd-sidebar__bottom">
-             <!-- To handle the deprecated key -->
-            
-            <div class="navbar_extra_footer">
-            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
-            </div>
-            
-        </div>
-    </div>
-    <div id="rtd-footer-container"></div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
 </div>
 
 
@@ -586,191 +579,94 @@ const thebe_selector_output = ".output, .cell_output"
 
 
           
-<!-- A tiny helper pixel to detect if we've scrolled -->
-<div class="sbt-scroll-pixel-helper"></div>
-<!-- Main content -->
-<div class="col py-0 content-container">
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
     
-    <div class="header-article row sticky-top noprint">
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
         
-
-
-
-<div class="col py-1 d-flex header-article-main">
-    <div class="header-article__left">
-        
-        <label for="__navigation"
-  class="headerbtn"
-  data-toggle="tooltip"
-data-placement="right"
-title="Toggle navigation"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-bars"></i>
-  </span>
-
-</label>
-
-        
-    </div>
-    <div class="header-article__right">
-<div class="menu-dropdown menu-dropdown-launch-buttons">
-  <button class="headerbtn menu-dropdown__trigger"
-      aria-label="Launch interactive content">
-      <i class="fas fa-rocket"></i>
-  </button>
-  <div class="menu-dropdown__content">
-    <ul>
-      <li>
-        <a href="https://mybinder.org/v2/gh/chandrabsingh/learning/master?urlpath=tree/learning/recommenders/als_deep_dive.ipynb"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Launch on Binder"
->
-  
-
-<span class="headerbtn__icon-container">
-  
-    <img src="../_static/images/logo_binder.svg">
-  </span>
-<span class="headerbtn__text-container">Binder</span>
-</a>
-
-      </li>
-      
-    </ul>
-  </div>
-</div>
-
-<button onclick="toggleFullScreen()"
-  class="headerbtn"
-  data-toggle="tooltip"
-data-placement="bottom"
-title="Fullscreen mode"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-expand"></i>
-  </span>
-
-</button>
-
-<div class="menu-dropdown menu-dropdown-repository-buttons">
-  <button class="headerbtn menu-dropdown__trigger"
-      aria-label="Source repositories">
-      <i class="fab fa-github"></i>
-  </button>
-  <div class="menu-dropdown__content">
-    <ul>
-      <li>
-        <a href="https://github.com/chandrabsingh/learning"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Source repository"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fab fa-github"></i>
-  </span>
-<span class="headerbtn__text-container">repository</span>
-</a>
-
-      </li>
-      
-      <li>
-        <a href="https://github.com/chandrabsingh/learning/issues/new?title=Issue%20on%20page%20%2Frecommenders/als_deep_dive.html&body=Your%20issue%20content%20here."
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Open an issue"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-lightbulb"></i>
-  </span>
-<span class="headerbtn__text-container">open issue</span>
-</a>
-
-      </li>
-      
-    </ul>
-  </div>
-</div>
-
-<div class="menu-dropdown menu-dropdown-download-buttons">
-  <button class="headerbtn menu-dropdown__trigger"
-      aria-label="Download this page">
-      <i class="fas fa-download"></i>
-  </button>
-  <div class="menu-dropdown__content">
-    <ul>
-      <li>
-        <a href="../_sources/recommenders/als_deep_dive.ipynb"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Download source file"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-file"></i>
-  </span>
-<span class="headerbtn__text-container">.ipynb</span>
-</a>
-
-      </li>
-      
-      <li>
-        
-<button onclick="printPdf(this)"
-  class="headerbtn"
-  data-toggle="tooltip"
-data-placement="left"
-title="Print to PDF"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-file-pdf"></i>
-  </span>
-<span class="headerbtn__text-container">.pdf</span>
-</button>
-
-      </li>
-      
-    </ul>
-  </div>
-</div>
-<label for="__page-toc"
-  class="headerbtn headerbtn-page-toc"
-  
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-list"></i>
-  </span>
-
-</label>
-
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/recommenders/als_deep_dive.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
     </div>
 </div>
 
-<!-- Table of contents -->
-<div class="col-md-3 bd-toc show noprint">
-    <div class="tocsection onthispage pt-5 pb-3">
-        <i class="fas fa-list"></i> Contents
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/chandrabsingh/learning"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/chandrabsingh/learning/issues/new?title=Issue%20on%20page%20%2Frecommenders/als_deep_dive.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        
     </div>
-    <nav id="bd-toc-nav" aria-label="Page">
-        <ul class="visible nav section-nav flex-column">
+</div>
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/chandrabsingh/learning/master?urlpath=tree/learning/recommenders/als_deep_dive.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#goals">
    Goals
@@ -1060,11 +956,12 @@ title="Print to PDF"
  </li>
 </ul>
 
-    </nav>
-</div>
+            </nav>
+        </div>
     </div>
-    <div class="article row">
-        <div class="col pl-md-3 pl-lg-5 content-container">
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
                 <h1>Spark Collaborative Filtering (ALS) Deep Dive</h1>
@@ -1370,23 +1267,22 @@ title="Print to PDF"
                     </div>
                 </div>
             </div>
-            <main id="main-content" role="main">
-                
+            
               <div>
                 
   <section class="tex2jax_ignore mathjax_ignore" id="spark-collaborative-filtering-als-deep-dive">
-<h1>Spark Collaborative Filtering (ALS) Deep Dive<a class="headerlink" href="#spark-collaborative-filtering-als-deep-dive" title="Permalink to this headline">#</a></h1>
+<h1>Spark Collaborative Filtering (ALS) Deep Dive<a class="headerlink" href="#spark-collaborative-filtering-als-deep-dive" title="Permalink to this headline">¶</a></h1>
 <section id="goals">
-<h2>Goals<a class="headerlink" href="#goals" title="Permalink to this headline">#</a></h2>
+<h2>Goals<a class="headerlink" href="#goals" title="Permalink to this headline">¶</a></h2>
 <p>Spark MLlib provides a collaborative filtering algorithm that can be used for training a matrix factorization model, which predicts explicit or implicit ratings of users on items for recommendations.</p>
 <p>This notebook presents a deep dive into the Spark collaborative filtering algorithm.</p>
 </section>
 <section id="theoretical-aspects">
-<h2>Theoretical Aspects<a class="headerlink" href="#theoretical-aspects" title="Permalink to this headline">#</a></h2>
+<h2>Theoretical Aspects<a class="headerlink" href="#theoretical-aspects" title="Permalink to this headline">¶</a></h2>
 <section id="matrix-factorization-algorithm">
-<h3>Matrix factorization algorithm<a class="headerlink" href="#matrix-factorization-algorithm" title="Permalink to this headline">#</a></h3>
+<h3>Matrix factorization algorithm<a class="headerlink" href="#matrix-factorization-algorithm" title="Permalink to this headline">¶</a></h3>
 <section id="matrix-factorization-for-collaborative-filtering-problem">
-<h4>Matrix factorization for collaborative filtering problem<a class="headerlink" href="#matrix-factorization-for-collaborative-filtering-problem" title="Permalink to this headline">#</a></h4>
+<h4>Matrix factorization for collaborative filtering problem<a class="headerlink" href="#matrix-factorization-for-collaborative-filtering-problem" title="Permalink to this headline">¶</a></h4>
 <p>Matrix factorization is a common technique used in recommendation tasks. Basically, a matrix factorization algorithm tries to find latent factors that represent intrinsic user and item attributes in a lower dimension. That is,</p>
 <div class="math notranslate nohighlight">
 \[\hat r_{u,i} = q_{i}^{T}p_{u}\]</div>
@@ -1400,13 +1296,13 @@ title="Print to PDF"
 <p>where <span class="math notranslate nohighlight">\(c_{u,i}=1+\alpha r_{u,i}\)</span> and <span class="math notranslate nohighlight">\(p_{u,i}=1\)</span> if <span class="math notranslate nohighlight">\(r_{u,i}&gt;0\)</span> and <span class="math notranslate nohighlight">\(p_{u,i}=0\)</span> if <span class="math notranslate nohighlight">\(r_{u,i}=0\)</span>. <span class="math notranslate nohighlight">\(r_{u,i}\)</span> is a numerical representation of users’ preferences (e.g., number of clicks, etc.).</p>
 </section>
 <section id="alternating-least-square-als">
-<h4>Alternating Least Square (ALS)<a class="headerlink" href="#alternating-least-square-als" title="Permalink to this headline">#</a></h4>
+<h4>Alternating Least Square (ALS)<a class="headerlink" href="#alternating-least-square-als" title="Permalink to this headline">¶</a></h4>
 <p>Owing to the term of <span class="math notranslate nohighlight">\(q_{i}^{T}p_{u}\)</span> the loss function is non-convex. Gradient descent method can be applied but this will incur expensive computations. An Alternating Least Square (ALS) algorithm was therefore developed to overcome this issue.</p>
 <p>The basic idea of ALS is to learn one of <span class="math notranslate nohighlight">\(q\)</span> and <span class="math notranslate nohighlight">\(p\)</span> at a time for optimization while keeping the other as constant. This makes the objective at each iteration convex and solvable. The alternating between <span class="math notranslate nohighlight">\(q\)</span> and <span class="math notranslate nohighlight">\(p\)</span> stops when there is convergence to the optimal. It is worth noting that this iterative computation can be parallelised and/or distributed, which makes the algorithm desirable for use cases where the dataset is large and thus the user-item rating matrix is super sparse (as is typical in recommendation scenarios). A comprehensive discussion of ALS and its distributed computation can be found <a class="reference external" href="http://stanford.edu/~rezab/classes/cme323/S15/notes/lec14.pdf">here</a>.</p>
 </section>
 </section>
 <section id="spark-mllib-implementation">
-<h3>Spark Mllib implementation<a class="headerlink" href="#spark-mllib-implementation" title="Permalink to this headline">#</a></h3>
+<h3>Spark Mllib implementation<a class="headerlink" href="#spark-mllib-implementation" title="Permalink to this headline">¶</a></h3>
 <p>The matrix factorization algorithm is available as <code class="docutils literal notranslate"><span class="pre">ALS</span></code> module in <a class="reference external" href="https://spark.apache.org/docs/latest/ml-collaborative-filtering.html">Spark <code class="docutils literal notranslate"><span class="pre">ml</span></code></a> for DataFrame or <a class="reference external" href="https://spark.apache.org/docs/latest/mllib-collaborative-filtering.html">Spark <code class="docutils literal notranslate"><span class="pre">mllib</span></code></a> for RDD.</p>
 <ul class="simple">
 <li><p>The uniqueness of ALS implementation is that it distributes the matrix factorization model training by using “Alternating Least Square” method.</p></li>
@@ -1415,7 +1311,7 @@ title="Print to PDF"
 </ul>
 </section>
 <section id="spark-als-based-movielens-recommender">
-<h3>Spark ALS based MovieLens recommender<a class="headerlink" href="#spark-als-based-movielens-recommender" title="Permalink to this headline">#</a></h3>
+<h3>Spark ALS based MovieLens recommender<a class="headerlink" href="#spark-als-based-movielens-recommender" title="Permalink to this headline">¶</a></h3>
 <p>In the following code, the MovieLens-100K dataset is used to illustrate the ALS algorithm in Spark.</p>
 <p><strong>Note</strong>: This notebook requires a PySpark environment to run properly. Please follow the steps in <a class="reference external" href="https://github.com/Microsoft/Recommenders/blob/master/SETUP.md#dependencies-setup">SETUP.md</a> to install the PySpark environment.</p>
 <div class="cell docutils container">
@@ -1518,13 +1414,13 @@ Setting default log level to &quot;WARN&quot;.
 To adjust logging level use sc.setLogLevel(newLevel). For SparkR, use setLogLevel(newLevel).
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>22/10/07 00:14:32 WARN NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>22/10/16 18:41:34 WARN NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
 </pre></div>
 </div>
 </div>
 </div>
 <section id="load-and-prepare-data">
-<h4>Load and prepare data<a class="headerlink" href="#load-and-prepare-data" title="Permalink to this headline">#</a></h4>
+<h4>Load and prepare data<a class="headerlink" href="#load-and-prepare-data" title="Permalink to this headline">¶</a></h4>
 <p>Data is read from csv into a Spark DataFrame.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1533,28 +1429,34 @@ To adjust logging level use sc.setLogLevel(newLevel). For SparkR, use setLogLeve
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  0%|                                                                                                                                        | 0.00/4.81k [00:00&lt;?, ?KB/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  0%|                                                                                                       | 0.00/4.81k [00:00&lt;?, ?KB/s]
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  2%|██▋                                                                                                                               | 98.0/4.81k [00:00&lt;00:04, 972KB/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  2%|█▉                                                                                               | 99.0/4.81k [00:00&lt;00:05, 882KB/s]
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  7%|████████▉                                                                                                                        | 332/4.81k [00:00&lt;00:02, 1.75kKB/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 10%|█████████▏                                                                                      | 463/4.81k [00:00&lt;00:01, 2.41kKB/s]
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 16%|████████████████████▏                                                                                                            | 752/4.81k [00:00&lt;00:01, 2.85kKB/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 32%|█████████████████████████████▊                                                                | 1.52k/4.81k [00:00&lt;00:00, 5.82kKB/s]
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 28%|███████████████████████████████████▎                                                                                           | 1.34k/4.81k [00:00&lt;00:00, 4.00kKB/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 50%|███████████████████████████████████████████████                                               | 2.41k/4.81k [00:00&lt;00:00, 5.91kKB/s]
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 36%|█████████████████████████████████████████████▊                                                                                 | 1.74k/4.81k [00:00&lt;00:01, 2.39kKB/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 64%|███████████████████████████████████████████████████████████▊                                  | 3.06k/4.81k [00:00&lt;00:00, 5.98kKB/s]
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 69%|███████████████████████████████████████████████████████████████████████████████████████▎                                       | 3.31k/4.81k [00:00&lt;00:00, 5.18kKB/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 76%|███████████████████████████████████████████████████████████████████████▍                      | 3.66k/4.81k [00:00&lt;00:00, 5.92kKB/s]
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>100%|███████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 4.81k/4.81k [00:00&lt;00:00, 5.24kKB/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 88%|███████████████████████████████████████████████████████████████████████████████████           | 4.25k/4.81k [00:01&lt;00:00, 2.30kKB/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 98%|████████████████████████████████████████████████████████████████████████████████████████████▎ | 4.72k/4.81k [00:01&lt;00:00, 2.63kKB/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>100%|██████████████████████████████████████████████████████████████████████████████████████████████| 4.81k/4.81k [00:01&lt;00:00, 3.40kKB/s]
 </pre></div>
 </div>
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
@@ -1624,11 +1526,6 @@ only showing top 5 rows
  |-- MovieId: integer (nullable = true)
  |-- Rating: float (nullable = true)
  |-- Timestamp: long (nullable = true)
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[Stage 4:&gt;                                                          (0 + 1) / 1]
-
-                                                                                
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>+------+
@@ -1709,7 +1606,7 @@ only showing top 5 rows
 </div>
 </section>
 <section id="train-a-movielens-model">
-<h4>Train a movielens model<a class="headerlink" href="#train-a-movielens-model" title="Permalink to this headline">#</a></h4>
+<h4>Train a movielens model<a class="headerlink" href="#train-a-movielens-model" title="Permalink to this headline">¶</a></h4>
 <p>It is worth noting that Spark ALS model allows dropping cold users to favor a robust evaluation with the testing data. In case there are cold users, Spark ALS implementation allows users to drop cold users in order to make sure evaluations on the prediction results are sound.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1728,32 +1625,16 @@ only showing top 5 rows
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[Stage 7:&gt;                                                          (0 + 1) / 1]
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[Stage 8:&gt;                                                          (0 + 1) / 1]
-
-                                                                                
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>22/10/07 00:15:00 WARN InstanceBuilder$NativeBLAS: Failed to load implementation from:dev.ludovic.netlib.blas.JNIBLAS
-22/10/07 00:15:00 WARN InstanceBuilder$NativeBLAS: Failed to load implementation from:dev.ludovic.netlib.blas.ForeignLinkerBLAS
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>22/10/07 00:15:00 WARN InstanceBuilder$NativeLAPACK: Failed to load implementation from:dev.ludovic.netlib.lapack.JNILAPACK
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[Stage 17:=====&gt;                                                   (1 + 9) / 10]
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>                                                                                
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>22/10/16 18:41:47 WARN InstanceBuilder$NativeBLAS: Failed to load implementation from:dev.ludovic.netlib.blas.JNIBLAS
+22/10/16 18:41:47 WARN InstanceBuilder$NativeBLAS: Failed to load implementation from:dev.ludovic.netlib.blas.ForeignLinkerBLAS
+22/10/16 18:41:48 WARN InstanceBuilder$NativeLAPACK: Failed to load implementation from:dev.ludovic.netlib.lapack.JNILAPACK
 </pre></div>
 </div>
 </div>
 </div>
 </section>
 <section id="prediction-with-the-model">
-<h4>Prediction with the model<a class="headerlink" href="#prediction-with-the-model" title="Permalink to this headline">#</a></h4>
+<h4>Prediction with the model<a class="headerlink" href="#prediction-with-the-model" title="Permalink to this headline">¶</a></h4>
 <p>The trained model can be used to predict ratings with a given test data.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1785,36 +1666,19 @@ only showing top 5 rows
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[Stage 83:&gt;                                                         (0 + 1) / 1]
-
-                                                                                
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[Stage 161:&gt;                (0 + 1) / 1][Stage 196:&gt;                (0 + 1) / 1]
-
-                                                                                
-</pre></div>
-</div>
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/chandrasingh/opt/anaconda3/envs/reco/lib/python3.8/site-packages/pyspark/sql/context.py:125: FutureWarning: Deprecated in 3.0.0. Use SparkSession.builder.getOrCreate() instead.
   warnings.warn(
 </pre></div>
 </div>
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[Stage 236:&gt;                                                        (0 + 1) / 1]
+
+                                                                                
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>                                                                                
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[Stage 238:&gt;                                                        (0 + 1) / 1]
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>                                                                                
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>RMSE score = 0.9670777121482594
-MAE score = 0.751386547864088
-R2 score = 0.2609615545466102
-Explained variance score = 0.2660146110910212
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>RMSE score = 0.9690994793797527
+MAE score = 0.7549710159031393
+R2 score = 0.2578682652728054
+Explained variance score = 0.26379713215644196
 </pre></div>
 </div>
 </div>
@@ -1861,20 +1725,7 @@ Explained variance score = 0.2660146110910212
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[Stage 397:&gt;                                                        (0 + 1) / 1]
-
-[Stage 397:&gt;                (0 + 1) / 1][Stage 398:&gt;                (0 + 1) / 1]
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[Stage 397:&gt;  (0 + 1) / 1][Stage 398:&gt;  (0 + 1) / 1][Stage 433:=&gt;(8 + 2) / 10]
-
-                                                                                
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[Stage 397:&gt;  (0 + 1) / 1][Stage 398:&gt;  (0 + 1) / 1][Stage 434:&gt;  (0 + 1) / 1]
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[Stage 398:&gt;                (0 + 1) / 1][Stage 434:&gt;                (0 + 1) / 1]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[Stage 397:&gt;  (0 + 1) / 1][Stage 398:&gt;  (0 + 1) / 1][Stage 433:&gt;(0 + 10) / 10]
 
                                                                                 
 </pre></div>
@@ -1885,33 +1736,31 @@ Explained variance score = 0.2660146110910212
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>+------+-------+----------+
 |UserId|MovieId|prediction|
 +------+-------+----------+
-|     1|     46|  3.159064|
-|     1|    255| 3.1208296|
-|     1|    284| 3.3883686|
-|     1|    285| 4.2118745|
-|     1|    318| 4.4261136|
-|     1|    329|   3.52599|
-|     1|    335| 4.0974965|
-|     1|    353| 1.9071066|
-|     1|    371| 2.9550385|
-|     1|    372|  4.079594|
-|     1|    381|  4.203119|
-|     1|    391|  2.218898|
-|     1|    409|  3.020003|
-|     1|    413| 2.8804545|
-|     1|    417| 2.7003114|
-|     1|    440| 0.9253267|
-|     1|    449| 3.1877196|
-|     1|    463| 4.8306603|
-|     1|    480|  4.475887|
-|     1|    488|  4.229846|
+|     1|     46| 3.5315788|
+|     1|    255| 2.4476638|
+|     1|    284|  3.043761|
+|     1|    285| 4.7102537|
+|     1|    318|  4.117105|
+|     1|    329| 3.5976799|
+|     1|    335| 3.5681806|
+|     1|    353| 3.4612365|
+|     1|    371| 2.6453273|
+|     1|    372|  4.371774|
+|     1|    381|  3.774996|
+|     1|    391| 2.4390202|
+|     1|    409| 2.7748888|
+|     1|    413| 3.0340319|
+|     1|    417|  2.708665|
+|     1|    440|0.48842478|
+|     1|    449| 3.5562449|
+|     1|    463| 4.3279366|
+|     1|    480|  4.475358|
+|     1|    488|  4.129996|
 +------+-------+----------+
 only showing top 20 rows
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[Stage 479:&gt;                                                        (0 + 1) / 1]
-
-                                                                                
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>                                                                                
 </pre></div>
 </div>
 </div>
@@ -1939,64 +1788,34 @@ only showing top 20 rows
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[Stage 518:&gt;                (0 + 1) / 1][Stage 559:&gt;                (0 + 1) / 1]
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>                                                                                
-</pre></div>
-</div>
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[Stage 559:&gt;                                                        (0 + 1) / 1]
 </pre></div>
 </div>
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[Stage 565:&gt;                                                      (0 + 12) / 12]
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[Stage 565:=========&gt;                                             (2 + 10) / 12]
-
-[Stage 565:================================&gt;                       (7 + 5) / 12]
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[Stage 565:==================================================&gt;    (11 + 1) / 12]
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[Stage 570:&gt;                                                        (0 + 1) / 1]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[Stage 565:====&gt;                                                  (1 + 11) / 12]
 </pre></div>
 </div>
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>                                                                                
 </pre></div>
 </div>
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[Stage 575:&gt;                                                      (0 + 12) / 12]
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>                                                                                
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[Stage 580:==================================================&gt;    (11 + 1) / 12]
 
                                                                                 
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[Stage 585:=============================================&gt;         (10 + 2) / 12]
-
-                                                                                
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Precision@k = 0.043478260869565216
-Recall@k = 0.014866690691508094
-NDCG@k = 0.038567534985380895
-Mean average precision = 0.004005589357396732
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[Stage 590:=============================================&gt;         (10 + 2) / 12]
-
-                                                                                
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Precision@k = 0.04485683987274656
+Recall@k = 0.016225828807562577
+NDCG@k = 0.04087852386353353
+Mean average precision = 0.004462189956715665
 </pre></div>
 </div>
 </div>
 </div>
 </section>
 <section id="fine-tune-the-model">
-<h4>Fine tune the model<a class="headerlink" href="#fine-tune-the-model" title="Permalink to this headline">#</a></h4>
+<h4>Fine tune the model<a class="headerlink" href="#fine-tune-the-model" title="Permalink to this headline">¶</a></h4>
 <p>Prediction performance of a Spark ALS model is often affected by the parameters</p>
 <table class="colwidths-auto table">
 <thead>
@@ -2077,43 +1896,6 @@ Mean average precision = 0.004005589357396732
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[Stage 763:&gt;                                                        (0 + 1) / 1]
-
-                                                                                
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[Stage 1109:&gt;                                                       (0 + 1) / 1]
-
-                                                                                
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[Stage 1225:&gt; (0 + 1) / 1][Stage 1250:&gt; (0 + 1) / 1][Stage 1251:&gt;(2 + 8) / 10]
-
-                                                                                
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[Stage 1455:&gt;                                                       (0 + 1) / 1]
-
-                                                                                
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[Stage 1628:&gt;                                                       (0 + 1) / 1]
-
-                                                                                
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[Stage 1801:&gt;                                                       (0 + 1) / 1]
-
-                                                                                
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[Stage 2147:&gt;                                                       (0 + 1) / 1]
-
-                                                                                
-</pre></div>
-</div>
-</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -2156,20 +1938,20 @@ Mean average precision = 0.004005589357396732
   <tbody>
     <tr>
       <th>10</th>
-      <td>1.3175</td>
-      <td>0.9262</td>
+      <td>1.3425</td>
+      <td>0.9278</td>
       <td>1.3693</td>
     </tr>
     <tr>
       <th>15</th>
-      <td>1.4678</td>
-      <td>0.9272</td>
+      <td>1.4891</td>
+      <td>0.9289</td>
       <td>1.3693</td>
     </tr>
     <tr>
       <th>20</th>
-      <td>1.5493</td>
-      <td>0.9272</td>
+      <td>1.5503</td>
+      <td>0.9287</td>
       <td>1.3693</td>
     </tr>
   </tbody>
@@ -2194,9 +1976,9 @@ Mean average precision = 0.004005589357396732
 <p>It can be seen from this visualization that RMSE first decreases and then increases as rank increases, due to overfitting. When the rank equals 20 and the regularization parameter equals 0.1, the model achieves the lowest RMSE score.</p>
 </section>
 <section id="top-k-recommendation">
-<h4>Top K recommendation<a class="headerlink" href="#top-k-recommendation" title="Permalink to this headline">#</a></h4>
+<h4>Top K recommendation<a class="headerlink" href="#top-k-recommendation" title="Permalink to this headline">¶</a></h4>
 <section id="top-k-for-all-users-items">
-<h5>Top k for all users (items)<a class="headerlink" href="#top-k-for-all-users-items" title="Permalink to this headline">#</a></h5>
+<h5>Top k for all users (items)<a class="headerlink" href="#top-k-for-all-users-items" title="Permalink to this headline">¶</a></h5>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dfs_rec</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">recommendForAllUsers</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
@@ -2220,64 +2002,43 @@ Mean average precision = 0.004005589357396732
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[Stage 2171:&gt;                                                    (0 + 12) / 100]
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[Stage 2171:====&gt;                                                (9 + 12) / 100]
-</pre></div>
-</div>
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[Stage 2171:======&gt;                                             (12 + 12) / 100]
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[Stage 2171:========&gt;                                           (17 + 12) / 100]
 
-[Stage 2171:=============&gt;                                      (25 + 12) / 100]
+[Stage 2171:============&gt;                                       (24 + 12) / 100]
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[Stage 2171:==============&gt;                                     (27 + 12) / 100]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[Stage 2171:==============&gt;                                     (28 + 12) / 100]
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[Stage 2171:===================&gt;                                (37 + 12) / 100]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[Stage 2171:=====================&gt;                              (41 + 12) / 100]
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[Stage 2171:====================&gt;                               (40 + 12) / 100]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[Stage 2171:======================&gt;                             (44 + 12) / 100]
 
-[Stage 2171:===========================&gt;                        (52 + 12) / 100]
+[Stage 2171:=============================&gt;                      (56 + 12) / 100]
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[Stage 2171:=============================&gt;                      (57 + 12) / 100]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[Stage 2171:===================================&gt;                (68 + 12) / 100]
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[Stage 2171:===============================&gt;                    (61 + 12) / 100]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[Stage 2171:========================================&gt;           (77 + 12) / 100]
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[Stage 2171:=================================&gt;                  (64 + 12) / 100]
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[Stage 2171:===================================&gt;                (69 + 12) / 100]
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[Stage 2171:=======================================&gt;            (75 + 12) / 100]
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[Stage 2171:=========================================&gt;          (80 + 12) / 100]
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[Stage 2171:=============================================&gt;      (87 + 12) / 100]
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[Stage 2171:================================================&gt;    (92 + 8) / 100]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[Stage 2171:=============================================&gt;      (87 + 13) / 100]
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>+------+--------------------+
 |UserId|     recommendations|
 +------+--------------------+
-|     1|[{1536, 3.8911989...|
-|     3|[{1536, 3.1063843...|
-|     6|[{1536, 3.7354305...|
-|    12|[{1536, 4.447188}...|
-|    13|[{1536, 3.3997414...|
-|    16|[{1536, 4.565806}...|
-|    20|[{1536, 3.314003}...|
+|     1|[{1536, 3.8911986...|
+|     3|[{1536, 3.106384}...|
+|     6|[{1536, 3.73543},...|
+|    12|[{1536, 4.447189}...|
+|    13|[{1536, 3.3997416...|
+|    16|[{1536, 4.565807}...|
+|    20|[{1536, 3.3140032...|
 |    22|[{1536, 3.739245}...|
-|    26|[{1536, 3.1729918...|
+|    26|[{1536, 3.1729915...|
 |    27|[{1536, 3.4825761...|
 +------+--------------------+
 only showing top 10 rows
@@ -2290,7 +2051,7 @@ only showing top 10 rows
 </div>
 </section>
 <section id="top-k-for-a-selected-set-of-users-items">
-<h5>Top k for a selected set of users (items)<a class="headerlink" href="#top-k-for-a-selected-set-of-users-items" title="Permalink to this headline">#</a></h5>
+<h5>Top k for a selected set of users (items)<a class="headerlink" href="#top-k-for-a-selected-set-of-users-items" title="Permalink to this headline">¶</a></h5>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">users</span> <span class="o">=</span> <span class="n">dfs_train</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="n">als</span><span class="o">.</span><span class="n">getUserCol</span><span class="p">())</span><span class="o">.</span><span class="n">distinct</span><span class="p">()</span><span class="o">.</span><span class="n">limit</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
@@ -2311,8 +2072,8 @@ only showing top 10 rows
 |UserId|     recommendations|
 +------+--------------------+
 |   471|[{1536, 3.3287525...|
-|   463|[{1536, 3.1125836...|
-|   148|[{1536, 3.9075737...|
+|   463|[{1536, 3.1125832...|
+|   148|[{1536, 3.9075732...|
 +------+--------------------+
 </pre></div>
 </div>
@@ -2320,7 +2081,7 @@ only showing top 10 rows
 </div>
 </section>
 <section id="run-time-considerations-for-top-k-recommendations">
-<h5>Run-time considerations for top-k recommendations<a class="headerlink" href="#run-time-considerations-for-top-k-recommendations" title="Permalink to this headline">#</a></h5>
+<h5>Run-time considerations for top-k recommendations<a class="headerlink" href="#run-time-considerations-for-top-k-recommendations" title="Permalink to this headline">¶</a></h5>
 <p>It is worth noting that usually computing the top-k recommendations for all users is the bottleneck of the whole pipeline (model training and scoring) of an ALS based recommendation system. This is because</p>
 <ul class="simple">
 <li><p>Getting the top k from all user-item pairs requires a cross join which is usually very computationally expensive.</p></li>
@@ -2339,7 +2100,7 @@ only showing top 10 rows
 </section>
 </section>
 <section id="references">
-<h3>References<a class="headerlink" href="#references" title="Permalink to this headline">#</a></h3>
+<h3>References<a class="headerlink" href="#references" title="Permalink to this headline">¶</a></h3>
 <ol class="simple">
 <li><p>Yehuda Koren, Robert Bell, and Chris Volinsky, “Matrix Factorization Techniques for Recommender Systems
 “, ACM Computer, Vol. 42, Issue 8, pp 30-37, Aug., 2009.</p></li>
@@ -2353,9 +2114,9 @@ only showing top 10 rows
 </section>
 </section>
 <section id="practical-aspects">
-<h2>Practical Aspects<a class="headerlink" href="#practical-aspects" title="Permalink to this headline">#</a></h2>
+<h2>Practical Aspects<a class="headerlink" href="#practical-aspects" title="Permalink to this headline">¶</a></h2>
 <section id="setup-environment">
-<h3>Setup Environment<a class="headerlink" href="#setup-environment" title="Permalink to this headline">#</a></h3>
+<h3>Setup Environment<a class="headerlink" href="#setup-environment" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p>Before starting to learn, working environment needs to be setup on local mac laptop</p>
 <ol class="simple">
@@ -2518,14 +2279,14 @@ No JAVA_HOME set</p>
 </ul>
 </section>
 <section id="collaborative-filtering">
-<h3>Collaborative Filtering<a class="headerlink" href="#collaborative-filtering" title="Permalink to this headline">#</a></h3>
+<h3>Collaborative Filtering<a class="headerlink" href="#collaborative-filtering" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p>CF looks for similar users to recommend items</p></li>
 <li><p>CBF looks for similar contents to recommend items</p></li>
 <li><p>CF aggregates past behaviour of all users and recommends items to user as per other users likes or dislikes</p></li>
 </ul>
 <section id="goals-of-recommender-systems">
-<h4>Goals of Recommender Systems<a class="headerlink" href="#goals-of-recommender-systems" title="Permalink to this headline">#</a></h4>
+<h4>Goals of Recommender Systems<a class="headerlink" href="#goals-of-recommender-systems" title="Permalink to this headline">¶</a></h4>
 <ul class="simple">
 <li><p>Two primary type of models</p>
 <ul>
@@ -2547,7 +2308,7 @@ No JAVA_HOME set</p>
 </ul>
 </section>
 <section id="types-of-collaborative-filtering">
-<h4>Types of collaborative filtering<a class="headerlink" href="#types-of-collaborative-filtering" title="Permalink to this headline">#</a></h4>
+<h4>Types of collaborative filtering<a class="headerlink" href="#types-of-collaborative-filtering" title="Permalink to this headline">¶</a></h4>
 <ul class="simple">
 <li><p>There are two types of methods that are commonly used</p>
 <ul>
@@ -2588,9 +2349,9 @@ No JAVA_HOME set</p>
 </section>
 </section>
 <section id="als-algorithm">
-<h3>ALS algorithm<a class="headerlink" href="#als-algorithm" title="Permalink to this headline">#</a></h3>
+<h3>ALS algorithm<a class="headerlink" href="#als-algorithm" title="Permalink to this headline">¶</a></h3>
 <section id="low-rank-approximation">
-<h4>Low-rank approximation<a class="headerlink" href="#low-rank-approximation" title="Permalink to this headline">#</a></h4>
+<h4>Low-rank approximation<a class="headerlink" href="#low-rank-approximation" title="Permalink to this headline">¶</a></h4>
 <ul class="simple">
 <li><p>low rank approximation is used for data compression in images</p></li>
 <li><p>As image is an array of pixels, we can write it as a matrix</p></li>
@@ -2638,7 +2399,7 @@ No JAVA_HOME set</p>
 <p><span class="math notranslate nohighlight">\(\tiny{\text{Low rank matrix decomposition - https://dustinstansbury.github.io/}}\)</span></p>
 </section>
 <section id="unconstrained-matrix-factorization">
-<h4>Unconstrained Matrix Factorization<a class="headerlink" href="#unconstrained-matrix-factorization" title="Permalink to this headline">#</a></h4>
+<h4>Unconstrained Matrix Factorization<a class="headerlink" href="#unconstrained-matrix-factorization" title="Permalink to this headline">¶</a></h4>
 <ul class="simple">
 <li><p>How can one determine factors U and V, so that the specified matrix R matches closely with <span class="math notranslate nohighlight">\(UV^{T}\)</span><br />
 $<span class="math notranslate nohighlight">\(  R = UV^{T}  \)</span>$</p></li>
@@ -2669,7 +2430,7 @@ $<span class="math notranslate nohighlight">\(  e_{ij} = (r_{ij} - \hat{r}_{ij})
 </ul>
 </section>
 <section id="regularization">
-<h4>Regularization<a class="headerlink" href="#regularization" title="Permalink to this headline">#</a></h4>
+<h4>Regularization<a class="headerlink" href="#regularization" title="Permalink to this headline">¶</a></h4>
 <ul class="simple">
 <li><p>Regularization reduces the tendency of model to overfit at the expense of introducing a bias in the model</p></li>
 <li><p>It discourages large values of the coefficients in U and V in order to encourage stability.</p></li>
@@ -2685,7 +2446,7 @@ J &amp;= \frac{1}{2}\sum\limits_{(i,j \in S )}e_{ij}^{2} + \frac{\lambda}{2}\sum
 </div></blockquote>
 </section>
 <section id="implicit-feedback">
-<h4>Implicit Feedback<a class="headerlink" href="#implicit-feedback" title="Permalink to this headline">#</a></h4>
+<h4>Implicit Feedback<a class="headerlink" href="#implicit-feedback" title="Permalink to this headline">¶</a></h4>
 <ul class="simple">
 <li><p>Implicit feedback data sets such as web click-streams can help in recommendations about future activity</p></li>
 <li><p>In explicit feedback matrices, ratings correspond to (highly discriminated) preferences, whereas in implicit feedback matrices, ratings correspond to (less discriminated) confidences</p></li>
@@ -2695,35 +2456,35 @@ J &amp;= \frac{1}{2}\sum\limits_{(i,j \in S )}e_{ij}^{2} + \frac{\lambda}{2}\sum
 </section>
 </section>
 <section id="other-factorization-algorithms">
-<h3>Other factorization algorithms<a class="headerlink" href="#other-factorization-algorithms" title="Permalink to this headline">#</a></h3>
+<h3>Other factorization algorithms<a class="headerlink" href="#other-factorization-algorithms" title="Permalink to this headline">¶</a></h3>
 <p>The surprise library provides good collection of recommender system matrix factorization algorithms like SVD, SVD++, Non-negative Matrix Factorization(NMF), Probabilistic Matrix Factorization(PMF)</p>
 <section id="svd">
-<h4>SVD<a class="headerlink" href="#svd" title="Permalink to this headline">#</a></h4>
+<h4>SVD<a class="headerlink" href="#svd" title="Permalink to this headline">¶</a></h4>
 <p>The method usually referred to as “SVD” used in the context of recommendations is not strictly the mathematical Singular Value Decomposition of a matrix but rather an approximate way to compute the <a class="reference external" href="#Low-rank-approximation">low-rank approximation</a> of the matrix by minimizing the squared error loss. A more accurate, albeit more generic, way to call this would be Matrix Factorization.  The initial version of this approach in the context of the Netflix Prize was presented by Simon Funk in his famous <a class="reference external" href="https://sifter.org/~simon/journal/20061211.html">Try This at Home</a> blogpost</p>
 </section>
 <section id="id1">
-<h4>SVD++<a class="headerlink" href="#id1" title="Permalink to this headline">#</a></h4>
+<h4>SVD++<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h4>
 </section>
 <section id="nmf">
-<h4>NMF<a class="headerlink" href="#nmf" title="Permalink to this headline">#</a></h4>
+<h4>NMF<a class="headerlink" href="#nmf" title="Permalink to this headline">¶</a></h4>
 </section>
 <section id="pmf">
-<h4>PMF<a class="headerlink" href="#pmf" title="Permalink to this headline">#</a></h4>
+<h4>PMF<a class="headerlink" href="#pmf" title="Permalink to this headline">¶</a></h4>
 </section>
 </section>
 <section id="sparsity">
-<h3>Sparsity<a class="headerlink" href="#sparsity" title="Permalink to this headline">#</a></h3>
+<h3>Sparsity<a class="headerlink" href="#sparsity" title="Permalink to this headline">¶</a></h3>
 </section>
 <section id="distributed-als">
-<h3>Distributed ALS<a class="headerlink" href="#distributed-als" title="Permalink to this headline">#</a></h3>
+<h3>Distributed ALS<a class="headerlink" href="#distributed-als" title="Permalink to this headline">¶</a></h3>
 </section>
 <section id="spark">
-<h3>Spark<a class="headerlink" href="#spark" title="Permalink to this headline">#</a></h3>
+<h3>Spark<a class="headerlink" href="#spark" title="Permalink to this headline">¶</a></h3>
 <section id="spark-internals">
-<h4>Spark internals<a class="headerlink" href="#spark-internals" title="Permalink to this headline">#</a></h4>
+<h4>Spark internals<a class="headerlink" href="#spark-internals" title="Permalink to this headline">¶</a></h4>
 </section>
 <section id="spark-application">
-<h4>Spark Application<a class="headerlink" href="#spark-application" title="Permalink to this headline">#</a></h4>
+<h4>Spark Application<a class="headerlink" href="#spark-application" title="Permalink to this headline">¶</a></h4>
 <ul class="simple">
 <li><p>At the core of every Spark application is the SparkDriver program</p>
 <ul>
@@ -2758,7 +2519,7 @@ J &amp;= \frac{1}{2}\sum\limits_{(i,j \in S )}e_{ij}^{2} + \frac{\lambda}{2}\sum
 </ul>
 </section>
 <section id="transformation-actions-and-lazy-evaluation">
-<h4>Transformation, Actions and Lazy Evaluation<a class="headerlink" href="#transformation-actions-and-lazy-evaluation" title="Permalink to this headline">#</a></h4>
+<h4>Transformation, Actions and Lazy Evaluation<a class="headerlink" href="#transformation-actions-and-lazy-evaluation" title="Permalink to this headline">¶</a></h4>
 <ul class="simple">
 <li><p>Transformations transform a Spark DataFrame into a new DataFrame without altering the original data(immutable datastores)</p></li>
 <li><p>Operation such as select() or filter() will not change the original DataFrame; instead, will return the transformed results of the operation as a new DataFrame</p></li>
@@ -2768,25 +2529,25 @@ J &amp;= \frac{1}{2}\sum\limits_{(i,j \in S )}e_{ij}^{2} + \frac{\lambda}{2}\sum
 </ul>
 </section>
 <section id="narrow-transformation">
-<h4>Narrow transformation<a class="headerlink" href="#narrow-transformation" title="Permalink to this headline">#</a></h4>
+<h4>Narrow transformation<a class="headerlink" href="#narrow-transformation" title="Permalink to this headline">¶</a></h4>
 <ul class="simple">
 <li><p>filter() and contains() represent narrow transformations because they can operate on a single partition and produce the resulting output partition without any exchange of data.</p></li>
 </ul>
 </section>
 <section id="wide-transformation">
-<h4>Wide transformation<a class="headerlink" href="#wide-transformation" title="Permalink to this headline">#</a></h4>
+<h4>Wide transformation<a class="headerlink" href="#wide-transformation" title="Permalink to this headline">¶</a></h4>
 <ul class="simple">
 <li><p>data from other partitions are read in, combined, and written to disk. groupBy() will shuffle data across executor’s partitions across cluster and then orderBy() will require output from other partitions to compute the final aggregation</p></li>
 </ul>
 </section>
 <section id="spark-ui">
-<h4>Spark UI<a class="headerlink" href="#spark-ui" title="Permalink to this headline">#</a></h4>
+<h4>Spark UI<a class="headerlink" href="#spark-ui" title="Permalink to this headline">¶</a></h4>
 <ul class="simple">
 <li><p>GUI for monitoring the various jobs, stages and tasks, information on its execution detail</p></li>
 </ul>
 </section>
 <section id="resilient-distributed-dataset-rdd">
-<h4>Resilient Distributed Dataset(RDD)<a class="headerlink" href="#resilient-distributed-dataset-rdd" title="Permalink to this headline">#</a></h4>
+<h4>Resilient Distributed Dataset(RDD)<a class="headerlink" href="#resilient-distributed-dataset-rdd" title="Permalink to this headline">¶</a></h4>
 <ul class="simple">
 <li><p>The main abstraction Spark provides is RDD, it is a collection of elements partitioned across the nodes of the cluster that can be operated on in parallel</p></li>
 <li><p>Spark can persist an RDD in memory allowing it to be reused efficiently across parallel operations</p></li>
@@ -2810,14 +2571,14 @@ J &amp;= \frac{1}{2}\sum\limits_{(i,j \in S )}e_{ij}^{2} + \frac{\lambda}{2}\sum
 </ul>
 </section>
 <section id="project-tungsten">
-<h4>Project Tungsten<a class="headerlink" href="#project-tungsten" title="Permalink to this headline">#</a></h4>
+<h4>Project Tungsten<a class="headerlink" href="#project-tungsten" title="Permalink to this headline">¶</a></h4>
 <ul class="simple">
 <li><p>focuses on substantially improving the efficiency of memory and CPU for Spark applications, to push performance closer to the limits of modern hardware</p></li>
 <li><p>eliminates overhead of JVM object model and garbage collection</p></li>
 </ul>
 </section>
 <section id="how-to-launch-spark">
-<h4>How to launch Spark<a class="headerlink" href="#how-to-launch-spark" title="Permalink to this headline">#</a></h4>
+<h4>How to launch Spark<a class="headerlink" href="#how-to-launch-spark" title="Permalink to this headline">¶</a></h4>
 <ul class="simple">
 <li><p>four way of using Spark interpreters:</p>
 <ul>
@@ -2831,12 +2592,12 @@ J &amp;= \frac{1}{2}\sum\limits_{(i,j \in S )}e_{ij}^{2} + \frac{\lambda}{2}\sum
 </section>
 </section>
 <section id="pyspark">
-<h3>PySpark<a class="headerlink" href="#pyspark" title="Permalink to this headline">#</a></h3>
+<h3>PySpark<a class="headerlink" href="#pyspark" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p>Apache Spark is written in Scala and is integrated with Python using PySpark. It provides interface with RDD using Py4j library</p></li>
 </ul>
 <section id="pysparksql">
-<h4>PySparkSQL<a class="headerlink" href="#pysparksql" title="Permalink to this headline">#</a></h4>
+<h4>PySparkSQL<a class="headerlink" href="#pysparksql" title="Permalink to this headline">¶</a></h4>
 <ul class="simple">
 <li><p>PySparkSQL is a PySpark library to apply SQL-like analysis on a huge amount of structured or semi-structured data</p>
 <ul>
@@ -2846,28 +2607,28 @@ J &amp;= \frac{1}{2}\sum\limits_{(i,j \in S )}e_{ij}^{2} + \frac{\lambda}{2}\sum
 </ul>
 </section>
 <section id="mllib">
-<h4>MLLib<a class="headerlink" href="#mllib" title="Permalink to this headline">#</a></h4>
+<h4>MLLib<a class="headerlink" href="#mllib" title="Permalink to this headline">¶</a></h4>
 <ul class="simple">
 <li><p>MLlib is a wrapper over the PySpark and it is Spark’s machine learning (ML) library. This library uses the data parallelism technique to store and work with data. MLlib supports many machine-learning algorithms for classification, regression, clustering, collaborative filtering, dimensionality reduction, and underlying optimization primitives.</p></li>
 </ul>
 </section>
 </section>
 <section id="spark-joins">
-<h3>Spark Joins<a class="headerlink" href="#spark-joins" title="Permalink to this headline">#</a></h3>
+<h3>Spark Joins<a class="headerlink" href="#spark-joins" title="Permalink to this headline">¶</a></h3>
 <p>ToRead: <a class="reference external" href="https://towardsdatascience.com/strategies-of-spark-join-c0e7b4572bcf">https://towardsdatascience.com/strategies-of-spark-join-c0e7b4572bcf</a></p>
 <section id="broadcast-hash-join">
-<h4>Broadcast Hash Join<a class="headerlink" href="#broadcast-hash-join" title="Permalink to this headline">#</a></h4>
+<h4>Broadcast Hash Join<a class="headerlink" href="#broadcast-hash-join" title="Permalink to this headline">¶</a></h4>
 <p align="center"><img src="https://miro.medium.com/max/282/1*pd-YlCGD9v3W4Lk1tfN72Q.jpeg"></p>
 <p><span class="math notranslate nohighlight">\(\tiny{\text{towardsdatascience.com - Jyoti Dhiman - Hash Join}}\)</span></p>
 <p align="center"><img src="https://miro.medium.com/max/1400/1*pO_40cT0UhaiSP0fdT-sWw.jpeg"></p>
 <p><span class="math notranslate nohighlight">\(\tiny{\text{towardsdatascience.com - Jyoti Dhiman - Broadcast Hash Join}}\)</span></p>
 </section>
 <section id="shuffle-hash-join">
-<h4>Shuffle hash join<a class="headerlink" href="#shuffle-hash-join" title="Permalink to this headline">#</a></h4>
+<h4>Shuffle hash join<a class="headerlink" href="#shuffle-hash-join" title="Permalink to this headline">¶</a></h4>
 <p align="center"><img src="https://miro.medium.com/max/1400/1*Yjw7V8mh7FipB09ngnBn6A.jpeg"></p>
 </section>
 <section id="shuffle-sort-merge-join">
-<h4>Shuffle sort-merge join<a class="headerlink" href="#shuffle-sort-merge-join" title="Permalink to this headline">#</a></h4>
+<h4>Shuffle sort-merge join<a class="headerlink" href="#shuffle-sort-merge-join" title="Permalink to this headline">¶</a></h4>
 <p align="center"><img src="https://miro.medium.com/max/1282/1*03nmwDCmVaSDWVHMZTcFjA.jpeg"></p>
 <p><span class="math notranslate nohighlight">\(\tiny{\text{towardsdatascience.com - Jyoti Dhiman - Sort Merge Join}}\)</span></p>
 <p align="center"><img src="https://miro.medium.com/max/1400/1*6RA2wnol2zhH4Ps2UNJoxQ.jpeg"></p>
@@ -2899,10 +2660,10 @@ PySpark version: 3.2.1
 </section>
 </section>
 <section id="spark-mllib">
-<h3>Spark MLlib<a class="headerlink" href="#spark-mllib" title="Permalink to this headline">#</a></h3>
+<h3>Spark MLlib<a class="headerlink" href="#spark-mllib" title="Permalink to this headline">¶</a></h3>
 </section>
 <section id="hyperparameters">
-<h3>Hyperparameters<a class="headerlink" href="#hyperparameters" title="Permalink to this headline">#</a></h3>
+<h3>Hyperparameters<a class="headerlink" href="#hyperparameters" title="Permalink to this headline">¶</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">param_dict</span> <span class="o">=</span> <span class="p">{</span>
@@ -2990,7 +2751,7 @@ PySpark version: 3.2.1
 </div>
 </section>
 <section id="id2">
-<h3>References<a class="headerlink" href="#id2" title="Permalink to this headline">#</a></h3>
+<h3>References<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
 <ol class="simple">
 <li><p>Recommender Systems by Charu C. Aggarwal</p></li>
 <li><p>Learning Spark 2.0 by Jules S. Damji, Brooke Wenig, Tathagata Das &amp; Denny Lee</p></li>
@@ -3026,11 +2787,9 @@ PySpark version: 3.2.1
 
               </div>
               
-            </main>
-            <footer class="footer-article noprint">
-                
-    <!-- Previous / next buttons -->
-<div class='prev-next-area'>
+            
+                <!-- Previous / next buttons -->
+<div class='prev-next-area'> 
     <a class='left-prev' id="prev-link" href="intro.html" title="previous page">
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
@@ -3046,28 +2805,24 @@ PySpark version: 3.2.1
     <i class="fas fa-angle-right"></i>
     </a>
 </div>
-            </footer>
+            
         </div>
     </div>
-    <div class="footer-content row">
-        <footer class="col footer"><p>
-  
-    By Chandra<br/>
-  
-      &copy; Copyright 2022.<br/>
-</p>
-        </footer>
-    </div>
+    <footer class="footer">
+  <p>
     
-</div>
+      By Chandra<br/>
+    
+        &copy; Copyright 2021.<br/>
+  </p>
+</footer>
+</main>
 
 
       </div>
     </div>
   
-  <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
-
+  <script src="../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
 
   </body>
 </html>

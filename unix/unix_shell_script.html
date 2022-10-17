@@ -8,9 +8,8 @@
 
     <title>Unix/Shell FAQs</title>
     
-  <!-- Loaded before other Sphinx assets -->
-  <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
-<link href="../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+  <link href="../_static/css/theme.css" rel="stylesheet">
+  <link href="../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
 
     
   <link rel="stylesheet"
@@ -20,16 +19,20 @@
   <link rel="preload" as="font" type="font/woff2" crossorigin
     href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
 
+    
+      
+
+    
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
     
-  <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+  <link rel="preload" as="script" href="../_static/js/index.be7d3bbb2ef33a8344ce.js">
 
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
@@ -37,13 +40,12 @@
     <script src="../_static/doctools.js"></script>
     <script src="../_static/clipboard.min.js"></script>
     <script src="../_static/copybutton.js"></script>
-    <script src="../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
     <script src="../_static/togglebutton.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="../_static/design-tabs.js"></script>
+    <script src="../_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
 const thebe_selector = ".thebe,.cell"
 const thebe_selector_input = "pre"
@@ -61,21 +63,7 @@ const thebe_selector_output = ".output, .cell_output"
     <!-- Google Analytics -->
     
   </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
-<!-- Checkboxes to toggle the left sidebar -->
-<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
-<label class="overlay overlay-navbar" for="__navigation">
-    <div class="visually-hidden">Toggle navigation sidebar</div>
-</label>
-<!-- Checkboxes to toggle the in-page toc -->
-<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
-<label class="overlay overlay-pagetoc" for="__page-toc">
-    <div class="visually-hidden">Toggle in-page Table of Contents</div>
-</label>
-<!-- Headers at the top -->
-<div class="announcement header-item noprint"></div>
-<div class="header header-item noprint"></div>
-
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
     
     <div class="container-fluid" id="banner"></div>
 
@@ -84,10 +72,9 @@ const thebe_selector_output = ".output, .cell_output"
     <div class="container-xl">
       <div class="row">
           
-<!-- Sidebar -->
-<div class="bd-sidebar noprint" id="site-navigation">
-    <div class="bd-sidebar__content">
-        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
     <a class="navbar-brand text-wrap" href="../index.html">
       
         <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
@@ -103,15 +90,14 @@ const thebe_selector_output = ".output, .cell_output"
   <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
 </form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item active">
-        
-        <ul class="nav bd-sidenav bd-sidenav__home-link">
-            <li class="toctree-l1">
-                <a class="reference internal" href="../intro.html">
-                    Welcome
-                </a>
-            </li>
-        </ul>
-        <p aria-level="2" class="caption" role="heading">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../intro.html">
+   Welcome
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
   System Design
  </span>
@@ -561,22 +547,29 @@ const thebe_selector_output = ".output, .cell_output"
      L02: Traditional Methods for ML in Graphs
     </a>
    </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../cs224w_ml_graph/CS224W_Colab_0.html">
+     <strong>
+      HW0
+     </strong>
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../cs224w_ml_graph/CS224W_Colab_1.html">
+     HW1
+    </a>
+   </li>
   </ul>
  </li>
 </ul>
 
     </div>
-</nav></div>
-        <div class="bd-sidebar__bottom">
-             <!-- To handle the deprecated key -->
-            
-            <div class="navbar_extra_footer">
-            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
-            </div>
-            
-        </div>
-    </div>
-    <div id="rtd-footer-container"></div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
 </div>
 
 
@@ -584,191 +577,94 @@ const thebe_selector_output = ".output, .cell_output"
 
 
           
-<!-- A tiny helper pixel to detect if we've scrolled -->
-<div class="sbt-scroll-pixel-helper"></div>
-<!-- Main content -->
-<div class="col py-0 content-container">
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
     
-    <div class="header-article row sticky-top noprint">
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
         
-
-
-
-<div class="col py-1 d-flex header-article-main">
-    <div class="header-article__left">
-        
-        <label for="__navigation"
-  class="headerbtn"
-  data-toggle="tooltip"
-data-placement="right"
-title="Toggle navigation"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-bars"></i>
-  </span>
-
-</label>
-
-        
-    </div>
-    <div class="header-article__right">
-<div class="menu-dropdown menu-dropdown-launch-buttons">
-  <button class="headerbtn menu-dropdown__trigger"
-      aria-label="Launch interactive content">
-      <i class="fas fa-rocket"></i>
-  </button>
-  <div class="menu-dropdown__content">
-    <ul>
-      <li>
-        <a href="https://mybinder.org/v2/gh/chandrabsingh/learning/master?urlpath=tree/learning/unix/unix_shell_script.ipynb"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Launch on Binder"
->
-  
-
-<span class="headerbtn__icon-container">
-  
-    <img src="../_static/images/logo_binder.svg">
-  </span>
-<span class="headerbtn__text-container">Binder</span>
-</a>
-
-      </li>
-      
-    </ul>
-  </div>
-</div>
-
-<button onclick="toggleFullScreen()"
-  class="headerbtn"
-  data-toggle="tooltip"
-data-placement="bottom"
-title="Fullscreen mode"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-expand"></i>
-  </span>
-
-</button>
-
-<div class="menu-dropdown menu-dropdown-repository-buttons">
-  <button class="headerbtn menu-dropdown__trigger"
-      aria-label="Source repositories">
-      <i class="fab fa-github"></i>
-  </button>
-  <div class="menu-dropdown__content">
-    <ul>
-      <li>
-        <a href="https://github.com/chandrabsingh/learning"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Source repository"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fab fa-github"></i>
-  </span>
-<span class="headerbtn__text-container">repository</span>
-</a>
-
-      </li>
-      
-      <li>
-        <a href="https://github.com/chandrabsingh/learning/issues/new?title=Issue%20on%20page%20%2Funix/unix_shell_script.html&body=Your%20issue%20content%20here."
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Open an issue"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-lightbulb"></i>
-  </span>
-<span class="headerbtn__text-container">open issue</span>
-</a>
-
-      </li>
-      
-    </ul>
-  </div>
-</div>
-
-<div class="menu-dropdown menu-dropdown-download-buttons">
-  <button class="headerbtn menu-dropdown__trigger"
-      aria-label="Download this page">
-      <i class="fas fa-download"></i>
-  </button>
-  <div class="menu-dropdown__content">
-    <ul>
-      <li>
-        <a href="../_sources/unix/unix_shell_script.ipynb"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Download source file"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-file"></i>
-  </span>
-<span class="headerbtn__text-container">.ipynb</span>
-</a>
-
-      </li>
-      
-      <li>
-        
-<button onclick="printPdf(this)"
-  class="headerbtn"
-  data-toggle="tooltip"
-data-placement="left"
-title="Print to PDF"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-file-pdf"></i>
-  </span>
-<span class="headerbtn__text-container">.pdf</span>
-</button>
-
-      </li>
-      
-    </ul>
-  </div>
-</div>
-<label for="__page-toc"
-  class="headerbtn headerbtn-page-toc"
-  
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-list"></i>
-  </span>
-
-</label>
-
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/unix/unix_shell_script.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
     </div>
 </div>
 
-<!-- Table of contents -->
-<div class="col-md-3 bd-toc show noprint">
-    <div class="tocsection onthispage pt-5 pb-3">
-        <i class="fas fa-list"></i> Contents
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/chandrabsingh/learning"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/chandrabsingh/learning/issues/new?title=Issue%20on%20page%20%2Funix/unix_shell_script.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        
     </div>
-    <nav id="bd-toc-nav" aria-label="Page">
-        <ul class="visible nav section-nav flex-column">
+</div>
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/chandrabsingh/learning/master?urlpath=tree/learning/unix/unix_shell_script.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#vi-commands">
    vi commands
@@ -802,13 +698,13 @@ title="Print to PDF"
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#shell-commands">
-   Shell commands
+  <a class="reference internal nav-link" href="#commands">
+   Commands
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#mac-specific">
-     Mac specific
+    <a class="reference internal nav-link" href="#osx-specific">
+     OSX specific
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
@@ -851,6 +747,11 @@ title="Print to PDF"
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#process-port">
      Process/Port
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#convert-images">
+     Convert images
     </a>
    </li>
   </ul>
@@ -898,6 +799,28 @@ title="Print to PDF"
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#various-commands">
      various commands
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#shell-scripting">
+   shell scripting
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#stdout">
+     STDOUT
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#stderr">
+     STDERR
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#extended-attributes">
+     Extended attributes
     </a>
    </li>
   </ul>
@@ -1015,11 +938,12 @@ title="Print to PDF"
  </li>
 </ul>
 
-    </nav>
-</div>
+            </nav>
+        </div>
     </div>
-    <div class="article row">
-        <div class="col pl-md-3 pl-lg-5 content-container">
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
                 <h1>Unix/Shell FAQs</h1>
@@ -1065,13 +989,13 @@ title="Print to PDF"
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#shell-commands">
-   Shell commands
+  <a class="reference internal nav-link" href="#commands">
+   Commands
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#mac-specific">
-     Mac specific
+    <a class="reference internal nav-link" href="#osx-specific">
+     OSX specific
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
@@ -1114,6 +1038,11 @@ title="Print to PDF"
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#process-port">
      Process/Port
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#convert-images">
+     Convert images
     </a>
    </li>
   </ul>
@@ -1161,6 +1090,28 @@ title="Print to PDF"
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#various-commands">
      various commands
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#shell-scripting">
+   shell scripting
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#stdout">
+     STDOUT
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#stderr">
+     STDERR
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#extended-attributes">
+     Extended attributes
     </a>
    </li>
   </ul>
@@ -1282,16 +1233,15 @@ title="Print to PDF"
                     </div>
                 </div>
             </div>
-            <main id="main-content" role="main">
-                
+            
               <div>
                 
   <section class="tex2jax_ignore mathjax_ignore" id="unix-shell-faqs">
-<h1>Unix/Shell FAQs<a class="headerlink" href="#unix-shell-faqs" title="Permalink to this headline">#</a></h1>
+<h1>Unix/Shell FAQs<a class="headerlink" href="#unix-shell-faqs" title="Permalink to this headline">¶</a></h1>
 <section id="vi-commands">
-<h2>vi commands<a class="headerlink" href="#vi-commands" title="Permalink to this headline">#</a></h2>
+<h2>vi commands<a class="headerlink" href="#vi-commands" title="Permalink to this headline">¶</a></h2>
 <section id="editing">
-<h3>Editing<a class="headerlink" href="#editing" title="Permalink to this headline">#</a></h3>
+<h3>Editing<a class="headerlink" href="#editing" title="Permalink to this headline">¶</a></h3>
 <ul>
 <li><p>Add same string at the beginning of each line: <code class="docutils literal notranslate"><span class="pre">:%s/^/helloworld/</span></code></p></li>
 <li><p>Undo last commands: <code class="docutils literal notranslate"><span class="pre">:u</span></code></p></li>
@@ -1373,7 +1323,7 @@ Type in the combination of foreign letters learnt from dig, and press enter</p>
 </div></blockquote>
 </section>
 <section id="motion-navigation">
-<h3>Motion/Navigation<a class="headerlink" href="#motion-navigation" title="Permalink to this headline">#</a></h3>
+<h3>Motion/Navigation<a class="headerlink" href="#motion-navigation" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p>Go to end of line <code class="docutils literal notranslate"><span class="pre">:\$</span></code></p></li>
 <li><p>Go to beginning of line:  <code class="docutils literal notranslate"><span class="pre">:0</span></code></p></li>
@@ -1389,10 +1339,12 @@ Type in the combination of foreign letters learnt from dig, and press enter</p>
 <li><p>Moves cursor &amp; screen down ½ page <code class="docutils literal notranslate"><span class="pre">Ctrl-d</span></code></p></li>
 <li><p>Moves screen up one page, cursor to last line <code class="docutils literal notranslate"><span class="pre">Ctrl-b</span></code></p></li>
 <li><p>Moves screen down one page, cursor to first line <code class="docutils literal notranslate"><span class="pre">Ctrl-f</span></code></p></li>
+<li><p>Move backward one word <code class="docutils literal notranslate"><span class="pre">b</span></code></p></li>
+<li><p>Move forward one word <code class="docutils literal notranslate"><span class="pre">w</span></code></p></li>
 </ul>
 </section>
 <section id="vi-settings">
-<h3>vi settings<a class="headerlink" href="#vi-settings" title="Permalink to this headline">#</a></h3>
+<h3>vi settings<a class="headerlink" href="#vi-settings" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p>set colorscheme <code class="docutils literal notranslate"><span class="pre">:colorscheme</span> <span class="pre">ron</span></code></p></li>
 <li><p>list colorschemes available <code class="docutils literal notranslate"><span class="pre">ls</span> <span class="pre">-l</span> <span class="pre">/usr/share/vim/vim*/colors/</span></code></p></li>
@@ -1431,7 +1383,7 @@ And must importantly, :q will quite the mode.</p>
 </ul>
 </section>
 <section id="vi-extras">
-<h3>vi extras<a class="headerlink" href="#vi-extras" title="Permalink to this headline">#</a></h3>
+<h3>vi extras<a class="headerlink" href="#vi-extras" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p>Take input from commands and put it into new file</p></li>
 </ul>
@@ -1457,7 +1409,7 @@ And must importantly, :q will quite the mode.</p>
 </ul>
 </section>
 <section id="vi-csv">
-<h3>vi csv<a class="headerlink" href="#vi-csv" title="Permalink to this headline">#</a></h3>
+<h3>vi csv<a class="headerlink" href="#vi-csv" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p>view csv on shell</p></li>
 </ul>
@@ -1466,10 +1418,10 @@ And must importantly, :q will quite the mode.</p>
 </div>
 </section>
 </section>
-<section id="shell-commands">
-<h2>Shell commands<a class="headerlink" href="#shell-commands" title="Permalink to this headline">#</a></h2>
-<section id="mac-specific">
-<h3>Mac specific<a class="headerlink" href="#mac-specific" title="Permalink to this headline">#</a></h3>
+<section id="commands">
+<h2>Commands<a class="headerlink" href="#commands" title="Permalink to this headline">¶</a></h2>
+<section id="osx-specific">
+<h3>OSX specific<a class="headerlink" href="#osx-specific" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p>Search for files at command line with mdfind(Spotlight)</p></li>
 </ul>
@@ -1484,7 +1436,7 @@ And must importantly, :q will quite the mode.</p>
 </div>
 </section>
 <section id="find-files-dir">
-<h3>find files/dir<a class="headerlink" href="#find-files-dir" title="Permalink to this headline">#</a></h3>
+<h3>find files/dir<a class="headerlink" href="#find-files-dir" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p>find all file recursively in current working directory</p></li>
 </ul>
@@ -1560,7 +1512,7 @@ find . -type f &gt; somefile.txt
 </div>
 </section>
 <section id="shell">
-<h3>Shell<a class="headerlink" href="#shell" title="Permalink to this headline">#</a></h3>
+<h3>Shell<a class="headerlink" href="#shell" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p>How to check which sh am i using</p></li>
 </ul>
@@ -1580,7 +1532,7 @@ find . -type f &gt; somefile.txt
 </pre></div>
 </div>
 <section id="navigation">
-<h4>Navigation<a class="headerlink" href="#navigation" title="Permalink to this headline">#</a></h4>
+<h4>Navigation<a class="headerlink" href="#navigation" title="Permalink to this headline">¶</a></h4>
 <ul class="simple">
 <li><p>How to move to the beginning of command line
 <code class="docutils literal notranslate"><span class="pre">Ctrl+A</span></code></p></li>
@@ -1588,10 +1540,12 @@ find . -type f &gt; somefile.txt
 <code class="docutils literal notranslate"><span class="pre">Ctrl+E</span></code></p></li>
 <li><p>removes all text from the cursor to the end of the line.
 <code class="docutils literal notranslate"><span class="pre">Ctrl+K</span></code></p></li>
+<li><p>Move backward one word <code class="docutils literal notranslate"><span class="pre">Esc</span> <span class="pre">B</span></code></p></li>
+<li><p>Move forward one word <code class="docutils literal notranslate"><span class="pre">Esc</span> <span class="pre">F</span></code></p></li>
 </ul>
 </section>
 <section id="important-folder-file-locations">
-<h4>Important folder/file locations<a class="headerlink" href="#important-folder-file-locations" title="Permalink to this headline">#</a></h4>
+<h4>Important folder/file locations<a class="headerlink" href="#important-folder-file-locations" title="Permalink to this headline">¶</a></h4>
 <ul class="simple">
 <li><p>Python packages installation directory</p></li>
 </ul>
@@ -1600,7 +1554,7 @@ find . -type f &gt; somefile.txt
 </div>
 </section>
 <section id="ls">
-<h4>ls<a class="headerlink" href="#ls" title="Permalink to this headline">#</a></h4>
+<h4>ls<a class="headerlink" href="#ls" title="Permalink to this headline">¶</a></h4>
 <ul class="simple">
 <li><p>List directory only</p></li>
 </ul>
@@ -1617,7 +1571,7 @@ ls -l <span class="p">|</span> egrep <span class="s1">&#39;^d&#39;</span>
 </div>
 </section>
 <section id="file-content-edits">
-<h4>File Content Edits<a class="headerlink" href="#file-content-edits" title="Permalink to this headline">#</a></h4>
+<h4>File Content Edits<a class="headerlink" href="#file-content-edits" title="Permalink to this headline">¶</a></h4>
 <ul>
 <li><p>Delete odd/even lines from file</p>
 <ul class="simple">
@@ -1666,7 +1620,7 @@ ls -l <span class="p">|</span> egrep <span class="s1">&#39;^d&#39;</span>
 </section>
 </section>
 <section id="disk-usage">
-<h3>Disk usage<a class="headerlink" href="#disk-usage" title="Permalink to this headline">#</a></h3>
+<h3>Disk usage<a class="headerlink" href="#disk-usage" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p>Find the folder size of one folder in human readable format</p></li>
 </ul>
@@ -1687,7 +1641,7 @@ ls -l <span class="p">|</span> egrep <span class="s1">&#39;^d&#39;</span>
 </div>
 </section>
 <section id="process-port">
-<h3>Process/Port<a class="headerlink" href="#process-port" title="Permalink to this headline">#</a></h3>
+<h3>Process/Port<a class="headerlink" href="#process-port" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p>Find information about specific port(where 3000 is your current port in use)</p></li>
 </ul>
@@ -1701,44 +1655,64 @@ ls -l <span class="p">|</span> egrep <span class="s1">&#39;^d&#39;</span>
 <div><p>ps ax | grep <PID></p>
 </div></blockquote>
 </section>
+<section id="convert-images">
+<h3>Convert images<a class="headerlink" href="#convert-images" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>convert command</p></li>
+</ul>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>convert <span class="nv">$FILE</span> -quality <span class="m">50</span>% <span class="nv">$FILE</span>.jpg
+</pre></div>
+</div>
+</section>
 </section>
 <section id="vi-cheat-sheet">
-<h2>vi cheat sheet<a class="headerlink" href="#vi-cheat-sheet" title="Permalink to this headline">#</a></h2>
+<h2>vi cheat sheet<a class="headerlink" href="#vi-cheat-sheet" title="Permalink to this headline">¶</a></h2>
 <section id="graphical-cheat-sheet">
-<h3>graphical cheat sheet<a class="headerlink" href="#graphical-cheat-sheet" title="Permalink to this headline">#</a></h3>
-<p><img alt="vi-vim-cheat-sheet" src="../_images/vi-vim-cheat-sheet.gif" /></p>
+<h3>graphical cheat sheet<a class="headerlink" href="#graphical-cheat-sheet" title="Permalink to this headline">¶</a></h3>
+<p align="center"><img src="./images/vi-vim-cheat-sheet.gif" width=800></p>
 </section>
 <section id="basic-editing">
-<h3>basic editing<a class="headerlink" href="#basic-editing" title="Permalink to this headline">#</a></h3>
-<p><img alt="vi-vim-tutorial-1" src="../_images/vi-vim-tutorial-1.gif" /></p>
+<h3>basic editing<a class="headerlink" href="#basic-editing" title="Permalink to this headline">¶</a></h3>
+<p align="center"><img src="./images/vi-vim-tutorial-1.gif" width=800></p>
 </section>
 <section id="operators-and-repetitions">
-<h3>operators and repetitions<a class="headerlink" href="#operators-and-repetitions" title="Permalink to this headline">#</a></h3>
-<p><img alt="vi-vim-tutorial-2" src="../_images/vi-vim-tutorial-2.gif" /></p>
+<h3>operators and repetitions<a class="headerlink" href="#operators-and-repetitions" title="Permalink to this headline">¶</a></h3>
+<p align="center"><img src="./images/vi-vim-tutorial-2.gif" width=800></p>
 </section>
 <section id="yank-and-paste">
-<h3>yank and paste<a class="headerlink" href="#yank-and-paste" title="Permalink to this headline">#</a></h3>
-<p><img alt="vi-vim-tutorial-3" src="../_images/vi-vim-tutorial-3.gif" /></p>
+<h3>yank and paste<a class="headerlink" href="#yank-and-paste" title="Permalink to this headline">¶</a></h3>
+<p align="center"><img src="./images/vi-vim-tutorial-3.gif" width=800></p>
 </section>
 <section id="searching">
-<h3>searching<a class="headerlink" href="#searching" title="Permalink to this headline">#</a></h3>
-<p><img alt="vi-vim-tutorial-4" src="../_images/vi-vim-tutorial-4.gif" /></p>
+<h3>searching<a class="headerlink" href="#searching" title="Permalink to this headline">¶</a></h3>
+<p align="center"><img src="./images/vi-vim-tutorial-4.gif" width=800></p>
 </section>
 <section id="marks-and-macros">
-<h3>marks and macros<a class="headerlink" href="#marks-and-macros" title="Permalink to this headline">#</a></h3>
-<p><img alt="vi-vim-tutorial-5" src="../_images/vi-vim-tutorial-5.gif" /></p>
+<h3>marks and macros<a class="headerlink" href="#marks-and-macros" title="Permalink to this headline">¶</a></h3>
+<p align="center"><img src="./images/vi-vim-tutorial-5.gif" width=800></p>
 </section>
 <section id="various-motions">
-<h3>various motions<a class="headerlink" href="#various-motions" title="Permalink to this headline">#</a></h3>
-<p><img alt="vi-vim-tutorial-6" src="../_images/vi-vim-tutorial-6.gif" /></p>
+<h3>various motions<a class="headerlink" href="#various-motions" title="Permalink to this headline">¶</a></h3>
+<p align="center"><img src="./images/vi-vim-tutorial-6.gif" width=800></p>
 </section>
 <section id="various-commands">
-<h3>various commands<a class="headerlink" href="#various-commands" title="Permalink to this headline">#</a></h3>
-<p><img alt="vi-vim-tutorial-7" src="../_images/vi-vim-tutorial-7.gif" /></p>
+<h3>various commands<a class="headerlink" href="#various-commands" title="Permalink to this headline">¶</a></h3>
+<p align="center"><img src="./images/vi-vim-tutorial-7.gif" width=800></p></section>
+</section>
+<section id="shell-scripting">
+<h2>shell scripting<a class="headerlink" href="#shell-scripting" title="Permalink to this headline">¶</a></h2>
+<section id="stdout">
+<h3>STDOUT<a class="headerlink" href="#stdout" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="stderr">
+<h3>STDERR<a class="headerlink" href="#stderr" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="extended-attributes">
+<h3>Extended attributes<a class="headerlink" href="#extended-attributes" title="Permalink to this headline">¶</a></h3>
 </section>
 </section>
 <section id="iterm2">
-<h2>iTerm2<a class="headerlink" href="#iterm2" title="Permalink to this headline">#</a></h2>
+<h2>iTerm2<a class="headerlink" href="#iterm2" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li><p>Vertical Split: <code class="docutils literal notranslate"><span class="pre">cmd</span> <span class="pre">+</span> <span class="pre">d</span></code></p></li>
 <li><p>Horizontal split: <code class="docutils literal notranslate"><span class="pre">cmd</span> <span class="pre">+</span> <span class="pre">shift</span> <span class="pre">+</span> <span class="pre">d</span></code></p></li>
@@ -1754,7 +1728,7 @@ ls -l <span class="p">|</span> egrep <span class="s1">&#39;^d&#39;</span>
 </ul>
 </section>
 <section id="cassandra">
-<h2>Cassandra<a class="headerlink" href="#cassandra" title="Permalink to this headline">#</a></h2>
+<h2>Cassandra<a class="headerlink" href="#cassandra" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li><p>To install Cassandra, java 8 or 11 is prerequisite</p></li>
 <li><p>To install Cassandra</p></li>
@@ -1808,7 +1782,7 @@ ls -l <span class="p">|</span> egrep <span class="s1">&#39;^d&#39;</span>
 </div>
 </section>
 <section id="pyspark">
-<h2>PySpark<a class="headerlink" href="#pyspark" title="Permalink to this headline">#</a></h2>
+<h2>PySpark<a class="headerlink" href="#pyspark" title="Permalink to this headline">¶</a></h2>
 <div class="alert alert-warning"> Check the active sh - bash or zsh, accordingly update ~/.bash_profile or ~/.zshrc</div>
 <ul class="simple">
 <li><p>Renamed config.json to be able to switch to different venv</p></li>
@@ -1953,9 +1927,9 @@ mkdir -p <span class="nv">$RECO_ENV</span>/etc/conda/deactivate.d
 </div>
 </section>
 <section id="llvm-clang">
-<h2>llvm/clang<a class="headerlink" href="#llvm-clang" title="Permalink to this headline">#</a></h2>
+<h2>llvm/clang<a class="headerlink" href="#llvm-clang" title="Permalink to this headline">¶</a></h2>
 <section id="install-llvm">
-<h3>Install llvm<a class="headerlink" href="#install-llvm" title="Permalink to this headline">#</a></h3>
+<h3>Install llvm<a class="headerlink" href="#install-llvm" title="Permalink to this headline">¶</a></h3>
 <p>To use the bundled libc++ please add the following LDFLAGS:</p>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>  <span class="nv">LDFLAGS</span><span class="o">=</span><span class="s2">&quot;-L/usr/local/opt/llvm/lib -Wl,-rpath,/usr/local/opt/llvm/lib&quot;</span>  
 </pre></div>
@@ -1974,7 +1948,7 @@ parallel can cause all kinds of trouble.</p>
 </div>
 </section>
 <section id="clang-from-xcode-vs-llvm">
-<h3>clang from Xcode vs llvm<a class="headerlink" href="#clang-from-xcode-vs-llvm" title="Permalink to this headline">#</a></h3>
+<h3>clang from Xcode vs llvm<a class="headerlink" href="#clang-from-xcode-vs-llvm" title="Permalink to this headline">¶</a></h3>
 <p>Cause<br />
 Thanks for the comments - the errors above are an indication of a Clang version that was built without module support. This is what Xcode comes with, i.e. by running xcode-select –install in a terminal.</p>
 <p>Solution<br />
@@ -1997,41 +1971,44 @@ Thread model: posix<br />
 InstalledDir: /usr/local/opt/llvm/bin</p>
 </section>
 <section id="run-clang-with-different-flags">
-<h3>Run clang with different flags<a class="headerlink" href="#run-clang-with-different-flags" title="Permalink to this headline">#</a></h3>
+<h3>Run clang with different flags<a class="headerlink" href="#run-clang-with-different-flags" title="Permalink to this headline">¶</a></h3>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>clang++ -Wall -std<span class="o">=</span>c++11 SubArrayAverage.cpp -o SubArrayAverage
 </pre></div>
 </div>
 </section>
 </section>
 <section id="jupyter-notebook">
-<h2>Jupyter Notebook<a class="headerlink" href="#jupyter-notebook" title="Permalink to this headline">#</a></h2>
+<h2>Jupyter Notebook<a class="headerlink" href="#jupyter-notebook" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
-<li><p>Convert notebook into interactive slide</p></li>
+<li><p>Convert notebook into interactive slide</p>
+<ul>
+<li><p>this uses reveal.js</p></li>
 </ul>
-<blockquote>
-<div><p>jupyter nbconvert slides-in-a-notebook.ipynb –to slides –ServePostProcessor.port=8910 –post serve<br />
-this uses reveal.js</p>
-</div></blockquote>
+</li>
+</ul>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>jupyter nbconvert slides-in-a-notebook.ipynb --to slides --ServePostProcessor.port<span class="o">=</span><span class="m">8910</span> --post serve  
+</pre></div>
+</div>
 <ul class="simple">
 <li><p>Convert notebook into html with toc</p></li>
 </ul>
-<blockquote>
-<div><p>jupyter nbconvert –to html_toc FILE.ipynb</p>
-</div></blockquote>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>jupyter nbconvert --to html_toc FILE.ipynb 
+</pre></div>
+</div>
 <ul class="simple">
 <li><p><a class="reference external" href="https://blog.kdheepak.com/jupyter-notebook-revealjs-and-github-pages">How to host using reveal.js</a></p></li>
-<li><p>Launch notebook in other env</p></li>
+<li><p>How to launch notebook in other env</p></li>
 </ul>
-<blockquote>
-<div><p>cd ~/anaconda/workingDir/<br />
-jupyter notebook –port 5656</p>
-</div></blockquote>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span> ~/anaconda/workingDir/  
+jupyter notebook --port <span class="m">5656</span>  
+</pre></div>
+</div>
 <ul class="simple">
-<li><p>Running without password</p></li>
+<li><p>How to launch notebook in other env without password</p></li>
 </ul>
-<blockquote>
-<div><p>../../bin/jupyter notebook –port 5657 –ip=’*’ –NotebookApp.token=’’ –NotebookApp.password=’’</p>
-</div></blockquote>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>jupyter notebook --port <span class="m">5657</span> --ip<span class="o">=</span><span class="s1">&#39;*&#39;</span> --NotebookApp.token<span class="o">=</span><span class="s1">&#39;&#39;</span> --NotebookApp.password<span class="o">=</span><span class="s1">&#39;&#39;</span>
+</pre></div>
+</div>
 <ul class="simple">
 <li><p>Jupyter magic line and cell commands</p></li>
 </ul>
@@ -2090,7 +2067,7 @@ conda install -c conda-forge “nbconvert=5.6.1” # This version only works</p>
 </div></blockquote>
 </section>
 <section id="git">
-<h2>git<a class="headerlink" href="#git" title="Permalink to this headline">#</a></h2>
+<h2>git<a class="headerlink" href="#git" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li><p>Check git version</p></li>
 </ul>
@@ -2307,7 +2284,7 @@ ls = log –graph –abbrev-commit –decorate –color=always –date=relative 
 </div>
 </section>
 <section id="conda">
-<h2>conda<a class="headerlink" href="#conda" title="Permalink to this headline">#</a></h2>
+<h2>conda<a class="headerlink" href="#conda" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li><p>Display Conda environment information</p></li>
 </ul>
@@ -2360,7 +2337,7 @@ ls = log –graph –abbrev-commit –decorate –color=always –date=relative 
 </div></blockquote>
 </section>
 <section id="pip">
-<h2>pip<a class="headerlink" href="#pip" title="Permalink to this headline">#</a></h2>
+<h2>pip<a class="headerlink" href="#pip" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li><p>Install specific version of package</p></li>
 </ul>
@@ -2374,7 +2351,7 @@ ls = log –graph –abbrev-commit –decorate –color=always –date=relative 
 <div><p><code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">-r</span> <span class="pre">requirements.txt</span></code></p>
 </div></blockquote>
 <section id="python-packages-conflict">
-<h3>python packages conflict<a class="headerlink" href="#python-packages-conflict" title="Permalink to this headline">#</a></h3>
+<h3>python packages conflict<a class="headerlink" href="#python-packages-conflict" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p>networkx requires scipy-1.9.1</p>
 <ul>
@@ -2393,7 +2370,7 @@ pip install <span class="nv">scipy</span><span class="o">==</span><span class="m
 </section>
 </section>
 <section id="mac-services">
-<h2>Mac Services<a class="headerlink" href="#mac-services" title="Permalink to this headline">#</a></h2>
+<h2>Mac Services<a class="headerlink" href="#mac-services" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li><p>list all services</p></li>
 </ul>
@@ -2450,11 +2427,11 @@ pip install <span class="nv">scipy</span><span class="o">==</span><span class="m
 </div></blockquote>
 </section>
 <section id="makefile">
-<h2>Makefile<a class="headerlink" href="#makefile" title="Permalink to this headline">#</a></h2>
+<h2>Makefile<a class="headerlink" href="#makefile" title="Permalink to this headline">¶</a></h2>
 <img src="./images/make1.png">
 <img src="./images/make2.png"></section>
 <section id="pytest">
-<h2>pytest<a class="headerlink" href="#pytest" title="Permalink to this headline">#</a></h2>
+<h2>pytest<a class="headerlink" href="#pytest" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">pytest</span> <span class="pre">--help</span> <span class="pre">|</span> <span class="pre">less</span></code></p></li>
 <li><p>CheatSheet</p>
@@ -2465,7 +2442,7 @@ pip install <span class="nv">scipy</span><span class="o">==</span><span class="m
 </ul>
 </section>
 <section id="docker">
-<h2>docker<a class="headerlink" href="#docker" title="Permalink to this headline">#</a></h2>
+<h2>docker<a class="headerlink" href="#docker" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li><p>List all running processes</p></li>
 </ul>
@@ -2630,7 +2607,7 @@ pip install <span class="nv">scipy</span><span class="o">==</span><span class="m
 <div><p><code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">container</span> <span class="pre">wait</span></code></p>
 </div></blockquote>
 <section id="install-ms-sql-using-docker">
-<h3>Install MS-SQL using Docker<a class="headerlink" href="#install-ms-sql-using-docker" title="Permalink to this headline">#</a></h3>
+<h3>Install MS-SQL using Docker<a class="headerlink" href="#install-ms-sql-using-docker" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p>Download, setup and run SQL Server on Mac using Docker</p></li>
 </ul>
@@ -2654,12 +2631,12 @@ pip install <span class="nv">scipy</span><span class="o">==</span><span class="m
 </ul>
 </section>
 <section id="install-iccube">
-<h3>Install icCube<a class="headerlink" href="#install-iccube" title="Permalink to this headline">#</a></h3>
+<h3>Install icCube<a class="headerlink" href="#install-iccube" title="Permalink to this headline">¶</a></h3>
 <p><a class="reference external" href="http://localhost:8484/icCube/console/mdx">http://localhost:8484/icCube/console/mdx</a></p>
 </section>
 </section>
 <section id="kakka-zookeeper">
-<h2>Kakka/Zookeeper<a class="headerlink" href="#kakka-zookeeper" title="Permalink to this headline">#</a></h2>
+<h2>Kakka/Zookeeper<a class="headerlink" href="#kakka-zookeeper" title="Permalink to this headline">¶</a></h2>
 <p>==&gt; Caveats
 ==&gt; kafka
 To restart kafka after an upgrade:
@@ -2709,7 +2686,7 @@ Or, if you don’t want/need a background service you can just run:
 /usr/local/opt/cassandra/bin/cassandra -f</p>
 </section>
 <section id="compound-operations">
-<h2>Compound operations<a class="headerlink" href="#compound-operations" title="Permalink to this headline">#</a></h2>
+<h2>Compound operations<a class="headerlink" href="#compound-operations" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li><p>Extract file names from ls -l</p></li>
 </ul>
@@ -2733,7 +2710,7 @@ Or, if you don’t want/need a background service you can just run:
 </ul>
 </section>
 <section id="important-folder-locations">
-<h2>Important folder locations<a class="headerlink" href="#important-folder-locations" title="Permalink to this headline">#</a></h2>
+<h2>Important folder locations<a class="headerlink" href="#important-folder-locations" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li><p>Kafka/Zookeeper properties files</p></li>
 </ul>
@@ -2771,11 +2748,9 @@ Or, if you don’t want/need a background service you can just run:
 
               </div>
               
-            </main>
-            <footer class="footer-article noprint">
-                
-    <!-- Previous / next buttons -->
-<div class='prev-next-area'>
+            
+                <!-- Previous / next buttons -->
+<div class='prev-next-area'> 
     <a class='left-prev' id="prev-link" href="intro.html" title="previous page">
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
@@ -2791,28 +2766,24 @@ Or, if you don’t want/need a background service you can just run:
     <i class="fas fa-angle-right"></i>
     </a>
 </div>
-            </footer>
+            
         </div>
     </div>
-    <div class="footer-content row">
-        <footer class="col footer"><p>
-  
-    By Chandra<br/>
-  
-      &copy; Copyright 2022.<br/>
-</p>
-        </footer>
-    </div>
+    <footer class="footer">
+  <p>
     
-</div>
+      By Chandra<br/>
+    
+        &copy; Copyright 2021.<br/>
+  </p>
+</footer>
+</main>
 
 
       </div>
     </div>
   
-  <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
-
+  <script src="../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
 
   </body>
 </html>
