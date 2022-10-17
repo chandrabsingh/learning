@@ -721,6 +721,57 @@ const thebe_selector_output = ".output, .cell_output"
   <a class="reference internal nav-link" href="#compute-lambda">
    Compute: Lambda
   </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#understanding-serverless-functions">
+     Understanding Serverless Functions
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#contextualizing-serverless">
+       Contextualizing Serverless
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#key-elements-of-serverless-functions">
+       Key Elements of Serverless functions
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#serverless-benefits-and-challenges">
+       Serverless Benefits and Challenges
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#why-learn-lambda">
+       Why learn Lambda
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#how-is-lambda-used">
+       How is lambda used
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#serverless-function-providers">
+     Serverless Function Providers
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#comparison">
+       Comparison
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#demo-overview">
+     Demo Overview
+    </a>
+   </li>
+  </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#networking-content-delivery-elb">
@@ -743,8 +794,8 @@ const thebe_selector_output = ".output, .cell_output"
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#media-service-kinesis">
-   Media Service: Kinesis
+  <a class="reference internal nav-link" href="#media-service-streaming-data-kinesis">
+   Media Service/Streaming data: Kinesis
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
@@ -833,6 +884,57 @@ const thebe_selector_output = ".output, .cell_output"
   <a class="reference internal nav-link" href="#compute-lambda">
    Compute: Lambda
   </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#understanding-serverless-functions">
+     Understanding Serverless Functions
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#contextualizing-serverless">
+       Contextualizing Serverless
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#key-elements-of-serverless-functions">
+       Key Elements of Serverless functions
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#serverless-benefits-and-challenges">
+       Serverless Benefits and Challenges
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#why-learn-lambda">
+       Why learn Lambda
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#how-is-lambda-used">
+       How is lambda used
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#serverless-function-providers">
+     Serverless Function Providers
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#comparison">
+       Comparison
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#demo-overview">
+     Demo Overview
+    </a>
+   </li>
+  </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#networking-content-delivery-elb">
@@ -855,8 +957,8 @@ const thebe_selector_output = ".output, .cell_output"
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#media-service-kinesis">
-   Media Service: Kinesis
+  <a class="reference internal nav-link" href="#media-service-streaming-data-kinesis">
+   Media Service/Streaming data: Kinesis
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
@@ -1008,6 +1110,489 @@ const thebe_selector_output = ".output, .cell_output"
 </section>
 <section id="compute-lambda">
 <h2>Compute: Lambda<a class="headerlink" href="#compute-lambda" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>PluralSight - AWS Developer - An introduction to AWS Lambda</p></li>
+<li><p>AWS Lambda is the industry leader in the serverless function space</p></li>
+<li><p>Goals</p>
+<ul>
+<li><p>Integrating Lambda with third party APIs</p></li>
+<li><p>Leveraging other AWS services with Lambda</p></li>
+<li><p>Using AWS CLI to deploy lambda functions</p></li>
+<li><p>Development needs of AWS lambda</p></li>
+</ul>
+</li>
+</ul>
+<section id="understanding-serverless-functions">
+<h3>Understanding Serverless Functions<a class="headerlink" href="#understanding-serverless-functions" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>Evolution of serverless functions</p>
+<ul>
+<li><p>Serverless vs tradional architecture</p></li>
+<li><p>what are serverless functions</p></li>
+<li><p>benefits and drawbacks</p></li>
+</ul>
+</li>
+<li><p>Serverless function providers</p>
+<ul>
+<li><p>AWS, competitors and niche players</p></li>
+</ul>
+</li>
+<li><p>Demo overviews</p>
+<ul>
+<li><p>what are we building</p></li>
+<li><p>how are we building</p></li>
+</ul>
+</li>
+</ul>
+<section id="contextualizing-serverless">
+<h4>Contextualizing Serverless<a class="headerlink" href="#contextualizing-serverless" title="Permalink to this headline">¶</a></h4>
+<ul class="simple">
+<li><p>Evolution</p>
+<ul>
+<li><p>Mainframe</p></li>
+<li><p>Personal computers</p></li>
+<li><p>Cloud</p></li>
+</ul>
+</li>
+<li><p>Serverless functions</p>
+<ul>
+<li><p>Event-driven functions</p>
+<ul>
+<li><p>runs only in response to some event that’s triggering it</p></li>
+<li><p>example</p>
+<ul>
+<li><p>file upload</p></li>
+<li><p>API request coming from an API endpoint</p></li>
+<li><p>could be from IoT or streaming applications</p>
+<ul>
+<li><p>which then triggers code to run in response of it</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>focuses mainly on code rather than the system/infrastructure</p>
+<ul>
+<li><p>focus more on the business logic and purpose of the application</p></li>
+</ul>
+</li>
+<li><p>serverless functions run on managed machines</p>
+<ul>
+<li><p>it runs on AWS hardware and/or AWS’s virtualized operating system</p></li>
+<li><p>from containers that live inside of those virtual machines</p>
+<ul>
+<li><p>these containers are managed by AWS</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="key-elements-of-serverless-functions">
+<h4>Key Elements of Serverless functions<a class="headerlink" href="#key-elements-of-serverless-functions" title="Permalink to this headline">¶</a></h4>
+<ul class="simple">
+<li><p>Event Examples - File upload</p>
+<ul>
+<li><p>sent to Amazon S3 or Simple Storage Service</p></li>
+<li><p>resize and save it in other location</p></li>
+<li><p>S3 sends a piece of information to Lambda</p></li>
+<li><p>event details of the work to do</p></li>
+<li><p>Lambda will examine the details</p></li>
+<li><p>get the image from S3</p></li>
+<li><p>resize and put it in output location</p></li>
+</ul>
+</li>
+<li><p>Schedules times</p>
+<ul>
+<li><p>cron jobs</p></li>
+<li><p>trigger at a regular interval</p></li>
+</ul>
+</li>
+<li><p>API request</p>
+<ul>
+<li><p>comes from AWS API gateway</p></li>
+<li><p>information will be like GET or a POST request</p></li>
+</ul>
+</li>
+<li><p>All these requests would send some structured data over to Lambda to process</p></li>
+</ul>
+</section>
+<section id="serverless-benefits-and-challenges">
+<h4>Serverless Benefits and Challenges<a class="headerlink" href="#serverless-benefits-and-challenges" title="Permalink to this headline">¶</a></h4>
+<ul class="simple">
+<li><p>Benefits</p>
+<ul>
+<li><p>Cost and utilization</p>
+<ul>
+<li><p>high utilization from using Lambda offsets the cost factor of using Lambda</p></li>
+<li><p>its better than running a 100% optimized service on EC2</p>
+<ul>
+<li><p>EC2 will be little bit cheaper than Lambda as AWS is managing everything</p></li>
+<li><p>100% utilization is never possible</p></li>
+</ul>
+</li>
+<li><p>one pays for the fraction of seconds the lambda service is used</p></li>
+</ul>
+</li>
+<li><p>Managed machines</p>
+<ul>
+<li><p>saves time for doing all security patches or hardware maintenance</p></li>
+</ul>
+</li>
+<li><p>Service integrations</p>
+<ul>
+<li><p>for example</p>
+<ul>
+<li><p>streaming data with Kinesis</p></li>
+<li><p>IoT processing of data from Internett of Things devices</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Scaling</p>
+<ul>
+<li><p>AWS manages scaling of the capacity</p></li>
+<li><p>new hardware request/configuration is not needed</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Challenges</p>
+<ul>
+<li><p>Debugging</p>
+<ul>
+<li><p>when thousands of lambda functions are invoked</p>
+<ul>
+<li><p>hard to disect which invocation failed and which to dig into</p></li>
+<li><p>easier in EC2 instance</p></li>
+</ul>
+</li>
+<li><p>use Amazon CloudWatch</p>
+<ul>
+<li><p>has all the logs for Lambda function</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Control</p>
+<ul>
+<li><p>low level control of hardware if required</p>
+<ul>
+<li><p>lambda is not a good fit</p></li>
+</ul>
+</li>
+<li><p>aren’t configurable using AWS Lambda</p></li>
+</ul>
+</li>
+<li><p>Cutting Edge Quirks</p>
+<ul>
+<li><p>niche use cases</p></li>
+<li><p>research use cases before diving on</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="why-learn-lambda">
+<h4>Why learn Lambda<a class="headerlink" href="#why-learn-lambda" title="Permalink to this headline">¶</a></h4>
+<ul class="simple">
+<li><p>managed infrastructure</p></li>
+<li><p>Internet of Things</p></li>
+<li><p>Growing in relevance</p>
+<ul>
+<li><p>Single strongest infrastructure in service space</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="how-is-lambda-used">
+<h4>How is lambda used<a class="headerlink" href="#how-is-lambda-used" title="Permalink to this headline">¶</a></h4>
+<ul class="simple">
+<li><p>Stream data processing</p></li>
+<li><p>Easy and scalable APIs</p></li>
+<li><p>Photo processing</p></li>
+<li><p>Backend web applications</p>
+<ul>
+<li><p>access some sort of database</p></li>
+<li><p>process some incoming data</p></li>
+</ul>
+</li>
+</ul>
+</section>
+</section>
+<section id="serverless-function-providers">
+<h3>Serverless Function Providers<a class="headerlink" href="#serverless-function-providers" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>AWS</p></li>
+<li><p>Microsoft Azure</p></li>
+<li><p>Google Cloud</p></li>
+</ul>
+<section id="comparison">
+<h4>Comparison<a class="headerlink" href="#comparison" title="Permalink to this headline">¶</a></h4>
+<ul class="simple">
+<li><p>AWS Lambda vs Azure Functions</p>
+<ul>
+<li><p>Runtime</p>
+<ul>
+<li><p>both support runtime</p>
+<ul>
+<li><p>such as Node, Python, Java, C#, PowerShell, bash, and others</p></li>
+</ul>
+</li>
+<li><p>Lambda supports user-provided runtimes</p>
+<ul>
+<li><p>such as Rust which are managed runtime</p></li>
+</ul>
+</li>
+<li><p>support of managed runtime must be looked into to pick one over other</p></li>
+</ul>
+</li>
+<li><p>Built-in versioning</p>
+<ul>
+<li><p>Lambda has built in versioning for serverless functions</p></li>
+<li><p>Azure functions has no built in versioning</p></li>
+<li><p>useful in deployment of pipelines</p></li>
+</ul>
+</li>
+<li><p>HTTP endpoints via API gateway</p>
+<ul>
+<li><p>both has support</p></li>
+<li><p>Lambda allows support with AWS API Gateway</p></li>
+<li><p>Azure allows support with API Management services</p></li>
+<li><p>tthis allows integration with front-end applications</p></li>
+</ul>
+</li>
+<li><p>Runtime limit</p>
+<ul>
+<li><p>AWS Lambda</p>
+<ul>
+<li><p>hard runtime limit of 15 mins</p></li>
+</ul>
+</li>
+<li><p>Azure Functions</p>
+<ul>
+<li><p>hard runtime limit of 10 mins (option for unlimited)</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Concurrent functions</p>
+<ul>
+<li><p>AWS Lambda</p>
+<ul>
+<li><p>1000 concurrent functions (soft limit)</p></li>
+</ul>
+</li>
+<li><p>Azure Functions</p>
+<ul>
+<li><p>10 concurrent instances</p></li>
+<li><p>no limit on functions that these instances can run</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Niche Providers</p>
+<ul>
+<li><p><a class="reference external" href="http://Iron.io">Iron.io</a></p>
+<ul>
+<li><p>First company to come up with the concept of serverless functions</p></li>
+<li><p>support all major languages</p></li>
+<li><p>also support binary executable</p></li>
+<li><p>runtime limits of an hour</p></li>
+<li><p>drawback</p>
+<ul>
+<li><p>lacks compared to the services of AWS using IronWorkers</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Cloudflare Workers</p>
+<ul>
+<li><p>allows Javascript codes close to the users and distribute across globe</p></li>
+<li><p>helps run HTTP or HTTPs responses closer to them</p>
+<ul>
+<li><p>much faster responses</p></li>
+</ul>
+</li>
+<li><p>AWS has Lambda&#64;Edge service</p></li>
+</ul>
+</li>
+<li><p>OpenFaaS</p>
+<ul>
+<li><p>Open function as a service</p></li>
+<li><p>try to make it open source</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</section>
+</section>
+<section id="demo-overview">
+<h3>Demo Overview<a class="headerlink" href="#demo-overview" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>Globomantics Pet Care - Demo Client</p>
+<ul>
+<li><p>Requirements:</p>
+<ul>
+<li><p>Website uptime monitoring</p>
+<ul>
+<li><p>monitor their website</p></li>
+<li><p>maintain high availability for their customers</p></li>
+</ul>
+</li>
+<li><p>Social media automation</p>
+<ul>
+<li><p>regularly remind customers of their services and policies</p></li>
+</ul>
+</li>
+<li><p>Custom business reminders</p>
+<ul>
+<li><p>customer reminder</p>
+<ul>
+<li><p>regarding latest information about business</p></li>
+<li><p>for their customers</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>New customer services</p>
+<ul>
+<li><p>manage customer information in real time</p></li>
+<li><p>notify administrators</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Four Lambda Projects</p>
+<ul>
+<li><p>Simple scheduled events</p>
+<ul>
+<li><p>regularly check website</p></li>
+<li><p>notify accordingly</p></li>
+</ul>
+</li>
+<li><p>How to integrate 3rd party APIs</p>
+<ul>
+<li><p>securly manage API keys</p>
+<ul>
+<li><p>Twitter API keys</p></li>
+<li><p>integrate with AWS lambda</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>How to use business logic and AWS Simple Email Service (SES)</p>
+<ul>
+<li><p>send email reminders to employees and customers</p></li>
+</ul>
+</li>
+<li><p>Build full-fledged serverless service</p>
+<ul>
+<li><p>to help Globomantics Pet Care company manage their customers</p></li>
+<li><p>use serverless framework</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>First Project - Lambda Canary</p>
+<ul>
+<li><p>AWS built-in rate scheduler</p>
+<ul>
+<li><p>triggers function on a regular basis</p></li>
+<li><p>runs every 5 mins</p></li>
+</ul>
+</li>
+<li><p>Function review website</p>
+<ul>
+<li><p>check functionality working properly or not</p></li>
+</ul>
+</li>
+<li><p>Website status record</p>
+<ul>
+<li><p>success or failure will be recorded in CloudWatch logs</p></li>
+<li><p>for failure</p>
+<ul>
+<li><p>use CloudWatch alarms to trigger an event notification</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Second Project - Twitter Bot</p>
+<ul>
+<li><p>simple regular scheduled event</p></li>
+<li><p>runs every hour</p></li>
+<li><p>tweet every hour for Globomantics Pet Care</p>
+<ul>
+<li><p>run code</p></li>
+<li><p>access to Twitter API keys</p>
+<ul>
+<li><p>setup as part of project</p></li>
+<li><p>used to tweeting</p></li>
+</ul>
+</li>
+<li><p>dont hit Twitter spam limitation</p>
+<ul>
+<li><p>and look spammy</p></li>
+<li><p>randomize tweets with Python</p></li>
+<li><p>send different automated tweets to API</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Third Project - Workflow Automation</p>
+<ul>
+<li><p>use scheduled event trigger at particular time of day</p></li>
+<li><p>run business logic</p></li>
+<li><p>morning</p>
+<ul>
+<li><p>come to work</p></li>
+</ul>
+</li>
+<li><p>mid-day</p>
+<ul>
+<li><p>plan for work tasks</p></li>
+<li><p>if planned tasks are done</p></li>
+</ul>
+</li>
+<li><p>afternoon</p>
+<ul>
+<li><p>reminder to customer to pick up pets</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Fourth Project - New Customers Service</p>
+<ul>
+<li><p>API gateway request</p></li>
+<li><p>process the request using AWS Lambda function</p>
+<ul>
+<li><p>validate the request</p></li>
+<li><p>send it over to DynamoDB</p></li>
+</ul>
+</li>
+<li><p>use AWS bundled libraries</p></li>
+<li><p>whenever new customer service comes in</p>
+<ul>
+<li><p>send email to admin</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</section>
 </section>
 <section id="networking-content-delivery-elb">
 <h2>Networking &amp; Content Delivery: ELB<a class="headerlink" href="#networking-content-delivery-elb" title="Permalink to this headline">¶</a></h2>
@@ -1021,8 +1606,8 @@ const thebe_selector_output = ".output, .cell_output"
 <section id="application-integration-sqs">
 <h2>Application Integration: SQS<a class="headerlink" href="#application-integration-sqs" title="Permalink to this headline">¶</a></h2>
 </section>
-<section id="media-service-kinesis">
-<h2>Media Service: Kinesis<a class="headerlink" href="#media-service-kinesis" title="Permalink to this headline">¶</a></h2>
+<section id="media-service-streaming-data-kinesis">
+<h2>Media Service/Streaming data: Kinesis<a class="headerlink" href="#media-service-streaming-data-kinesis" title="Permalink to this headline">¶</a></h2>
 </section>
 <section id="monitoring-services-cloudwatch">
 <h2>Monitoring services: CloudWatch<a class="headerlink" href="#monitoring-services-cloudwatch" title="Permalink to this headline">¶</a></h2>
