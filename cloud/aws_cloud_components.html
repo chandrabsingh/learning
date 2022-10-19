@@ -771,6 +771,11 @@ const thebe_selector_output = ".output, .cell_output"
      Demo Overview
     </a>
    </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#working-with-free-tier-aws">
+     Working with free tier AWS
+    </a>
+   </li>
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
@@ -932,6 +937,11 @@ const thebe_selector_output = ".output, .cell_output"
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#demo-overview">
      Demo Overview
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#working-with-free-tier-aws">
+     Working with free tier AWS
     </a>
    </li>
   </ul>
@@ -1592,6 +1602,161 @@ const thebe_selector_output = ".output, .cell_output"
 </ul>
 </li>
 </ul>
+</section>
+<section id="working-with-free-tier-aws">
+<h3>Working with free tier AWS<a class="headerlink" href="#working-with-free-tier-aws" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>AWS free tier - 12 months free</p>
+<ul>
+<li><p>EC2 - 750 hours</p></li>
+<li><p>Lambda function - 1 million function calls</p></li>
+<li><p>DynamoDB - 25GB or Relational Database storage(RDS) - 20G</p></li>
+<li><p>S3 - store 5G of files</p></li>
+<li><p>can change over time</p></li>
+</ul>
+</li>
+<li><p>Projects that can be build on free tier</p>
+<ul>
+<li><p>create static sites with S3</p></li>
+<li><p>create relational database or virtual machine instance with EC2 and RDS</p></li>
+<li><p>scalable APIs with lambda and API gateway</p></li>
+</ul>
+</li>
+<li><p>AWS Services</p>
+<ul>
+<li><p>IAM - Identity and Access Management</p>
+<ul>
+<li><p>create roles and policies</p></li>
+<li><p>attach them to lambda functions</p>
+<ul>
+<li><p>so that they take actions on other services</p></li>
+</ul>
+</li>
+<li><p>services like SES</p></li>
+</ul>
+</li>
+<li><p>Lambda</p></li>
+<li><p>Simple Email Service (SES)</p>
+<ul>
+<li><p>send email from Lambda function</p></li>
+</ul>
+</li>
+<li><p>Systems Manager Service</p>
+<ul>
+<li><p>used as parameter store to store API keys from Twitter</p></li>
+<li><p>allows us to use in a secure manner</p></li>
+</ul>
+</li>
+<li><p>API Gateway</p>
+<ul>
+<li><p>used to create HTTP API for serverless project</p></li>
+</ul>
+</li>
+<li><p>DynamoDB</p>
+<ul>
+<li><p>persist and read data</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>IAM - Identity and Access Management</p>
+<ul>
+<li><p>key concepts</p>
+<ul>
+<li><p>Users</p>
+<ul>
+<li><p>login using multi-factor authentication token</p></li>
+<li><p>use AWS with AWS CLI and access keys</p></li>
+<li><p>have set of permissions to do certain things within ecosystem</p></li>
+</ul>
+</li>
+<li><p>Grooups</p>
+<ul>
+<li><p>collection of users</p></li>
+<li><p>share permission policies</p></li>
+<li><p>helps easily standardize and manage permissions within group of individuals</p></li>
+</ul>
+</li>
+<li><p>Roles</p>
+<ul>
+<li><p>similar to users</p></li>
+<li><p>carry set of permission that what an user can do</p></li>
+<li><p>different from users</p>
+<ul>
+<li><p>as they dont have access keys or login credentials</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>how do they interact</p>
+<ul>
+<li><p>each user is associated with a group</p></li>
+<li><p>roles are assigned to users/group/AWS services appropriately</p></li>
+<li><p>group policies are determined by JSON IAM policy</p></li>
+<li><p>policy is maintained by administrator</p></li>
+</ul>
+</li>
+<li><p>when to use a role</p>
+<ul>
+<li><p>2 different sets of virtual machines</p></li>
+<li><p>1st set</p>
+<ul>
+<li><p>send emails through SES</p></li>
+<li><p>load templates from S3</p></li>
+<li><p>write emails with SES and send them out</p></li>
+</ul>
+</li>
+<li><p>2nd set</p>
+<ul>
+<li><p>interact with Systems Manager Parmeter Store</p></li>
+<li><p>get access key to use Twitter API</p></li>
+<li><p>load keys into Lambda service</p>
+<ul>
+<li><p>no need to change keys</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>both have different use cases</p>
+<ul>
+<li><p>both will have separate permission policies</p></li>
+</ul>
+</li>
+<li><p>set policy</p>
+<ul>
+<li><p>attribute them to role</p></li>
+<li><p>attach to virtual machine groups</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>sample IAM policy</p>
+<ul>
+<li><p>JSON</p></li>
+<li><p>Tracks policy version</p></li>
+<li><p>Allow or deny access</p></li>
+<li><p>What actions can be taken</p></li>
+<li><p>On what AWS resources</p></li>
+<li><p>Example</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="nt">&quot;Version&quot;</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2022-10-18&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">  </span><span class="nt">&quot;Statement&quot;</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"></span>
+<span class="w">    </span><span class="p">{</span><span class="w"></span>
+<span class="w">      </span><span class="nt">&quot;Effect&quot;</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Allow&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">      </span><span class="nt">&quot;Action&quot;</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;*&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">      </span><span class="nt">&quot;Resource&quot;</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;*&quot;</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="w">  </span><span class="p">]</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</pre></div>
+</div>
 </section>
 </section>
 <section id="networking-content-delivery-elb">
