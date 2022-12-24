@@ -744,6 +744,35 @@ const thebe_selector_output = ".output, .cell_output"
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#problem">
+   Problem
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#how-to-solve">
+     How to solve
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#nonlinear-optimization-nlp">
+   Nonlinear optimization/NLP
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#local-optimization-methods-nonlinear-programming">
+     Local optimization methods (nonlinear programming)
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#global-optimization-methods">
+     Global optimization methods
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#read">
    Read
   </a>
@@ -797,6 +826,35 @@ const thebe_selector_output = ".output, .cell_output"
   <a class="reference internal nav-link" href="#convex-optimization-problem">
    Convex optimization problem
   </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#problem">
+   Problem
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#how-to-solve">
+     How to solve
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#nonlinear-optimization-nlp">
+   Nonlinear optimization/NLP
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#local-optimization-methods-nonlinear-programming">
+     Local optimization methods (nonlinear programming)
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#global-optimization-methods">
+     Global optimization methods
+    </a>
+   </li>
+  </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#read">
@@ -922,7 +980,7 @@ subject to <span class="math notranslate nohighlight">\(f_{i}(x) \le b_{i}, \spa
 </div></blockquote>
 </div></blockquote>
 <ul class="simple">
-<li><p>affine functions make this equality</p></li>
+<li><p>affine functions make this a equality</p></li>
 <li><p>convex functions have non-negative curvature</p></li>
 <li><p>affine functions have zero curvature. They are right at the boundary</p></li>
 <li><p>least squares problem have convex form</p>
@@ -945,6 +1003,8 @@ subject to <span class="math notranslate nohighlight">\(f_{i}(x) \le b_{i}, \spa
 <li><p>we get solutions</p></li>
 <li><p>computation time  (roughly) proportional to max <span class="math notranslate nohighlight">\(\{n^{3}, n^{2}m, F\}\)</span>, where F is cost of evaluating <span class="math notranslate nohighlight">\(f_{i}\)</span>’s and their first and second derivatives</p></li>
 </ul>
+<p align="center"><img src="./images/01_objectiveFunction.png" width=400 height=400>  </p>
+<p><span class="math notranslate nohighlight">\(\tiny{\text{YouTube-Stanford-EE364A-Stephen Boyd}}\)</span></p>
 <ul class="simple">
 <li><p>Other form of the convex problem can be:</p></li>
 </ul>
@@ -958,6 +1018,50 @@ subject to <span class="math notranslate nohighlight">\(f_{i}(x) \le b_{i}, \spa
 <li><p><span class="math notranslate nohighlight">\(\alpha,\beta\)</span> problem the function will be called sublinear</p></li>
 </ul>
 </section>
+<section id="problem">
+<h2>Problem<a class="headerlink" href="#problem" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>there are bunch of lights illuminating a surface which is piece wise linear</p></li>
+<li><p>mapping between power and illumination is linear</p>
+<ul>
+<li><p>the light is incoherent and the power adds up</p></li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<div><p><span class="math notranslate nohighlight">\(I_k = \sum\limits_{j=1}^{m}a_{kj}p_{j}\)</span></p>
+</div></blockquote>
+<section id="how-to-solve">
+<h3>How to solve<a class="headerlink" href="#how-to-solve" title="Permalink to this headline">¶</a></h3>
+<ol class="simple">
+<li><p>Use uniform power</p></li>
+<li><p>Use least-squares</p></li>
+<li><p>Use weighted least-squares</p></li>
+<li><p>Use linear programming</p></li>
+<li><p>Use convex optimization</p></li>
+</ol>
+</section>
+</section>
+<section id="nonlinear-optimization-nlp">
+<h2>Nonlinear optimization/NLP<a class="headerlink" href="#nonlinear-optimization-nlp" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>traditional techniques for general non-convex problems with compromises</p></li>
+</ul>
+<section id="local-optimization-methods-nonlinear-programming">
+<h3>Local optimization methods (nonlinear programming)<a class="headerlink" href="#local-optimization-methods-nonlinear-programming" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>requires initial guess</p></li>
+<li><p>finds a point that minimizes among points close by</p></li>
+<li><p>does not give any information about global optimum</p></li>
+</ul>
+</section>
+<section id="global-optimization-methods">
+<h3>Global optimization methods<a class="headerlink" href="#global-optimization-methods" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>worst case complexity grows exponentially</p></li>
+</ul>
+</section>
+</section>
 <section id="read">
 <h2>Read<a class="headerlink" href="#read" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
@@ -966,6 +1070,22 @@ subject to <span class="math notranslate nohighlight">\(f_{i}(x) \le b_{i}, \spa
 <li><p>problems that have no constrain - unconstrained problems</p></li>
 <li><p>problems with no objective - feasibility problem or satisfaction problems</p></li>
 <li><p>combinatorial problems - non-convex problems</p></li>
+<li><p>Exponential families</p></li>
+<li><p>Correct parameter to estimate is not covariance. The correct parameter to estimate is actually - Inverse of covariance</p></li>
+<li><p>The correct parameter to estimate is not mean. Its covariance times inverse the mean</p></li>
+<li><p>Convex optimization</p>
+<ul>
+<li><p>theory is called convex analysis</p></li>
+<li><p>simplex algorithm for linear programming by Dantzig</p></li>
+<li><p>ellipsoid method and other subgradient methods</p></li>
+<li><p>polynomial-time interior-point methods for convex optimization - Karmarkar</p></li>
+<li><p>large scale convex optimization</p></li>
+<li><p>earlier was mostly about operations research</p></li>
+<li><p>later came into engineering and finance and signal processing</p></li>
+<li><p>into semidefinite and second-order cone programming; robust optimization</p></li>
+<li><p>lately into machine learning and statistics</p></li>
+</ul>
+</li>
 </ul>
 </section>
 </section>
