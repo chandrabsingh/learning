@@ -563,6 +563,52 @@ const thebe_selector_output = ".output, .cell_output"
    </li>
   </ul>
  </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../ee364a_co1/intro.html">
+   EE364A: Convex Optimization 1 - by Stephen Boyd
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-13" name="toctree-checkbox-13" type="checkbox"/>
+  <label for="toctree-checkbox-13">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../ee364a_co1/lec01-Introduction.html">
+     Lecture 1 - Introduction
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../ee364a_co1/lec02-ConvexSets.html">
+     Lecture 2 - Convex Sets
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Language Notes
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../jpn/intro.html">
+   My Japanese Book
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-14" name="toctree-checkbox-14" type="checkbox"/>
+  <label for="toctree-checkbox-14">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../jpn/learnJapanese.html">
+     Japanese phrases in Hindi and English
+    </a>
+   </li>
+  </ul>
+ </li>
 </ul>
 
     </div>
@@ -1026,7 +1072,7 @@ const thebe_selector_output = ".output, .cell_output"
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The binary tree structure has 13 nodes and has the following tree structure:
 
-node=0 is a split node: go to node 1 if X[:, 3] &lt;= 0.800000011920929 else to node 2.
+node=0 is a split node: go to node 1 if X[:, 2] &lt;= 2.350000023841858 else to node 2.
 	node=1 is a leaf node.
 	node=2 is a split node: go to node 3 if X[:, 2] &lt;= 4.950000047683716 else to node 8.
 		node=3 is a split node: go to node 4 if X[:, 3] &lt;= 1.6500000357627869 else to node 5.
@@ -1035,7 +1081,7 @@ node=0 is a split node: go to node 1 if X[:, 3] &lt;= 0.800000011920929 else to 
 				node=6 is a leaf node.
 				node=7 is a leaf node.
 		node=8 is a split node: go to node 9 if X[:, 2] &lt;= 5.049999952316284 else to node 12.
-			node=9 is a split node: go to node 10 if X[:, 0] &lt;= 6.5 else to node 11.
+			node=9 is a split node: go to node 10 if X[:, 1] &lt;= 2.75 else to node 11.
 				node=10 is a leaf node.
 				node=11 is a leaf node.
 			node=12 is a leaf node.
@@ -1183,7 +1229,7 @@ weighted avg       0.98      0.97      0.97        38
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Rules used to predict sample 0:
 
-decision node 0 : (X_test[0, 3] = 2.4) &gt; 0.800000011920929)
+decision node 0 : (X_test[0, 2] = 5.1) &gt; 2.350000023841858)
 decision node 2 : (X_test[0, 2] = 5.1) &gt; 4.950000047683716)
 decision node 8 : (X_test[0, 2] = 5.1) &gt; 5.049999952316284)
 </pre></div>
@@ -1197,7 +1243,7 @@ decision node 8 : (X_test[0, 2] = 5.1) &gt; 5.049999952316284)
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[Text(0.4, 0.9, &#39;X[3] &lt;= 0.8\ngini = 0.665\nsamples = 112\nvalue = [37, 34, 41]&#39;),
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[Text(0.4, 0.9, &#39;X[2] &lt;= 2.35\ngini = 0.665\nsamples = 112\nvalue = [37, 34, 41]&#39;),
  Text(0.3, 0.7, &#39;gini = 0.0\nsamples = 37\nvalue = [37, 0, 0]&#39;),
  Text(0.5, 0.7, &#39;X[2] &lt;= 4.95\ngini = 0.496\nsamples = 75\nvalue = [0, 34, 41]&#39;),
  Text(0.2, 0.5, &#39;X[3] &lt;= 1.65\ngini = 0.153\nsamples = 36\nvalue = [0, 33, 3]&#39;),
@@ -1206,7 +1252,7 @@ decision node 8 : (X_test[0, 2] = 5.1) &gt; 5.049999952316284)
  Text(0.2, 0.1, &#39;gini = 0.0\nsamples = 3\nvalue = [0, 0, 3]&#39;),
  Text(0.4, 0.1, &#39;gini = 0.0\nsamples = 1\nvalue = [0, 1, 0]&#39;),
  Text(0.8, 0.5, &#39;X[2] &lt;= 5.05\ngini = 0.05\nsamples = 39\nvalue = [0, 1, 38]&#39;),
- Text(0.7, 0.3, &#39;X[0] &lt;= 6.5\ngini = 0.375\nsamples = 4\nvalue = [0, 1, 3]&#39;),
+ Text(0.7, 0.3, &#39;X[1] &lt;= 2.75\ngini = 0.375\nsamples = 4\nvalue = [0, 1, 3]&#39;),
  Text(0.6, 0.1, &#39;gini = 0.0\nsamples = 3\nvalue = [0, 0, 3]&#39;),
  Text(0.8, 0.1, &#39;gini = 0.0\nsamples = 1\nvalue = [0, 1, 0]&#39;),
  Text(0.9, 0.3, &#39;gini = 0.0\nsamples = 35\nvalue = [0, 0, 35]&#39;)]

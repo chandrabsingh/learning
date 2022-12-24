@@ -561,6 +561,52 @@ const thebe_selector_output = ".output, .cell_output"
    </li>
   </ul>
  </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../ee364a_co1/intro.html">
+   EE364A: Convex Optimization 1 - by Stephen Boyd
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-13" name="toctree-checkbox-13" type="checkbox"/>
+  <label for="toctree-checkbox-13">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../ee364a_co1/lec01-Introduction.html">
+     Lecture 1 - Introduction
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../ee364a_co1/lec02-ConvexSets.html">
+     Lecture 2 - Convex Sets
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Language Notes
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../jpn/intro.html">
+   My Japanese Book
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-14" name="toctree-checkbox-14" type="checkbox"/>
+  <label for="toctree-checkbox-14">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../jpn/learnJapanese.html">
+     Japanese phrases in Hindi and English
+    </a>
+   </li>
+  </ul>
+ </li>
 </ul>
 
     </div>
@@ -1430,7 +1476,9 @@ None
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;a&#39;: (&#39;a&#39;,), &#39;b&#39;: (&#39;b&#39;,), &#39;c&#39;: (&#39;c&#39;,), &#39;ab&#39;: (&#39;a&#39;, &#39;b&#39;), &#39;bc&#39;: (&#39;b&#39;, &#39;c&#39;), &#39;ca&#39;: (&#39;a&#39;, &#39;c&#39;), &#39;abc&#39;: (&#39;a&#39;, &#39;b&#39;, &#39;c&#39;)}
-abc
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>abc
 {&#39;b&#39;: (&#39;b&#39;,)}
 b
 {&#39;p&#39;: (&#39;p&#39;,), &#39;w&#39;: (&#39;w&#39;,), &#39;pw&#39;: (&#39;p&#39;, &#39;w&#39;), &#39;pwwk&#39;: (&#39;k&#39;, &#39;p&#39;, &#39;w&#39;), &#39;wwke&#39;: (&#39;e&#39;, &#39;k&#39;, &#39;w&#39;), &#39;pwwke&#39;: (&#39;e&#39;, &#39;k&#39;, &#39;p&#39;, &#39;w&#39;)}
@@ -1874,10 +1922,10 @@ abcdefg
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Path=(&#39;a&#39;, &#39;b&#39;, &#39;d&#39;, &#39;c&#39;, &#39;e&#39;, &#39;f&#39;), Weight=(5, 8, 4, 8, 3), Sum=28
-Path=(&#39;a&#39;, &#39;b&#39;, &#39;c&#39;, &#39;e&#39;, &#39;d&#39;, &#39;f&#39;), Weight=(5, 7, 8, 6, 4), Sum=30
-Path=(&#39;a&#39;, &#39;c&#39;, &#39;b&#39;, &#39;d&#39;, &#39;e&#39;, &#39;f&#39;), Weight=(2, 7, 8, 6, 3), Sum=26
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Path=(&#39;a&#39;, &#39;c&#39;, &#39;b&#39;, &#39;d&#39;, &#39;e&#39;, &#39;f&#39;), Weight=(2, 7, 8, 6, 3), Sum=26
+Path=(&#39;a&#39;, &#39;b&#39;, &#39;d&#39;, &#39;c&#39;, &#39;e&#39;, &#39;f&#39;), Weight=(5, 8, 4, 8, 3), Sum=28
 Path=(&#39;a&#39;, &#39;b&#39;, &#39;c&#39;, &#39;d&#39;, &#39;e&#39;, &#39;f&#39;), Weight=(5, 7, 4, 6, 3), Sum=25
+Path=(&#39;a&#39;, &#39;b&#39;, &#39;c&#39;, &#39;e&#39;, &#39;d&#39;, &#39;f&#39;), Weight=(5, 7, 8, 6, 4), Sum=30
 </pre></div>
 </div>
 </div>
@@ -2918,25 +2966,25 @@ nodes=8, edges=[[0, 1], [0, 3], [1, 2], [4, 5], [6, 7]], isValidTree=False
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>fib0 - Using recursion only
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1.28 ms ± 7.66 µs per loop (mean ± std. dev. of 7 runs, 1,000 loops each)
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1.42 ms ± 11.1 µs per loop (mean ± std. dev. of 7 runs, 1,000 loops each)
 -------
 fib1 - Using recursion + local dictionary memoization
-93.1 ns ± 5.72 ns per loop (mean ± std. dev. of 7 runs, 1,000 loops each)
+110 ns ± 10.2 ns per loop (mean ± std. dev. of 7 runs, 1,000 loops each)
 -------
 fib2 - Using loop + memoization
-2.33 µs ± 189 ns per loop (mean ± std. dev. of 7 runs, 1,000 loops each)
+2.56 µs ± 307 ns per loop (mean ± std. dev. of 7 runs, 1,000 loops each)
 -------
 fib3 - Using recursion + decorator dictionary memoization
-455 ns ± 57.7 ns per loop (mean ± std. dev. of 7 runs, 1,000 loops each)
+219 ns ± 7.25 ns per loop (mean ± std. dev. of 7 runs, 1,000 loops each)
 -------
 fib4 - Using lru cache
-92.7 ns ± 3.68 ns per loop (mean ± std. dev. of 7 runs, 1,000 loops each)
+57.6 ns ± 2.22 ns per loop (mean ± std. dev. of 7 runs, 1,000 loops each)
 CacheInfo(hits=7017, misses=21, maxsize=None, currsize=21)
 -------
 fib5 - Using matrix multiplication
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1.41 ms ± 148 µs per loop (mean ± std. dev. of 7 runs, 1,000 loops each)
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1.4 ms ± 46.9 µs per loop (mean ± std. dev. of 7 runs, 1,000 loops each)
 </pre></div>
 </div>
 </div>
