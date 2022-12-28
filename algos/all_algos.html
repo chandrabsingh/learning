@@ -1476,9 +1476,7 @@ None
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;a&#39;: (&#39;a&#39;,), &#39;b&#39;: (&#39;b&#39;,), &#39;c&#39;: (&#39;c&#39;,), &#39;ab&#39;: (&#39;a&#39;, &#39;b&#39;), &#39;bc&#39;: (&#39;b&#39;, &#39;c&#39;), &#39;ca&#39;: (&#39;a&#39;, &#39;c&#39;), &#39;abc&#39;: (&#39;a&#39;, &#39;b&#39;, &#39;c&#39;)}
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>abc
+abc
 {&#39;b&#39;: (&#39;b&#39;,)}
 b
 {&#39;p&#39;: (&#39;p&#39;,), &#39;w&#39;: (&#39;w&#39;,), &#39;pw&#39;: (&#39;p&#39;, &#39;w&#39;), &#39;pwwk&#39;: (&#39;k&#39;, &#39;p&#39;, &#39;w&#39;), &#39;wwke&#39;: (&#39;e&#39;, &#39;k&#39;, &#39;w&#39;), &#39;pwwke&#39;: (&#39;e&#39;, &#39;k&#39;, &#39;p&#39;, &#39;w&#39;)}
@@ -2966,25 +2964,25 @@ nodes=8, edges=[[0, 1], [0, 3], [1, 2], [4, 5], [6, 7]], isValidTree=False
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>fib0 - Using recursion only
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1.42 ms ± 11.1 µs per loop (mean ± std. dev. of 7 runs, 1,000 loops each)
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1.4 ms ± 3.68 µs per loop (mean ± std. dev. of 7 runs, 1,000 loops each)
 -------
 fib1 - Using recursion + local dictionary memoization
-110 ns ± 10.2 ns per loop (mean ± std. dev. of 7 runs, 1,000 loops each)
+98.6 ns ± 5.46 ns per loop (mean ± std. dev. of 7 runs, 1,000 loops each)
 -------
 fib2 - Using loop + memoization
-2.56 µs ± 307 ns per loop (mean ± std. dev. of 7 runs, 1,000 loops each)
+2.47 µs ± 124 ns per loop (mean ± std. dev. of 7 runs, 1,000 loops each)
 -------
 fib3 - Using recursion + decorator dictionary memoization
-219 ns ± 7.25 ns per loop (mean ± std. dev. of 7 runs, 1,000 loops each)
+231 ns ± 7.86 ns per loop (mean ± std. dev. of 7 runs, 1,000 loops each)
 -------
 fib4 - Using lru cache
-57.6 ns ± 2.22 ns per loop (mean ± std. dev. of 7 runs, 1,000 loops each)
+66.8 ns ± 14.4 ns per loop (mean ± std. dev. of 7 runs, 1,000 loops each)
 CacheInfo(hits=7017, misses=21, maxsize=None, currsize=21)
 -------
 fib5 - Using matrix multiplication
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1.4 ms ± 46.9 µs per loop (mean ± std. dev. of 7 runs, 1,000 loops each)
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1.39 ms ± 20.6 µs per loop (mean ± std. dev. of 7 runs, 1,000 loops each)
 </pre></div>
 </div>
 </div>

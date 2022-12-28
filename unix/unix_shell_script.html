@@ -924,6 +924,11 @@ const thebe_selector_output = ".output, .cell_output"
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#brew">
+   brew
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#pip">
    pip
   </a>
@@ -1212,6 +1217,11 @@ const thebe_selector_output = ".output, .cell_output"
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#conda">
    conda
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#brew">
+   brew
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
@@ -2381,6 +2391,21 @@ ls = log –graph –abbrev-commit –decorate –color=always –date=relative 
 <div><p>(project-env) username ~ % conda deactivate
 (base) username ~ %</p>
 </div></blockquote>
+</section>
+<section id="brew">
+<h2>brew<a class="headerlink" href="#brew" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Check versions of python installed</p></li>
+</ul>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>brew list <span class="p">|</span> grep python
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Install specific version of python</p></li>
+</ul>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>brew install python@3.10
+</pre></div>
+</div>
 </section>
 <section id="pip">
 <h2>pip<a class="headerlink" href="#pip" title="Permalink to this headline">¶</a></h2>

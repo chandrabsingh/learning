@@ -732,18 +732,21 @@ const thebe_selector_output = ".output, .cell_output"
   <a class="reference internal nav-link" href="#convex-combination-and-convex-hull">
    Convex combination and convex hull
   </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#convex-cone">
-     Convex cone
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#hyperplanes-and-halfspaces">
-     Hyperplanes and halfspaces
-    </a>
-   </li>
-  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#convex-cone">
+   Convex cone
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#hyperplanes-and-halfspaces">
+   Hyperplanes and halfspaces
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#euclidean-balls-and-ellipsoids">
+   Euclidean balls and ellipsoids
+  </a>
  </li>
 </ul>
 
@@ -784,18 +787,21 @@ const thebe_selector_output = ".output, .cell_output"
   <a class="reference internal nav-link" href="#convex-combination-and-convex-hull">
    Convex combination and convex hull
   </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#convex-cone">
-     Convex cone
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#hyperplanes-and-halfspaces">
-     Hyperplanes and halfspaces
-    </a>
-   </li>
-  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#convex-cone">
+   Convex cone
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#hyperplanes-and-halfspaces">
+   Hyperplanes and halfspaces
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#euclidean-balls-and-ellipsoids">
+   Euclidean balls and ellipsoids
+  </a>
  </li>
 </ul>
 
@@ -813,7 +819,13 @@ const thebe_selector_output = ".output, .cell_output"
 <ul class="simple">
 <li><p>affine and convex sets</p></li>
 <li><p>some important examples</p></li>
-<li><p>operations that preserve convexity</p></li>
+<li><p>operations that preserve convexity</p>
+<ul>
+<li><p>intersection of two sets</p></li>
+<li><p>sum of two sets</p></li>
+<li><p>combine different sets to make interesting sets</p></li>
+</ul>
+</li>
 <li><p>generalized inequalities</p></li>
 <li><p>separating and supporting hyperplanes</p></li>
 <li><p>dual cones and generalized inequalities</p></li>
@@ -822,28 +834,52 @@ const thebe_selector_output = ".output, .cell_output"
 <section id="affine-set">
 <h2>Affine set<a class="headerlink" href="#affine-set" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
-<li><p>line through <span class="math notranslate nohighlight">\(x_{1}\)</span>, <span class="math notranslate nohighlight">\(x_{2}\)</span> : all points</p></li>
+<li><p>line through <span class="math notranslate nohighlight">\(x_{1}\)</span>, <span class="math notranslate nohighlight">\(x_{2}\)</span> : all points</p>
+<ul>
+<li><p>linear combination of <span class="math notranslate nohighlight">\(x_{1}\)</span> and <span class="math notranslate nohighlight">\(x_{2}\)</span> that add upto 1
+$<span class="math notranslate nohighlight">\( x = \theta x_{1} + (1-\theta)x_{2}\space \space \space \)</span> (<span class="math notranslate nohighlight">\(\theta \in \mathbb R \)</span>$</p></li>
+<li><p>if <span class="math notranslate nohighlight">\(\theta = 1, x = x_1\)</span></p></li>
+<li><p>if <span class="math notranslate nohighlight">\(\theta = 0, x = x_2\)</span></p></li>
+<li><p>if <span class="math notranslate nohighlight">\(\theta = 0.5,\)</span> x lies in between <span class="math notranslate nohighlight">\(x_{1}\)</span> and <span class="math notranslate nohighlight">\(x_{2}\)</span></p></li>
+<li><p>if <span class="math notranslate nohighlight">\(\theta &lt; 0,\)</span> x lies beyond <span class="math notranslate nohighlight">\(x_{2}\)</span></p></li>
+<li><p>if <span class="math notranslate nohighlight">\(\theta &gt; 1,\)</span> x lies beyond <span class="math notranslate nohighlight">\(x_{1}\)</span></p></li>
+<li><p>if <span class="math notranslate nohighlight">\(0 \le \theta \le 1,\)</span> x lies between the line segment <span class="math notranslate nohighlight">\(x_{1}\)</span> and <span class="math notranslate nohighlight">\(x_{2}\)</span></p></li>
 </ul>
-<blockquote>
-<div><p><span class="math notranslate nohighlight">\(x = \theta x_{1} + (1-\theta)x_{2}\space \space \space \)</span> (<span class="math notranslate nohighlight">\(\theta \in \mathbb R\)</span>)</p>
-</div></blockquote>
-<ul class="simple">
-<li><p>solution set of linear equations {x | Ax = b}</p></li>
+</li>
+<li><p>solution set of linear equations {x | Ax = b} is an affine set</p></li>
+<li><p>conversely, for every affine set it can be expressed as solution set of system of linear equations</p>
+<ul>
+<li><p>If <span class="math notranslate nohighlight">\(Ax_1 = b\)</span> and <span class="math notranslate nohighlight">\(Ax_2 = b\)</span>, then line passing through <span class="math notranslate nohighlight">\(x_{1}\)</span> and <span class="math notranslate nohighlight">\(x_{2}\)</span> satisfies the equation:
+$<span class="math notranslate nohighlight">\( \begin{equation} \\
+\begin{aligned} \\
+Ax &amp;= A(\theta x_{1} + (1-\theta)x_{2}) \\ 
+&amp;= \theta A x_{1} + (1-\theta)A x_{2} \\ 
+&amp;= \theta b + (1-\theta) b \\ 
+&amp;= b \\ 
+\end{aligned} \\
+\end{equation} \)</span>$</p></li>
+</ul>
+</li>
 </ul>
 </section>
 <section id="convex-set">
 <h2>Convex set<a class="headerlink" href="#convex-set" title="Permalink to this headline">¶</a></h2>
 <blockquote>
-<div><p><span class="math notranslate nohighlight">\(x = \theta x_{1} + (1-\theta)x_{2}\space \space \space (0 \le \theta \le 1)\)</span></p>
+<div><p><span class="math notranslate nohighlight">\(x = \theta x_{1} + (1-\theta)x_{2}\space \space \space (0 \le \theta \le 1)\)</span> and both the coefficients must add upto 1</p>
 </div></blockquote>
 <ul class="simple">
 <li><p>That means that an affine set is, in fact, a convex set, because an affine set contains the entire line through <span class="math notranslate nohighlight">\(x_{1}\)</span> and <span class="math notranslate nohighlight">\(x_{2}\)</span></p></li>
+<li><p>All the points between the line segment must lie within the set</p></li>
 </ul>
 </section>
 <section id="convex-combination-and-convex-hull">
 <h2>Convex combination and convex hull<a class="headerlink" href="#convex-combination-and-convex-hull" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
-<li><p>convex combintion: any point x of the form</p></li>
+<li><p>convex combination</p>
+<ul>
+<li><p>any point x of the form</p></li>
+</ul>
+</li>
 </ul>
 <blockquote>
 <div><p><span class="math notranslate nohighlight">\(x = \theta_{1}x_{1} + \theta_{2}x_{2} + ... + \theta_{k}x_{k}\)</span></p>
@@ -852,12 +888,18 @@ const thebe_selector_output = ".output, .cell_output"
 </div></blockquote>
 </div></blockquote>
 <ul class="simple">
-<li><p>convex hull: if we vary these 3 points so that they satisfy the constraint, the set will have all the combinations inside the boundary</p></li>
+<li><p>convex hull</p>
+<ul>
+<li><p>set of all convex combinations of some points in S</p></li>
+<li><p>if we vary these 3 points so that they satisfy the constraint, the set will have all the combinations inside the boundary</p></li>
+</ul>
+</li>
 </ul>
 <p align="center"><img src="./images/02_convexhull.png" width=400 height=400>  </p>
 <p><span class="math notranslate nohighlight">\(\tiny{\text{YouTube-Stanford-EE364A-Jacob Mattingley}}\)</span></p>
+</section>
 <section id="convex-cone">
-<h3>Convex cone<a class="headerlink" href="#convex-cone" title="Permalink to this headline">¶</a></h3>
+<h2>Convex cone<a class="headerlink" href="#convex-cone" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li><p>conic (nonnegative) combination: of <span class="math notranslate nohighlight">\(x_{1}\)</span> and <span class="math notranslate nohighlight">\(x_{2}\)</span> of the form</p></li>
 </ul>
@@ -867,10 +909,46 @@ const thebe_selector_output = ".output, .cell_output"
 <div><p>with <span class="math notranslate nohighlight">\(\theta_{1} \ge 0, \theta_{2} \ge 0 \)</span></p>
 </div></blockquote>
 </div></blockquote>
+<p align="center"><img src="./images/02_conic_combination.png" width=400 height=400>  </p>
+<p><span class="math notranslate nohighlight">\(\tiny{\text{YouTube-Stanford-EE364A-Prof Stephen Boyd}}\)</span></p>
+<ul class="simple">
+<li><p>convex cone: all the conic combinations of points in the set</p></li>
+</ul>
 </section>
 <section id="hyperplanes-and-halfspaces">
-<h3>Hyperplanes and halfspaces<a class="headerlink" href="#hyperplanes-and-halfspaces" title="Permalink to this headline">¶</a></h3>
+<h2>Hyperplanes and halfspaces<a class="headerlink" href="#hyperplanes-and-halfspaces" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Hyperplane</p>
+<ul>
+<li><p>is the solution set of linear combination of this constraint</p></li>
+<li><p>set of form <span class="math notranslate nohighlight">\(\{x|a^Tx=b\}\)</span>, where <span class="math notranslate nohighlight">\(a \ne 0\)</span></p></li>
+<li><p>a is normal to the hyperplane</p></li>
+<li><p>if you vary b, you get different sets of plane</p></li>
+<li><p>hyperplanes are affine and convex</p></li>
+</ul>
+</li>
+</ul>
+<p align="center"><img src="./images/02_hyperplanes.png" width=400 height=400>  </p>
+<p><span class="math notranslate nohighlight">\(\tiny{\text{YouTube-Stanford-EE364A-Prof Stephen Boyd}}\)</span></p>
+<ul class="simple">
+<li><p>Halfspace</p>
+<ul>
+<li><p>is the solution set of single linear inequality</p></li>
+<li><p>set of form <span class="math notranslate nohighlight">\(\{x|a^Tx \le b\}\)</span>, where <span class="math notranslate nohighlight">\(a \ne 0\)</span></p></li>
+<li><p>a is an outward normal to the plane</p></li>
+<li><p>halfspaces are convex and not affine</p></li>
+</ul>
+</li>
+</ul>
+<p align="center"><img src="./images/02_hyperspace.png" width=400 height=400>  </p>
+<p><span class="math notranslate nohighlight">\(\tiny{\text{YouTube-Stanford-EE364A-Prof Stephen Boyd}}\)</span></p>
 </section>
+<section id="euclidean-balls-and-ellipsoids">
+<h2>Euclidean balls and ellipsoids<a class="headerlink" href="#euclidean-balls-and-ellipsoids" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Euclidean ball</p></li>
+<li><p>ellipsoid</p></li>
+</ul>
 </section>
 </section>
 
