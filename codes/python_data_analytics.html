@@ -969,6 +969,11 @@ const thebe_selector_output = ".output, .cell_output"
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#dataframe-indexing-to-fetch-columns-other-iloc">
+     DataFrame indexing to fetch columns - other - iloc
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#dataframe-indexing-to-fetch-rows-other-loc">
      DataFrame indexing to fetch rows - other - loc
     </a>
@@ -1009,6 +1014,16 @@ const thebe_selector_output = ".output, .cell_output"
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#unique-values-for-each-column">
+     Unique values for each column
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#unique-datatype-for-each-column">
+     Unique datatype for each column
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#id1">
     </a>
    </li>
@@ -1031,6 +1046,23 @@ const thebe_selector_output = ".output, .cell_output"
     <a class="reference internal nav-link" href="#df-reset-index-vs-df-reindex">
      df.reset_index vs df.reindex
     </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#df-loc-vs-df-iloc">
+     df.loc vs df.iloc
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#df-loc">
+       df.loc
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#df-iloc">
+       df.iloc
+      </a>
+     </li>
+    </ul>
    </li>
   </ul>
  </li>
@@ -1342,6 +1374,11 @@ const thebe_selector_output = ".output, .cell_output"
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#dataframe-indexing-to-fetch-columns-other-iloc">
+     DataFrame indexing to fetch columns - other - iloc
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#dataframe-indexing-to-fetch-rows-other-loc">
      DataFrame indexing to fetch rows - other - loc
     </a>
@@ -1382,6 +1419,16 @@ const thebe_selector_output = ".output, .cell_output"
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#unique-values-for-each-column">
+     Unique values for each column
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#unique-datatype-for-each-column">
+     Unique datatype for each column
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#id1">
     </a>
    </li>
@@ -1404,6 +1451,23 @@ const thebe_selector_output = ".output, .cell_output"
     <a class="reference internal nav-link" href="#df-reset-index-vs-df-reindex">
      df.reset_index vs df.reindex
     </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#df-loc-vs-df-iloc">
+     df.loc vs df.iloc
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#df-loc">
+       df.loc
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#df-iloc">
+       df.iloc
+      </a>
+     </li>
+    </ul>
    </li>
   </ul>
  </li>
@@ -1971,10 +2035,10 @@ array([[ 10.2,  16. ],
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2
-4
-[[2 1]
- [6 3]]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>4
+3
+[[-1  0]
+ [11 -3]]
 </pre></div>
 </div>
 </div>
@@ -2732,7 +2796,7 @@ dtype: float32
 dtype: object
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/var/folders/kz/g_s979xs7pdbzdsbg21qhs240000gn/T/ipykernel_88308/306238363.py:3: FutureWarning: The default dtype for empty Series will be &#39;object&#39; instead of &#39;float64&#39; in a future version. Specify a dtype explicitly to silence this warning.
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/var/folders/kz/g_s979xs7pdbzdsbg21qhs240000gn/T/ipykernel_18462/306238363.py:3: FutureWarning: The default dtype for empty Series will be &#39;object&#39; instead of &#39;float64&#39; in a future version. Specify a dtype explicitly to silence this warning.
   series = pd.Series()
 </pre></div>
 </div>
@@ -3076,7 +3140,7 @@ dtype: object
 r3  0.0  0
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/var/folders/kz/g_s979xs7pdbzdsbg21qhs240000gn/T/ipykernel_88308/533385271.py:5: FutureWarning: The frame.append method is deprecated and will be removed from pandas in a future version. Use pandas.concat instead.
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/var/folders/kz/g_s979xs7pdbzdsbg21qhs240000gn/T/ipykernel_18462/533385271.py:5: FutureWarning: The frame.append method is deprecated and will be removed from pandas in a future version. Use pandas.concat instead.
   df_app = df.append(ser)
 </pre></div>
 </div>
@@ -3106,9 +3170,9 @@ r3  0.0  0
 1  9.0  9
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/var/folders/kz/g_s979xs7pdbzdsbg21qhs240000gn/T/ipykernel_88308/3111016736.py:1: FutureWarning: The frame.append method is deprecated and will be removed from pandas in a future version. Use pandas.concat instead.
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/var/folders/kz/g_s979xs7pdbzdsbg21qhs240000gn/T/ipykernel_18462/3111016736.py:1: FutureWarning: The frame.append method is deprecated and will be removed from pandas in a future version. Use pandas.concat instead.
   df_app = df.append(ser, ignore_index=True)
-/var/folders/kz/g_s979xs7pdbzdsbg21qhs240000gn/T/ipykernel_88308/3111016736.py:5: FutureWarning: The frame.append method is deprecated and will be removed from pandas in a future version. Use pandas.concat instead.
+/var/folders/kz/g_s979xs7pdbzdsbg21qhs240000gn/T/ipykernel_18462/3111016736.py:5: FutureWarning: The frame.append method is deprecated and will be removed from pandas in a future version. Use pandas.concat instead.
   df_app = df.append(df2)
 </pre></div>
 </div>
@@ -3310,8 +3374,9 @@ r2  2.0  4.0  NaN  NaN
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>r1    1
 r2    2
 Name: c1, dtype: int64
-
-    c1
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>    c1
 r1   1
 r2   2
 
@@ -3348,9 +3413,8 @@ r2   4   6
 r1   1   4   7
 r2   2   5   8
 r3   3   6   9
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>    c1  c2  c3
+
+    c1  c2  c3
 r1   1   4   7
 r2   2   5   8
 
@@ -3390,8 +3454,9 @@ r3   3   6   9
 r1   1   4   7
 r2   2   5   8
 r3   3   6   9
-
-c1    2
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>c1    2
 c2    5
 c3    8
 Name: r2, dtype: int64
@@ -3399,11 +3464,50 @@ Name: r2, dtype: int64
     c1  c2  c3
 r1   1   4   7
 r3   3   6   9
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>    c1  c2  c3
+
+    c1  c2  c3
 r2   2   5   8
 r3   3   6   9
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="dataframe-indexing-to-fetch-columns-other-iloc">
+<h3>DataFrame indexing to fetch columns - other - iloc<a class="headerlink" href="#dataframe-indexing-to-fetch-columns-other-iloc" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>use iloc to access columns based on their position</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">&#39;c1&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="s1">&#39;c2&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">],</span>
+                   <span class="s1">&#39;c3&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">9</span><span class="p">]},</span> <span class="n">index</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;r1&#39;</span><span class="p">,</span> <span class="s1">&#39;r2&#39;</span><span class="p">,</span> <span class="s1">&#39;r3&#39;</span><span class="p">])</span>
+                   
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">{}</span><span class="se">\n</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">df</span><span class="p">))</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">{}</span><span class="se">\n</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,</span> <span class="p">:</span><span class="mi">1</span><span class="p">]))</span>
+<span class="c1"># returns columns within the column range</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">{}</span><span class="se">\n</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">:</span><span class="mi">2</span><span class="p">]))</span>
+<span class="c1"># returns columns within the column range</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>    c1  c2  c3
+r1   1   4   7
+r2   2   5   8
+r3   3   6   9
+
+    c1
+r1   1
+r2   2
+r3   3
+
+    c1  c2
+r1   1   4
+r2   2   5
+r3   3   6
 </pre></div>
 </div>
 </div>
@@ -3445,9 +3549,8 @@ r3   3   6   9
 r1   1   4   7
 r2   2   5   8
 r3   3   6   9
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>c1    2
+
+c1    2
 c2    5
 c3    8
 Name: r2, dtype: int64
@@ -3466,6 +3569,9 @@ Name: c2, dtype: int64
 r1   1   0   7
 r2   2   5   8
 r3   3   0   9
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
 </pre></div>
 </div>
 </div>
@@ -3496,9 +3602,8 @@ name
 joe smith  2B  17
 alan west   C  28
 john doe    P  19
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>          name  HR
+
+          name  HR
 pos               
 2B   joe smith  17
 C    alan west  28
@@ -3757,6 +3862,54 @@ yearID teamID
 </div>
 </div>
 </section>
+<section id="unique-values-for-each-column">
+<h3>Unique values for each column<a class="headerlink" href="#unique-values-for-each-column" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">([[</span><span class="s1">&#39;1&#39;</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="s1">&#39;a&#39;</span><span class="p">,</span><span class="s1">&#39;b&#39;</span><span class="p">],[</span><span class="mi">4</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="s1">&#39;r&#39;</span><span class="p">,</span><span class="s1">&#39;t&#39;</span><span class="p">],[</span><span class="mi">8</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="s1">&#39;f&#39;</span><span class="p">,</span><span class="s1">&#39;s&#39;</span><span class="p">]],</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;a1&#39;</span><span class="p">,</span><span class="s1">&#39;a2&#39;</span><span class="p">,</span><span class="s1">&#39;a3&#39;</span><span class="p">,</span><span class="s1">&#39;a4&#39;</span><span class="p">,</span><span class="s1">&#39;a5&#39;</span><span class="p">,</span><span class="s1">&#39;a6&#39;</span><span class="p">])</span>
+<span class="n">df1</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">col</span><span class="p">:</span> <span class="n">col</span><span class="o">.</span><span class="n">unique</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Unique values for each column:</span><span class="se">\n</span><span class="si">{}</span><span class="se">\n</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">df1</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Unique values for each column:
+a1    [1, 4, 8]
+a2    [2, 7, 6]
+a3       [4, 3]
+a4       [5, 6]
+a5    [a, r, f]
+a6    [b, t, s]
+dtype: object
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="unique-datatype-for-each-column">
+<h3>Unique datatype for each column<a class="headerlink" href="#unique-datatype-for-each-column" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">([[</span><span class="s1">&#39;1&#39;</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="s1">&#39;a&#39;</span><span class="p">,</span><span class="s1">&#39;b&#39;</span><span class="p">],[</span><span class="mi">4</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="s1">&#39;r&#39;</span><span class="p">,</span><span class="s1">&#39;t&#39;</span><span class="p">],[</span><span class="mi">8</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="s1">&#39;f&#39;</span><span class="p">,</span><span class="s1">&#39;s&#39;</span><span class="p">]],</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;a1&#39;</span><span class="p">,</span><span class="s1">&#39;a2&#39;</span><span class="p">,</span><span class="s1">&#39;a3&#39;</span><span class="p">,</span><span class="s1">&#39;a4&#39;</span><span class="p">,</span><span class="s1">&#39;a5&#39;</span><span class="p">,</span><span class="s1">&#39;a6&#39;</span><span class="p">])</span>
+<span class="n">df1</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">applymap</span><span class="p">(</span><span class="nb">type</span><span class="p">)</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">col</span><span class="p">:</span> <span class="n">col</span><span class="o">.</span><span class="n">unique</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Unique coltype for each column:</span><span class="se">\n</span><span class="si">{}</span><span class="se">\n</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">df1</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Unique coltype for each column:
+a1    [&lt;class &#39;str&#39;&gt;, &lt;class &#39;int&#39;&gt;]
+a2                   [&lt;class &#39;int&#39;&gt;]
+a3                   [&lt;class &#39;int&#39;&gt;]
+a4                   [&lt;class &#39;int&#39;&gt;]
+a5                   [&lt;class &#39;str&#39;&gt;]
+a6                   [&lt;class &#39;str&#39;&gt;]
+dtype: object
+</pre></div>
+</div>
+</div>
+</div>
+</section>
 <section id="id1">
 <h3><a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
 <div class="cell docutils container">
@@ -3891,6 +4044,33 @@ dtype: float64
 </section>
 <section id="df-reset-index-vs-df-reindex">
 <h3>df.reset_index vs df.reindex<a class="headerlink" href="#df-reset-index-vs-df-reindex" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="df-loc-vs-df-iloc">
+<h3>df.loc vs df.iloc<a class="headerlink" href="#df-loc-vs-df-iloc" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>function .loc is used for label indexing</p></li>
+<li><p>function .iloc is used for integer indexing</p></li>
+</ul>
+<section id="df-loc">
+<h4>df.loc<a class="headerlink" href="#df-loc" title="Permalink to this headline">¶</a></h4>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>titanic.loc[titanic[‘Sex’]==’male’]
+
+titanic.loc[(titanic[&#39;Sex&#39;]==&#39;male&#39;) &amp; (titanic[&#39;Embarked&#39;]==&#39;S&#39;)].head()
+
+titanic.loc[0:5,[&#39;Sex&#39;,&#39;Age&#39;]] # Here 0:5 is the integer index
+
+</pre></div>
+</div>
+</section>
+<section id="df-iloc">
+<h4>df.iloc<a class="headerlink" href="#df-iloc" title="Permalink to this headline">¶</a></h4>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">titanic</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span> <span class="c1"># give element at row=0 and col=0</span>
+
+<span class="n">titanic</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">4</span><span class="p">,</span><span class="mi">2</span><span class="p">:</span><span class="mi">5</span><span class="p">]</span> <span class="c1"># give elements from row 0:4 and columns 2:5</span>
+
+</pre></div>
+</div>
+</section>
 </section>
 </section>
 <section id="scipy">

@@ -1611,7 +1611,7 @@ const thebe_selector_output = ".output, .cell_output"
 <p align="center"><img src="./images/featureCross.png" width=400 height=400></p>
 <ul class="simple">
 <li><p>its a commonly used feature engineering technique</p></li>
-<li><p>a featuree cross is a synthetic feature formed by concatenating two or more categorical features in order to capture interaction between them</p></li>
+<li><p>a feature cross is a synthetic feature formed by concatenating two or more categorical features in order to capture interaction between them</p></li>
 <li><p>by joining two features, nonlinearity can be encoded into the model</p>
 <ul>
 <li><p>the predictive abilities of features is extended</p></li>
@@ -1741,28 +1741,261 @@ const thebe_selector_output = ".output, .cell_output"
 <h2>Problem representation design patterns<a class="headerlink" href="#problem-representation-design-patterns" title="Permalink to this headline">¶</a></h2>
 <section id="reframing">
 <h3>#5 Reframing<a class="headerlink" href="#reframing" title="Permalink to this headline">¶</a></h3>
-<ul class="simple">
-<li><p>Basic Idea</p>
 <ul>
+<li><p>Basic Idea</p>
+<ul class="simple">
 <li><p>refers to changing the representation of the output of a machine learning problem</p></li>
 </ul>
 </li>
-<li><p>Problem</p></li>
-<li><p>Solution</p>
+<li><p>Problem</p>
+<ul class="simple">
+<li><p>classify the problem</p>
 <ul>
-<li><p>Capturing uncertainty</p></li>
-<li><p>Changing the objective</p></li>
+<li><p>type of learning problem</p></li>
+<li><p>type of features</p></li>
+<li><p>type of labels</p></li>
+<li><p>range of acceptable errors</p></li>
+<li><p>is it a time series forecasting problem</p></li>
+<li><p>is it a probabilistic problem</p></li>
+<li><p>is it a regression problem or a classification one</p></li>
+<li><p>how to improve the predictions</p></li>
+<li><p>do we need to add layers into our network</p></li>
+<li><p>do we need to engineer more features</p></li>
+<li><p>do we need more data</p></li>
+<li><p>do we need another loss function</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Solution</p>
+<ul class="simple">
+<li><p>Why it works</p>
+<ul>
+<li><p>make it a multiclass classification problem</p>
+<ul>
+<li><p>rainfall is probabilistic</p></li>
+<li><p>instead of trying to predict as a single number(using regression), we can predict a range(using classification)</p></li>
+<li><p>this allows capturing probability distribution instead of capturing mean as in regression</p></li>
+<li><p>rainfall doesnot exhibit bell-shaped curve distribution model</p></li>
+<li><p>rainfall follows Tweedie distribution</p>
+<ul>
+<li><p>this allows prevalance of zeros</p></li>
+<li><p>Google research paper - MetNet</p>
+<ul>
+<li><p><a class="reference external" href="https://arxiv.org/pdf/2003.12140.pdf">https://arxiv.org/pdf/2003.12140.pdf</a></p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>objective is better supported</p>
+<ul>
+<li><p>recommendation system for videos</p></li>
+<li><p>instead of framing it as a classification problem, as how likely will user watch a video</p></li>
+<li><p>reframing it to regression problem, will help predict the fraction of video that will be watched</p></li>
+</ul>
+</li>
+<li><p>learn the prediction as a range instead of a single number</p></li>
+<li><p>loss of precision due to bucketing</p></li>
+<li><p>but gains expressiveness in the form of full probability distribution function</p></li>
+<li><p>better understanding of posterior probability distribution of predicted values</p></li>
+</ul>
+</li>
+<li><p>Capturing uncertainty</p>
+<ul>
+<li><p>task of predicting baby weight</p>
+<ul>
+<li><p>seems like a regression problem</p></li>
+<li><p>distribution of baby weights follows a normal distribution peaked at 7.5 pounds</p></li>
+<li><p>but</p>
+<ul>
+<li><p>width of distribution</p>
+<ul>
+<li><p>nontrivial likelihood is inherent in the prediction</p></li>
+<li><p>best RMSE we can have is SD of the distribution</p>
+<ul>
+<li><p>how far predictions fall from measured true values using Euclidean distance</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>if this problem is framed as regression problem</p>
+<ul>
+<li><p>prediction would be predicted as 7.5+/-1.0</p></li>
+<li><p>width of distribution will differ by inputs</p></li>
+<li><p>this will take the shape of quantile regression</p>
+<ul>
+<li><p>which can be solved in nonparametric way</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>by reframing the problem as multiclass classification</p>
+<ul>
+<li><p>more flexible in capturing uncertainty</p></li>
+<li><p>model predicts collection of probabilities for different combinations</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Changing the objective</p>
+<ul>
+<li><p>sometime reframing classification problem into regression can help</p>
+<ul>
+<li><p>e.g., build ML model for recommendations for a movie database with customer ratings</p>
+<ul>
+<li><p>instead of having categorical output, use multitask learning</p></li>
+<li><p>model learns about the user characteristics such as income, customer segment, etc</p></li>
+<li><p>users who are likely to watch movie</p></li>
+</ul>
+</li>
+<li><p>reframing as regression task</p>
+<ul>
+<li><p>model predicts user-space representation for a given movie</p></li>
+<li><p>choose set of movies that are closest to known characteristics of user</p></li>
+<li><p>instead of providing probability that a user will like a movie as in classification</p></li>
+<li><p>it will predict cluster of movies that have been watched by users like this</p></li>
+<li><p>it can similarly be used to predict trending videos, classic movies</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>numerical representation has intuitive interpretation</p>
+<ul>
+<li><p>real estate pricing surge</p>
+<ul>
+<li><p>instead of urban area predictions</p></li>
+<li><p>use of latitude and longitude pair is easier</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
 </li>
 <li><p>Trade-Offs and Alternatives</p>
+<ul class="simple">
+<li><p>Bucketized outputs</p>
 <ul>
-<li><p>Bucketized outputs</p></li>
-<li><p>Other ways of capturing uncertainty</p></li>
-<li><p>Precision of predictions</p></li>
-<li><p>Restricting the prediction range</p></li>
-<li><p>Label bias</p></li>
-<li><p>Multitask learning</p></li>
+<li><p>typical approach to reframe regression task to classification is to bucket the output values</p></li>
+<li><p>this becomes a multiclass classification</p></li>
+<li><p>comparing RMSE of regression model and accuracy of classification model is difficult</p></li>
 </ul>
+</li>
+<li><p>Other ways of capturing uncertainty</p>
+<ul>
+<li><p>Quantile regression</p></li>
+<li><p>Tensorflow probability to carry out regression</p></li>
+<li><p>more complex relationships require more training data</p></li>
+<li><p>thumb rule</p>
+<ul>
+<li><p>for classification tasks,</p>
+<ul>
+<li><p>have 10 times the number of model features for each label category</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Precision of predictions</p>
+<ul>
+<li><p>for multiclass classification</p>
+<ul>
+<li><p>width of bins govern precision of classification model</p></li>
+<li><p>sharpness of PDF tells about precision of task as regression</p>
+<ul>
+<li><p>sharper PDF implies smaller SD</p></li>
+<li><p>wider PDF implies larger SD</p>
+<ul>
+<li><p>very sharp density function(the peak), go with regression model</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Restricting the prediction range</p>
+<ul>
+<li><p>why? so as to restrict range of prediction output</p></li>
+<li><p>suppose output range is [5-17]</p></li>
+<li><p>if output layer is using linear activation function, model prediction may fall out of this range</p>
+<ul>
+<li><p>how?</p></li>
+<li><p>make activation function of the last-but-one layer a sigmoid function</p></li>
+<li><p>so range is [0,1]</p></li>
+<li><p>then scale using the last layer</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Label bias</p>
+<ul>
+<li><p>Matrix factorization in recommendation system</p>
+<ul>
+<li><p>can be reframed in NN, both as regression and classification</p></li>
+<li><p>can incorporate many additional features</p></li>
+</ul>
+</li>
+<li><p>consider nature of target label when reframing</p>
+<ul>
+<li><p>suppose we reframed recommendation model to classification problem</p>
+<ul>
+<li><p>predict likelihood a user will click on video thumbnail</p></li>
+<li><p>here change of label is not in line with prediction task</p></li>
+</ul>
+</li>
+<li><p>better choice will be, video watch time, as regression problem</p>
+<ul>
+<li><p>how long will user watch the video</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Multitask learning</p>
+<ul>
+<li><p>instead of choosing between regression and classification</p></li>
+<li><p>do both</p></li>
+<li><p>in Multitask learning, more than loss functions are optimized</p></li>
+<li><p>how to achieve this?</p>
+<ul>
+<li><p>parameter sharing</p>
+<ul>
+<li><p>parameters of neural network are shared between different output tasks such as regression and classification</p></li>
+<li><p>Hard parameter sharing</p>
+<ul>
+<li><p>when the hidden layer of model are shared between all the output tasks</p></li>
+</ul>
+</li>
+<li><p>Soft parameter sharing</p>
+<ul>
+<li><p>each label has its own neural network with its own parameters</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>through parameter sharing, tasks are learned simultaneously</p>
+<ul>
+<li><p>gradient updates from two loss functions inform both output and result in a generalized manner</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>10am EST Monday
+make pay before 8am Monday</p>
 </li>
 </ul>
 </section>
@@ -1772,22 +2005,132 @@ const thebe_selector_output = ".output, .cell_output"
 <li><p>Basic Idea</p>
 <ul>
 <li><p>refers to problems where we can assign more than one label to a given training example</p></li>
+<li><p>thats different from multiclass classification problem</p></li>
+<li><p>an example of multilabel - a movie can belong to multiple genres - can be both comedy and for children</p></li>
+<li><p>an example of multiclass - a movie can either be rated as U/A or A or U - it cannot be categorized as more than one class</p></li>
 </ul>
 </li>
-<li><p>Problem</p></li>
+<li><p>Problem</p>
+<ul>
+<li><p>generally prediction is of N possible classes where N is greater than 1</p>
+<ul>
+<li><p>softmax function as activation function is generally used for the output layer</p></li>
+</ul>
+</li>
+<li><p>if model is classifying images as cats, dogs or bunnies, the softmax output will predict one of these</p></li>
+<li><p>but each image can have more than one possible label</p></li>
+</ul>
+</li>
 <li><p>Solution</p>
 <ul>
 <li><p>SIGMOID VERSUS SOFTMAX ACTIVATION</p></li>
+<li><p>softmax activation function</p>
+<ul>
+<li><p>sums to 1</p></li>
+<li><p>each value is between 0 and 1</p></li>
+<li><p>for example:</p>
+<ul>
+<li><p>chances of cats, dogs and bunnies [0.75, 0.10, 0.25]</p></li>
+</ul>
+</li>
+<li><p>use this function in multiclass classification problem</p></li>
+</ul>
+</li>
+<li><p>sigmoid activation function</p>
+<ul>
+<li><p>does not sum to 1</p></li>
+<li><p>each value is between 0 and 1</p></li>
+<li><p>chances of image having a cat, dog and bunnies [0.85. 0.55, 0.45]</p></li>
+<li><p>use this function in multilabel classification problem</p></li>
+</ul>
+</li>
 </ul>
 </li>
 <li><p>Trade-Offs and Alternatives</p>
 <ul>
-<li><p>Sigmoid output for models with two classes</p></li>
-<li><p>Which loss function should we use?</p></li>
-<li><p>Parsing sigmoid results</p></li>
-<li><p>Dataset considerations</p></li>
-<li><p>Inputs with overlapping labels</p></li>
-<li><p>One versus rest</p></li>
+<li><p>Sigmoid output for models with two classes</p>
+<ul>
+<li><p>binary classification is a special type of multiclass classification problem</p>
+<ul>
+<li><p>each training example can be assigned only one class</p></li>
+<li><p>both sigmoid and softmax can be used as activation function</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Which loss function should we use?</p>
+<ul>
+<li><p>for binary classification</p>
+<ul>
+<li><p>binary cross entropy loss function should be used</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Parsing sigmoid results</p>
+<ul>
+<li><p>for softmax output</p>
+<ul>
+<li><p>argmax of array gives the predicted class</p></li>
+</ul>
+</li>
+<li><p>for sigmoid output</p>
+<ul>
+<li><p>evaluate probability of each class in output layer</p></li>
+<li><p>use the probability threshold</p>
+<ul>
+<li><p>determine the confidence threshold</p></li>
+<li><p>consider the top K</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Dataset considerations</p>
+<ul>
+<li><p>generally it is ensured that the dataset is balanced, equal number of training examples for each class</p></li>
+<li><p>but for Multilabel design pattern, thats difficult</p></li>
+<li><p>for hierarchial labels</p>
+<ul>
+<li><p>use flat approach</p>
+<ul>
+<li><p>put every output label in the same output array, irrespective of its hierarchy</p></li>
+<li><p>this approach might loses information</p></li>
+</ul>
+</li>
+<li><p>use cascade design pattern</p>
+<ul>
+<li><p>identify higher labels first</p></li>
+<li><p>then based on high level classification, choose lower labels</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Inputs with overlapping labels</p>
+<ul>
+<li><p>[10001000]</p></li>
+<li><p>first and fifth label correspond to two description for an item</p></li>
+</ul>
+</li>
+<li><p>One versus rest</p>
+<ul>
+<li><p>train multiple binary classifiers instead of one multilabel model</p>
+<ul>
+<li><p>choose a confidence threshold</p></li>
+<li><p>tag input question with tags for each binary classifier above threshold</p></li>
+</ul>
+</li>
+<li><p>adv</p>
+<ul>
+<li><p>can be used with SVMs which can only do binary classification</p></li>
+<li><p>helps in rare category classification, as it classifies one task at a time, apply rebalancing design pattern then</p></li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -1804,7 +2147,13 @@ const thebe_selector_output = ".output, .cell_output"
 <ul>
 <li><p>irreducible error</p>
 <ul>
-<li><p>error inherent in the model, resulting from the noise in the dataset</p></li>
+<li><p>error inherent in the model, resulting from</p>
+<ul>
+<li><p>the noise in the dataset</p></li>
+<li><p>framing of the problem</p></li>
+<li><p>bad training examples/measurement errors/confounding factors</p></li>
+</ul>
+</li>
 </ul>
 </li>
 <li><p>reducible error</p>
@@ -1843,7 +2192,22 @@ const thebe_selector_output = ".output, .cell_output"
 <ul>
 <li><p>Bagging</p>
 <ul>
-<li><p>bootstrap aggregating</p></li>
+<li><p>short for bootstrap aggregating</p></li>
+<li><p>addresses high variance in ML models</p></li>
+<li><p>example of bagging ensemble method</p>
+<ul>
+<li><p>random forest</p>
+<ul>
+<li><p>multiple decision trees are trained on randomly sampled subsets of the entire training data</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>model averaging in bagging</p>
+<ul>
+<li><p>method of reducing model variance</p></li>
+</ul>
+</li>
 </ul>
 </li>
 <li><p>Boosting</p>
@@ -1851,11 +2215,17 @@ const thebe_selector_output = ".output, .cell_output"
 <li><p>works by iteratively improving model to reduce prediction error</p></li>
 <li><p>model is punished more and more as per the residuals at each iteration step</p></li>
 <li><p>each new weak learner corrects for the mistakes of the previous prediction by modeling the residuals delta_i of each step</p></li>
+<li><p>after multiple iterations, residuals tend toward zero</p></li>
 <li><p>AdaBoost, Gradient Boosting Machines, and XGBoost</p></li>
 <li><p>good for high bias sets</p></li>
 </ul>
 </li>
-<li><p>Stacking</p></li>
+<li><p>Stacking</p>
+<ul>
+<li><p>combines outputs of collection of models to make prediction</p></li>
+<li></li>
+</ul>
+</li>
 </ul>
 </li>
 <li><p>Trade-Offs and Alternatives</p>

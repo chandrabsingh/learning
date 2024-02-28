@@ -17,38 +17,173 @@ Traceback (most recent call last):
     raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
 nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
 ------------------
-# To compare the results use ArviZ's plot_forest function. 
-# - We can pass more than one model to this function. 
-# - This is useful when we want to compare the values of parameters from different models 
-  # such as with the present example. 
-  # Notice that we are passing several arguments to plot_forest to get the plot that we want, 
-  # like combined=True to merge results from all the chains. 
-  # I invite you to explore the rest of the arguments:
+# create container for the model
+with pm.Model() as our_first_model: 
+    # spec for prior dist
+    θ = pm.Beta('θ', alpha=1., beta=1.) 
+    # spec for likelihood dist
+    y = pm.Bernoulli('y', p=θ, observed=data)
+    # inferencing samples from posterior
+    trace = pm.sample(1000, random_seed=123) 
 
-with cs_h, cs_nh:
-    _, axes = az.plot_forest([trace_cs_nh, trace_cs_h],
-                         model_names=['n_h', 'h'],
-                         var_names='μ', combined=False, colors='cycle')
-    y_lims = axes[0].get_ylim()
-    axes[0].vlines(trace_cs_h['μ_μ'].mean(), *y_lims)
+# framework automatically assigns NUTS sampler and is used for 
+# sampling results. it uses 4 chains, 1000 samples for each chain
 ------------------
 
 [0;31m---------------------------------------------------------------------------[0m
-[0;31mValueError[0m                                Traceback (most recent call last)
-Input [0;32mIn [48][0m, in [0;36m<cell line: 9>[0;34m()[0m
-[1;32m      1[0m [38;5;66;03m# To compare the results use ArviZ's plot_forest function. [39;00m
-[1;32m      2[0m [38;5;66;03m# - We can pass more than one model to this function. [39;00m
-[1;32m      3[0m [38;5;66;03m# - This is useful when we want to compare the values of parameters from different models [39;00m
-[0;32m   (...)[0m
-[1;32m      6[0m   [38;5;66;03m# like combined=True to merge results from all the chains. [39;00m
-[1;32m      7[0m   [38;5;66;03m# I invite you to explore the rest of the arguments:[39;00m
-[1;32m      9[0m [38;5;28;01mwith[39;00m cs_h, cs_nh:
-[0;32m---> 10[0m     _, axes [38;5;241m=[39m az[38;5;241m.[39mplot_forest([trace_cs_nh, trace_cs_h],
-[1;32m     11[0m                          model_names[38;5;241m=[39m[[38;5;124m'[39m[38;5;124mn_h[39m[38;5;124m'[39m, [38;5;124m'[39m[38;5;124mh[39m[38;5;124m'[39m],
-[1;32m     12[0m                          var_names[38;5;241m=[39m[38;5;124m'[39m[38;5;124mμ[39m[38;5;124m'[39m, combined[38;5;241m=[39m[38;5;28;01mFalse[39;00m, colors[38;5;241m=[39m[38;5;124m'[39m[38;5;124mcycle[39m[38;5;124m'[39m)
-[1;32m     13[0m     y_lims [38;5;241m=[39m axes[[38;5;241m0[39m][38;5;241m.[39mget_ylim()
-[1;32m     14[0m     axes[[38;5;241m0[39m][38;5;241m.[39mvlines(trace_cs_h[[38;5;124m'[39m[38;5;124mμ_μ[39m[38;5;124m'[39m][38;5;241m.[39mmean(), [38;5;241m*[39my_lims)
+[0;31mException[0m                                 Traceback (most recent call last)
+Input [0;32mIn [4][0m, in [0;36m<cell line: 2>[0;34m()[0m
+[1;32m      1[0m [38;5;66;03m# create container for the model[39;00m
+[1;32m      2[0m [38;5;28;01mwith[39;00m pm[38;5;241m.[39mModel() [38;5;28;01mas[39;00m our_first_model: 
+[1;32m      3[0m     [38;5;66;03m# spec for prior dist[39;00m
+[0;32m----> 4[0m     θ [38;5;241m=[39m [43mpm[49m[38;5;241;43m.[39;49m[43mBeta[49m[43m([49m[38;5;124;43m'[39;49m[38;5;124;43mθ[39;49m[38;5;124;43m'[39;49m[43m,[49m[43m [49m[43malpha[49m[38;5;241;43m=[39;49m[38;5;241;43m1.[39;49m[43m,[49m[43m [49m[43mbeta[49m[38;5;241;43m=[39;49m[38;5;241;43m1.[39;49m[43m)[49m 
+[1;32m      5[0m     [38;5;66;03m# spec for likelihood dist[39;00m
+[1;32m      6[0m     y [38;5;241m=[39m pm[38;5;241m.[39mBernoulli([38;5;124m'[39m[38;5;124my[39m[38;5;124m'[39m, p[38;5;241m=[39mθ, observed[38;5;241m=[39mdata)
 
-[0;31mValueError[0m: not enough values to unpack (expected 2, got 1)
-ValueError: not enough values to unpack (expected 2, got 1)
+File [0;32m~/opt/anaconda3/lib/python3.8/site-packages/pymc3/distributions/distribution.py:124[0m, in [0;36mDistribution.__new__[0;34m(cls, name, *args, **kwargs)[0m
+[1;32m    122[0m     dist [38;5;241m=[39m [38;5;28mcls[39m[38;5;241m.[39mdist([38;5;241m*[39margs, [38;5;241m*[39m[38;5;241m*[39mkwargs, shape[38;5;241m=[39mshape)
+[1;32m    123[0m [38;5;28;01melse[39;00m:
+[0;32m--> 124[0m     dist [38;5;241m=[39m [38;5;28;43mcls[39;49m[38;5;241;43m.[39;49m[43mdist[49m[43m([49m[38;5;241;43m*[39;49m[43margs[49m[43m,[49m[43m [49m[38;5;241;43m*[39;49m[38;5;241;43m*[39;49m[43mkwargs[49m[43m)[49m
+[1;32m    125[0m [38;5;28;01mreturn[39;00m model[38;5;241m.[39mVar(name, dist, data, total_size, dims[38;5;241m=[39mdims)
+
+File [0;32m~/opt/anaconda3/lib/python3.8/site-packages/pymc3/distributions/distribution.py:133[0m, in [0;36mDistribution.dist[0;34m(cls, *args, **kwargs)[0m
+[1;32m    130[0m [38;5;129m@classmethod[39m
+[1;32m    131[0m [38;5;28;01mdef[39;00m [38;5;21mdist[39m([38;5;28mcls[39m, [38;5;241m*[39margs, [38;5;241m*[39m[38;5;241m*[39mkwargs):
+[1;32m    132[0m     dist [38;5;241m=[39m [38;5;28mobject[39m[38;5;241m.[39m[38;5;21m__new__[39m([38;5;28mcls[39m)
+[0;32m--> 133[0m     [43mdist[49m[38;5;241;43m.[39;49m[38;5;21;43m__init__[39;49m[43m([49m[38;5;241;43m*[39;49m[43margs[49m[43m,[49m[43m [49m[38;5;241;43m*[39;49m[38;5;241;43m*[39;49m[43mkwargs[49m[43m)[49m
+[1;32m    134[0m     [38;5;28;01mreturn[39;00m dist
+
+File [0;32m~/opt/anaconda3/lib/python3.8/site-packages/pymc3/distributions/continuous.py:1235[0m, in [0;36mBeta.__init__[0;34m(self, alpha, beta, mu, sigma, sd, *args, **kwargs)[0m
+[1;32m   1232[0m [38;5;28mself[39m[38;5;241m.[39malpha [38;5;241m=[39m alpha [38;5;241m=[39m tt[38;5;241m.[39mas_tensor_variable(floatX(alpha))
+[1;32m   1233[0m [38;5;28mself[39m[38;5;241m.[39mbeta [38;5;241m=[39m beta [38;5;241m=[39m tt[38;5;241m.[39mas_tensor_variable(floatX(beta))
+[0;32m-> 1235[0m [38;5;28mself[39m[38;5;241m.[39mmean [38;5;241m=[39m [38;5;28mself[39m[38;5;241m.[39malpha [38;5;241m/[39m ([38;5;28;43mself[39;49m[38;5;241;43m.[39;49m[43malpha[49m[43m [49m[38;5;241;43m+[39;49m[43m [49m[38;5;28;43mself[39;49m[38;5;241;43m.[39;49m[43mbeta[49m)
+[1;32m   1236[0m [38;5;28mself[39m[38;5;241m.[39mvariance [38;5;241m=[39m (
+[1;32m   1237[0m     [38;5;28mself[39m[38;5;241m.[39malpha [38;5;241m*[39m [38;5;28mself[39m[38;5;241m.[39mbeta [38;5;241m/[39m (([38;5;28mself[39m[38;5;241m.[39malpha [38;5;241m+[39m [38;5;28mself[39m[38;5;241m.[39mbeta) [38;5;241m*[39m[38;5;241m*[39m [38;5;241m2[39m [38;5;241m*[39m ([38;5;28mself[39m[38;5;241m.[39malpha [38;5;241m+[39m [38;5;28mself[39m[38;5;241m.[39mbeta [38;5;241m+[39m [38;5;241m1[39m))
+[1;32m   1238[0m )
+[1;32m   1240[0m assert_negative_support(alpha, [38;5;124m"[39m[38;5;124malpha[39m[38;5;124m"[39m, [38;5;124m"[39m[38;5;124mBeta[39m[38;5;124m"[39m)
+
+File [0;32m~/opt/anaconda3/lib/python3.8/site-packages/theano/tensor/var.py:101[0m, in [0;36m_tensor_py_operators.__add__[0;34m(self, other)[0m
+[1;32m     99[0m [38;5;28;01mdef[39;00m [38;5;21m__add__[39m([38;5;28mself[39m, other):
+[1;32m    100[0m     [38;5;28;01mtry[39;00m:
+[0;32m--> 101[0m         [38;5;28;01mreturn[39;00m [43mtheano[49m[38;5;241;43m.[39;49m[43mtensor[49m[38;5;241;43m.[39;49m[43mbasic[49m[38;5;241;43m.[39;49m[43madd[49m[43m([49m[38;5;28;43mself[39;49m[43m,[49m[43m [49m[43mother[49m[43m)[49m
+[1;32m    102[0m     [38;5;66;03m# We should catch the minimum number of exception here.[39;00m
+[1;32m    103[0m     [38;5;66;03m# Otherwise this will convert error when Theano flags[39;00m
+[1;32m    104[0m     [38;5;66;03m# compute_test_value is used[39;00m
+[1;32m    105[0m     [38;5;66;03m# Evidently, we need to catch NotImplementedError[39;00m
+[1;32m    106[0m     [38;5;66;03m# TypeError from as_tensor_variable are caught in Elemwise.make_node[39;00m
+[1;32m    107[0m     [38;5;66;03m# Oterwise TensorVariable * SparseVariable won't work![39;00m
+[1;32m    108[0m     [38;5;28;01mexcept[39;00m ([38;5;167;01mNotImplementedError[39;00m, [38;5;167;01mTypeError[39;00m):
+[1;32m    109[0m         [38;5;66;03m# We must return NotImplemented and not an[39;00m
+[1;32m    110[0m         [38;5;66;03m# NotImplementedError or raise an NotImplementedError.[39;00m
+[1;32m    111[0m         [38;5;66;03m# That way python will give a good error message like this[39;00m
+[1;32m    112[0m         [38;5;66;03m# `TypeError: unsupported operand type(s) for +:[39;00m
+[1;32m    113[0m         [38;5;66;03m# 'TensorVariable' and 'TensorVariable'`[39;00m
+
+File [0;32m~/opt/anaconda3/lib/python3.8/site-packages/theano/graph/op.py:253[0m, in [0;36mOp.__call__[0;34m(self, *inputs, **kwargs)[0m
+[1;32m    250[0m node [38;5;241m=[39m [38;5;28mself[39m[38;5;241m.[39mmake_node([38;5;241m*[39minputs, [38;5;241m*[39m[38;5;241m*[39mkwargs)
+[1;32m    252[0m [38;5;28;01mif[39;00m config[38;5;241m.[39mcompute_test_value [38;5;241m!=[39m [38;5;124m"[39m[38;5;124moff[39m[38;5;124m"[39m:
+[0;32m--> 253[0m     [43mcompute_test_value[49m[43m([49m[43mnode[49m[43m)[49m
+[1;32m    255[0m [38;5;28;01mif[39;00m [38;5;28mself[39m[38;5;241m.[39mdefault_output [38;5;129;01mis[39;00m [38;5;129;01mnot[39;00m [38;5;28;01mNone[39;00m:
+[1;32m    256[0m     rval [38;5;241m=[39m node[38;5;241m.[39moutputs[[38;5;28mself[39m[38;5;241m.[39mdefault_output]
+
+File [0;32m~/opt/anaconda3/lib/python3.8/site-packages/theano/graph/op.py:126[0m, in [0;36mcompute_test_value[0;34m(node)[0m
+[1;32m    123[0m     compute_map[o] [38;5;241m=[39m [[38;5;28;01mFalse[39;00m]
+[1;32m    125[0m [38;5;66;03m# Create a thunk that performs the computation[39;00m
+[0;32m--> 126[0m thunk [38;5;241m=[39m [43mnode[49m[38;5;241;43m.[39;49m[43mop[49m[38;5;241;43m.[39;49m[43mmake_thunk[49m[43m([49m[43mnode[49m[43m,[49m[43m [49m[43mstorage_map[49m[43m,[49m[43m [49m[43mcompute_map[49m[43m,[49m[43m [49m[43mno_recycling[49m[38;5;241;43m=[39;49m[43m[[49m[43m][49m[43m)[49m
+[1;32m    127[0m thunk[38;5;241m.[39minputs [38;5;241m=[39m [storage_map[v] [38;5;28;01mfor[39;00m v [38;5;129;01min[39;00m node[38;5;241m.[39minputs]
+[1;32m    128[0m thunk[38;5;241m.[39moutputs [38;5;241m=[39m [storage_map[v] [38;5;28;01mfor[39;00m v [38;5;129;01min[39;00m node[38;5;241m.[39moutputs]
+
+File [0;32m~/opt/anaconda3/lib/python3.8/site-packages/theano/graph/op.py:634[0m, in [0;36mCOp.make_thunk[0;34m(self, node, storage_map, compute_map, no_recycling, impl)[0m
+[1;32m    630[0m [38;5;28mself[39m[38;5;241m.[39mprepare_node(
+[1;32m    631[0m     node, storage_map[38;5;241m=[39mstorage_map, compute_map[38;5;241m=[39mcompute_map, impl[38;5;241m=[39m[38;5;124m"[39m[38;5;124mc[39m[38;5;124m"[39m
+[1;32m    632[0m )
+[1;32m    633[0m [38;5;28;01mtry[39;00m:
+[0;32m--> 634[0m     [38;5;28;01mreturn[39;00m [38;5;28;43mself[39;49m[38;5;241;43m.[39;49m[43mmake_c_thunk[49m[43m([49m[43mnode[49m[43m,[49m[43m [49m[43mstorage_map[49m[43m,[49m[43m [49m[43mcompute_map[49m[43m,[49m[43m [49m[43mno_recycling[49m[43m)[49m
+[1;32m    635[0m [38;5;28;01mexcept[39;00m ([38;5;167;01mNotImplementedError[39;00m, MethodNotDefined):
+[1;32m    636[0m     [38;5;66;03m# We requested the c code, so don't catch the error.[39;00m
+[1;32m    637[0m     [38;5;28;01mif[39;00m impl [38;5;241m==[39m [38;5;124m"[39m[38;5;124mc[39m[38;5;124m"[39m:
+
+File [0;32m~/opt/anaconda3/lib/python3.8/site-packages/theano/graph/op.py:600[0m, in [0;36mCOp.make_c_thunk[0;34m(self, node, storage_map, compute_map, no_recycling)[0m
+[1;32m    598[0m         [38;5;28mprint[39m([38;5;124mf[39m[38;5;124m"[39m[38;5;124mDisabling C code for [39m[38;5;132;01m{[39;00m[38;5;28mself[39m[38;5;132;01m}[39;00m[38;5;124m due to unsupported float16[39m[38;5;124m"[39m)
+[1;32m    599[0m         [38;5;28;01mraise[39;00m [38;5;167;01mNotImplementedError[39;00m([38;5;124m"[39m[38;5;124mfloat16[39m[38;5;124m"[39m)
+[0;32m--> 600[0m outputs [38;5;241m=[39m [43mcl[49m[38;5;241;43m.[39;49m[43mmake_thunk[49m[43m([49m
+[1;32m    601[0m [43m    [49m[43minput_storage[49m[38;5;241;43m=[39;49m[43mnode_input_storage[49m[43m,[49m[43m [49m[43moutput_storage[49m[38;5;241;43m=[39;49m[43mnode_output_storage[49m
+[1;32m    602[0m [43m[49m[43m)[49m
+[1;32m    603[0m thunk, node_input_filters, node_output_filters [38;5;241m=[39m outputs
+[1;32m    605[0m [38;5;28;01mdef[39;00m [38;5;21mrval[39m():
+
+File [0;32m~/opt/anaconda3/lib/python3.8/site-packages/theano/link/c/basic.py:1203[0m, in [0;36mCLinker.make_thunk[0;34m(self, input_storage, output_storage, storage_map)[0m
+[1;32m   1175[0m [38;5;124;03m"""[39;00m
+[1;32m   1176[0m [38;5;124;03mCompiles this linker's fgraph and returns a function to perform the[39;00m
+[1;32m   1177[0m [38;5;124;03mcomputations, as well as lists of storage cells for both the inputs[39;00m
+[0;32m   (...)[0m
+[1;32m   1200[0m [38;5;124;03m  first_output = ostor[0].data[39;00m
+[1;32m   1201[0m [38;5;124;03m"""[39;00m
+[1;32m   1202[0m init_tasks, tasks [38;5;241m=[39m [38;5;28mself[39m[38;5;241m.[39mget_init_tasks()
+[0;32m-> 1203[0m cthunk, module, in_storage, out_storage, error_storage [38;5;241m=[39m [38;5;28;43mself[39;49m[38;5;241;43m.[39;49m[43m__compile__[49m[43m([49m
+[1;32m   1204[0m [43m    [49m[43minput_storage[49m[43m,[49m[43m [49m[43moutput_storage[49m[43m,[49m[43m [49m[43mstorage_map[49m
+[1;32m   1205[0m [43m[49m[43m)[49m
+[1;32m   1207[0m res [38;5;241m=[39m _CThunk(cthunk, init_tasks, tasks, error_storage, module)
+[1;32m   1208[0m res[38;5;241m.[39mnodes [38;5;241m=[39m [38;5;28mself[39m[38;5;241m.[39mnode_order
+
+File [0;32m~/opt/anaconda3/lib/python3.8/site-packages/theano/link/c/basic.py:1138[0m, in [0;36mCLinker.__compile__[0;34m(self, input_storage, output_storage, storage_map)[0m
+[1;32m   1136[0m input_storage [38;5;241m=[39m [38;5;28mtuple[39m(input_storage)
+[1;32m   1137[0m output_storage [38;5;241m=[39m [38;5;28mtuple[39m(output_storage)
+[0;32m-> 1138[0m thunk, module [38;5;241m=[39m [38;5;28;43mself[39;49m[38;5;241;43m.[39;49m[43mcthunk_factory[49m[43m([49m
+[1;32m   1139[0m [43m    [49m[43merror_storage[49m[43m,[49m
+[1;32m   1140[0m [43m    [49m[43minput_storage[49m[43m,[49m
+[1;32m   1141[0m [43m    [49m[43moutput_storage[49m[43m,[49m
+[1;32m   1142[0m [43m    [49m[43mstorage_map[49m[43m,[49m
+[1;32m   1143[0m [43m[49m[43m)[49m
+[1;32m   1144[0m [38;5;28;01mreturn[39;00m (
+[1;32m   1145[0m     thunk,
+[1;32m   1146[0m     module,
+[0;32m   (...)[0m
+[1;32m   1155[0m     error_storage,
+[1;32m   1156[0m )
+
+File [0;32m~/opt/anaconda3/lib/python3.8/site-packages/theano/link/c/basic.py:1634[0m, in [0;36mCLinker.cthunk_factory[0;34m(self, error_storage, in_storage, out_storage, storage_map)[0m
+[1;32m   1632[0m     [38;5;28;01mfor[39;00m node [38;5;129;01min[39;00m [38;5;28mself[39m[38;5;241m.[39mnode_order:
+[1;32m   1633[0m         node[38;5;241m.[39mop[38;5;241m.[39mprepare_node(node, storage_map, [38;5;28;01mNone[39;00m, [38;5;124m"[39m[38;5;124mc[39m[38;5;124m"[39m)
+[0;32m-> 1634[0m     module [38;5;241m=[39m [43mget_module_cache[49m[43m([49m[43m)[49m[38;5;241;43m.[39;49m[43mmodule_from_key[49m[43m([49m[43mkey[49m[38;5;241;43m=[39;49m[43mkey[49m[43m,[49m[43m [49m[43mlnk[49m[38;5;241;43m=[39;49m[38;5;28;43mself[39;49m[43m)[49m
+[1;32m   1636[0m [38;5;28mvars[39m [38;5;241m=[39m [38;5;28mself[39m[38;5;241m.[39minputs [38;5;241m+[39m [38;5;28mself[39m[38;5;241m.[39moutputs [38;5;241m+[39m [38;5;28mself[39m[38;5;241m.[39morphans
+[1;32m   1637[0m [38;5;66;03m# List of indices that should be ignored when passing the arguments[39;00m
+[1;32m   1638[0m [38;5;66;03m# (basically, everything that the previous call to uniq eliminated)[39;00m
+
+File [0;32m~/opt/anaconda3/lib/python3.8/site-packages/theano/link/c/cmodule.py:1191[0m, in [0;36mModuleCache.module_from_key[0;34m(self, key, lnk)[0m
+[1;32m   1189[0m [38;5;28;01mtry[39;00m:
+[1;32m   1190[0m     location [38;5;241m=[39m dlimport_workdir([38;5;28mself[39m[38;5;241m.[39mdirname)
+[0;32m-> 1191[0m     module [38;5;241m=[39m [43mlnk[49m[38;5;241;43m.[39;49m[43mcompile_cmodule[49m[43m([49m[43mlocation[49m[43m)[49m
+[1;32m   1192[0m     name [38;5;241m=[39m module[38;5;241m.[39m[38;5;18m__file__[39m
+[1;32m   1193[0m     [38;5;28;01massert[39;00m name[38;5;241m.[39mstartswith(location)
+
+File [0;32m~/opt/anaconda3/lib/python3.8/site-packages/theano/link/c/basic.py:1543[0m, in [0;36mCLinker.compile_cmodule[0;34m(self, location)[0m
+[1;32m   1541[0m [38;5;28;01mtry[39;00m:
+[1;32m   1542[0m     _logger[38;5;241m.[39mdebug([38;5;124mf[39m[38;5;124m"[39m[38;5;124mLOCATION [39m[38;5;132;01m{[39;00mlocation[38;5;132;01m}[39;00m[38;5;124m"[39m)
+[0;32m-> 1543[0m     module [38;5;241m=[39m [43mc_compiler[49m[38;5;241;43m.[39;49m[43mcompile_str[49m[43m([49m
+[1;32m   1544[0m [43m        [49m[43mmodule_name[49m[38;5;241;43m=[39;49m[43mmod[49m[38;5;241;43m.[39;49m[43mcode_hash[49m[43m,[49m
+[1;32m   1545[0m [43m        [49m[43msrc_code[49m[38;5;241;43m=[39;49m[43msrc_code[49m[43m,[49m
+[1;32m   1546[0m [43m        [49m[43mlocation[49m[38;5;241;43m=[39;49m[43mlocation[49m[43m,[49m
+[1;32m   1547[0m [43m        [49m[43minclude_dirs[49m[38;5;241;43m=[39;49m[38;5;28;43mself[39;49m[38;5;241;43m.[39;49m[43mheader_dirs[49m[43m([49m[43m)[49m[43m,[49m
+[1;32m   1548[0m [43m        [49m[43mlib_dirs[49m[38;5;241;43m=[39;49m[38;5;28;43mself[39;49m[38;5;241;43m.[39;49m[43mlib_dirs[49m[43m([49m[43m)[49m[43m,[49m
+[1;32m   1549[0m [43m        [49m[43mlibs[49m[38;5;241;43m=[39;49m[43mlibs[49m[43m,[49m
+[1;32m   1550[0m [43m        [49m[43mpreargs[49m[38;5;241;43m=[39;49m[43mpreargs[49m[43m,[49m
+[1;32m   1551[0m [43m    [49m[43m)[49m
+[1;32m   1552[0m [38;5;28;01mexcept[39;00m [38;5;167;01mException[39;00m [38;5;28;01mas[39;00m e:
+[1;32m   1553[0m     e[38;5;241m.[39margs [38;5;241m+[39m[38;5;241m=[39m ([38;5;28mstr[39m([38;5;28mself[39m[38;5;241m.[39mfgraph),)
+
+File [0;32m~/opt/anaconda3/lib/python3.8/site-packages/theano/link/c/cmodule.py:2546[0m, in [0;36mGCC_compiler.compile_str[0;34m(module_name, src_code, location, include_dirs, lib_dirs, libs, preargs, py_module, hide_symbols)[0m
+[1;32m   2542[0m     [38;5;66;03m# We replace '\n' by '. ' in the error message because when Python[39;00m
+[1;32m   2543[0m     [38;5;66;03m# prints the exception, having '\n' in the text makes it more[39;00m
+[1;32m   2544[0m     [38;5;66;03m# difficult to read.[39;00m
+[1;32m   2545[0m     compile_stderr [38;5;241m=[39m compile_stderr[38;5;241m.[39mreplace([38;5;124m"[39m[38;5;130;01m\n[39;00m[38;5;124m"[39m, [38;5;124m"[39m[38;5;124m. [39m[38;5;124m"[39m)
+[0;32m-> 2546[0m     [38;5;28;01mraise[39;00m [38;5;167;01mException[39;00m(
+[1;32m   2547[0m         [38;5;124mf[39m[38;5;124m"[39m[38;5;124mCompilation failed (return status=[39m[38;5;132;01m{[39;00mstatus[38;5;132;01m}[39;00m[38;5;124m): [39m[38;5;132;01m{[39;00mcompile_stderr[38;5;132;01m}[39;00m[38;5;124m"[39m
+[1;32m   2548[0m     )
+[1;32m   2549[0m [38;5;28;01melif[39;00m config[38;5;241m.[39mcmodule__compilation_warning [38;5;129;01mand[39;00m compile_stderr:
+[1;32m   2550[0m     [38;5;66;03m# Print errors just below the command line.[39;00m
+[1;32m   2551[0m     [38;5;28mprint[39m(compile_stderr)
+
+[0;31mException[0m: ("Compilation failed (return status=1): ld: unsupported tapi file type '!tapi-tbd' in YAML file '/Library/Developer/CommandLineTools/SDKs/MacOSX12.sdk/usr/lib/libSystem.tbd' for architecture x86_64. clang-15: error: linker command failed with exit code 1 (use -v to see invocation). ", 'FunctionGraph(Elemwise{add,no_inplace}(TensorConstant{1.0}, TensorConstant{1.0}))')
+Exception: ("Compilation failed (return status=1): ld: unsupported tapi file type '!tapi-tbd' in YAML file '/Library/Developer/CommandLineTools/SDKs/MacOSX12.sdk/usr/lib/libSystem.tbd' for architecture x86_64. clang-15: error: linker command failed with exit code 1 (use -v to see invocation). ", 'FunctionGraph(Elemwise{add,no_inplace}(TensorConstant{1.0}, TensorConstant{1.0}))')
 

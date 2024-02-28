@@ -1824,14 +1824,6 @@ Y_t &amp;= \text{Constant} \\
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/chandrasingh/opt/anaconda3/lib/python3.8/site-packages/statsmodels/tsa/base/tsa_model.py:7: FutureWarning: pandas.Int64Index is deprecated and will be removed from pandas in a future version. Use pandas.Index with the appropriate dtype instead.
-  from pandas import (to_datetime, Int64Index, DatetimeIndex, Period,
-/Users/chandrasingh/opt/anaconda3/lib/python3.8/site-packages/statsmodels/tsa/base/tsa_model.py:7: FutureWarning: pandas.Float64Index is deprecated and will be removed from pandas in a future version. Use pandas.Index with the appropriate dtype instead.
-  from pandas import (to_datetime, Int64Index, DatetimeIndex, Period,
-</pre></div>
-</div>
-</div>
 </div>
 </section>
 <section id="load-data">
@@ -1901,15 +1893,6 @@ Y_t &amp;= \text{Constant} \\
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> This problem is unconstrained.
-
- Line search cannot locate an adequate point after MAXLS
-  function and gradient evaluations.
-  Previous x, f and g restored.
- Possible causes: 1 error in function or gradient evaluation;
-                  2 rounding error dominate computation.
-</pre></div>
-</div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>RUNNING THE L-BFGS-B CODE
 
            * * *
@@ -1940,6 +1923,15 @@ F     = final function value
 ABNORMAL_TERMINATION_IN_LNSRCH                              
 </pre></div>
 </div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> This problem is unconstrained.
+
+ Line search cannot locate an adequate point after MAXLS
+  function and gradient evaluations.
+  Previous x, f and g restored.
+ Possible causes: 1 error in function or gradient evaluation;
+                  2 rounding error dominate computation.
+</pre></div>
+</div>
 <div class="output text_html"><table class="simpletable">
 <caption>SARIMAX Results</caption>
 <tr>
@@ -1949,10 +1941,10 @@ ABNORMAL_TERMINATION_IN_LNSRCH
   <th>Model:</th>           <td>SARIMAX(1, 0, 0)</td> <th>  Log Likelihood     </th>  <td>828.258</td> 
 </tr>
 <tr>
-  <th>Date:</th>            <td>Wed, 28 Dec 2022</td> <th>  AIC                </th> <td>-1648.515</td>
+  <th>Date:</th>            <td>Wed, 28 Feb 2024</td> <th>  AIC                </th> <td>-1648.515</td>
 </tr>
 <tr>
-  <th>Time:</th>                <td>16:00:34</td>     <th>  BIC                </th> <td>-1632.242</td>
+  <th>Time:</th>                <td>23:09:43</td>     <th>  BIC                </th> <td>-1632.242</td>
 </tr>
 <tr>
   <th>Sample:</th>                  <td>0</td>        <th>  HQIC               </th> <td>-1642.091</td>
@@ -2010,6 +2002,12 @@ ABNORMAL_TERMINATION_IN_LNSRCH
 </div>
 </div>
 <div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> This problem is unconstrained.
+
+ Bad direction in the line search;
+   refresh the lbfgs memory and restart the iteration.
+</pre></div>
+</div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>RUNNING THE L-BFGS-B CODE
 
            * * *
@@ -2020,12 +2018,6 @@ Machine precision = 2.220D-16
 At X0         0 variables are exactly at the bounds
 
 At iterate    0    f= -2.01805D+00    |proj g|=  1.55899D+03
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> This problem is unconstrained.
-
- Bad direction in the line search;
-   refresh the lbfgs memory and restart the iteration.
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>           * * *
@@ -2063,10 +2055,10 @@ ABNORMAL_TERMINATION_IN_LNSRCH
   <th>Model:</th>           <td>SARIMAX(1, 0, 1)</td> <th>  Log Likelihood     </th>  <td>871.818</td> 
 </tr>
 <tr>
-  <th>Date:</th>            <td>Wed, 28 Dec 2022</td> <th>  AIC                </th> <td>-1733.637</td>
+  <th>Date:</th>            <td>Wed, 28 Feb 2024</td> <th>  AIC                </th> <td>-1733.637</td>
 </tr>
 <tr>
-  <th>Time:</th>                <td>16:00:34</td>     <th>  BIC                </th> <td>-1713.295</td>
+  <th>Time:</th>                <td>23:09:44</td>     <th>  BIC                </th> <td>-1713.295</td>
 </tr>
 <tr>
   <th>Sample:</th>                  <td>0</td>        <th>  HQIC               </th> <td>-1725.606</td>
@@ -2325,6 +2317,9 @@ CONVERGENCE: REL_REDUCTION_OF_F_&lt;=_FACTR*EPSMCH
 </div>
 </div>
 <div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> This problem is unconstrained.
+</pre></div>
+</div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>RUNNING THE L-BFGS-B CODE
 
            * * *
@@ -2355,9 +2350,6 @@ F     = final function value
 CONVERGENCE: REL_REDUCTION_OF_F_&lt;=_FACTR*EPSMCH             
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> This problem is unconstrained.
-</pre></div>
-</div>
 <div class="output text_html"><table class="simpletable">
 <caption>SARIMAX Results</caption>
 <tr>
@@ -2367,10 +2359,10 @@ CONVERGENCE: REL_REDUCTION_OF_F_&lt;=_FACTR*EPSMCH
   <th>Model:</th>           <td>SARIMAX(0, 1, 1)</td> <th>  Log Likelihood     </th>  <td>871.865</td> 
 </tr>
 <tr>
-  <th>Date:</th>            <td>Wed, 28 Dec 2022</td> <th>  AIC                </th> <td>-1739.729</td>
+  <th>Date:</th>            <td>Wed, 28 Feb 2024</td> <th>  AIC                </th> <td>-1739.729</td>
 </tr>
 <tr>
-  <th>Time:</th>                <td>16:00:35</td>     <th>  BIC                </th> <td>-1731.597</td>
+  <th>Time:</th>                <td>23:09:45</td>     <th>  BIC                </th> <td>-1731.597</td>
 </tr>
 <tr>
   <th>Sample:</th>                  <td>0</td>        <th>  HQIC               </th> <td>-1736.518</td>
@@ -2767,50 +2759,49 @@ At iterate   10    f=  1.42368D+00    |proj g|=  5.68917D-01
 At iterate   20    f=  8.03106D-01    |proj g|=  1.83614D-01
 
 At iterate   25    f=  7.43827D-01    |proj g|=  2.99305D-02
+
+At iterate   30    f=  7.33082D-01    |proj g|=  1.05074D-01
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>At iterate   30    f=  7.33082D-01    |proj g|=  1.05074D-01
-
-At iterate   35    f=  7.20606D-01    |proj g|=  1.46521D-01
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>At iterate   35    f=  7.20606D-01    |proj g|=  1.46521D-01
 
 At iterate   40    f=  6.88702D-01    |proj g|=  2.60584D-01
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>At iterate   45    f=  6.18202D-01    |proj g|=  4.67291D-01
+
+At iterate   45    f=  6.18202D-01    |proj g|=  4.67291D-01
 
 At iterate   50    f=  5.52676D-01    |proj g|=  1.44479D-01
-
-At iterate   55    f=  5.04892D-01    |proj g|=  1.89259D-01
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>At iterate   55    f=  5.04892D-01    |proj g|=  1.89259D-01
 
 At iterate   60    f=  4.50515D-01    |proj g|=  4.10629D-01
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>At iterate   65    f=  4.25728D-01    |proj g|=  2.55528D-01
+
+At iterate   65    f=  4.25728D-01    |proj g|=  2.55528D-01
 
 At iterate   70    f=  4.05280D-01    |proj g|=  1.02224D+00
-
-At iterate   75    f=  3.66275D-01    |proj g|=  2.74882D-01
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>At iterate   75    f=  3.66275D-01    |proj g|=  2.74882D-01
 
 At iterate   80    f=  3.08250D-01    |proj g|=  7.74362D-01
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>At iterate   85    f=  2.74672D-01    |proj g|=  1.03381D-01
+
+At iterate   85    f=  2.74672D-01    |proj g|=  1.03381D-01
 
 At iterate   90    f=  2.53074D-01    |proj g|=  3.43828D-02
-
-At iterate   95    f=  2.48981D-01    |proj g|=  3.21290D-02
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>At iterate   95    f=  2.48981D-01    |proj g|=  3.21290D-02
 
 At iterate  100    f=  2.48761D-01    |proj g|=  3.51773D-02
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>At iterate  105    f=  2.48573D-01    |proj g|=  3.28654D-02
+
+At iterate  105    f=  2.48573D-01    |proj g|=  3.28654D-02
 
 At iterate  110    f=  2.48554D-01    |proj g|=  1.48492D-02
-
-At iterate  115    f=  2.48552D-01    |proj g|=  1.01261D-03
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>           * * *
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>At iterate  115    f=  2.48552D-01    |proj g|=  1.01261D-03
+
+           * * *
 
 Tit   = total number of iterations
 Tnf   = total number of function evaluations
@@ -2843,10 +2834,10 @@ CONVERGENCE: REL_REDUCTION_OF_F_&lt;=_FACTR*EPSMCH
   <th>Model:</th>           <td>SARIMAX(1, 0, 0)</td> <th>  Log Likelihood     </th> <td>-107.374</td>
 </tr>
 <tr>
-  <th>Date:</th>            <td>Wed, 28 Dec 2022</td> <th>  AIC                </th>  <td>242.749</td>
+  <th>Date:</th>            <td>Wed, 28 Feb 2024</td> <th>  AIC                </th>  <td>242.749</td>
 </tr>
 <tr>
-  <th>Time:</th>                <td>16:00:37</td>     <th>  BIC                </th>  <td>299.706</td>
+  <th>Time:</th>                <td>23:09:47</td>     <th>  BIC                </th>  <td>299.706</td>
 </tr>
 <tr>
   <th>Sample:</th>                  <td>0</td>        <th>  HQIC               </th>  <td>265.235</td>
@@ -2984,6 +2975,9 @@ Name: predicted_mean, dtype: float64
 </div>
 </div>
 <div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> This problem is unconstrained.
+</pre></div>
+</div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>RUNNING THE L-BFGS-B CODE
 
            * * *
@@ -3014,9 +3008,6 @@ F     = final function value
 CONVERGENCE: REL_REDUCTION_OF_F_&lt;=_FACTR*EPSMCH             
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> This problem is unconstrained.
-</pre></div>
-</div>
 <div class="output text_html"><table class="simpletable">
 <caption>SARIMAX Results</caption>
 <tr>
@@ -3026,10 +3017,10 @@ CONVERGENCE: REL_REDUCTION_OF_F_&lt;=_FACTR*EPSMCH
   <th>Model:</th>           <td>SARIMAX(0, 1, 0, 12)</td> <th>  Log Likelihood     </th> <td>-210.775</td>
 </tr>
 <tr>
-  <th>Date:</th>              <td>Wed, 28 Dec 2022</td>   <th>  AIC                </th>  <td>425.550</td>
+  <th>Date:</th>              <td>Wed, 28 Feb 2024</td>   <th>  AIC                </th>  <td>425.550</td>
 </tr>
 <tr>
-  <th>Time:</th>                  <td>16:00:38</td>       <th>  BIC                </th>  <td>433.630</td>
+  <th>Time:</th>                  <td>23:09:47</td>       <th>  BIC                </th>  <td>433.630</td>
 </tr>
 <tr>
   <th>Sample:</th>                    <td>0</td>          <th>  HQIC               </th>  <td>428.743</td>
@@ -3226,61 +3217,61 @@ Name: predicted_mean, dtype: float64
 Performing stepwise search to minimize aic
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> ARIMA(2,1,2)(0,0,0)[0] intercept   : AIC=261.587, Time=0.78 sec
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> ARIMA(2,1,2)(0,0,0)[0] intercept   : AIC=261.586, Time=0.85 sec
  ARIMA(0,1,0)(0,0,0)[0] intercept   : AIC=522.367, Time=0.06 sec
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> ARIMA(1,1,0)(0,0,0)[0] intercept   : AIC=401.618, Time=0.18 sec
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> ARIMA(1,1,0)(0,0,0)[0] intercept   : AIC=401.618, Time=0.17 sec
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> ARIMA(0,1,1)(0,0,0)[0] intercept   : AIC=260.626, Time=0.38 sec
- ARIMA(0,1,0)(0,0,0)[0]             : AIC=520.377, Time=0.16 sec
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> ARIMA(0,1,1)(0,0,0)[0] intercept   : AIC=260.626, Time=0.35 sec
+ ARIMA(0,1,0)(0,0,0)[0]             : AIC=520.377, Time=0.14 sec
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> ARIMA(1,1,1)(0,0,0)[0] intercept   : AIC=257.600, Time=0.44 sec
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> ARIMA(2,1,1)(0,0,0)[0] intercept   : AIC=259.024, Time=0.64 sec
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> ARIMA(2,1,1)(0,0,0)[0] intercept   : AIC=259.024, Time=0.43 sec
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> ARIMA(1,1,2)(0,0,0)[0] intercept   : AIC=260.318, Time=0.36 sec
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> ARIMA(1,1,2)(0,0,0)[0] intercept   : AIC=260.318, Time=0.34 sec
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> ARIMA(0,1,2)(0,0,0)[0] intercept   : AIC=257.045, Time=0.58 sec
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> ARIMA(0,1,2)(0,0,0)[0] intercept   : AIC=257.045, Time=0.55 sec
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> ARIMA(0,1,3)(0,0,0)[0] intercept   : AIC=258.163, Time=0.85 sec
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> ARIMA(0,1,3)(0,0,0)[0] intercept   : AIC=258.163, Time=0.70 sec
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> ARIMA(1,1,3)(0,0,0)[0] intercept   : AIC=260.904, Time=0.85 sec
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> ARIMA(1,1,3)(0,0,0)[0] intercept   : AIC=261.824, Time=0.76 sec
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> ARIMA(0,1,2)(0,0,0)[0]             : AIC=257.086, Time=0.28 sec
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> ARIMA(0,1,2)(0,0,0)[0]             : AIC=257.086, Time=0.20 sec
 
 Best model:  ARIMA(0,1,2)(0,0,0)[0] intercept
-Total fit time: 5.581 seconds
+Total fit time: 5.009 seconds
 Model fit:
 Pipeline(steps=[(&#39;fourier&#39;, FourierFeaturizer(k=4, m=12)),
                 (&#39;arima&#39;,
                  AutoARIMA(error_action=&#39;ignore&#39;, seasonal=False, trace=1))])
 
 Forecasts:
-[7.21672048 7.47718895 7.70702211 7.50109376 7.39355039 7.28793713
- 6.9482023  7.10384994 7.48193355 7.27584872 7.05523287 7.14032283
- 7.20851927 7.49362725 7.72346026 7.51753185 7.40998855 7.30437519
- 6.9646404  7.12028826 7.49837175 7.29228676 7.07167103 7.15676102]
+[7.21676683 7.47718058 7.70700633 7.5012197  7.39363566 7.28792774
+ 6.94822848 7.10378714 7.48181571 7.27586987 7.05525613 7.14029303
+ 7.20855443 7.49361797 7.72344359 7.51765689 7.41007293 7.30436491
+ 6.96466568 7.12022456 7.49825302 7.29230701 7.0716934  7.15673033]
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[7.43733959 7.39068654 7.27897048 6.93559394 7.09599306 7.47101792
- 7.26720085 7.04661648 7.12045707 7.19253322 7.48399543 7.70290721
- 7.50059684 7.40640341 7.29468726 6.95131075 7.11171009 7.48673483
- 7.28291761 7.06233335 7.13617397 7.20825014 7.49971243 7.71862408
- 7.51631363 7.42212029 7.31040403 6.96702756 7.12742711 7.50245174
- 7.29863436 7.07805021 7.15189087 7.22396706 7.51542943 7.73434094
- 7.53203043 7.43783716 7.3261208  6.98274436 7.14314414 7.51816865
- 7.31435111 7.09376708 7.16760777 7.23968398 7.53114643 7.7500578
- 7.54774722 7.45355404 7.34183757 6.99846117 7.15886117 7.53388556
- 7.33006786 7.10948395 7.18332467]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[7.43733129 7.3906709  7.2789674  6.93561476 7.09600328 7.47102983
+ 7.26721697 7.04662036 7.12047127 7.19255046 7.48399493 7.70291941
+ 7.5006127  7.40639258 7.29468897 6.95133636 7.1117251  7.48675154
+ 7.28293852 7.06234203 7.13619297 7.20827218 7.49971672 7.71864107
+ 7.51633429 7.42211425 7.31041054 6.96705797 7.12744693 7.50247324
+ 7.29866007 7.07806369 7.15191467 7.2239939  7.51543852 7.73436273
+ 7.53205589 7.43783593 7.32613211 6.98277958 7.14316875 7.51819495
+ 7.31438162 7.09378536 7.16763637 7.23971562 7.53116032 7.75008439
+ 7.54777748 7.4535576  7.34185369 6.99850118 7.15889058 7.53391666
+ 7.33010317 7.10950703 7.18335807]
 </pre></div>
 </div>
 <img alt="../_images/SARIMA_modeling_45_13.png" src="../_images/SARIMA_modeling_45_13.png" />

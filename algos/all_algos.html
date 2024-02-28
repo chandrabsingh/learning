@@ -1920,9 +1920,9 @@ abcdefg
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Path=(&#39;a&#39;, &#39;c&#39;, &#39;b&#39;, &#39;d&#39;, &#39;e&#39;, &#39;f&#39;), Weight=(2, 7, 8, 6, 3), Sum=26
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Path=(&#39;a&#39;, &#39;b&#39;, &#39;c&#39;, &#39;d&#39;, &#39;e&#39;, &#39;f&#39;), Weight=(5, 7, 4, 6, 3), Sum=25
 Path=(&#39;a&#39;, &#39;b&#39;, &#39;d&#39;, &#39;c&#39;, &#39;e&#39;, &#39;f&#39;), Weight=(5, 8, 4, 8, 3), Sum=28
-Path=(&#39;a&#39;, &#39;b&#39;, &#39;c&#39;, &#39;d&#39;, &#39;e&#39;, &#39;f&#39;), Weight=(5, 7, 4, 6, 3), Sum=25
+Path=(&#39;a&#39;, &#39;c&#39;, &#39;b&#39;, &#39;d&#39;, &#39;e&#39;, &#39;f&#39;), Weight=(2, 7, 8, 6, 3), Sum=26
 Path=(&#39;a&#39;, &#39;b&#39;, &#39;c&#39;, &#39;e&#39;, &#39;d&#39;, &#39;f&#39;), Weight=(5, 7, 8, 6, 4), Sum=30
 </pre></div>
 </div>
@@ -2964,25 +2964,25 @@ nodes=8, edges=[[0, 1], [0, 3], [1, 2], [4, 5], [6, 7]], isValidTree=False
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>fib0 - Using recursion only
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1.4 ms ± 3.68 µs per loop (mean ± std. dev. of 7 runs, 1,000 loops each)
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1.41 ms ± 8.52 µs per loop (mean ± std. dev. of 7 runs, 1,000 loops each)
 -------
 fib1 - Using recursion + local dictionary memoization
-98.6 ns ± 5.46 ns per loop (mean ± std. dev. of 7 runs, 1,000 loops each)
+102 ns ± 4.57 ns per loop (mean ± std. dev. of 7 runs, 1,000 loops each)
 -------
 fib2 - Using loop + memoization
-2.47 µs ± 124 ns per loop (mean ± std. dev. of 7 runs, 1,000 loops each)
+2.53 µs ± 90.5 ns per loop (mean ± std. dev. of 7 runs, 1,000 loops each)
 -------
 fib3 - Using recursion + decorator dictionary memoization
-231 ns ± 7.86 ns per loop (mean ± std. dev. of 7 runs, 1,000 loops each)
+240 ns ± 7.71 ns per loop (mean ± std. dev. of 7 runs, 1,000 loops each)
 -------
 fib4 - Using lru cache
-66.8 ns ± 14.4 ns per loop (mean ± std. dev. of 7 runs, 1,000 loops each)
+59.6 ns ± 2.49 ns per loop (mean ± std. dev. of 7 runs, 1,000 loops each)
 CacheInfo(hits=7017, misses=21, maxsize=None, currsize=21)
 -------
 fib5 - Using matrix multiplication
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1.39 ms ± 20.6 µs per loop (mean ± std. dev. of 7 runs, 1,000 loops each)
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1.33 ms ± 41 µs per loop (mean ± std. dev. of 7 runs, 1,000 loops each)
 </pre></div>
 </div>
 </div>

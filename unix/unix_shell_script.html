@@ -759,10 +759,20 @@ const thebe_selector_output = ".output, .cell_output"
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#find-command-locations">
+     find command locations
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#shell">
      Shell
     </a>
     <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id1">
+       Commands
+      </a>
+     </li>
      <li class="toc-h4 nav-item toc-entry">
       <a class="reference internal nav-link" href="#navigation">
        Navigation
@@ -973,8 +983,8 @@ const thebe_selector_output = ".output, .cell_output"
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#kakka-zookeeper">
-   Kakka/Zookeeper
+  <a class="reference internal nav-link" href="#kafka-zookeeper">
+   Kafka/Zookeeper
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
@@ -1055,10 +1065,20 @@ const thebe_selector_output = ".output, .cell_output"
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#find-command-locations">
+     find command locations
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#shell">
      Shell
     </a>
     <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id1">
+       Commands
+      </a>
+     </li>
      <li class="toc-h4 nav-item toc-entry">
       <a class="reference internal nav-link" href="#navigation">
        Navigation
@@ -1269,8 +1289,8 @@ const thebe_selector_output = ".output, .cell_output"
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#kakka-zookeeper">
-   Kakka/Zookeeper
+  <a class="reference internal nav-link" href="#kafka-zookeeper">
+   Kafka/Zookeeper
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
@@ -1311,6 +1331,15 @@ const thebe_selector_output = ".output, .cell_output"
 <li><p>Insert mode: <code class="docutils literal notranslate"><span class="pre">:I</span></code></p></li>
 <li><p>Copy next 2 lines: <code class="docutils literal notranslate"><span class="pre">2yy</span></code></p></li>
 <li><p>Paste copied items: <code class="docutils literal notranslate"><span class="pre">p</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">&quot;+</span></code> is a special register, the system clipboard.</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">&quot;+-yank</span></code> commands you can copy to the system clipboard,</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">&quot;+-put</span></code> commands you can paste from the system clipboard.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">&quot;+yy</span></code> yanks the current line into the system clipboard</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">&quot;+yiw</span></code> yanks the current word into the system clipboard</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">V&quot;+y</span></code> selects the current line in line-visual mode and yanks it into the system clipboard</p></li>
+</ul>
+</li>
 <li><p>Copy/Paste specific line numbers:</p>
 <ul class="simple">
 <li><p>yank those lines in register:</p></li>
@@ -1490,6 +1519,18 @@ And must importantly, :q will quite the mode.</p>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>mdfind -name Filename <span class="p">|</span> grep <span class="s2">&quot;stri2&quot;</span>
 </pre></div>
 </div>
+<ul class="simple">
+<li><p>Hardware overview</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sysctl</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Number of cores</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sysctl</span> <span class="o">-</span><span class="n">n</span> <span class="n">hw</span><span class="o">.</span><span class="n">ncpu</span>
+</pre></div>
+</div>
 </section>
 <section id="find-files-dir">
 <h3>find files/dir<a class="headerlink" href="#find-files-dir" title="Permalink to this headline">¶</a></h3>
@@ -1567,8 +1608,50 @@ find . -type f &gt; somefile.txt
 </pre></div>
 </div>
 </section>
+<section id="find-command-locations">
+<h3>find command locations<a class="headerlink" href="#find-command-locations" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>find where a specified command location is</p></li>
+</ul>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>whereis python
+which python
+whereis ls
+which ls
+whatis whereis
+whatis which
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>what is the difference between whereis and which</p>
+<ul>
+<li><p>whereis searches the standard *nix locations for a specified command.</p></li>
+<li><p>which searches your user-specific PATH</p>
+<ul>
+<li><p>which may include some of the locations whereis searches, and may not include others - it might also include some places that whereis doesn’t search if you’d added to your PATH</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>find executable path</p></li>
+</ul>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="nb">type</span> -a python
+</pre></div>
+</div>
+<blockquote>
+<div><p>python is /Users/chandrasingh/opt/anaconda3/bin/python<br />
+python is /usr/bin/python</p>
+</div></blockquote>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="nb">type</span> -a man
+</pre></div>
+</div>
+<blockquote>
+<div><p>whereis is /usr/bin/man</p>
+</div></blockquote>
+</section>
 <section id="shell">
 <h3>Shell<a class="headerlink" href="#shell" title="Permalink to this headline">¶</a></h3>
+<section id="id1">
+<h4>Commands<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h4>
 <ul class="simple">
 <li><p>How to check which sh am i using</p></li>
 </ul>
@@ -1587,6 +1670,7 @@ find . -type f &gt; somefile.txt
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>ps -elf
 </pre></div>
 </div>
+</section>
 <section id="navigation">
 <h4>Navigation<a class="headerlink" href="#navigation" title="Permalink to this headline">¶</a></h4>
 <ul class="simple">
@@ -2706,8 +2790,8 @@ pip install <span class="nv">scipy</span><span class="o">==</span><span class="m
 <p><a class="reference external" href="http://localhost:8484/icCube/console/mdx">http://localhost:8484/icCube/console/mdx</a></p>
 </section>
 </section>
-<section id="kakka-zookeeper">
-<h2>Kakka/Zookeeper<a class="headerlink" href="#kakka-zookeeper" title="Permalink to this headline">¶</a></h2>
+<section id="kafka-zookeeper">
+<h2>Kafka/Zookeeper<a class="headerlink" href="#kafka-zookeeper" title="Permalink to this headline">¶</a></h2>
 <p>==&gt; Caveats
 ==&gt; kafka
 To restart kafka after an upgrade:
